@@ -116,7 +116,7 @@ export function updateDraftPost(date, postId, newContent) {
 }
 
 // Helper to mark a draft as selected and posted
-export function markAsPosted(date, postId) {
+export function markAsPosted(date, postId, imageUrl = null) {
   const db = readDb();
   const entry = db.history.find(item => item.date === date);
   
@@ -124,6 +124,14 @@ export function markAsPosted(date, postId) {
     entry.selectedPostId = parseInt(postId);
     entry.status = 'posted';
     entry.postedAt = new Date().toISOString();
+    
+    if (entry.posts) {
+      const post = entry.posts.find(p => p.id === parseInt(postId));
+      if (post) {
+        post.imageUrl = imageUrl;
+      }
+    }
+    
     writeDb(db);
     return true;
   }

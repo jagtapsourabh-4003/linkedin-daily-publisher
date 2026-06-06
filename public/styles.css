@@ -850,3 +850,62 @@ body {
     padding: 12px;
   }
 }
+
+/* Creative Graphic Preview UI */
+.creative-container {
+  margin-top: 14px;
+  background: rgba(15, 22, 42, 0.4);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.creative-toggle-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 18px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.01);
+  transition: var(--transition-fast);
+  user-select: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-bottom: 1px solid transparent;
+}
+
+.creative-toggle-header:hover {
+  background: rgba(255, 255, 255, 0.03);
+  color: #fff;
+}
+
+.creative-toggle-header.active {
+  border-color: var(--border-light);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.creative-content-body {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.creative-canvas {
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.disabled-item {
+  opacity: 0.45;
+  pointer-events: none;
+}
+

@@ -10,6 +10,22 @@ let state = {
   isLoading: false
 };
 
+// Global Image Resources
+const avatarImg = new Image();
+let avatarImageLoaded = false;
+avatarImg.onload = () => {
+  avatarImageLoaded = true;
+  console.log('[Avatar] Profile picture loaded successfully.');
+  if (state.history.length > 0) {
+    renderActiveDrafts();
+  }
+};
+avatarImg.onerror = () => {
+  console.warn('[Avatar] Failed to load avatar.jpg. Canvas will render placeholder.');
+};
+// Cache busting
+avatarImg.src = 'avatar.jpg?t=' + Date.now();
+
 // DOM Elements
 const el = {
   topicBadge: document.getElementById('topic-badge'),
@@ -32,6 +48,8 @@ const el = {
   inputWebhook: document.getElementById('input-webhook'),
   inputApiKey: document.getElementById('input-apikey'),
   inputSecret: document.getElementById('input-secret'),
+  inputAvatarFile: document.getElementById('input-avatar-file'),
+  avatarPreview: document.getElementById('avatar-preview'),
   toastContainer: document.getElementById('toast-container'),
   glow1: document.getElementById('glow-1'),
   glow2: document.getElementById('glow-2')
@@ -68,6 +86,19 @@ function setupEventListeners() {
 
   // Trigger Generation
   el.btnTriggerGeneration.addEventListener('click', triggerManualGeneration);
+
+  // Avatar upload preview change listener
+  if (el.inputAvatarFile) {
+    el.inputAvatarFile.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files[0]) {
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          el.avatarPreview.src = ev.target.result;
+        };
+        reader.readAsDataURL(e.target.files[0]);
+      }
+    });
+  }
 }
 
 // ================= API CALLS & DATA FETCHING =================
@@ -84,6 +115,7 @@ async function loadSettings() {
     el.inputWebhook.value = state.settings.webhookUrl || '';
     el.inputSecret.value = state.settings.cronSecret || '';
     el.inputApiKey.placeholder = state.settings.hasApiKey ? '••••••••••••••••••••••••••••••••' : 'Enter API Key';
+    el.avatarPreview.src = 'avatar.jpg?t=' + Date.now();
 
     // Show/hide api key notice
     if (!state.settings.hasApiKey) {
@@ -122,6 +154,16 @@ async function loadHistory() {
   }
 }
 
+// Convert file to Base64 utility
+function convertFileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+    reader.readAsDataURL(file);
+  });
+}
+
 // Save Settings via API
 async function handleSaveSettings(e) {
   e.preventDefault();
@@ -129,6 +171,26 @@ async function handleSaveSettings(e) {
   const geminiApiKey = el.inputApiKey.value.trim();
   
   try {
+    // 1. Upload custom avatar if a new one is selected
+    if (el.inputAvatarFile.files && el.inputAvatarFile.files[0]) {
+      showToast('Uploading profile picture...', 'info');
+      const file = el.inputAvatarFile.files[0];
+      const base64Image = await convertFileToBase64(file);
+      
+      const avatarRes = await fetch('/api/settings/avatar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ image: base64Image })
+      });
+      
+      if (!avatarRes.ok) throw new Error('Failed to upload avatar image');
+      
+      // Update local cache-busted source
+      avatarImageLoaded = false;
+      avatarImg.src = 'avatar.jpg?t=' + Date.now();
+    }
+
+    // 2. Save configurations
     const res = await fetch('/api/settings', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -141,9 +203,11 @@ async function handleSaveSettings(e) {
     closeSettings();
     await loadSettings();
     
-    // If they just added an API key, trigger a reload to run startup checks/refresh drafts
-    if (geminiApiKey && state.history.length === 0) {
+    // Refresh drafts if they were blank
+    if (state.history.length === 0 && geminiApiKey) {
       await loadHistory();
+    } else if (state.history.length > 0) {
+      renderActiveDrafts();
     }
   } catch (err) {
     showToast(`Save failed: ${err.message}`, 'error');
@@ -208,7 +272,7 @@ async function saveDraftEdit(date, postId, content) {
   }
 }
 
-// Send Selected Post to Google Flow Webhook
+// Send Selected Post & Rendered Graphic to Google Flow Webhook
 async function postToGoogleFlow(postId, btnElement) {
   const date = state.activeDate;
   if (!state.settings.webhookUrl) {
@@ -219,13 +283,33 @@ async function postToGoogleFlow(postId, btnElement) {
 
   btnElement.disabled = true;
   const originalHtml = btnElement.innerHTML;
-  btnElement.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Sending...`;
+  btnElement.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Generating graphic...`;
 
   try {
+    // 1. Grab matching canvas and export as data URL
+    const canvas = document.getElementById(`canvas-${postId}`);
+    if (!canvas) throw new Error('Image canvas element not found');
+    
+    const imageBase64 = canvas.toDataURL('image/png');
+    
+    // 2. Upload image to server to get public hosting URL
+    btnElement.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Uploading graphic...`;
+    const uploadRes = await fetch('/api/upload-creative', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ date, postId, image: imageBase64 })
+    });
+    
+    if (!uploadRes.ok) throw new Error('Failed to host image creative on server');
+    const uploadData = await uploadRes.json();
+    const imageUrl = uploadData.imageUrl;
+    
+    // 3. Post text and image URL to user's Google Flow Webhook
+    btnElement.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Publishing...`;
     const res = await fetch('/api/post', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ date, postId })
+      body: JSON.stringify({ date, postId, imageUrl })
     });
 
     if (!res.ok) {
@@ -233,7 +317,7 @@ async function postToGoogleFlow(postId, btnElement) {
       throw new Error(errData.error || 'Server error delivering post');
     }
 
-    showToast('Post sent to Google Flow successfully!', 'success');
+    showToast('Post and creative graphic sent successfully!', 'success');
     
     // Refresh history and re-render to reflect "Posted" state
     await loadHistory();
@@ -329,7 +413,19 @@ function renderActiveDrafts() {
         <span id="char-count-${post.id}">${charCount} characters</span>
         <span id="hashtag-count-${post.id}">${hashtagCount} hashtags</span>
       </div>
-      <div class="draft-card-actions">
+      
+      <!-- Visual Graphic Preview -->
+      <div class="creative-container">
+        <div class="creative-toggle-header" id="toggle-creative-${post.id}">
+          <span>🖼 View Social Graphic Card</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="creative-content-body hidden" id="creative-body-${post.id}">
+          <canvas id="canvas-${post.id}" width="1080" height="1080" class="creative-canvas"></canvas>
+        </div>
+      </div>
+
+      <div class="draft-card-actions" style="margin-top: 14px;">
         <button class="btn btn-secondary btn-sm" id="btn-copy-${post.id}">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
           Copy Content
@@ -338,7 +434,7 @@ function renderActiveDrafts() {
           isThisPostSelected
             ? `<div class="posted-status-btn">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Published via Google Flow
+                Published with Creative Graphic
                </div>`
             : isDayPosted
               ? `<button class="btn btn-secondary btn-sm" disabled>Unavailable</button>`
@@ -351,6 +447,20 @@ function renderActiveDrafts() {
     `;
 
     el.draftsContainer.appendChild(cardEl);
+
+    // Toggle graphic card menu
+    const toggleHeader = cardEl.querySelector(`#toggle-creative-${post.id}`);
+    const contentBody = cardEl.querySelector(`#creative-body-${post.id}`);
+    toggleHeader.addEventListener('click', () => {
+      contentBody.classList.toggle('hidden');
+      toggleHeader.classList.toggle('active');
+    });
+
+    // Render Canvas
+    const canvas = cardEl.querySelector(`#canvas-${post.id}`);
+    if (canvas) {
+      drawCreative(canvas, activeEntry.category, post.imageHeadline || "AI Strategy", post.imageSubtext || "Next-Gen Workflows");
+    }
 
     // Textarea auto-save and length counters listener
     const textarea = cardEl.querySelector(`#textarea-${post.id}`);
@@ -447,6 +557,156 @@ function applyTopicTheme(category) {
     el.glow2.style.background = 'var(--grad-marketing)';
     el.glow2.style.opacity = '0.05';
   }
+}
+
+// ================= DYNAMIC CANVAS RENDER PIPELINE =================
+
+// Draw custom creative card matching user template design structure
+function drawCreative(canvas, category, headline, subtext) {
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width;  // 1080
+  const h = canvas.height; // 1080
+  
+  // 1. Clear & draw overall background
+  ctx.fillStyle = '#eaeef3'; // Light grey/blue clean color matching template
+  ctx.fillRect(0, 0, w, h);
+  
+  // 2. Draw Left Card Dome (Main Text Holder)
+  const lx = 70;
+  const ly = 100;
+  const lw = 500;
+  const lh = 880;
+  
+  ctx.save();
+  ctx.beginPath();
+  // round only the top corners [TL, TR, BR, BL]
+  ctx.roundRect(lx, ly, lw, lh, [250, 250, 0, 0]);
+  
+  // Set background color gradients based on theme
+  const grad = ctx.createLinearGradient(lx, ly, lx, ly + lh);
+  if (category === 'marketing') {
+    grad.addColorStop(0, '#0f4c81'); // Classic deep blue from template
+    grad.addColorStop(1, '#1b2a47'); // Muted dark blue
+  } else {
+    grad.addColorStop(0, '#6d28d9'); // Indigo AI theme
+    grad.addColorStop(1, '#0f172a'); // Deep dark
+  }
+  ctx.fillStyle = grad;
+  ctx.fill();
+  ctx.restore();
+  
+  // 3. Draw Right Image Dome (User portrait crop)
+  const rx = 600;
+  const ry = 160;
+  const rw = 410;
+  const rh = 760;
+  
+  ctx.save();
+  ctx.beginPath();
+  ctx.roundRect(rx, ry, rw, rh, [205, 205, 0, 0]);
+  ctx.clip();
+  
+  // Draw user's portrait image
+  if (avatarImageLoaded) {
+    const imgRatio = avatarImg.width / avatarImg.height;
+    const destRatio = rw / rh;
+    let sw, sh, sx, sy;
+    
+    if (imgRatio > destRatio) {
+      sh = avatarImg.height;
+      sw = sh * destRatio;
+      sx = (avatarImg.width - sw) / 2;
+      sy = 0;
+    } else {
+      sw = avatarImg.width;
+      sh = sw / destRatio;
+      sx = 0;
+      sy = (avatarImg.height - sh) / 2;
+    }
+    ctx.drawImage(avatarImg, sx, sy, sw, sh, rx, ry, rw, rh);
+  } else {
+    // Fallback if avatar image is missing/loading
+    ctx.fillStyle = '#cbd5e1';
+    ctx.fillRect(rx, ry, rw, rh);
+    
+    // Draw placeholder silhouette text
+    ctx.fillStyle = '#64748b';
+    ctx.font = '24px Inter';
+    ctx.textAlign = 'center';
+    ctx.fillText('Avatar Picture', rx + rw/2, ry + rh/2 - 10);
+    ctx.font = '16px Inter';
+    ctx.fillText('(Set in Settings)', rx + rw/2, ry + rh/2 + 20);
+  }
+  ctx.restore();
+  
+  // 4. Draw Left Card Texts & Badges
+  ctx.save();
+  ctx.textAlign = 'center';
+  
+  // A. Logo header
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+  ctx.font = 'bold 20px Outfit';
+  ctx.fillText('⚡ AI EXPERT & MARKETING MANAGER', lx + lw/2, ly + 80);
+  
+  // B. Main bold Headline
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '800 48px Outfit';
+  const headlineY = ly + 210;
+  wrapText(ctx, headline.toUpperCase(), lx + 40, headlineY, lw - 80, 58);
+  
+  // C. Divider dots
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+  ctx.font = '24px Inter';
+  ctx.fillText('•••••••••••••••••', lx + lw/2, ly + 520);
+  
+  // D. Description Subtext
+  ctx.fillStyle = '#cbd5e1';
+  ctx.font = '500 24px Inter';
+  const subtextY = ly + 575;
+  wrapText(ctx, subtext, lx + 50, subtextY, lw - 100, 36);
+  
+  // E. Call to action pill badge
+  const badgeW = 280;
+  const badgeH = 65;
+  const badgeX = lx + (lw - badgeW)/2;
+  const badgeY = ly + 720;
+  
+  ctx.beginPath();
+  ctx.roundRect(badgeX, badgeY, badgeW, badgeH, 12);
+  ctx.fillStyle = category === 'marketing' ? '#007bb6' : '#7c3aed';
+  ctx.fill();
+  
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 24px Outfit';
+  ctx.fillText('READ FULL POST', lx + lw/2, badgeY + 41);
+  
+  // F. Footer website URL
+  ctx.fillStyle = '#94a3b8';
+  ctx.font = '600 22px Inter';
+  ctx.fillText('linkedin.com/in/jagtapsourabh', lx + lw/2, ly + 830);
+  
+  ctx.restore();
+}
+
+// Wrap text canvas utility
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  const words = text.split(' ');
+  let line = '';
+  let currentY = y;
+  
+  for (let n = 0; n < words.length; n++) {
+    let testLine = line + words[n] + ' ';
+    let metrics = ctx.measureText(testLine);
+    let testWidth = metrics.width;
+    if (testWidth > maxWidth && n > 0) {
+      ctx.fillText(line, x + maxWidth/2, currentY);
+      line = words[n] + ' ';
+      currentY += lineHeight;
+    } else {
+      line = testLine;
+    }
+  }
+  ctx.fillText(line, x + maxWidth/2, currentY);
 }
 
 // ================= HELPERS & UTILS =================

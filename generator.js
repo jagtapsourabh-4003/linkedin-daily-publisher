@@ -56,7 +56,9 @@ Each object in the array must follow this structure:
   "style": "Style/Angle Name",
   "hook": "The first 1-2 lines of the post (attention-grabbing hook)",
   "content": "The full body of the post, including the hook, paragraphs, call to action, and hashtags. Keep line breaks intact with newlines (\\n).",
-  "sourceArticle": "Title of the main article from the trends context that inspired this post, or 'General Trend' if inspired by multiple."
+  "sourceArticle": "Title of the main article from the trends context that inspired this post, or 'General Trend' if inspired by multiple.",
+  "imageHeadline": "A short 2-3 word punchy title for a graphic card (e.g. 'AI Agents' or 'B2B SEO Growth')",
+  "imageSubtext": "A short 5-8 word description detailing the key takeaway (e.g. 'Automating workflows with generative models')"
 }`;
 
   try {

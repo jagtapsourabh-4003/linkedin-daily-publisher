@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import cron from 'node-cron';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { scrapeTrends } from './scraper.js';
 import { generatePosts } from './generator.js';
@@ -148,9 +149,57 @@ app.post('/api/edit', (req, res) => {
   }
 });
 
+// Upload custom user avatar
+app.post('/api/settings/avatar', (req, res) => {
+  const { image } = req.body;
+  if (!image) {
+    return res.status(400).json({ error: 'Missing image data' });
+  }
+
+  try {
+    const base64Data = image.replace(/^data:image\/\w+;base64,/, '');
+    const buffer = Buffer.from(base64Data, 'base64');
+    fs.writeFileSync(path.join(__dirname, 'public', 'avatar.jpg'), buffer);
+    res.json({ success: true, message: 'Avatar updated successfully' });
+  } catch (err) {
+    console.error('[API] Avatar upload failed:', err);
+    res.status(500).json({ error: `Avatar upload failed: ${err.message}` });
+  }
+});
+
+// Upload rendered post creative image
+app.post('/api/upload-creative', (req, res) => {
+  const { date, postId, image } = req.body;
+  if (!date || !postId || !image) {
+    return res.status(400).json({ error: 'Missing parameters' });
+  }
+
+  try {
+    const base64Data = image.replace(/^data:image\/\w+;base64,/, '');
+    const buffer = Buffer.from(base64Data, 'base64');
+    
+    const creativesDir = path.join(__dirname, 'public', 'creatives');
+    if (!fs.existsSync(creativesDir)) {
+      fs.mkdirSync(creativesDir, { recursive: true });
+    }
+    
+    const fileName = `creative-${date}-${postId}.png`;
+    fs.writeFileSync(path.join(creativesDir, fileName), buffer);
+    
+    const host = req.get('host');
+    const protocol = req.protocol;
+    const imageUrl = `${protocol}://${host}/creatives/${fileName}`;
+    
+    res.json({ success: true, imageUrl });
+  } catch (err) {
+    console.error('[API] Creative upload failed:', err);
+    res.status(500).json({ error: `Creative upload failed: ${err.message}` });
+  }
+});
+
 // Post a selected draft to Google Flow Webhook
 app.post('/api/post', async (req, res) => {
-  const { date, postId } = req.body;
+  const { date, postId, imageUrl } = req.body;
   if (!date || !postId) {
     return res.status(400).json({ error: 'Missing date or postId' });
   }
@@ -182,6 +231,7 @@ app.post('/api/post', async (req, res) => {
       },
       body: JSON.stringify({
         text: post.content,
+        imageUrl: imageUrl || null,
         style: post.style,
         sourceArticle: post.sourceArticle,
         category: dayEntry.category,
@@ -195,7 +245,7 @@ app.post('/api/post', async (req, res) => {
     }
 
     // Mark as posted in database
-    markAsPosted(date, postId);
+    markAsPosted(date, postId, imageUrl || null);
     res.json({ success: true, message: 'Post sent to Google Flow successfully!' });
 
   } catch (error) {
