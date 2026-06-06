@@ -459,7 +459,7 @@ function renderActiveDrafts() {
     // Render Canvas
     const canvas = cardEl.querySelector(`#canvas-${post.id}`);
     if (canvas) {
-      drawCreative(canvas, activeEntry.category, post.imageHeadline || "AI Strategy", post.imageSubtext || "Next-Gen Workflows");
+      drawCreative(canvas, activeEntry.category, post.imageHeadline || "AI Strategy", post.imageSubtext || "Next-Gen Workflows", post.id);
     }
 
     // Textarea auto-save and length counters listener
@@ -562,7 +562,7 @@ function applyTopicTheme(category) {
 // ================= DYNAMIC CANVAS RENDER PIPELINE =================
 
 // Draw custom creative card matching user template design structure
-function drawCreative(canvas, category, headline, subtext) {
+function drawCreative(canvas, category, headline, subtext, postId = 1) {
   const ctx = canvas.getContext('2d');
   const w = canvas.width;  // 1080
   const h = canvas.height; // 1080
@@ -571,45 +571,205 @@ function drawCreative(canvas, category, headline, subtext) {
   ctx.fillStyle = '#eaeef3'; // Light grey/blue clean color matching template
   ctx.fillRect(0, 0, w, h);
   
-  // 2. Draw Left Card Dome (Main Text Holder)
-  const lx = 70;
-  const ly = 100;
-  const lw = 500;
-  const lh = 880;
+  // 2. Select layout style and photo filters dynamically based on postId (1 to 5)
+  const styleIdx = (postId - 1) % 5;
+  
+  const filters = [
+    'grayscale(100%) contrast(1.15)', // Post 1: Classic B&W
+    'sepia(45%) contrast(1.1) brightness(0.95)', // Post 2: Vintage Warm
+    'contrast(1.2) brightness(1.02) saturate(1.1)', // Post 3: High Contrast Natural
+    'hue-rotate(220deg) saturate(70%) contrast(1.1) brightness(0.95)', // Post 4: Cool Slate Blue
+    'brightness(1.05) contrast(1.05) saturate(1.2)' // Post 5: Soft Saturated Warm
+  ];
   
   ctx.save();
+  
+  // Render selected layout
+  if (styleIdx === 0) {
+    // Style 1: Classic Dome (Text Left, Photo Right)
+    drawLeftCardDome(ctx, category, 70, 100, 500, 880, headline, subtext);
+    drawRightImageDome(ctx, 600, 160, 410, 760, filters[0]);
+  } 
+  else if (styleIdx === 1) {
+    // Style 2: Swapped Dome (Text Right, Photo Left)
+    drawLeftCardDome(ctx, category, 510, 100, 500, 880, headline, subtext);
+    drawRightImageDome(ctx, 70, 160, 410, 760, filters[1]);
+  } 
+  else if (styleIdx === 2) {
+    // Style 3: Capsule Pill-Frame
+    drawLeftCardPill(ctx, category, 80, 100, 480, 880, headline, subtext);
+    drawRightImagePill(ctx, 600, 160, 400, 760, filters[2]);
+  } 
+  else if (styleIdx === 3) {
+    // Style 4: Sleek Diagonal Split
+    drawDiagonalSplit(ctx, category, headline, subtext, filters[3]);
+  } 
+  else if (styleIdx === 4) {
+    // Style 5: Minimalist Circle Border
+    drawMinimalistCircle(ctx, category, headline, subtext, filters[4]);
+  }
+  
+  ctx.restore();
+}
+
+// Drawing Sub-routines
+function drawLeftCardDome(ctx, category, lx, ly, lw, lh, headline, subtext) {
+  ctx.save();
   ctx.beginPath();
-  // round only the top corners [TL, TR, BR, BL]
   ctx.roundRect(lx, ly, lw, lh, [250, 250, 0, 0]);
   
-  // Set background color gradients based on theme
   const grad = ctx.createLinearGradient(lx, ly, lx, ly + lh);
   if (category === 'marketing') {
-    grad.addColorStop(0, '#0f4c81'); // Classic deep blue from template
-    grad.addColorStop(1, '#1b2a47'); // Muted dark blue
+    grad.addColorStop(0, '#0f4c81');
+    grad.addColorStop(1, '#1b2a47');
   } else {
-    grad.addColorStop(0, '#6d28d9'); // Indigo AI theme
-    grad.addColorStop(1, '#0f172a'); // Deep dark
+    grad.addColorStop(0, '#7f00ff');
+    grad.addColorStop(1, '#0f172a');
   }
   ctx.fillStyle = grad;
   ctx.fill();
+  
+  drawTextInsideCard(ctx, category, lx, ly, lw, lh, headline, subtext);
   ctx.restore();
-  
-  // 3. Draw Right Image Dome (User portrait crop)
-  const rx = 600;
-  const ry = 160;
-  const rw = 410;
-  const rh = 760;
-  
+}
+
+function drawRightImageDome(ctx, rx, ry, rw, rh, filter) {
   ctx.save();
   ctx.beginPath();
   ctx.roundRect(rx, ry, rw, rh, [205, 205, 0, 0]);
   ctx.clip();
   
-  // Draw user's portrait image
+  ctx.filter = filter;
+  drawAvatar(ctx, rx, ry, rw, rh);
+  ctx.restore();
+}
+
+function drawLeftCardPill(ctx, category, lx, ly, lw, lh, headline, subtext) {
+  ctx.save();
+  ctx.beginPath();
+  ctx.roundRect(lx, ly, lw, lh, [240, 240, 240, 240]);
+  
+  const grad = ctx.createLinearGradient(lx, ly, lx, ly + lh);
+  if (category === 'marketing') {
+    grad.addColorStop(0, '#311042');
+    grad.addColorStop(1, '#0f172a');
+  } else {
+    grad.addColorStop(0, '#0369a1');
+    grad.addColorStop(1, '#020617');
+  }
+  ctx.fillStyle = grad;
+  ctx.fill();
+  
+  drawTextInsideCard(ctx, category, lx, ly, lw, lh, headline, subtext);
+  ctx.restore();
+}
+
+function drawRightImagePill(ctx, rx, ry, rw, rh, filter) {
+  ctx.save();
+  ctx.beginPath();
+  ctx.roundRect(rx, ry, rw, rh, [200, 200, 200, 200]);
+  ctx.clip();
+  
+  ctx.filter = filter;
+  drawAvatar(ctx, rx, ry, rw, rh);
+  ctx.restore();
+}
+
+function drawDiagonalSplit(ctx, category, headline, subtext, filter) {
+  const lx = 70;
+  const ly = 100;
+  const lw = 940;
+  const lh = 880;
+  
+  ctx.save();
+  ctx.beginPath();
+  ctx.roundRect(lx, ly, lw, lh, 40);
+  ctx.clip();
+  
+  const grad = ctx.createLinearGradient(lx, ly, lx, ly + lh);
+  if (category === 'marketing') {
+    grad.addColorStop(0, '#be185d');
+    grad.addColorStop(1, '#310418');
+  } else {
+    grad.addColorStop(0, '#2563eb');
+    grad.addColorStop(1, '#0b1329');
+  }
+  ctx.fillStyle = grad;
+  ctx.fillRect(lx, ly, lw, lh);
+  
+  drawTextInsideCard(ctx, category, lx, ly, 460, lh, headline, subtext);
+  ctx.restore();
+  
+  ctx.save();
+  ctx.beginPath();
+  ctx.roundRect(lx, ly, lw, lh, 40);
+  ctx.clip();
+  
+  ctx.beginPath();
+  ctx.moveTo(lx + lw, ly);
+  ctx.lineTo(lx + 520, ly);
+  ctx.lineTo(lx + 430, ly + lh);
+  ctx.lineTo(lx + lw, ly + lh);
+  ctx.closePath();
+  ctx.clip();
+  
+  ctx.filter = filter;
+  drawAvatar(ctx, lx + 430, ly, lw - 430, lh);
+  ctx.restore();
+}
+
+function drawMinimalistCircle(ctx, category, headline, subtext, filter) {
+  const lx = 70;
+  const ly = 100;
+  const lw = 940;
+  const lh = 880;
+  
+  ctx.save();
+  ctx.beginPath();
+  ctx.roundRect(lx, ly, lw, lh, 30);
+  
+  const grad = ctx.createLinearGradient(lx, ly, lx, ly + lh);
+  grad.addColorStop(0, '#0f172a');
+  grad.addColorStop(1, '#020617');
+  ctx.fillStyle = grad;
+  ctx.fill();
+  
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(lx + 480, ly + 50);
+  ctx.lineTo(lx + 480, ly + lh - 50);
+  ctx.stroke();
+  
+  drawTextInsideCard(ctx, category, lx, ly, 460, lh, headline, subtext);
+  ctx.restore();
+  
+  const cx = lx + 700;
+  const cy = ly + lh/2;
+  const radius = 210;
+  
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+  ctx.clip();
+  
+  ctx.filter = filter;
+  drawAvatar(ctx, cx - radius, cy - radius, radius * 2, radius * 2);
+  ctx.restore();
+  
+  ctx.save();
+  ctx.strokeStyle = category === 'marketing' ? '#f472b6' : '#60a5fa';
+  ctx.lineWidth = 6;
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.restore();
+}
+
+function drawAvatar(ctx, x, y, w, h) {
   if (avatarImageLoaded) {
     const imgRatio = avatarImg.width / avatarImg.height;
-    const destRatio = rw / rh;
+    const destRatio = w / h;
     let sw, sh, sx, sy;
     
     if (imgRatio > destRatio) {
@@ -623,49 +783,39 @@ function drawCreative(canvas, category, headline, subtext) {
       sx = 0;
       sy = (avatarImg.height - sh) / 2;
     }
-    ctx.drawImage(avatarImg, sx, sy, sw, sh, rx, ry, rw, rh);
+    ctx.drawImage(avatarImg, sx, sy, sw, sh, x, y, w, h);
   } else {
-    // Fallback if avatar image is missing/loading
     ctx.fillStyle = '#cbd5e1';
-    ctx.fillRect(rx, ry, rw, rh);
-    
-    // Draw placeholder silhouette text
+    ctx.fillRect(x, y, w, h);
     ctx.fillStyle = '#64748b';
     ctx.font = '24px Inter';
     ctx.textAlign = 'center';
-    ctx.fillText('Avatar Picture', rx + rw/2, ry + rh/2 - 10);
-    ctx.font = '16px Inter';
-    ctx.fillText('(Set in Settings)', rx + rw/2, ry + rh/2 + 20);
+    ctx.fillText('Avatar Loading...', x + w/2, y + h/2);
   }
-  ctx.restore();
-  
-  // 4. Draw Left Card Texts & Badges
+}
+
+function drawTextInsideCard(ctx, category, lx, ly, lw, lh, headline, subtext) {
   ctx.save();
   ctx.textAlign = 'center';
   
-  // A. Logo header
   ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-  ctx.font = 'bold 20px Outfit';
+  ctx.font = 'bold 18px Outfit';
   ctx.fillText('⚡ AI EXPERT & MARKETING MANAGER', lx + lw/2, ly + 80);
   
-  // B. Main bold Headline
   ctx.fillStyle = '#ffffff';
-  ctx.font = '800 48px Outfit';
+  ctx.font = '800 46px Outfit';
   const headlineY = ly + 210;
-  wrapText(ctx, headline.toUpperCase(), lx + 40, headlineY, lw - 80, 58);
+  wrapText(ctx, headline.toUpperCase(), lx + 30, headlineY, lw - 60, 56);
   
-  // C. Divider dots
   ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
   ctx.font = '24px Inter';
   ctx.fillText('•••••••••••••••••', lx + lw/2, ly + 520);
   
-  // D. Description Subtext
   ctx.fillStyle = '#cbd5e1';
   ctx.font = '500 24px Inter';
   const subtextY = ly + 575;
-  wrapText(ctx, subtext, lx + 50, subtextY, lw - 100, 36);
+  wrapText(ctx, subtext, lx + 40, subtextY, lw - 80, 36);
   
-  // E. Call to action pill badge
   const badgeW = 280;
   const badgeH = 65;
   const badgeX = lx + (lw - badgeW)/2;
@@ -673,14 +823,13 @@ function drawCreative(canvas, category, headline, subtext) {
   
   ctx.beginPath();
   ctx.roundRect(badgeX, badgeY, badgeW, badgeH, 12);
-  ctx.fillStyle = category === 'marketing' ? '#007bb6' : '#7c3aed';
+  ctx.fillStyle = category === 'marketing' ? '#0284c7' : '#8b5cf6';
   ctx.fill();
   
   ctx.fillStyle = '#ffffff';
   ctx.font = 'bold 24px Outfit';
   ctx.fillText('READ FULL POST', lx + lw/2, badgeY + 41);
   
-  // F. Footer website URL
   ctx.fillStyle = '#94a3b8';
   ctx.font = '600 22px Inter';
   ctx.fillText('linkedin.com/in/jagtapsourabh', lx + lw/2, ly + 830);

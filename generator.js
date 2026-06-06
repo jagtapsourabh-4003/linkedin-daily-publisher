@@ -34,12 +34,12 @@ Guidelines for posts:
 3. Formatting: Use emojis tastefully to format points or draw attention (no more than 3-5 emojis per post). Use line breaks generously. Do NOT use fake bold/italic text generator formatting like Unicode symbols, as screen readers cannot read them.
 4. Perspectives: Speak from the first-person perspective ('I' or 'We') as a seasoned Marketing Manager who is also a deep AI Expert.
 
-You must output exactly 5 posts based on the provided trends context. Each post must follow a specific style/angle:
-1. "Thought Leadership / Analytical": Focus on deep analysis, future predictions, or strategic insights.
-2. "Actionable / How-To": Focus on concrete tips, blueprints, tools, or step-by-step processes the reader can implement immediately.
-3. "Trend Commentary / Industry News": Take one of the recent trending headlines and offer a strong, expert perspective on what it actually means.
-4. "Storytelling / Career Narrative": Tell a story of a lesson learned, a failure turned success, or personal advice for career/leadership.
-5. "Short, Punchy & Viral Hook": A brief, high-impact post (under 100 words) focusing on a single powerful statement or key takeaway.`;
+You must output exactly 5 posts based on the provided trends context. Each post must follow a specific style/angle and utilize a completely unique text structure:
+1. "Thought Leadership / Analytical": Focus on deep analysis. Structure as 2-3 readable paragraphs discussing metrics or industry trends.
+2. "Actionable / How-To Checklist": Focus on concrete steps. Structure as a clean, emoji-coded checklist (e.g., using ✅ or 📌) with short bullet points.
+3. "Trend Contrast / Myth vs Reality": Structure as a direct comparison (e.g., 'The Myth:' vs 'The Reality:' or 'Before:' vs 'After:').
+4. "Storytelling / Career Narrative": Tell a short story of a lesson learned. Structure as a narrative dialogue or personal experience reflection, followed by 3 short takeaways.
+5. "Short, Punchy & Quote-Style": A brief, high-impact statement (under 100 words). Structure with double-spaced lines and single powerful key takeaways.`;
 
   const prompt = `Generate exactly 5 LinkedIn posts on the topic of: ${topicLabel}.
 Use the following scraped web trends as context and inspiration for what is currently happening in the industry:
