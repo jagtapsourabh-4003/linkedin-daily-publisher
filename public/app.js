@@ -24,6 +24,70 @@ avatarImg.onerror = () => {
 };
 avatarImg.src = 'avatar.jpg?t=' + Date.now();
 
+// Premium Color Palettes for daily rotating theme variations
+const PALETTES = [
+  {
+    name: 'Cyber Cyan',
+    primary: '#00f2fe',
+    secondary: '#4facfe',
+    gradStart: '#09153a',
+    gradEnd: '#020617',
+    rayColor: 'rgba(0, 242, 254, 0.04)',
+    textGlow: 'rgba(6, 182, 212, 0.15)',
+    badgeBg: '#1e40af'
+  },
+  {
+    name: 'Sunset Orange',
+    primary: '#f97316',
+    secondary: '#ef4444',
+    gradStart: '#2e0f05',
+    gradEnd: '#0c0200',
+    rayColor: 'rgba(249, 115, 22, 0.05)',
+    textGlow: 'rgba(249, 115, 22, 0.15)',
+    badgeBg: '#ea580c'
+  },
+  {
+    name: 'Emerald Mint',
+    primary: '#10b981',
+    secondary: '#059669',
+    gradStart: '#062016',
+    gradEnd: '#020907',
+    rayColor: 'rgba(16, 185, 129, 0.04)',
+    textGlow: 'rgba(16, 185, 129, 0.15)',
+    badgeBg: '#047857'
+  },
+  {
+    name: 'Royal Purple',
+    primary: '#db2777',
+    secondary: '#7f00ff',
+    gradStart: '#1c093a',
+    gradEnd: '#0e031c',
+    rayColor: 'rgba(219, 39, 119, 0.04)',
+    textGlow: 'rgba(219, 39, 119, 0.15)',
+    badgeBg: '#db2777'
+  },
+  {
+    name: 'Gold Amber',
+    primary: '#fbbf24',
+    secondary: '#d97706',
+    gradStart: '#1f1502',
+    gradEnd: '#070500',
+    rayColor: 'rgba(251, 191, 36, 0.04)',
+    textGlow: 'rgba(251, 191, 36, 0.15)',
+    badgeBg: '#b45309'
+  },
+  {
+    name: 'Electric Rose',
+    primary: '#f43f5e',
+    secondary: '#be123c',
+    gradStart: '#24040e',
+    gradEnd: '#0a0003',
+    rayColor: 'rgba(244, 63, 94, 0.05)',
+    textGlow: 'rgba(244, 63, 94, 0.15)',
+    badgeBg: '#e11d48'
+  }
+];
+
 // Array of Pre-generated AI Outfits
 const styledAvatars = [];
 const styledAvatarsLoaded = [false, false, false, false, false];
