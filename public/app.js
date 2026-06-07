@@ -913,8 +913,8 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     ctx.roundRect(-cw/2, -ch/2, cw, ch, 24);
     ctx.clip();
     
-    // Draw avatar inside card
-    drawAvatarForCircle(ctx, 0, 40, 240, filter, styleIdx, avatarImg);
+    // Draw avatar inside card with cover fit
+    drawAvatarForCard(ctx, -cw/2, -ch/2, cw, ch, filter, styleIdx, avatarImg);
     ctx.restore();
   } 
   else if (layoutIdx === 4) {
@@ -963,19 +963,20 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     ctx.shadowOffsetX = -15;
     ctx.shadowOffsetY = 20;
     
-    // Scale and draw avatar
+    // Scale and draw avatar maintaining aspect ratio
     const useAiOutfit = state.settings.rotateOutfits !== false && styledAvatarsLoaded[styleIdx];
     const img = useAiOutfit ? styledAvatars[styleIdx] : avatarImg;
     const isLoaded = useAiOutfit || avatarImageLoaded;
     
     if (isLoaded && img.complete && img.naturalWidth !== 0) {
       ctx.filter = filter;
-      // Standing position: right side
-      ctx.drawImage(img, 470, 160, 560, 920);
+      // Standing position on the right: maintain aspect ratio
+      const size = 900;
+      ctx.drawImage(img, 800 - size/2, 1080 - size, size, size);
     } else {
-      ctx.fillStyle = '#cbd5e1';
+      ctx.fillStyle = '#1e293b';
       ctx.beginPath();
-      ctx.roundRect(600, 200, 380, 780, 20);
+      ctx.roundRect(610, 200, 360, 740, 20);
       ctx.fill();
     }
     ctx.restore();
@@ -1439,16 +1440,55 @@ function drawAvatarForPhone(ctx, x, y, w, h, filter, styleIdx, avatarImg) {
   if (isLoaded && img.complete && img.naturalWidth !== 0) {
     if (filter) ctx.filter = filter;
     
-    const sw = img.width;
-    const sh = img.height;
+    const imgW = img.width;
+    const imgH = img.height;
     
-    // Crop square avatar into tall phone crop
-    const cropWidth = sw * 0.7;
-    const cropHeight = cropWidth * (h / w);
-    const cropX = (sw - cropWidth) / 2;
-    const cropY = Math.max(0, (sh - cropHeight) * 0.15); 
+    // Crop a vertical slice from the square image.
+    // Since the screen is tall, the height is the bottleneck. Crop 85% of image height.
+    const cropH = imgH * 0.85;
+    const cropW = cropH * (w / h);
     
-    ctx.drawImage(img, cropX, cropY, cropWidth, cropHeight, x, y, w, h);
+    // Center horizontally
+    const cropX = (imgW - cropW) / 2;
+    // Align near the top (e.g. 5% down) to capture the head and shoulders properly
+    const cropY = imgH * 0.05;
+    
+    ctx.drawImage(img, cropX, cropY, cropW, cropH, x, y, w, h);
+  } else {
+    ctx.fillStyle = '#1e293b';
+    ctx.fillRect(x, y, w, h);
+  }
+  ctx.restore();
+}
+
+function drawAvatarForCard(ctx, x, y, w, h, filter, styleIdx, avatarImg) {
+  const useAiOutfit = state.settings.rotateOutfits !== false && styledAvatarsLoaded[styleIdx];
+  const img = useAiOutfit ? styledAvatars[styleIdx] : avatarImg;
+  const isLoaded = useAiOutfit || avatarImageLoaded;
+  
+  ctx.save();
+  if (isLoaded && img.complete && img.naturalWidth !== 0) {
+    if (filter) ctx.filter = filter;
+    
+    const imgW = img.width;
+    const imgH = img.height;
+    
+    // Fill the card rectangle (x, y, w, h) cover-fit
+    const destRatio = w / h;
+    let cropW, cropH;
+    
+    if (destRatio > 1) {
+      cropW = imgW;
+      cropH = imgW / destRatio;
+    } else {
+      cropH = imgH;
+      cropW = imgH * destRatio;
+    }
+    
+    const cropX = (imgW - cropW) / 2;
+    const cropY = Math.max(0, (imgH - cropH) * 0.05);
+    
+    ctx.drawImage(img, cropX, cropY, cropW, cropH, x, y, w, h);
   } else {
     ctx.fillStyle = '#1e293b';
     ctx.fillRect(x, y, w, h);
