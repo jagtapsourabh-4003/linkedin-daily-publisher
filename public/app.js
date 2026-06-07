@@ -430,11 +430,11 @@ function renderActiveDrafts() {
       
       <!-- Visual Graphic Preview -->
       <div class="creative-container">
-        <div class="creative-toggle-header" id="toggle-creative-${post.id}">
+        <div class="creative-toggle-header active" id="toggle-creative-${post.id}">
           <span>🖼 View Social Graphic Card</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
         </div>
-        <div class="creative-content-body hidden" id="creative-body-${post.id}">
+        <div class="creative-content-body" id="creative-body-${post.id}">
           <canvas id="canvas-${post.id}" width="1080" height="1080" class="creative-canvas"></canvas>
         </div>
       </div>

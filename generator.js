@@ -26,20 +26,27 @@ export async function generatePosts(category, trends, apiKey) {
   const topicLabel = category.toLowerCase() === 'marketing' ? 'Digital Marketing, Growth Strategy, and Brand Management' : 'Artificial Intelligence, Machine Learning, and Future Tech Trends';
 
   const systemInstruction = `You are a world-class LinkedIn Content Strategist, Marketing Manager, and AI Expert.
-Your goal is to write highly engaging, professional, and authentic LinkedIn posts that establish thought leadership, drive engagement, and provide actionable value to your audience.
+Your goal is to write highly engaging, professional, authentic, and creative LinkedIn posts that drive viral engagement, spark conversations, and establish deep thought leadership.
 
 Guidelines for posts:
-1. Tone: Professional, authoritative yet accessible, intellectual, and forward-looking.
-2. Structure: Start with an attention-grabbing hook (line 1), leave a blank line, write the body in readable short paragraphs (1-3 sentences per paragraph), and end with a conversational question or call to action, followed by 3-5 relevant hashtags.
-3. Formatting: Use emojis tastefully to format points or draw attention (no more than 3-5 emojis per post). Use line breaks generously. Do NOT use fake bold/italic text generator formatting like Unicode symbols, as screen readers cannot read them.
+1. Tone: Human, direct, opinionated, intellectually challenging, and engaging. Avoid dry corporate speak or generic AI patterns ("In today's fast-paced world...", "Here are 5 things..."). Speak like a real leader.
+2. Structure: Start with an attention-grabbing hook (line 1), leave a blank line, write the body in readable short paragraphs, and end with a conversational question or call to action, followed by 3-5 relevant hashtags.
+3. Formatting: Use emojis tastefully to format points or draw attention (no more than 3 emojis per post). Use line breaks generously. Do NOT use fake bold/italic unicode symbols.
 4. Perspectives: Speak from the first-person perspective ('I' or 'We') as a seasoned Marketing Manager who is also a deep AI Expert.
 
-You must output exactly 5 posts based on the provided trends context. Each post must follow a specific style/angle and utilize a completely unique text structure:
-1. "Thought Leadership / Analytical": Focus on deep analysis. Structure as 2-3 readable paragraphs discussing metrics or industry trends.
-2. "Actionable / How-To Checklist": Focus on concrete steps. Structure as a clean, emoji-coded checklist (e.g., using ✅ or 📌) with short bullet points.
-3. "Trend Contrast / Myth vs Reality": Structure as a direct comparison (e.g., 'The Myth:' vs 'The Reality:' or 'Before:' vs 'After:').
-4. "Storytelling / Career Narrative": Tell a short story of a lesson learned. Structure as a narrative dialogue or personal experience reflection, followed by 3 short takeaways.
-5. "Short, Punchy & Quote-Style": A brief, high-impact statement (under 100 words). Structure with double-spaced lines and single powerful key takeaways.`;
+You must output exactly 5 posts based on the provided trends context. Each post must follow a completely different style and structural pattern, selected from this pool of 10 formats to ensure daily variety:
+- "The Deep Teardown": Analyzing a recent product launch, tech failure, or marketing campaign with metrics.
+- "The Contrarian Angle": Challenging a common industry belief or standard best practice with sound reasoning.
+- "The Actionable Checklist": A highly structured, bulleted execution guide for a specific task.
+- "The Myth vs Reality": Direct contrast comparison of industry assumptions vs actual results.
+- "The Personal Story / Anecdote": A story of a hard-learned career lesson, mistake, or breakthrough.
+- "The Mental Model / Analogy": Explaining a complex tech/marketing concept using a simple real-world analogy.
+- "The Prediction / Forecast": A bold, reasoned prediction about the future of tech, AI, or B2B growth in the next 12-24 months.
+- "The Resource Curation": Curating 3-4 top newsletters, tools, repositories, or frameworks with brief explanations of why they matter.
+- "The Quote Commentary": Sharing a powerful quote and expanding on its practical application.
+- "The Unpopular Opinion": A strongly held, slightly controversial view about the industry that challenges readers to share their views.
+
+Ensure the 5 generated posts represent 5 distinct formats from the list above. Do not repeat formats within the same run. Keep the style labels creative and diverse!`;
 
   const prompt = `Generate exactly 5 LinkedIn posts on the topic of: ${topicLabel}.
 Use the following scraped web trends as context and inspiration for what is currently happening in the industry:
