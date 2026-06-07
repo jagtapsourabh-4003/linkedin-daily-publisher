@@ -3,28 +3,44 @@ let state = {
   settings: {
     webhookUrl: '',
     hasApiKey: false,
-    cronSecret: ''
+    cronSecret: '',
+    rotateOutfits: true
   },
   history: [],
   activeDate: '',
   isLoading: false
 };
 
-// Global Image Resources
+// Global Image Resources (Custom Avatar)
 const avatarImg = new Image();
 let avatarImageLoaded = false;
 avatarImg.onload = () => {
   avatarImageLoaded = true;
-  console.log('[Avatar] Profile picture loaded successfully.');
-  if (state.history.length > 0) {
-    renderActiveDrafts();
-  }
+  console.log('[Avatar] Custom profile picture loaded.');
+  if (state.history.length > 0) renderActiveDrafts();
 };
 avatarImg.onerror = () => {
-  console.warn('[Avatar] Failed to load avatar.jpg. Canvas will render placeholder.');
+  console.warn('[Avatar] Failed to load avatar.jpg. Canvas will use placeholder.');
 };
-// Cache busting
 avatarImg.src = 'avatar.jpg?t=' + Date.now();
+
+// Array of Pre-generated AI Outfits
+const styledAvatars = [];
+const styledAvatarsLoaded = [false, false, false, false, false];
+
+for (let i = 1; i <= 5; i++) {
+  const img = new Image();
+  img.onload = () => {
+    styledAvatarsLoaded[i - 1] = true;
+    console.log(`[Avatar] AI Outfit style ${i} loaded.`);
+    if (state.history.length > 0) renderActiveDrafts();
+  };
+  img.onerror = () => {
+    console.warn(`[Avatar] Failed to load styled avatar ${i}.`);
+  };
+  img.src = `avatars/avatar-${i}.png`;
+  styledAvatars.push(img);
+}
 
 // DOM Elements
 const el = {
@@ -50,6 +66,7 @@ const el = {
   inputSecret: document.getElementById('input-secret'),
   inputAvatarFile: document.getElementById('input-avatar-file'),
   avatarPreview: document.getElementById('avatar-preview'),
+  inputRotateOutfits: document.getElementById('input-rotate-outfits'),
   toastContainer: document.getElementById('toast-container'),
   glow1: document.getElementById('glow-1'),
   glow2: document.getElementById('glow-2')
@@ -115,6 +132,7 @@ async function loadSettings() {
     el.inputWebhook.value = state.settings.webhookUrl || '';
     el.inputSecret.value = state.settings.cronSecret || '';
     el.inputApiKey.placeholder = state.settings.hasApiKey ? '••••••••••••••••••••••••••••••••' : 'Enter API Key';
+    el.inputRotateOutfits.checked = state.settings.rotateOutfits !== false;
     el.avatarPreview.src = 'avatar.jpg?t=' + Date.now();
 
     // Show/hide api key notice
@@ -139,7 +157,6 @@ async function loadHistory() {
     renderDateList();
     
     if (state.history.length > 0) {
-      // Default to first item (most recent) if activeDate is empty or not in history
       const exists = state.history.some(item => item.date === state.activeDate);
       if (!state.activeDate || !exists) {
         state.activeDate = state.history[0].date;
@@ -169,6 +186,7 @@ async function handleSaveSettings(e) {
   e.preventDefault();
   const webhookUrl = el.inputWebhook.value.trim();
   const geminiApiKey = el.inputApiKey.value.trim();
+  const rotateOutfits = el.inputRotateOutfits.checked;
   
   try {
     // 1. Upload custom avatar if a new one is selected
@@ -194,7 +212,7 @@ async function handleSaveSettings(e) {
     const res = await fetch('/api/settings', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ webhookUrl, geminiApiKey })
+      body: JSON.stringify({ webhookUrl, geminiApiKey, rotateOutfits })
     });
     
     if (!res.ok) throw new Error('Failed to save settings');
@@ -203,7 +221,6 @@ async function handleSaveSettings(e) {
     closeSettings();
     await loadSettings();
     
-    // Refresh drafts if they were blank
     if (state.history.length === 0 && geminiApiKey) {
       await loadHistory();
     } else if (state.history.length > 0) {
@@ -260,7 +277,6 @@ async function saveDraftEdit(date, postId, content) {
       body: JSON.stringify({ date, postId, content })
     });
     if (!res.ok) throw new Error('Auto-save failed');
-    // Update local state copy quietly
     const dayEntry = state.history.find(item => item.date === date);
     if (dayEntry) {
       const post = dayEntry.posts.find(p => p.id === parseInt(postId));
@@ -304,7 +320,7 @@ async function postToGoogleFlow(postId, btnElement) {
     const uploadData = await uploadRes.json();
     const imageUrl = uploadData.imageUrl;
     
-    // 3. Post text and image URL to user's Google Flow Webhook
+    // 3. Post text and image URL to Webhook
     btnElement.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Publishing...`;
     const res = await fetch('/api/post', {
       method: 'POST',
@@ -318,8 +334,6 @@ async function postToGoogleFlow(postId, btnElement) {
     }
 
     showToast('Post and creative graphic sent successfully!', 'success');
-    
-    // Refresh history and re-render to reflect "Posted" state
     await loadHistory();
   } catch (err) {
     showToast(`Post failed: ${err.message}`, 'error');
@@ -588,25 +602,25 @@ function drawCreative(canvas, category, headline, subtext, postId = 1) {
   if (styleIdx === 0) {
     // Style 1: Classic Dome (Text Left, Photo Right)
     drawLeftCardDome(ctx, category, 70, 100, 500, 880, headline, subtext);
-    drawRightImageDome(ctx, 600, 160, 410, 760, filters[0]);
+    drawRightImageDome(ctx, 600, 160, 410, 760, filters[0], styleIdx);
   } 
   else if (styleIdx === 1) {
     // Style 2: Swapped Dome (Text Right, Photo Left)
     drawLeftCardDome(ctx, category, 510, 100, 500, 880, headline, subtext);
-    drawRightImageDome(ctx, 70, 160, 410, 760, filters[1]);
+    drawRightImageDome(ctx, 70, 160, 410, 760, filters[1], styleIdx);
   } 
   else if (styleIdx === 2) {
     // Style 3: Capsule Pill-Frame
     drawLeftCardPill(ctx, category, 80, 100, 480, 880, headline, subtext);
-    drawRightImagePill(ctx, 600, 160, 400, 760, filters[2]);
+    drawRightImagePill(ctx, 600, 160, 400, 760, filters[2], styleIdx);
   } 
   else if (styleIdx === 3) {
     // Style 4: Sleek Diagonal Split
-    drawDiagonalSplit(ctx, category, headline, subtext, filters[3]);
+    drawDiagonalSplit(ctx, category, headline, subtext, filters[3], styleIdx);
   } 
   else if (styleIdx === 4) {
     // Style 5: Minimalist Circle Border
-    drawMinimalistCircle(ctx, category, headline, subtext, filters[4]);
+    drawMinimalistCircle(ctx, category, headline, subtext, filters[4], styleIdx);
   }
   
   ctx.restore();
@@ -633,14 +647,13 @@ function drawLeftCardDome(ctx, category, lx, ly, lw, lh, headline, subtext) {
   ctx.restore();
 }
 
-function drawRightImageDome(ctx, rx, ry, rw, rh, filter) {
+function drawRightImageDome(ctx, rx, ry, rw, rh, filter, styleIdx) {
   ctx.save();
   ctx.beginPath();
   ctx.roundRect(rx, ry, rw, rh, [205, 205, 0, 0]);
   ctx.clip();
   
-  ctx.filter = filter;
-  drawAvatar(ctx, rx, ry, rw, rh);
+  drawAvatar(ctx, rx, ry, rw, rh, filter, styleIdx);
   ctx.restore();
 }
 
@@ -664,18 +677,17 @@ function drawLeftCardPill(ctx, category, lx, ly, lw, lh, headline, subtext) {
   ctx.restore();
 }
 
-function drawRightImagePill(ctx, rx, ry, rw, rh, filter) {
+function drawRightImagePill(ctx, rx, ry, rw, rh, filter, styleIdx) {
   ctx.save();
   ctx.beginPath();
   ctx.roundRect(rx, ry, rw, rh, [200, 200, 200, 200]);
   ctx.clip();
   
-  ctx.filter = filter;
-  drawAvatar(ctx, rx, ry, rw, rh);
+  drawAvatar(ctx, rx, ry, rw, rh, filter, styleIdx);
   ctx.restore();
 }
 
-function drawDiagonalSplit(ctx, category, headline, subtext, filter) {
+function drawDiagonalSplit(ctx, category, headline, subtext, filter, styleIdx) {
   const lx = 70;
   const ly = 100;
   const lw = 940;
@@ -713,12 +725,11 @@ function drawDiagonalSplit(ctx, category, headline, subtext, filter) {
   ctx.closePath();
   ctx.clip();
   
-  ctx.filter = filter;
-  drawAvatar(ctx, lx + 430, ly, lw - 430, lh);
+  drawAvatar(ctx, lx + 430, ly, lw - 430, lh, filter, styleIdx);
   ctx.restore();
 }
 
-function drawMinimalistCircle(ctx, category, headline, subtext, filter) {
+function drawMinimalistCircle(ctx, category, headline, subtext, filter, styleIdx) {
   const lx = 70;
   const ly = 100;
   const lw = 940;
@@ -753,8 +764,7 @@ function drawMinimalistCircle(ctx, category, headline, subtext, filter) {
   ctx.arc(cx, cy, radius, 0, Math.PI * 2);
   ctx.clip();
   
-  ctx.filter = filter;
-  drawAvatar(ctx, cx - radius, cy - radius, radius * 2, radius * 2);
+  drawAvatar(ctx, cx - radius, cy - radius, radius * 2, radius * 2, filter, styleIdx);
   ctx.restore();
   
   ctx.save();
@@ -766,32 +776,43 @@ function drawMinimalistCircle(ctx, category, headline, subtext, filter) {
   ctx.restore();
 }
 
-function drawAvatar(ctx, x, y, w, h) {
-  if (avatarImageLoaded) {
-    const imgRatio = avatarImg.width / avatarImg.height;
+// Dynamic avatar selection & drawing helper (rotates professional outfits)
+function drawAvatar(ctx, x, y, w, h, filter, styleIdx = 0) {
+  // Use rotating AI outfits if toggled on, else fall back to the custom uploaded avatarImg
+  const useAiOutfit = state.settings.rotateOutfits !== false && styledAvatarsLoaded[styleIdx];
+  const img = useAiOutfit ? styledAvatars[styleIdx] : avatarImg;
+  const isLoaded = useAiOutfit || avatarImageLoaded;
+  
+  ctx.save();
+  if (isLoaded && img.complete && img.naturalWidth !== 0) {
+    // Apply filters
+    ctx.filter = filter;
+    
+    const imgRatio = img.width / img.height;
     const destRatio = w / h;
     let sw, sh, sx, sy;
     
     if (imgRatio > destRatio) {
-      sh = avatarImg.height;
+      sh = img.height;
       sw = sh * destRatio;
-      sx = (avatarImg.width - sw) / 2;
+      sx = (img.width - sw) / 2;
       sy = 0;
     } else {
-      sw = avatarImg.width;
+      sw = img.width;
       sh = sw / destRatio;
       sx = 0;
-      sy = (avatarImg.height - sh) / 2;
+      sy = (img.height - sh) / 2;
     }
-    ctx.drawImage(avatarImg, sx, sy, sw, sh, x, y, w, h);
+    ctx.drawImage(img, sx, sy, sw, sh, x, y, w, h);
   } else {
     ctx.fillStyle = '#cbd5e1';
     ctx.fillRect(x, y, w, h);
     ctx.fillStyle = '#64748b';
     ctx.font = '24px Inter';
     ctx.textAlign = 'center';
-    ctx.fillText('Avatar Loading...', x + w/2, y + h/2);
+    ctx.fillText('Loading Image...', x + w/2, y + h/2);
   }
+  ctx.restore();
 }
 
 function drawTextInsideCard(ctx, category, lx, ly, lw, lh, headline, subtext) {
@@ -865,6 +886,7 @@ function openSettings() {
   el.settingsModal.classList.remove('hidden');
 }
 
+// Close Settings Modal
 function closeSettings() {
   el.settingsModal.classList.add('hidden');
 }
@@ -886,7 +908,6 @@ function showToast(message, type = 'success') {
   
   el.toastContainer.appendChild(toast);
   
-  // Smoothly remove toast
   setTimeout(() => {
     toast.style.animation = 'slideIn 0.3s reverse forwards';
     setTimeout(() => toast.remove(), 300);

@@ -101,18 +101,20 @@ app.get('/api/settings', (req, res) => {
   res.json({
     webhookUrl: settings.webhookUrl,
     hasApiKey: !!settings.geminiApiKey,
-    cronSecret: settings.cronSecret
+    cronSecret: settings.cronSecret,
+    rotateOutfits: settings.rotateOutfits
   });
 });
 
 // Update settings
 app.post('/api/settings', (req, res) => {
-  const { webhookUrl, geminiApiKey, cronSecret } = req.body;
+  const { webhookUrl, geminiApiKey, cronSecret, rotateOutfits } = req.body;
   const updateData = {};
   
   if (webhookUrl !== undefined) updateData.webhookUrl = webhookUrl;
   if (geminiApiKey !== undefined && geminiApiKey.trim() !== '') updateData.geminiApiKey = geminiApiKey;
   if (cronSecret !== undefined) updateData.cronSecret = cronSecret;
+  if (rotateOutfits !== undefined) updateData.rotateOutfits = rotateOutfits;
 
   saveSettings(updateData);
   res.json({ success: true, message: 'Settings updated successfully' });

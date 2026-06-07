@@ -55,7 +55,8 @@ export function getSettings() {
   return {
     webhookUrl: db.settings.webhookUrl || process.env.WEBHOOK_URL || '',
     geminiApiKey: db.settings.geminiApiKey || process.env.GEMINI_API_KEY || '',
-    cronSecret: db.settings.cronSecret || process.env.CRON_SECRET || 'linkedin_generator_secret_12345'
+    cronSecret: db.settings.cronSecret || process.env.CRON_SECRET || 'linkedin_generator_secret_12345',
+    rotateOutfits: db.settings.rotateOutfits !== undefined ? db.settings.rotateOutfits : true
   };
 }
 
