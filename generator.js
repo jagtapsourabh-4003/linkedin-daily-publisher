@@ -61,30 +61,47 @@ Each object in the array must follow this structure:
   "imageSubtext": "A short 5-8 word description detailing the key takeaway (e.g. 'Automating workflows with generative models')"
 }`;
 
-  try {
-    // Call the API with JSON configuration
-    const response = await ai.models.generateContent({
-      model: modelName,
-      contents: prompt,
-      config: {
-        systemInstruction: systemInstruction,
-        responseMimeType: 'application/json',
-        temperature: 0.7,
+  let attempts = 3;
+  let delay = 3000; // start with 3 seconds delay
+  
+  for (let i = 0; i < attempts; i++) {
+    try {
+      console.log(`[Generator] Initiating Gemini call (attempt ${i + 1}/${attempts})...`);
+      const response = await ai.models.generateContent({
+        model: modelName,
+        contents: prompt,
+        config: {
+          systemInstruction: systemInstruction,
+          responseMimeType: 'application/json',
+          temperature: 0.7,
+        }
+      });
+      
+      const responseText = response.text;
+      console.log('[Generator] Raw response received');
+
+      const posts = JSON.parse(responseText.trim());
+      if (!Array.isArray(posts) || posts.length === 0) {
+        throw new Error('Response is not a valid JSON array or is empty');
       }
-    });
 
-    const responseText = response.text;
-    console.log('[Generator] Raw response received');
-
-    // Parse output
-    const posts = JSON.parse(responseText.trim());
-    if (!Array.isArray(posts) || posts.length === 0) {
-      throw new Error('Response is not a valid JSON array or is empty');
+      return posts;
+    } catch (error) {
+      console.warn(`[Generator] Attempt ${i + 1} failed:`, error.message);
+      
+      const isRateLimit = error.message.toLowerCase().includes('429') || 
+                          error.message.toLowerCase().includes('quota') || 
+                          error.message.toLowerCase().includes('limit') ||
+                          error.message.toLowerCase().includes('rate');
+                          
+      if (isRateLimit && i < attempts - 1) {
+        console.log(`[Generator] Rate limit hit. Waiting ${delay / 1000}s before retry...`);
+        await new Promise(resolve => setTimeout(resolve, delay));
+        delay *= 2; // exponential backoff
+      } else {
+        console.error('[Generator] Error generating posts:', error);
+        throw new Error(`Failed to generate posts with Gemini: ${error.message}`);
+      }
     }
-
-    return posts;
-  } catch (error) {
-    console.error('[Generator] Error generating posts:', error);
-    throw new Error(`Failed to generate posts with Gemini: ${error.message}`);
   }
 }
