@@ -598,7 +598,11 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
   const layoutIdx = (dayIdx + postId - 1) % 5;
   const styleIdx = (postId - 1) % 5; // Outfit style rotates by postId
   
-  // 2. Select photo filters dynamically based on styleIdx
+  // 2. Select color palette dynamically (shifts daily so that each option is different)
+  const paletteIdx = (dayIdx + postId - 1) % PALETTES.length;
+  const palette = PALETTES[paletteIdx];
+  
+  // 3. Select photo filters dynamically based on styleIdx
   const filters = [
     'contrast(1.1) brightness(1.02) saturate(1.1)', // Clean Natural
     'contrast(1.15) brightness(1.05) saturate(1.15)', // Vibrant
@@ -608,10 +612,10 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
   ];
   const filter = filters[styleIdx];
 
-  // 3. Clear canvas & render the chosen layout structure
+  // 4. Clear canvas & render the chosen layout structure
   if (layoutIdx === 0) {
     // Structure A1: Slanted Phone Pop-Out (Phone Left, Text Right)
-    drawRadiantBackground(ctx, w, h, category, true);
+    drawRadiantBackground(ctx, w, h, palette, true);
     
     // Draw Glassmorphic Card behind Text
     ctx.save();
@@ -648,7 +652,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     ctx.restore();
     
     // Draw Phone mockup on Left
-    drawPhoneMockup(ctx, 70, 160, 380, 760, true, avatarImg, filter, styleIdx, category);
+    drawPhoneMockup(ctx, 70, 160, 380, 760, true, avatarImg, filter, styleIdx, palette);
     
     // Draw floating 3D social icons and emojis
     drawLogoBubble(ctx, 450, 220, 36, 'instagram', 0);
@@ -659,11 +663,11 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     drawEmojiBubble(ctx, 90, 830, 28, '🔥', 0.5);
     
     // Draw Text column on Right
-    drawTextColumn(ctx, category, 530, 190, 460, 700, headline, subtext, 'left');
+    drawTextColumn(ctx, category, 530, 190, 460, 700, headline, subtext, 'left', palette);
   } 
   else if (layoutIdx === 1) {
     // Structure A2: Slanted Phone Pop-Out (Phone Right, Text Left)
-    drawRadiantBackground(ctx, w, h, category, true);
+    drawRadiantBackground(ctx, w, h, palette, true);
     
     // Draw Glassmorphic Card behind Text
     ctx.save();
@@ -700,7 +704,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     ctx.restore();
     
     // Draw Phone mockup on Right
-    drawPhoneMockup(ctx, 630, 160, 380, 760, false, avatarImg, filter, styleIdx, category);
+    drawPhoneMockup(ctx, 630, 160, 380, 760, false, avatarImg, filter, styleIdx, palette);
     
     // Draw floating 3D social icons and emojis
     drawLogoBubble(ctx, 590, 220, 36, 'instagram', 0);
@@ -711,11 +715,11 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     drawEmojiBubble(ctx, 990, 830, 28, '🚀', 0.5);
     
     // Draw Text column on Left
-    drawTextColumn(ctx, category, 90, 190, 460, 700, headline, subtext, 'left');
+    drawTextColumn(ctx, category, 90, 190, 460, 700, headline, subtext, 'left', palette);
   } 
   else if (layoutIdx === 2) {
     // Structure B: Premium Circle Frame Pop-Out with Floating Emojis (Centered Circle)
-    drawRadiantBackground(ctx, w, h, category, true);
+    drawRadiantBackground(ctx, w, h, palette, true);
     
     const cx = w / 2;
     const cy = h / 2 + 50;
@@ -735,13 +739,8 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     // Screen Base Gradient inside circle
     ctx.save();
     const circleScreenGrad = ctx.createLinearGradient(cx - r, cy - r, cx + r, cy + r);
-    if (category === 'marketing') {
-      circleScreenGrad.addColorStop(0, '#701a75');
-      circleScreenGrad.addColorStop(1, '#0f172a');
-    } else {
-      circleScreenGrad.addColorStop(0, '#1d4ed8');
-      circleScreenGrad.addColorStop(1, '#020617');
-    }
+    circleScreenGrad.addColorStop(0, palette.gradStart);
+    circleScreenGrad.addColorStop(1, palette.gradEnd);
     ctx.fillStyle = circleScreenGrad;
     ctx.beginPath();
     ctx.arc(cx, cy, r, 0, Math.PI * 2);
@@ -757,13 +756,8 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     // Circular Border (gradient stroke)
     ctx.save();
     const borderGrad = ctx.createLinearGradient(cx - r, cy - r, cx + r, cy + r);
-    if (category === 'marketing') {
-      borderGrad.addColorStop(0, '#f472b6'); // pink
-      borderGrad.addColorStop(1, '#701a75'); // purple
-    } else {
-      borderGrad.addColorStop(0, '#38bdf8'); // light blue
-      borderGrad.addColorStop(1, '#1d4ed8'); // blue
-    }
+    borderGrad.addColorStop(0, palette.primary);
+    borderGrad.addColorStop(1, palette.secondary);
     ctx.strokeStyle = borderGrad;
     ctx.lineWidth = 10;
     ctx.beginPath();
@@ -796,7 +790,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     // Badge
     ctx.beginPath();
     ctx.roundRect(cx - 150, 60, 300, 36, 8);
-    ctx.fillStyle = category === 'marketing' ? '#db2777' : '#2563eb';
+    ctx.fillStyle = palette.badgeBg;
     ctx.fill();
     ctx.fillStyle = '#ffffff';
     ctx.font = 'bold 16px Inter';
@@ -815,7 +809,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     // CTA Button
     ctx.beginPath();
     ctx.roundRect(cx - 140, 875, 280, 55, 12);
-    ctx.fillStyle = category === 'marketing' ? '#ec4899' : '#06b6d4';
+    ctx.fillStyle = palette.primary;
     ctx.fill();
     ctx.fillStyle = '#ffffff';
     ctx.font = 'bold 20px Outfit';
@@ -830,7 +824,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
   else if (layoutIdx === 3) {
     // Structure C: Magazine Split / Checklist Layout
     // Background: Vertical split (solid left, radiant right)
-    drawRadiantBackground(ctx, w, h, category, false); // No sunburst on full, we'll split
+    drawRadiantBackground(ctx, w, h, palette, false); // No sunburst on full, we'll split
     
     // Draw radiant ray background only on the right panel
     ctx.save();
@@ -838,13 +832,8 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     ctx.rect(600, 0, 480, h);
     ctx.clip();
     const rightGrad = ctx.createLinearGradient(600, 0, w, h);
-    if (category === 'marketing') {
-      rightGrad.addColorStop(0, '#3b0764');
-      rightGrad.addColorStop(1, '#0f051d');
-    } else {
-      rightGrad.addColorStop(0, '#172554');
-      rightGrad.addColorStop(1, '#020617');
-    }
+    rightGrad.addColorStop(0, palette.gradStart);
+    rightGrad.addColorStop(1, '#000000');
     ctx.fillStyle = rightGrad;
     ctx.fillRect(600, 0, 480, h);
     
@@ -852,7 +841,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     const cx = 840;
     const cy = h / 2;
     ctx.translate(cx, cy);
-    ctx.fillStyle = category === 'marketing' ? 'rgba(219, 39, 119, 0.04)' : 'rgba(59, 130, 246, 0.04)';
+    ctx.fillStyle = palette.rayColor;
     for (let i = 0; i < 16; i++) {
       ctx.beginPath();
       ctx.moveTo(0, 0);
@@ -869,7 +858,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     // Badge
     ctx.beginPath();
     ctx.roundRect(60, 60, 240, 36, 8);
-    ctx.fillStyle = category === 'marketing' ? '#db2777' : '#2563eb';
+    ctx.fillStyle = palette.badgeBg;
     ctx.fill();
     ctx.fillStyle = '#ffffff';
     ctx.font = 'bold 15px Inter';
@@ -905,7 +894,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     items.forEach((item, idx) => {
       const iy = 530 + idx * 55;
       // Draw tick box/bullet
-      ctx.fillStyle = category === 'marketing' ? '#f472b6' : '#38bdf8';
+      ctx.fillStyle = palette.primary;
       ctx.font = 'bold 22px Inter';
       ctx.fillText('✓', 95, iy);
       
@@ -922,7 +911,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     // CTA Button
     ctx.beginPath();
     ctx.roundRect(60, 880, 260, 55, 12);
-    ctx.fillStyle = category === 'marketing' ? '#db2777' : '#2563eb';
+    ctx.fillStyle = palette.primary;
     ctx.fill();
     ctx.fillStyle = '#ffffff';
     ctx.font = 'bold 20px Outfit';
@@ -950,7 +939,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     
     // Glowing border matching theme
     ctx.shadowColor = 'transparent';
-    ctx.strokeStyle = category === 'marketing' ? 'rgba(244, 114, 182, 0.25)' : 'rgba(56, 189, 248, 0.25)';
+    ctx.strokeStyle = palette.secondary + '40';
     ctx.lineWidth = 3;
     ctx.stroke();
     
@@ -981,20 +970,15 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     ctx.closePath();
     
     const grad2 = ctx.createLinearGradient(w * 0.45, 0, w, h);
-    if (category === 'marketing') {
-      grad2.addColorStop(0, '#831843'); // Pink / rose split
-      grad2.addColorStop(1, '#3b0712');
-    } else {
-      grad2.addColorStop(0, '#1d4ed8'); // Blue tech split
-      grad2.addColorStop(1, '#091e3a');
-    }
+    grad2.addColorStop(0, palette.secondary);
+    grad2.addColorStop(1, palette.gradStart);
     ctx.fillStyle = grad2;
     ctx.fill();
     
     // Draw dividing glowing border
-    ctx.strokeStyle = category === 'marketing' ? 'rgba(244, 114, 182, 0.45)' : 'rgba(56, 189, 248, 0.45)';
+    ctx.strokeStyle = palette.primary + '73';
     ctx.lineWidth = 10;
-    ctx.shadowColor = category === 'marketing' ? '#f472b6' : '#38bdf8';
+    ctx.shadowColor = palette.primary;
     ctx.shadowBlur = 25;
     ctx.beginPath();
     ctx.moveTo(w * 0.45, 0);
@@ -1034,7 +1018,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     // Badge
     ctx.beginPath();
     ctx.roundRect(60, 80, 260, 36, 8);
-    ctx.fillStyle = category === 'marketing' ? '#db2777' : '#2563eb';
+    ctx.fillStyle = palette.badgeBg;
     ctx.fill();
     ctx.fillStyle = '#ffffff';
     ctx.font = 'bold 15px Inter';
@@ -1055,7 +1039,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     // CTA Button
     ctx.beginPath();
     ctx.roundRect(60, 760, 260, 55, 12);
-    ctx.fillStyle = category === 'marketing' ? '#db2777' : '#2563eb';
+    ctx.fillStyle = palette.primary;
     ctx.fill();
     ctx.fillStyle = '#ffffff';
     ctx.font = 'bold 20px Outfit';
@@ -1080,20 +1064,14 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
 }
 
 // Drawing Sub-routines
-function drawRadiantBackground(ctx, w, h, category, isSunburst = true) {
+function drawRadiantBackground(ctx, w, h, palette, isSunburst = true) {
   ctx.save();
   
   // 1. Create main gradient background
   const grad = ctx.createLinearGradient(0, 0, 0, h);
-  if (category === 'marketing') {
-    grad.addColorStop(0, '#1c093a'); // Deep dark violet
-    grad.addColorStop(0.5, '#4a0e4e'); // Rich plum
-    grad.addColorStop(1, '#0e031c'); // Midnight dark
-  } else {
-    grad.addColorStop(0, '#09153a'); // Deep dark navy
-    grad.addColorStop(0.5, '#0c235c'); // Deep royal blue
-    grad.addColorStop(1, '#020617'); // Pitch black
-  }
+  grad.addColorStop(0, palette.gradStart);
+  grad.addColorStop(0.5, palette.gradStart);
+  grad.addColorStop(1, palette.gradEnd);
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, w, h);
   
@@ -1105,9 +1083,7 @@ function drawRadiantBackground(ctx, w, h, category, isSunburst = true) {
     const radius = Math.max(w, h) * 1.5;
     
     ctx.translate(cx, cy);
-    ctx.fillStyle = category === 'marketing' 
-      ? 'rgba(219, 39, 119, 0.04)'  // Soft pink rays
-      : 'rgba(59, 130, 246, 0.04)'; // Soft blue rays
+    ctx.fillStyle = palette.rayColor;
       
     for (let i = 0; i < numRays; i++) {
       const angleStart = (i * 2 * Math.PI) / numRays;
@@ -1125,13 +1101,8 @@ function drawRadiantBackground(ctx, w, h, category, isSunburst = true) {
   
   // 3. Highlight/Glow in the center
   const radialGlow = ctx.createRadialGradient(w/2, h/2, 50, w/2, h/2, w/2);
-  if (category === 'marketing') {
-    radialGlow.addColorStop(0, 'rgba(236, 72, 153, 0.15)'); // Glow pink
-    radialGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
-  } else {
-    radialGlow.addColorStop(0, 'rgba(6, 182, 212, 0.15)'); // Glow cyan
-    radialGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
-  }
+  radialGlow.addColorStop(0, palette.textGlow);
+  radialGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
   ctx.fillStyle = radialGlow;
   ctx.fillRect(0, 0, w, h);
   
@@ -1357,7 +1328,7 @@ function drawEmojiBubble(ctx, x, y, size, emoji, blurAmount = 0) {
   ctx.restore();
 }
 
-function drawPhoneMockup(ctx, px, py, pw, ph, isLeft, avatarImg, filter, styleIdx, category) {
+function drawPhoneMockup(ctx, px, py, pw, ph, isLeft, avatarImg, filter, styleIdx, palette) {
   ctx.save();
   ctx.translate(px + pw/2, py + ph/2);
 
@@ -1375,7 +1346,7 @@ function drawPhoneMockup(ctx, px, py, pw, ph, isLeft, avatarImg, filter, styleId
 
   // 1. Phone shadow & Neon halo glow
   ctx.save();
-  ctx.shadowColor = category === 'marketing' ? 'rgba(219, 39, 119, 0.5)' : 'rgba(59, 130, 246, 0.5)';
+  ctx.shadowColor = palette.primary + '80'; // 80 is hex for 50% opacity
   ctx.shadowBlur = 55;
   ctx.shadowOffsetX = isLeft ? 10 : -10;
   ctx.shadowOffsetY = 20;
@@ -1419,13 +1390,8 @@ function drawPhoneMockup(ctx, px, py, pw, ph, isLeft, avatarImg, filter, styleId
 
   // Screen Gradient Background
   const screenGrad = ctx.createLinearGradient(sx, sy, sx, sy + sh);
-  if (category === 'marketing') {
-    screenGrad.addColorStop(0, '#581c87'); // Rich violet
-    screenGrad.addColorStop(1, '#1e1b4b'); // Deep indigo
-  } else {
-    screenGrad.addColorStop(0, '#1e40af'); // Royal blue
-    screenGrad.addColorStop(1, '#0f172a'); // Dark navy
-  }
+  screenGrad.addColorStop(0, palette.secondary);
+  screenGrad.addColorStop(1, palette.gradEnd);
   ctx.fillStyle = screenGrad;
   ctx.beginPath();
   ctx.roundRect(sx, sy, sw, sh, srad);
@@ -1567,7 +1533,7 @@ function drawAvatarForCircle(ctx, cx, cy, r, filter, styleIdx, avatarImg) {
   ctx.restore();
 }
 
-function drawTextColumn(ctx, category, tx, ty, tw, th, headline, subtext, align = 'left') {
+function drawTextColumn(ctx, category, tx, ty, tw, th, headline, subtext, align = 'left', palette) {
   ctx.save();
   ctx.textAlign = align;
   
@@ -1578,7 +1544,7 @@ function drawTextColumn(ctx, category, tx, ty, tw, th, headline, subtext, align 
   const badgeH = 36;
   const bx = align === 'center' ? tx + (tw - badgeW)/2 : tx;
   ctx.roundRect(bx, ty, badgeW, badgeH, 8);
-  ctx.fillStyle = category === 'marketing' ? '#db2777' : '#2563eb';
+  ctx.fillStyle = palette.badgeBg;
   ctx.fill();
   
   ctx.fillStyle = '#ffffff';
@@ -1614,7 +1580,7 @@ function drawTextColumn(ctx, category, tx, ty, tw, th, headline, subtext, align 
   
   ctx.beginPath();
   ctx.roundRect(btnX, btnY, btnW, btnH, 12);
-  ctx.fillStyle = category === 'marketing' ? '#db2777' : '#2563eb';
+  ctx.fillStyle = palette.primary;
   ctx.fill();
   
   ctx.fillStyle = '#ffffff';
