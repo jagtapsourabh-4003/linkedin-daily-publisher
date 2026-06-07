@@ -473,7 +473,7 @@ function renderActiveDrafts() {
     // Render Canvas
     const canvas = cardEl.querySelector(`#canvas-${post.id}`);
     if (canvas) {
-      drawCreative(canvas, activeEntry.category, post.imageHeadline || "AI Strategy", post.imageSubtext || "Next-Gen Workflows", post.id);
+      drawCreative(canvas, activeEntry.category, post.imageHeadline || "AI Strategy", post.imageSubtext || "Next-Gen Workflows", post.id, activeEntry.date);
     }
 
     // Textarea auto-save and length counters listener
@@ -576,307 +576,995 @@ function applyTopicTheme(category) {
 // ================= DYNAMIC CANVAS RENDER PIPELINE =================
 
 // Draw custom creative card matching user template design structure
-function drawCreative(canvas, category, headline, subtext, postId = 1) {
+// Generate a unique day counter since 2026-01-01 for layout rotation
+function getDayIndex(dateStr) {
+  if (!dateStr) return 0;
+  const parts = dateStr.split('-');
+  if (parts.length !== 3) return 0;
+  const d = new Date(Date.UTC(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2])));
+  const baseline = new Date(Date.UTC(2026, 0, 1));
+  const diffTime = Math.abs(d - baseline);
+  return Math.floor(diffTime / (1000 * 60 * 60 * 24));
+}
+
+// Draw custom creative card matching user template design structure
+function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr = '') {
   const ctx = canvas.getContext('2d');
   const w = canvas.width;  // 1080
   const h = canvas.height; // 1080
   
-  // 1. Clear & draw overall background
-  ctx.fillStyle = '#eaeef3'; // Light grey/blue clean color matching template
-  ctx.fillRect(0, 0, w, h);
+  // 1. Calculate style rotation based on date and postId
+  const dayIdx = getDayIndex(dateStr);
+  const layoutIdx = (dayIdx + postId - 1) % 5;
+  const styleIdx = (postId - 1) % 5; // Outfit style rotates by postId
   
-  // 2. Select layout style and photo filters dynamically based on postId (1 to 5)
-  const styleIdx = (postId - 1) % 5;
-  
+  // 2. Select photo filters dynamically based on styleIdx
   const filters = [
-    'grayscale(100%) contrast(1.15)', // Post 1: Classic B&W
-    'sepia(45%) contrast(1.1) brightness(0.95)', // Post 2: Vintage Warm
-    'contrast(1.2) brightness(1.02) saturate(1.1)', // Post 3: High Contrast Natural
-    'hue-rotate(220deg) saturate(70%) contrast(1.1) brightness(0.95)', // Post 4: Cool Slate Blue
-    'brightness(1.05) contrast(1.05) saturate(1.2)' // Post 5: Soft Saturated Warm
+    'contrast(1.1) brightness(1.02) saturate(1.1)', // Clean Natural
+    'contrast(1.15) brightness(1.05) saturate(1.15)', // Vibrant
+    'brightness(1.02) contrast(1.08) saturate(1.05)', // Soft Warm
+    'hue-rotate(350deg) saturate(95%) contrast(1.1) brightness(1.02)', // Soft Rose
+    'contrast(1.1) brightness(1.02) saturate(1.08)' // Neutral Tech
   ];
-  
-  ctx.save();
-  
-  // Render selected layout
-  if (styleIdx === 0) {
-    // Style 1: Classic Dome (Text Left, Photo Right)
-    drawLeftCardDome(ctx, category, 70, 100, 500, 880, headline, subtext);
-    drawRightImageDome(ctx, 600, 160, 410, 760, filters[0], styleIdx);
+  const filter = filters[styleIdx];
+
+  // 3. Clear canvas & render the chosen layout structure
+  if (layoutIdx === 0) {
+    // Structure A1: Slanted Phone Pop-Out (Phone Left, Text Right)
+    drawRadiantBackground(ctx, w, h, category, true);
+    
+    // Draw Glassmorphic Card behind Text
+    ctx.save();
+    ctx.fillStyle = 'rgba(15, 23, 42, 0.45)';
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.roundRect(500, 150, 520, 780, 24);
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore();
+    
+    // Draw Phone mockup on Left
+    drawPhoneMockup(ctx, 70, 160, 380, 760, true, avatarImg, filter, styleIdx, category);
+    
+    // Draw floating 3D social icons and emojis
+    drawLogoBubble(ctx, 450, 220, 36, 'instagram', 0);
+    drawLogoBubble(ctx, 80, 130, 42, 'linkedin', 1.5); // Foreground slightly blurred
+    drawLogoBubble(ctx, 60, 550, 34, 'facebook', 2.5); // Background blurred
+    drawLogoBubble(ctx, 420, 740, 32, 'youtube', 2.0); // Background blurred
+    drawEmojiBubble(ctx, 430, 410, 30, '❤️', 0);
+    drawEmojiBubble(ctx, 90, 830, 28, '🔥', 0.5);
+    
+    // Draw Text column on Right
+    drawTextColumn(ctx, category, 530, 190, 460, 700, headline, subtext, 'left');
   } 
-  else if (styleIdx === 1) {
-    // Style 2: Swapped Dome (Text Right, Photo Left)
-    drawLeftCardDome(ctx, category, 510, 100, 500, 880, headline, subtext);
-    drawRightImageDome(ctx, 70, 160, 410, 760, filters[1], styleIdx);
+  else if (layoutIdx === 1) {
+    // Structure A2: Slanted Phone Pop-Out (Phone Right, Text Left)
+    drawRadiantBackground(ctx, w, h, category, true);
+    
+    // Draw Glassmorphic Card behind Text
+    ctx.save();
+    ctx.fillStyle = 'rgba(15, 23, 42, 0.45)';
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.roundRect(60, 150, 520, 780, 24);
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore();
+    
+    // Draw Phone mockup on Right
+    drawPhoneMockup(ctx, 630, 160, 380, 760, false, avatarImg, filter, styleIdx, category);
+    
+    // Draw floating 3D social icons and emojis
+    drawLogoBubble(ctx, 590, 220, 36, 'instagram', 0);
+    drawLogoBubble(ctx, 1000, 130, 42, 'linkedin', 1.5);
+    drawLogoBubble(ctx, 1020, 550, 34, 'facebook', 2.5);
+    drawLogoBubble(ctx, 600, 740, 32, 'telegram', 2.0);
+    drawEmojiBubble(ctx, 610, 410, 30, '👍', 0);
+    drawEmojiBubble(ctx, 990, 830, 28, '🚀', 0.5);
+    
+    // Draw Text column on Left
+    drawTextColumn(ctx, category, 90, 190, 460, 700, headline, subtext, 'left');
   } 
-  else if (styleIdx === 2) {
-    // Style 3: Capsule Pill-Frame
-    drawLeftCardPill(ctx, category, 80, 100, 480, 880, headline, subtext);
-    drawRightImagePill(ctx, 600, 160, 400, 760, filters[2], styleIdx);
+  else if (layoutIdx === 2) {
+    // Structure B: Premium Circle Frame Pop-Out with Floating Emojis (Centered Circle)
+    drawRadiantBackground(ctx, w, h, category, true);
+    
+    const cx = w / 2;
+    const cy = h / 2 + 50;
+    const r = 210;
+    
+    // Circle background shadow
+    ctx.save();
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+    ctx.shadowBlur = 45;
+    ctx.shadowOffsetY = 20;
+    ctx.fillStyle = '#020617';
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+    
+    // Screen Base Gradient inside circle
+    ctx.save();
+    const circleScreenGrad = ctx.createLinearGradient(cx - r, cy - r, cx + r, cy + r);
+    if (category === 'marketing') {
+      circleScreenGrad.addColorStop(0, '#701a75');
+      circleScreenGrad.addColorStop(1, '#0f172a');
+    } else {
+      circleScreenGrad.addColorStop(0, '#1d4ed8');
+      circleScreenGrad.addColorStop(1, '#020617');
+    }
+    ctx.fillStyle = circleScreenGrad;
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Draw Avatar inside Circle (Clipped)
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.clip();
+    drawAvatarForCircle(ctx, cx, cy, r, filter, styleIdx, avatarImg);
+    ctx.restore();
+    
+    // Circular Border (gradient stroke)
+    ctx.save();
+    const borderGrad = ctx.createLinearGradient(cx - r, cy - r, cx + r, cy + r);
+    if (category === 'marketing') {
+      borderGrad.addColorStop(0, '#f472b6'); // pink
+      borderGrad.addColorStop(1, '#701a75'); // purple
+    } else {
+      borderGrad.addColorStop(0, '#38bdf8'); // light blue
+      borderGrad.addColorStop(1, '#1d4ed8'); // blue
+    }
+    ctx.strokeStyle = borderGrad;
+    ctx.lineWidth = 10;
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+    
+    // Pop-Out upper body
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(cx - r - 20, cy - r - 200, r * 2 + 40, r * 1.15 + 200);
+    ctx.clip();
+    drawAvatarForCircle(ctx, cx, cy, r, filter, styleIdx, avatarImg);
+    ctx.restore();
+    
+    // Floating bubbles
+    drawLogoBubble(ctx, cx - 250, cy + 100, 36, 'instagram', 0);
+    drawLogoBubble(ctx, cx - 220, cy - 160, 42, 'linkedin', 1.0);
+    drawLogoBubble(ctx, cx + 240, cy + 110, 38, 'whatsapp', 0);
+    drawLogoBubble(ctx, cx + 220, cy - 170, 36, 'youtube', 1.5);
+    drawLogoBubble(ctx, cx - 280, cy - 30, 30, 'facebook', 2.5);
+    drawEmojiBubble(ctx, cx - 110, cy + 180, 28, '❤️', 0);
+    drawEmojiBubble(ctx, cx + 110, cy + 180, 28, '😂', 0);
+    drawEmojiBubble(ctx, cx + 280, cy - 20, 26, '🔥', 2.0);
+    
+    // Header & Subtext at the top
+    ctx.save();
+    ctx.textAlign = 'center';
+    
+    // Badge
+    ctx.beginPath();
+    ctx.roundRect(cx - 150, 60, 300, 36, 8);
+    ctx.fillStyle = category === 'marketing' ? '#db2777' : '#2563eb';
+    ctx.fill();
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 16px Inter';
+    ctx.fillText(category === 'marketing' ? '⚡ DIGITAL MARKETING' : '⚡ AI & FUTURE TECH', cx, 83);
+    
+    // Headline
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '800 46px Outfit';
+    wrapTextAligned(ctx, headline.toUpperCase(), 100, 120, 880, 52, 'center');
+    
+    // Subtext at bottom
+    ctx.fillStyle = '#cbd5e1';
+    ctx.font = '500 22px Inter';
+    wrapTextAligned(ctx, subtext, 120, 810, 840, 34, 'center');
+    
+    // CTA Button
+    ctx.beginPath();
+    ctx.roundRect(cx - 140, 875, 280, 55, 12);
+    ctx.fillStyle = category === 'marketing' ? '#ec4899' : '#06b6d4';
+    ctx.fill();
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 20px Outfit';
+    ctx.fillText('READ FULL POST', cx, 909);
+    
+    // Profile URL
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '600 20px Inter';
+    ctx.fillText('linkedin.com/in/jagtapsourabh', cx, 975);
+    ctx.restore();
   } 
-  else if (styleIdx === 3) {
-    // Style 4: Sleek Diagonal Split
-    drawDiagonalSplit(ctx, category, headline, subtext, filters[3], styleIdx);
+  else if (layoutIdx === 3) {
+    // Structure C: Magazine Split / Checklist Layout
+    // Background: Vertical split (solid left, radiant right)
+    drawRadiantBackground(ctx, w, h, category, false); // No sunburst on full, we'll split
+    
+    // Draw radiant ray background only on the right panel
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(600, 0, 480, h);
+    ctx.clip();
+    const rightGrad = ctx.createLinearGradient(600, 0, w, h);
+    if (category === 'marketing') {
+      rightGrad.addColorStop(0, '#3b0764');
+      rightGrad.addColorStop(1, '#0f051d');
+    } else {
+      rightGrad.addColorStop(0, '#172554');
+      rightGrad.addColorStop(1, '#020617');
+    }
+    ctx.fillStyle = rightGrad;
+    ctx.fillRect(600, 0, 480, h);
+    
+    // Draw sunburst rays in right panel
+    const cx = 840;
+    const cy = h / 2;
+    ctx.translate(cx, cy);
+    ctx.fillStyle = category === 'marketing' ? 'rgba(219, 39, 119, 0.04)' : 'rgba(59, 130, 246, 0.04)';
+    for (let i = 0; i < 16; i++) {
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.arc(0, 0, 800, (i * 2 * Math.PI) / 16, ((i + 0.5) * 2 * Math.PI) / 16);
+      ctx.closePath();
+      ctx.fill();
+    }
+    ctx.restore();
+    
+    // Left column: Typography & checklist
+    ctx.save();
+    ctx.textAlign = 'left';
+    
+    // Badge
+    ctx.beginPath();
+    ctx.roundRect(60, 60, 240, 36, 8);
+    ctx.fillStyle = category === 'marketing' ? '#db2777' : '#2563eb';
+    ctx.fill();
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 15px Inter';
+    ctx.textAlign = 'center';
+    ctx.fillText(category === 'marketing' ? 'GROWTH STRATEGY' : 'AI & AUTOMATION', 180, 83);
+    ctx.textAlign = 'left';
+    
+    // Title
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '800 46px Outfit';
+    wrapTextAligned(ctx, headline.toUpperCase(), 60, 130, 480, 52, 'left');
+    
+    // Checklist panel
+    ctx.beginPath();
+    ctx.roundRect(60, 420, 480, 350, 16);
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+    ctx.lineWidth = 2;
+    ctx.fill();
+    ctx.stroke();
+    
+    // List items based on category
+    const items = category === 'marketing' 
+      ? ['📈 Content Strategy & SEO', '📈 Paid Ad Optimization', '📈 Social Analytics Reporting', '📈 B2B Lead Generation']
+      : ['⚡ Deep Neural Networks', '⚡ Automated AI Agents', '⚡ LLM RAG Pipelines', '⚡ Autonomous Workflows'];
+      
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 22px Outfit';
+    ctx.fillText('CORE AREAS OF FOCUS:', 90, 470);
+    
+    ctx.font = '500 20px Inter';
+    ctx.fillStyle = '#cbd5e1';
+    items.forEach((item, idx) => {
+      const iy = 530 + idx * 55;
+      // Draw tick box/bullet
+      ctx.fillStyle = category === 'marketing' ? '#f472b6' : '#38bdf8';
+      ctx.font = 'bold 22px Inter';
+      ctx.fillText('✓', 95, iy);
+      
+      ctx.fillStyle = '#e2e8f0';
+      ctx.font = '500 20px Inter';
+      ctx.fillText(item, 130, iy);
+    });
+    
+    // Profile URL
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '600 20px Inter';
+    ctx.fillText('linkedin.com/in/jagtapsourabh', 60, 830);
+    
+    // CTA Button
+    ctx.beginPath();
+    ctx.roundRect(60, 880, 260, 55, 12);
+    ctx.fillStyle = category === 'marketing' ? '#db2777' : '#2563eb';
+    ctx.fill();
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 20px Outfit';
+    ctx.textAlign = 'center';
+    ctx.fillText('READ FULL POST', 190, 914);
+    ctx.restore();
+    
+    // Right column: Sheared Avatar Card Frame
+    ctx.save();
+    ctx.translate(820, 520);
+    ctx.transform(1, -0.04, 0.04, 0.98, 0, 0); // Sheared angle
+    
+    // Card background & shadow
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.45)';
+    ctx.shadowBlur = 35;
+    ctx.shadowOffsetX = 10;
+    ctx.shadowOffsetY = 20;
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.04)';
+    
+    const cw = 360;
+    const ch = 740;
+    ctx.beginPath();
+    ctx.roundRect(-cw/2, -ch/2, cw, ch, 24);
+    ctx.fill();
+    
+    // Glow border
+    ctx.shadowColor = 'transparent';
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    
+    // Clip to card and draw Avatar
+    ctx.beginPath();
+    ctx.roundRect(-cw/2, -ch/2, cw, ch, 24);
+    ctx.clip();
+    
+    // Draw avatar inside card
+    drawAvatarForCircle(ctx, 0, 40, 240, filter, styleIdx, avatarImg);
+    ctx.restore();
   } 
-  else if (styleIdx === 4) {
-    // Style 5: Minimalist Circle Border
-    drawMinimalistCircle(ctx, category, headline, subtext, filters[4], styleIdx);
+  else if (layoutIdx === 4) {
+    // Structure D: Sleek Diagonal Split Pop-Out
+    // Draw diagonal background
+    ctx.save();
+    const grad1 = ctx.createLinearGradient(0, 0, w, h);
+    grad1.addColorStop(0, '#090d1a');
+    grad1.addColorStop(1, '#020408');
+    ctx.fillStyle = grad1;
+    ctx.fillRect(0, 0, w, h);
+    
+    ctx.beginPath();
+    ctx.moveTo(w * 0.45, 0);
+    ctx.lineTo(w, 0);
+    ctx.lineTo(w, h);
+    ctx.lineTo(w * 0.15, h);
+    ctx.closePath();
+    
+    const grad2 = ctx.createLinearGradient(w * 0.45, 0, w, h);
+    if (category === 'marketing') {
+      grad2.addColorStop(0, '#831843'); // Pink / rose split
+      grad2.addColorStop(1, '#3b0712');
+    } else {
+      grad2.addColorStop(0, '#1d4ed8'); // Blue tech split
+      grad2.addColorStop(1, '#091e3a');
+    }
+    ctx.fillStyle = grad2;
+    ctx.fill();
+    
+    // Draw dividing glowing border
+    ctx.strokeStyle = category === 'marketing' ? 'rgba(244, 114, 182, 0.45)' : 'rgba(56, 189, 248, 0.45)';
+    ctx.lineWidth = 10;
+    ctx.shadowColor = category === 'marketing' ? '#f472b6' : '#38bdf8';
+    ctx.shadowBlur = 25;
+    ctx.beginPath();
+    ctx.moveTo(w * 0.45, 0);
+    ctx.lineTo(w * 0.15, h);
+    ctx.stroke();
+    ctx.restore();
+    
+    // Draw Avatar standing on the right side, popping over the diagonal border
+    ctx.save();
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
+    ctx.shadowBlur = 40;
+    ctx.shadowOffsetX = -15;
+    ctx.shadowOffsetY = 20;
+    
+    // Scale and draw avatar
+    const useAiOutfit = state.settings.rotateOutfits !== false && styledAvatarsLoaded[styleIdx];
+    const img = useAiOutfit ? styledAvatars[styleIdx] : avatarImg;
+    const isLoaded = useAiOutfit || avatarImageLoaded;
+    
+    if (isLoaded && img.complete && img.naturalWidth !== 0) {
+      ctx.filter = filter;
+      // Standing position: right side
+      ctx.drawImage(img, 470, 160, 560, 920);
+    } else {
+      ctx.fillStyle = '#cbd5e1';
+      ctx.beginPath();
+      ctx.roundRect(600, 200, 380, 780, 20);
+      ctx.fill();
+    }
+    ctx.restore();
+    
+    // Left side text column
+    ctx.save();
+    ctx.textAlign = 'left';
+    
+    // Badge
+    ctx.beginPath();
+    ctx.roundRect(60, 80, 260, 36, 8);
+    ctx.fillStyle = category === 'marketing' ? '#db2777' : '#2563eb';
+    ctx.fill();
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 15px Inter';
+    ctx.textAlign = 'center';
+    ctx.fillText(category === 'marketing' ? 'LATEST MARKETING CASE' : 'BREAKING TECH STUDY', 190, 103);
+    ctx.textAlign = 'left';
+    
+    // Headline
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '800 46px Outfit';
+    wrapTextAligned(ctx, headline.toUpperCase(), 60, 150, 420, 52, 'left');
+    
+    // Subtext
+    ctx.fillStyle = '#cbd5e1';
+    ctx.font = '500 20px Inter';
+    wrapTextAligned(ctx, subtext, 60, 480, 420, 32, 'left');
+    
+    // CTA Button
+    ctx.beginPath();
+    ctx.roundRect(60, 760, 260, 55, 12);
+    ctx.fillStyle = category === 'marketing' ? '#db2777' : '#2563eb';
+    ctx.fill();
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 20px Outfit';
+    ctx.textAlign = 'center';
+    ctx.fillText('READ FULL POST', 190, 794);
+    
+    // Profile URL
+    ctx.fillStyle = '#94a3b8';
+    ctx.font = '600 20px Inter';
+    ctx.textAlign = 'left';
+    ctx.fillText('linkedin.com/in/jagtapsourabh', 60, 860);
+    ctx.restore();
+    
+    // Draw some floating bubbles to tie it all together
+    drawLogoBubble(ctx, 420, 110, 36, 'linkedin', 1.0);
+    drawLogoBubble(ctx, 950, 140, 40, 'instagram', 0);
+    drawEmojiBubble(ctx, 430, 420, 28, '🔥', 0);
   }
-  
-  ctx.restore();
 }
 
 // Drawing Sub-routines
-function drawLeftCardDome(ctx, category, lx, ly, lw, lh, headline, subtext) {
+function drawRadiantBackground(ctx, w, h, category, isSunburst = true) {
   ctx.save();
-  ctx.beginPath();
-  ctx.roundRect(lx, ly, lw, lh, [250, 250, 0, 0]);
   
-  const grad = ctx.createLinearGradient(lx, ly, lx, ly + lh);
+  // 1. Create main gradient background
+  const grad = ctx.createLinearGradient(0, 0, 0, h);
   if (category === 'marketing') {
-    grad.addColorStop(0, '#0f4c81');
-    grad.addColorStop(1, '#1b2a47');
+    grad.addColorStop(0, '#1c093a'); // Deep dark violet
+    grad.addColorStop(0.5, '#4a0e4e'); // Rich plum
+    grad.addColorStop(1, '#0e031c'); // Midnight dark
   } else {
-    grad.addColorStop(0, '#7f00ff');
-    grad.addColorStop(1, '#0f172a');
+    grad.addColorStop(0, '#09153a'); // Deep dark navy
+    grad.addColorStop(0.5, '#0c235c'); // Deep royal blue
+    grad.addColorStop(1, '#020617'); // Pitch black
   }
   ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, w, h);
+  
+  // 2. Radiant rays / sunburst effect
+  if (isSunburst) {
+    const cx = w / 2;
+    const cy = h / 2;
+    const numRays = 24;
+    const radius = Math.max(w, h) * 1.5;
+    
+    ctx.translate(cx, cy);
+    ctx.fillStyle = category === 'marketing' 
+      ? 'rgba(219, 39, 119, 0.04)'  // Soft pink rays
+      : 'rgba(59, 130, 246, 0.04)'; // Soft blue rays
+      
+    for (let i = 0; i < numRays; i++) {
+      const angleStart = (i * 2 * Math.PI) / numRays;
+      const angleEnd = ((i + 0.5) * 2 * Math.PI) / numRays;
+      
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.arc(0, 0, radius, angleStart, angleEnd);
+      ctx.closePath();
+      ctx.fill();
+    }
+    ctx.restore();
+    ctx.save();
+  }
+  
+  // 3. Highlight/Glow in the center
+  const radialGlow = ctx.createRadialGradient(w/2, h/2, 50, w/2, h/2, w/2);
+  if (category === 'marketing') {
+    radialGlow.addColorStop(0, 'rgba(236, 72, 153, 0.15)'); // Glow pink
+    radialGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
+  } else {
+    radialGlow.addColorStop(0, 'rgba(6, 182, 212, 0.15)'); // Glow cyan
+    radialGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
+  }
+  ctx.fillStyle = radialGlow;
+  ctx.fillRect(0, 0, w, h);
+  
+  ctx.restore();
+}
+
+function drawLogoBubble(ctx, x, y, size, type, blurAmount = 0) {
+  ctx.save();
+  if (blurAmount > 0) {
+    ctx.filter = `blur(${blurAmount}px)`;
+  }
+  
+  // Glass bubble drop shadow
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+  ctx.shadowBlur = size * 0.35;
+  ctx.shadowOffsetX = 0;
+  ctx.shadowOffsetY = size * 0.18;
+  
+  // Glass bubble circle background
+  const bubbleGrad = ctx.createRadialGradient(x - size*0.1, y - size*0.1, size*0.1, x, y, size);
+  bubbleGrad.addColorStop(0, 'rgba(255, 255, 255, 0.35)');
+  bubbleGrad.addColorStop(0.5, 'rgba(255, 255, 255, 0.15)');
+  bubbleGrad.addColorStop(1, 'rgba(255, 255, 255, 0.05)');
+  
+  ctx.fillStyle = bubbleGrad;
+  ctx.beginPath();
+  ctx.arc(x, y, size, 0, Math.PI * 2);
   ctx.fill();
   
-  drawTextInsideCard(ctx, category, lx, ly, lw, lh, headline, subtext);
-  ctx.restore();
-}
-
-function drawRightImageDome(ctx, rx, ry, rw, rh, filter, styleIdx) {
-  ctx.save();
+  // Bubble border
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.45)';
+  ctx.lineWidth = size * 0.04;
   ctx.beginPath();
-  ctx.roundRect(rx, ry, rw, rh, [205, 205, 0, 0]);
-  ctx.clip();
+  ctx.arc(x, y, size, 0, Math.PI * 2);
+  ctx.stroke();
   
-  drawAvatar(ctx, rx, ry, rw, rh, filter, styleIdx);
-  ctx.restore();
-}
-
-function drawLeftCardPill(ctx, category, lx, ly, lw, lh, headline, subtext) {
-  ctx.save();
-  ctx.beginPath();
-  ctx.roundRect(lx, ly, lw, lh, [240, 240, 240, 240]);
+  // Reset shadow for drawing the logo icon inside
+  ctx.shadowColor = 'transparent';
+  ctx.shadowBlur = 0;
+  ctx.shadowOffsetX = 0;
+  ctx.shadowOffsetY = 0;
   
-  const grad = ctx.createLinearGradient(lx, ly, lx, ly + lh);
-  if (category === 'marketing') {
-    grad.addColorStop(0, '#311042');
-    grad.addColorStop(1, '#0f172a');
-  } else {
-    grad.addColorStop(0, '#0369a1');
-    grad.addColorStop(1, '#020617');
+  const innerSize = size * 0.55;
+  
+  // Draw specific logo
+  if (type === 'instagram') {
+    ctx.save();
+    const igGrad = ctx.createLinearGradient(x - size*0.5, y + size*0.5, x + size*0.5, y - size*0.5);
+    igGrad.addColorStop(0, '#f9ce34'); // Yellow
+    igGrad.addColorStop(0.5, '#ee2a7b'); // Pink/Red
+    igGrad.addColorStop(1, '#6228d7'); // Purple
+    
+    ctx.strokeStyle = igGrad;
+    ctx.lineWidth = innerSize * 0.18;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    
+    // Outer rounded rectangle
+    const rx = x - innerSize * 0.5;
+    const ry = y - innerSize * 0.5;
+    const rw = innerSize;
+    const rh = innerSize;
+    const rr = innerSize * 0.25;
+    ctx.beginPath();
+    ctx.roundRect(rx, ry, rw, rh, rr);
+    ctx.stroke();
+    
+    // Lens circle
+    ctx.beginPath();
+    ctx.arc(x, y, innerSize * 0.25, 0, Math.PI * 2);
+    ctx.stroke();
+    
+    // Flash dot
+    ctx.fillStyle = igGrad;
+    ctx.beginPath();
+    ctx.arc(x + innerSize * 0.28, y - innerSize * 0.28, innerSize * 0.08, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  } 
+  else if (type === 'facebook') {
+    ctx.save();
+    ctx.fillStyle = '#1877f2';
+    ctx.beginPath();
+    ctx.arc(x, y, innerSize, 0, Math.PI * 2);
+    ctx.fill();
+    
+    ctx.fillStyle = '#ffffff';
+    ctx.font = `800 ${innerSize * 1.5}px Inter`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('f', x + innerSize*0.12, y + innerSize*0.05);
+    ctx.restore();
+  } 
+  else if (type === 'linkedin') {
+    ctx.save();
+    ctx.fillStyle = '#0a66c2';
+    ctx.beginPath();
+    ctx.roundRect(x - innerSize, y - innerSize, innerSize * 2, innerSize * 2, innerSize * 0.3);
+    ctx.fill();
+    
+    ctx.fillStyle = '#ffffff';
+    ctx.font = `bold ${innerSize * 1.1}px Inter`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('in', x, y);
+    ctx.restore();
+  } 
+  else if (type === 'youtube') {
+    ctx.save();
+    ctx.fillStyle = '#ff0000';
+    ctx.beginPath();
+    ctx.roundRect(x - innerSize, y - innerSize * 0.7, innerSize * 2, innerSize * 1.4, innerSize * 0.4);
+    ctx.fill();
+    
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.moveTo(x - innerSize * 0.25, y - innerSize * 0.35);
+    ctx.lineTo(x + innerSize * 0.35, y);
+    ctx.lineTo(x - innerSize * 0.25, y + innerSize * 0.35);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  } 
+  else if (type === 'whatsapp') {
+    ctx.save();
+    ctx.fillStyle = '#25d366';
+    ctx.beginPath();
+    ctx.arc(x, y, innerSize, 0, Math.PI * 2);
+    ctx.fill();
+    
+    ctx.fillStyle = '#ffffff';
+    ctx.font = `${innerSize * 1.1}px Inter`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('📞', x, y);
+    ctx.restore();
+  } 
+  else if (type === 'telegram') {
+    ctx.save();
+    ctx.fillStyle = '#229ed9';
+    ctx.beginPath();
+    ctx.arc(x, y, innerSize, 0, Math.PI * 2);
+    ctx.fill();
+    
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    const px = x - innerSize * 0.1;
+    const py = y + innerSize * 0.1;
+    ctx.moveTo(px - innerSize*0.6, py - innerSize*0.2);
+    ctx.lineTo(px + innerSize*0.8, py - innerSize*0.7);
+    ctx.lineTo(px + innerSize*0.2, py + innerSize*0.4);
+    ctx.lineTo(px + innerSize*0.05, py + innerSize*0.05);
+    ctx.lineTo(px - innerSize*0.2, py + innerSize*0.1);
+    ctx.closePath();
+    ctx.fill();
+    
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+    ctx.beginPath();
+    ctx.moveTo(px + innerSize*0.8, py - innerSize*0.7);
+    ctx.lineTo(px + innerSize*0.05, py + innerSize*0.05);
+    ctx.lineTo(px - innerSize*0.1, py - innerSize*0.05);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
   }
-  ctx.fillStyle = grad;
+  
+  // Gloss overlay
+  const glossGrad = ctx.createLinearGradient(x - size, y - size, x + size, y + size);
+  glossGrad.addColorStop(0, 'rgba(255, 255, 255, 0.45)');
+  glossGrad.addColorStop(0.3, 'rgba(255, 255, 255, 0.05)');
+  glossGrad.addColorStop(0.5, 'transparent');
+  ctx.fillStyle = glossGrad;
+  ctx.beginPath();
+  ctx.arc(x, y, size, 0, Math.PI * 2);
   ctx.fill();
   
-  drawTextInsideCard(ctx, category, lx, ly, lw, lh, headline, subtext);
   ctx.restore();
 }
 
-function drawRightImagePill(ctx, rx, ry, rw, rh, filter, styleIdx) {
+function drawEmojiBubble(ctx, x, y, size, emoji, blurAmount = 0) {
   ctx.save();
-  ctx.beginPath();
-  ctx.roundRect(rx, ry, rw, rh, [200, 200, 200, 200]);
-  ctx.clip();
-  
-  drawAvatar(ctx, rx, ry, rw, rh, filter, styleIdx);
-  ctx.restore();
-}
-
-function drawDiagonalSplit(ctx, category, headline, subtext, filter, styleIdx) {
-  const lx = 70;
-  const ly = 100;
-  const lw = 940;
-  const lh = 880;
-  
-  ctx.save();
-  ctx.beginPath();
-  ctx.roundRect(lx, ly, lw, lh, 40);
-  ctx.clip();
-  
-  const grad = ctx.createLinearGradient(lx, ly, lx, ly + lh);
-  if (category === 'marketing') {
-    grad.addColorStop(0, '#be185d');
-    grad.addColorStop(1, '#310418');
-  } else {
-    grad.addColorStop(0, '#2563eb');
-    grad.addColorStop(1, '#0b1329');
+  if (blurAmount > 0) {
+    ctx.filter = `blur(${blurAmount}px)`;
   }
-  ctx.fillStyle = grad;
-  ctx.fillRect(lx, ly, lw, lh);
   
-  drawTextInsideCard(ctx, category, lx, ly, 460, lh, headline, subtext);
-  ctx.restore();
+  // Shadow
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.25)';
+  ctx.shadowBlur = size * 0.3;
+  ctx.shadowOffsetX = 0;
+  ctx.shadowOffsetY = size * 0.15;
   
-  ctx.save();
+  // Glass bubble background
+  const bubbleGrad = ctx.createLinearGradient(x - size, y - size, x + size, y + size);
+  bubbleGrad.addColorStop(0, 'rgba(255, 255, 255, 0.95)');
+  bubbleGrad.addColorStop(1, 'rgba(240, 243, 248, 0.9)');
+  
+  ctx.fillStyle = bubbleGrad;
   ctx.beginPath();
-  ctx.roundRect(lx, ly, lw, lh, 40);
-  ctx.clip();
+  ctx.roundRect(x - size, y - size * 0.8, size * 2, size * 1.6, size * 0.4);
+  ctx.fill();
   
+  // Draw pointer
   ctx.beginPath();
-  ctx.moveTo(lx + lw, ly);
-  ctx.lineTo(lx + 520, ly);
-  ctx.lineTo(lx + 430, ly + lh);
-  ctx.lineTo(lx + lw, ly + lh);
+  ctx.moveTo(x - size * 0.3, y + size * 0.78);
+  ctx.lineTo(x - size * 0.6, y + size * 1.15);
+  ctx.lineTo(x - size * 0.5, y + size * 0.78);
   ctx.closePath();
-  ctx.clip();
-  
-  drawAvatar(ctx, lx + 430, ly, lw - 430, lh, filter, styleIdx);
-  ctx.restore();
-}
-
-function drawMinimalistCircle(ctx, category, headline, subtext, filter, styleIdx) {
-  const lx = 70;
-  const ly = 100;
-  const lw = 940;
-  const lh = 880;
-  
-  ctx.save();
-  ctx.beginPath();
-  ctx.roundRect(lx, ly, lw, lh, 30);
-  
-  const grad = ctx.createLinearGradient(lx, ly, lx, ly + lh);
-  grad.addColorStop(0, '#0f172a');
-  grad.addColorStop(1, '#020617');
-  ctx.fillStyle = grad;
   ctx.fill();
   
-  ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+  // Draw border
+  ctx.strokeStyle = 'rgba(255, 255, 255, 1)';
   ctx.lineWidth = 2;
-  ctx.beginPath();
-  ctx.moveTo(lx + 480, ly + 50);
-  ctx.lineTo(lx + 480, ly + lh - 50);
   ctx.stroke();
   
-  drawTextInsideCard(ctx, category, lx, ly, 460, lh, headline, subtext);
-  ctx.restore();
+  // Draw emoji
+  ctx.shadowColor = 'transparent';
+  ctx.fillStyle = '#000';
+  ctx.font = `${size * 0.95}px Inter`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(emoji, x, y - size * 0.05);
   
-  const cx = lx + 700;
-  const cy = ly + lh/2;
-  const radius = 210;
-  
-  ctx.save();
-  ctx.beginPath();
-  ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-  ctx.clip();
-  
-  drawAvatar(ctx, cx - radius, cy - radius, radius * 2, radius * 2, filter, styleIdx);
-  ctx.restore();
-  
-  ctx.save();
-  ctx.strokeStyle = category === 'marketing' ? '#f472b6' : '#60a5fa';
-  ctx.lineWidth = 6;
-  ctx.beginPath();
-  ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-  ctx.stroke();
   ctx.restore();
 }
 
-// Dynamic avatar selection & drawing helper (rotates professional outfits)
-function drawAvatar(ctx, x, y, w, h, filter, styleIdx = 0) {
-  // Use rotating AI outfits if toggled on, else fall back to the custom uploaded avatarImg
+function drawPhoneMockup(ctx, px, py, pw, ph, isLeft, avatarImg, filter, styleIdx, category) {
+  ctx.save();
+  ctx.translate(px + pw/2, py + ph/2);
+
+  // Apply a 3D tilt
+  if (isLeft) {
+    ctx.transform(1, -0.06, 0.05, 0.96, 0, 0);
+    ctx.rotate(-0.06);
+  } else {
+    ctx.transform(1, 0.06, -0.05, 0.96, 0, 0);
+    ctx.rotate(0.06);
+  }
+
+  const x = -pw/2;
+  const y = -ph/2;
+
+  // 1. Phone shadow
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.55)';
+  ctx.shadowBlur = 45;
+  ctx.shadowOffsetX = isLeft ? 15 : -15;
+  ctx.shadowOffsetY = 25;
+  ctx.fillStyle = '#020617';
+  ctx.beginPath();
+  ctx.roundRect(x, y, pw, ph, 45);
+  ctx.fill();
+
+  ctx.shadowColor = 'transparent';
+  ctx.shadowBlur = 0;
+  ctx.shadowOffsetX = 0;
+  ctx.shadowOffsetY = 0;
+
+  // 2. Bezel (Phone Outer Frame)
+  const bezelWidth = 12;
+  const outerBezelGrad = ctx.createLinearGradient(x, y, x + pw, y + ph);
+  outerBezelGrad.addColorStop(0, '#475569'); // Slate
+  outerBezelGrad.addColorStop(0.5, '#1e293b'); // Dark Slate
+  outerBezelGrad.addColorStop(1, '#0f172a'); // Very Dark Slate
+  ctx.fillStyle = outerBezelGrad;
+  ctx.beginPath();
+  ctx.roundRect(x, y, pw, ph, 45);
+  ctx.fill();
+
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // 3. Screen Area
+  const sx = x + bezelWidth;
+  const sy = y + bezelWidth;
+  const sw = pw - bezelWidth * 2;
+  const sh = ph - bezelWidth * 2;
+  const srad = 35; // Screen radius
+
+  ctx.fillStyle = '#020617'; 
+  ctx.beginPath();
+  ctx.roundRect(sx, sy, sw, sh, srad);
+  ctx.fill();
+
+  // Screen Gradient Background
+  const screenGrad = ctx.createLinearGradient(sx, sy, sx, sy + sh);
+  if (category === 'marketing') {
+    screenGrad.addColorStop(0, '#581c87'); // Rich violet
+    screenGrad.addColorStop(1, '#1e1b4b'); // Deep indigo
+  } else {
+    screenGrad.addColorStop(0, '#1e40af'); // Royal blue
+    screenGrad.addColorStop(1, '#0f172a'); // Dark navy
+  }
+  ctx.fillStyle = screenGrad;
+  ctx.beginPath();
+  ctx.roundRect(sx, sy, sw, sh, srad);
+  ctx.fill();
+
+  // Screen Grid Lines
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  for (let i = sy; i < sy + sh; i += 40) {
+    ctx.moveTo(sx, i);
+    ctx.lineTo(sx + sw, i);
+  }
+  ctx.stroke();
+
+  // 4. Draw avatar inside screen (clipped)
+  ctx.save();
+  ctx.beginPath();
+  ctx.roundRect(sx, sy, sw, sh, srad);
+  ctx.clip();
+  drawAvatarForPhone(ctx, sx, sy, sw, sh, filter, styleIdx, avatarImg);
+  ctx.restore();
+
+  // 5. Notch
+  ctx.fillStyle = '#020617';
+  ctx.beginPath();
+  ctx.roundRect(x + pw/2 - 55, y + bezelWidth + 8, 110, 22, 11);
+  ctx.fill();
+
+  // 6. Pop-Out upper body
+  ctx.restore(); // Restore tilt transform
+
+  // Re-apply tilt transform for popout overlay
+  ctx.save();
+  ctx.translate(px + pw/2, py + ph/2);
+  if (isLeft) {
+    ctx.transform(1, -0.06, 0.05, 0.96, 0, 0);
+    ctx.rotate(-0.06);
+  } else {
+    ctx.transform(1, 0.06, -0.05, 0.96, 0, 0);
+    ctx.rotate(0.06);
+  }
+
+  // Clip popout to upper part of phone screen & area above
+  ctx.save();
+  ctx.beginPath();
+  ctx.rect(x - 200, y - 300, pw + 400, ph * 0.55 + 300);
+  ctx.clip();
+
+  // Draw avatar overlay
+  drawAvatarForPhone(ctx, sx, sy, sw, sh, filter, styleIdx, avatarImg);
+
+  ctx.restore(); // Restore clip
+  ctx.restore(); // Restore tilt transform
+}
+
+function drawAvatarForPhone(ctx, x, y, w, h, filter, styleIdx, avatarImg) {
   const useAiOutfit = state.settings.rotateOutfits !== false && styledAvatarsLoaded[styleIdx];
   const img = useAiOutfit ? styledAvatars[styleIdx] : avatarImg;
   const isLoaded = useAiOutfit || avatarImageLoaded;
   
   ctx.save();
   if (isLoaded && img.complete && img.naturalWidth !== 0) {
-    // Apply filters
-    ctx.filter = filter;
+    if (filter) ctx.filter = filter;
     
-    const imgRatio = img.width / img.height;
-    const destRatio = w / h;
-    let sw, sh, sx, sy;
+    const sw = img.width;
+    const sh = img.height;
     
-    if (imgRatio > destRatio) {
-      sh = img.height;
-      sw = sh * destRatio;
-      sx = (img.width - sw) / 2;
-      sy = 0;
-    } else {
-      sw = img.width;
-      sh = sw / destRatio;
-      sx = 0;
-      sy = (img.height - sh) / 2;
-    }
-    ctx.drawImage(img, sx, sy, sw, sh, x, y, w, h);
+    // Crop square avatar into tall phone crop
+    const cropWidth = sw * 0.7;
+    const cropHeight = cropWidth * (h / w);
+    const cropX = (sw - cropWidth) / 2;
+    const cropY = Math.max(0, (sh - cropHeight) * 0.15); 
+    
+    ctx.drawImage(img, cropX, cropY, cropWidth, cropHeight, x, y, w, h);
   } else {
-    ctx.fillStyle = '#cbd5e1';
+    ctx.fillStyle = '#1e293b';
     ctx.fillRect(x, y, w, h);
-    ctx.fillStyle = '#64748b';
-    ctx.font = '24px Inter';
-    ctx.textAlign = 'center';
-    ctx.fillText('Loading Image...', x + w/2, y + h/2);
   }
   ctx.restore();
 }
 
-function drawTextInsideCard(ctx, category, lx, ly, lw, lh, headline, subtext) {
+function drawAvatarForCircle(ctx, cx, cy, r, filter, styleIdx, avatarImg) {
+  const useAiOutfit = state.settings.rotateOutfits !== false && styledAvatarsLoaded[styleIdx];
+  const img = useAiOutfit ? styledAvatars[styleIdx] : avatarImg;
+  const isLoaded = useAiOutfit || avatarImageLoaded;
+  
   ctx.save();
-  ctx.textAlign = 'center';
+  if (isLoaded && img.complete && img.naturalWidth !== 0) {
+    if (filter) ctx.filter = filter;
+    
+    const size = r * 2.2;
+    ctx.drawImage(img, cx - size/2, cy - size/2 - r*0.1, size, size);
+  } else {
+    ctx.fillStyle = '#1e293b';
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.restore();
+}
+
+function drawTextColumn(ctx, category, tx, ty, tw, th, headline, subtext, align = 'left') {
+  ctx.save();
+  ctx.textAlign = align;
   
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-  ctx.font = 'bold 18px Outfit';
-  ctx.fillText('⚡ AI EXPERT & MARKETING MANAGER', lx + lw/2, ly + 80);
-  
-  ctx.fillStyle = '#ffffff';
-  ctx.font = '800 46px Outfit';
-  const headlineY = ly + 210;
-  wrapText(ctx, headline.toUpperCase(), lx + 30, headlineY, lw - 60, 56);
-  
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
-  ctx.font = '24px Inter';
-  ctx.fillText('•••••••••••••••••', lx + lw/2, ly + 520);
-  
-  ctx.fillStyle = '#cbd5e1';
-  ctx.font = '500 24px Inter';
-  const subtextY = ly + 575;
-  wrapText(ctx, subtext, lx + 40, subtextY, lw - 80, 36);
-  
-  const badgeW = 280;
-  const badgeH = 65;
-  const badgeX = lx + (lw - badgeW)/2;
-  const badgeY = ly + 720;
-  
+  // 1. Badge / Top Label
+  ctx.save();
   ctx.beginPath();
-  ctx.roundRect(badgeX, badgeY, badgeW, badgeH, 12);
-  ctx.fillStyle = category === 'marketing' ? '#0284c7' : '#8b5cf6';
+  const badgeW = 240;
+  const badgeH = 36;
+  const bx = align === 'center' ? tx + (tw - badgeW)/2 : tx;
+  ctx.roundRect(bx, ty, badgeW, badgeH, 8);
+  ctx.fillStyle = category === 'marketing' ? '#db2777' : '#2563eb';
   ctx.fill();
   
   ctx.fillStyle = '#ffffff';
-  ctx.font = 'bold 24px Outfit';
-  ctx.fillText('READ FULL POST', lx + lw/2, badgeY + 41);
+  ctx.font = 'bold 15px Inter';
+  ctx.textAlign = 'center';
+  ctx.fillText(category === 'marketing' ? 'MARKETING TREND' : 'AI TECH TREND', bx + badgeW/2, ty + 23);
+  ctx.restore();
   
+  // 2. Headline
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '800 38px Outfit';
+  const headlineY = ty + 95;
+  const wrapEnd = wrapTextAligned(ctx, headline.toUpperCase(), tx, headlineY, tw, 48, align);
+  
+  // 3. Dots separator
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+  ctx.font = '22px Inter';
+  const sepY = Math.max(wrapEnd + 10, ty + 380);
+  const linkX = align === 'center' ? tx + tw/2 : tx;
+  ctx.fillText('•••••••••••••••••', linkX, sepY);
+  
+  // 4. Subtext
+  ctx.fillStyle = '#cbd5e1';
+  ctx.font = '500 20px Inter';
+  const subtextY = sepY + 45;
+  wrapTextAligned(ctx, subtext, tx, subtextY, tw, 30, align);
+  
+  // 5. Button/CTA
+  const btnW = 260;
+  const btnH = 55;
+  const btnX = align === 'center' ? tx + (tw - btnW)/2 : tx;
+  const btnY = ty + 570;
+  
+  ctx.beginPath();
+  ctx.roundRect(btnX, btnY, btnW, btnH, 12);
+  ctx.fillStyle = category === 'marketing' ? '#db2777' : '#2563eb';
+  ctx.fill();
+  
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 20px Outfit';
+  ctx.textAlign = 'center';
+  ctx.fillText('READ FULL POST', btnX + btnW/2, btnY + 35);
+  
+  // 6. Profile Link
   ctx.fillStyle = '#94a3b8';
-  ctx.font = '600 22px Inter';
-  ctx.fillText('linkedin.com/in/jagtapsourabh', lx + lw/2, ly + 830);
+  ctx.font = '600 20px Inter';
+  ctx.fillText('linkedin.com/in/jagtapsourabh', linkX, ty + 700);
   
   ctx.restore();
 }
 
-// Wrap text canvas utility
-function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+// Wrap text with custom alignment support
+function wrapTextAligned(ctx, text, x, y, maxWidth, lineHeight, align = 'center') {
   const words = text.split(' ');
   let line = '';
   let currentY = y;
+  
+  ctx.save();
+  ctx.textAlign = align;
   
   for (let n = 0; n < words.length; n++) {
     let testLine = line + words[n] + ' ';
     let metrics = ctx.measureText(testLine);
     let testWidth = metrics.width;
     if (testWidth > maxWidth && n > 0) {
-      ctx.fillText(line, x + maxWidth/2, currentY);
+      const drawX = align === 'center' ? x + maxWidth/2 : (align === 'right' ? x + maxWidth : x);
+      ctx.fillText(line.trim(), drawX, currentY);
       line = words[n] + ' ';
       currentY += lineHeight;
     } else {
       line = testLine;
     }
   }
-  ctx.fillText(line, x + maxWidth/2, currentY);
+  const drawX = align === 'center' ? x + maxWidth/2 : (align === 'right' ? x + maxWidth : x);
+  ctx.fillText(line.trim(), drawX, currentY);
+  ctx.restore();
+  return currentY + lineHeight;
 }
 
 // ================= HELPERS & UTILS =================
