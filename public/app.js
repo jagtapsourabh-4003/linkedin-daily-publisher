@@ -615,13 +615,36 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     
     // Draw Glassmorphic Card behind Text
     ctx.save();
-    ctx.fillStyle = 'rgba(15, 23, 42, 0.45)';
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
-    ctx.lineWidth = 2;
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.35)';
+    ctx.shadowBlur = 35;
+    ctx.shadowOffsetY = 15;
+    
+    const glassGrad = ctx.createLinearGradient(500, 150, 1020, 930);
+    glassGrad.addColorStop(0, 'rgba(255, 255, 255, 0.07)');
+    glassGrad.addColorStop(0.5, 'rgba(15, 23, 42, 0.55)');
+    glassGrad.addColorStop(1, 'rgba(15, 23, 42, 0.7)');
+    ctx.fillStyle = glassGrad;
     ctx.beginPath();
     ctx.roundRect(500, 150, 520, 780, 24);
     ctx.fill();
+    
+    ctx.shadowColor = 'transparent';
+    ctx.shadowBlur = 0;
+    ctx.shadowOffsetY = 0;
+    
+    const borderGrad = ctx.createLinearGradient(500, 150, 1020, 930);
+    borderGrad.addColorStop(0, 'rgba(255, 255, 255, 0.22)');
+    borderGrad.addColorStop(0.4, 'rgba(255, 255, 255, 0.04)');
+    borderGrad.addColorStop(1, 'rgba(255, 255, 255, 0.12)');
+    ctx.strokeStyle = borderGrad;
+    ctx.lineWidth = 2.5;
     ctx.stroke();
+    
+    const sheenGrad = ctx.createRadialGradient(760, 540, 50, 760, 540, 500);
+    sheenGrad.addColorStop(0, 'rgba(255, 255, 255, 0.02)');
+    sheenGrad.addColorStop(1, 'transparent');
+    ctx.fillStyle = sheenGrad;
+    ctx.fill();
     ctx.restore();
     
     // Draw Phone mockup on Left
@@ -644,13 +667,36 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     
     // Draw Glassmorphic Card behind Text
     ctx.save();
-    ctx.fillStyle = 'rgba(15, 23, 42, 0.45)';
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
-    ctx.lineWidth = 2;
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.35)';
+    ctx.shadowBlur = 35;
+    ctx.shadowOffsetY = 15;
+    
+    const glassGrad = ctx.createLinearGradient(60, 150, 580, 930);
+    glassGrad.addColorStop(0, 'rgba(255, 255, 255, 0.07)');
+    glassGrad.addColorStop(0.5, 'rgba(15, 23, 42, 0.55)');
+    glassGrad.addColorStop(1, 'rgba(15, 23, 42, 0.7)');
+    ctx.fillStyle = glassGrad;
     ctx.beginPath();
     ctx.roundRect(60, 150, 520, 780, 24);
     ctx.fill();
+    
+    ctx.shadowColor = 'transparent';
+    ctx.shadowBlur = 0;
+    ctx.shadowOffsetY = 0;
+    
+    const borderGrad = ctx.createLinearGradient(60, 150, 580, 930);
+    borderGrad.addColorStop(0, 'rgba(255, 255, 255, 0.22)');
+    borderGrad.addColorStop(0.4, 'rgba(255, 255, 255, 0.04)');
+    borderGrad.addColorStop(1, 'rgba(255, 255, 255, 0.12)');
+    ctx.strokeStyle = borderGrad;
+    ctx.lineWidth = 2.5;
     ctx.stroke();
+    
+    const sheenGrad = ctx.createRadialGradient(320, 540, 50, 320, 540, 500);
+    sheenGrad.addColorStop(0, 'rgba(255, 255, 255, 0.02)');
+    sheenGrad.addColorStop(1, 'transparent');
+    ctx.fillStyle = sheenGrad;
+    ctx.fill();
     ctx.restore();
     
     // Draw Phone mockup on Right
@@ -759,7 +805,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     // Headline
     ctx.fillStyle = '#ffffff';
     ctx.font = '800 46px Outfit';
-    wrapTextAligned(ctx, headline.toUpperCase(), 100, 120, 880, 52, 'center');
+    wrapTextAligned(ctx, headline.toUpperCase(), 100, 120, 880, 52, 'center', true);
     
     // Subtext at bottom
     ctx.fillStyle = '#cbd5e1';
@@ -834,7 +880,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     // Title
     ctx.fillStyle = '#ffffff';
     ctx.font = '800 46px Outfit';
-    wrapTextAligned(ctx, headline.toUpperCase(), 60, 130, 480, 52, 'left');
+    wrapTextAligned(ctx, headline.toUpperCase(), 60, 130, 480, 52, 'left', true);
     
     // Checklist panel
     ctx.beginPath();
@@ -902,9 +948,9 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     ctx.roundRect(-cw/2, -ch/2, cw, ch, 24);
     ctx.fill();
     
-    // Glow border
+    // Glowing border matching theme
     ctx.shadowColor = 'transparent';
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+    ctx.strokeStyle = category === 'marketing' ? 'rgba(244, 114, 182, 0.25)' : 'rgba(56, 189, 248, 0.25)';
     ctx.lineWidth = 3;
     ctx.stroke();
     
@@ -999,7 +1045,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     // Headline
     ctx.fillStyle = '#ffffff';
     ctx.font = '800 46px Outfit';
-    wrapTextAligned(ctx, headline.toUpperCase(), 60, 150, 420, 52, 'left');
+    wrapTextAligned(ctx, headline.toUpperCase(), 60, 150, 420, 52, 'left', true);
     
     // Subtext
     ctx.fillStyle = '#cbd5e1';
@@ -1028,6 +1074,9 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     drawLogoBubble(ctx, 950, 140, 40, 'instagram', 0);
     drawEmojiBubble(ctx, 430, 420, 28, '🔥', 0);
   }
+  
+  // 4. Apply a subtle premium noise/grain texture over the entire creative card
+  applyNoiseTexture(ctx, w, h, 0.015);
 }
 
 // Drawing Sub-routines
@@ -1324,15 +1373,17 @@ function drawPhoneMockup(ctx, px, py, pw, ph, isLeft, avatarImg, filter, styleId
   const x = -pw/2;
   const y = -ph/2;
 
-  // 1. Phone shadow
-  ctx.shadowColor = 'rgba(0, 0, 0, 0.55)';
-  ctx.shadowBlur = 45;
-  ctx.shadowOffsetX = isLeft ? 15 : -15;
-  ctx.shadowOffsetY = 25;
+  // 1. Phone shadow & Neon halo glow
+  ctx.save();
+  ctx.shadowColor = category === 'marketing' ? 'rgba(219, 39, 119, 0.5)' : 'rgba(59, 130, 246, 0.5)';
+  ctx.shadowBlur = 55;
+  ctx.shadowOffsetX = isLeft ? 10 : -10;
+  ctx.shadowOffsetY = 20;
   ctx.fillStyle = '#020617';
   ctx.beginPath();
   ctx.roundRect(x, y, pw, ph, 45);
   ctx.fill();
+  ctx.restore();
 
   ctx.shadowColor = 'transparent';
   ctx.shadowBlur = 0;
@@ -1540,7 +1591,7 @@ function drawTextColumn(ctx, category, tx, ty, tw, th, headline, subtext, align 
   ctx.fillStyle = '#ffffff';
   ctx.font = '800 38px Outfit';
   const headlineY = ty + 95;
-  const wrapEnd = wrapTextAligned(ctx, headline.toUpperCase(), tx, headlineY, tw, 48, align);
+  const wrapEnd = wrapTextAligned(ctx, headline.toUpperCase(), tx, headlineY, tw, 48, align, true);
   
   // 3. Dots separator
   ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
@@ -1579,8 +1630,8 @@ function drawTextColumn(ctx, category, tx, ty, tw, th, headline, subtext, align 
   ctx.restore();
 }
 
-// Wrap text with custom alignment support
-function wrapTextAligned(ctx, text, x, y, maxWidth, lineHeight, align = 'center') {
+// Wrap text with custom alignment and premium style outline/gradient support
+function wrapTextAligned(ctx, text, x, y, maxWidth, lineHeight, align = 'center', isHeadline = false) {
   const words = text.split(' ');
   let line = '';
   let currentY = y;
@@ -1588,12 +1639,34 @@ function wrapTextAligned(ctx, text, x, y, maxWidth, lineHeight, align = 'center'
   ctx.save();
   ctx.textAlign = align;
   
+  if (isHeadline) {
+    // Specular dark outline for contrast against glowing space backgrounds
+    ctx.strokeStyle = 'rgba(15, 23, 42, 0.45)';
+    ctx.lineWidth = 6;
+    ctx.lineJoin = 'miter';
+    ctx.miterLimit = 2;
+    
+    // Deep drop shadow
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+    ctx.shadowBlur = 10;
+    ctx.shadowOffsetY = 4;
+    
+    // Silver-white gradient fill
+    const textGrad = ctx.createLinearGradient(x, y, x, y + 150);
+    textGrad.addColorStop(0, '#ffffff');
+    textGrad.addColorStop(1, '#e2e8f0');
+    ctx.fillStyle = textGrad;
+  }
+  
   for (let n = 0; n < words.length; n++) {
     let testLine = line + words[n] + ' ';
     let metrics = ctx.measureText(testLine);
     let testWidth = metrics.width;
     if (testWidth > maxWidth && n > 0) {
       const drawX = align === 'center' ? x + maxWidth/2 : (align === 'right' ? x + maxWidth : x);
+      if (isHeadline) {
+        ctx.strokeText(line.trim(), drawX, currentY);
+      }
       ctx.fillText(line.trim(), drawX, currentY);
       line = words[n] + ' ';
       currentY += lineHeight;
@@ -1602,9 +1675,37 @@ function wrapTextAligned(ctx, text, x, y, maxWidth, lineHeight, align = 'center'
     }
   }
   const drawX = align === 'center' ? x + maxWidth/2 : (align === 'right' ? x + maxWidth : x);
+  if (isHeadline) {
+    ctx.strokeText(line.trim(), drawX, currentY);
+  }
   ctx.fillText(line.trim(), drawX, currentY);
   ctx.restore();
   return currentY + lineHeight;
+}
+
+// Generate offscreen film grain noise pattern to prevent banding and unify colors
+function applyNoiseTexture(ctx, w, h, opacity = 0.015) {
+  ctx.save();
+  const noiseCanvas = document.createElement('canvas');
+  noiseCanvas.width = 100;
+  noiseCanvas.height = 100;
+  const noiseCtx = noiseCanvas.getContext('2d');
+  const imgData = noiseCtx.createImageData(100, 100);
+  const data = imgData.data;
+  
+  for (let i = 0; i < data.length; i += 4) {
+    const val = Math.floor(Math.random() * 255);
+    data[i] = val;
+    data[i+1] = val;
+    data[i+2] = val;
+    data[i+3] = Math.floor(Math.random() * 255 * opacity);
+  }
+  noiseCtx.putImageData(imgData, 0, 0);
+  
+  const pattern = ctx.createPattern(noiseCanvas, 'repeat');
+  ctx.fillStyle = pattern;
+  ctx.fillRect(0, 0, w, h);
+  ctx.restore();
 }
 
 // ================= HELPERS & UTILS =================
