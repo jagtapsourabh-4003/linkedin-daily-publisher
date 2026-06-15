@@ -126,9 +126,11 @@ Each object in the array must follow this structure:
   }
 }`;
 
-  let activeModel = modelName;
+  const models = ['gemini-2.5-pro', 'gemini-2.5-flash', 'gemini-1.5-flash'];
+  let modelIdx = 0;
+  let activeModel = models[modelIdx];
   let posts = null;
-  let attempts = 4;
+  let attempts = 5;
   let delay = 2000;
   
   for (let i = 0; i < attempts; i++) {
@@ -183,9 +185,11 @@ Each object in the array must follow this structure:
                           error.message.toLowerCase().includes('unavailable') ||
                           error.message.toLowerCase().includes('demand');
                           
-      if ((isRateLimit || isTransient) && activeModel === 'gemini-2.5-pro') {
-        console.warn(`[Generator] gemini-2.5-pro error (${error.message}). Falling back to gemini-2.5-flash immediately...`);
-        activeModel = 'gemini-2.5-flash';
+      if ((isRateLimit || isTransient) && modelIdx < models.length - 1) {
+        modelIdx++;
+        const nextModel = models[modelIdx];
+        console.warn(`[Generator] ${activeModel} error (${error.message}). Falling back to ${nextModel} immediately...`);
+        activeModel = nextModel;
         continue;
       }
       
