@@ -126,11 +126,11 @@ Each object in the array must follow this structure:
   }
 }`;
 
-  const models = ['gemini-2.5-pro', 'gemini-2.5-flash', 'gemini-1.5-flash'];
+  const models = ['gemini-2.5-pro', 'gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-2.5-flash-lite'];
   let modelIdx = 0;
   let activeModel = models[modelIdx];
   let posts = null;
-  let attempts = 5;
+  let attempts = 6;
   let delay = 2000;
   
   for (let i = 0; i < attempts; i++) {
