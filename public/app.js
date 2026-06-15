@@ -88,64 +88,154 @@ for (let i = 1; i <= 5; i++) {
 // Premium Color Palettes for daily rotating theme variations
 const PALETTES = [
   {
-    name: 'Cyber Cyan',
-    primary: '#00f2fe',
-    secondary: '#4facfe',
-    gradStart: '#09153a',
+    name: 'Electric Blue',
+    primary: '#3b82f6',
+    secondary: '#60a5fa',
+    gradStart: '#0b1a3e',
     gradEnd: '#020617',
-    rayColor: 'rgba(0, 242, 254, 0.04)',
-    textGlow: 'rgba(6, 182, 212, 0.15)',
-    badgeBg: '#1e40af'
+    rayColor: 'rgba(59, 130, 246, 0.04)',
+    textGlow: 'rgba(59, 130, 246, 0.15)',
+    badgeBg: '#1d4ed8'
   },
   {
-    name: 'Sunset Orange',
-    primary: '#f97316',
-    secondary: '#ef4444',
-    gradStart: '#2e0f05',
-    gradEnd: '#0c0200',
-    rayColor: 'rgba(249, 115, 22, 0.05)',
-    textGlow: 'rgba(249, 115, 22, 0.15)',
-    badgeBg: '#ea580c'
+    name: 'Cyber Purple',
+    primary: '#a855f7',
+    secondary: '#c084fc',
+    gradStart: '#1e0a3b',
+    gradEnd: '#0b0214',
+    rayColor: 'rgba(168, 85, 247, 0.04)',
+    textGlow: 'rgba(168, 85, 247, 0.15)',
+    badgeBg: '#7e22ce'
   },
   {
-    name: 'Emerald Mint',
+    name: 'Emerald Green',
     primary: '#10b981',
-    secondary: '#059669',
-    gradStart: '#062016',
-    gradEnd: '#020907',
+    secondary: '#34d399',
+    gradStart: '#062217',
+    gradEnd: '#020906',
     rayColor: 'rgba(16, 185, 129, 0.04)',
     textGlow: 'rgba(16, 185, 129, 0.15)',
     badgeBg: '#047857'
   },
   {
-    name: 'Royal Purple',
-    primary: '#db2777',
-    secondary: '#7f00ff',
-    gradStart: '#1c093a',
-    gradEnd: '#0e031c',
-    rayColor: 'rgba(219, 39, 119, 0.04)',
-    textGlow: 'rgba(219, 39, 119, 0.15)',
-    badgeBg: '#db2777'
+    name: 'Crimson Red',
+    primary: '#ef4444',
+    secondary: '#f87171',
+    gradStart: '#2b0b0b',
+    gradEnd: '#0c0202',
+    rayColor: 'rgba(239, 44, 44, 0.04)',
+    textGlow: 'rgba(239, 44, 44, 0.15)',
+    badgeBg: '#b91c1c'
   },
   {
-    name: 'Gold Amber',
-    primary: '#fbbf24',
-    secondary: '#d97706',
-    gradStart: '#1f1502',
-    gradEnd: '#070500',
-    rayColor: 'rgba(251, 191, 36, 0.04)',
-    textGlow: 'rgba(251, 191, 36, 0.15)',
-    badgeBg: '#b45309'
+    name: 'Royal Gold',
+    primary: '#eab308',
+    secondary: '#fde047',
+    gradStart: '#231c03',
+    gradEnd: '#080600',
+    rayColor: 'rgba(234, 179, 8, 0.04)',
+    textGlow: 'rgba(234, 179, 8, 0.15)',
+    badgeBg: '#a16207'
   },
   {
-    name: 'Electric Rose',
-    primary: '#f43f5e',
-    secondary: '#be123c',
-    gradStart: '#24040e',
-    gradEnd: '#0a0003',
-    rayColor: 'rgba(244, 63, 94, 0.05)',
-    textGlow: 'rgba(244, 63, 94, 0.15)',
-    badgeBg: '#e11d48'
+    name: 'Teal White',
+    primary: '#0d9488',
+    secondary: '#14b8a6',
+    gradStart: '#061d1c',
+    gradEnd: '#010808',
+    rayColor: 'rgba(13, 148, 136, 0.04)',
+    textGlow: 'rgba(13, 148, 136, 0.15)',
+    badgeBg: '#0f766e'
+  },
+  {
+    name: 'Slate Blue',
+    primary: '#64748b',
+    secondary: '#94a3b8',
+    gradStart: '#0f172a',
+    gradEnd: '#020617',
+    rayColor: 'rgba(100, 116, 139, 0.04)',
+    textGlow: 'rgba(100, 116, 139, 0.15)',
+    badgeBg: '#475569'
+  },
+  {
+    name: 'Monochrome Black',
+    primary: '#ffffff',
+    secondary: '#a3a3a3',
+    gradStart: '#171717',
+    gradEnd: '#0a0a0a',
+    rayColor: 'rgba(255, 255, 255, 0.03)',
+    textGlow: 'rgba(255, 255, 255, 0.1)',
+    badgeBg: '#404040'
+  },
+  {
+    name: 'Neon Cyan',
+    primary: '#06b6d4',
+    secondary: '#22d3ee',
+    gradStart: '#041c24',
+    gradEnd: '#01070a',
+    rayColor: 'rgba(6, 182, 212, 0.05)',
+    textGlow: 'rgba(6, 182, 212, 0.2)',
+    badgeBg: '#0e7490'
+  },
+  {
+    name: 'Sunset Orange',
+    primary: '#f97316',
+    secondary: '#fdba74',
+    gradStart: '#2b1408',
+    gradEnd: '#0a0300',
+    rayColor: 'rgba(249, 115, 22, 0.04)',
+    textGlow: 'rgba(249, 115, 22, 0.15)',
+    badgeBg: '#c2410c'
+  },
+  {
+    name: 'Deep Indigo',
+    primary: '#6366f1',
+    secondary: '#818cf8',
+    gradStart: '#111827',
+    gradEnd: '#030712',
+    rayColor: 'rgba(99, 102, 241, 0.04)',
+    textGlow: 'rgba(99, 102, 241, 0.15)',
+    badgeBg: '#4338ca'
+  },
+  {
+    name: 'Premium Burgundy',
+    primary: '#991b1b',
+    secondary: '#f87171',
+    gradStart: '#27040a',
+    gradEnd: '#080002',
+    rayColor: 'rgba(153, 27, 27, 0.04)',
+    textGlow: 'rgba(153, 27, 27, 0.15)',
+    badgeBg: '#7f1d1d'
+  },
+  {
+    name: 'Corporate Navy',
+    primary: '#1e3a8a',
+    secondary: '#3b82f6',
+    gradStart: '#0a122c',
+    gradEnd: '#02040a',
+    rayColor: 'rgba(30, 58, 138, 0.04)',
+    textGlow: 'rgba(30, 58, 138, 0.12)',
+    badgeBg: '#1d4ed8'
+  },
+  {
+    name: 'Platinum Grey',
+    primary: '#cbd5e1',
+    secondary: '#e2e8f0',
+    gradStart: '#1e293b',
+    gradEnd: '#0f172a',
+    rayColor: 'rgba(203, 213, 225, 0.03)',
+    textGlow: 'rgba(203, 213, 225, 0.1)',
+    badgeBg: '#334155'
+  },
+  {
+    name: 'Dark Forest',
+    primary: '#15803d',
+    secondary: '#22c55e',
+    gradStart: '#051b0f',
+    gradEnd: '#010704',
+    rayColor: 'rgba(21, 128, 61, 0.04)',
+    textGlow: 'rgba(21, 128, 61, 0.15)',
+    badgeBg: '#166534'
   }
 ];
 
@@ -405,7 +495,13 @@ async function saveDraftEdit(date, postId, content) {
     const dayEntry = state.history.find(item => item.date === date);
     if (dayEntry) {
       const post = dayEntry.posts.find(p => p.id === parseInt(postId));
-      if (post) post.content = content;
+      if (post) {
+        if (post.postContent) {
+          post.postContent.content = content;
+        } else {
+          post.content = content;
+        }
+      }
     }
   } catch (err) {
     console.error('[Editor] Failed to auto-save post edit:', err.message);
@@ -530,15 +626,24 @@ function renderActiveDrafts() {
     cardEl.className = `draft-card ${isThisPostSelected ? 'posted-item' : ''} ${isDayPosted && !isThisPostSelected ? 'disabled-item' : ''}`;
     cardEl.id = `draft-card-${post.id}`;
 
+    // Gracefully resolve properties from both new structured model schema and legacy fallback schema
+    const content = (post.postContent && post.postContent.content) ? post.postContent.content : (post.content || '');
+    const hook = (post.postContent && post.postContent.hook) ? post.postContent.hook : (post.hook || '');
+    const headlineText = (post.postContent && post.postContent.imageHeadline) ? post.postContent.imageHeadline : (post.imageHeadline || 'AI Strategy');
+    const subtextText = (post.postContent && post.postContent.imageSubtext) ? post.postContent.imageSubtext : (post.imageSubtext || 'Next-Gen Workflows');
+    const sourceArticle = (post.postContent && post.postContent.sourceArticle) ? post.postContent.sourceArticle : (post.sourceArticle || 'General Trend');
+    const badgeText = (post.postContent && post.postContent.badgeText) ? post.postContent.badgeText : (post.postContent && post.postContent.badge) || '';
+    const postStyle = post.designArchetype || (post.postContent && post.postContent.style) || post.style || 'Thought Leadership';
+
     // Calculate details for metadata row
-    const charCount = post.content.length;
-    const hashtagCount = (post.content.match(/#/g) || []).length;
+    const charCount = content.length;
+    const hashtagCount = (content.match(/#/g) || []).length;
 
     cardEl.innerHTML = `
       <div class="draft-card-header">
         <div class="header-main-info">
-          <span class="style-tag">${post.style}</span>
-          <span class="source-tag">Inspiration: <em>${post.sourceArticle || 'General Trend'}</em></span>
+          <span class="style-tag">${postStyle}</span>
+          <span class="source-tag">Inspiration: <em>${sourceArticle || 'General Trend'}</em></span>
         </div>
         ${post.scores ? `
         <div class="score-badge-group">
@@ -549,6 +654,19 @@ function renderActiveDrafts() {
         </div>
         ` : ''}
       </div>
+
+      ${(post.designArchetype || post.layoutFamily || post.colorPalette) ? `
+      <div class="design-metadata-row">
+        <span class="meta-badge archetype-badge" title="Design Archetype">🏛️ ${post.designArchetype || 'Custom'}</span>
+        <span class="meta-badge layout-badge" title="Layout Family">📐 ${post.layoutFamily || 'Dynamic'}</span>
+        <span class="meta-badge palette-badge" title="Color Palette">🎨 ${post.colorPalette || 'Standard'}</span>
+        <span class="meta-badge role-badge" title="Character Persona">💼 ${post.characterRole || 'B2B Manager'}</span>
+        <span class="meta-badge wardrobe-badge" title="Clothing Style">👔 ${post.clothingStyle || 'Executive'}</span>
+        <span class="meta-badge env-badge" title="Environment">📍 ${post.environment || 'Workspace'}</span>
+        <span class="meta-badge camera-badge" title="Camera Style">📷 ${post.cameraStyle || 'Portrait'}</span>
+      </div>
+      ` : ''}
+
       <div class="post-editor-wrapper">
         <textarea 
           class="post-textarea" 
@@ -556,7 +674,7 @@ function renderActiveDrafts() {
           placeholder="Loading post content..."
           aria-label="Edit Post Content"
           ${isDayPosted ? 'disabled' : ''}
-        >${post.content}</textarea>
+        >${content}</textarea>
       </div>
       <div class="post-meta-row">
         <div>
@@ -617,7 +735,7 @@ function renderActiveDrafts() {
     // Render Canvas
     const canvas = cardEl.querySelector(`#canvas-${post.id}`);
     if (canvas) {
-      drawCreative(canvas, activeEntry.category, post.imageHeadline || "AI Strategy", post.imageSubtext || "Next-Gen Workflows", post.id, activeEntry.date, post.layout);
+      drawCreative(canvas, activeEntry.category, headlineText, subtextText, post.id, activeEntry.date, post.layout || post);
     }
 
     // Textarea auto-save and length counters listener
@@ -732,6 +850,374 @@ function getDayIndex(dateStr) {
 }
 
 // Draw custom creative card matching user template design structure
+// Helper to compile dynamic design configurations for the 15 Layout Families
+function buildLayoutFromFamily(layoutFamily, palette, headline, subtext, category, postId) {
+  const layout = {
+    background: {
+      colors: [palette.gradStart, palette.gradEnd],
+      isSunburst: false,
+      rayColor: palette.rayColor,
+      drawGrid: false,
+      gridColor: 'rgba(255, 255, 255, 0.03)',
+      gridSize: 40,
+      glows: []
+    },
+    shapes: [],
+    avatar: {
+      type: 'rect',
+      x: 540,
+      y: 540,
+      w: 360,
+      h: 360,
+      glowColor: palette.primary + '33',
+      glowBlur: 30,
+      strokeColor: palette.primary,
+      lineWidth: 3,
+      tilt: 0
+    },
+    text: {
+      badge: { text: category === 'marketing' ? 'MARKETING TREND' : 'AI TECH TREND', bgColor: palette.badgeBg, x: 80, y: 120, w: 220, h: 36 },
+      headline: { fontSize: 40, color: '#ffffff', highlightColor: palette.primary, align: 'left', x: 80, y: 190, w: 900 },
+      subtext: { fontSize: 22, color: '#cbd5e1', align: 'left', x: 80, y: 520, w: 900 },
+      cta: { text: 'READ POST', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 20, x: 80, y: 780, w: 260, h: 55 }
+    },
+    floatingElements: []
+  };
+
+  // Add LinkedIn icon by default floating around
+  layout.floatingElements.push({ type: 'linkedin', x: 980, y: 80, size: 36 });
+
+  const fam = (layoutFamily || '').toLowerCase().trim();
+
+  switch (fam) {
+    case 'split-left':
+      layout.background.drawGrid = true;
+      layout.background.glows.push({ x: 280, y: 540, r: 500, color: palette.textGlow });
+      layout.avatar = {
+        type: 'rect',
+        x: 280,
+        y: 540,
+        w: 420,
+        h: 780,
+        glowColor: palette.primary + '40',
+        glowBlur: 40,
+        strokeColor: palette.primary,
+        lineWidth: 4
+      };
+      layout.text.badge = { text: layout.text.badge.text, bgColor: palette.badgeBg, x: 550, y: 180, w: 220, h: 36 };
+      layout.text.headline = { fontSize: 42, color: '#ffffff', highlightColor: palette.primary, align: 'left', x: 550, y: 250, w: 450 };
+      layout.text.subtext = { fontSize: 22, color: '#cbd5e1', align: 'left', x: 550, y: 560, w: 450 };
+      layout.text.cta = { text: 'READ FULL POST', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 20, x: 550, y: 800, w: 260, h: 55 };
+      break;
+
+    case 'split-right':
+      layout.background.drawGrid = true;
+      layout.background.glows.push({ x: 800, y: 540, r: 500, color: palette.textGlow });
+      layout.avatar = {
+        type: 'rect',
+        x: 800,
+        y: 540,
+        w: 420,
+        h: 780,
+        glowColor: palette.primary + '40',
+        glowBlur: 40,
+        strokeColor: palette.primary,
+        lineWidth: 4
+      };
+      layout.text.badge = { text: layout.text.badge.text, bgColor: palette.badgeBg, x: 80, y: 180, w: 220, h: 36 };
+      layout.text.headline = { fontSize: 42, color: '#ffffff', highlightColor: palette.primary, align: 'left', x: 80, y: 250, w: 450 };
+      layout.text.subtext = { fontSize: 22, color: '#cbd5e1', align: 'left', x: 80, y: 560, w: 450 };
+      layout.text.cta = { text: 'READ FULL POST', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 20, x: 80, y: 800, w: 260, h: 55 };
+      break;
+
+    case 'hero-center':
+      layout.background.isSunburst = true;
+      layout.background.glows.push({ x: 540, y: 540, r: 600, color: palette.textGlow });
+      layout.shapes.push({ type: 'circle', x: 540, y: 780, r: 200, color: 'rgba(255, 255, 255, 0.02)', strokeColor: 'rgba(255, 255, 255, 0.05)', lineWidth: 2 });
+      layout.avatar = {
+        type: 'circle',
+        x: 540,
+        y: 780,
+        w: 320,
+        h: 320,
+        glowColor: palette.primary + '40',
+        glowBlur: 35,
+        strokeColor: palette.primary,
+        lineWidth: 4
+      };
+      layout.text.badge = { text: layout.text.badge.text, bgColor: palette.badgeBg, x: 420, y: 120, w: 240, h: 36 };
+      layout.text.headline = { fontSize: 44, color: '#ffffff', highlightColor: palette.primary, align: 'center', x: 90, y: 200, w: 900 };
+      layout.text.subtext = { fontSize: 22, color: '#cbd5e1', align: 'center', x: 140, y: 460, w: 800 };
+      layout.text.cta = { text: 'READ POST', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 20, x: 410, y: 975, w: 260, h: 55 };
+      break;
+
+    case 'magazine-cover':
+      layout.shapes.push({
+        type: 'rect',
+        x: 540,
+        y: 540,
+        w: 1020,
+        h: 1020,
+        color: 'transparent',
+        strokeColor: palette.primary,
+        lineWidth: 4,
+        borderRadius: 0
+      });
+      layout.avatar = {
+        type: 'rect',
+        x: 690,
+        y: 560,
+        w: 600,
+        h: 880,
+        glowColor: 'transparent',
+        strokeColor: 'rgba(255,255,255,0.15)',
+        lineWidth: 2
+      };
+      layout.background.glows.push({ x: 740, y: 540, r: 600, color: palette.textGlow });
+      layout.text.badge = { text: layout.text.badge.text, bgColor: palette.badgeBg, x: 80, y: 120, w: 220, h: 36 };
+      layout.text.headline = { fontSize: 50, color: '#ffffff', highlightColor: palette.primary, align: 'left', x: 80, y: 190, w: 560 };
+      layout.text.subtext = { fontSize: 22, color: '#cbd5e1', align: 'left', x: 80, y: 580, w: 500 };
+      layout.text.cta = { text: 'READ COVER STORY', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 20, x: 80, y: 840, w: 280, h: 55 };
+      break;
+
+    case 'quote-card':
+      layout.shapes.push({
+        type: 'rect',
+        x: 540,
+        y: 460,
+        w: 920,
+        h: 520,
+        color: 'rgba(255, 255, 255, 0.03)',
+        strokeColor: 'rgba(255, 255, 255, 0.08)',
+        borderRadius: 24
+      });
+      layout.avatar = {
+        type: 'circle',
+        x: 180,
+        y: 820,
+        w: 140,
+        h: 140,
+        glowColor: palette.primary + '25',
+        glowBlur: 20,
+        strokeColor: palette.primary,
+        lineWidth: 3
+      };
+      layout.text.badge = { text: 'INSIGHT OF THE DAY', bgColor: palette.badgeBg, x: 100, y: 100, w: 240, h: 36 };
+      layout.text.headline = { fontSize: 38, color: '#ffffff', highlightColor: palette.primary, align: 'left', x: 140, y: 240, w: 800 };
+      layout.text.subtext = { fontSize: 22, color: '#cbd5e1', align: 'left', x: 280, y: 820, w: 460 };
+      layout.text.cta = { text: 'VIEW FULL POST', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 20, x: 760, y: 800, w: 200, h: 55 };
+      break;
+
+    case 'podcast-layout':
+      layout.shapes.push({ type: 'line', x1: 100, y1: 850, x2: 980, y2: 850, strokeColor: 'rgba(255, 255, 255, 0.15)', lineWidth: 3 });
+      layout.shapes.push({ type: 'line', x1: 100, y1: 850, x2: 480, y2: 850, strokeColor: palette.primary, lineWidth: 5 });
+      layout.shapes.push({ type: 'circle', x: 480, y: 850, r: 10, color: palette.primary, strokeColor: '#ffffff', lineWidth: 2 });
+      layout.background.glows.push({ x: 280, y: 400, r: 400, color: palette.textGlow });
+      layout.avatar = {
+        type: 'rect',
+        x: 280,
+        y: 400,
+        w: 360,
+        h: 360,
+        glowColor: palette.primary + '30',
+        glowBlur: 30,
+        strokeColor: palette.primary,
+        lineWidth: 4
+      };
+      layout.text.badge = { text: 'NOW PLAYING • PODCAST', bgColor: palette.badgeBg, x: 500, y: 220, w: 260, h: 36 };
+      layout.text.headline = { fontSize: 38, color: '#ffffff', highlightColor: palette.primary, align: 'left', x: 500, y: 280, w: 480 };
+      layout.text.subtext = { fontSize: 22, color: '#cbd5e1', align: 'left', x: 500, y: 520, w: 480 };
+      layout.text.cta = { text: 'LISTEN TO EPISODE', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 20, x: 500, y: 700, w: 260, h: 55 };
+      break;
+
+    case 'presentation-slide':
+      layout.shapes.push({ type: 'rect', x: 540, y: 60, w: 1080, h: 120, color: 'rgba(0,0,0,0.35)', strokeColor: 'rgba(255,255,255,0.05)', borderRadius: 0 });
+      layout.avatar = {
+        type: 'rect',
+        x: 900,
+        y: 350,
+        w: 240,
+        h: 340,
+        glowColor: 'transparent',
+        strokeColor: 'rgba(255,255,255,0.1)',
+        lineWidth: 2
+      };
+      layout.background.glows.push({ x: 900, y: 350, r: 400, color: palette.textGlow });
+      layout.text.badge = { text: 'SLIDE DECK INSIGHT', bgColor: palette.badgeBg, x: 80, y: 42, w: 240, h: 36 };
+      layout.text.headline = { fontSize: 42, color: '#ffffff', highlightColor: palette.primary, align: 'left', x: 80, y: 220, w: 680 };
+      layout.text.subtext = { fontSize: 22, color: '#cbd5e1', align: 'left', x: 80, y: 460, w: 680 };
+      layout.text.cta = { text: 'ACCESS FULL DECK', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 20, x: 80, y: 880, w: 280, h: 55 };
+      break;
+
+    case 'news-card':
+      layout.shapes.push({ type: 'rect', x: 540, y: 960, w: 1080, h: 80, color: palette.primary, strokeColor: 'transparent', borderRadius: 0 });
+      layout.shapes.push({ type: 'rect', x: 100, y: 960, w: 80, h: 40, color: '#ef4444', strokeColor: '#ffffff', borderRadius: 4 });
+      layout.avatar = {
+        type: 'rect',
+        x: 840,
+        y: 480,
+        w: 400,
+        h: 600,
+        glowColor: palette.primary + '20',
+        strokeColor: 'transparent',
+        lineWidth: 0
+      };
+      layout.text.badge = { text: 'LIVE NEWS EXCLUSIVE', bgColor: palette.badgeBg, x: 80, y: 140, w: 260, h: 36 };
+      layout.text.headline = { fontSize: 44, color: '#ffffff', highlightColor: '#ffffff', align: 'left', x: 80, y: 210, w: 520 };
+      layout.text.subtext = { fontSize: 22, color: '#cbd5e1', align: 'left', x: 80, y: 560, w: 520 };
+      layout.text.cta = { text: 'GET THE REPORT', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 20, x: 80, y: 800, w: 260, h: 55 };
+      break;
+
+    case 'editorial-cover':
+      layout.background.drawGrid = true;
+      layout.shapes.push({ type: 'rect', x: 550, y: 430, w: 800, h: 500, color: 'transparent', strokeColor: 'rgba(255, 255, 255, 0.1)', lineWidth: 1, borderRadius: 24 });
+      layout.shapes.push({
+        type: 'rect',
+        x: 540,
+        y: 800,
+        w: 920,
+        h: 340,
+        color: 'rgba(15, 23, 42, 0.85)',
+        strokeColor: palette.primary + '66',
+        borderRadius: 24
+      });
+      layout.avatar = {
+        type: 'rect',
+        x: 540,
+        y: 420,
+        w: 780,
+        h: 480,
+        glowColor: palette.primary + '15',
+        strokeColor: palette.primary,
+        lineWidth: 2
+      };
+      layout.text.badge = { text: layout.text.badge.text, bgColor: palette.badgeBg, x: 120, y: 670, w: 220, h: 36 };
+      layout.text.headline = { fontSize: 38, color: '#ffffff', highlightColor: palette.primary, align: 'center', x: 100, y: 740, w: 880 };
+      layout.text.subtext = { fontSize: 20, color: '#94a3b8', align: 'center', x: 100, y: 910, w: 880 };
+      layout.text.cta = { text: 'READ ARTICLE', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 20, x: 760, y: 660, w: 200, h: 50 };
+      break;
+
+    case 'phone-mockup':
+      layout.avatar = {
+        type: 'phone',
+        x: 800,
+        y: 540,
+        w: 420,
+        h: 840,
+        glowColor: palette.primary + '33',
+        glowBlur: 40,
+        strokeColor: 'transparent',
+        lineWidth: 0
+      };
+      layout.text.badge = { text: layout.text.badge.text, bgColor: palette.badgeBg, x: 80, y: 180, w: 220, h: 36 };
+      layout.text.headline = { fontSize: 42, color: '#ffffff', highlightColor: palette.primary, align: 'left', x: 80, y: 250, w: 460 };
+      layout.text.subtext = { fontSize: 22, color: '#cbd5e1', align: 'left', x: 80, y: 560, w: 460 };
+      layout.text.cta = { text: 'TRY WEB APP', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 20, x: 80, y: 800, w: 260, h: 55 };
+      break;
+
+    case 'floating-cards':
+      layout.shapes.push({ type: 'rect', x: 340, y: 540, w: 500, h: 800, color: 'rgba(255, 255, 255, 0.04)', strokeColor: 'rgba(255, 255, 255, 0.08)', borderRadius: 24 });
+      layout.shapes.push({ type: 'rect', x: 800, y: 540, w: 420, h: 700, color: 'rgba(255, 255, 255, 0.03)', strokeColor: 'rgba(255, 255, 255, 0.06)', borderRadius: 24 });
+      layout.avatar = {
+        type: 'rect',
+        x: 800,
+        y: 540,
+        w: 380,
+        h: 640,
+        glowColor: palette.primary + '20',
+        strokeColor: palette.primary,
+        lineWidth: 2
+      };
+      layout.text.badge = { text: layout.text.badge.text, bgColor: palette.badgeBg, x: 120, y: 180, w: 220, h: 36 };
+      layout.text.headline = { fontSize: 38, color: '#ffffff', highlightColor: palette.primary, align: 'left', x: 120, y: 250, w: 400 };
+      layout.text.subtext = { fontSize: 20, color: '#cbd5e1', align: 'left', x: 120, y: 550, w: 400 };
+      layout.text.cta = { text: 'LEARN MORE', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 20, x: 120, y: 780, w: 240, h: 55 };
+      break;
+
+    case 'layered-depth':
+      layout.background.drawGrid = true;
+      layout.shapes.push({ type: 'rect', x: 540, y: 540, w: 980, h: 980, color: 'transparent', strokeColor: 'rgba(255, 255, 255, 0.08)', lineWidth: 3, borderRadius: 24 });
+      layout.avatar = {
+        type: 'rect',
+        x: 540,
+        y: 540,
+        w: 580,
+        h: 580,
+        glowColor: palette.primary + '33',
+        glowBlur: 40,
+        strokeColor: palette.primary,
+        lineWidth: 4
+      };
+      layout.text.badge = { text: layout.text.badge.text, bgColor: palette.badgeBg, x: 100, y: 90, w: 220, h: 36 };
+      layout.text.headline = { fontSize: 44, color: '#ffffff', highlightColor: palette.primary, align: 'center', x: 100, y: 160, w: 880 };
+      layout.text.subtext = { fontSize: 22, color: '#cbd5e1', align: 'center', x: 100, y: 870, w: 880 };
+      layout.text.cta = { text: 'VIEW FULL POST', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 20, x: 410, y: 975, w: 260, h: 55 };
+      break;
+
+    case 'diagonal-layout':
+      layout.shapes.push({ type: 'line', x1: 0, y1: 850, x2: 1080, y2: 450, strokeColor: palette.primary, lineWidth: 6 });
+      layout.shapes.push({ type: 'line', x1: 0, y1: 830, x2: 1080, y2: 430, strokeColor: palette.secondary || '#ffffff', lineWidth: 2 });
+      layout.avatar = {
+        type: 'rect',
+        x: 820,
+        y: 720,
+        w: 360,
+        h: 460,
+        glowColor: palette.primary + '25',
+        glowBlur: 30,
+        strokeColor: palette.primary,
+        lineWidth: 3,
+        tilt: 0.08
+      };
+      layout.text.badge = { text: layout.text.badge.text, bgColor: palette.badgeBg, x: 80, y: 120, w: 220, h: 36 };
+      layout.text.headline = { fontSize: 42, color: '#ffffff', highlightColor: palette.primary, align: 'left', x: 80, y: 190, w: 680 };
+      layout.text.subtext = { fontSize: 22, color: '#cbd5e1', align: 'left', x: 80, y: 460, w: 520 };
+      layout.text.cta = { text: 'GET STARTED', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 20, x: 80, y: 780, w: 260, h: 55 };
+      break;
+
+    case 'asymmetrical-grid':
+      layout.shapes.push({ type: 'line', x1: 540, y1: 0, x2: 540, y2: 1080, strokeColor: 'rgba(255,255,255,0.05)', lineWidth: 1 });
+      layout.shapes.push({ type: 'line', x1: 0, y1: 540, x2: 1080, y2: 540, strokeColor: 'rgba(255,255,255,0.05)', lineWidth: 1 });
+      layout.avatar = {
+        type: 'rect',
+        x: 300,
+        y: 700,
+        w: 420,
+        h: 560,
+        glowColor: palette.primary + '25',
+        glowBlur: 30,
+        strokeColor: palette.primary,
+        lineWidth: 3
+      };
+      layout.text.badge = { text: layout.text.badge.text, bgColor: palette.badgeBg, x: 570, y: 160, w: 220, h: 36 };
+      layout.text.headline = { fontSize: 40, color: '#ffffff', highlightColor: palette.primary, align: 'left', x: 570, y: 230, w: 450 };
+      layout.text.subtext = { fontSize: 22, color: '#cbd5e1', align: 'left', x: 570, y: 560, w: 450 };
+      layout.text.cta = { text: 'READ STORY', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 20, x: 570, y: 820, w: 260, h: 55 };
+      break;
+
+    case 'modern-minimal':
+      layout.shapes.push({ type: 'rect', x: 540, y: 540, w: 1000, h: 1000, color: 'transparent', strokeColor: 'rgba(255,255,255,0.05)', lineWidth: 1, borderRadius: 0 });
+      layout.avatar = {
+        type: 'circle',
+        x: 920,
+        y: 920,
+        w: 120,
+        h: 120,
+        glowColor: 'transparent',
+        strokeColor: 'rgba(255,255,255,0.2)',
+        lineWidth: 2
+      };
+      layout.text.badge = { text: layout.text.badge.text, bgColor: '#18181b', x: 440, y: 180, w: 200, h: 36 };
+      layout.text.headline = { fontSize: 42, color: '#ffffff', highlightColor: palette.primary, align: 'center', x: 140, y: 260, w: 800 };
+      layout.text.subtext = { fontSize: 22, color: '#cbd5e1', align: 'center', x: 190, y: 580, w: 700 };
+      layout.text.cta = { text: 'DETAILS', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 20, x: 410, y: 800, w: 260, h: 55 };
+      break;
+  }
+
+  return layout;
+}
+
+// Draw custom creative card matching user template design structure
 function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr = '', customLayout = null) {
   const ctx = canvas.getContext('2d');
   const w = canvas.width;  // 1080
@@ -759,13 +1245,31 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     activeAvImg = optionAvatars[styleIdx];
   }
   
+  // Dynamic design layout mapping
+  let activeLayout = null;
   if (customLayout) {
+    if (customLayout.layoutFamily || customLayout.colorPalette || customLayout.postContent) {
+      const colorPaletteName = customLayout.colorPalette || 'Electric Blue';
+      const matchedPalette = PALETTES.find(p => p.name.toLowerCase() === colorPaletteName.toLowerCase()) || 
+                             PALETTES.find(p => colorPaletteName.toLowerCase().includes(p.name.toLowerCase())) ||
+                             palette;
+      const resolvedBadge = (customLayout.postContent && (customLayout.postContent.badgeText || customLayout.postContent.badge)) || (category === 'marketing' ? 'MARKETING TREND' : 'AI TECH TREND');
+      activeLayout = buildLayoutFromFamily(customLayout.layoutFamily || 'split-left', matchedPalette, headline, subtext, category, postId);
+      if (activeLayout.text && activeLayout.text.badge) {
+        activeLayout.text.badge.text = resolvedBadge.toUpperCase();
+      }
+    } else {
+      activeLayout = customLayout;
+    }
+  }
+
+  if (activeLayout) {
     try {
-      console.log('[Canvas] Drawing custom dynamic layout:', customLayout);
+      console.log('[Canvas] Drawing custom dynamic layout:', activeLayout);
       // 1. Draw Background
-      if (customLayout.background) {
+      if (activeLayout.background) {
         ctx.save();
-        const colors = customLayout.background.colors || ['#080b16', '#020617'];
+        const colors = activeLayout.background.colors || ['#080b16', '#020617'];
         const grad = ctx.createLinearGradient(0, 0, 0, h);
         grad.addColorStop(0, colors[0]);
         if (colors.length > 2) {
@@ -778,13 +1282,13 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
         ctx.fillRect(0, 0, w, h);
         
         // Sunburst rays
-        if (customLayout.background.isSunburst) {
+        if (activeLayout.background.isSunburst) {
           const cx = w / 2;
           const cy = h / 2;
           const numRays = 24;
           const radius = Math.max(w, h) * 1.5;
           ctx.translate(cx, cy);
-          ctx.fillStyle = customLayout.background.rayColor || 'rgba(255, 255, 255, 0.04)';
+          ctx.fillStyle = activeLayout.background.rayColor || 'rgba(255, 255, 255, 0.04)';
           for (let i = 0; i < numRays; i++) {
             const angleStart = (i * 2 * Math.PI) / numRays;
             const angleEnd = ((i + 0.5) * 2 * Math.PI) / numRays;
@@ -799,8 +1303,8 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
         }
         
         // Radial glows/light bursts
-        if (Array.isArray(customLayout.background.glows)) {
-          customLayout.background.glows.forEach(glow => {
+        if (Array.isArray(activeLayout.background.glows)) {
+          activeLayout.background.glows.forEach(glow => {
             ctx.save();
             const radGlow = ctx.createRadialGradient(glow.x, glow.y, 10, glow.x, glow.y, glow.r || w/2);
             radGlow.addColorStop(0, glow.color || 'rgba(0, 242, 254, 0.2)');
@@ -811,20 +1315,20 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           });
         } else {
           // Central radial glow highlight
-          const textGlow = customLayout.background.textGlow || 'rgba(0, 242, 254, 0.15)';
+          const textGlow = activeLayout.background.textGlow || 'rgba(0, 242, 254, 0.15)';
           const radialGlow = ctx.createRadialGradient(w/2, h/2, 50, w/2, h/2, w/2);
           radialGlow.addColorStop(0, textGlow);
           radialGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
           ctx.fillStyle = radialGlow;
           ctx.fillRect(0, 0, w, h);
         }
-
+        
         // Draw blueprint grid lines on background if specified
-        if (customLayout.background.drawGrid) {
+        if (activeLayout.background.drawGrid) {
           ctx.save();
-          ctx.strokeStyle = customLayout.background.gridColor || 'rgba(255, 255, 255, 0.05)';
+          ctx.strokeStyle = activeLayout.background.gridColor || 'rgba(255, 255, 255, 0.05)';
           ctx.lineWidth = 1;
-          const gridSize = customLayout.background.gridSize || 40;
+          const gridSize = activeLayout.background.gridSize || 40;
           for (let xPos = 0; xPos < w; xPos += gridSize) {
             ctx.beginPath();
             ctx.moveTo(xPos, 0);
@@ -843,8 +1347,8 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
       }
       
       // 2. Draw Decorative Shapes
-      if (Array.isArray(customLayout.shapes)) {
-        customLayout.shapes.forEach(shape => {
+      if (Array.isArray(activeLayout.shapes)) {
+        activeLayout.shapes.forEach(shape => {
           ctx.save();
           ctx.fillStyle = shape.color || 'rgba(255,255,255,0.05)';
           ctx.strokeStyle = shape.strokeColor || 'transparent';
@@ -879,8 +1383,8 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
       }
       
       // 3. Draw Avatar
-      if (customLayout.avatar) {
-        const av = customLayout.avatar;
+      if (activeLayout.avatar) {
+        const av = activeLayout.avatar;
         
         ctx.save();
         if (av.tilt) {
@@ -906,12 +1410,19 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
         }
         
         // Draw the avatar
+        let dynamicAvImg = activeAvImg;
+        // If unique daily avatar is loaded on page load, draw it
+        const uniqueAvImg = optionAvatars[postId - 1];
+        if (uniqueAvImg && uniqueAvImg.complete && uniqueAvImg.naturalWidth !== 0) {
+          dynamicAvImg = uniqueAvImg;
+        }
+
         if (av.type === 'circle') {
-          drawAvatarForCircle(ctx, av.x, av.y, av.w / 2, av.filter, styleIdx, activeAvImg);
+          drawAvatarForCircle(ctx, av.x, av.y, av.w / 2, av.filter, styleIdx, dynamicAvImg);
         } else if (av.type === 'phone') {
-          drawPhoneMockup(ctx, av.x - av.w/2, av.y - av.h/2, av.w, av.h, true, activeAvImg, av.filter, styleIdx, palette);
+          drawPhoneMockup(ctx, av.x - av.w/2, av.y - av.h/2, av.w, av.h, true, dynamicAvImg, av.filter, styleIdx, palette);
         } else {
-          drawAvatarForCard(ctx, av.x - av.w/2, av.y - av.h/2, av.w, av.h, av.filter, styleIdx, activeAvImg);
+          drawAvatarForCard(ctx, av.x - av.w/2, av.y - av.h/2, av.w, av.h, av.filter, styleIdx, dynamicAvImg);
         }
         
         // Neon stroke border outline on top
@@ -933,16 +1444,16 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
       }
       
       // 4. Draw Texts (using explicit custom coordinates if provided, else sequential vertical flow layout)
-      if (customLayout.text) {
-        const txt = customLayout.text;
+      if (activeLayout.text) {
+        const txt = activeLayout.text;
         
         // Default column positions if not explicitly overridden
         let tx = 60;
         let tw = 480;
         let align = 'left';
         
-        if (customLayout.avatar) {
-          const ax = customLayout.avatar.x;
+        if (activeLayout.avatar) {
+          const ax = activeLayout.avatar.x;
           if (ax < 450) {
             tx = 530;
             tw = 490;
@@ -966,7 +1477,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
         const hasExplicitSubtext = txt.subtext && txt.subtext.x !== undefined && txt.subtext.y !== undefined;
         const hasExplicitBadge = txt.badge && txt.badge.x !== undefined && txt.badge.y !== undefined;
         const hasExplicitCta = txt.cta && txt.cta.x !== undefined && txt.cta.y !== undefined;
-
+        
         let currentY = 160; // Fallback starting Y
         
         // Badge
@@ -1092,8 +1603,8 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
       }
       
       // 5. Draw Floating Elements
-      if (Array.isArray(customLayout.floatingElements)) {
-        customLayout.floatingElements.forEach(elem => {
+      if (Array.isArray(activeLayout.floatingElements)) {
+        activeLayout.floatingElements.forEach(elem => {
           ctx.save();
           if (elem.type === 'emoji') {
             drawEmojiBubble(ctx, elem.x, elem.y, elem.size || 28, elem.emoji || '🔥', 0);
@@ -1109,7 +1620,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
       console.log('[Canvas] Dynamic layout rendering complete!');
       return;
     } catch (e) {
-      console.error('[Canvas] Failed to render dynamic customLayout, falling back:', e);
+      console.error('[Canvas] Failed to render dynamic activeLayout, falling back:', e);
     }
   }
 

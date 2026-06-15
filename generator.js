@@ -2,6 +2,7 @@ import { GoogleGenAI } from '@google/genai';
 import fs from 'fs';
 import path from 'path';
 import { scrapeReferenceCreative } from './scraper.js';
+import { getHistory } from './database.js';
 
 /**
  * Generates 5 LinkedIn post variations based on scraped trends and category.
@@ -20,6 +21,25 @@ export async function generatePosts(category, trends, apiKey) {
   const modelName = 'gemini-2.5-pro';
 
   console.log(`[Generator] Initializing Gemini request for ${category} using ${modelName}`);
+
+  // Fetch recent layout history metadata to enforce 30-day design memory (Critical Rule #12)
+  let recentDesignMemoryStr = '[]';
+  try {
+    const history = getHistory();
+    const recentPosts = history.slice(0, 30).map(h => h.posts || []).flat();
+    const designMemory = recentPosts.map(p => ({
+      designArchetype: p.designArchetype || '',
+      layoutFamily: p.layoutFamily || '',
+      colorPalette: p.colorPalette || '',
+      characterRole: p.characterRole || '',
+      environment: p.environment || '',
+      cameraStyle: p.cameraStyle || '',
+      clothingStyle: p.clothingStyle || ''
+    })).filter(m => m.designArchetype || m.layoutFamily || m.colorPalette);
+    recentDesignMemoryStr = JSON.stringify(designMemory);
+  } catch (err) {
+    console.warn('[Generator] Failed to fetch layout history for design memory checks:', err.message);
+  }
 
   // 1. Scrape reference template image
   const designRef = await scrapeReferenceCreative();
@@ -47,60 +67,28 @@ export async function generatePosts(category, trends, apiKey) {
   const topicLabel = category.toLowerCase() === 'marketing' ? 'Digital Marketing, Growth Strategy, and Brand Management' : 'Artificial Intelligence, Machine Learning, and Future Tech Trends';
 
   const systemInstruction = `You are a world-class viral LinkedIn Copywriter, Content Strategist, and Art Director.
-Your goal is to write extremely engaging, highly professional, B2B LinkedIn posts AND compile custom HTML5 Canvas-friendly JSON layouts that are visually stunning, vibrant, and highly dynamic.
+Your goal is to write extremely engaging, highly professional, B2B LinkedIn posts AND define custom visual configurations representing agency-grade creative designs.
 
-Guidelines for posts:
-1. Tone: Human, direct, highly opinionated, intellectually challenging, and punchy B2B style. Absolutely avoid generic AI greetings or corporate clichés. Write like a seasoned, battle-tested industry leader.
+CRITICAL RULES:
+1. NEVER REPEAT DESIGN STRUCTURES: Assign exactly one unique DESIGN ARCHETYPE per post from this pool: Forbes Cover, TED Speaker, Startup Founder, Apple Keynote, University Chancellor, Harvard Professor, Podcast Host, News Anchor, Investor Pitch, Documentary Interview, Magazine Editorial, LinkedIn Thought Leader, Creative Director, AI Futurist, Business Strategist, Consultant Presentation, Conference Speaker, Corporate Executive, Innovation Lab Researcher, Book Author. No two posts in this batch can use the same archetype.
+2. USE LAYOUT FAMILIES INSTEAD OF COORDINATES: Assign exactly one unique LAYOUT FAMILY per post from this pool: split-left, split-right, hero-center, magazine-cover, quote-card, podcast-layout, presentation-slide, news-card, editorial-cover, phone-mockup, floating-cards, layered-depth, diagonal-layout, asymmetrical-grid, modern-minimal. Never output hardcoded coordinates.
+3. ROTATE COLOR SYSTEMS: Assign exactly one unique COLOR PALETTE per post from this pool: Electric Blue, Cyber Purple, Emerald Green, Crimson Red, Royal Gold, Teal White, Slate Blue, Monochrome Black, Neon Cyan, Sunset Orange, Deep Indigo, Premium Burgundy, Corporate Navy, Platinum Grey, Dark Forest. Do not repeat palettes within the batch or consecutive days.
+4. MAINTAIN FACE IDENTITY: The author portrait must always represent the same individual in the avatarPrompt. Identity rules: Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance.
+5. DAILY CHARACTER ROLE ROTATION: Assign a unique professional persona for the avatarPrompt from this pool: University Chancellor, TED Speaker, Startup Founder, Author, Professor, Investor, AI Consultant, Business Coach, Innovation Leader, Podcast Host, Researcher, Corporate Executive, Technology Evangelist, Keynote Speaker, Strategy Consultant. This role must dictate the clothing, posture, and environment.
+6. ENVIRONMENT VARIATION: Rotate backgrounds dynamically in the avatarPrompt from this pool: Modern university campus, Executive boardroom, Auditorium stage, Innovation lab, Podcast studio, Creative workspace, Luxury office, Coffee shop workspace, City skyline office, Technology command center, Library, Conference venue, Startup hub, Media studio, Futuristic workspace. No duplicates in this batch.
+7. CAMERA ANGLE VARIATION: Rotate camera composition in the avatarPrompt from this pool: Close-up portrait, Half-body portrait, Full-body standing, Walking shot, Presentation shot, Side profile, Over-the-shoulder, Looking at camera, Looking away, Speaking on stage, Sitting at desk, Interview setup. No duplicates in this batch.
+8. CLOTHING ROTATION: Rotate wardrobe style in the avatarPrompt from this pool: Navy business suit, Charcoal executive suit, Smart casual blazer, Premium polo shirt, Turtleneck with blazer, Modern startup hoodie, White shirt with rolled sleeves, Formal university attire, Conference speaker outfit, Luxury business casual. No duplicates in this batch.
+9. VISUAL DEPTH REQUIREMENT: Every avatarPrompt must specify a foreground element (e.g. out-of-focus microphone, glass screen, plants, office frame), midground subject (the manager), and background element (the environment), using shallow depth of field or blur to create cinematic depth.
+10. PREMIUM DESIGN QUALITY: The design language must mimic elite brands like Forbes, Apple, McKinsey, TED, Bloomberg, Harvard Business Review, Fortune, or Wired.
+11. AVATAR PROMPT CONSTRUCTION: Formulate the avatarPrompt dynamically by chaining: [IDENTITY] + [ROLE] + [ENVIRONMENT] + [CAMERA STYLE] + [CLOTHING] + [LIGHTING]. Always end with the exact suffix: 'Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.'
+12. DESIGN MEMORY: You MUST NOT repeat any archetype, layout family, color palette, camera style, environment, clothing style, or role used in the last 30 days. Here is the list of recently used combinations:
+${recentDesignMemoryStr}
+
+Guidelines for post content:
+1. Tone: Human, direct, highly opinionated, intellectually challenging, and punchy B2B style. Avoid generic AI greetings or corporate clichés. Write like a seasoned industry leader.
 2. Structure: Start with an attention-grabbing hook (line 1) under 6 words. Write the body in short paragraphs (1-2 sentences max each), and end with a non-cliché question or clear call to action, followed by 3-5 hashtags.
 3. Formatting: Emojis very sparingly (no more than 2-3). Do NOT use fake bold/italic unicode.
-4. Perspectives: First-person ('I' or 'We') as an elite B2B Director who is also a deep AI automation architect.
-
-Visual Layout & Proportions Instructions (Canvas coordinates are 1080x1080):
-Translate the attached reference template image (if provided) into a custom 'layout' JSON configuration.
-To prevent text overlapping the avatar and ensure professional proportions, you MUST assign explicit canvas coordinates (x, y, w, h) to the layout elements depending on the assigned style:
-- Post 1: "Neon Split Panel" (Left Avatar, Right Text Column)
-  * Avatar: type "circle", x: 260, y: 540, w: 360, h: 360 (or rectangle card, x: 260, y: 540, w: 360, h: 720).
-  * Text Columns: badge x: 520, y: 160, headline x: 520, y: 240, w: 500, subtext x: 520, y: 560, w: 500, cta x: 520, y: 780, w: 260, h: 55.
-- Post 2: "Modern Business Grid" (Right Avatar, Left Text Column, drawGrid: true)
-  * Avatar: type "rect", x: 820, y: 540, w: 360, h: 720.
-  * Text Columns: badge x: 80, y: 160, headline x: 80, y: 240, w: 500, subtext x: 80, y: 560, w: 500, cta x: 80, y: 780, w: 260, h: 55.
-- Post 3: "Full Backdrop Banner" (Center Text Overlay, Bottom Avatar)
-  * Avatar: type "circle", x: 540, y: 860, w: 160, h: 160.
-  * Text Columns: badge x: 420, y: 120, headline x: 90, y: 190, w: 900, subtext x: 90, y: 440, w: 900, cta x: 410, y: 680, w: 260, h: 55.
-- Post 4: "Realistic Portrait Split" (Diagonal Split Panel)
-  * Avatar: type "card", x: 800, y: 540, w: 440, h: 880 (diagonal split alignment).
-  * Text Columns: badge x: 80, y: 120, headline x: 80, y: 190, w: 480, subtext x: 80, y: 520, w: 480, cta x: 80, y: 780, w: 260, h: 55.
-- Post 5: "Minimalist Executive Quote" (Big Center Typography, Small Right Avatar)
-  * Avatar: type "circle", x: 900, y: 120, w: 120, h: 120.
-  * Text Columns: badge x: 80, y: 120, headline x: 140, y: 220, w: 800, subtext x: 140, y: 540, w: 800, cta x: 410, y: 780, w: 260, h: 55.
-
-Choose colors matching one of these vibrant styles per post layout:
-- Neon Cyberpunk: Background colors ["#050814", "#0a0314"], Accent/Highlight: "#00f2fe" [Electric Cyan], glows: "#00f2fe" and "#ff007f" [Hot Magenta].
-- Solar Flare: Background colors ["#120802", "#1f0f00"], Accent/Highlight: "#ff6b00" [Safety Orange], glows: "#ff6b00" and "#fffb00" [Bright Yellow].
-- Acid Lime: Background colors ["#020b08", "#001a12"], Accent/Highlight: "#39ff14" [Lime Green], glows: "#39ff14" and "#0055ff" [Neon Blue].
-- Synthwave: Background colors ["#0d0214", "#1c0024"], Accent/Highlight: "#ff007f" [Hot Magenta], glows: "#ff007f" and "#00f2fe" [Electric Cyan].
-- Electric Gold: Background colors ["#050505", "#140a00"], Accent/Highlight: "#fbbf24" [Bright Gold], glows: "#fbbf24" and "#8f00ff" [Electric Violet].
-
-Avatar Prompt Customization Guidelines:
-Each post object in the JSON array must contain a custom 'avatarPrompt' property. This prompt will be passed to Imagen 3 to generate a portrait of the B2B manager that matches the post topic. The prompt MUST use these base features of the manager to preserve his identity:
-- An Indian male manager in his late 30s
-- Warm tan skin tone, clean-shaven
-- Short styled black hair parted to the side
-- Wearing black thick-framed glasses
-- Having a friendly smile with visible teeth
-
-Customize the attire, pose, and background of the manager in the prompt to match the post's theme. For example:
-- For an AI/Technology post: 'sitting in front of a curved monitor displaying glowing cyan code, wearing a modern charcoal grey blazer over a white crewneck shirt'
-- For a growth/business post: 'standing next to a glass whiteboard with marketing diagrams, wearing a smart casual navy polo shirt'
-- For a marketing strategy post: 'holding a smartphone, sitting in a vibrant B2B coworking lobby, wearing a professional mustard button-down shirt'
-Ensure the prompt ends with: 'Shot on 85mm lens, f/1.8 aperture, realistic lighting, highly detailed features, cinematic, photorealistic, professional color grading, vibrant background, clean composition, high-resolution.'
-
-AI QUALITY CHECK:
-Brainstorm exactly 10 candidate posts internally based on the trend context. Rate each candidate out of 100 on these three parameters:
-- Design: Visual appeal, readability, professional layout match (out of 100)
-- Content: Engagement potential, authority, clarity of the copy (out of 100)
-- Branding: Personal branding strength, natural avatar integration (out of 100)
-Calculate the average total score. You MUST filter and output ONLY the top 5 highest-scoring options. Each option must have a total score of 85 or above.`;
+4. Perspectives: First-person ('I' or 'We') as an elite B2B Director who is also a deep AI automation architect.`;
 
   const prompt = `Generate exactly 5 LinkedIn posts on the topic of: ${topicLabel}.
 Use the following scraped web trends as context and inspiration:
@@ -113,47 +101,28 @@ Your response MUST be a JSON array containing exactly 5 objects. Do not wrap the
 
 Each object in the array must follow this structure:
 {
-  "id": 1, 
-  "style": "Style/Angle Name",
-  "hook": "The first 1-2 lines of the post (attention-grabbing hook)",
-  "content": "The full body of the post, including the hook, paragraphs, call to action, and hashtags. Keep line breaks intact with newlines (\\n).",
-  "sourceArticle": "Title of the main article from the trends context that inspired this post, or 'General Trend' if inspired by multiple.",
-  "imageHeadline": "A short, ultra-punchy graphic title in ALL CAPS (exactly 2-4 words). Wrap the most important 1-2 words in asterisks for neon highlight styling (e.g., 'STOP *CODING* NOW', '*99% FAILED*', 'THE *$0 STACK*', 'AI IS *DEAD*?').",
-  "imageSubtext": "A highly compelling graphic subtitle (exactly 5-9 words) explaining the metric or curious strategy behind the headline (e.g. 'Why simple prompts *beat* custom agents').",
-  "avatarPrompt": "The tailored prompt for Imagen 3 image generation following the manager identity instructions, matching the post theme.",
-  "scores": {
-    "design": 88,
-    "content": 92,
-    "branding": 86,
-    "total": 89
+  "designArchetype": "Forbes Cover",
+  "layoutFamily": "split-left / split-right / hero-center / magazine-cover / quote-card / podcast-layout / presentation-slide / news-card / editorial-cover / phone-mockup / floating-cards / layered-depth / diagonal-layout / asymmetrical-grid / modern-minimal",
+  "colorPalette": "Electric Blue / Cyber Purple / Emerald Green / Crimson Red / Royal Gold / Teal White / Slate Blue / Monochrome Black / Neon Cyan / Sunset Orange / Deep Indigo / Premium Burgundy / Corporate Navy / Platinum Grey / Dark Forest",
+  "characterRole": "AI Consultant",
+  "environment": "Innovation lab",
+  "cameraStyle": "Half-body portrait",
+  "clothingStyle": "Smart casual blazer",
+  "avatarPrompt": "Indian male manager in his late 30s...",
+  "postContent": {
+    "style": "Thought Leadership / AI & Tech / Marketing Insights / Storytelling / University Leadership",
+    "hook": "The first 1-2 lines of the post (attention-grabbing hook)",
+    "content": "The full body of the post, including the hook, paragraphs, call to action, and hashtags. Keep line breaks intact with newlines (\\n).",
+    "sourceArticle": "Title of the main article from the trends context that inspired this post, or 'General Trend' if inspired by multiple.",
+    "imageHeadline": "A short, ultra-punchy graphic title in ALL CAPS (exactly 2-4 words). Wrap the most important 1-2 words in asterisks for neon highlight styling (e.g. '*99% FAILED*', 'STOP *CODING* NOW', 'THE *$0 STACK*', 'AI IS *DEAD*?').",
+    "imageSubtext": "A highly compelling graphic subtitle (exactly 5-9 words) explaining the metric or strategy.",
+    "badgeText": "AI TREND / MARKETING INSIGHT"
   },
-  "layout": {
-    "background": {
-      "colors": ["#050814", "#0a0314"],
-      "isSunburst": true,
-      "rayColor": "rgba(255, 255, 255, 0.04)",
-      "drawGrid": false,
-      "gridColor": "rgba(255, 255, 255, 0.05)",
-      "gridSize": 40,
-      "glows": [
-        { "x": 300, "y": 600, "r": 500, "color": "rgba(0, 242, 254, 0.25)" }
-      ]
-    },
-    "shapes": [
-      { "type": "circle", "x": 300, "y": 600, "r": 250, "color": "rgba(255, 255, 255, 0.02)", "strokeColor": "rgba(0, 242, 254, 0.4)", "lineWidth": 3, "glowColor": "#00f2fe", "glowBlur": 30 }
-    ],
-    "avatar": {
-      "type": "circle", "x": 300, "y": 600, "w": 320, "h": 320, "tilt": 0, "glowColor": "#ff007f", "glowBlur": 40, "strokeColor": "#ff007f", "lineWidth": 4
-    },
-    "text": {
-      "badge": { "text": "AI TREND", "bgColor": "#ff007f", "glowColor": "#ff007f", "glowBlur": 15, "x": 90, "y": 160 },
-      "headline": { "fontSize": 44, "color": "#ffffff", "highlightColor": "#00f2fe", "align": "left", "x": 90, "y": 240, "w": 900 },
-      "subtext": { "fontSize": 20, "color": "#cbd5e1", "x": 90, "y": 480, "w": 900 },
-      "cta": { "text": "READ POST", "bgColor": "#ff007f", "glowColor": "#ff007f", "glowBlur": 20, "x": 90, "y": 780, "w": 260, "h": 55 }
-    },
-    "floatingElements": [
-      { "type": "linkedin", "x": 160, "y": 480, "size": 36 }
-    ]
+  "layoutConfig": {
+    "dimensions": {
+      "width": 1080,
+      "height": 1080
+    }
   }
 }`;
 
@@ -164,7 +133,7 @@ Each object in the array must follow this structure:
   
   for (let i = 0; i < attempts; i++) {
     try {
-      console.log(`[Generator] Initiating Gemini call (attempt ${i + 1}/${attempts})...`);
+      console.log(`[Generator] Initiating Gemini call using ${activeModel} (attempt ${i + 1}/${attempts})...`);
       
       const contents = [];
       if (base64Image) {
@@ -195,6 +164,9 @@ Each object in the array must follow this structure:
       if (!Array.isArray(posts) || posts.length === 0) {
         throw new Error('Response is not a valid JSON array or is empty');
       }
+      posts.forEach((p, idx) => {
+        if (!p.id) p.id = idx + 1;
+      });
       break; // break retry loop if successful
     } catch (error) {
       console.warn(`[Generator] Attempt ${i + 1} failed on ${activeModel}:`, error.message);

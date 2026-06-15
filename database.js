@@ -108,7 +108,11 @@ export function updateDraftPost(date, postId, newContent) {
   if (entry && entry.posts) {
     const post = entry.posts.find(p => p.id === parseInt(postId));
     if (post) {
-      post.content = newContent;
+      if (post.postContent) {
+        post.postContent.content = newContent;
+      } else {
+        post.content = newContent;
+      }
       writeDb(db);
       return true;
     }
