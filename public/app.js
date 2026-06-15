@@ -736,9 +736,6 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
       if (customLayout.avatar) {
         const av = customLayout.avatar;
         const styleIdx = (postId - 1) % 5;
-        const useAiOutfit = state.settings.rotateOutfits !== false && styledAvatarsLoaded[styleIdx];
-        const img = useAiOutfit ? styledAvatars[styleIdx] : avatarImg;
-        const isLoaded = useAiOutfit || avatarImageLoaded;
         
         ctx.save();
         if (av.tilt) {
@@ -747,52 +744,63 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           ctx.translate(-av.x, -av.y);
         }
         
-        if (isLoaded && img.complete && img.naturalWidth !== 0) {
-          if (av.filter) ctx.filter = av.filter;
-          
-          if (av.type === 'circle') {
-            ctx.beginPath();
-            ctx.arc(av.x, av.y, av.w / 2, 0, Math.PI * 2);
-            ctx.clip();
-            ctx.drawImage(img, av.x - av.w/2, av.y - av.h/2, av.w, av.h);
-          } else if (av.type === 'phone') {
-            ctx.beginPath();
-            ctx.roundRect(av.x - av.w/2, av.y - av.h/2, av.w, av.h, 24);
-            ctx.clip();
-            ctx.drawImage(img, av.x - av.w/2, av.y - av.h/2, av.w, av.h);
-          } else {
-            ctx.drawImage(img, av.x - av.w/2, av.y - av.h/2, av.w, av.h);
-          }
+        if (av.type === 'circle') {
+          drawAvatarForCircle(ctx, av.x, av.y, av.w / 2, av.filter, styleIdx, avatarImg);
+        } else if (av.type === 'phone') {
+          drawPhoneMockup(ctx, av.x - av.w/2, av.y - av.h/2, av.w, av.h, true, avatarImg, av.filter, styleIdx, palette);
         } else {
-          ctx.fillStyle = '#1e293b';
-          ctx.beginPath();
-          if (av.type === 'circle') {
-            ctx.arc(av.x, av.y, av.w/2, 0, Math.PI*2);
-            ctx.fill();
-          } else {
-            ctx.roundRect(av.x - av.w/2, av.y - av.h/2, av.w, av.h, 16);
-            ctx.fill();
-          }
+          drawAvatarForCard(ctx, av.x - av.w/2, av.y - av.h/2, av.w, av.h, av.filter, styleIdx, avatarImg);
         }
         ctx.restore();
       }
       
-      // 4. Draw Texts
+      // 4. Draw Texts (using sequential vertical flow layout to prevent overlap)
       if (customLayout.text) {
         const txt = customLayout.text;
+        
+        // Determine layout columns based on avatar placement
+        let tx = 60;
+        let tw = 480;
+        let align = 'left';
+        
+        if (customLayout.avatar) {
+          const ax = customLayout.avatar.x;
+          if (ax < 450) {
+            tx = 530;
+            tw = 490;
+            align = 'left';
+          } else if (ax > 630) {
+            tx = 60;
+            tw = 490;
+            align = 'left';
+          } else {
+            tx = 90;
+            tw = 900;
+            align = 'center';
+          }
+        }
+        
+        // Override alignment if explicitly specified by layout JSON
+        if (txt.headline && txt.headline.align) align = txt.headline.align;
+        
+        let currentY = 160; // Base starting Y
         
         // Badge
         if (txt.badge) {
           ctx.save();
           ctx.beginPath();
-          ctx.roundRect(txt.badge.x, txt.badge.y, 240, 36, 8);
+          const badgeW = 240;
+          const badgeH = 36;
+          const bx = align === 'center' ? tx + (tw - badgeW)/2 : tx;
+          ctx.roundRect(bx, currentY, badgeW, badgeH, 8);
           ctx.fillStyle = txt.badge.bgColor || '#db2777';
           ctx.fill();
           ctx.fillStyle = '#ffffff';
           ctx.font = 'bold 15px Inter';
           ctx.textAlign = 'center';
-          ctx.fillText(txt.badge.text || (category === 'marketing' ? 'MARKETING TREND' : 'AI TECH TREND'), txt.badge.x + 120, txt.badge.y + 23);
+          ctx.fillText(txt.badge.text || (category === 'marketing' ? 'MARKETING TREND' : 'AI TECH TREND'), bx + badgeW/2, currentY + 23);
           ctx.restore();
+          currentY += badgeH + 35; // increment with padding
         }
         
         // Headline
@@ -801,9 +809,20 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           ctx.fillStyle = txt.headline.color || '#ffffff';
           const fontSize = txt.headline.fontSize || 38;
           ctx.font = `800 ${fontSize}px Outfit`;
-          wrapTextAligned(ctx, headline.toUpperCase(), txt.headline.x, txt.headline.y, 480, fontSize + 10, txt.headline.align || 'left', true);
+          currentY = wrapTextAligned(ctx, headline.toUpperCase(), tx, currentY, tw, fontSize + 10, align, true);
           ctx.restore();
+          currentY += 20; // padding
         }
+        
+        // Dots separator
+        ctx.save();
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+        ctx.font = '22px Inter';
+        ctx.textAlign = align;
+        const linkX = align === 'center' ? tx + tw/2 : tx;
+        ctx.fillText('•••••••••••••••••', linkX, currentY);
+        ctx.restore();
+        currentY += 35;
         
         // Subtext
         if (txt.subtext) {
@@ -811,27 +830,34 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           ctx.fillStyle = txt.subtext.color || '#cbd5e1';
           const fontSize = txt.subtext.fontSize || 20;
           ctx.font = `500 ${fontSize}px Inter`;
-          wrapTextAligned(ctx, subtext, txt.subtext.x, txt.subtext.y, 480, fontSize + 10, txt.subtext.align || 'left');
+          currentY = wrapTextAligned(ctx, subtext, tx, currentY, tw, fontSize + 10, align);
           ctx.restore();
+          currentY += 40; // padding
         }
         
         // CTA Button
         if (txt.cta) {
           ctx.save();
           ctx.beginPath();
-          ctx.roundRect(txt.cta.x, txt.cta.y, 260, 55, 12);
+          const btnW = 260;
+          const btnH = 55;
+          const btnX = align === 'center' ? tx + (tw - btnW)/2 : tx;
+          // Constrain Y position to ensure it fits on 1080 canvas
+          const btnY = Math.min(currentY, 880); 
+          ctx.roundRect(btnX, btnY, btnW, btnH, 12);
           ctx.fillStyle = txt.cta.bgColor || '#db2777';
           ctx.fill();
           ctx.fillStyle = '#ffffff';
           ctx.font = 'bold 20px Outfit';
           ctx.textAlign = 'center';
-          ctx.fillText(txt.cta.text || 'READ FULL POST', txt.cta.x + 130, txt.cta.y + 35);
+          ctx.fillText(txt.cta.text || 'READ FULL POST', btnX + btnW/2, btnY + 35);
           
           // Profile link
           ctx.fillStyle = '#94a3b8';
           ctx.font = '600 20px Inter';
-          ctx.textAlign = 'left';
-          ctx.fillText('linkedin.com/in/jagtapsourabh', txt.cta.x, txt.cta.y + 100);
+          ctx.textAlign = align === 'center' ? 'center' : 'left';
+          const profileX = align === 'center' ? tx + tw/2 : btnX;
+          ctx.fillText('linkedin.com/in/jagtapsourabh', profileX, btnY + 100);
           ctx.restore();
         }
       }

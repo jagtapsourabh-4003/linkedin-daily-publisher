@@ -46,7 +46,7 @@ export async function generatePosts(category, trends, apiKey) {
     
     const imageResponse = await ai.models.generateImages({
       model: 'imagen-3.0-generate-002',
-      prompt: `A professional, crisp 1080x1080 headshot portrait of a confident male B2B marketing director in his early 30s. He has short styled dark hair, neat grooming, and wears a ${attire}. He is located in a ${background}. The lighting is natural, soft and professional, with a shallow depth of field. High-end photography, photorealistic, premium branding aesthetic.`,
+      prompt: `Studio portrait photography of a confident male B2B marketing manager in his early 30s, who has short styled dark hair, clean-cut professional appearance, wearing a ${attire}, sitting in a ${background}. Shot on 85mm lens, f/1.8 aperture, realistic lighting, highly detailed features, cinematic, photorealistic, professional color grading, corporate branding style, clean composition, high-resolution.`,
       config: {
         numberOfImages: 1,
         outputMimeType: 'image/jpeg',
