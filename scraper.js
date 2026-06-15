@@ -98,3 +98,51 @@ function cleanText(text) {
     .trim()
     .slice(0, 300); // limit snippet size
 }
+
+const PINTEREST_FEEDS = [
+  'https://www.pinterest.com/creativetemplate/social-media-post-templates.rss',
+  'https://www.pinterest.com/designspiration/graphic-design.rss'
+];
+
+/**
+ * Scrapes a design reference template image from Pinterest RSS feeds.
+ * Falls back to Unsplash abstract illustration if feeds are blocked.
+ */
+export async function scrapeReferenceCreative() {
+  console.log('[Scraper] Scraping reference creatives from Pinterest RSS feeds...');
+  const imageLinks = [];
+  
+  for (const feedUrl of PINTEREST_FEEDS) {
+    try {
+      console.log(`[Scraper] Fetching design RSS: ${feedUrl}`);
+      const parsedFeed = await parser.parseURL(feedUrl);
+      for (const item of parsedFeed.items) {
+        const content = item.content || item.description || '';
+        const match = content.match(/src="([^"]+)"/);
+        if (match && match[1]) {
+          let imgUrl = match[1];
+          // Upgrade Pinterest low-res thumbnail links to higher resolution (736x)
+          imgUrl = imgUrl.replace('/236x/', '/736x/').replace('/136x/', '/736x/');
+          imageLinks.push(imgUrl);
+        }
+      }
+    } catch (err) {
+      console.warn(`[Scraper] Failed to parse Pinterest RSS feed ${feedUrl}:`, err.message);
+    }
+  }
+  
+  if (imageLinks.length > 0) {
+    const selected = imageLinks[Math.floor(Math.random() * imageLinks.length)];
+    console.log(`[Scraper] Successfully scraped reference template: ${selected}`);
+    return {
+      imageUrl: selected,
+      isFallback: false
+    };
+  }
+  
+  console.warn('[Scraper] Pinterest scraping returned 0 images. Using high-quality abstract graphic fallback.');
+  return {
+    imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1080&h=1080&fit=crop',
+    isFallback: true
+  };
+}

@@ -20,9 +20,12 @@ avatarImg.onload = () => {
   if (state.history.length > 0) renderActiveDrafts();
 };
 avatarImg.onerror = () => {
-  console.warn('[Avatar] Failed to load avatar.jpg. Canvas will use placeholder.');
+  console.warn('[Avatar] Failed to load avatar_daily.jpg. Falling back to avatar.jpg');
+  if (avatarImg.src.indexOf('avatar_daily.jpg') !== -1) {
+    avatarImg.src = 'avatar.jpg?t=' + Date.now();
+  }
 };
-avatarImg.src = 'avatar.jpg?t=' + Date.now();
+avatarImg.src = 'avatar_daily.jpg?t=' + Date.now();
 
 // Premium Color Palettes for daily rotating theme variations
 const PALETTES = [
@@ -537,7 +540,7 @@ function renderActiveDrafts() {
     // Render Canvas
     const canvas = cardEl.querySelector(`#canvas-${post.id}`);
     if (canvas) {
-      drawCreative(canvas, activeEntry.category, post.imageHeadline || "AI Strategy", post.imageSubtext || "Next-Gen Workflows", post.id, activeEntry.date);
+      drawCreative(canvas, activeEntry.category, post.imageHeadline || "AI Strategy", post.imageSubtext || "Next-Gen Workflows", post.id, activeEntry.date, post.layout);
     }
 
     // Textarea auto-save and length counters listener
@@ -652,11 +655,209 @@ function getDayIndex(dateStr) {
 }
 
 // Draw custom creative card matching user template design structure
-function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr = '') {
+function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr = '', customLayout = null) {
   const ctx = canvas.getContext('2d');
   const w = canvas.width;  // 1080
   const h = canvas.height; // 1080
   
+  if (customLayout) {
+    try {
+      console.log('[Canvas] Drawing custom dynamic layout:', customLayout);
+      // 1. Draw Background
+      if (customLayout.background) {
+        ctx.save();
+        const colors = customLayout.background.colors || ['#080b16', '#020617'];
+        const grad = ctx.createLinearGradient(0, 0, 0, h);
+        grad.addColorStop(0, colors[0]);
+        if (colors.length > 2) {
+          grad.addColorStop(0.5, colors[1]);
+          grad.addColorStop(1, colors[colors.length - 1]);
+        } else {
+          grad.addColorStop(1, colors[colors.length - 1]);
+        }
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, w, h);
+        
+        // Sunburst rays
+        if (customLayout.background.isSunburst) {
+          const cx = w / 2;
+          const cy = h / 2;
+          const numRays = 24;
+          const radius = Math.max(w, h) * 1.5;
+          ctx.translate(cx, cy);
+          ctx.fillStyle = customLayout.background.rayColor || 'rgba(255, 255, 255, 0.04)';
+          for (let i = 0; i < numRays; i++) {
+            const angleStart = (i * 2 * Math.PI) / numRays;
+            const angleEnd = ((i + 0.5) * 2 * Math.PI) / numRays;
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.arc(0, 0, radius, angleStart, angleEnd);
+            ctx.closePath();
+            ctx.fill();
+          }
+          ctx.restore();
+          ctx.save();
+        }
+        
+        // Central radial glow highlight
+        const textGlow = customLayout.background.textGlow || 'rgba(0, 242, 254, 0.15)';
+        const radialGlow = ctx.createRadialGradient(w/2, h/2, 50, w/2, h/2, w/2);
+        radialGlow.addColorStop(0, textGlow);
+        radialGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = radialGlow;
+        ctx.fillRect(0, 0, w, h);
+        ctx.restore();
+      }
+      
+      // 2. Draw Decorative Shapes
+      if (Array.isArray(customLayout.shapes)) {
+        customLayout.shapes.forEach(shape => {
+          ctx.save();
+          ctx.fillStyle = shape.color || 'rgba(255,255,255,0.05)';
+          ctx.strokeStyle = shape.strokeColor || 'transparent';
+          ctx.lineWidth = shape.lineWidth || 1;
+          
+          if (shape.type === 'circle') {
+            ctx.beginPath();
+            ctx.arc(shape.x, shape.y, shape.r || 100, 0, Math.PI * 2);
+            ctx.fill();
+            if (shape.strokeColor && shape.strokeColor !== 'transparent') ctx.stroke();
+          } else if (shape.type === 'rect') {
+            ctx.beginPath();
+            ctx.roundRect(shape.x - shape.w/2, shape.y - shape.h/2, shape.w, shape.h, 24);
+            ctx.fill();
+            if (shape.strokeColor && shape.strokeColor !== 'transparent') ctx.stroke();
+          }
+          ctx.restore();
+        });
+      }
+      
+      // 3. Draw Avatar
+      if (customLayout.avatar) {
+        const av = customLayout.avatar;
+        const styleIdx = (postId - 1) % 5;
+        const useAiOutfit = state.settings.rotateOutfits !== false && styledAvatarsLoaded[styleIdx];
+        const img = useAiOutfit ? styledAvatars[styleIdx] : avatarImg;
+        const isLoaded = useAiOutfit || avatarImageLoaded;
+        
+        ctx.save();
+        if (av.tilt) {
+          ctx.translate(av.x, av.y);
+          ctx.rotate(av.tilt);
+          ctx.translate(-av.x, -av.y);
+        }
+        
+        if (isLoaded && img.complete && img.naturalWidth !== 0) {
+          if (av.filter) ctx.filter = av.filter;
+          
+          if (av.type === 'circle') {
+            ctx.beginPath();
+            ctx.arc(av.x, av.y, av.w / 2, 0, Math.PI * 2);
+            ctx.clip();
+            ctx.drawImage(img, av.x - av.w/2, av.y - av.h/2, av.w, av.h);
+          } else if (av.type === 'phone') {
+            ctx.beginPath();
+            ctx.roundRect(av.x - av.w/2, av.y - av.h/2, av.w, av.h, 24);
+            ctx.clip();
+            ctx.drawImage(img, av.x - av.w/2, av.y - av.h/2, av.w, av.h);
+          } else {
+            ctx.drawImage(img, av.x - av.w/2, av.y - av.h/2, av.w, av.h);
+          }
+        } else {
+          ctx.fillStyle = '#1e293b';
+          ctx.beginPath();
+          if (av.type === 'circle') {
+            ctx.arc(av.x, av.y, av.w/2, 0, Math.PI*2);
+            ctx.fill();
+          } else {
+            ctx.roundRect(av.x - av.w/2, av.y - av.h/2, av.w, av.h, 16);
+            ctx.fill();
+          }
+        }
+        ctx.restore();
+      }
+      
+      // 4. Draw Texts
+      if (customLayout.text) {
+        const txt = customLayout.text;
+        
+        // Badge
+        if (txt.badge) {
+          ctx.save();
+          ctx.beginPath();
+          ctx.roundRect(txt.badge.x, txt.badge.y, 240, 36, 8);
+          ctx.fillStyle = txt.badge.bgColor || '#db2777';
+          ctx.fill();
+          ctx.fillStyle = '#ffffff';
+          ctx.font = 'bold 15px Inter';
+          ctx.textAlign = 'center';
+          ctx.fillText(txt.badge.text || (category === 'marketing' ? 'MARKETING TREND' : 'AI TECH TREND'), txt.badge.x + 120, txt.badge.y + 23);
+          ctx.restore();
+        }
+        
+        // Headline
+        if (txt.headline) {
+          ctx.save();
+          ctx.fillStyle = txt.headline.color || '#ffffff';
+          const fontSize = txt.headline.fontSize || 38;
+          ctx.font = `800 ${fontSize}px Outfit`;
+          wrapTextAligned(ctx, headline.toUpperCase(), txt.headline.x, txt.headline.y, 480, fontSize + 10, txt.headline.align || 'left', true);
+          ctx.restore();
+        }
+        
+        // Subtext
+        if (txt.subtext) {
+          ctx.save();
+          ctx.fillStyle = txt.subtext.color || '#cbd5e1';
+          const fontSize = txt.subtext.fontSize || 20;
+          ctx.font = `500 ${fontSize}px Inter`;
+          wrapTextAligned(ctx, subtext, txt.subtext.x, txt.subtext.y, 480, fontSize + 10, txt.subtext.align || 'left');
+          ctx.restore();
+        }
+        
+        // CTA Button
+        if (txt.cta) {
+          ctx.save();
+          ctx.beginPath();
+          ctx.roundRect(txt.cta.x, txt.cta.y, 260, 55, 12);
+          ctx.fillStyle = txt.cta.bgColor || '#db2777';
+          ctx.fill();
+          ctx.fillStyle = '#ffffff';
+          ctx.font = 'bold 20px Outfit';
+          ctx.textAlign = 'center';
+          ctx.fillText(txt.cta.text || 'READ FULL POST', txt.cta.x + 130, txt.cta.y + 35);
+          
+          // Profile link
+          ctx.fillStyle = '#94a3b8';
+          ctx.font = '600 20px Inter';
+          ctx.textAlign = 'left';
+          ctx.fillText('linkedin.com/in/jagtapsourabh', txt.cta.x, txt.cta.y + 100);
+          ctx.restore();
+        }
+      }
+      
+      // 5. Draw Floating Elements
+      if (Array.isArray(customLayout.floatingElements)) {
+        customLayout.floatingElements.forEach(elem => {
+          ctx.save();
+          if (elem.type === 'emoji') {
+            drawEmojiBubble(ctx, elem.x, elem.y, elem.size || 28, elem.emoji || '🔥', 0);
+          } else if (elem.type === 'linkedin' || elem.type === 'instagram' || elem.type === 'facebook' || elem.type === 'twitter') {
+            drawLogoBubble(ctx, elem.x, elem.y, elem.size || 36, elem.type, 0);
+          }
+          ctx.restore();
+        });
+      }
+      
+      // Apply noise and return
+      applyNoiseTexture(ctx, w, h, 0.015);
+      console.log('[Canvas] Dynamic layout rendering complete!');
+      return;
+    } catch (e) {
+      console.error('[Canvas] Failed to render dynamic customLayout, falling back:', e);
+    }
+  }
+
   // 1. Calculate style rotation based on date and postId
   const dayIdx = getDayIndex(dateStr);
   const layoutIdx = (dayIdx + postId - 1) % 5;
