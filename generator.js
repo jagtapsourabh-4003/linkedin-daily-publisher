@@ -213,7 +213,7 @@ Each object in the array must follow this structure:
         console.log(`[Generator] Generating customized avatar for Post ${post.id}... Prompt: "${imagePrompt.slice(0, 100)}..."`);
         
         const imageResponse = await ai.models.generateImages({
-          model: 'imagen-3.0-generate-002',
+          model: 'imagen-4.0-generate-001',
           prompt: imagePrompt,
           config: {
             numberOfImages: 1,
