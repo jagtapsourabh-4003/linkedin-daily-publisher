@@ -522,6 +522,64 @@ body {
   color: var(--text-dark);
 }
 
+/* AI Score Display Badges */
+.score-badge-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.score-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+}
+
+.score-pill.total-score {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.25);
+  font-size: 0.85rem;
+  padding: 6px 14px;
+}
+
+.score-label {
+  opacity: 0.9;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.score-val {
+  font-weight: 800;
+}
+
+.sub-scores-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sub-score-badge {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-light);
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.sub-score-badge strong {
+  color: #fff;
+}
+
+
 .draft-card-actions {
   display: flex;
   justify-content: flex-end;

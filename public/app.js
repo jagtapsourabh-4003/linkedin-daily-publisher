@@ -536,8 +536,18 @@ function renderActiveDrafts() {
 
     cardEl.innerHTML = `
       <div class="draft-card-header">
-        <span class="style-tag">${post.style}</span>
-        <span class="source-tag">Inspiration: <em>${post.sourceArticle || 'General Trend'}</em></span>
+        <div class="header-main-info">
+          <span class="style-tag">${post.style}</span>
+          <span class="source-tag">Inspiration: <em>${post.sourceArticle || 'General Trend'}</em></span>
+        </div>
+        ${post.scores ? `
+        <div class="score-badge-group">
+          <div class="score-pill total-score" title="Overall AI Quality Score">
+            <span class="score-label">AI Score:</span>
+            <span class="score-val">${post.scores.total || 0}</span>
+          </div>
+        </div>
+        ` : ''}
       </div>
       <div class="post-editor-wrapper">
         <textarea 
@@ -549,8 +559,17 @@ function renderActiveDrafts() {
         >${post.content}</textarea>
       </div>
       <div class="post-meta-row">
-        <span id="char-count-${post.id}">${charCount} characters</span>
-        <span id="hashtag-count-${post.id}">${hashtagCount} hashtags</span>
+        <div>
+          <span id="char-count-${post.id}">${charCount} chars</span> | 
+          <span id="hashtag-count-${post.id}">${hashtagCount} hashtags</span>
+        </div>
+        ${post.scores ? `
+        <div class="sub-scores-row">
+          <span class="sub-score-badge" title="Design Layout Score">Design: <strong>${post.scores.design}</strong></span>
+          <span class="sub-score-badge" title="Content Alignment Score">Content: <strong>${post.scores.content}</strong></span>
+          <span class="sub-score-badge" title="Personal Branding & Avatar Integration">Branding: <strong>${post.scores.branding}</strong></span>
+        </div>
+        ` : ''}
       </div>
       
       <!-- Visual Graphic Preview -->
@@ -913,11 +932,11 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
         ctx.restore();
       }
       
-      // 4. Draw Texts (using sequential vertical flow layout to prevent overlap)
+      // 4. Draw Texts (using explicit custom coordinates if provided, else sequential vertical flow layout)
       if (customLayout.text) {
         const txt = customLayout.text;
         
-        // Determine layout columns based on avatar placement
+        // Default column positions if not explicitly overridden
         let tx = 60;
         let tw = 480;
         let align = 'left';
@@ -942,16 +961,23 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
         // Override alignment if explicitly specified by layout JSON
         if (txt.headline && txt.headline.align) align = txt.headline.align;
         
-        let currentY = 160; // Base starting Y
+        // Check if explicit coordinates exist for elements
+        const hasExplicitHeadline = txt.headline && txt.headline.x !== undefined && txt.headline.y !== undefined;
+        const hasExplicitSubtext = txt.subtext && txt.subtext.x !== undefined && txt.subtext.y !== undefined;
+        const hasExplicitBadge = txt.badge && txt.badge.x !== undefined && txt.badge.y !== undefined;
+        const hasExplicitCta = txt.cta && txt.cta.x !== undefined && txt.cta.y !== undefined;
+
+        let currentY = 160; // Fallback starting Y
         
         // Badge
         if (txt.badge) {
           ctx.save();
           ctx.beginPath();
-          const badgeW = 240;
-          const badgeH = 36;
-          const bx = align === 'center' ? tx + (tw - badgeW)/2 : tx;
-          ctx.roundRect(bx, currentY, badgeW, badgeH, 8);
+          const badgeW = txt.badge.w || 240;
+          const badgeH = txt.badge.h || 36;
+          const bx = hasExplicitBadge ? txt.badge.x : (align === 'center' ? tx + (tw - badgeW)/2 : tx);
+          const by = hasExplicitBadge ? txt.badge.y : currentY;
+          ctx.roundRect(bx, by, badgeW, badgeH, 8);
           
           if (txt.badge.glowColor) {
             ctx.shadowColor = txt.badge.glowColor;
@@ -968,9 +994,12 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           ctx.fillStyle = '#ffffff';
           ctx.font = 'bold 15px Inter';
           ctx.textAlign = 'center';
-          ctx.fillText(txt.badge.text || (category === 'marketing' ? 'MARKETING TREND' : 'AI TECH TREND'), bx + badgeW/2, currentY + 23);
+          ctx.fillText(txt.badge.text || (category === 'marketing' ? 'MARKETING TREND' : 'AI TECH TREND'), bx + badgeW/2, by + 23);
           ctx.restore();
-          currentY += badgeH + 35; // increment with padding
+          
+          if (!hasExplicitBadge) {
+            currentY += badgeH + 35; // increment with padding
+          }
         }
         
         // Headline
@@ -980,20 +1009,30 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           const fontSize = txt.headline.fontSize || 38;
           ctx.font = `800 ${fontSize}px Outfit`;
           const hlColor = txt.headline.highlightColor || palette.primary;
-          currentY = wrapTextAligned(ctx, headline.toUpperCase(), tx, currentY, tw, fontSize + 10, align, true, hlColor);
+          
+          const hx = hasExplicitHeadline ? txt.headline.x : tx;
+          const hy = hasExplicitHeadline ? txt.headline.y : currentY;
+          const hw = hasExplicitHeadline ? (txt.headline.w || tw) : tw;
+          
+          const endY = wrapTextAligned(ctx, headline.toUpperCase(), hx, hy, hw, fontSize + 10, align, true, hlColor);
           ctx.restore();
-          currentY += 20; // padding
+          
+          if (!hasExplicitHeadline) {
+            currentY = endY + 20; // padding
+          }
         }
         
-        // Dots separator
-        ctx.save();
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
-        ctx.font = '22px Inter';
-        ctx.textAlign = align;
-        const linkX = align === 'center' ? tx + tw/2 : tx;
-        ctx.fillText('•••••••••••••••••', linkX, currentY);
-        ctx.restore();
-        currentY += 35;
+        // Dots separator (only draw in fallback or if not using explicit layout to avoid clutter)
+        if (!hasExplicitHeadline && !hasExplicitSubtext) {
+          ctx.save();
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+          ctx.font = '22px Inter';
+          ctx.textAlign = align;
+          const linkX = align === 'center' ? tx + tw/2 : tx;
+          ctx.fillText('•••••••••••••••••', linkX, currentY);
+          ctx.restore();
+          currentY += 35;
+        }
         
         // Subtext
         if (txt.subtext) {
@@ -1002,20 +1041,27 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           const fontSize = txt.subtext.fontSize || 20;
           ctx.font = `500 ${fontSize}px Inter`;
           const hlColor = txt.subtext.highlightColor || null;
-          currentY = wrapTextAligned(ctx, subtext, tx, currentY, tw, fontSize + 10, align, false, hlColor);
+          
+          const sx = hasExplicitSubtext ? txt.subtext.x : tx;
+          const sy = hasExplicitSubtext ? txt.subtext.y : currentY;
+          const sw_val = hasExplicitSubtext ? (txt.subtext.w || tw) : tw;
+          
+          const endY = wrapTextAligned(ctx, subtext, sx, sy, sw_val, fontSize + 10, align, false, hlColor);
           ctx.restore();
-          currentY += 40; // padding
+          
+          if (!hasExplicitSubtext) {
+            currentY = endY + 40; // padding
+          }
         }
         
         // CTA Button
         if (txt.cta) {
           ctx.save();
           ctx.beginPath();
-          const btnW = 260;
-          const btnH = 55;
-          const btnX = align === 'center' ? tx + (tw - btnW)/2 : tx;
-          // Constrain Y position to ensure it fits on 1080 canvas
-          const btnY = Math.min(currentY, 880); 
+          const btnW = txt.cta.w || 260;
+          const btnH = txt.cta.h || 55;
+          const btnX = hasExplicitCta ? txt.cta.x : (align === 'center' ? tx + (tw - btnW)/2 : tx);
+          const btnY = hasExplicitCta ? txt.cta.y : Math.min(currentY, 880); 
           ctx.roundRect(btnX, btnY, btnW, btnH, 12);
           
           if (txt.cta.glowColor) {
@@ -1038,8 +1084,8 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           // Profile link
           ctx.fillStyle = '#94a3b8';
           ctx.font = '600 20px Inter';
-          ctx.textAlign = align === 'center' ? 'center' : 'left';
-          const profileX = align === 'center' ? tx + tw/2 : btnX;
+          ctx.textAlign = (hasExplicitCta || align === 'center') ? 'center' : 'left';
+          const profileX = hasExplicitCta ? btnX + btnW/2 : (align === 'center' ? tx + tw/2 : btnX);
           ctx.fillText('linkedin.com/in/jagtapsourabh', profileX, btnY + 100);
           ctx.restore();
         }

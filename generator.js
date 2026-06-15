@@ -8,7 +8,7 @@ import { scrapeReferenceCreative } from './scraper.js';
  * @param {string} category - 'ai' or 'marketing'
  * @param {Array} trends - Array of scraped trends
  * @param {string} apiKey - Gemini API Key
- * @returns {Promise<Array<{id: number, style: string, content: string, hook: string, layout: object}>>}
+ * @returns {Promise<Array<{id: number, style: string, content: string, hook: string, layout: object, scores: object}>>}
  */
 export async function generatePosts(category, trends, apiKey) {
   if (!apiKey) {
@@ -17,7 +17,7 @@ export async function generatePosts(category, trends, apiKey) {
 
   // Initialize SDK
   const ai = new GoogleGenAI({ apiKey });
-  const modelName = 'gemini-2.5-flash';
+  const modelName = 'gemini-2.5-pro';
 
   console.log(`[Generator] Initializing Gemini request for ${category} using ${modelName}`);
 
@@ -55,23 +55,31 @@ Guidelines for posts:
 3. Formatting: Emojis very sparingly (no more than 2-3). Do NOT use fake bold/italic unicode.
 4. Perspectives: First-person ('I' or 'We') as an elite B2B Director who is also a deep AI automation architect.
 
-Visual Layout Instructions:
-Analyze the attached reference template image (if provided) and translate its visual composition (color schemes, background gradients, light glows, grid lines, shapes, and frames) into a custom 'layout' JSON configuration.
-To guarantee maximum visual variety and layout dynamism across the 5 options, you MUST assign a completely different layout style profile to each of the 5 posts. Do NOT reuse the same structure! You must generate exactly:
+Visual Layout & Proportions Instructions (Canvas coordinates are 1080x1080):
+Translate the attached reference template image (if provided) into a custom 'layout' JSON configuration.
+To prevent text overlapping the avatar and ensure professional proportions, you MUST assign explicit canvas coordinates (x, y, w, h) to the layout elements depending on the assigned style:
 - Post 1: "Neon Split Panel" (Left Avatar, Right Text Column)
+  * Avatar: type "circle", x: 260, y: 540, w: 360, h: 360 (or rectangle card, x: 260, y: 540, w: 360, h: 720).
+  * Text Columns: badge x: 520, y: 160, headline x: 520, y: 240, w: 500, subtext x: 520, y: 560, w: 500, cta x: 520, y: 780, w: 260, h: 55.
 - Post 2: "Modern Business Grid" (Right Avatar, Left Text Column, drawGrid: true)
+  * Avatar: type "rect", x: 820, y: 540, w: 360, h: 720.
+  * Text Columns: badge x: 80, y: 160, headline x: 80, y: 240, w: 500, subtext x: 80, y: 560, w: 500, cta x: 80, y: 780, w: 260, h: 55.
 - Post 3: "Full Backdrop Banner" (Center Text Overlay, Bottom Avatar)
+  * Avatar: type "circle", x: 540, y: 860, w: 160, h: 160.
+  * Text Columns: badge x: 420, y: 120, headline x: 90, y: 190, w: 900, subtext x: 90, y: 440, w: 900, cta x: 410, y: 680, w: 260, h: 55.
 - Post 4: "Realistic Portrait Split" (Diagonal Split Panel)
+  * Avatar: type "card", x: 800, y: 540, w: 440, h: 880 (diagonal split alignment).
+  * Text Columns: badge x: 80, y: 120, headline x: 80, y: 190, w: 480, subtext x: 80, y: 520, w: 480, cta x: 80, y: 780, w: 260, h: 55.
 - Post 5: "Minimalist Executive Quote" (Big Center Typography, Small Right Avatar)
+  * Avatar: type "circle", x: 900, y: 120, w: 120, h: 120.
+  * Text Columns: badge x: 80, y: 120, headline x: 140, y: 220, w: 800, subtext x: 140, y: 540, w: 800, cta x: 410, y: 780, w: 260, h: 55.
 
-To achieve high-vibrancy, neon glow effects matching modern professional graphics, choose colors matching one of these vibrant styles per post layout:
+Choose colors matching one of these vibrant styles per post layout:
 - Neon Cyberpunk: Background colors ["#050814", "#0a0314"], Accent/Highlight: "#00f2fe" [Electric Cyan], glows: "#00f2fe" and "#ff007f" [Hot Magenta].
 - Solar Flare: Background colors ["#120802", "#1f0f00"], Accent/Highlight: "#ff6b00" [Safety Orange], glows: "#ff6b00" and "#fffb00" [Bright Yellow].
 - Acid Lime: Background colors ["#020b08", "#001a12"], Accent/Highlight: "#39ff14" [Lime Green], glows: "#39ff14" and "#0055ff" [Neon Blue].
 - Synthwave: Background colors ["#0d0214", "#1c0024"], Accent/Highlight: "#ff007f" [Hot Magenta], glows: "#ff007f" and "#00f2fe" [Electric Cyan].
 - Electric Gold: Background colors ["#050505", "#140a00"], Accent/Highlight: "#fbbf24" [Bright Gold], glows: "#fbbf24" and "#8f00ff" [Electric Violet].
-
-Ensure you define layout shapes, lines, grids, glows, text fonts, badges, CTAs, and avatar frames with neon borders and glows to make the visual representation pop.
 
 Avatar Prompt Customization Guidelines:
 Each post object in the JSON array must contain a custom 'avatarPrompt' property. This prompt will be passed to Imagen 3 to generate a portrait of the B2B manager that matches the post topic. The prompt MUST use these base features of the manager to preserve his identity:
@@ -85,7 +93,14 @@ Customize the attire, pose, and background of the manager in the prompt to match
 - For an AI/Technology post: 'sitting in front of a curved monitor displaying glowing cyan code, wearing a modern charcoal grey blazer over a white crewneck shirt'
 - For a growth/business post: 'standing next to a glass whiteboard with marketing diagrams, wearing a smart casual navy polo shirt'
 - For a marketing strategy post: 'holding a smartphone, sitting in a vibrant B2B coworking lobby, wearing a professional mustard button-down shirt'
-Ensure the prompt ends with: 'Shot on 85mm lens, f/1.8 aperture, realistic lighting, highly detailed features, cinematic, photorealistic, professional color grading, vibrant background, clean composition, high-resolution.'`;
+Ensure the prompt ends with: 'Shot on 85mm lens, f/1.8 aperture, realistic lighting, highly detailed features, cinematic, photorealistic, professional color grading, vibrant background, clean composition, high-resolution.'
+
+AI QUALITY CHECK:
+Brainstorm exactly 10 candidate posts internally based on the trend context. Rate each candidate out of 100 on these three parameters:
+- Design: Visual appeal, readability, professional layout match (out of 100)
+- Content: Engagement potential, authority, clarity of the copy (out of 100)
+- Branding: Personal branding strength, natural avatar integration (out of 100)
+Calculate the average total score. You MUST filter and output ONLY the top 5 highest-scoring options. Each option must have a total score of 85 or above.`;
 
   const prompt = `Generate exactly 5 LinkedIn posts on the topic of: ${topicLabel}.
 Use the following scraped web trends as context and inspiration:
@@ -106,6 +121,12 @@ Each object in the array must follow this structure:
   "imageHeadline": "A short, ultra-punchy graphic title in ALL CAPS (exactly 2-4 words). Wrap the most important 1-2 words in asterisks for neon highlight styling (e.g., 'STOP *CODING* NOW', '*99% FAILED*', 'THE *$0 STACK*', 'AI IS *DEAD*?').",
   "imageSubtext": "A highly compelling graphic subtitle (exactly 5-9 words) explaining the metric or curious strategy behind the headline (e.g. 'Why simple prompts *beat* custom agents').",
   "avatarPrompt": "The tailored prompt for Imagen 3 image generation following the manager identity instructions, matching the post theme.",
+  "scores": {
+    "design": 88,
+    "content": 92,
+    "branding": 86,
+    "total": 89
+  },
   "layout": {
     "background": {
       "colors": ["#050814", "#0a0314"],
@@ -125,10 +146,10 @@ Each object in the array must follow this structure:
       "type": "circle", "x": 300, "y": 600, "w": 320, "h": 320, "tilt": 0, "glowColor": "#ff007f", "glowBlur": 40, "strokeColor": "#ff007f", "lineWidth": 4
     },
     "text": {
-      "badge": { "text": "AI TREND", "bgColor": "#ff007f", "glowColor": "#ff007f", "glowBlur": 15 },
-      "headline": { "fontSize": 44, "color": "#ffffff", "highlightColor": "#00f2fe", "align": "left" },
-      "subtext": { "fontSize": 20, "color": "#cbd5e1" },
-      "cta": { "text": "READ POST", "bgColor": "#ff007f", "glowColor": "#ff007f", "glowBlur": 20 }
+      "badge": { "text": "AI TREND", "bgColor": "#ff007f", "glowColor": "#ff007f", "glowBlur": 15, "x": 90, "y": 160 },
+      "headline": { "fontSize": 44, "color": "#ffffff", "highlightColor": "#00f2fe", "align": "left", "x": 90, "y": 240, "w": 900 },
+      "subtext": { "fontSize": 20, "color": "#cbd5e1", "x": 90, "y": 480, "w": 900 },
+      "cta": { "text": "READ POST", "bgColor": "#ff007f", "glowColor": "#ff007f", "glowBlur": 20, "x": 90, "y": 780, "w": 260, "h": 55 }
     },
     "floatingElements": [
       { "type": "linkedin", "x": 160, "y": 480, "size": 36 }
@@ -242,3 +263,4 @@ Each object in the array must follow this structure:
 
   return posts;
 }
+
