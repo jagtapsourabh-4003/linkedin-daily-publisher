@@ -183,8 +183,8 @@ Each object in the array must follow this structure:
                           error.message.toLowerCase().includes('unavailable') ||
                           error.message.toLowerCase().includes('demand');
                           
-      if (isRateLimit && activeModel === 'gemini-2.5-pro') {
-        console.warn('[Generator] gemini-2.5-pro quota exceeded. Falling back to gemini-2.5-flash immediately...');
+      if ((isRateLimit || isTransient) && activeModel === 'gemini-2.5-pro') {
+        console.warn(`[Generator] gemini-2.5-pro error (${error.message}). Falling back to gemini-2.5-flash immediately...`);
         activeModel = 'gemini-2.5-flash';
         continue;
       }
