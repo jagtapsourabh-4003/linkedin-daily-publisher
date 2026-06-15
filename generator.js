@@ -46,7 +46,7 @@ export async function generatePosts(category, trends, apiKey) {
     
     const imageResponse = await ai.models.generateImages({
       model: 'imagen-3.0-generate-002',
-      prompt: `Studio portrait photography of a confident male B2B marketing manager in his early 30s, who has short styled dark hair, clean-cut professional appearance, wearing a ${attire}, sitting in a ${background}. Shot on 85mm lens, f/1.8 aperture, realistic lighting, highly detailed features, cinematic, photorealistic, professional color grading, corporate branding style, clean composition, high-resolution.`,
+      prompt: `Studio portrait photography of a confident male B2B marketing manager in his early 30s, who has short styled dark hair, clean-cut professional appearance, wearing a ${attire}, sitting in a ${background}. Shot on 85mm lens, f/1.8 aperture, realistic lighting, highly detailed features, cinematic, photorealistic, professional color grading, vibrant background, corporate branding style, clean composition, high-resolution.`,
       config: {
         numberOfImages: 1,
         outputMimeType: 'image/jpeg',
@@ -107,37 +107,55 @@ Guidelines for posts:
 
 Visual Layout Instructions:
 Analyze the attached reference template image (if provided) and translate its visual composition into a detailed Canvas-friendly 'layout' JSON configuration.
-The canvas is exactly 1080x1080 pixels (center is 540, 540). Customize the background gradient, shapes, text positions, and avatar crop frame to match the reference layout's visual structure.
-The layout JSON MUST follow this schema structure (all colors MUST be valid CSS hex codes or rgba strings, e.g., "#09153a", "rgba(0, 242, 254, 0.04)"):
+The canvas is exactly 1080x1080 pixels (center is 540, 540). Customize the background gradient, glows, shapes, text positions, and avatar crop frame to match the reference layout's visual structure.
+To achieve high-vibrancy, neon glow effects matching modern professional graphics, you MUST use one of the following Cyberpunk B2B styling profiles for colors and apply shadow glows to elements:
+
+VIBRANT NEON STYLING PROFILES:
+- Neon Cyberpunk: Background colors `["#050814", "#0a0314"]`, Accent/Highlight: `#00f2fe` [Electric Cyan], glows: `#00f2fe` and `#ff007f` [Hot Magenta].
+- Solar Flare: Background colors `["#120802", "#1f0f00"]`, Accent/Highlight: `#ff6b00` [Safety Orange], glows: `#ff6b00` and `#fffb00` [Bright Yellow].
+- Acid Lime: Background colors `["#020b08", "#001a12"]`, Accent/Highlight: `#39ff14` [Lime Green], glows: `#39ff14` and `#0055ff` [Neon Blue].
+- Synthwave: Background colors `["#0d0214", "#1c0024"]`, Accent/Highlight: `#ff007f` [Hot Magenta], glows: `#ff007f` and `#00f2fe` [Electric Cyan].
+- Electric Gold: Background colors `["#050505", "#140a00"]`, Accent/Highlight: `#fbbf24` [Bright Gold], glows: `#fbbf24` and `#8f00ff` [Electric Violet].
+
+The layout JSON MUST follow this schema structure (all colors MUST be valid CSS hex codes or rgba strings, e.g., "#ff007f", "rgba(0, 242, 254, 0.05)"):
 {
   "background": {
-    "colors": ["#09153a", "#020617"],
+    "colors": ["#050814", "#0a0314"],
     "isSunburst": true,
-    "rayColor": "rgba(0, 242, 254, 0.04)"
+    "rayColor": "rgba(0, 242, 254, 0.04)",
+    "glows": [
+      { "x": 300, "y": 600, "r": 500, "color": "rgba(0, 242, 254, 0.2)" },
+      { "x": 700, "y": 300, "r": 600, "color": "rgba(255, 0, 127, 0.25)" }
+    ]
   },
   "shapes": [
     {
       "type": "circle",
-      "x": 540, "y": 540, "r": 380, "w": 400, "h": 600,
-      "color": "rgba(255, 255, 255, 0.05)",
-      "strokeColor": "rgba(255, 255, 255, 0.2)",
-      "lineWidth": 4
+      "x": 300, "y": 600, "r": 250,
+      "color": "rgba(255, 255, 255, 0.02)",
+      "strokeColor": "rgba(0, 242, 254, 0.4)",
+      "lineWidth": 3,
+      "glowColor": "#00f2fe",
+      "glowBlur": 30
     }
   ],
   "avatar": {
     "type": "circle",
-    "x": 300, "y": 500, "w": 300, "h": 500,
-    "tilt": -0.05,
-    "popout": true
+    "x": 300, "y": 600, "w": 320, "h": 320,
+    "tilt": 0,
+    "glowColor": "#ff007f",
+    "glowBlur": 40,
+    "strokeColor": "#ff007f",
+    "lineWidth": 4
   },
   "text": {
-    "badge": { "text": "AI TREND", "x": 60, "y": 80, "bgColor": "#2563eb" },
-    "headline": { "x": 60, "y": 160, "fontSize": 42, "color": "#ffffff" },
-    "subtext": { "x": 60, "y": 480, "fontSize": 20, "color": "#cbd5e1" },
-    "cta": { "text": "READ POST", "x": 60, "y": 780, "bgColor": "#2563eb" }
+    "badge": { "text": "AI REPORT", "bgColor": "#ff007f", "glowColor": "#ff007f", "glowBlur": 15 },
+    "headline": { "fontSize": 48, "color": "#ffffff", "highlightColor": "#00f2fe", "align": "left" },
+    "subtext": { "fontSize": 22, "color": "#cbd5e1", "highlightColor": null },
+    "cta": { "text": "EXPLORE NOW", "bgColor": "#00f2fe", "glowColor": "#00f2fe", "glowBlur": 20 }
   },
   "floatingElements": [
-    { "type": "linkedin", "emoji": "🔥", "x": 420, "y": 110, "size": 36 }
+    { "type": "linkedin", "x": 160, "y": 480, "size": 36 }
   ]
 }
 
@@ -159,28 +177,31 @@ Each object in the array must follow this structure:
   "hook": "The first 1-2 lines of the post (attention-grabbing hook)",
   "content": "The full body of the post, including the hook, paragraphs, call to action, and hashtags. Keep line breaks intact with newlines (\\n).",
   "sourceArticle": "Title of the main article from the trends context that inspired this post, or 'General Trend' if inspired by multiple.",
-  "imageHeadline": "A short, ultra-punchy graphic title in ALL CAPS (exactly 1-3 words) designed by a premium copywriter (e.g. 'AI IS DEAD?', '99% FAILED', 'THE $0 STACK', 'STOP CODING').",
-  "imageSubtext": "A highly compelling graphic subtitle (exactly 5-8 words) explaining the metric or curious strategy behind the headline (e.g. 'Why simple prompts beat custom agents').",
+  "imageHeadline": "A short, ultra-punchy graphic title in ALL CAPS (exactly 2-4 words). Wrap the most important 1-2 words in asterisks for neon highlight styling (e.g., 'STOP *CODING* NOW', '*99% FAILED*', 'THE *$0 STACK*', 'AI IS *DEAD*?').",
+  "imageSubtext": "A highly compelling graphic subtitle (exactly 5-9 words) explaining the metric or curious strategy behind the headline (e.g. 'Why simple prompts *beat* custom agents').",
   "layout": {
     "background": {
-      "colors": ["#hex1", "#hex2"],
+      "colors": ["#050814", "#0a0314"],
       "isSunburst": true,
-      "rayColor": "rgba(255, 255, 255, 0.04)"
+      "rayColor": "rgba(255, 255, 255, 0.04)",
+      "glows": [
+        { "x": 300, "y": 600, "r": 500, "color": "rgba(0, 242, 254, 0.25)" }
+      ]
     },
     "shapes": [
-      { "type": "circle", "x": 540, "y": 540, "r": 380, "color": "rgba(255, 255, 255, 0.05)" }
+      { "type": "circle", "x": 300, "y": 600, "r": 250, "color": "rgba(255, 255, 255, 0.02)", "strokeColor": "rgba(0, 242, 254, 0.4)", "lineWidth": 3, "glowColor": "#00f2fe", "glowBlur": 30 }
     ],
     "avatar": {
-      "type": "circle", "x": 300, "y": 500, "w": 300, "h": 500, "tilt": -0.05, "popout": true
+      "type": "circle", "x": 300, "y": 600, "w": 320, "h": 320, "tilt": 0, "glowColor": "#ff007f", "glowBlur": 40, "strokeColor": "#ff007f", "lineWidth": 4
     },
     "text": {
-      "badge": { "text": "AI TREND", "x": 60, "y": 80, "bgColor": "#2563eb" },
-      "headline": { "x": 60, "y": 160, "fontSize": 42, "color": "#ffffff" },
-      "subtext": { "x": 60, "y": 480, "fontSize": 20, "color": "#cbd5e1" },
-      "cta": { "text": "READ POST", "x": 60, "y": 780, "bgColor": "#2563eb" }
+      "badge": { "text": "AI TREND", "bgColor": "#ff007f", "glowColor": "#ff007f", "glowBlur": 15 },
+      "headline": { "fontSize": 44, "color": "#ffffff", "highlightColor": "#00f2fe" },
+      "subtext": { "fontSize": 20, "color": "#cbd5e1" },
+      "cta": { "text": "READ POST", "bgColor": "#ff007f", "glowColor": "#ff007f", "glowBlur": 20 }
     },
     "floatingElements": [
-      { "type": "linkedin", "x": 420, "y": 110, "size": 36 }
+      { "type": "linkedin", "x": 160, "y": 480, "size": 36 }
     ]
   }
 }`;

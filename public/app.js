@@ -20,12 +20,33 @@ avatarImg.onload = () => {
   if (state.history.length > 0) renderActiveDrafts();
 };
 avatarImg.onerror = () => {
-  console.warn('[Avatar] Failed to load avatar_daily.jpg. Falling back to avatar.jpg');
+  console.warn('[Avatar] Failed to load avatar image. Falling back to avatar.jpg');
   if (avatarImg.src.indexOf('avatar_daily.jpg') !== -1) {
-    avatarImg.src = 'avatar.jpg?t=' + Date.now();
+    const t = Date.now();
+    avatarImg.src = 'avatar.jpg?t=' + t;
+    if (typeof el !== 'undefined' && el.avatarPreview) {
+      el.avatarPreview.src = 'avatar.jpg?t=' + t;
+    }
   }
 };
+
+function refreshAvatarImage() {
+  avatarImageLoaded = false;
+  const t = Date.now();
+  if (state.settings && state.settings.rotateOutfits !== false) {
+    avatarImg.src = 'avatar_daily.jpg?t=' + t;
+    if (typeof el !== 'undefined' && el.avatarPreview) {
+      el.avatarPreview.src = 'avatar_daily.jpg?t=' + t;
+    }
+  } else {
+    avatarImg.src = 'avatar.jpg?t=' + t;
+    if (typeof el !== 'undefined' && el.avatarPreview) {
+      el.avatarPreview.src = 'avatar.jpg?t=' + t;
+    }
+  }
+}
 avatarImg.src = 'avatar_daily.jpg?t=' + Date.now();
+
 
 // Premium Color Palettes for daily rotating theme variations
 const PALETTES = [
@@ -200,7 +221,7 @@ async function loadSettings() {
     el.inputSecret.value = state.settings.cronSecret || '';
     el.inputApiKey.placeholder = state.settings.hasApiKey ? '••••••••••••••••••••••••••••••••' : 'Enter API Key';
     el.inputRotateOutfits.checked = state.settings.rotateOutfits !== false;
-    el.avatarPreview.src = 'avatar.jpg?t=' + Date.now();
+    refreshAvatarImage();
 
     // Show/hide api key notice
     if (!state.settings.hasApiKey) {
@@ -699,13 +720,26 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           ctx.save();
         }
         
-        // Central radial glow highlight
-        const textGlow = customLayout.background.textGlow || 'rgba(0, 242, 254, 0.15)';
-        const radialGlow = ctx.createRadialGradient(w/2, h/2, 50, w/2, h/2, w/2);
-        radialGlow.addColorStop(0, textGlow);
-        radialGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
-        ctx.fillStyle = radialGlow;
-        ctx.fillRect(0, 0, w, h);
+        // Radial glows/light bursts
+        if (Array.isArray(customLayout.background.glows)) {
+          customLayout.background.glows.forEach(glow => {
+            ctx.save();
+            const radGlow = ctx.createRadialGradient(glow.x, glow.y, 10, glow.x, glow.y, glow.r || w/2);
+            radGlow.addColorStop(0, glow.color || 'rgba(0, 242, 254, 0.2)');
+            radGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            ctx.fillStyle = radGlow;
+            ctx.fillRect(0, 0, w, h);
+            ctx.restore();
+          });
+        } else {
+          // Central radial glow highlight
+          const textGlow = customLayout.background.textGlow || 'rgba(0, 242, 254, 0.15)';
+          const radialGlow = ctx.createRadialGradient(w/2, h/2, 50, w/2, h/2, w/2);
+          radialGlow.addColorStop(0, textGlow);
+          radialGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
+          ctx.fillStyle = radialGlow;
+          ctx.fillRect(0, 0, w, h);
+        }
         ctx.restore();
       }
       
@@ -717,6 +751,13 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           ctx.strokeStyle = shape.strokeColor || 'transparent';
           ctx.lineWidth = shape.lineWidth || 1;
           
+          if (shape.glowColor) {
+            ctx.shadowColor = shape.glowColor;
+            ctx.shadowBlur = shape.glowBlur || 30;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+          }
+          
           if (shape.type === 'circle') {
             ctx.beginPath();
             ctx.arc(shape.x, shape.y, shape.r || 100, 0, Math.PI * 2);
@@ -724,7 +765,8 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
             if (shape.strokeColor && shape.strokeColor !== 'transparent') ctx.stroke();
           } else if (shape.type === 'rect') {
             ctx.beginPath();
-            ctx.roundRect(shape.x - shape.w/2, shape.y - shape.h/2, shape.w, shape.h, 24);
+            const rRadius = shape.borderRadius !== undefined ? shape.borderRadius : 24;
+            ctx.roundRect(shape.x - shape.w/2, shape.y - shape.h/2, shape.w, shape.h, rRadius);
             ctx.fill();
             if (shape.strokeColor && shape.strokeColor !== 'transparent') ctx.stroke();
           }
@@ -744,6 +786,23 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           ctx.translate(-av.x, -av.y);
         }
         
+        // Glow backdrop behind avatar
+        if (av.glowColor) {
+          ctx.save();
+          ctx.shadowColor = av.glowColor;
+          ctx.shadowBlur = av.glowBlur || 40;
+          ctx.fillStyle = av.glowColor;
+          ctx.beginPath();
+          if (av.type === 'circle') {
+            ctx.arc(av.x, av.y, av.w / 2, 0, Math.PI * 2);
+          } else {
+            ctx.roundRect(av.x - av.w/2, av.y - av.h/2, av.w, av.h, 24);
+          }
+          ctx.fill();
+          ctx.restore();
+        }
+        
+        // Draw the avatar
         if (av.type === 'circle') {
           drawAvatarForCircle(ctx, av.x, av.y, av.w / 2, av.filter, styleIdx, avatarImg);
         } else if (av.type === 'phone') {
@@ -751,6 +810,22 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
         } else {
           drawAvatarForCard(ctx, av.x - av.w/2, av.y - av.h/2, av.w, av.h, av.filter, styleIdx, avatarImg);
         }
+        
+        // Neon stroke border outline on top
+        if (av.strokeColor) {
+          ctx.save();
+          ctx.strokeStyle = av.strokeColor;
+          ctx.lineWidth = av.lineWidth || 4;
+          ctx.beginPath();
+          if (av.type === 'circle') {
+            ctx.arc(av.x, av.y, av.w / 2, 0, Math.PI * 2);
+          } else if (av.type !== 'phone') {
+            ctx.roundRect(av.x - av.w/2, av.y - av.h/2, av.w, av.h, 24);
+          }
+          ctx.stroke();
+          ctx.restore();
+        }
+        
         ctx.restore();
       }
       
@@ -793,8 +868,19 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           const badgeH = 36;
           const bx = align === 'center' ? tx + (tw - badgeW)/2 : tx;
           ctx.roundRect(bx, currentY, badgeW, badgeH, 8);
+          
+          if (txt.badge.glowColor) {
+            ctx.shadowColor = txt.badge.glowColor;
+            ctx.shadowBlur = txt.badge.glowBlur || 15;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+          }
+          
           ctx.fillStyle = txt.badge.bgColor || '#db2777';
           ctx.fill();
+          ctx.restore();
+          
+          ctx.save();
           ctx.fillStyle = '#ffffff';
           ctx.font = 'bold 15px Inter';
           ctx.textAlign = 'center';
@@ -809,7 +895,8 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           ctx.fillStyle = txt.headline.color || '#ffffff';
           const fontSize = txt.headline.fontSize || 38;
           ctx.font = `800 ${fontSize}px Outfit`;
-          currentY = wrapTextAligned(ctx, headline.toUpperCase(), tx, currentY, tw, fontSize + 10, align, true);
+          const hlColor = txt.headline.highlightColor || palette.primary;
+          currentY = wrapTextAligned(ctx, headline.toUpperCase(), tx, currentY, tw, fontSize + 10, align, true, hlColor);
           ctx.restore();
           currentY += 20; // padding
         }
@@ -830,7 +917,8 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           ctx.fillStyle = txt.subtext.color || '#cbd5e1';
           const fontSize = txt.subtext.fontSize || 20;
           ctx.font = `500 ${fontSize}px Inter`;
-          currentY = wrapTextAligned(ctx, subtext, tx, currentY, tw, fontSize + 10, align);
+          const hlColor = txt.subtext.highlightColor || null;
+          currentY = wrapTextAligned(ctx, subtext, tx, currentY, tw, fontSize + 10, align, false, hlColor);
           ctx.restore();
           currentY += 40; // padding
         }
@@ -845,8 +933,19 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           // Constrain Y position to ensure it fits on 1080 canvas
           const btnY = Math.min(currentY, 880); 
           ctx.roundRect(btnX, btnY, btnW, btnH, 12);
+          
+          if (txt.cta.glowColor) {
+            ctx.shadowColor = txt.cta.glowColor;
+            ctx.shadowBlur = txt.cta.glowBlur || 20;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+          }
+          
           ctx.fillStyle = txt.cta.bgColor || '#db2777';
           ctx.fill();
+          ctx.restore();
+          
+          ctx.save();
           ctx.fillStyle = '#ffffff';
           ctx.font = 'bold 20px Outfit';
           ctx.textAlign = 'center';
@@ -1284,10 +1383,8 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     ctx.shadowOffsetX = -15;
     ctx.shadowOffsetY = 20;
     
-    // Scale and draw avatar maintaining aspect ratio
-    const useAiOutfit = state.settings.rotateOutfits !== false && styledAvatarsLoaded[styleIdx];
-    const img = useAiOutfit ? styledAvatars[styleIdx] : avatarImg;
-    const isLoaded = useAiOutfit || avatarImageLoaded;
+    const img = avatarImg;
+    const isLoaded = avatarImageLoaded;
     
     if (isLoaded && img.complete && img.naturalWidth !== 0) {
       ctx.filter = filter;
@@ -1740,16 +1837,12 @@ function drawPhoneMockup(ctx, px, py, pw, ph, isLeft, avatarImg, filter, styleId
 }
 
 function drawAvatarForPhone(ctx, x, y, w, h, filter, styleIdx, avatarImg) {
-  const useAiOutfit = state.settings.rotateOutfits !== false && styledAvatarsLoaded[styleIdx];
-  const img = useAiOutfit ? styledAvatars[styleIdx] : avatarImg;
-  const isLoaded = useAiOutfit || avatarImageLoaded;
-  
   ctx.save();
-  if (isLoaded && img.complete && img.naturalWidth !== 0) {
+  if (avatarImageLoaded && avatarImg.complete && avatarImg.naturalWidth !== 0) {
     if (filter) ctx.filter = filter;
     
-    const imgW = img.width;
-    const imgH = img.height;
+    const imgW = avatarImg.width;
+    const imgH = avatarImg.height;
     
     // Crop a vertical slice from the square image.
     // Since the screen is tall, the height is the bottleneck. Crop 85% of image height.
@@ -1761,7 +1854,7 @@ function drawAvatarForPhone(ctx, x, y, w, h, filter, styleIdx, avatarImg) {
     // Align near the top (e.g. 5% down) to capture the head and shoulders properly
     const cropY = imgH * 0.05;
     
-    ctx.drawImage(img, cropX, cropY, cropW, cropH, x, y, w, h);
+    ctx.drawImage(avatarImg, cropX, cropY, cropW, cropH, x, y, w, h);
   } else {
     ctx.fillStyle = '#1e293b';
     ctx.fillRect(x, y, w, h);
@@ -1770,16 +1863,12 @@ function drawAvatarForPhone(ctx, x, y, w, h, filter, styleIdx, avatarImg) {
 }
 
 function drawAvatarForCard(ctx, x, y, w, h, filter, styleIdx, avatarImg) {
-  const useAiOutfit = state.settings.rotateOutfits !== false && styledAvatarsLoaded[styleIdx];
-  const img = useAiOutfit ? styledAvatars[styleIdx] : avatarImg;
-  const isLoaded = useAiOutfit || avatarImageLoaded;
-  
   ctx.save();
-  if (isLoaded && img.complete && img.naturalWidth !== 0) {
+  if (avatarImageLoaded && avatarImg.complete && avatarImg.naturalWidth !== 0) {
     if (filter) ctx.filter = filter;
     
-    const imgW = img.width;
-    const imgH = img.height;
+    const imgW = avatarImg.width;
+    const imgH = avatarImg.height;
     
     // Fill the card rectangle (x, y, w, h) cover-fit
     const destRatio = w / h;
@@ -1796,7 +1885,7 @@ function drawAvatarForCard(ctx, x, y, w, h, filter, styleIdx, avatarImg) {
     const cropX = (imgW - cropW) / 2;
     const cropY = Math.max(0, (imgH - cropH) * 0.05);
     
-    ctx.drawImage(img, cropX, cropY, cropW, cropH, x, y, w, h);
+    ctx.drawImage(avatarImg, cropX, cropY, cropW, cropH, x, y, w, h);
   } else {
     ctx.fillStyle = '#1e293b';
     ctx.fillRect(x, y, w, h);
@@ -1805,16 +1894,12 @@ function drawAvatarForCard(ctx, x, y, w, h, filter, styleIdx, avatarImg) {
 }
 
 function drawAvatarForCircle(ctx, cx, cy, r, filter, styleIdx, avatarImg) {
-  const useAiOutfit = state.settings.rotateOutfits !== false && styledAvatarsLoaded[styleIdx];
-  const img = useAiOutfit ? styledAvatars[styleIdx] : avatarImg;
-  const isLoaded = useAiOutfit || avatarImageLoaded;
-  
   ctx.save();
-  if (isLoaded && img.complete && img.naturalWidth !== 0) {
+  if (avatarImageLoaded && avatarImg.complete && avatarImg.naturalWidth !== 0) {
     if (filter) ctx.filter = filter;
     
     const size = r * 2.2;
-    ctx.drawImage(img, cx - size/2, cy - size/2 - r*0.1, size, size);
+    ctx.drawImage(avatarImg, cx - size/2, cy - size/2 - r*0.1, size, size);
   } else {
     ctx.fillStyle = '#1e293b';
     ctx.beginPath();
@@ -1887,8 +1972,63 @@ function drawTextColumn(ctx, category, tx, ty, tw, th, headline, subtext, align 
   ctx.restore();
 }
 
+function drawHighlightedLine(ctx, line, drawX, currentY, align, highlightColor, isHeadline) {
+  // If no highlight marker, draw normally
+  if (!line.includes('*')) {
+    if (isHeadline) ctx.strokeText(line, drawX, currentY);
+    ctx.fillText(line, drawX, currentY);
+    return;
+  }
+  
+  const parts = line.split('*');
+  
+  // Measure segments to compute total clean width
+  const segments = parts.map((part, index) => {
+    const isHighlighted = index % 2 === 1;
+    const text = part;
+    
+    ctx.save();
+    if (isHeadline) {
+      ctx.font = `800 ${ctx.font.split('px')[0].split(' ').pop()}px Outfit`;
+    }
+    const width = ctx.measureText(text).width;
+    ctx.restore();
+    
+    return { text, isHighlighted, width };
+  });
+  
+  const totalWidth = segments.reduce((sum, seg) => sum + seg.width, 0);
+  
+  // Determine starting X position based on alignment
+  let startX = drawX;
+  if (align === 'center') {
+    startX = drawX - totalWidth / 2;
+  } else if (align === 'right') {
+    startX = drawX - totalWidth;
+  }
+  
+  let currentX = startX;
+  
+  segments.forEach(seg => {
+    ctx.save();
+    if (seg.isHighlighted) {
+      ctx.fillStyle = highlightColor || '#00f2fe'; // Neon cyan or custom highlight
+      if (isHeadline) {
+        ctx.font = `800 ${ctx.font.split('px')[0].split(' ').pop()}px Outfit`;
+      }
+    }
+    
+    if (isHeadline) {
+      ctx.strokeText(seg.text, currentX, currentY);
+    }
+    ctx.fillText(seg.text, currentX, currentY);
+    currentX += seg.width;
+    ctx.restore();
+  });
+}
+
 // Wrap text with custom alignment and premium style outline/gradient support
-function wrapTextAligned(ctx, text, x, y, maxWidth, lineHeight, align = 'center', isHeadline = false) {
+function wrapTextAligned(ctx, text, x, y, maxWidth, lineHeight, align = 'center', isHeadline = false, highlightColor = null) {
   const words = text.split(' ');
   let line = '';
   let currentY = y;
@@ -1917,14 +2057,13 @@ function wrapTextAligned(ctx, text, x, y, maxWidth, lineHeight, align = 'center'
   
   for (let n = 0; n < words.length; n++) {
     let testLine = line + words[n] + ' ';
-    let metrics = ctx.measureText(testLine);
+    let testLineClean = testLine.replace(/\*/g, '');
+    let metrics = ctx.measureText(testLineClean);
     let testWidth = metrics.width;
+    
     if (testWidth > maxWidth && n > 0) {
       const drawX = align === 'center' ? x + maxWidth/2 : (align === 'right' ? x + maxWidth : x);
-      if (isHeadline) {
-        ctx.strokeText(line.trim(), drawX, currentY);
-      }
-      ctx.fillText(line.trim(), drawX, currentY);
+      drawHighlightedLine(ctx, line.trim(), drawX, currentY, align, highlightColor, isHeadline);
       line = words[n] + ' ';
       currentY += lineHeight;
     } else {
@@ -1932,10 +2071,8 @@ function wrapTextAligned(ctx, text, x, y, maxWidth, lineHeight, align = 'center'
     }
   }
   const drawX = align === 'center' ? x + maxWidth/2 : (align === 'right' ? x + maxWidth : x);
-  if (isHeadline) {
-    ctx.strokeText(line.trim(), drawX, currentY);
-  }
-  ctx.fillText(line.trim(), drawX, currentY);
+  drawHighlightedLine(ctx, line.trim(), drawX, currentY, align, highlightColor, isHeadline);
+  
   ctx.restore();
   return currentY + lineHeight;
 }
