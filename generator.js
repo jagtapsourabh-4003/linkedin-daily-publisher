@@ -161,7 +161,28 @@ Each object in the array must follow this structure:
   "sourceArticle": "Title of the main article from the trends context that inspired this post, or 'General Trend' if inspired by multiple.",
   "imageHeadline": "A short, ultra-punchy graphic title in ALL CAPS (exactly 1-3 words) designed by a premium copywriter (e.g. 'AI IS DEAD?', '99% FAILED', 'THE $0 STACK', 'STOP CODING').",
   "imageSubtext": "A highly compelling graphic subtitle (exactly 5-8 words) explaining the metric or curious strategy behind the headline (e.g. 'Why simple prompts beat custom agents').",
-  "layout": { ... }
+  "layout": {
+    "background": {
+      "colors": ["#hex1", "#hex2"],
+      "isSunburst": true,
+      "rayColor": "rgba(255, 255, 255, 0.04)"
+    },
+    "shapes": [
+      { "type": "circle", "x": 540, "y": 540, "r": 380, "color": "rgba(255, 255, 255, 0.05)" }
+    ],
+    "avatar": {
+      "type": "circle", "x": 300, "y": 500, "w": 300, "h": 500, "tilt": -0.05, "popout": true
+    },
+    "text": {
+      "badge": { "text": "AI TREND", "x": 60, "y": 80, "bgColor": "#2563eb" },
+      "headline": { "x": 60, "y": 160, "fontSize": 42, "color": "#ffffff" },
+      "subtext": { "x": 60, "y": 480, "fontSize": 20, "color": "#cbd5e1" },
+      "cta": { "text": "READ POST", "x": 60, "y": 780, "bgColor": "#2563eb" }
+    },
+    "floatingElements": [
+      { "type": "linkedin", "x": 420, "y": 110, "size": 36 }
+    ]
+  }
 }`;
 
   let attempts = 3;
