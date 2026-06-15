@@ -108,36 +108,36 @@ Guidelines for posts:
 Visual Layout Instructions:
 Analyze the attached reference template image (if provided) and translate its visual composition into a detailed Canvas-friendly 'layout' JSON configuration.
 The canvas is exactly 1080x1080 pixels (center is 540, 540). Customize the background gradient, shapes, text positions, and avatar crop frame to match the reference layout's visual structure.
-The layout JSON MUST follow this schema structure:
+The layout JSON MUST follow this schema structure (all colors MUST be valid CSS hex codes or rgba strings, e.g., "#09153a", "rgba(0, 242, 254, 0.04)"):
 {
   "background": {
-    "colors": ["#hex1", "#hex2"],
-    "isSunburst": true | false,
-    "rayColor": "rgba(r,g,b,alpha)"
+    "colors": ["#09153a", "#020617"],
+    "isSunburst": true,
+    "rayColor": "rgba(0, 242, 254, 0.04)"
   },
   "shapes": [
     {
-      "type": "circle" | "rect",
+      "type": "circle",
       "x": 540, "y": 540, "r": 380, "w": 400, "h": 600,
-      "color": "rgba(r,g,b,alpha)",
-      "strokeColor": "rgba(r,g,b,alpha)",
+      "color": "rgba(255, 255, 255, 0.05)",
+      "strokeColor": "rgba(255, 255, 255, 0.2)",
       "lineWidth": 4
     }
   ],
   "avatar": {
-    "type": "circle" | "rect" | "phone" | "standing",
+    "type": "circle",
     "x": 300, "y": 500, "w": 300, "h": 500,
     "tilt": -0.05,
-    "popout": true | false
+    "popout": true
   },
   "text": {
-    "badge": { "text": "AI TREND", "x": 60, "y": 80, "bgColor": "#hex" },
-    "headline": { "x": 60, "y": 160, "fontSize": 42, "color": "#hex" },
-    "subtext": { "x": 60, "y": 480, "fontSize": 20, "color": "#hex" },
-    "cta": { "text": "READ POST", "x": 60, "y": 780, "bgColor": "#hex" }
+    "badge": { "text": "AI TREND", "x": 60, "y": 80, "bgColor": "#2563eb" },
+    "headline": { "x": 60, "y": 160, "fontSize": 42, "color": "#ffffff" },
+    "subtext": { "x": 60, "y": 480, "fontSize": 20, "color": "#cbd5e1" },
+    "cta": { "text": "READ POST", "x": 60, "y": 780, "bgColor": "#2563eb" }
   },
   "floatingElements": [
-    { "type": "linkedin" | "instagram" | "facebook" | "twitter" | "emoji", "emoji": "🔥", "x": 420, "y": 110, "size": 36 }
+    { "type": "linkedin", "emoji": "🔥", "x": 420, "y": 110, "size": 36 }
   ]
 }
 
