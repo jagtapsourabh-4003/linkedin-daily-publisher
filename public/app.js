@@ -718,6 +718,28 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
   const w = canvas.width;  // 1080
   const h = canvas.height; // 1080
   
+  // Calculate common visual variables used by both customLayout and fallback branches
+  const dayIdx = getDayIndex(dateStr);
+  const layoutIdx = (dayIdx + postId - 1) % 5;
+  const styleIdx = (postId - 1) % 5; // Outfit style rotates by postId
+  
+  const paletteIdx = (dayIdx + postId - 1) % PALETTES.length;
+  const palette = PALETTES[paletteIdx];
+  
+  const filters = [
+    'contrast(1.1) brightness(1.02) saturate(1.1)', // Clean Natural
+    'contrast(1.15) brightness(1.05) saturate(1.15)', // Vibrant
+    'brightness(1.02) contrast(1.08) saturate(1.05)', // Soft Warm
+    'hue-rotate(350deg) saturate(95%) contrast(1.1) brightness(1.02)', // Soft Rose
+    'contrast(1.1) brightness(1.02) saturate(1.08)' // Neutral Tech
+  ];
+  const filter = filters[styleIdx];
+  
+  let activeAvImg = avatarImg;
+  if (state.settings.rotateOutfits !== false && optionAvatarsLoaded[styleIdx]) {
+    activeAvImg = optionAvatars[styleIdx];
+  }
+  
   if (customLayout) {
     try {
       console.log('[Canvas] Drawing custom dynamic layout:', customLayout);
@@ -840,13 +862,6 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
       // 3. Draw Avatar
       if (customLayout.avatar) {
         const av = customLayout.avatar;
-        const styleIdx = (postId - 1) % 5;
-        
-        // Use option-specific AI generated avatar if outfits rotation is enabled
-        let activeAvImg = avatarImg;
-        if (state.settings.rotateOutfits !== false && optionAvatarsLoaded[styleIdx]) {
-          activeAvImg = optionAvatars[styleIdx];
-        }
         
         ctx.save();
         if (av.tilt) {
@@ -1052,24 +1067,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     }
   }
 
-  // 1. Calculate style rotation based on date and postId
-  const dayIdx = getDayIndex(dateStr);
-  const layoutIdx = (dayIdx + postId - 1) % 5;
-  const styleIdx = (postId - 1) % 5; // Outfit style rotates by postId
-  
-  // 2. Select color palette dynamically (shifts daily so that each option is different)
-  const paletteIdx = (dayIdx + postId - 1) % PALETTES.length;
-  const palette = PALETTES[paletteIdx];
-  
-  // 3. Select photo filters dynamically based on styleIdx
-  const filters = [
-    'contrast(1.1) brightness(1.02) saturate(1.1)', // Clean Natural
-    'contrast(1.15) brightness(1.05) saturate(1.15)', // Vibrant
-    'brightness(1.02) contrast(1.08) saturate(1.05)', // Soft Warm
-    'hue-rotate(350deg) saturate(95%) contrast(1.1) brightness(1.02)', // Soft Rose
-    'contrast(1.1) brightness(1.02) saturate(1.08)' // Neutral Tech
-  ];
-  const filter = filters[styleIdx];
+  // (Using pre-calculated common visual variables defined at top of drawCreative)
 
   // 4. Clear canvas & render the chosen layout structure
   if (layoutIdx === 0) {
@@ -1111,7 +1109,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     ctx.restore();
     
     // Draw Phone mockup on Left
-    drawPhoneMockup(ctx, 70, 160, 380, 760, true, avatarImg, filter, styleIdx, palette);
+    drawPhoneMockup(ctx, 70, 160, 380, 760, true, activeAvImg, filter, styleIdx, palette);
     
     // Draw floating 3D social icons and emojis
     drawLogoBubble(ctx, 450, 220, 36, 'instagram', 0);
@@ -1163,7 +1161,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     ctx.restore();
     
     // Draw Phone mockup on Right
-    drawPhoneMockup(ctx, 630, 160, 380, 760, false, avatarImg, filter, styleIdx, palette);
+    drawPhoneMockup(ctx, 630, 160, 380, 760, false, activeAvImg, filter, styleIdx, palette);
     
     // Draw floating 3D social icons and emojis
     drawLogoBubble(ctx, 590, 220, 36, 'instagram', 0);
@@ -1209,7 +1207,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     ctx.beginPath();
     ctx.arc(cx, cy, r, 0, Math.PI * 2);
     ctx.clip();
-    drawAvatarForCircle(ctx, cx, cy, r, filter, styleIdx, avatarImg);
+    drawAvatarForCircle(ctx, cx, cy, r, filter, styleIdx, activeAvImg);
     ctx.restore();
     
     // Circular Border (gradient stroke)
@@ -1229,7 +1227,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     ctx.beginPath();
     ctx.rect(cx - r - 20, cy - r - 200, r * 2 + 40, r * 1.15 + 200);
     ctx.clip();
-    drawAvatarForCircle(ctx, cx, cy, r, filter, styleIdx, avatarImg);
+    drawAvatarForCircle(ctx, cx, cy, r, filter, styleIdx, activeAvImg);
     ctx.restore();
     
     // Floating bubbles
@@ -1408,7 +1406,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     ctx.clip();
     
     // Draw avatar inside card with cover fit
-    drawAvatarForCard(ctx, -cw/2, -ch/2, cw, ch, filter, styleIdx, avatarImg);
+    drawAvatarForCard(ctx, -cw/2, -ch/2, cw, ch, filter, styleIdx, activeAvImg);
     ctx.restore();
   } 
   else if (layoutIdx === 4) {
@@ -1452,10 +1450,9 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     ctx.shadowOffsetX = -15;
     ctx.shadowOffsetY = 20;
     
-    const img = avatarImg;
-    const isLoaded = avatarImageLoaded;
+    const img = activeAvImg;
     
-    if (isLoaded && img.complete && img.naturalWidth !== 0) {
+    if (img && img.complete && img.naturalWidth !== 0) {
       ctx.filter = filter;
       // Standing position on the right: maintain aspect ratio
       const size = 900;
@@ -1907,7 +1904,7 @@ function drawPhoneMockup(ctx, px, py, pw, ph, isLeft, avatarImg, filter, styleId
 
 function drawAvatarForPhone(ctx, x, y, w, h, filter, styleIdx, avatarImg) {
   ctx.save();
-  if (avatarImageLoaded && avatarImg.complete && avatarImg.naturalWidth !== 0) {
+  if (avatarImg && avatarImg.complete && avatarImg.naturalWidth !== 0) {
     if (filter) ctx.filter = filter;
     
     const imgW = avatarImg.width;
@@ -1933,7 +1930,7 @@ function drawAvatarForPhone(ctx, x, y, w, h, filter, styleIdx, avatarImg) {
 
 function drawAvatarForCard(ctx, x, y, w, h, filter, styleIdx, avatarImg) {
   ctx.save();
-  if (avatarImageLoaded && avatarImg.complete && avatarImg.naturalWidth !== 0) {
+  if (avatarImg && avatarImg.complete && avatarImg.naturalWidth !== 0) {
     if (filter) ctx.filter = filter;
     
     const imgW = avatarImg.width;
@@ -1964,7 +1961,7 @@ function drawAvatarForCard(ctx, x, y, w, h, filter, styleIdx, avatarImg) {
 
 function drawAvatarForCircle(ctx, cx, cy, r, filter, styleIdx, avatarImg) {
   ctx.save();
-  if (avatarImageLoaded && avatarImg.complete && avatarImg.naturalWidth !== 0) {
+  if (avatarImg && avatarImg.complete && avatarImg.naturalWidth !== 0) {
     if (filter) ctx.filter = filter;
     
     const size = r * 2.2;
