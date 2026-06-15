@@ -157,9 +157,10 @@ Each object in the array must follow this structure:
   }
 }`;
 
+  let activeModel = modelName;
   let posts = null;
-  let attempts = 3;
-  let delay = 3000; // start with 3 seconds delay
+  let attempts = 4;
+  let delay = 2000;
   
   for (let i = 0; i < attempts; i++) {
     try {
@@ -178,7 +179,7 @@ Each object in the array must follow this structure:
       contents.push(prompt);
 
       const response = await ai.models.generateContent({
-        model: modelName,
+        model: activeModel,
         contents: contents,
         config: {
           systemInstruction: systemInstruction,
@@ -196,23 +197,37 @@ Each object in the array must follow this structure:
       }
       break; // break retry loop if successful
     } catch (error) {
-      console.warn(`[Generator] Attempt ${i + 1} failed:`, error.message);
+      console.warn(`[Generator] Attempt ${i + 1} failed on ${activeModel}:`, error.message);
       
       const isRateLimit = error.message.toLowerCase().includes('429') || 
                           error.message.toLowerCase().includes('quota') || 
                           error.message.toLowerCase().includes('limit') ||
+                          error.message.toLowerCase().includes('exhausted') ||
                           error.message.toLowerCase().includes('rate');
                           
-      if (isRateLimit && i < attempts - 1) {
-        console.log(`[Generator] Rate limit hit. Waiting ${delay / 1000}s before retry...`);
+      const isTransient = error.message.toLowerCase().includes('503') ||
+                          error.message.toLowerCase().includes('500') ||
+                          error.message.toLowerCase().includes('504') ||
+                          error.message.toLowerCase().includes('unavailable') ||
+                          error.message.toLowerCase().includes('demand');
+                          
+      if (isRateLimit && activeModel === 'gemini-2.5-pro') {
+        console.warn('[Generator] gemini-2.5-pro quota exceeded. Falling back to gemini-2.5-flash immediately...');
+        activeModel = 'gemini-2.5-flash';
+        continue;
+      }
+      
+      if ((isRateLimit || isTransient) && i < attempts - 1) {
+        console.log(`[Generator] Temporary error on ${activeModel}. Waiting ${delay / 1000}s before retry...`);
         await new Promise(resolve => setTimeout(resolve, delay));
         delay *= 2; // exponential backoff
       } else {
-        console.error('[Generator] Error generating posts:', error);
+        console.error('[Generator] Final failure generating posts:', error);
         throw new Error(`Failed to generate posts with Gemini: ${error.message}`);
       }
     }
   }
+
 
   // 3. Generate 5 unique customized AI avatars based on Gemini's returned prompts
   if (posts) {
