@@ -14,6 +14,29 @@ let state = {
 // Global Image Resources (Custom Avatar)
 const avatarImg = new Image();
 let avatarImageLoaded = false;
+
+// Multi-avatar resources for the 5 draft options
+const optionAvatars = [];
+const optionAvatarsLoaded = [false, false, false, false, false];
+
+for (let i = 1; i <= 5; i++) {
+  const img = new Image();
+  img.onload = () => {
+    optionAvatarsLoaded[i - 1] = true;
+    console.log(`[Avatar] Option avatar ${i} loaded.`);
+    if (state.history.length > 0) renderActiveDrafts();
+  };
+  img.onerror = () => {
+    console.warn(`[Avatar] Failed to load avatar_daily_${i}.jpg. Falling back.`);
+    if (img.src.indexOf(`avatar_daily_${i}.jpg`) !== -1) {
+      img.src = 'avatar_daily.jpg?t=' + Date.now();
+    } else if (img.src.indexOf('avatar_daily.jpg') !== -1) {
+      img.src = 'avatar.jpg?t=' + Date.now();
+    }
+  };
+  optionAvatars.push(img);
+}
+
 avatarImg.onload = () => {
   avatarImageLoaded = true;
   console.log('[Avatar] Custom profile picture loaded.');
@@ -38,14 +61,28 @@ function refreshAvatarImage() {
     if (typeof el !== 'undefined' && el.avatarPreview) {
       el.avatarPreview.src = 'avatar_daily.jpg?t=' + t;
     }
+    // Refresh options
+    for (let i = 1; i <= 5; i++) {
+      optionAvatarsLoaded[i - 1] = false;
+      optionAvatars[i - 1].src = `avatar_daily_${i}.jpg?t=` + t;
+    }
   } else {
     avatarImg.src = 'avatar.jpg?t=' + t;
     if (typeof el !== 'undefined' && el.avatarPreview) {
       el.avatarPreview.src = 'avatar.jpg?t=' + t;
     }
+    // Fall back options to avatar.jpg
+    for (let i = 1; i <= 5; i++) {
+      optionAvatarsLoaded[i - 1] = false;
+      optionAvatars[i - 1].src = 'avatar.jpg?t=' + t;
+    }
   }
 }
 avatarImg.src = 'avatar_daily.jpg?t=' + Date.now();
+// Initialize option avatars
+for (let i = 1; i <= 5; i++) {
+  optionAvatars[i - 1].src = `avatar_daily_${i}.jpg?t=` + Date.now();
+}
 
 
 // Premium Color Palettes for daily rotating theme variations
@@ -740,6 +777,27 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           ctx.fillStyle = radialGlow;
           ctx.fillRect(0, 0, w, h);
         }
+
+        // Draw blueprint grid lines on background if specified
+        if (customLayout.background.drawGrid) {
+          ctx.save();
+          ctx.strokeStyle = customLayout.background.gridColor || 'rgba(255, 255, 255, 0.05)';
+          ctx.lineWidth = 1;
+          const gridSize = customLayout.background.gridSize || 40;
+          for (let xPos = 0; xPos < w; xPos += gridSize) {
+            ctx.beginPath();
+            ctx.moveTo(xPos, 0);
+            ctx.lineTo(xPos, h);
+            ctx.stroke();
+          }
+          for (let yPos = 0; yPos < h; yPos += gridSize) {
+            ctx.beginPath();
+            ctx.moveTo(0, yPos);
+            ctx.lineTo(w, yPos);
+            ctx.stroke();
+          }
+          ctx.restore();
+        }
         ctx.restore();
       }
       
@@ -769,6 +827,11 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
             ctx.roundRect(shape.x - shape.w/2, shape.y - shape.h/2, shape.w, shape.h, rRadius);
             ctx.fill();
             if (shape.strokeColor && shape.strokeColor !== 'transparent') ctx.stroke();
+          } else if (shape.type === 'line') {
+            ctx.beginPath();
+            ctx.moveTo(shape.x1, shape.y1);
+            ctx.lineTo(shape.x2, shape.y2);
+            ctx.stroke();
           }
           ctx.restore();
         });
@@ -778,6 +841,12 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
       if (customLayout.avatar) {
         const av = customLayout.avatar;
         const styleIdx = (postId - 1) % 5;
+        
+        // Use option-specific AI generated avatar if outfits rotation is enabled
+        let activeAvImg = avatarImg;
+        if (state.settings.rotateOutfits !== false && optionAvatarsLoaded[styleIdx]) {
+          activeAvImg = optionAvatars[styleIdx];
+        }
         
         ctx.save();
         if (av.tilt) {
@@ -804,11 +873,11 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
         
         // Draw the avatar
         if (av.type === 'circle') {
-          drawAvatarForCircle(ctx, av.x, av.y, av.w / 2, av.filter, styleIdx, avatarImg);
+          drawAvatarForCircle(ctx, av.x, av.y, av.w / 2, av.filter, styleIdx, activeAvImg);
         } else if (av.type === 'phone') {
-          drawPhoneMockup(ctx, av.x - av.w/2, av.y - av.h/2, av.w, av.h, true, avatarImg, av.filter, styleIdx, palette);
+          drawPhoneMockup(ctx, av.x - av.w/2, av.y - av.h/2, av.w, av.h, true, activeAvImg, av.filter, styleIdx, palette);
         } else {
-          drawAvatarForCard(ctx, av.x - av.w/2, av.y - av.h/2, av.w, av.h, av.filter, styleIdx, avatarImg);
+          drawAvatarForCard(ctx, av.x - av.w/2, av.y - av.h/2, av.w, av.h, av.filter, styleIdx, activeAvImg);
         }
         
         // Neon stroke border outline on top
