@@ -763,7 +763,7 @@ function renderActiveDrafts() {
     // Post to Google Flow button listener
     if (!isDayPosted) {
       cardEl.querySelector(`#btn-post-${post.id}`).addEventListener('click', (e) => {
-        postToGoogleFlow(post.id, e.target);
+        postToGoogleFlow(post.id, e.currentTarget);
       });
     }
   });

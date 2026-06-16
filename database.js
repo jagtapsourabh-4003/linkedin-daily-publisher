@@ -13,9 +13,10 @@ function initDb() {
   if (!fs.existsSync(DB_FILE)) {
     const defaultData = {
       settings: {
-        webhookUrl: '',
-        geminiApiKey: '',
-        cronSecret: 'linkedin_generator_secret_12345'
+        webhookUrl: 'https://hook.eu1.make.com/8hd357m87nxbmvrw8i5f7i3ughh4jp9g',
+        geminiApiKey: 'AQ.Ab8RN6IzlFk-XmPTlKn9o1-OIVwbMpRkR6d6WJDgoi6l7UvbAw',
+        cronSecret: 'linkedin_generator_secret_12345',
+        rotateOutfits: true
       },
       history: []
     };

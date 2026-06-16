@@ -19,3 +19,7 @@ yarn-debug.log*
 yarn-error.log*
 .DS_Store
 Thumbs.db
+
+# Generated visual assets
+public/avatar_daily*.jpg
+public/creatives/
