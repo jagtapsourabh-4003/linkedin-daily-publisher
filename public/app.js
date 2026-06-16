@@ -778,6 +778,13 @@ function renderActiveDrafts() {
             <!-- Custom Colors Sub-panel -->
             <div id="custom-colors-container-${post.id}" class="custom-colors-row ${post.colorPalette === 'Custom' ? '' : 'hidden'}">
               <div class="customizer-field">
+                <label for="color-text-${post.id}">Headline Font Color</label>
+                <div class="color-picker-wrapper">
+                  <input type="color" id="color-text-${post.id}" class="color-picker-input" value="${(post.customColors && post.customColors.textColor) || '#ffffff'}">
+                  <span class="color-hex-label">${(post.customColors && post.customColors.textColor) || '#ffffff'}</span>
+                </div>
+              </div>
+              <div class="customizer-field">
                 <label for="color-primary-${post.id}">Accents / Highlights</label>
                 <div class="color-picker-wrapper">
                   <input type="color" id="color-primary-${post.id}" class="color-picker-input" value="${(post.customColors && post.customColors.primary) || '#3b82f6'}">
@@ -880,6 +887,7 @@ function renderActiveDrafts() {
       const headlineInput = cardEl.querySelector(`#input-headline-${post.id}`);
       const subtextInput = cardEl.querySelector(`#input-subtext-${post.id}`);
       const customColorsContainer = cardEl.querySelector(`#custom-colors-container-${post.id}`);
+      const colorText = cardEl.querySelector(`#color-text-${post.id}`);
       const colorPrimary = cardEl.querySelector(`#color-primary-${post.id}`);
       const colorSecondary = cardEl.querySelector(`#color-secondary-${post.id}`);
       const colorBgStart = cardEl.querySelector(`#color-bg-start-${post.id}`);
@@ -897,6 +905,7 @@ function renderActiveDrafts() {
         // Custom colors mapping
         if (paletteSelect.value === 'Custom') {
           post.customColors = {
+            textColor: colorText.value,
             primary: colorPrimary.value,
             secondary: colorSecondary.value,
             gradStart: colorBgStart.value,
@@ -919,6 +928,7 @@ function renderActiveDrafts() {
             imageHeadline: headlineInput.value,
             imageSubtext: subtextInput.value,
             customColors: paletteSelect.value === 'Custom' ? {
+              textColor: colorText.value,
               primary: colorPrimary.value,
               secondary: colorSecondary.value,
               gradStart: colorBgStart.value,
@@ -941,7 +951,7 @@ function renderActiveDrafts() {
       subtextInput.addEventListener('change', () => triggerRedrawAndSave(false));
 
       // Color pickers listeners
-      [colorPrimary, colorSecondary, colorBgStart, colorBgEnd].forEach(picker => {
+      [colorText, colorPrimary, colorSecondary, colorBgStart, colorBgEnd].forEach(picker => {
         picker.addEventListener('input', (e) => {
           // Update hex label next to color input
           const wrapper = e.target.closest('.color-picker-wrapper');
@@ -1509,6 +1519,16 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
       activeLayout = buildLayoutFromFamily(customLayout.layoutFamily || 'split-left', matchedPalette, headline, subtext, category, postId);
       if (activeLayout.text && activeLayout.text.badge) {
         activeLayout.text.badge.text = resolvedBadge.toUpperCase();
+      }
+      if (colorPaletteName.toLowerCase() === 'custom') {
+        if (activeLayout.text) {
+          if (activeLayout.text.headline) {
+            activeLayout.text.headline.color = matchedPalette.textColor;
+          }
+          if (activeLayout.text.subtext) {
+            activeLayout.text.subtext.color = matchedPalette.secondary;
+          }
+        }
       }
     } else {
       activeLayout = customLayout;
