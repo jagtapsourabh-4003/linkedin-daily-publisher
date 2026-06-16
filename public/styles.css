@@ -1079,4 +1079,51 @@ body {
   color: #fff;
 }
 
+/* Custom Colors styling */
+.custom-colors-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+  padding: 12px;
+  background: rgba(30, 41, 59, 0.2);
+  border-radius: 6px;
+  border: 1px dashed var(--border-light);
+  box-sizing: border-box;
+}
+
+.custom-colors-row.hidden {
+  display: none;
+}
+
+.color-picker-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(15, 22, 42, 0.5);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 4px 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.color-picker-input {
+  border: none;
+  background: none;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.color-hex-label {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
 

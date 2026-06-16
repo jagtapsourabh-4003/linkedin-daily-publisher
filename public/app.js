@@ -755,6 +755,7 @@ function renderActiveDrafts() {
                   ${PALETTES.map(p => 
                     `<option value="${p.name}" ${(post.colorPalette && post.colorPalette.toLowerCase() === p.name.toLowerCase()) ? 'selected' : ''}>${p.name}</option>`
                   ).join('')}
+                  <option value="Custom" ${post.colorPalette === 'Custom' ? 'selected' : ''}>✨ Custom Colors</option>
                 </select>
               </div>
               <div class="customizer-field">
@@ -771,6 +772,38 @@ function renderActiveDrafts() {
                     return `<option value="${opt.val}" ${selectedAvIdx === opt.val ? 'selected' : ''}>${opt.text}</option>`;
                   }).join('')}
                 </select>
+              </div>
+            </div>
+            
+            <!-- Custom Colors Sub-panel -->
+            <div id="custom-colors-container-${post.id}" class="custom-colors-row ${post.colorPalette === 'Custom' ? '' : 'hidden'}">
+              <div class="customizer-field">
+                <label for="color-primary-${post.id}">Accents / Highlights</label>
+                <div class="color-picker-wrapper">
+                  <input type="color" id="color-primary-${post.id}" class="color-picker-input" value="${(post.customColors && post.customColors.primary) || '#3b82f6'}">
+                  <span class="color-hex-label">${(post.customColors && post.customColors.primary) || '#3b82f6'}</span>
+                </div>
+              </div>
+              <div class="customizer-field">
+                <label for="color-secondary-${post.id}">Subtext / Secondary</label>
+                <div class="color-picker-wrapper">
+                  <input type="color" id="color-secondary-${post.id}" class="color-picker-input" value="${(post.customColors && post.customColors.secondary) || '#cbd5e1'}">
+                  <span class="color-hex-label">${(post.customColors && post.customColors.secondary) || '#cbd5e1'}</span>
+                </div>
+              </div>
+              <div class="customizer-field">
+                <label for="color-bg-start-${post.id}">Gradient Start</label>
+                <div class="color-picker-wrapper">
+                  <input type="color" id="color-bg-start-${post.id}" class="color-picker-input" value="${(post.customColors && post.customColors.gradStart) || '#0b1a3e'}">
+                  <span class="color-hex-label">${(post.customColors && post.customColors.gradStart) || '#0b1a3e'}</span>
+                </div>
+              </div>
+              <div class="customizer-field">
+                <label for="color-bg-end-${post.id}">Gradient End</label>
+                <div class="color-picker-wrapper">
+                  <input type="color" id="color-bg-end-${post.id}" class="color-picker-input" value="${(post.customColors && post.customColors.gradEnd) || '#020617'}">
+                  <span class="color-hex-label">${(post.customColors && post.customColors.gradEnd) || '#020617'}</span>
+                </div>
               </div>
             </div>
             <div class="customizer-row">
@@ -846,6 +879,11 @@ function renderActiveDrafts() {
       const avatarSelect = cardEl.querySelector(`#select-avatar-${post.id}`);
       const headlineInput = cardEl.querySelector(`#input-headline-${post.id}`);
       const subtextInput = cardEl.querySelector(`#input-subtext-${post.id}`);
+      const customColorsContainer = cardEl.querySelector(`#custom-colors-container-${post.id}`);
+      const colorPrimary = cardEl.querySelector(`#color-primary-${post.id}`);
+      const colorSecondary = cardEl.querySelector(`#color-secondary-${post.id}`);
+      const colorBgStart = cardEl.querySelector(`#color-bg-start-${post.id}`);
+      const colorBgEnd = cardEl.querySelector(`#color-bg-end-${post.id}`);
 
       const triggerRedrawAndSave = (isKeystroke = false) => {
         // Update local object memory
@@ -855,6 +893,19 @@ function renderActiveDrafts() {
         if (!post.postContent) post.postContent = {};
         post.postContent.imageHeadline = headlineInput.value;
         post.postContent.imageSubtext = subtextInput.value;
+
+        // Custom colors mapping
+        if (paletteSelect.value === 'Custom') {
+          post.customColors = {
+            primary: colorPrimary.value,
+            secondary: colorSecondary.value,
+            gradStart: colorBgStart.value,
+            gradEnd: colorBgEnd.value
+          };
+          customColorsContainer.classList.remove('hidden');
+        } else {
+          customColorsContainer.classList.add('hidden');
+        }
 
         // Re-draw canvas
         drawCreative(canvas, activeEntry.category, headlineInput.value, subtextInput.value, post.id, activeEntry.date, post.layout || post);
@@ -866,13 +917,21 @@ function renderActiveDrafts() {
             colorPalette: paletteSelect.value,
             avatarStyleIdx: parseInt(avatarSelect.value),
             imageHeadline: headlineInput.value,
-            imageSubtext: subtextInput.value
+            imageSubtext: subtextInput.value,
+            customColors: paletteSelect.value === 'Custom' ? {
+              primary: colorPrimary.value,
+              secondary: colorSecondary.value,
+              gradStart: colorBgStart.value,
+              gradEnd: colorBgEnd.value
+            } : undefined
           });
         }
       };
 
       layoutSelect.addEventListener('change', () => triggerRedrawAndSave(false));
-      paletteSelect.addEventListener('change', () => triggerRedrawAndSave(false));
+      paletteSelect.addEventListener('change', () => {
+        triggerRedrawAndSave(false);
+      });
       avatarSelect.addEventListener('change', () => triggerRedrawAndSave(false));
       
       headlineInput.addEventListener('input', () => triggerRedrawAndSave(true));
@@ -880,6 +939,20 @@ function renderActiveDrafts() {
       
       subtextInput.addEventListener('input', () => triggerRedrawAndSave(true));
       subtextInput.addEventListener('change', () => triggerRedrawAndSave(false));
+
+      // Color pickers listeners
+      [colorPrimary, colorSecondary, colorBgStart, colorBgEnd].forEach(picker => {
+        picker.addEventListener('input', (e) => {
+          // Update hex label next to color input
+          const wrapper = e.target.closest('.color-picker-wrapper');
+          if (wrapper) {
+            const label = wrapper.querySelector('.color-hex-label');
+            if (label) label.textContent = e.target.value;
+          }
+          triggerRedrawAndSave(true);
+        });
+        picker.addEventListener('change', () => triggerRedrawAndSave(false));
+      });
     }
 
     // Copy Content Button Listener
@@ -1413,9 +1486,25 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
   if (customLayout) {
     if (customLayout.layoutFamily || customLayout.colorPalette || customLayout.postContent) {
       const colorPaletteName = customLayout.colorPalette || 'Electric Blue';
-      const matchedPalette = PALETTES.find(p => p.name.toLowerCase() === colorPaletteName.toLowerCase()) || 
-                             PALETTES.find(p => colorPaletteName.toLowerCase().includes(p.name.toLowerCase())) ||
-                             palette;
+      let matchedPalette;
+      if (colorPaletteName.toLowerCase() === 'custom') {
+        const cc = customLayout.customColors || {};
+        matchedPalette = {
+          name: 'Custom',
+          primary: cc.primary || '#3b82f6',
+          secondary: cc.secondary || '#60a5fa',
+          gradStart: cc.gradStart || '#0b1a3e',
+          gradEnd: cc.gradEnd || '#020617',
+          rayColor: 'rgba(255, 255, 255, 0.02)',
+          textGlow: (cc.primary || '#3b82f6') + '26',
+          badgeBg: cc.primary || '#1d4ed8',
+          isLight: false
+        };
+      } else {
+        matchedPalette = PALETTES.find(p => p.name.toLowerCase() === colorPaletteName.toLowerCase()) || 
+                         PALETTES.find(p => colorPaletteName.toLowerCase().includes(p.name.toLowerCase())) ||
+                         palette;
+      }
       const resolvedBadge = (customLayout.postContent && (customLayout.postContent.badgeText || customLayout.postContent.badge)) || (category === 'marketing' ? 'MARKETING TREND' : 'AI TECH TREND');
       activeLayout = buildLayoutFromFamily(customLayout.layoutFamily || 'split-left', matchedPalette, headline, subtext, category, postId);
       if (activeLayout.text && activeLayout.text.badge) {

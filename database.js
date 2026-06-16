@@ -155,6 +155,7 @@ export function updateDraftDesign(date, postId, designData) {
       if (designData.layoutFamily !== undefined) post.layoutFamily = designData.layoutFamily;
       if (designData.colorPalette !== undefined) post.colorPalette = designData.colorPalette;
       if (designData.avatarStyleIdx !== undefined) post.avatarStyleIdx = parseInt(designData.avatarStyleIdx);
+      if (designData.customColors !== undefined) post.customColors = designData.customColors;
       
       if (!post.postContent) post.postContent = {};
       if (designData.imageHeadline !== undefined) post.postContent.imageHeadline = designData.imageHeadline;
