@@ -27,10 +27,10 @@ for (let i = 1; i <= 5; i++) {
     if (state.history.length > 0) renderActiveDrafts();
   };
   img.onerror = () => {
-    console.warn(`[Avatar] Failed to load avatar_daily_${i}.jpg. Falling back.`);
+    console.warn(`[Avatar] Failed to load avatar_daily_${i}.jpg. Falling back to avatars/avatar-${i}.png`);
     if (img.src.indexOf(`avatar_daily_${i}.jpg`) !== -1) {
-      img.src = 'avatar_daily.jpg?t=' + Date.now();
-    } else if (img.src.indexOf('avatar_daily.jpg') !== -1) {
+      img.src = `avatars/avatar-${i}.png`;
+    } else if (img.src.indexOf(`avatars/avatar-${i}.png`) !== -1) {
       img.src = 'avatar.jpg?t=' + Date.now();
     }
   };
