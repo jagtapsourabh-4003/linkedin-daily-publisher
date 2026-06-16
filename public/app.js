@@ -677,6 +677,18 @@ function renderActiveDrafts() {
     const charCount = content.length;
     const hashtagCount = (content.match(/#/g) || []).length;
 
+    // Resolve current active colors to populate picker inputs in real-time
+    const activePaletteName = post.colorPalette || 'Electric Blue';
+    const activePalette = PALETTES.find(p => p.name.toLowerCase() === activePaletteName.toLowerCase()) || 
+                          PALETTES.find(p => activePaletteName.toLowerCase().includes(p.name.toLowerCase())) ||
+                          PALETTES[0];
+
+    const curPrimary = (activePaletteName === 'Custom' && post.customColors) ? post.customColors.primary : activePalette.primary;
+    const curSecondary = (activePaletteName === 'Custom' && post.customColors) ? post.customColors.secondary : (activePalette.secondary || '#cbd5e1');
+    const curBgStart = (activePaletteName === 'Custom' && post.customColors) ? post.customColors.gradStart : activePalette.gradStart;
+    const curBgEnd = (activePaletteName === 'Custom' && post.customColors) ? post.customColors.gradEnd : activePalette.gradEnd;
+    const curText = (activePaletteName === 'Custom' && post.customColors) ? post.customColors.textColor : (activePalette.textColor || (activePalette.isLight ? '#18181b' : '#ffffff'));
+
     cardEl.innerHTML = `
       <div class="draft-card-header">
         <div class="header-main-info">
@@ -776,40 +788,40 @@ function renderActiveDrafts() {
             </div>
             
             <!-- Custom Colors Sub-panel -->
-            <div id="custom-colors-container-${post.id}" class="custom-colors-row ${post.colorPalette === 'Custom' ? '' : 'hidden'}">
+            <div id="custom-colors-container-${post.id}" class="custom-colors-row">
               <div class="customizer-field">
                 <label for="color-text-${post.id}">Headline Font Color</label>
                 <div class="color-picker-wrapper">
-                  <input type="color" id="color-text-${post.id}" class="color-picker-input" value="${(post.customColors && post.customColors.textColor) || '#ffffff'}">
-                  <span class="color-hex-label">${(post.customColors && post.customColors.textColor) || '#ffffff'}</span>
+                  <input type="color" id="color-text-${post.id}" class="color-picker-input" value="${curText}">
+                  <span class="color-hex-label">${curText}</span>
                 </div>
               </div>
               <div class="customizer-field">
                 <label for="color-primary-${post.id}">Accents / Highlights</label>
                 <div class="color-picker-wrapper">
-                  <input type="color" id="color-primary-${post.id}" class="color-picker-input" value="${(post.customColors && post.customColors.primary) || '#3b82f6'}">
-                  <span class="color-hex-label">${(post.customColors && post.customColors.primary) || '#3b82f6'}</span>
+                  <input type="color" id="color-primary-${post.id}" class="color-picker-input" value="${curPrimary}">
+                  <span class="color-hex-label">${curPrimary}</span>
                 </div>
               </div>
               <div class="customizer-field">
                 <label for="color-secondary-${post.id}">Subtext / Secondary</label>
                 <div class="color-picker-wrapper">
-                  <input type="color" id="color-secondary-${post.id}" class="color-picker-input" value="${(post.customColors && post.customColors.secondary) || '#cbd5e1'}">
-                  <span class="color-hex-label">${(post.customColors && post.customColors.secondary) || '#cbd5e1'}</span>
+                  <input type="color" id="color-secondary-${post.id}" class="color-picker-input" value="${curSecondary}">
+                  <span class="color-hex-label">${curSecondary}</span>
                 </div>
               </div>
               <div class="customizer-field">
                 <label for="color-bg-start-${post.id}">Gradient Start</label>
                 <div class="color-picker-wrapper">
-                  <input type="color" id="color-bg-start-${post.id}" class="color-picker-input" value="${(post.customColors && post.customColors.gradStart) || '#0b1a3e'}">
-                  <span class="color-hex-label">${(post.customColors && post.customColors.gradStart) || '#0b1a3e'}</span>
+                  <input type="color" id="color-bg-start-${post.id}" class="color-picker-input" value="${curBgStart}">
+                  <span class="color-hex-label">${curBgStart}</span>
                 </div>
               </div>
               <div class="customizer-field">
                 <label for="color-bg-end-${post.id}">Gradient End</label>
                 <div class="color-picker-wrapper">
-                  <input type="color" id="color-bg-end-${post.id}" class="color-picker-input" value="${(post.customColors && post.customColors.gradEnd) || '#020617'}">
-                  <span class="color-hex-label">${(post.customColors && post.customColors.gradEnd) || '#020617'}</span>
+                  <input type="color" id="color-bg-end-${post.id}" class="color-picker-input" value="${curBgEnd}">
+                  <span class="color-hex-label">${curBgEnd}</span>
                 </div>
               </div>
             </div>
@@ -911,9 +923,6 @@ function renderActiveDrafts() {
             gradStart: colorBgStart.value,
             gradEnd: colorBgEnd.value
           };
-          customColorsContainer.classList.remove('hidden');
-        } else {
-          customColorsContainer.classList.add('hidden');
         }
 
         // Re-draw canvas
@@ -939,9 +948,29 @@ function renderActiveDrafts() {
       };
 
       layoutSelect.addEventListener('change', () => triggerRedrawAndSave(false));
+      
       paletteSelect.addEventListener('change', () => {
+        const val = paletteSelect.value;
+        if (val !== 'Custom') {
+          const matched = PALETTES.find(p => p.name === val) || PALETTES[0];
+          
+          // Update pickers
+          colorText.value = matched.textColor || (matched.isLight ? '#18181b' : '#ffffff');
+          colorPrimary.value = matched.primary;
+          colorSecondary.value = matched.secondary || '#cbd5e1';
+          colorBgStart.value = matched.gradStart;
+          colorBgEnd.value = matched.gradEnd;
+          
+          // Update labels
+          cardEl.querySelector(`#color-text-${post.id}`).closest('.color-picker-wrapper').querySelector('.color-hex-label').textContent = colorText.value;
+          cardEl.querySelector(`#color-primary-${post.id}`).closest('.color-picker-wrapper').querySelector('.color-hex-label').textContent = colorPrimary.value;
+          cardEl.querySelector(`#color-secondary-${post.id}`).closest('.color-picker-wrapper').querySelector('.color-hex-label').textContent = colorSecondary.value;
+          cardEl.querySelector(`#color-bg-start-${post.id}`).closest('.color-picker-wrapper').querySelector('.color-hex-label').textContent = colorBgStart.value;
+          cardEl.querySelector(`#color-bg-end-${post.id}`).closest('.color-picker-wrapper').querySelector('.color-hex-label').textContent = colorBgEnd.value;
+        }
         triggerRedrawAndSave(false);
       });
+
       avatarSelect.addEventListener('change', () => triggerRedrawAndSave(false));
       
       headlineInput.addEventListener('input', () => triggerRedrawAndSave(true));
@@ -953,6 +982,9 @@ function renderActiveDrafts() {
       // Color pickers listeners
       [colorText, colorPrimary, colorSecondary, colorBgStart, colorBgEnd].forEach(picker => {
         picker.addEventListener('input', (e) => {
+          // Force dropdown palette selection to 'Custom' in the UI and state
+          paletteSelect.value = 'Custom';
+          
           // Update hex label next to color input
           const wrapper = e.target.closest('.color-picker-wrapper');
           if (wrapper) {
@@ -961,7 +993,10 @@ function renderActiveDrafts() {
           }
           triggerRedrawAndSave(true);
         });
-        picker.addEventListener('change', () => triggerRedrawAndSave(false));
+        picker.addEventListener('change', () => {
+          paletteSelect.value = 'Custom';
+          triggerRedrawAndSave(false);
+        });
       });
     }
 
