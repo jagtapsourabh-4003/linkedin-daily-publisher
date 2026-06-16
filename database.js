@@ -143,3 +143,26 @@ export function markAsPosted(date, postId, imageUrl = null) {
   }
   return false;
 }
+
+// Helper to update a draft post's design settings
+export function updateDraftDesign(date, postId, designData) {
+  const db = readDb();
+  const entry = db.history.find(item => item.date === date);
+  
+  if (entry && entry.posts) {
+    const post = entry.posts.find(p => p.id === parseInt(postId));
+    if (post) {
+      if (designData.layoutFamily !== undefined) post.layoutFamily = designData.layoutFamily;
+      if (designData.colorPalette !== undefined) post.colorPalette = designData.colorPalette;
+      if (designData.avatarStyleIdx !== undefined) post.avatarStyleIdx = parseInt(designData.avatarStyleIdx);
+      
+      if (!post.postContent) post.postContent = {};
+      if (designData.imageHeadline !== undefined) post.postContent.imageHeadline = designData.imageHeadline;
+      if (designData.imageSubtext !== undefined) post.postContent.imageSubtext = designData.imageSubtext;
+      
+      writeDb(db);
+      return true;
+    }
+  }
+  return false;
+}

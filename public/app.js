@@ -84,6 +84,24 @@ for (let i = 1; i <= 5; i++) {
   optionAvatars[i - 1].src = `avatar_daily_${i}.jpg?t=` + Date.now();
 }
 
+const LAYOUT_FAMILIES = [
+  'split-left',
+  'split-right',
+  'hero-center',
+  'magazine-cover',
+  'quote-card',
+  'podcast-layout',
+  'presentation-slide',
+  'news-card',
+  'editorial-cover',
+  'phone-mockup',
+  'floating-cards',
+  'layered-depth',
+  'diagonal-layout',
+  'asymmetrical-grid',
+  'modern-minimal'
+];
+
 
 // Premium Color Palettes for daily rotating theme variations
 const PALETTES = [
@@ -512,6 +530,23 @@ async function saveDraftEdit(date, postId, content) {
   }
 }
 
+// Save customized draft creative parameters via API
+async function saveDesignEdit(date, postId, designData) {
+  try {
+    const res = await fetch('/api/edit-design', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ date, postId, designData })
+    });
+    if (!res.ok) throw new Error('Auto-save design failed');
+    console.log(`[Design] Auto-saved design edits for Post ${postId}`);
+  } catch (err) {
+    console.error('[Editor] Failed to auto-save design edit:', err.message);
+    showToast('Failed to auto-save creative design edits.', 'error');
+  }
+}
+
+
 // Send Selected Post & Rendered Graphic to Google Flow Webhook
 async function postToGoogleFlow(postId, btnElement) {
   const date = state.activeDate;
@@ -696,11 +731,61 @@ function renderActiveDrafts() {
       <!-- Visual Graphic Preview -->
       <div class="creative-container">
         <div class="creative-toggle-header active" id="toggle-creative-${post.id}">
-          <span>🖼 View Social Graphic Card</span>
+          <span>🖼 View & Customize Social Graphic Card</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
         </div>
         <div class="creative-content-body" id="creative-body-${post.id}">
           <canvas id="canvas-${post.id}" width="1080" height="1080" class="creative-canvas"></canvas>
+          
+          <!-- Design Customizer Panel -->
+          <div class="design-customizer-panel" ${isDayPosted ? 'style="opacity: 0.7; pointer-events: none;"' : ''}>
+            <h4 class="customizer-title">🎨 Customize Graphic Design</h4>
+            <div class="customizer-row">
+              <div class="customizer-field">
+                <label for="select-layout-${post.id}">Layout Template</label>
+                <select id="select-layout-${post.id}" class="customizer-select">
+                  ${LAYOUT_FAMILIES.map(family => 
+                    `<option value="${family}" ${post.layoutFamily === family ? 'selected' : ''}>${family}</option>`
+                  ).join('')}
+                </select>
+              </div>
+              <div class="customizer-field">
+                <label for="select-palette-${post.id}">Color Palette</label>
+                <select id="select-palette-${post.id}" class="customizer-select">
+                  ${PALETTES.map(p => 
+                    `<option value="${p.name}" ${(post.colorPalette && post.colorPalette.toLowerCase() === p.name.toLowerCase()) ? 'selected' : ''}>${p.name}</option>`
+                  ).join('')}
+                </select>
+              </div>
+              <div class="customizer-field">
+                <label for="select-avatar-${post.id}">Avatar Pose / Outfit</label>
+                <select id="select-avatar-${post.id}" class="customizer-select">
+                  ${[
+                    { val: 0, text: '👔 Outfit 1 (Stage/Thumbs-up)' },
+                    { val: 1, text: '🌲 Outfit 2 (Mountains Trail)' },
+                    { val: 2, text: '🥂 Outfit 3 (Social Event)' },
+                    { val: 3, text: '🎤 Outfit 4 (Podium Speech)' },
+                    { val: 4, text: '☕ Outfit 5 (Cafe Workspace)' }
+                  ].map(opt => {
+                    const selectedAvIdx = post.avatarStyleIdx !== undefined ? post.avatarStyleIdx : ((post.id - 1) % 5);
+                    return `<option value="${opt.val}" ${selectedAvIdx === opt.val ? 'selected' : ''}>${opt.text}</option>`;
+                  }).join('')}
+                </select>
+              </div>
+            </div>
+            <div class="customizer-row">
+              <div class="customizer-field full-width">
+                <label for="input-headline-${post.id}">Creative Headline</label>
+                <input type="text" id="input-headline-${post.id}" class="customizer-input" value="${headlineText.replace(/"/g, '&quot;')}" placeholder="Enter bold headline text...">
+              </div>
+            </div>
+            <div class="customizer-row">
+              <div class="customizer-field full-width">
+                <label for="input-subtext-${post.id}">Creative Subtext</label>
+                <input type="text" id="input-subtext-${post.id}" class="customizer-input" value="${subtextText.replace(/"/g, '&quot;')}" placeholder="Enter subtext info...">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -753,6 +838,49 @@ function renderActiveDrafts() {
     textarea.addEventListener('change', (e) => {
       saveDraftEdit(state.activeDate, post.id, e.target.value);
     });
+
+    // Design Customizer Event Listeners
+    if (!isDayPosted) {
+      const layoutSelect = cardEl.querySelector(`#select-layout-${post.id}`);
+      const paletteSelect = cardEl.querySelector(`#select-palette-${post.id}`);
+      const avatarSelect = cardEl.querySelector(`#select-avatar-${post.id}`);
+      const headlineInput = cardEl.querySelector(`#input-headline-${post.id}`);
+      const subtextInput = cardEl.querySelector(`#input-subtext-${post.id}`);
+
+      const triggerRedrawAndSave = (isKeystroke = false) => {
+        // Update local object memory
+        post.layoutFamily = layoutSelect.value;
+        post.colorPalette = paletteSelect.value;
+        post.avatarStyleIdx = parseInt(avatarSelect.value);
+        if (!post.postContent) post.postContent = {};
+        post.postContent.imageHeadline = headlineInput.value;
+        post.postContent.imageSubtext = subtextInput.value;
+
+        // Re-draw canvas
+        drawCreative(canvas, activeEntry.category, headlineInput.value, subtextInput.value, post.id, activeEntry.date, post.layout || post);
+
+        // Save layout modifications to server (only on select change or text input blur)
+        if (!isKeystroke) {
+          saveDesignEdit(state.activeDate, post.id, {
+            layoutFamily: layoutSelect.value,
+            colorPalette: paletteSelect.value,
+            avatarStyleIdx: parseInt(avatarSelect.value),
+            imageHeadline: headlineInput.value,
+            imageSubtext: subtextInput.value
+          });
+        }
+      };
+
+      layoutSelect.addEventListener('change', () => triggerRedrawAndSave(false));
+      paletteSelect.addEventListener('change', () => triggerRedrawAndSave(false));
+      avatarSelect.addEventListener('change', () => triggerRedrawAndSave(false));
+      
+      headlineInput.addEventListener('input', () => triggerRedrawAndSave(true));
+      headlineInput.addEventListener('change', () => triggerRedrawAndSave(false));
+      
+      subtextInput.addEventListener('input', () => triggerRedrawAndSave(true));
+      subtextInput.addEventListener('change', () => triggerRedrawAndSave(false));
+    }
 
     // Copy Content Button Listener
     cardEl.querySelector(`#btn-copy-${post.id}`).addEventListener('click', () => {
@@ -1258,7 +1386,10 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
   // Calculate common visual variables used by both customLayout and fallback branches
   const dayIdx = getDayIndex(dateStr);
   const layoutIdx = (dayIdx + postId - 1) % 5;
-  const styleIdx = (postId - 1) % 5; // Outfit style rotates by postId
+  let styleIdx = (postId - 1) % 5; // Outfit style rotates by postId
+  if (customLayout && customLayout.avatarStyleIdx !== undefined) {
+    styleIdx = customLayout.avatarStyleIdx;
+  }
   
   const paletteIdx = (dayIdx + postId - 1) % PALETTES.length;
   const palette = PALETTES[paletteIdx];

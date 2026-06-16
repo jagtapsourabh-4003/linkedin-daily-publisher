@@ -13,6 +13,7 @@ import {
   getHistory, 
   saveGeneration, 
   updateDraftPost, 
+  updateDraftDesign,
   markAsPosted 
 } from './database.js';
 
@@ -147,6 +148,21 @@ app.post('/api/edit', (req, res) => {
   const success = updateDraftPost(date, postId, content);
   if (success) {
     res.json({ success: true, message: 'Draft updated successfully' });
+  } else {
+    res.status(404).json({ error: 'Draft post not found' });
+  }
+});
+
+// Edit a specific draft's creative design layout parameters
+app.post('/api/edit-design', (req, res) => {
+  const { date, postId, designData } = req.body;
+  if (!date || !postId || !designData) {
+    return res.status(400).json({ error: 'Missing parameters' });
+  }
+
+  const success = updateDraftDesign(date, postId, designData);
+  if (success) {
+    res.json({ success: true, message: 'Draft design updated successfully' });
   } else {
     res.status(404).json({ error: 'Draft post not found' });
   }
