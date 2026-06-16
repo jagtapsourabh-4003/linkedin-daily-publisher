@@ -133,6 +133,62 @@ Each object in the array must follow this structure:
   let attempts = 6;
   let delay = 2000;
   
+  const responseSchema = {
+    type: 'ARRAY',
+    items: {
+      type: 'OBJECT',
+      properties: {
+        designArchetype: { type: 'STRING' },
+        layoutFamily: { type: 'STRING' },
+        colorPalette: { type: 'STRING' },
+        characterRole: { type: 'STRING' },
+        environment: { type: 'STRING' },
+        cameraStyle: { type: 'STRING' },
+        clothingStyle: { type: 'STRING' },
+        avatarPrompt: { type: 'STRING' },
+        postContent: {
+          type: 'OBJECT',
+          properties: {
+            style: { type: 'STRING' },
+            hook: { type: 'STRING' },
+            content: { type: 'STRING' },
+            sourceArticle: { type: 'STRING' },
+            imageHeadline: { type: 'STRING' },
+            imageSubtext: { type: 'STRING' },
+            badgeText: { type: 'STRING' }
+          },
+          required: ['style', 'hook', 'content', 'sourceArticle', 'imageHeadline', 'imageSubtext', 'badgeText']
+        },
+        layoutConfig: {
+          type: 'OBJECT',
+          properties: {
+            dimensions: {
+              type: 'OBJECT',
+              properties: {
+                width: { type: 'INTEGER' },
+                height: { type: 'INTEGER' }
+              },
+              required: ['width', 'height']
+            }
+          },
+          required: ['dimensions']
+        }
+      },
+      required: [
+        'designArchetype',
+        'layoutFamily',
+        'colorPalette',
+        'characterRole',
+        'environment',
+        'cameraStyle',
+        'clothingStyle',
+        'avatarPrompt',
+        'postContent',
+        'layoutConfig'
+      ]
+    }
+  };
+  
   for (let i = 0; i < attempts; i++) {
     try {
       console.log(`[Generator] Initiating Gemini call using ${activeModel} (attempt ${i + 1}/${attempts})...`);
@@ -155,6 +211,7 @@ Each object in the array must follow this structure:
         config: {
           systemInstruction: systemInstruction,
           responseMimeType: 'application/json',
+          responseSchema: responseSchema,
           temperature: 0.7,
         }
       });
