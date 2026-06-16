@@ -233,10 +233,10 @@ app.post('/api/post', async (req, res) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        text: post.content,
+        text: post.postContent ? post.postContent.content : post.content,
         imageUrl: imageUrl || null,
-        style: post.style,
-        sourceArticle: post.sourceArticle,
+        style: post.postContent ? post.postContent.style : post.style,
+        sourceArticle: post.postContent ? post.postContent.sourceArticle : post.sourceArticle,
         category: dayEntry.category,
         date: date,
         author: 'Marketing Manager & AI Expert'

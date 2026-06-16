@@ -236,8 +236,12 @@ Each object in the array must follow this structure:
         }
       } catch (err) {
         console.warn(`[Generator] Unique avatar ${post.id} generation failed. Falling back to default:`, err.message);
+        const styleAvatarPath = path.resolve('public', 'avatars', `avatar-${post.id}.png`);
         const defaultAvatarPath = path.resolve('public', 'avatar.jpg');
-        if (fs.existsSync(defaultAvatarPath)) {
+        if (fs.existsSync(styleAvatarPath)) {
+          fs.copyFileSync(styleAvatarPath, dailyAvatarPath);
+          console.log(`[Generator] Fallback avatar for Post ${post.id} copied from: ${styleAvatarPath}`);
+        } else if (fs.existsSync(defaultAvatarPath)) {
           fs.copyFileSync(defaultAvatarPath, dailyAvatarPath);
         }
       }

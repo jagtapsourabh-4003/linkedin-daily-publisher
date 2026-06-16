@@ -129,23 +129,25 @@ const PALETTES = [
   },
   {
     name: 'Royal Gold',
-    primary: '#eab308',
-    secondary: '#fde047',
-    gradStart: '#231c03',
-    gradEnd: '#080600',
-    rayColor: 'rgba(234, 179, 8, 0.04)',
-    textGlow: 'rgba(234, 179, 8, 0.15)',
-    badgeBg: '#a16207'
+    primary: '#1e1b4b',
+    secondary: '#000000',
+    gradStart: '#ffcc00',
+    gradEnd: '#ffcc00',
+    rayColor: 'rgba(0, 0, 0, 0.02)',
+    textGlow: 'rgba(0, 0, 0, 0.03)',
+    badgeBg: '#1e1b4b',
+    isLight: true
   },
   {
     name: 'Teal White',
-    primary: '#0d9488',
+    primary: '#0f172a',
     secondary: '#14b8a6',
-    gradStart: '#061d1c',
-    gradEnd: '#010808',
-    rayColor: 'rgba(13, 148, 136, 0.04)',
-    textGlow: 'rgba(13, 148, 136, 0.15)',
-    badgeBg: '#0f766e'
+    gradStart: '#e0f2fe',
+    gradEnd: '#e0f2fe',
+    rayColor: 'rgba(0, 0, 0, 0.02)',
+    textGlow: 'rgba(0, 0, 0, 0.03)',
+    badgeBg: '#0f766e',
+    isLight: true
   },
   {
     name: 'Slate Blue',
@@ -219,13 +221,14 @@ const PALETTES = [
   },
   {
     name: 'Platinum Grey',
-    primary: '#cbd5e1',
-    secondary: '#e2e8f0',
-    gradStart: '#1e293b',
-    gradEnd: '#0f172a',
-    rayColor: 'rgba(203, 213, 225, 0.03)',
-    textGlow: 'rgba(203, 213, 225, 0.1)',
-    badgeBg: '#334155'
+    primary: '#0d9488',
+    secondary: '#f97316',
+    gradStart: '#f4f4f5',
+    gradEnd: '#f4f4f5',
+    rayColor: 'rgba(0, 0, 0, 0.02)',
+    textGlow: 'rgba(0, 0, 0, 0.03)',
+    badgeBg: '#0d9488',
+    isLight: true
   },
   {
     name: 'Dark Forest',
@@ -891,43 +894,82 @@ function buildLayoutFromFamily(layoutFamily, palette, headline, subtext, categor
 
   switch (fam) {
     case 'split-left':
-      layout.background.drawGrid = true;
-      layout.background.glows.push({ x: 280, y: 540, r: 500, color: palette.textGlow });
-      layout.avatar = {
-        type: 'rect',
-        x: 280,
-        y: 540,
-        w: 420,
-        h: 780,
-        glowColor: palette.primary + '40',
-        glowBlur: 40,
-        strokeColor: palette.primary,
-        lineWidth: 4
-      };
-      layout.text.badge = { text: layout.text.badge.text, bgColor: palette.badgeBg, x: 550, y: 180, w: 220, h: 36 };
-      layout.text.headline = { fontSize: 42, color: '#ffffff', highlightColor: palette.primary, align: 'left', x: 550, y: 250, w: 450 };
-      layout.text.subtext = { fontSize: 22, color: '#cbd5e1', align: 'left', x: 550, y: 560, w: 450 };
-      layout.text.cta = { text: 'READ FULL POST', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 20, x: 550, y: 800, w: 260, h: 55 };
+      if (palette.isLight) {
+        layout.background.drawGrid = false;
+        layout.shapes.push({ type: 'circle', x: 280, y: 540, r: 400, color: '#18181b' });
+        layout.shapes.push({ type: 'circle', x: 100, y: 980, r: 250, color: palette.gradStart });
+        layout.avatar = {
+          type: 'rect',
+          x: 280,
+          y: 540,
+          w: 420,
+          h: 780,
+          glowColor: 'transparent',
+          strokeColor: 'transparent',
+          lineWidth: 0
+        };
+        layout.text.badge = { text: layout.text.badge.text, bgColor: '#18181b', x: 550, y: 180, w: 220, h: 36 };
+        layout.text.headline = { fontSize: 42, color: '#18181b', highlightColor: palette.primary, align: 'left', x: 550, y: 250, w: 450 };
+        layout.text.subtext = { fontSize: 22, color: '#374151', align: 'left', x: 550, y: 560, w: 450 };
+        layout.text.cta = { text: 'READ FULL POST', bgColor: '#18181b', glowColor: 'transparent', glowBlur: 0, x: 550, y: 800, w: 260, h: 55 };
+      } else {
+        layout.background.drawGrid = true;
+        layout.background.glows.push({ x: 280, y: 540, r: 500, color: palette.textGlow });
+        layout.avatar = {
+          type: 'rect',
+          x: 280,
+          y: 540,
+          w: 420,
+          h: 780,
+          glowColor: palette.primary + '40',
+          glowBlur: 40,
+          strokeColor: palette.primary,
+          lineWidth: 4
+        };
+        layout.text.badge = { text: layout.text.badge.text, bgColor: palette.badgeBg, x: 550, y: 180, w: 220, h: 36 };
+        layout.text.headline = { fontSize: 42, color: '#ffffff', highlightColor: palette.primary, align: 'left', x: 550, y: 250, w: 450 };
+        layout.text.subtext = { fontSize: 22, color: '#cbd5e1', align: 'left', x: 550, y: 560, w: 450 };
+        layout.text.cta = { text: 'READ FULL POST', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 20, x: 550, y: 800, w: 260, h: 55 };
+      }
       break;
 
     case 'split-right':
-      layout.background.drawGrid = true;
-      layout.background.glows.push({ x: 800, y: 540, r: 500, color: palette.textGlow });
-      layout.avatar = {
-        type: 'rect',
-        x: 800,
-        y: 540,
-        w: 420,
-        h: 780,
-        glowColor: palette.primary + '40',
-        glowBlur: 40,
-        strokeColor: palette.primary,
-        lineWidth: 4
-      };
-      layout.text.badge = { text: layout.text.badge.text, bgColor: palette.badgeBg, x: 80, y: 180, w: 220, h: 36 };
-      layout.text.headline = { fontSize: 42, color: '#ffffff', highlightColor: palette.primary, align: 'left', x: 80, y: 250, w: 450 };
-      layout.text.subtext = { fontSize: 22, color: '#cbd5e1', align: 'left', x: 80, y: 560, w: 450 };
-      layout.text.cta = { text: 'READ FULL POST', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 20, x: 80, y: 800, w: 260, h: 55 };
+      if (palette.isLight) {
+        layout.shapes.push({ type: 'rect', x: 800, y: 540, w: 420, h: 780, color: palette.secondary || '#f97316', borderRadius: 24, tilt: -0.08 });
+        layout.shapes.push({ type: 'rect', x: 920, y: 800, w: 180, h: 180, color: palette.primary || '#0d9488', borderRadius: 24 });
+        layout.avatar = {
+          type: 'rect',
+          x: 800,
+          y: 540,
+          w: 380,
+          h: 700,
+          glowColor: 'transparent',
+          strokeColor: 'transparent',
+          lineWidth: 0
+        };
+        layout.text.badge = { text: layout.text.badge.text, bgColor: palette.primary || '#0d9488', x: 80, y: 180, w: 220, h: 36 };
+        layout.text.headline = { fontSize: 42, color: '#1f2937', highlightColor: palette.primary, align: 'left', x: 80, y: 250, w: 450 };
+        layout.text.subtext = { fontSize: 22, color: '#4b5563', align: 'left', x: 80, y: 560, w: 450 };
+        layout.text.cta = { text: 'READ FULL POST', bgColor: palette.primary || '#0d9488', glowColor: 'transparent', glowBlur: 0, x: 80, y: 800, w: 260, h: 55 };
+      } else {
+        layout.background.drawGrid = true;
+        layout.background.glows.push({ x: 800, y: 540, r: 500, color: palette.textGlow });
+        layout.avatar = {
+          type: 'rect',
+          x: 800,
+          y: 540,
+          w: 420,
+          h: 780,
+          glowColor: palette.primary + '40',
+          glowBlur: 40,
+          strokeColor: palette.primary,
+          lineWidth: 4
+        };
+        layout.text.badge = { text: layout.text.badge.text, bgColor: palette.badgeBg, x: 80, y: 180, w: 220, h: 36 };
+        layout.text.headline = { fontSize: 42, color: '#ffffff', highlightColor: palette.primary, align: 'left', x: 80, y: 250, w: 450 };
+        layout.text.subtext = { fontSize: 22, color: '#cbd5e1', align: 'left', x: 80, y: 560, w: 450 };
+        layout.text.cta = { text: 'READ FULL POST', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 20, x: 80, y: 800, w: 260, h: 55 };
+      }
       break;
 
     case 'hero-center':
@@ -981,31 +1023,21 @@ function buildLayoutFromFamily(layoutFamily, palette, headline, subtext, categor
       break;
 
     case 'quote-card':
-      layout.shapes.push({
-        type: 'rect',
-        x: 540,
-        y: 460,
-        w: 920,
-        h: 520,
-        color: 'rgba(255, 255, 255, 0.03)',
-        strokeColor: 'rgba(255, 255, 255, 0.08)',
-        borderRadius: 24
-      });
+      layout.shapes.push({ type: 'text', text: '“', x: 80, y: 350, font: 'bold 360px Georgia', color: 'rgba(255, 255, 255, 0.08)' });
       layout.avatar = {
-        type: 'circle',
-        x: 180,
-        y: 820,
-        w: 140,
-        h: 140,
-        glowColor: palette.primary + '25',
-        glowBlur: 20,
-        strokeColor: palette.primary,
-        lineWidth: 3
+        type: 'rect',
+        x: 820,
+        y: 540,
+        w: 480,
+        h: 900,
+        glowColor: 'transparent',
+        strokeColor: 'transparent',
+        lineWidth: 0
       };
-      layout.text.badge = { text: 'INSIGHT OF THE DAY', bgColor: palette.badgeBg, x: 100, y: 100, w: 240, h: 36 };
-      layout.text.headline = { fontSize: 38, color: '#ffffff', highlightColor: palette.primary, align: 'left', x: 140, y: 240, w: 800 };
-      layout.text.subtext = { fontSize: 22, color: '#cbd5e1', align: 'left', x: 280, y: 820, w: 460 };
-      layout.text.cta = { text: 'VIEW FULL POST', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 20, x: 760, y: 800, w: 200, h: 55 };
+      layout.text.badge = { text: 'INSIGHT OF THE DAY', bgColor: palette.badgeBg, x: 80, y: 100, w: 240, h: 36 };
+      layout.text.headline = { fontSize: 38, color: '#ffffff', highlightColor: palette.primary, align: 'left', x: 80, y: 240, w: 650 };
+      layout.text.subtext = { fontSize: 22, color: '#cbd5e1', align: 'left', x: 80, y: 580, w: 650 };
+      layout.text.cta = { text: 'VIEW FULL POST', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 20, x: 80, y: 820, w: 240, h: 55 };
       break;
 
     case 'podcast-layout':
@@ -1350,6 +1382,11 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
       if (Array.isArray(activeLayout.shapes)) {
         activeLayout.shapes.forEach(shape => {
           ctx.save();
+          if (shape.tilt) {
+            ctx.translate(shape.x, shape.y);
+            ctx.rotate(shape.tilt);
+            ctx.translate(-shape.x, -shape.y);
+          }
           ctx.fillStyle = shape.color || 'rgba(255,255,255,0.05)';
           ctx.strokeStyle = shape.strokeColor || 'transparent';
           ctx.lineWidth = shape.lineWidth || 1;
@@ -1377,6 +1414,10 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
             ctx.moveTo(shape.x1, shape.y1);
             ctx.lineTo(shape.x2, shape.y2);
             ctx.stroke();
+          } else if (shape.type === 'text') {
+            ctx.font = shape.font || 'bold 120px Georgia';
+            ctx.fillStyle = shape.color || 'rgba(255,255,255,0.1)';
+            ctx.fillText(shape.text, shape.x, shape.y);
           }
           ctx.restore();
         });
@@ -1516,7 +1557,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
         // Headline
         if (txt.headline) {
           ctx.save();
-          ctx.fillStyle = txt.headline.color || '#ffffff';
+          ctx.fillStyle = txt.headline.color || (palette.isLight ? '#18181b' : '#ffffff');
           const fontSize = txt.headline.fontSize || 38;
           ctx.font = `800 ${fontSize}px Outfit`;
           const hlColor = txt.headline.highlightColor || palette.primary;
@@ -1536,7 +1577,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
         // Dots separator (only draw in fallback or if not using explicit layout to avoid clutter)
         if (!hasExplicitHeadline && !hasExplicitSubtext) {
           ctx.save();
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+          ctx.fillStyle = palette.isLight ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.15)';
           ctx.font = '22px Inter';
           ctx.textAlign = align;
           const linkX = align === 'center' ? tx + tw/2 : tx;
@@ -1548,7 +1589,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
         // Subtext
         if (txt.subtext) {
           ctx.save();
-          ctx.fillStyle = txt.subtext.color || '#cbd5e1';
+          ctx.fillStyle = txt.subtext.color || (palette.isLight ? '#374151' : '#cbd5e1');
           const fontSize = txt.subtext.fontSize || 20;
           ctx.font = `500 ${fontSize}px Inter`;
           const hlColor = txt.subtext.highlightColor || null;
@@ -1575,7 +1616,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           const btnY = hasExplicitCta ? txt.cta.y : Math.min(currentY, 880); 
           ctx.roundRect(btnX, btnY, btnW, btnH, 12);
           
-          if (txt.cta.glowColor) {
+          if (txt.cta.glowColor && txt.cta.glowColor !== 'transparent') {
             ctx.shadowColor = txt.cta.glowColor;
             ctx.shadowBlur = txt.cta.glowBlur || 20;
             ctx.shadowOffsetX = 0;
@@ -1593,7 +1634,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           ctx.fillText(txt.cta.text || 'READ FULL POST', btnX + btnW/2, btnY + 35);
           
           // Profile link
-          ctx.fillStyle = '#94a3b8';
+          ctx.fillStyle = palette.isLight ? '#374151' : '#94a3b8';
           ctx.font = '600 20px Inter';
           ctx.textAlign = (hasExplicitCta || align === 'center') ? 'center' : 'left';
           const profileX = hasExplicitCta ? btnX + btnW/2 : (align === 'center' ? tx + tw/2 : btnX);
