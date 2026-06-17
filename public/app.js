@@ -825,16 +825,27 @@ function renderActiveDrafts() {
                 </div>
               </div>
             </div>
-            <div class="customizer-row">
-              <div class="customizer-field full-width">
-                <label for="input-headline-${post.id}">Creative Headline</label>
-                <input type="text" id="input-headline-${post.id}" class="customizer-input" value="${headlineText.replace(/"/g, '&quot;')}" placeholder="Enter bold headline text...">
+            <!-- Font Size Overrides Row -->
+            <div class="customizer-row" style="margin-top: 10px;">
+              <div class="customizer-field">
+                <label for="slider-headline-size-${post.id}">Headline Font Size: <span id="val-headline-size-${post.id}">${post.headlineFontSize || 40}px</span></label>
+                <input type="range" id="slider-headline-size-${post.id}" min="20" max="80" value="${post.headlineFontSize || 40}" class="customizer-range">
+              </div>
+              <div class="customizer-field">
+                <label for="slider-subtext-size-${post.id}">Subtext Font Size: <span id="val-subtext-size-${post.id}">${post.subtextFontSize || 22}px</span></label>
+                <input type="range" id="slider-subtext-size-${post.id}" min="12" max="40" value="${post.subtextFontSize || 22}" class="customizer-range">
               </div>
             </div>
             <div class="customizer-row">
               <div class="customizer-field full-width">
-                <label for="input-subtext-${post.id}">Creative Subtext</label>
-                <input type="text" id="input-subtext-${post.id}" class="customizer-input" value="${subtextText.replace(/"/g, '&quot;')}" placeholder="Enter subtext info...">
+                <label for="input-headline-${post.id}">Creative Headline (supports Enter for new lines)</label>
+                <textarea id="input-headline-${post.id}" class="customizer-textarea" rows="2" placeholder="Enter bold headline text...">${headlineText}</textarea>
+              </div>
+            </div>
+            <div class="customizer-row">
+              <div class="customizer-field full-width">
+                <label for="input-subtext-${post.id}">Creative Subtext (supports Enter for new lines)</label>
+                <textarea id="input-subtext-${post.id}" class="customizer-textarea" rows="2" placeholder="Enter subtext info...">${subtextText}</textarea>
               </div>
             </div>
           </div>
@@ -904,12 +915,19 @@ function renderActiveDrafts() {
       const colorSecondary = cardEl.querySelector(`#color-secondary-${post.id}`);
       const colorBgStart = cardEl.querySelector(`#color-bg-start-${post.id}`);
       const colorBgEnd = cardEl.querySelector(`#color-bg-end-${post.id}`);
+      
+      const sliderHeadlineSize = cardEl.querySelector(`#slider-headline-size-${post.id}`);
+      const sliderSubtextSize = cardEl.querySelector(`#slider-subtext-size-${post.id}`);
+      const labelHeadlineSize = cardEl.querySelector(`#val-headline-size-${post.id}`);
+      const labelSubtextSize = cardEl.querySelector(`#val-subtext-size-${post.id}`);
 
       const triggerRedrawAndSave = (isKeystroke = false) => {
         // Update local object memory
         post.layoutFamily = layoutSelect.value;
         post.colorPalette = paletteSelect.value;
         post.avatarStyleIdx = parseInt(avatarSelect.value);
+        post.headlineFontSize = parseInt(sliderHeadlineSize.value);
+        post.subtextFontSize = parseInt(sliderSubtextSize.value);
         if (!post.postContent) post.postContent = {};
         post.postContent.imageHeadline = headlineInput.value;
         post.postContent.imageSubtext = subtextInput.value;
@@ -936,6 +954,8 @@ function renderActiveDrafts() {
             avatarStyleIdx: parseInt(avatarSelect.value),
             imageHeadline: headlineInput.value,
             imageSubtext: subtextInput.value,
+            headlineFontSize: parseInt(sliderHeadlineSize.value),
+            subtextFontSize: parseInt(sliderSubtextSize.value),
             customColors: paletteSelect.value === 'Custom' ? {
               textColor: colorText.value,
               primary: colorPrimary.value,
@@ -978,6 +998,19 @@ function renderActiveDrafts() {
       
       subtextInput.addEventListener('input', () => triggerRedrawAndSave(true));
       subtextInput.addEventListener('change', () => triggerRedrawAndSave(false));
+
+      // Font size sliders listeners
+      sliderHeadlineSize.addEventListener('input', () => {
+        labelHeadlineSize.textContent = `${sliderHeadlineSize.value}px`;
+        triggerRedrawAndSave(true);
+      });
+      sliderHeadlineSize.addEventListener('change', () => triggerRedrawAndSave(false));
+
+      sliderSubtextSize.addEventListener('input', () => {
+        labelSubtextSize.textContent = `${sliderSubtextSize.value}px`;
+        triggerRedrawAndSave(true);
+      });
+      sliderSubtextSize.addEventListener('change', () => triggerRedrawAndSave(false));
 
       // Color pickers listeners
       [colorText, colorPrimary, colorSecondary, colorBgStart, colorBgEnd].forEach(picker => {
@@ -1565,6 +1598,16 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           }
         }
       }
+      if (customLayout.headlineFontSize !== undefined) {
+        if (activeLayout.text && activeLayout.text.headline) {
+          activeLayout.text.headline.fontSize = parseInt(customLayout.headlineFontSize);
+        }
+      }
+      if (customLayout.subtextFontSize !== undefined) {
+        if (activeLayout.text && activeLayout.text.subtext) {
+          activeLayout.text.subtext.fontSize = parseInt(customLayout.subtextFontSize);
+        }
+      }
     } else {
       activeLayout = customLayout;
     }
@@ -1829,6 +1872,9 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           }
         }
         
+        let headlineHeightDelta = 0;
+        let ctaHeightDelta = 0;
+        
         // Headline
         if (txt.headline) {
           ctx.save();
@@ -1843,6 +1889,13 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           
           const endY = wrapTextAligned(ctx, headline.toUpperCase(), hx, hy, hw, fontSize + 10, align, true, hlColor);
           ctx.restore();
+          
+          if (hasExplicitHeadline && txt.subtext && hasExplicitSubtext) {
+            const minGap = 20; // minimum gap between headline end and subtext start
+            if (endY + minGap > txt.subtext.y) {
+              headlineHeightDelta = (endY + minGap) - txt.subtext.y;
+            }
+          }
           
           if (!hasExplicitHeadline) {
             currentY = endY + 20; // padding
@@ -1870,11 +1923,18 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           const hlColor = txt.subtext.highlightColor || null;
           
           const sx = hasExplicitSubtext ? txt.subtext.x : tx;
-          const sy = hasExplicitSubtext ? txt.subtext.y : currentY;
+          const sy = hasExplicitSubtext ? (txt.subtext.y + headlineHeightDelta) : currentY;
           const sw_val = hasExplicitSubtext ? (txt.subtext.w || tw) : tw;
           
           const endY = wrapTextAligned(ctx, subtext, sx, sy, sw_val, fontSize + 10, align, false, hlColor);
           ctx.restore();
+          
+          if (hasExplicitSubtext && txt.cta && hasExplicitCta) {
+            const minGapCta = 25;
+            if (endY + minGapCta > txt.cta.y) {
+              ctaHeightDelta = (endY + minGapCta) - txt.cta.y;
+            }
+          }
           
           if (!hasExplicitSubtext) {
             currentY = endY + 40; // padding
@@ -1888,7 +1948,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           const btnW = txt.cta.w || 260;
           const btnH = txt.cta.h || 55;
           const btnX = hasExplicitCta ? txt.cta.x : (align === 'center' ? tx + (tw - btnW)/2 : tx);
-          const btnY = hasExplicitCta ? txt.cta.y : Math.min(currentY, 880); 
+          const btnY = hasExplicitCta ? (txt.cta.y + ctaHeightDelta) : Math.min(currentY, 880); 
           ctx.roundRect(btnX, btnY, btnW, btnH, 12);
           
           if (txt.cta.glowColor && txt.cta.glowColor !== 'transparent') {
@@ -2968,8 +3028,7 @@ function drawHighlightedLine(ctx, line, drawX, currentY, align, highlightColor, 
 
 // Wrap text with custom alignment and premium style outline/gradient support
 function wrapTextAligned(ctx, text, x, y, maxWidth, lineHeight, align = 'center', isHeadline = false, highlightColor = null) {
-  const words = text.split(' ');
-  let line = '';
+  const lines = text.split('\n');
   let currentY = y;
   
   ctx.save();
@@ -2994,23 +3053,33 @@ function wrapTextAligned(ctx, text, x, y, maxWidth, lineHeight, align = 'center'
     ctx.fillStyle = textGrad;
   }
   
-  for (let n = 0; n < words.length; n++) {
-    let testLine = line + words[n] + ' ';
-    let testLineClean = testLine.replace(/\*/g, '');
-    let metrics = ctx.measureText(testLineClean);
-    let testWidth = metrics.width;
+  for (let i = 0; i < lines.length; i++) {
+    const words = lines[i].split(' ');
+    let line = '';
     
-    if (testWidth > maxWidth && n > 0) {
-      const drawX = align === 'center' ? x + maxWidth/2 : (align === 'right' ? x + maxWidth : x);
-      drawHighlightedLine(ctx, line.trim(), drawX, currentY, align, highlightColor, isHeadline);
-      line = words[n] + ' ';
+    for (let n = 0; n < words.length; n++) {
+      let testLine = line + words[n] + ' ';
+      let testLineClean = testLine.replace(/\*/g, '');
+      let metrics = ctx.measureText(testLineClean);
+      let testWidth = metrics.width;
+      
+      if (testWidth > maxWidth && n > 0) {
+        const drawX = align === 'center' ? x + maxWidth/2 : (align === 'right' ? x + maxWidth : x);
+        drawHighlightedLine(ctx, line.trim(), drawX, currentY, align, highlightColor, isHeadline);
+        line = words[n] + ' ';
+        currentY += lineHeight;
+      } else {
+        line = testLine;
+      }
+    }
+    const drawX = align === 'center' ? x + maxWidth/2 : (align === 'right' ? x + maxWidth : x);
+    drawHighlightedLine(ctx, line.trim(), drawX, currentY, align, highlightColor, isHeadline);
+    
+    // Move to next line for the next paragraph line break
+    if (i < lines.length - 1) {
       currentY += lineHeight;
-    } else {
-      line = testLine;
     }
   }
-  const drawX = align === 'center' ? x + maxWidth/2 : (align === 'right' ? x + maxWidth : x);
-  drawHighlightedLine(ctx, line.trim(), drawX, currentY, align, highlightColor, isHeadline);
   
   ctx.restore();
   return currentY + lineHeight;
