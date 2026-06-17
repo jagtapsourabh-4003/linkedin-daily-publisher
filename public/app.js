@@ -1770,11 +1770,6 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
         
         // Draw the avatar
         let dynamicAvImg = activeAvImg;
-        // If unique daily avatar is loaded on page load, draw it
-        const uniqueAvImg = optionAvatars[postId - 1];
-        if (uniqueAvImg && uniqueAvImg.complete && uniqueAvImg.naturalWidth !== 0) {
-          dynamicAvImg = uniqueAvImg;
-        }
 
         if (av.type === 'circle') {
           drawAvatarForCircle(ctx, av.x, av.y, av.w / 2, av.filter, styleIdx, dynamicAvImg);
