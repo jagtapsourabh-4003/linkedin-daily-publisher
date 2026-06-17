@@ -17,9 +17,9 @@ let avatarImageLoaded = false;
 
 // Multi-avatar resources for the 5 draft options
 const optionAvatars = [];
-const optionAvatarsLoaded = [false, false, false, false, false];
+const optionAvatarsLoaded = Array(8).fill(false);
 
-for (let i = 1; i <= 5; i++) {
+for (let i = 1; i <= 8; i++) {
   const img = new Image();
   img.onload = () => {
     optionAvatarsLoaded[i - 1] = true;
@@ -62,7 +62,7 @@ function refreshAvatarImage() {
       el.avatarPreview.src = 'avatar_daily.jpg?t=' + t;
     }
     // Refresh options
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 8; i++) {
       optionAvatarsLoaded[i - 1] = false;
       optionAvatars[i - 1].src = `avatar_daily_${i}.jpg?t=` + t;
     }
@@ -72,7 +72,7 @@ function refreshAvatarImage() {
       el.avatarPreview.src = 'avatar.jpg?t=' + t;
     }
     // Fall back options to avatar.jpg
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 8; i++) {
       optionAvatarsLoaded[i - 1] = false;
       optionAvatars[i - 1].src = 'avatar.jpg?t=' + t;
     }
@@ -80,7 +80,7 @@ function refreshAvatarImage() {
 }
 avatarImg.src = 'avatar_daily.jpg?t=' + Date.now();
 // Initialize option avatars
-for (let i = 1; i <= 5; i++) {
+for (let i = 1; i <= 8; i++) {
   optionAvatars[i - 1].src = `avatar_daily_${i}.jpg?t=` + Date.now();
 }
 
@@ -778,9 +778,12 @@ function renderActiveDrafts() {
                     { val: 1, text: '🌲 Outfit 2 (Mountains Trail)' },
                     { val: 2, text: '🥂 Outfit 3 (Social Event)' },
                     { val: 3, text: '🎤 Outfit 4 (Podium Speech)' },
-                    { val: 4, text: '☕ Outfit 5 (Cafe Workspace)' }
+                    { val: 4, text: '☕ Outfit 5 (Cafe Workspace)' },
+                    { val: 5, text: '🏙️ Outfit 6 (City Street Suit)' },
+                    { val: 6, text: '🏔️ Outfit 7 (Mountains Pullover)' },
+                    { val: 7, text: '🏫 Outfit 8 (University Campus)' }
                   ].map(opt => {
-                    const selectedAvIdx = post.avatarStyleIdx !== undefined ? post.avatarStyleIdx : ((post.id - 1) % 5);
+                    const selectedAvIdx = post.avatarStyleIdx !== undefined ? post.avatarStyleIdx : ((post.id - 1) % 8);
                     return `<option value="${opt.val}" ${selectedAvIdx === opt.val ? 'selected' : ''}>${opt.text}</option>`;
                   }).join('')}
                 </select>
@@ -1550,9 +1553,12 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     'contrast(1.15) brightness(1.05) saturate(1.15)', // Vibrant
     'brightness(1.02) contrast(1.08) saturate(1.05)', // Soft Warm
     'hue-rotate(350deg) saturate(95%) contrast(1.1) brightness(1.02)', // Soft Rose
-    'contrast(1.1) brightness(1.02) saturate(1.08)' // Neutral Tech
+    'contrast(1.1) brightness(1.02) saturate(1.08)', // Neutral Tech
+    'contrast(1.1) brightness(1.02) saturate(1.1)', // Clean Natural
+    'contrast(1.15) brightness(1.05) saturate(1.15)', // Vibrant
+    'brightness(1.02) contrast(1.08) saturate(1.05)' // Soft Warm
   ];
-  const filter = filters[styleIdx];
+  const filter = filters[styleIdx] || 'none';
   
   let activeAvImg = avatarImg;
   if (state.settings.rotateOutfits !== false && optionAvatarsLoaded[styleIdx]) {
