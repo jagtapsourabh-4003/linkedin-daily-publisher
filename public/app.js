@@ -15,11 +15,11 @@ let state = {
 const avatarImg = new Image();
 let avatarImageLoaded = false;
 
-// Multi-avatar resources for the 5 draft options
+// Multi-avatar resources for the 13 draft options
 const optionAvatars = [];
-const optionAvatarsLoaded = Array(8).fill(false);
+const optionAvatarsLoaded = Array(13).fill(false);
 
-for (let i = 1; i <= 8; i++) {
+for (let i = 1; i <= 13; i++) {
   const img = new Image();
   img.onload = () => {
     optionAvatarsLoaded[i - 1] = true;
@@ -62,7 +62,7 @@ function refreshAvatarImage() {
       el.avatarPreview.src = 'avatar_daily.jpg?t=' + t;
     }
     // Refresh options
-    for (let i = 1; i <= 8; i++) {
+    for (let i = 1; i <= 13; i++) {
       optionAvatarsLoaded[i - 1] = false;
       optionAvatars[i - 1].src = `avatar_daily_${i}.jpg?t=` + t;
     }
@@ -72,7 +72,7 @@ function refreshAvatarImage() {
       el.avatarPreview.src = 'avatar.jpg?t=' + t;
     }
     // Fall back options to avatar.jpg
-    for (let i = 1; i <= 8; i++) {
+    for (let i = 1; i <= 13; i++) {
       optionAvatarsLoaded[i - 1] = false;
       optionAvatars[i - 1].src = 'avatar.jpg?t=' + t;
     }
@@ -80,7 +80,7 @@ function refreshAvatarImage() {
 }
 avatarImg.src = 'avatar_daily.jpg?t=' + Date.now();
 // Initialize option avatars
-for (let i = 1; i <= 8; i++) {
+for (let i = 1; i <= 13; i++) {
   optionAvatars[i - 1].src = `avatar_daily_${i}.jpg?t=` + Date.now();
 }
 
@@ -781,9 +781,14 @@ function renderActiveDrafts() {
                     { val: 4, text: '☕ Outfit 5 (Cafe Workspace)' },
                     { val: 5, text: '🏙️ Outfit 6 (City Street Suit)' },
                     { val: 6, text: '🏔️ Outfit 7 (Mountains Pullover)' },
-                    { val: 7, text: '🏫 Outfit 8 (University Campus)' }
+                    { val: 7, text: '🏫 Outfit 8 (University Campus)' },
+                    { val: 8, text: '🎓 Outfit 9 (University Light Blue Blazer)' },
+                    { val: 9, text: '💼 Outfit 10 (Boardroom Clasped Hands)' },
+                    { val: 10, text: '🎙️ Outfit 11 (TEDx Speaker Stage)' },
+                    { val: 11, text: '💻 Outfit 12 (Office Desk Workspace)' },
+                    { val: 12, text: '☕ Outfit 13 (Cafe Neon Coffee Shop)' }
                   ].map(opt => {
-                    const selectedAvIdx = post.avatarStyleIdx !== undefined ? post.avatarStyleIdx : ((post.id - 1) % 8);
+                    const selectedAvIdx = post.avatarStyleIdx !== undefined ? post.avatarStyleIdx : ((post.id - 1) % 13);
                     return `<option value="${opt.val}" ${selectedAvIdx === opt.val ? 'selected' : ''}>${opt.text}</option>`;
                   }).join('')}
                 </select>
@@ -1556,7 +1561,12 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     'contrast(1.1) brightness(1.02) saturate(1.08)', // Neutral Tech
     'contrast(1.1) brightness(1.02) saturate(1.1)', // Clean Natural
     'contrast(1.15) brightness(1.05) saturate(1.15)', // Vibrant
-    'brightness(1.02) contrast(1.08) saturate(1.05)' // Soft Warm
+    'brightness(1.02) contrast(1.08) saturate(1.05)', // Soft Warm
+    'contrast(1.1) brightness(1.02) saturate(1.1)', // Clean Natural
+    'contrast(1.15) brightness(1.05) saturate(1.15)', // Vibrant
+    'brightness(1.02) contrast(1.08) saturate(1.05)', // Soft Warm
+    'hue-rotate(350deg) saturate(95%) contrast(1.1) brightness(1.02)', // Soft Rose
+    'contrast(1.1) brightness(1.02) saturate(1.08)' // Neutral Tech
   ];
   const filter = filters[styleIdx] || 'none';
   
