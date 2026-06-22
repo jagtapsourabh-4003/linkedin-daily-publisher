@@ -85,10 +85,18 @@ CRITICAL RULES:
 ${recentDesignMemoryStr}
 
 Guidelines for post content:
-1. Tone: Human, direct, highly opinionated, intellectually challenging, and punchy B2B style. Avoid generic AI greetings or corporate clichés. Write like a seasoned industry leader.
-2. Structure: Start with an attention-grabbing hook (line 1) under 6 words. Write the body in short paragraphs (1-2 sentences max each), and end with a non-cliché question or clear call to action, followed by 3-5 hashtags.
-3. Formatting: Emojis very sparingly (no more than 2-3). Do NOT use fake bold/italic unicode.
-4. Perspectives: First-person ('I' or 'We') as an elite B2B Director who is also a deep AI automation architect.`;
+1. Tone: Conversational, simple, direct, and active. Write like you are explaining a concept to a colleague over coffee. Do NOT sound academic, overly formal, or robotic. Use active voice at all times (e.g. "We tested this model" instead of "This model was tested by us").
+2. Language Simplicity: Use simple words and write at an 8th-grade reading level. Avoid long, complex sentences. Use short, punchy sentences (under 15 words).
+3. STRICT JARGON BAN: You are strictly forbidden from using generic AI and corporate jargon words. Do NOT use: "delve", "tapestry", "testament", "revolutionize", "beacon", "shaping the future", "paradigm shift", "democratize", "game-changer", "transformative", "cutting-edge", "harnessing", "unveiled", "journey", "crucial", "essential", "furthermore", "moreover", "leverage", "robust", "synergy", "seamless".
+4. Structure: Start with an attention-grabbing hook (line 1) under 6 words. Write the body in short paragraphs (1-2 sentences max each, with a blank line between them). End with a non-cliché question or clear call to action, followed by 3-5 relevant hashtags.
+5. Formatting: Emojis very sparingly (no more than 2-3). Do NOT use fake bold/italic unicode characters.
+6. Perspectives: First-person ('I' or 'We') as an elite B2B Director who is also a deep AI automation architect.
+7. Post Angles (No Repetition): Each post in the 5-post batch must use a unique angle and style. The 5 posts must follow these exact 5 angles respectively:
+   - Post 1: "Breaking Trend/News" - A simple, direct analysis of a recent headline or industry announcement.
+   - Post 2: "Actionable Playbook" - A step-by-step tutorial or checklist. Give the reader 3-4 specific actions they can take today.
+   - Post 3: "Contrarian Debate" - Challenge a common myth or popular opinion in the industry. Be respectfully provocative.
+   - Post 4: "Mistake/Failure Study" - Analyze a real or hypothetical failure case. Explain what went wrong and the exact lesson learned.
+   - Post 5: "Strategic Prediction" - A forward-looking, high-level outlook or framework. Explain where a trend is heading in the next 12-24 months.`;
 
   const prompt = `Generate exactly 5 LinkedIn posts on the topic of: ${topicLabel}.
 Use the following scraped web trends as context and inspiration:
@@ -99,7 +107,13 @@ ${trendsContext}
 
 Your response MUST be a JSON array containing exactly 5 objects. Do not wrap the JSON output in markdown formatting block quotes (e.g. \`\`\`json). Output raw JSON.
 
-Each object in the array must follow this structure:
+Each object in the array must follow this structure. Ensure that the "style" field for each object matches its corresponding mandated angle exactly:
+- Object 1 "style": "Breaking Trend/News"
+- Object 2 "style": "Actionable Playbook"
+- Object 3 "style": "Contrarian Debate"
+- Object 4 "style": "Mistake/Failure Study"
+- Object 5 "style": "Strategic Prediction"
+
 {
   "designArchetype": "Forbes Cover",
   "layoutFamily": "split-left / split-right / hero-center / magazine-cover / quote-card / podcast-layout / presentation-slide / news-card / editorial-cover / phone-mockup / floating-cards / layered-depth / diagonal-layout / asymmetrical-grid / modern-minimal",
@@ -110,7 +124,7 @@ Each object in the array must follow this structure:
   "clothingStyle": "Smart casual blazer",
   "avatarPrompt": "Indian male manager in his late 30s...",
   "postContent": {
-    "style": "Thought Leadership / AI & Tech / Marketing Insights / Storytelling / University Leadership",
+    "style": "Breaking Trend/News OR Actionable Playbook OR Contrarian Debate OR Mistake/Failure Study OR Strategic Prediction",
     "hook": "The first 1-2 lines of the post (attention-grabbing hook)",
     "content": "The full body of the post, including the hook, paragraphs, call to action, and hashtags. Keep line breaks intact with newlines (\\n).",
     "sourceArticle": "Title of the main article from the trends context that inspired this post, or 'General Trend' if inspired by multiple.",
