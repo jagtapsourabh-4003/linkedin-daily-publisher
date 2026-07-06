@@ -198,6 +198,7 @@ app.post('/api/upload-creative', async (req, res) => {
     const base64Data = image.replace(/^data:image\/\w+;base64,/, '');
     const buffer = Buffer.from(base64Data, 'base64');
     
+    // Always write locally first as a secondary fallback and for dashboard reference
     const creativesDir = path.join(__dirname, 'public', 'creatives');
     if (!fs.existsSync(creativesDir)) {
       fs.mkdirSync(creativesDir, { recursive: true });
@@ -206,40 +207,33 @@ app.post('/api/upload-creative', async (req, res) => {
     const fileName = `creative-${date}-${postId}.png`;
     fs.writeFileSync(path.join(creativesDir, fileName), buffer);
     
-    const host = req.get('host');
-    const isLocalhost = host.includes('localhost') || host.includes('127.0.0.1') || host.includes('[::1]');
+    console.log(`[API] Uploading creative image for Post ${postId} (${date}) to tmpfiles.org for secure public download...`);
     let imageUrl = '';
     
-    if (isLocalhost) {
-      console.log(`[API] Localhost detected. Exposing creative image via tmpfiles.org for public download...`);
-      try {
-        const blob = new Blob([buffer], { type: 'image/png' });
-        const formData = new FormData();
-        formData.append('file', blob, fileName);
+    try {
+      const blob = new Blob([buffer], { type: 'image/png' });
+      const formData = new FormData();
+      formData.append('file', blob, fileName);
 
-        const uploadResponse = await fetch('https://tmpfiles.org/api/v1/upload', {
-          method: 'POST',
-          body: formData
-        });
+      const uploadResponse = await fetch('https://tmpfiles.org/api/v1/upload', {
+        method: 'POST',
+        body: formData
+      });
 
-        if (uploadResponse.ok) {
-          const result = await uploadResponse.json();
-          if (result && result.status === 'success' && result.data && result.data.url) {
-            imageUrl = result.data.url.replace('https://tmpfiles.org/', 'https://tmpfiles.org/dl/');
-            console.log(`[API] Local image successfully hosted publicly at: ${imageUrl}`);
-          } else {
-            throw new Error(`Unexpected response format: ${JSON.stringify(result)}`);
-          }
+      if (uploadResponse.ok) {
+        const result = await uploadResponse.json();
+        if (result && result.status === 'success' && result.data && result.data.url) {
+          imageUrl = result.data.url.replace('https://tmpfiles.org/', 'https://tmpfiles.org/dl/');
+          console.log(`[API] Image successfully hosted publicly at: ${imageUrl}`);
         } else {
-          throw new Error(`HTTP Error ${uploadResponse.status}`);
+          throw new Error(`Unexpected response format: ${JSON.stringify(result)}`);
         }
-      } catch (uploadErr) {
-        console.warn(`[API] Public upload to tmpfiles.org failed: ${uploadErr.message}. Falling back to local URL.`);
-        const protocol = req.protocol;
-        imageUrl = `${protocol}://${host}/creatives/${fileName}`;
+      } else {
+        throw new Error(`HTTP Error ${uploadResponse.status}`);
       }
-    } else {
-      // Production on Render (detect and force secure HTTPS protocol)
+    } catch (uploadErr) {
+      console.warn(`[API] Public cloud upload to tmpfiles.org failed: ${uploadErr.message}. Falling back to local static URL.`);
+      const host = req.get('host');
       const protocol = host.includes('onrender.com') ? 'https' : req.protocol;
       imageUrl = `${protocol}://${host}/creatives/${fileName}`;
     }
