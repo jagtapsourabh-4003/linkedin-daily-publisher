@@ -13,7 +13,7 @@ const FEEDS = {
     { name: 'TechCrunch AI', url: 'https://techcrunch.com/category/artificial-intelligence/feed/' },
     { name: 'VentureBeat AI', url: 'https://venturebeat.com/category/ai/feed/' },
     { name: 'OpenAI Blog', url: 'https://openai.com/news/rss.xml' },
-    { name: 'Google News AI', url: 'https://news.google.com/rss/search?q=artificial+intelligence+OR+generative+AI+OR+LLMs&hl=en-US&gl=US&ceid=US:en' }
+    { name: 'Google News AI', url: 'https://news.google.com/rss/search?q=(artificial+intelligence+OR+generative+AI+OR+LLMs)+AND+(marketing+OR+branding+OR+advertising+OR+copywriting+OR+SEO)&hl=en-US&gl=US&ceid=US:en' }
   ],
   marketing: [
     { name: 'HubSpot Marketing', url: 'https://blog.hubspot.com/marketing/rss.xml' },
@@ -26,26 +26,26 @@ const FEEDS = {
 // Fallback topics to use in case RSS feeds fail or are blocked
 const FALLBACK_TOPICS = {
   ai: [
-    { title: 'AI Agents in Action', content: 'How autonomous agents are shifting from simple chat interfaces to executing complex workflows (e.g. scheduling, booking, coding).' },
-    { title: 'Generative AI Video Production', content: 'Midjourney, Sora, and Runway Gen-3 are revolutionizing creative marketing. How brands are starting to use AI-generated video.' },
-    { title: 'The Rise of Local/On-Device LLMs', content: 'Privacy-focused enterprises are moving away from API calls to run models locally (like Llama-3-8B or Phi-3) on employee laptops.' },
-    { title: 'Prompt Engineering vs Fine-Tuning', content: 'When should a business fine-tune an open-source model versus simply improving their prompt structure and retrieval-augmented generation (RAG)?' },
-    { title: 'AI and Code Generation', content: 'Copilots are writing over 50% of enterprise code. What this means for junior engineers and software quality in the next 3 years.' },
-    { title: 'Voice AI Assistants', content: 'Multi-modal voice models (like GPT-4o and Gemini Live) enable real-time, low-latency conversations. The impact on customer service and user experience.' },
-    { title: 'Small Language Models (SLMs)', content: 'Why small, specialized models (under 10B parameters) are outperforming giant models on specific corporate tasks at a fraction of the cost.' },
-    { title: 'AI Regulations & Compliance', content: 'The practical impact of the EU AI Act and US executive orders on tech startups and enterprise deployments.' },
-    { title: 'RAG (Retrieval-Augmented Generation)', content: 'Why simple LLM prompts fail without search context, and how to connect company databases safely to models.' },
-    { title: 'The Ethics of Synthetic Data', content: 'Training new models on AI-generated data. Can it solve the data shortage crisis, or will it lead to model collapse and bias?' },
-    { title: 'Apple Intelligence', content: 'How Apple is embedding AI features directly into macOS and iOS, changing how everyday consumers interact with smart devices.' },
-    { title: 'Vector Databases', content: 'Why tools like Pinecone, Milvus, and pgvector are crucial for building semantic search and long-term memory for AI systems.' },
-    { title: 'AI Search Engines vs Traditional SEO', content: 'How Perplexity, OpenAI Search, and Google AI Overviews are changing how users find information, bypassing standard web pages.' },
-    { title: 'Custom GPTs & Internal Knowledge Bots', content: 'Building private, role-based chatbots for HR, sales onboarding, and engineering documentation.' },
-    { title: 'Cost Optimization for LLMs', content: 'Techniques like caching prompt prefixes, using model routing, and switching to lighter models to reduce API bills.' },
-    { title: 'AI in Drug Discovery and Biotech', content: 'How deep learning models are predicting protein structures and shortening clinical trial design timelines.' },
-    { title: 'Explainable AI (XAI)', content: 'Demystifying the black box of neural networks for regulated industries like finance, healthcare, and insurance.' },
-    { title: 'Open Source vs Closed Source LLMs', content: 'Comparing the rapid growth of Meta\'s Llama and Mistral with proprietary models from OpenAI, Anthropic, and Google.' },
-    { title: 'AI Agents in Customer Support', content: 'Building autonomous support bots that can authenticate users, lookup orders, and process refunds without human intervention.' },
-    { title: 'Shadow AI in the Workplace', content: 'The security risks of employees copy-pasting sensitive company code and data into public LLM tools, and how to govern it.' }
+    { title: 'AI-Driven Customer Experience (CX)', content: 'How brands use real-time conversational agents to personalize customer journeys and drive conversion rates.' },
+    { title: 'Generative AI Video in Advertising', content: 'Midjourney, Runway Gen-3, and Sora are revolutionizing ad creative production, reducing costs, and enabling hyper-personalized video ads.' },
+    { title: 'AI Personalization in B2B Email Campaigns', content: 'Beyond templates, using lightweight language models to draft dynamic, context-specific outreach emails based on prospect intent.' },
+    { title: 'AI-Powered Search Engine Optimization (SEO)', content: 'Optimizing brand content for AI-first search engines like Perplexity, Gemini, and Google AI Overviews rather than traditional rank lists.' },
+    { title: 'AI Guardrails for Content Creation', content: 'Implementing system parameters and brand guidelines to ensure AI copywriting tools match the brand\'s unique tone and messaging style.' },
+    { title: 'Voice Search Marketing and Brand Identity', content: 'How multi-modal voice systems (e.g. Gemini Live, GPT-4o) change how users discover brands verbally, demanding new audio branding strategies.' },
+    { title: 'Cost-Effective Scaled Copywriting', content: 'Leveraging small, specialized models (SLMs) to draft product descriptions and email campaigns at a fraction of the cost of commercial APIs.' },
+    { title: 'Brand Asset Ownership & AI Copyright', content: 'Navigating the legalities of publishing AI-generated graphics and copy, ensuring legal safety for brand trademarks.' },
+    { title: 'Semantic Memory for Marketing Assistants', content: 'Using Retrieval-Augmented Generation (RAG) to ground AI writers in the company’s internal product specs, historical messaging, and style guides.' },
+    { title: 'Synthetic Customer Personas', content: 'Simulating user research by querying custom-profiled AI agents to test ad headlines and copy variations before launching paid campaigns.' },
+    { title: 'On-Device Consumer AI & Ad Delivery', content: 'How Apple Intelligence and Android Gemini features change user habits, shifting ad placements to personalized device notifications.' },
+    { title: 'AI-Powered Competitor Intel', content: 'Automating competitor analysis by using language models to monitor competitor pricing, ad copy, and social media announcements.' },
+    { title: 'Brand Reputation & AI Hallucinations', content: 'How public relations teams manage and monitor AI search engines to prevent false or inaccurate claims about the brand.' },
+    { title: 'Custom Marketing Copilots', content: 'Building private, internal agents trained on top-performing ad copy to act as assistants for junior copywriters.' },
+    { title: 'Predictive Analytics in Paid Media', content: 'Using AI to analyze conversion history, predict customer acquisition costs (CAC), and allocate ad budgets across channels.' },
+    { title: 'AI-Enhanced Visual Identity', content: 'Using models to generate creative mood boards, logo iterations, and brand graphics during initial product launches.' },
+    { title: 'Disclosing AI Usage in Marketing', content: 'Evaluating when to be transparent about using generative AI in campaigns to build long-term consumer trust.' },
+    { title: 'Owning Your Proprietary Fine-Tuned Model', content: 'Why high-growth brands are moving from generic models to fine-tuning private models on their historical high-converting sales letters.' },
+    { title: 'Conversational Commerce Conversions', content: 'Using AI chat systems to assist users in selecting products, answering technical specifications, and processing orders instantly.' },
+    { title: 'Shadow AI in Corporate Marketing', content: 'Implementing data governance policies to prevent internal teams from pasting proprietary customer data into public AI writers.' }
   ],
   marketing: [
     { title: 'Zero-Click Searches on Google', content: 'Google\'s AI Overviews answer user questions directly on the search page. How marketers must adapt content strategy to survive.' },

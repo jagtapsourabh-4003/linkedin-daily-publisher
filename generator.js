@@ -64,7 +64,7 @@ export async function generatePosts(category, trends, apiKey) {
     return `${idx + 1}. [Source: ${t.source}] Title: ${t.title}\nSummary: ${t.description}\nLink: ${t.link}`;
   }).join('\n\n');
 
-  const topicLabel = category.toLowerCase() === 'marketing' ? 'Digital Marketing, Growth Strategy, and Brand Management' : 'Artificial Intelligence, Machine Learning, and Future Tech Trends';
+  const topicLabel = category.toLowerCase() === 'marketing' ? 'Digital Marketing, Brand Building, and Growth Strategy' : 'Artificial Intelligence and Generative AI applications in Marketing, Copywriting, and Brand Building';
 
   const systemInstruction = `You are a world-class viral LinkedIn Copywriter, Content Strategist, and Art Director.
 Your goal is to write extremely engaging, highly professional, B2B LinkedIn posts AND define custom visual configurations representing agency-grade creative designs.
@@ -91,7 +91,8 @@ Guidelines for post content:
 4. Structure: Start with an attention-grabbing hook (line 1) under 6 words. Write the body in short paragraphs (1-2 sentences max each, with a blank line between them). End with a non-cliché question or clear call to action, followed by 3-5 relevant hashtags.
 5. Formatting: Emojis very sparingly (no more than 2-3). Do NOT use fake bold/italic unicode characters.
 6. Perspectives: First-person ('I' or 'We') as an elite B2B Director who is also a deep AI automation architect.
-7. Post Angles (No Repetition): Each post in the 5-post batch must use a unique angle and style. The 5 posts must follow these exact 5 angles respectively:
+7. Marketing & Branding Focus: Every post (whether generated under the 'ai' category or 'marketing' category) MUST focus strongly on a B2B marketing, branding, copywriting, content creation, or growth strategy point of view. Even when discussing a technical AI announcement or AI news, connect it directly to how it affects branding, copywriting, search (SEO), ad costs, or conversion rates. Make it immediately useful to marketers, copywriters, founders, and brand owners.
+8. Post Angles (No Repetition): Each post in the 5-post batch must use a unique angle and style. The 5 posts must follow these exact 5 angles respectively:
    - Post 1: "Breaking Trend/News" - A simple, direct analysis of a recent headline or industry announcement.
    - Post 2: "Actionable Playbook" - A step-by-step tutorial or checklist. Give the reader 3-4 specific actions they can take today.
    - Post 3: "Contrarian Debate" - Challenge a common myth or popular opinion in the industry. Be respectfully provocative.

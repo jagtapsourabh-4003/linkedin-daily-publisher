@@ -24,6 +24,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+app.set('trust proxy', true);
 const PORT = process.env.PORT || 3000;
 
 // Enable CORS and JSON parsing with custom limits for high-res images
@@ -187,7 +188,7 @@ app.post('/api/settings/avatar', (req, res) => {
 });
 
 // Upload rendered post creative image
-app.post('/api/upload-creative', (req, res) => {
+app.post('/api/upload-creative', async (req, res) => {
   const { date, postId, image } = req.body;
   if (!date || !postId || !image) {
     return res.status(400).json({ error: 'Missing parameters' });
@@ -206,8 +207,42 @@ app.post('/api/upload-creative', (req, res) => {
     fs.writeFileSync(path.join(creativesDir, fileName), buffer);
     
     const host = req.get('host');
-    const protocol = req.protocol;
-    const imageUrl = `${protocol}://${host}/creatives/${fileName}`;
+    const isLocalhost = host.includes('localhost') || host.includes('127.0.0.1') || host.includes('[::1]');
+    let imageUrl = '';
+    
+    if (isLocalhost) {
+      console.log(`[API] Localhost detected. Exposing creative image via tmpfiles.org for public download...`);
+      try {
+        const blob = new Blob([buffer], { type: 'image/png' });
+        const formData = new FormData();
+        formData.append('file', blob, fileName);
+
+        const uploadResponse = await fetch('https://tmpfiles.org/api/v1/upload', {
+          method: 'POST',
+          body: formData
+        });
+
+        if (uploadResponse.ok) {
+          const result = await uploadResponse.json();
+          if (result && result.status === 'success' && result.data && result.data.url) {
+            imageUrl = result.data.url.replace('https://tmpfiles.org/', 'https://tmpfiles.org/dl/');
+            console.log(`[API] Local image successfully hosted publicly at: ${imageUrl}`);
+          } else {
+            throw new Error(`Unexpected response format: ${JSON.stringify(result)}`);
+          }
+        } else {
+          throw new Error(`HTTP Error ${uploadResponse.status}`);
+        }
+      } catch (uploadErr) {
+        console.warn(`[API] Public upload to tmpfiles.org failed: ${uploadErr.message}. Falling back to local URL.`);
+        const protocol = req.protocol;
+        imageUrl = `${protocol}://${host}/creatives/${fileName}`;
+      }
+    } else {
+      // Production on Render (detect and force secure HTTPS protocol)
+      const protocol = host.includes('onrender.com') ? 'https' : req.protocol;
+      imageUrl = `${protocol}://${host}/creatives/${fileName}`;
+    }
     
     res.json({ success: true, imageUrl });
   } catch (err) {
