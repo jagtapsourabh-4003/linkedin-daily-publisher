@@ -14,8 +14,8 @@ COPY --chown=node:node package*.json ./
 # Switch to the existing node user (UID 1000)
 USER node
 
-# Install production dependencies
-RUN npm ci --only=production
+# Install production dependencies (using npm install which is tolerant of missing lockfiles)
+RUN npm install --omit=dev
 
 # Copy the rest of the application files and change ownership to node user
 COPY --chown=node:node . .
