@@ -108,6 +108,20 @@ app.get('/api/settings', (req, res) => {
   });
 });
 
+// Get avatar map (hosted cloud URLs for template images)
+app.get('/api/avatar-map', (req, res) => {
+  const mapPath = path.join(__dirname, 'data', 'avatar-map.json');
+  if (fs.existsSync(mapPath)) {
+    try {
+      const data = fs.readFileSync(mapPath, 'utf8');
+      return res.json(JSON.parse(data));
+    } catch (err) {
+      return res.json({});
+    }
+  }
+  res.json({});
+});
+
 // Update settings
 app.post('/api/settings', (req, res) => {
   const { webhookUrl, geminiApiKey, cronSecret, rotateOutfits } = req.body;
