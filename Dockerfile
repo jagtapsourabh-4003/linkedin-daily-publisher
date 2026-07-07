@@ -5,13 +5,19 @@ FROM node:20-slim
 ENV PORT=7860
 ENV HOME=/app
 
+# Install unzip utility (Debian package)
+RUN apt-get update && apt-get install -y unzip && rm -rf /var/lib/apt/lists/*
+
 # Set working directory inside the container
 WORKDIR /app
 
-# Copy all application files (run as root to ensure all files are copied first)
-COPY . .
+# Copy the zipped project contents
+COPY project.zip ./
 
-# Change ownership of the entire /app folder to the node user (UID 1000)
+# Unzip the project files and delete the zip file
+RUN unzip project.zip && rm project.zip
+
+# Ensure the node user owns the /app directory and files
 RUN chown -R node:node /app
 
 # Switch to the existing node user (UID 1000)
@@ -20,7 +26,7 @@ USER node
 # Install production dependencies
 RUN npm install --omit=dev
 
-# Expose the default Hugging Face Spaces port
+# Expose the default Hugging Face port
 EXPOSE 7860
 
 # Start the Node.js Express server
