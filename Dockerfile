@@ -5,23 +5,20 @@ FROM node:20-slim
 ENV PORT=7860
 ENV HOME=/app
 
-# Create a non-root user and group with UID 1000 (standard for Hugging Face)
-RUN useradd -m -u 1000 user
-
 # Set working directory inside the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json first, and change ownership to user
-COPY --chown=user:user package*.json ./
+# Copy package.json and package-lock.json first, and change ownership to existing node user (UID 1000)
+COPY --chown=node:node package*.json ./
 
-# Switch to the non-root user
-USER user
+# Switch to the existing node user (UID 1000)
+USER node
 
 # Install production dependencies
 RUN npm ci --only=production
 
-# Copy the rest of the application files and change ownership to user
-COPY --chown=user:user . .
+# Copy the rest of the application files and change ownership to node user
+COPY --chown=node:node . .
 
 # Expose the default Hugging Face Spaces port
 EXPOSE 7860
