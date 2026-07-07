@@ -8,7 +8,8 @@ let state = {
   },
   history: [],
   activeDate: '',
-  isLoading: false
+  isLoading: false,
+  avatarMap: {}
 };
 
 // Global Image Resources (Custom Avatar)
@@ -18,6 +19,15 @@ let avatarImageLoaded = false;
 // Multi-avatar resources for the 18 draft options
 const optionAvatars = [];
 const optionAvatarsLoaded = Array(18).fill(false);
+
+function getAvatarUrl(relativePath) {
+  // Strip any query parameter like ?t= before mapping lookup
+  const cleanPath = relativePath.split('?')[0];
+  if (state.avatarMap && state.avatarMap[cleanPath]) {
+    return state.avatarMap[cleanPath];
+  }
+  return relativePath;
+}
 
 for (let i = 1; i <= 18; i++) {
   const img = new Image();
@@ -29,9 +39,9 @@ for (let i = 1; i <= 18; i++) {
   img.onerror = () => {
     console.warn(`[Avatar] Failed to load avatar_daily_${i}.jpg. Falling back to avatars/avatar-${i}.png`);
     if (img.src.indexOf(`avatar_daily_${i}.jpg`) !== -1) {
-      img.src = `avatars/avatar-${i}.png`;
+      img.src = getAvatarUrl(`avatars/avatar-${i}.png`);
     } else if (img.src.indexOf(`avatars/avatar-${i}.png`) !== -1) {
-      img.src = 'avatar.jpg?t=' + Date.now();
+      img.src = getAvatarUrl('avatar.jpg') + '?t=' + Date.now();
     }
   };
   optionAvatars.push(img);
@@ -46,9 +56,9 @@ avatarImg.onerror = () => {
   console.warn('[Avatar] Failed to load avatar image. Falling back to avatar.jpg');
   if (avatarImg.src.indexOf('avatar_daily.jpg') !== -1) {
     const t = Date.now();
-    avatarImg.src = 'avatar.jpg?t=' + t;
+    avatarImg.src = getAvatarUrl('avatar.jpg') + '?t=' + t;
     if (typeof el !== 'undefined' && el.avatarPreview) {
-      el.avatarPreview.src = 'avatar.jpg?t=' + t;
+      el.avatarPreview.src = getAvatarUrl('avatar.jpg') + '?t=' + t;
     }
   }
 };
@@ -57,31 +67,31 @@ function refreshAvatarImage() {
   avatarImageLoaded = false;
   const t = Date.now();
   if (state.settings && state.settings.rotateOutfits !== false) {
-    avatarImg.src = 'avatar_daily.jpg?t=' + t;
+    avatarImg.src = getAvatarUrl('avatar_daily.jpg') + '?t=' + t;
     if (typeof el !== 'undefined' && el.avatarPreview) {
-      el.avatarPreview.src = 'avatar_daily.jpg?t=' + t;
+      el.avatarPreview.src = getAvatarUrl('avatar_daily.jpg') + '?t=' + t;
     }
     // Refresh options
     for (let i = 1; i <= 18; i++) {
       optionAvatarsLoaded[i - 1] = false;
-      optionAvatars[i - 1].src = `avatar_daily_${i}.jpg?t=` + t;
+      optionAvatars[i - 1].src = getAvatarUrl(`avatar_daily_${i}.jpg`) + '?t=' + t;
     }
   } else {
-    avatarImg.src = 'avatar.jpg?t=' + t;
+    avatarImg.src = getAvatarUrl('avatar.jpg') + '?t=' + t;
     if (typeof el !== 'undefined' && el.avatarPreview) {
-      el.avatarPreview.src = 'avatar.jpg?t=' + t;
+      el.avatarPreview.src = getAvatarUrl('avatar.jpg') + '?t=' + t;
     }
     // Fall back options to avatar.jpg
     for (let i = 1; i <= 18; i++) {
       optionAvatarsLoaded[i - 1] = false;
-      optionAvatars[i - 1].src = 'avatar.jpg?t=' + t;
+      optionAvatars[i - 1].src = getAvatarUrl('avatar.jpg') + '?t=' + t;
     }
   }
 }
-avatarImg.src = 'avatar_daily.jpg?t=' + Date.now();
+avatarImg.src = getAvatarUrl('avatar_daily.jpg') + '?t=' + Date.now();
 // Initialize option avatars
 for (let i = 1; i <= 18; i++) {
-  optionAvatars[i - 1].src = `avatar_daily_${i}.jpg?t=` + Date.now();
+  optionAvatars[i - 1].src = getAvatarUrl(`avatar_daily_${i}.jpg`) + '?t=' + Date.now();
 }
 
 const LAYOUT_FAMILIES = [
@@ -359,6 +369,15 @@ function setupEventListeners() {
 // Load Settings from API
 async function loadSettings() {
   try {
+    try {
+      const mapRes = await fetch('/api/avatar-map');
+      if (mapRes.ok) {
+        state.avatarMap = await mapRes.json();
+      }
+    } catch (mapErr) {
+      console.warn('Failed to load avatar map:', mapErr.message);
+    }
+
     const res = await fetch('/api/settings');
     if (!res.ok) throw new Error('Failed to load settings');
     

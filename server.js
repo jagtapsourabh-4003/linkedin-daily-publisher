@@ -367,8 +367,53 @@ cron.schedule('0 9 * * *', async () => {
   }
 });
 
+/**
+ * Utility to download avatars from cloud map to local folder on startup (to prevent tainted canvas CORS errors)
+ */
+async function downloadAvatars() {
+  const mapPath = path.join(__dirname, 'data', 'avatar-map.json');
+  if (!fs.existsSync(mapPath)) {
+    console.log('[Startup] No avatar map found. Skipping download.');
+    return;
+  }
+
+  try {
+    const map = JSON.parse(fs.readFileSync(mapPath, 'utf8'));
+    console.log('[Startup] Checking and downloading cloud avatars to local public folder to prevent tainted canvas...');
+    
+    const publicDir = path.join(__dirname, 'public');
+    const avatarsDir = path.join(publicDir, 'avatars');
+    if (!fs.existsSync(avatarsDir)) {
+      fs.mkdirSync(avatarsDir, { recursive: true });
+    }
+
+    for (const [relPath, cloudUrl] of Object.entries(map)) {
+      const targetPath = path.join(publicDir, relPath);
+      
+      if (!fs.existsSync(targetPath)) {
+        console.log(`[Startup] Downloading ${relPath} from cloud URL: ${cloudUrl}...`);
+        try {
+          const res = await fetch(cloudUrl);
+          if (res.ok) {
+            const buffer = Buffer.from(await res.arrayBuffer());
+            fs.writeFileSync(targetPath, buffer);
+          } else {
+            console.warn(`[Startup] Failed to download ${relPath}: HTTP ${res.status}`);
+          }
+        } catch (downloadErr) {
+          console.warn(`[Startup] Failed to download ${relPath}: ${downloadErr.message}`);
+        }
+      }
+    }
+    console.log('[Startup] Cloud avatars check complete.');
+  } catch (err) {
+    console.error('[Startup] Failed to process avatar map:', err.message);
+  }
+}
+
 // Startup Check: Generate today's posts immediately if missing
 const startupCheck = async () => {
+  await downloadAvatars();
   const todayStr = getLocalDateString();
   const history = getHistory();
   const hasToday = history.some(item => item.date === todayStr);
