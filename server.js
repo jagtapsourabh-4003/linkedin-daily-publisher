@@ -207,35 +207,60 @@ app.post('/api/upload-creative', async (req, res) => {
     const fileName = `creative-${date}-${postId}.png`;
     fs.writeFileSync(path.join(creativesDir, fileName), buffer);
     
-    console.log(`[API] Uploading creative image for Post ${postId} (${date}) to tmpfiles.org for secure public download...`);
+    console.log(`[API] Uploading creative image for Post ${postId} (${date}) to catbox.moe for permanent public hosting...`);
     let imageUrl = '';
     
     try {
       const blob = new Blob([buffer], { type: 'image/png' });
       const formData = new FormData();
-      formData.append('file', blob, fileName);
+      formData.append('reqtype', 'fileupload');
+      formData.append('fileToUpload', blob, fileName);
 
-      const uploadResponse = await fetch('https://tmpfiles.org/api/v1/upload', {
+      const uploadResponse = await fetch('https://catbox.moe/user/api.php', {
         method: 'POST',
         body: formData
       });
 
       if (uploadResponse.ok) {
-        const result = await uploadResponse.json();
-        if (result && result.status === 'success' && result.data && result.data.url) {
-          imageUrl = result.data.url.replace('https://tmpfiles.org/', 'https://tmpfiles.org/dl/');
-          console.log(`[API] Image successfully hosted publicly at: ${imageUrl}`);
+        const resultUrl = await uploadResponse.text();
+        if (resultUrl && resultUrl.startsWith('https://files.catbox.moe/')) {
+          imageUrl = resultUrl.trim();
+          console.log(`[API] Image successfully hosted permanently on Catbox: ${imageUrl}`);
         } else {
-          throw new Error(`Unexpected response format: ${JSON.stringify(result)}`);
+          throw new Error(`Unexpected Catbox response format: ${resultUrl}`);
         }
       } else {
         throw new Error(`HTTP Error ${uploadResponse.status}`);
       }
     } catch (uploadErr) {
-      console.warn(`[API] Public cloud upload to tmpfiles.org failed: ${uploadErr.message}. Falling back to local static URL.`);
-      const host = req.get('host');
-      const protocol = host.includes('onrender.com') ? 'https' : req.protocol;
-      imageUrl = `${protocol}://${host}/creatives/${fileName}`;
+      console.warn(`[API] Permanent cloud upload to Catbox failed: ${uploadErr.message}. Trying tmpfiles.org fallback...`);
+      try {
+        const blob = new Blob([buffer], { type: 'image/png' });
+        const formData = new FormData();
+        formData.append('file', blob, fileName);
+
+        const uploadResponse = await fetch('https://tmpfiles.org/api/v1/upload', {
+          method: 'POST',
+          body: formData
+        });
+
+        if (uploadResponse.ok) {
+          const result = await uploadResponse.json();
+          if (result && result.status === 'success' && result.data && result.data.url) {
+            imageUrl = result.data.url.replace('https://tmpfiles.org/', 'https://tmpfiles.org/dl/');
+            console.log(`[API] Image successfully hosted on tmpfiles.org: ${imageUrl}`);
+          } else {
+            throw new Error(`Unexpected response format: ${JSON.stringify(result)}`);
+          }
+        } else {
+          throw new Error(`HTTP Error ${uploadResponse.status}`);
+        }
+      } catch (tmpFilesErr) {
+        console.warn(`[API] Fallback upload to tmpfiles.org failed: ${tmpFilesErr.message}. Falling back to local static URL.`);
+        const host = req.get('host');
+        const protocol = host.includes('onrender.com') ? 'https' : req.protocol;
+        imageUrl = `${protocol}://${host}/creatives/${fileName}`;
+      }
     }
     
     res.json({ success: true, imageUrl });
