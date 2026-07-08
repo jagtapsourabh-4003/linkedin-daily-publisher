@@ -4,6 +4,8 @@ FROM node:20-slim
 # Set environment variables
 ENV PORT=7860
 ENV HOME=/app
+ENV NODE_ENV=production
+ENV NODE_OPTIONS="--max-old-space-size=450"
 
 # Set working directory inside the container
 WORKDIR /app

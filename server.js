@@ -1,4 +1,3 @@
-console.log('[DEBUG] server.js execution started!');
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -18,6 +17,8 @@ import {
   markAsPosted 
 } from './database.js';
 
+console.log('[DEBUG] server.js modules loaded successfully');
+
 // Load environment variables
 dotenv.config();
 
@@ -28,6 +29,11 @@ const app = express();
 app.set('trust proxy', true);
 const PORT = process.env.PORT || 3000;
 
+// Health check endpoint - must be FIRST route for Hugging Face container checks
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
 // Enable CORS and JSON parsing with custom limits for high-res images
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
@@ -35,6 +41,9 @@ app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
 // Serve static frontend files from 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Serve creatives directory statically
+app.use('/creatives', express.static(path.join(__dirname, 'creatives')));
 
 /**
  * Utility to get formatted date string in local time (YYYY-MM-DD)

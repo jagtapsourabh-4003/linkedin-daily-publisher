@@ -54,21 +54,22 @@ export function writeDb(data) {
 
 // Helper to get settings
 export function getSettings() {
-  const db = readDb();
+  const db = readDb() || {};
+  const settings = db.settings || {};
   
-  // Merge with environment variables as fallbacks
   return {
-    webhookUrl: db.settings.webhookUrl || process.env.WEBHOOK_URL || '',
-    geminiApiKey: db.settings.geminiApiKey || process.env.GEMINI_API_KEY || '',
-    imgbbApiKey: db.settings.imgbbApiKey || process.env.IMGBB_API_KEY || '',
-    cronSecret: db.settings.cronSecret || process.env.CRON_SECRET || 'linkedin_generator_secret_12345',
-    rotateOutfits: db.settings.rotateOutfits !== undefined ? db.settings.rotateOutfits : true
+    webhookUrl: settings.webhookUrl || process.env.WEBHOOK_URL || '',
+    geminiApiKey: settings.geminiApiKey || process.env.GEMINI_API_KEY || '',
+    imgbbApiKey: settings.imgbbApiKey || process.env.IMGBB_API_KEY || '',
+    cronSecret: settings.cronSecret || process.env.CRON_SECRET || 'linkedin_generator_secret_12345',
+    rotateOutfits: settings.rotateOutfits !== undefined ? settings.rotateOutfits : true
   };
 }
 
 // Helper to save settings
 export function saveSettings(newSettings) {
-  const db = readDb();
+  const db = readDb() || {};
+  db.settings = db.settings || {};
   db.settings = {
     ...db.settings,
     ...newSettings
@@ -78,13 +79,14 @@ export function saveSettings(newSettings) {
 
 // Helper to get history
 export function getHistory() {
-  const db = readDb();
+  const db = readDb() || {};
   return db.history || [];
 }
 
 // Helper to save a new generation entry
 export function saveGeneration(date, category, posts) {
-  const db = readDb();
+  const db = readDb() || {};
+  db.history = db.history || [];
   
   // Check if entry for date already exists, remove it if it does (to overwrite with fresh generate)
   db.history = db.history.filter(item => item.date !== date);
@@ -108,7 +110,8 @@ export function saveGeneration(date, category, posts) {
 
 // Helper to update a single draft post content
 export function updateDraftPost(date, postId, newContent) {
-  const db = readDb();
+  const db = readDb() || {};
+  db.history = db.history || [];
   const entry = db.history.find(item => item.date === date);
   
   if (entry && entry.posts) {
@@ -128,7 +131,8 @@ export function updateDraftPost(date, postId, newContent) {
 
 // Helper to mark a draft as selected and posted
 export function markAsPosted(date, postId, imageUrl = null) {
-  const db = readDb();
+  const db = readDb() || {};
+  db.history = db.history || [];
   const entry = db.history.find(item => item.date === date);
   
   if (entry) {
