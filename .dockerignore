@@ -1,0 +1,8 @@
+node_modules
+.git
+.env
+.agents
+project.zip
+upload.js
+host-avatars.js
+test-*.js
