@@ -300,6 +300,7 @@ const el = {
   btnCloseSettings: document.getElementById('btn-close-settings'),
   inputWebhook: document.getElementById('input-webhook'),
   inputApiKey: document.getElementById('input-apikey'),
+  inputImgbbApiKey: document.getElementById('input-imgbb-apikey'),
   inputSecret: document.getElementById('input-secret'),
   inputAvatarFile: document.getElementById('input-avatar-file'),
   avatarPreview: document.getElementById('avatar-preview'),
@@ -369,6 +370,8 @@ async function loadSettings() {
     el.inputWebhook.value = state.settings.webhookUrl || '';
     el.inputSecret.value = state.settings.cronSecret || '';
     el.inputApiKey.placeholder = state.settings.hasApiKey ? '••••••••••••••••••••••••••••••••' : 'Enter API Key';
+    el.inputImgbbApiKey.placeholder = state.settings.hasImgbbApiKey ? '••••••••••••••••••••••••••••••••' : 'Enter ImgBB API Key';
+    el.inputImgbbApiKey.value = '';
     el.inputRotateOutfits.checked = state.settings.rotateOutfits !== false;
     refreshAvatarImage();
 
@@ -423,6 +426,7 @@ async function handleSaveSettings(e) {
   e.preventDefault();
   const webhookUrl = el.inputWebhook.value.trim();
   const geminiApiKey = el.inputApiKey.value.trim();
+  const imgbbApiKey = el.inputImgbbApiKey.value.trim();
   const rotateOutfits = el.inputRotateOutfits.checked;
   
   try {
@@ -449,7 +453,7 @@ async function handleSaveSettings(e) {
     const res = await fetch('/api/settings', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ webhookUrl, geminiApiKey, rotateOutfits })
+      body: JSON.stringify({ webhookUrl, geminiApiKey, imgbbApiKey, rotateOutfits })
     });
     
     if (!res.ok) throw new Error('Failed to save settings');

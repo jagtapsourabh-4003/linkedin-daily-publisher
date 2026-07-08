@@ -103,6 +103,7 @@ app.get('/api/settings', (req, res) => {
   res.json({
     webhookUrl: settings.webhookUrl,
     hasApiKey: !!settings.geminiApiKey,
+    hasImgbbApiKey: !!settings.imgbbApiKey,
     cronSecret: settings.cronSecret,
     rotateOutfits: settings.rotateOutfits
   });
@@ -124,11 +125,12 @@ app.get('/api/avatar-map', (req, res) => {
 
 // Update settings
 app.post('/api/settings', (req, res) => {
-  const { webhookUrl, geminiApiKey, cronSecret, rotateOutfits } = req.body;
+  const { webhookUrl, geminiApiKey, imgbbApiKey, cronSecret, rotateOutfits } = req.body;
   const updateData = {};
   
   if (webhookUrl !== undefined) updateData.webhookUrl = webhookUrl;
   if (geminiApiKey !== undefined && geminiApiKey.trim() !== '') updateData.geminiApiKey = geminiApiKey;
+  if (imgbbApiKey !== undefined && imgbbApiKey.trim() !== '') updateData.imgbbApiKey = imgbbApiKey;
   if (cronSecret !== undefined) updateData.cronSecret = cronSecret;
   if (rotateOutfits !== undefined) updateData.rotateOutfits = rotateOutfits;
 
@@ -221,33 +223,63 @@ app.post('/api/upload-creative', async (req, res) => {
     const fileName = `creative-${date}-${postId}.png`;
     fs.writeFileSync(path.join(creativesDir, fileName), buffer);
     
-    console.log(`[API] Uploading creative image for Post ${postId} (${date}) to catbox.moe for permanent public hosting...`);
+    const settings = getSettings();
     let imageUrl = '';
     
-    try {
-      const blob = new Blob([buffer], { type: 'image/png' });
-      const formData = new FormData();
-      formData.append('reqtype', 'fileupload');
-      formData.append('fileToUpload', blob, fileName);
+    if (settings.imgbbApiKey) {
+      console.log(`[API] Uploading creative image for Post ${postId} (${date}) to ImgBB using API Key...`);
+      try {
+        const params = new URLSearchParams();
+        params.append('key', settings.imgbbApiKey);
+        params.append('image', base64Data);
 
-      const uploadResponse = await fetch('https://catbox.moe/user/api.php', {
-        method: 'POST',
-        body: formData
-      });
+        const imgbbResponse = await fetch('https://api.imgbb.com/1/upload', {
+          method: 'POST',
+          body: params
+        });
 
-      if (uploadResponse.ok) {
-        const resultUrl = await uploadResponse.text();
-        if (resultUrl && resultUrl.startsWith('https://files.catbox.moe/')) {
-          imageUrl = resultUrl.trim();
-          console.log(`[API] Image successfully hosted permanently on Catbox: ${imageUrl}`);
+        if (imgbbResponse.ok) {
+          const result = await imgbbResponse.json();
+          if (result && result.success && result.data && result.data.url) {
+            imageUrl = result.data.url;
+            console.log(`[API] Creative hosted on ImgBB successfully: ${imageUrl}`);
+          } else {
+            throw new Error(result.error ? result.error.message : 'Unknown ImgBB error');
+          }
         } else {
-          throw new Error(`Unexpected Catbox response format: ${resultUrl}`);
+          throw new Error(`HTTP Error ${imgbbResponse.status}`);
         }
-      } else {
-        throw new Error(`HTTP Error ${uploadResponse.status}`);
+      } catch (imgbbErr) {
+        console.warn(`[API] ImgBB upload failed: ${imgbbErr.message}. Trying Catbox fallback...`);
       }
-    } catch (uploadErr) {
-      console.warn(`[API] Permanent cloud upload to Catbox failed: ${uploadErr.message}. Trying tmpfiles.org fallback...`);
+    }
+
+    if (!imageUrl) {
+      console.log(`[API] Uploading creative image for Post ${postId} (${date}) to catbox.moe for permanent public hosting...`);
+      try {
+        const blob = new Blob([buffer], { type: 'image/png' });
+        const formData = new FormData();
+        formData.append('reqtype', 'fileupload');
+        formData.append('fileToUpload', blob, fileName);
+
+        const uploadResponse = await fetch('https://catbox.moe/user/api.php', {
+          method: 'POST',
+          body: formData
+        });
+
+        if (uploadResponse.ok) {
+          const resultUrl = await uploadResponse.text();
+          if (resultUrl && resultUrl.startsWith('https://files.catbox.moe/')) {
+            imageUrl = resultUrl.trim();
+            console.log(`[API] Image successfully hosted permanently on Catbox: ${imageUrl}`);
+          } else {
+            throw new Error(`Unexpected Catbox response format: ${resultUrl}`);
+          }
+        } else {
+          throw new Error(`HTTP Error ${uploadResponse.status}`);
+        }
+      } catch (uploadErr) {
+        console.warn(`[API] Permanent cloud upload to Catbox failed: ${uploadErr.message}. Trying tmpfiles.org fallback...`);
       try {
         const blob = new Blob([buffer], { type: 'image/png' });
         const formData = new FormData();
@@ -276,6 +308,7 @@ app.post('/api/upload-creative', async (req, res) => {
         imageUrl = `${protocol}://${host}/creatives/${fileName}`;
       }
     }
+  }
     
     res.json({ success: true, imageUrl });
   } catch (err) {

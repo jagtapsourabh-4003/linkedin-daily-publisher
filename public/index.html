@@ -125,6 +125,14 @@
         </div>
 
         <div class="form-group">
+          <label for="input-imgbb-apikey">ImgBB API Key (For Image Hosting)</label>
+          <div class="input-password-wrapper">
+            <input type="password" id="input-imgbb-apikey" placeholder="Enter ImgBB API Key">
+          </div>
+          <small class="form-help">Enter your API key from <a href="https://api.imgbb.com/" target="_blank" style="color: var(--accent-light);">api.imgbb.com</a> to enable stable, public hosting for your generated graphics. Required for private Spaces.</small>
+        </div>
+
+        <div class="form-group">
           <label for="input-secret">Cron Secret Token</label>
           <input type="text" id="input-secret" readonly>
           <small class="form-help">Use this secret to trigger automated generation remotely from outside schedulers via POST: <br><code>/api/cron/trigger?secret=[token]</code></small>
