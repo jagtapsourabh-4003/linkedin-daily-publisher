@@ -6,21 +6,25 @@ const DB_FILE = path.join(DB_DIR, 'db.json');
 
 // Initialize database file
 function initDb() {
-  if (!fs.existsSync(DB_DIR)) {
-    fs.mkdirSync(DB_DIR, { recursive: true });
-  }
+  try {
+    if (!fs.existsSync(DB_DIR)) {
+      fs.mkdirSync(DB_DIR, { recursive: true });
+    }
 
-  if (!fs.existsSync(DB_FILE)) {
-    const defaultData = {
-      settings: {
-        webhookUrl: 'https://hook.eu1.make.com/8hd357m87nxbmvrw8i5f7i3ughh4jp9g',
-        geminiApiKey: 'AQ.Ab8RN6IzlFk-XmPTlKn9o1-OIVwbMpRkR6d6WJDgoi6l7UvbAw',
-        cronSecret: 'linkedin_generator_secret_12345',
-        rotateOutfits: true
-      },
-      history: []
-    };
-    fs.writeFileSync(DB_FILE, JSON.stringify(defaultData, null, 2), 'utf-8');
+    if (!fs.existsSync(DB_FILE)) {
+      const defaultData = {
+        settings: {
+          webhookUrl: 'https://hook.eu1.make.com/8hd357m87nxbmvrw8i5f7i3ughh4jp9g',
+          geminiApiKey: 'AQ.Ab8RN6IzlFk-XmPTlKn9o1-OIVwbMpRkR6d6WJDgoi6l7UvbAw',
+          cronSecret: 'linkedin_generator_secret_12345',
+          rotateOutfits: true
+        },
+        history: []
+      };
+      fs.writeFileSync(DB_FILE, JSON.stringify(defaultData, null, 2), 'utf-8');
+    }
+  } catch (err) {
+    console.error('[Database] Failed to initialize database file:', err.message);
   }
 }
 

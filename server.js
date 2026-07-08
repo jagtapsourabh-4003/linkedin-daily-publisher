@@ -446,33 +446,37 @@ async function downloadAvatars() {
 
 // Startup Check: Generate today's posts immediately if missing
 const startupCheck = async () => {
-  await downloadAvatars();
-  const todayStr = getLocalDateString();
-  const history = getHistory();
-  const hasToday = history.some(item => item.date === todayStr);
+  try {
+    await downloadAvatars();
+    const todayStr = getLocalDateString();
+    const history = getHistory();
+    const hasToday = history.some(item => item.date === todayStr);
 
-  if (!hasToday) {
-    console.log(`[Startup] Today's posts (${todayStr}) are missing. Running auto-generation...`);
-    const settings = getSettings();
-    if (!settings.geminiApiKey) {
-      console.warn('[Startup] API Key is missing. Skipping auto-generation. Please configure it via the dashboard.');
-      return;
+    if (!hasToday) {
+      console.log(`[Startup] Today's posts (${todayStr}) are missing. Running auto-generation...`);
+      const settings = getSettings();
+      if (!settings.geminiApiKey) {
+        console.warn('[Startup] API Key is missing. Skipping auto-generation. Please configure it via the dashboard.');
+        return;
+      }
+      try {
+        await runDailyPipeline(todayStr);
+      } catch (error) {
+        console.error('[Startup] Failed to execute startup generation:', error.message);
+      }
+    } else {
+      console.log(`[Startup] Today's posts (${todayStr}) already exist. Ready.`);
     }
-    try {
-      await runDailyPipeline(todayStr);
-    } catch (error) {
-      console.error('[Startup] Failed to execute startup generation:', error.message);
-    }
-  } else {
-    console.log(`[Startup] Today's posts (${todayStr}) already exist. Ready.`);
+  } catch (err) {
+    console.error('[Startup] Critical error in startup check:', err.message);
   }
 };
 
-// Start Server
-app.listen(PORT, async () => {
+// Start Server explicitly binding to 0.0.0.0 for container health checks
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`==================================================`);
   console.log(`  LinkedIn Daily Content Generator Server Active  `);
-  console.log(`  Running on: http://localhost:${PORT}             `);
+  console.log(`  Running on: http://0.0.0.0:${PORT}             `);
   console.log(`==================================================`);
   
   // Run startup checks asynchronously
