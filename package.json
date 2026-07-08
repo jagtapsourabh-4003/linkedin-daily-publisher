@@ -1,6 +1,6 @@
 {
   "name": "linkedin-daily-generator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Scrapes trends and generates LinkedIn posts using Gemini AI",
   "main": "server.js",
   "type": "module",
