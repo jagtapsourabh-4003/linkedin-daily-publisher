@@ -229,13 +229,13 @@ app.post('/api/upload-creative', async (req, res) => {
     if (settings.imgbbApiKey) {
       console.log(`[API] Uploading creative image for Post ${postId} (${date}) to ImgBB using API Key...`);
       try {
-        const params = new URLSearchParams();
-        params.append('key', settings.imgbbApiKey);
-        params.append('image', base64Data);
+        const formData = new FormData();
+        formData.append('key', settings.imgbbApiKey);
+        formData.append('image', base64Data);
 
         const imgbbResponse = await fetch('https://api.imgbb.com/1/upload', {
           method: 'POST',
-          body: params
+          body: formData
         });
 
         if (imgbbResponse.ok) {
