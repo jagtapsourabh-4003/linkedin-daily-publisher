@@ -117,8 +117,8 @@ Each object in the array must follow this structure. Ensure that the "style" fie
 
 {
   "designArchetype": "Forbes Cover",
-  "layoutFamily": "split-left / split-right / hero-center / magazine-cover / quote-card / podcast-layout / presentation-slide / news-card / editorial-cover / phone-mockup / floating-cards / layered-depth / diagonal-layout / asymmetrical-grid / modern-minimal",
-  "colorPalette": "Electric Blue / Cyber Purple / Emerald Green / Crimson Red / Royal Gold / Teal White / Slate Blue / Monochrome Black / Neon Cyan / Sunset Orange / Deep Indigo / Premium Burgundy / Corporate Navy / Platinum Grey / Dark Forest",
+  "layoutFamily": "split-left / split-right / hero-center / magazine-cover / quote-card / podcast-layout / presentation-slide / news-card / editorial-cover / phone-mockup / floating-cards / layered-depth / diagonal-layout / asymmetrical-grid / modern-minimal / glassmorphism-card / neon-border / bold-typographic / infographic-side / cinematic-wide",
+  "colorPalette": "Electric Blue / Cyber Purple / Emerald Green / Crimson Red / Royal Gold / Teal White / Slate Blue / Monochrome Black / Neon Cyan / Sunset Orange / Deep Indigo / Premium Burgundy / Corporate Navy / Platinum Grey / Dark Forest / Aurora Violet / Liquid Gold / Midnight Rose / Arctic Blue / Volcanic Amber",
   "characterRole": "AI Consultant",
   "environment": "Innovation lab",
   "cameraStyle": "Half-body portrait",

@@ -258,6 +258,57 @@ const PALETTES = [
     rayColor: 'rgba(21, 128, 61, 0.04)',
     textGlow: 'rgba(21, 128, 61, 0.15)',
     badgeBg: '#166534'
+  },
+  {
+    name: 'Aurora Violet',
+    primary: '#c026d3',
+    secondary: '#e879f9',
+    gradStart: '#1a0028',
+    gradEnd: '#0d001a',
+    rayColor: 'rgba(192, 38, 211, 0.05)',
+    textGlow: 'rgba(192, 38, 211, 0.2)',
+    badgeBg: '#86198f'
+  },
+  {
+    name: 'Liquid Gold',
+    primary: '#d97706',
+    secondary: '#fcd34d',
+    gradStart: '#1c1008',
+    gradEnd: '#0a0400',
+    rayColor: 'rgba(217, 119, 6, 0.05)',
+    textGlow: 'rgba(217, 119, 6, 0.2)',
+    badgeBg: '#b45309'
+  },
+  {
+    name: 'Midnight Rose',
+    primary: '#e11d48',
+    secondary: '#fb7185',
+    gradStart: '#1a0010',
+    gradEnd: '#0a0008',
+    rayColor: 'rgba(225, 29, 72, 0.05)',
+    textGlow: 'rgba(225, 29, 72, 0.2)',
+    badgeBg: '#9f1239'
+  },
+  {
+    name: 'Arctic Blue',
+    primary: '#0ea5e9',
+    secondary: '#e0f2fe',
+    gradStart: '#f0f9ff',
+    gradEnd: '#e0f2fe',
+    rayColor: 'rgba(0, 0, 0, 0.02)',
+    textGlow: 'rgba(0, 0, 0, 0.03)',
+    badgeBg: '#0369a1',
+    isLight: true
+  },
+  {
+    name: 'Volcanic Amber',
+    primary: '#ea580c',
+    secondary: '#fdba74',
+    gradStart: '#200e04',
+    gradEnd: '#0a0200',
+    rayColor: 'rgba(234, 88, 12, 0.05)',
+    textGlow: 'rgba(234, 88, 12, 0.2)',
+    badgeBg: '#c2410c'
   }
 ];
 
@@ -1540,6 +1591,172 @@ function buildLayoutFromFamily(layoutFamily, palette, headline, subtext, categor
       layout.text.headline = { fontSize: 42, color: '#ffffff', highlightColor: palette.primary, align: 'center', x: 140, y: 260, w: 800 };
       layout.text.subtext = { fontSize: 22, color: '#cbd5e1', align: 'center', x: 190, y: 580, w: 700 };
       layout.text.cta = { text: 'DETAILS', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 20, x: 410, y: 800, w: 260, h: 55 };
+      break;
+
+    case 'glassmorphism-card':
+      // Back light bursts
+      layout.background.glows.push({ x: 200, y: 200, r: 400, color: palette.primary + '33' });
+      layout.background.glows.push({ x: 880, y: 880, r: 450, color: palette.secondary + '26' });
+      // Organic retro shapes behind the glass card
+      layout.shapes.push({ type: 'circle', x: 250, y: 750, r: 180, color: palette.primary + '15' });
+      layout.shapes.push({ type: 'rect', x: 800, y: 300, w: 240, h: 240, color: palette.secondary + '12', borderRadius: 40, tilt: 0.15 });
+      // Glass card overlay in center
+      layout.shapes.push({
+        type: 'rect',
+        x: 540,
+        y: 540,
+        w: 920,
+        h: 920,
+        color: 'rgba(15, 23, 42, 0.45)',
+        strokeColor: 'rgba(255, 255, 255, 0.12)',
+        lineWidth: 2,
+        borderRadius: 32
+      });
+      // Smart subtle avatar placement
+      layout.avatar = {
+        type: 'rect',
+        x: 770,
+        y: 690,
+        w: 360,
+        h: 520,
+        glowColor: palette.primary + '15',
+        glowBlur: 25,
+        strokeColor: 'rgba(255, 255, 255, 0.1)',
+        lineWidth: 1
+      };
+      layout.text.badge = { text: layout.text.badge.text, bgColor: palette.primary, x: 140, y: 150, w: 240, h: 36 };
+      layout.text.headline = { fontSize: 44, color: '#ffffff', highlightColor: palette.secondary, align: 'left', x: 140, y: 220, w: 500 };
+      layout.text.subtext = { fontSize: 21, color: '#cbd5e1', align: 'left', x: 140, y: 580, w: 460 };
+      layout.text.cta = { text: 'GET THE PLAYBOOK', bgColor: 'rgba(255, 255, 255, 0.08)', strokeColor: 'rgba(255, 255, 255, 0.2)', glowColor: 'transparent', glowBlur: 0, x: 140, y: 840, w: 280, h: 55 };
+      break;
+
+    case 'neon-border':
+      layout.background.drawGrid = true;
+      layout.background.gridColor = 'rgba(255, 255, 255, 0.02)';
+      // Dual layer outer neon border frame
+      layout.shapes.push({
+        type: 'rect',
+        x: 540,
+        y: 540,
+        w: 1000,
+        h: 1000,
+        color: 'transparent',
+        strokeColor: palette.primary + '20',
+        lineWidth: 8,
+        borderRadius: 16
+      });
+      layout.shapes.push({
+        type: 'rect',
+        x: 540,
+        y: 540,
+        w: 994,
+        h: 994,
+        color: 'transparent',
+        strokeColor: palette.primary,
+        lineWidth: 2,
+        borderRadius: 14
+      });
+      // Cyber neon accents
+      layout.shapes.push({ type: 'rect', x: 80, y: 80, w: 20, h: 2, color: palette.secondary });
+      layout.shapes.push({ type: 'rect', x: 80, y: 80, w: 2, h: 20, color: palette.secondary });
+      layout.shapes.push({ type: 'rect', x: 1000, y: 1000, w: 20, h: 2, color: palette.secondary });
+      layout.shapes.push({ type: 'rect', x: 1000, y: 1000, w: 2, h: 20, color: palette.secondary });
+      
+      layout.avatar = {
+        type: 'rect',
+        x: 820,
+        y: 540,
+        w: 400,
+        h: 740,
+        glowColor: palette.primary + '50',
+        glowBlur: 45,
+        strokeColor: palette.primary,
+        lineWidth: 3
+      };
+      layout.text.badge = { text: layout.text.badge.text, bgColor: palette.badgeBg, x: 100, y: 160, w: 240, h: 36 };
+      layout.text.headline = { fontSize: 40, color: '#ffffff', highlightColor: palette.secondary, align: 'left', x: 100, y: 230, w: 480 };
+      layout.text.subtext = { fontSize: 21, color: '#94a3b8', align: 'left', x: 100, y: 550, w: 480 };
+      layout.text.cta = { text: 'EXPLORE NEXT', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 25, x: 100, y: 800, w: 260, h: 55 };
+      break;
+
+    case 'bold-typographic':
+      layout.background.colors = [palette.gradEnd, '#000000'];
+      // Swiss design cross hair
+      layout.shapes.push({ type: 'line', x1: 60, y1: 540, x2: 1020, y2: 540, strokeColor: 'rgba(255, 255, 255, 0.05)', lineWidth: 1 });
+      layout.shapes.push({ type: 'line', x1: 540, y1: 60, x2: 540, y2: 1020, strokeColor: 'rgba(255, 255, 255, 0.05)', lineWidth: 1 });
+      
+      // Giant typographic layout where text rules 60% of vertical
+      layout.avatar = {
+        type: 'circle',
+        x: 820,
+        y: 780,
+        w: 280,
+        h: 280,
+        glowColor: palette.primary + '20',
+        glowBlur: 20,
+        strokeColor: palette.primary,
+        lineWidth: 2
+      };
+      layout.text.badge = { text: layout.text.badge.text, bgColor: palette.badgeBg, x: 80, y: 100, w: 220, h: 36 };
+      layout.text.headline = { fontSize: 52, color: '#ffffff', highlightColor: palette.primary, align: 'left', x: 80, y: 170, w: 920 };
+      layout.text.subtext = { fontSize: 24, color: '#94a3b8', align: 'left', x: 80, y: 590, w: 600 };
+      layout.text.cta = { text: 'READ STORY', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 15, x: 80, y: 840, w: 240, h: 55 };
+      break;
+
+    case 'infographic-side':
+      layout.background.drawGrid = true;
+      layout.background.gridSize = 60;
+      layout.background.gridColor = 'rgba(255,255,255,0.015)';
+      // Left border line
+      layout.shapes.push({ type: 'line', x1: 420, y1: 80, x2: 420, y2: 1000, strokeColor: 'rgba(255, 255, 255, 0.08)', lineWidth: 2 });
+      
+      // Sidebar avatar
+      layout.avatar = {
+        type: 'rect',
+        x: 230,
+        y: 540,
+        w: 320,
+        h: 580,
+        glowColor: palette.primary + '20',
+        glowBlur: 25,
+        strokeColor: palette.primary,
+        lineWidth: 2
+      };
+      
+      // Right sidebar structured info cards
+      layout.shapes.push({ type: 'rect', x: 740, y: 620, w: 560, h: 140, color: 'rgba(255, 255, 255, 0.02)', strokeColor: 'rgba(255, 255, 255, 0.05)', borderRadius: 12 });
+      layout.shapes.push({ type: 'rect', x: 740, y: 790, w: 560, h: 140, color: 'rgba(255, 255, 255, 0.02)', strokeColor: 'rgba(255, 255, 255, 0.05)', borderRadius: 12 });
+      
+      layout.text.badge = { text: layout.text.badge.text, bgColor: palette.badgeBg, x: 480, y: 120, w: 240, h: 36 };
+      layout.text.headline = { fontSize: 44, color: '#ffffff', highlightColor: palette.primary, align: 'left', x: 480, y: 190, w: 520 };
+      layout.text.subtext = { fontSize: 20, color: '#cbd5e1', align: 'left', x: 480, y: 520, w: 520 };
+      layout.text.cta = { text: 'TAKE PLAYBOOK', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 20, x: 480, y: 940, w: 260, h: 55 };
+      break;
+
+    case 'cinematic-wide':
+      // Cinematic dark borders on top and bottom (letterbox style)
+      layout.shapes.push({ type: 'rect', x: 540, y: 40, w: 1080, h: 80, color: '#000000', borderRadius: 0 });
+      layout.shapes.push({ type: 'rect', x: 540, y: 1040, w: 1080, h: 80, color: '#000000', borderRadius: 0 });
+      // Accent lines
+      layout.shapes.push({ type: 'line', x1: 0, y1: 80, x2: 1080, y2: 80, strokeColor: palette.primary + '50', lineWidth: 2 });
+      layout.shapes.push({ type: 'line', x1: 0, y1: 1000, x2: 1080, y2: 1000, strokeColor: palette.primary + '50', lineWidth: 2 });
+      
+      layout.avatar = {
+        type: 'rect',
+        x: 800,
+        y: 540,
+        w: 480,
+        h: 840,
+        glowColor: palette.primary + '15',
+        glowBlur: 30,
+        strokeColor: 'transparent',
+        lineWidth: 0
+      };
+      
+      layout.text.badge = { text: layout.text.badge.text, bgColor: palette.badgeBg, x: 80, y: 140, w: 220, h: 36 };
+      layout.text.headline = { fontSize: 44, color: '#ffffff', highlightColor: palette.primary, align: 'left', x: 80, y: 210, w: 460 };
+      layout.text.subtext = { fontSize: 22, color: '#94a3b8', align: 'left', x: 80, y: 550, w: 460 };
+      layout.text.cta = { text: 'WATCH BRIEF', bgColor: palette.primary, glowColor: palette.primary, glowBlur: 20, x: 80, y: 880, w: 260, h: 55 };
       break;
   }
 
