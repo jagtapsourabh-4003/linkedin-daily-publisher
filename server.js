@@ -15,13 +15,18 @@ import {
   updateDraftPost, 
   updateDraftDesign,
   markAsPosted,
-  resetDraftStatus
+  resetDraftStatus,
+  autoSeedFromEnv
 } from './database.js';
 
 console.log('[DEBUG] server.js modules loaded successfully');
 
 // Load environment variables
 dotenv.config();
+
+// CRITICAL: Auto-seed API keys from environment variables into db on every startup
+// This ensures settings survive Render's ephemeral filesystem resets on container restarts
+autoSeedFromEnv();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -32,8 +37,33 @@ const PORT = process.env.PORT || 3000;
 
 // Health check endpoint - must be FIRST route for Hugging Face container checks
 app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
+  const settings = getSettings();
+  res.status(200).json({ 
+    status: 'ok', 
+    timestamp: new Date().toISOString(),
+    hasGeminiKey: !!settings.geminiApiKey,
+    hasImgbbKey: !!settings.imgbbApiKey,
+    hasWebhook: !!settings.webhookUrl
+  });
 });
+
+// Utility: retry an async function with exponential backoff
+async function retryWithBackoff(fn, maxRetries = 3, baseDelayMs = 1000) {
+  let lastErr;
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      return await fn();
+    } catch (err) {
+      lastErr = err;
+      if (attempt < maxRetries) {
+        const delay = baseDelayMs * Math.pow(2, attempt - 1);
+        console.warn(`[Retry] Attempt ${attempt}/${maxRetries} failed: ${err.message}. Retrying in ${delay}ms...`);
+        await new Promise(r => setTimeout(r, delay));
+      }
+    }
+  }
+  throw lastErr;
+}
 
 // Enable CORS and JSON parsing with custom limits for high-res images
 app.use(cors());
@@ -494,34 +524,33 @@ app.post('/api/post', async (req, res) => {
 
   try {
     console.log(`[API] Sending post ${postId} from ${date} to webhook: ${settings.webhookUrl}`);
-    
-    // Perform POST request to user's Google Flow
-    const response = await fetch(settings.webhookUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        text: post.postContent ? post.postContent.content : post.content,
-        imageUrl: imageUrl || null,
-        style: post.postContent ? post.postContent.style : post.style,
-        sourceArticle: post.postContent ? post.postContent.sourceArticle : post.sourceArticle,
-        category: dayEntry.category,
-        date: date,
-        author: 'Marketing Manager & AI Expert'
-      })
-    });
 
-    if (!response.ok) {
-      throw new Error(`Webhook responded with status ${response.status}: ${await response.text()}`);
-    }
+    // Perform POST request to Make.com webhook with automatic retry on transient failures
+    const response = await retryWithBackoff(async () => {
+      const r = await fetch(settings.webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          text: post.postContent ? post.postContent.content : post.content,
+          imageUrl: imageUrl || null,
+          style: post.postContent ? post.postContent.style : post.style,
+          sourceArticle: post.postContent ? post.postContent.sourceArticle : post.sourceArticle,
+          category: dayEntry.category,
+          date: date,
+          author: 'Marketing Manager & AI Expert'
+        }),
+        signal: AbortSignal.timeout(15000)
+      });
+      if (!r.ok) throw new Error(`Webhook responded with HTTP ${r.status}: ${await r.text()}`);
+      return r;
+    }, 3, 2000);
 
     // Mark as posted in database
     markAsPosted(date, postId, imageUrl || null);
-    res.json({ success: true, message: 'Post sent to Google Flow successfully!' });
+    res.json({ success: true, message: 'Post sent to Make.com webhook successfully!' });
 
   } catch (error) {
-    console.error('[API] Webhook delivery failed:', error);
+    console.error('[API] Webhook delivery failed after retries:', error);
     res.status(500).json({ error: `Webhook delivery failed: ${error.message}` });
   }
 });

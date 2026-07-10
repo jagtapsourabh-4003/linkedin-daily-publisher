@@ -14,14 +14,16 @@ function initDb() {
     if (!fs.existsSync(DB_FILE)) {
       const defaultData = {
         settings: {
-          webhookUrl: 'https://hook.eu1.make.com/8hd357m87nxbmvrw8i5f7i3ughh4jp9g',
-          geminiApiKey: 'AQ.Ab8RN6IzlFk-XmPTlKn9o1-OIVwbMpRkR6d6WJDgoi6l7UvbAw',
-          cronSecret: 'linkedin_generator_secret_12345',
+          webhookUrl: process.env.WEBHOOK_URL || 'https://hook.eu1.make.com/8hd357m87nxbmvrw8i5f7i3ughh4jp9g',
+          geminiApiKey: process.env.GEMINI_API_KEY || '',
+          imgbbApiKey: process.env.IMGBB_API_KEY || '',
+          cronSecret: process.env.CRON_SECRET || 'linkedin_generator_secret_12345',
           rotateOutfits: true
         },
         history: []
       };
       fs.writeFileSync(DB_FILE, JSON.stringify(defaultData, null, 2), 'utf-8');
+      console.log('[Database] Created fresh db.json with defaults from environment.');
     }
   } catch (err) {
     console.error('[Database] Failed to initialize database file:', err.message);
@@ -52,11 +54,12 @@ export function writeDb(data) {
   }
 }
 
-// Helper to get settings
+// Helper to get settings — always merges env vars so keys survive container restarts
 export function getSettings() {
   const db = readDb() || {};
   const settings = db.settings || {};
-  
+
+  // Env vars always win over a blank db value (handles ephemeral filesystem restarts)
   return {
     webhookUrl: settings.webhookUrl || process.env.WEBHOOK_URL || '',
     geminiApiKey: settings.geminiApiKey || process.env.GEMINI_API_KEY || '',
@@ -64,6 +67,41 @@ export function getSettings() {
     cronSecret: settings.cronSecret || process.env.CRON_SECRET || 'linkedin_generator_secret_12345',
     rotateOutfits: settings.rotateOutfits !== undefined ? settings.rotateOutfits : true
   };
+}
+
+// Auto-seed: called at server startup to persist env vars into db
+// This ensures keys survive even if db.json is reset by ephemeral filesystem
+export function autoSeedFromEnv() {
+  try {
+    const db = readDb() || {};
+    db.settings = db.settings || {};
+    let changed = false;
+
+    if (!db.settings.geminiApiKey && process.env.GEMINI_API_KEY) {
+      db.settings.geminiApiKey = process.env.GEMINI_API_KEY;
+      changed = true;
+      console.log('[Database] Auto-seeded Gemini API Key from environment.');
+    }
+    if (!db.settings.imgbbApiKey && process.env.IMGBB_API_KEY) {
+      db.settings.imgbbApiKey = process.env.IMGBB_API_KEY;
+      changed = true;
+      console.log('[Database] Auto-seeded ImgBB API Key from environment.');
+    }
+    if (!db.settings.webhookUrl && process.env.WEBHOOK_URL) {
+      db.settings.webhookUrl = process.env.WEBHOOK_URL;
+      changed = true;
+      console.log('[Database] Auto-seeded Webhook URL from environment.');
+    }
+    if (!db.settings.cronSecret && process.env.CRON_SECRET) {
+      db.settings.cronSecret = process.env.CRON_SECRET;
+      changed = true;
+    }
+
+    if (changed) writeDb(db);
+    else console.log('[Database] Auto-seed: All settings already present in db.json.');
+  } catch (err) {
+    console.error('[Database] Auto-seed failed:', err.message);
+  }
 }
 
 // Helper to save settings
