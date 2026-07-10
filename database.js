@@ -178,3 +178,18 @@ export function updateDraftDesign(date, postId, designData) {
   }
   return false;
 }
+
+// Helper to reset a posted day back to draft so it can be re-published
+export function resetDraftStatus(date) {
+  const db = readDb() || {};
+  db.history = db.history || [];
+  const entry = db.history.find(item => item.date === date);
+  if (entry) {
+    entry.status = 'draft';
+    delete entry.selectedPostId;
+    delete entry.postedAt;
+    writeDb(db);
+    return true;
+  }
+  return false;
+}

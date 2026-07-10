@@ -14,7 +14,8 @@ import {
   saveGeneration, 
   updateDraftPost, 
   updateDraftDesign,
-  markAsPosted 
+  markAsPosted,
+  resetDraftStatus
 } from './database.js';
 
 console.log('[DEBUG] server.js modules loaded successfully');
@@ -522,6 +523,19 @@ app.post('/api/post', async (req, res) => {
   } catch (error) {
     console.error('[API] Webhook delivery failed:', error);
     res.status(500).json({ error: `Webhook delivery failed: ${error.message}` });
+  }
+});
+
+// Reset a posted day back to draft so user can re-select and re-publish
+app.post('/api/reset-date', (req, res) => {
+  const { date } = req.body;
+  if (!date) return res.status(400).json({ error: 'Missing date' });
+  const result = resetDraftStatus(date);
+  if (result) {
+    console.log(`[API] Reset date ${date} back to draft status for re-publishing.`);
+    res.json({ success: true, message: `Date ${date} reset to draft. You can now select and publish a post.` });
+  } else {
+    res.status(404).json({ error: `No history entry found for date ${date}.` });
   }
 });
 

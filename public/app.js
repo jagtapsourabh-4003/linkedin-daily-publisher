@@ -649,10 +649,48 @@ async function postToGoogleFlow(postId, btnElement) {
   try {
     // 1. Grab matching canvas and export as data URL
     const canvas = document.getElementById(`canvas-${postId}`);
-    if (!canvas) throw new Error('Image canvas element not found');
-    
-    const imageBase64 = canvas.toDataURL('image/png');
-    
+    if (!canvas) throw new Error('Image canvas element not found. Please scroll to the post card first.');
+
+    let imageBase64 = null;
+
+    // Try toDataURL — may fail if canvas is "tainted" by cross-origin images
+    try {
+      imageBase64 = canvas.toDataURL('image/png');
+      // Sanity check: a blank/empty canvas returns a very short string
+      if (!imageBase64 || imageBase64.length < 5000) {
+        throw new Error('Canvas appears blank or tainted');
+      }
+    } catch (taintErr) {
+      console.warn('[Publish] Canvas toDataURL failed (tainted canvas). Re-drawing on a clean offscreen canvas without cross-origin images:', taintErr.message);
+      showToast('Redrawing graphic on clean canvas (cross-origin image issue)...', 'info');
+
+      // Fallback: draw on a fresh offscreen canvas with no cross-origin images
+      const offscreen = document.createElement('canvas');
+      offscreen.width = canvas.width;
+      offscreen.height = canvas.height;
+
+      // Find the active post entry and redraw with avatar disabled
+      const activeEntry = state.history.find(h => h.date === date);
+      if (activeEntry) {
+        const post = activeEntry.posts.find(p => p.id === postId);
+        if (post) {
+          const headlineText = post.postContent?.imageHeadline || post.imageHeadline || '';
+          const subtextText = post.postContent?.imageSubtext || post.imageSubtext || '';
+          // Temporarily disable avatar and redraw
+          const savedAvatar = avatarImg.src;
+          avatarImg.src = '';
+          drawCreative(offscreen, activeEntry.category, headlineText, subtextText, post.id, activeEntry.date, post.layout || post);
+          avatarImg.src = savedAvatar;
+        }
+      }
+
+      try {
+        imageBase64 = offscreen.toDataURL('image/png');
+      } catch (finalErr) {
+        throw new Error(`Cannot export canvas: ${finalErr.message}. Please try re-uploading your profile picture from the Settings panel.`);
+      }
+    }
+
     // 2. Upload image to server to get public hosting URL
     btnElement.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Uploading graphic...`;
     const uploadRes = await fetch('/api/upload-creative', {
@@ -660,11 +698,14 @@ async function postToGoogleFlow(postId, btnElement) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ date, postId, image: imageBase64 })
     });
-    
-    if (!uploadRes.ok) throw new Error('Failed to host image creative on server');
+
+    if (!uploadRes.ok) {
+      const errBody = await uploadRes.text();
+      throw new Error(`Failed to upload graphic: ${errBody.substring(0, 200)}`);
+    }
     const uploadData = await uploadRes.json();
     const imageUrl = uploadData.imageUrl;
-    
+
     // 3. Post text and image URL to Webhook
     btnElement.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Publishing...`;
     const res = await fetch('/api/post', {
@@ -674,13 +715,14 @@ async function postToGoogleFlow(postId, btnElement) {
     });
 
     if (!res.ok) {
-      const errData = await res.json();
+      const errData = await res.json().catch(() => ({ error: `HTTP ${res.status}` }));
       throw new Error(errData.error || 'Server error delivering post');
     }
 
     showToast('Post and creative graphic sent successfully!', 'success');
     await loadHistory();
   } catch (err) {
+    console.error('[Publish] Error:', err);
     showToast(`Post failed: ${err.message}`, 'error');
     btnElement.disabled = false;
     btnElement.innerHTML = originalHtml;
@@ -747,7 +789,8 @@ function renderActiveDrafts() {
   activeEntry.posts.forEach(post => {
     const isThisPostSelected = isDayPosted && selectedPostId === post.id;
     const cardEl = document.createElement('article');
-    cardEl.className = `draft-card ${isThisPostSelected ? 'posted-item' : ''} ${isDayPosted && !isThisPostSelected ? 'disabled-item' : ''}`;
+    // Only apply posted-item highlight to the selected card; others remain fully interactive
+    cardEl.className = `draft-card ${isThisPostSelected ? 'posted-item' : ''}`;
     cardEl.id = `draft-card-${post.id}`;
 
     // Gracefully resolve properties from both new structured model schema and legacy fallback schema
@@ -958,15 +1001,24 @@ function renderActiveDrafts() {
         </button>
         ${
           isThisPostSelected
-            ? `<div class="posted-status-btn">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Published with Creative Graphic
+            ? `<div class="posted-status-btn" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                <div style="display:flex;align-items:center;gap:6px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  Published
+                </div>
+                <button class="btn btn-sm" id="btn-republish-${post.id}" style="background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);color:#93c5fd;font-size:0.78rem;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38"/></svg>
+                  Re-publish
+                </button>
                </div>`
             : isDayPosted
-              ? `<button class="btn btn-secondary btn-sm" disabled>Unavailable</button>`
+              ? `<button class="btn btn-secondary btn-sm" id="btn-reselect-${post.id}" style="font-size:0.78rem;opacity:0.8;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                  Select This Instead
+                </button>`
               : `<button class="btn btn-primary btn-sm ${activeEntry.category === 'marketing' ? 'marketing-theme' : ''}" id="btn-post-${post.id}">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-                  Select & Publish
+                  Select &amp; Publish
                  </button>`
         }
       </div>
@@ -1140,8 +1192,60 @@ function renderActiveDrafts() {
 
     // Post to Google Flow button listener
     if (!isDayPosted) {
-      cardEl.querySelector(`#btn-post-${post.id}`).addEventListener('click', (e) => {
-        postToGoogleFlow(post.id, e.currentTarget);
+      const postBtn = cardEl.querySelector(`#btn-post-${post.id}`);
+      if (postBtn) {
+        postBtn.addEventListener('click', (e) => {
+          postToGoogleFlow(post.id, e.currentTarget);
+        });
+      }
+    }
+
+    // Re-publish button (on the already-selected/published post)
+    const republishBtn = cardEl.querySelector(`#btn-republish-${post.id}`);
+    if (republishBtn) {
+      republishBtn.addEventListener('click', async (e) => {
+        const btn = e.currentTarget;
+        btn.disabled = true;
+        btn.textContent = 'Resetting...';
+        try {
+          const res = await fetch('/api/reset-date', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ date: state.activeDate })
+          });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          showToast('Day reset. Re-publishing...', 'info');
+          await loadHistory();
+          // After reload, immediately trigger publish for this post
+          await postToGoogleFlow(post.id, btn);
+        } catch (err) {
+          showToast(`Re-publish failed: ${err.message}`, 'error');
+          btn.disabled = false;
+        }
+      });
+    }
+
+    // "Select This Instead" button (on non-selected posts when day is already posted)
+    const reselectBtn = cardEl.querySelector(`#btn-reselect-${post.id}`);
+    if (reselectBtn) {
+      reselectBtn.addEventListener('click', async (e) => {
+        const btn = e.currentTarget;
+        btn.disabled = true;
+        btn.textContent = 'Switching...';
+        try {
+          const res = await fetch('/api/reset-date', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ date: state.activeDate })
+          });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          showToast('Switched! Publishing this post...', 'info');
+          await loadHistory();
+          await postToGoogleFlow(post.id, btn);
+        } catch (err) {
+          showToast(`Failed: ${err.message}`, 'error');
+          btn.disabled = false;
+        }
       });
     }
   });
