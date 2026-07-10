@@ -331,6 +331,7 @@ for (let i = 1; i <= 5; i++) {
 }
 
 // DOM Elements
+// DOM Elements
 const el = {
   topicBadge: document.getElementById('topic-badge'),
   topicBadgeText: document.getElementById('topic-badge-text'),
@@ -358,7 +359,17 @@ const el = {
   inputRotateOutfits: document.getElementById('input-rotate-outfits'),
   toastContainer: document.getElementById('toast-container'),
   glow1: document.getElementById('glow-1'),
-  glow2: document.getElementById('glow-2')
+  glow2: document.getElementById('glow-2'),
+  
+  // Diagnostics elements
+  btnOpenDiagnostics: document.getElementById('btn-open-diagnostics'),
+  diagnosticsModal: document.getElementById('diagnostics-modal'),
+  btnCloseDiagnostics: document.getElementById('btn-close-diagnostics'),
+  btnDiagnosticsCloseFooter: document.getElementById('btn-diagnostics-close-footer'),
+  btnDiagnosticsRetry: document.getElementById('btn-diagnostics-retry'),
+  diagnosticsChecklist: document.getElementById('diagnostics-checklist'),
+  diagnosticsHeals: document.getElementById('diagnostics-heals'),
+  diagnosticsHealsList: document.getElementById('diagnostics-heals-list')
 };
 
 // Initialize Application
@@ -386,6 +397,25 @@ function setupEventListeners() {
 
   // Settings Save
   el.settingsForm.addEventListener('submit', handleSaveSettings);
+
+  // Diagnostics Modal Events
+  if (el.btnOpenDiagnostics) {
+    el.btnOpenDiagnostics.addEventListener('click', openDiagnostics);
+  }
+  if (el.btnCloseDiagnostics) {
+    el.btnCloseDiagnostics.addEventListener('click', closeDiagnostics);
+  }
+  if (el.btnDiagnosticsCloseFooter) {
+    el.btnDiagnosticsCloseFooter.addEventListener('click', closeDiagnostics);
+  }
+  if (el.btnDiagnosticsRetry) {
+    el.btnDiagnosticsRetry.addEventListener('click', runDiagnostics);
+  }
+  if (el.diagnosticsModal) {
+    el.diagnosticsModal.addEventListener('click', (e) => {
+      if (e.target === el.diagnosticsModal) closeDiagnostics();
+    });
+  }
 
   // Refresh History
   el.btnRefreshHistory.addEventListener('click', loadHistory);
@@ -3363,6 +3393,98 @@ function openSettings() {
 // Close Settings Modal
 function closeSettings() {
   el.settingsModal.classList.add('hidden');
+}
+
+// Open Diagnostics & Auto-Heal Modal
+function openDiagnostics() {
+  if (el.diagnosticsModal) {
+    el.diagnosticsModal.classList.remove('hidden');
+    runDiagnostics();
+  }
+}
+
+// Close Diagnostics Modal
+function closeDiagnostics() {
+  if (el.diagnosticsModal) {
+    el.diagnosticsModal.classList.add('hidden');
+  }
+}
+
+// Run real-time diagnostics and update UI
+async function runDiagnostics() {
+  if (!el.diagnosticsChecklist) return;
+
+  // Set loading state
+  el.diagnosticsChecklist.innerHTML = `
+    <div style="text-align: center; padding: 20px 0;">
+      <div class="spinner" style="margin: 0 auto 12px auto; border-color: rgba(255,255,255,0.1) rgba(255,255,255,0.1) var(--accent-light) var(--accent-light);"></div>
+      <p style="color: #cbd5e1; font-size: 0.9rem;">Running system checks...</p>
+    </div>
+  `;
+  el.diagnosticsHeals.classList.add('hidden');
+  el.diagnosticsHealsList.innerHTML = '';
+
+  try {
+    const res = await fetch('/api/diagnose');
+    if (!res.ok) throw new Error(`HTTP Error ${res.status}`);
+    const data = await res.json();
+
+    let checklistHtml = '';
+    data.reports.forEach(report => {
+      let icon = '🔔';
+      let iconColor = '#f59e0b'; // warn: orange
+      let badgeStyle = 'background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.2); color: #f59e0b;';
+
+      if (report.status === 'ok') {
+        icon = '✓';
+        iconColor = '#10b981'; // green
+        badgeStyle = 'background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); color: #34d399;';
+      } else if (report.status === 'error') {
+        icon = '⚠';
+        iconColor = '#ef4444'; // red
+        badgeStyle = 'background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); color: #f87171;';
+      }
+
+      checklistHtml += `
+        <div style="display: flex; gap: 14px; align-items: flex-start; padding: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px;">
+          <div style="font-size: 1.2rem; color: ${iconColor}; display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; ${badgeStyle}">
+            ${icon}
+          </div>
+          <div style="flex: 1;">
+            <strong style="color: #ffffff; font-size: 0.95rem; display: block; margin-bottom: 2px;">${report.name}</strong>
+            <p style="color: #94a3b8; font-size: 0.85rem; margin: 0; line-height: 1.4;">${report.message}</p>
+          </div>
+        </div>
+      `;
+    });
+
+    el.diagnosticsChecklist.innerHTML = checklistHtml;
+
+    // Render Auto-heals if any
+    if (data.heals && data.heals.length > 0) {
+      el.diagnosticsHeals.classList.remove('hidden');
+      el.diagnosticsHealsList.innerHTML = data.heals.map(heal => `
+        <li style="margin-bottom: 4px; line-height: 1.3;">${heal}</li>
+      `).join('');
+      
+      // Auto-reload the settings form fields to reflect healed parameters
+      await loadSettings();
+    }
+
+    if (data.status === 'ok') {
+      showToast('Diagnostics completed. All checks passed!', 'success');
+    } else {
+      showToast('Diagnostics found issues that need attention.', 'error');
+    }
+
+  } catch (err) {
+    el.diagnosticsChecklist.innerHTML = `
+      <div style="padding: 16px; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2); border-radius: 8px; color: #f87171; font-size: 0.9rem;">
+        <strong>Error connecting to diagnostics server:</strong> ${err.message}
+      </div>
+    `;
+    showToast('Failed to run system diagnostics.', 'error');
+  }
 }
 
 // Toast System

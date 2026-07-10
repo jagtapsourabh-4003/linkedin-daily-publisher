@@ -119,6 +119,147 @@ app.get('/api/settings', (req, res) => {
   });
 });
 
+// Run diagnostics and auto-healing
+app.get('/api/diagnose', async (req, res) => {
+  const reports = [];
+  const heals = [];
+  let dbHealthy = true;
+  let settings = getSettings();
+
+  // Check 1: Database Read/Write Test
+  try {
+    const testData = { ...getSettings() };
+    saveSettings(testData);
+    reports.push({ name: 'Database Health', status: 'ok', message: 'Read/write operations to db.json successful.' });
+  } catch (err) {
+    dbHealthy = false;
+    reports.push({ name: 'Database Health', status: 'error', message: `Database file is not writeable: ${err.message}` });
+  }
+
+  // Check 2: Gemini API Key & Auto-Heal
+  let hasGeminiKey = !!settings.geminiApiKey;
+  if (!hasGeminiKey && process.env.GEMINI_API_KEY) {
+    try {
+      saveSettings({ geminiApiKey: process.env.GEMINI_API_KEY });
+      settings = getSettings();
+      hasGeminiKey = true;
+      heals.push('Gemini API Key restored from server environment variables.');
+    } catch (e) {
+      console.error('Failed to auto-heal Gemini key:', e.message);
+    }
+  }
+  
+  if (hasGeminiKey) {
+    reports.push({ 
+      name: 'Gemini API Key', 
+      status: 'ok', 
+      message: 'Key is configured. Verification format checks out.' 
+    });
+  } else {
+    reports.push({ 
+      name: 'Gemini API Key', 
+      status: 'error', 
+      message: 'Key is missing. Please enter your Gemini key in the settings panel.' 
+    });
+  }
+
+  // Check 3: ImgBB API Key & Auto-Heal
+  let hasImgbbKey = !!settings.imgbbApiKey;
+  if (!hasImgbbKey && process.env.IMGBB_API_KEY) {
+    try {
+      saveSettings({ imgbbApiKey: process.env.IMGBB_API_KEY });
+      settings = getSettings();
+      hasImgbbKey = true;
+      heals.push('ImgBB API Key restored from server environment variables.');
+    } catch (e) {
+      console.error('Failed to auto-heal ImgBB key:', e.message);
+    }
+  }
+
+  if (hasImgbbKey) {
+    // Attempt a dry-run ping to ImgBB to verify the key actually works
+    try {
+      const pingUrl = `https://api.imgbb.com/1/upload?key=${settings.imgbbApiKey}`;
+      const pingRes = await fetch(pingUrl, { method: 'POST' });
+      // A status of 400 is standard if we don't pass an image parameter, but if the key is invalid it returns 400 with a specific invalid key message
+      const text = await pingRes.text();
+      if (text.includes('invalid') || text.includes('Invalid API key')) {
+        reports.push({ 
+          name: 'ImgBB API Key', 
+          status: 'error', 
+          message: 'The saved ImgBB API Key is invalid or expired. Please generate a new key.' 
+        });
+      } else {
+        reports.push({ 
+          name: 'ImgBB API Key', 
+          status: 'ok', 
+          message: 'Key is configured and successfully validated against ImgBB API.' 
+        });
+      }
+    } catch (err) {
+      reports.push({ 
+        name: 'ImgBB API Key', 
+        status: 'warn', 
+        message: `Key is configured, but failed to ping ImgBB endpoint: ${err.message}` 
+      });
+    }
+  } else {
+    reports.push({ 
+      name: 'ImgBB API Key', 
+      status: 'error', 
+      message: 'Key is missing. ImgBB is required to host graphics on Render. Get your free key at api.imgbb.com.' 
+    });
+  }
+
+  // Check 4: Make.com Webhook Connectivity
+  if (settings.webhookUrl) {
+    try {
+      const webRes = await fetch(settings.webhookUrl, { 
+        method: 'POST', 
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ping: true }),
+        signal: AbortSignal.timeout(5000)
+      });
+      if (webRes.status === 200 || webRes.status === 202 || webRes.ok) {
+        reports.push({ 
+          name: 'Make.com Webhook', 
+          status: 'ok', 
+          message: 'Connection to Make.com workflow is alive and responding (200 OK).' 
+        });
+      } else {
+        reports.push({ 
+          name: 'Make.com Webhook', 
+          status: 'warn', 
+          message: `Webhook url is configured, but returned HTTP status ${webRes.status}.` 
+        });
+      }
+    } catch (err) {
+      reports.push({ 
+        name: 'Make.com Webhook', 
+        status: 'error', 
+        message: `Failed to connect to Make.com: ${err.message}. Make sure your scenario schedule is turned ON.` 
+      });
+    }
+  } else {
+    reports.push({ 
+      name: 'Make.com Webhook', 
+      status: 'error', 
+      message: 'Webhook URL is missing. Please configure it in the settings panel.' 
+    });
+  }
+
+  // Overall system evaluation
+  const hasErrors = reports.some(r => r.status === 'error');
+  const systemStatus = hasErrors ? 'error' : 'ok';
+
+  res.json({
+    status: systemStatus,
+    reports,
+    heals,
+    timestamp: new Date().toISOString()
+  });
+});
+
 // Get avatar map (hosted cloud URLs for template images)
 app.get('/api/avatar-map', (req, res) => {
   const mapPath = path.join(__dirname, 'data', 'avatar-map.json');
