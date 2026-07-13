@@ -1,9 +1,11 @@
 # Dependencies
 node_modules/
 
-# Local database and data
-data/
-db.json
+# Local database and data (root only)
+/data/
+/db.json
+!/public/data/
+!/public/data/history.json
 
 # Environment variables (API Keys, secrets)
 .env

@@ -1,0 +1,1098 @@
+[
+  {
+    "date": "2026-07-13",
+    "category": "ai",
+    "posts": [
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "split-right",
+        "colorPalette": "Teal White",
+        "characterRole": "Researcher",
+        "environment": "Coffee shop workspace",
+        "cameraStyle": "Walking shot",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Researcher, Coffee shop workspace, Walking shot, Smart casual blazer. Foreground: out-of-focus laptop and coffee cup, Midground: the manager, Background: blurred modern coffee shop with natural light. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "Google just changed search.",
+          "content": "Google just redesigned its search box.\nIt's the first time in 25 years.\nThis isn't just a UI update. It signals a huge shift in how brands get found. Your SEO strategy needs to adapt. We're moving beyond blue links. AI-driven answers will dominate.\n\nWhat does this mean for your brand visibility?\n\n#AISearch #GoogleUpdate #DigitalMarketing #SEOStrategy",
+          "sourceArticle": "Google just redesigned the search box for the first time in 25 years — here’s why it matters more than you think.",
+          "imageHeadline": "SEARCH *REDEFINED*",
+          "imageSubtext": "Google's 25-Year UI Shift Impacts Brand Visibility",
+          "badgeText": "AI TREND"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "floating-cards",
+        "colorPalette": "Slate Blue",
+        "characterRole": "Strategy Consultant",
+        "environment": "City skyline office",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant, City skyline office, Half-body portrait, Conference speaker outfit. Foreground: blurred glass wall with city lights, Midground: the manager, Background: soft-focus city skyline. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Free AI power, today.",
+          "content": "Open-source AI is booming. Hugging Face sees half of Fortune 500 using it. You can too. It saves on expensive licenses. Here's a quick playbook.\n\nFirst, identify your need. Think content generation or data analysis. Second, explore platforms like Hugging Face. Find models matching your goal. Third, test and integrate. Start small with a specific campaign. Finally, monitor performance. Adjust as needed for best results.\n\nHow will you start with open-source AI?\n\n#OpenSourceAI #MarketingTech #AICopywriting #GrowthStrategy",
+          "sourceArticle": "Open source AI matters more than ever, according to Hugging Face’s Clem Delangue",
+          "imageHeadline": "YOUR *FREE* AI STACK",
+          "imageSubtext": "Unlock Open-Source AI for Marketing Success",
+          "badgeText": "MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "LinkedIn Thought Leader",
+        "layoutFamily": "diagonal-layout",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "AI Consultant",
+        "environment": "Conference venue",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant, Conference venue, Presentation shot, Modern startup hoodie. Foreground: blurred stage mic, Midground: the manager gesturing, Background: large screen with abstract data visualization. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "AI influencers are a risk.",
+          "content": "Brands use AI-generated influencers. It seems like a cost-saver. But there's a hidden danger. The UN warns of misinformation. Trust is fragile in marketing. Fake faces can erode it fast. Authenticity still wins hearts.\n\nAre we risking brand credibility for short-term gains?\n\n#BrandTrust #AIEthics #DigitalMarketing #InfluencerMarketing",
+          "sourceArticle": "AI in advertising risks fuelling misinformation crisis, UN warns - Welcome to the United Nations",
+          "imageHeadline": "FAKE *INFLUENCE* WARNING",
+          "imageSubtext": "AI Influencers Threaten Brand Credibility & Trust",
+          "badgeText": "AI TREND"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Creative Director",
+        "layoutFamily": "asymmetrical-grid",
+        "colorPalette": "Premium Burgundy",
+        "characterRole": "TED Speaker",
+        "environment": "Innovation lab",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. TED Speaker, Innovation lab, Looking at camera, Formal university attire. Foreground: blurred lab equipment, Midground: the manager, Background: soft-focus futuristic displays. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "Meta learned a hard lesson.",
+          "content": "Meta removed an AI feature on Instagram. Users reacted strongly. The company admitted it \"missed the mark.\" This shows a key lesson for brands. AI features must add real value. User control is non-negotiable. Listen to your audience always.\n\nWhat's your biggest AI lesson learned?\n\n#UserExperience #BrandBuilding #AIStrategy #CustomerFeedback",
+          "sourceArticle": "Meta removes controversial AI feature on Instagram after backlash",
+          "imageHeadline": "META'S *AI* MISSTEP",
+          "imageSubtext": "User Backlash Forces Instagram Feature Removal",
+          "badgeText": "AI TREND"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Startup Founder",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Futurist, Auditorium stage, Side profile, Premium polo shirt. Foreground: abstract light patterns, Midground: the manager looking towards a projected vision, Background: blurred audience. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "ChatGPT is your new partner.",
+          "content": "OpenAI's ChatGPT Work can act as an agent. It takes action across apps. It stays with projects for hours. This changes enterprise marketing. Imagine AI drafting full campaigns. It can manage content workflows. We're moving towards autonomous marketing ops.\n\nHow will AI agents redefine your team's output?\n\n#AIAgents #FutureofMarketing #EnterpriseAI #ContentAutomation",
+          "sourceArticle": "ChatGPT is now a partner for your most ambitious work",
+          "imageHeadline": "AI *AUTONOMY* NOW",
+          "imageSubtext": "ChatGPT Work Transforms Enterprise Marketing Operations",
+          "badgeText": "MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
+    "date": "2026-07-08",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Forbes Cover",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Electric Blue",
+        "characterRole": "AI Consultant",
+        "environment": "Innovation lab",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male manager in his late 30s, with warm tan skin, black hair, and thick-framed black glasses, wearing a smart casual blazer. He has a friendly, confident expression and is standing in a modern innovation lab with futuristic equipment. He is looking at the camera. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "YouTube now has AI search.",
+          "content": "YouTube just launched \"Ask YouTube\" on desktop.\n\nThis means users can ask complex questions in plain English.\n\nThe AI chatbot helps them explore topics.\n\nThis is huge for content creators and marketers.\n\nHow will this change video SEO?\n\nWe need to think about how our videos appear in AI answers.\n\nAre you ready for AI-driven video discovery?\n\n#AI #YouTubeSEO #ContentMarketing #VideoStrategy",
+          "sourceArticle": "YouTube launches desktop version of Ask YouTube",
+          "imageHeadline": "YOUTUBE GETS *AI* SEARCH",
+          "imageSubtext": "Explore complex topics with natural language prompts on YouTube.",
+          "badgeText": "AI TREND"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "TED Speaker",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "TED Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male manager in his late 30s, with warm tan skin, black hair, and thick-framed black glasses, wearing a conference speaker outfit. He has a friendly, confident expression and is on an auditorium stage with a soft spotlight. He is gesturing slightly, as if explaining a point. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Win in AI search now.",
+          "content": "AI search is different from old SEO.\n\nHere are 3 steps to win:\n\n1.  **Focus on Relevance**: Use the PEE framework (Point, Evidence, Explanation). Make your content clear and contextual.\n2.  **Track AI Visibility**: Don't just watch rankings. Monitor how often your brand is recommended or cited by AI.\n3.  **Optimize for Citations**: Ensure your brand is mentioned accurately. This builds trust with AI engines.\n\nStart implementing these today.\n\n#AISEO #RelevanceEngineering #ContentStrategy #DigitalMarketing",
+          "sourceArticle": "Stop Calling It SEO: 12 Strategies To Dominate AI Search in 2026",
+          "imageHeadline": "WIN AI SEARCH: *3 STEPS*",
+          "imageSubtext": "Master relevance, track visibility, and boost AI citations today.",
+          "badgeText": "MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Startup Founder",
+        "environment": "Startup hub",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male manager in his late 30s, with warm tan skin, black hair, and thick-framed black glasses, wearing a modern startup hoodie. He has a friendly, confident expression and is in a vibrant startup hub office, possibly with a whiteboard or team members blurred in the background. He is looking directly at the camera. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "AI search isn't just SEO.",
+          "content": "Many still treat AI search like traditional SEO.\n\nThis is a mistake.\n\nAI search prioritizes helpfulness and direct answers.\n\nIt's less about stuffing keywords and more about clear, valuable content.\n\nFocusing only on old SEO tactics will make you invisible to AI.\n\nAre you optimizing for AI or just guessing?\n\n#AI #SEOStrategy #DigitalMarketing #BrandBuilding",
+          "sourceArticle": "Stop Measuring AI Search Like SEO: Here’s What To Track Instead",
+          "imageHeadline": "STOP *SEO* FOR AI",
+          "imageSubtext": "AI search needs a new approach beyond traditional SEO tactics.",
+          "badgeText": "MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "University Chancellor",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Crimson Red",
+        "characterRole": "University Chancellor",
+        "environment": "Modern university campus",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male manager in his late 30s, with warm tan skin, black hair, and thick-framed black glasses, wearing formal university attire. He has a friendly, confident expression and is on a modern university campus, perhaps near a library or academic building. He is looking slightly away from the camera, in profile. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "Ignoring AI search costs money.",
+          "content": "A brand focused only on traditional SEO rankings.\n\nThey ignored AI search optimization.\n\nAs AI Overviews grew, their high-intent traffic dropped.\n\nThey lost visibility to newer, AI-native competitors.\n\nLesson learned: AI search isn't a small experiment.\n\nIt's becoming a primary way users find information.\n\nDon't let your brand get left behind.\n\n#AIsearch #DigitalMarketingFail #BrandVisibility #SEOTips",
+          "sourceArticle": "What is AI search optimization? (& why marketers should care)",
+          "imageHeadline": "THE *AI* SEARCH MISS",
+          "imageSubtext": "Ignoring AI search visibility leads to lost traffic and revenue.",
+          "badgeText": "MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Apple Keynote",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Apple Keynote",
+        "environment": "Technology command center",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male manager in his late 30s, with warm tan skin, black hair, and thick-framed black glasses, wearing a premium polo shirt. He has a friendly, confident expression and is standing in a sleek, modern technology command center with large screens displaying data. He is looking slightly off-camera, as if addressing a large audience. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "AI will change search forever.",
+          "content": "AI is not just a trend; it's the new reality.\n\nOver the next 1-2 years, expect AI to deeply integrate into all search platforms.\n\nThis means AI search optimization (AEO) will be as important as SEO.\n\nBrands that adapt now will own the AI-driven future.\n\nThose who don't will fade.\n\nPrepare for AI-first content strategies.\n\nWhat's your AI readiness plan?\n\n#AI #FutureOfSearch #DigitalStrategy #BrandGrowth",
+          "sourceArticle": "General Trend",
+          "imageHeadline": "THE *AI* SEARCH FUTURE",
+          "imageSubtext": "AI search optimization is the next frontier for brand visibility.",
+          "badgeText": "AI TREND"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
+    "date": "2026-06-17",
+    "category": "ai",
+    "posts": [
+      {
+        "designArchetype": "Corporate Executive",
+        "layoutFamily": "split-left",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Corporate Executive",
+        "environment": "Luxury office",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive in a luxury office, half-body portrait, wearing a navy business suit. Foreground: out-of-focus modern desk lamp. Midground: the executive. Background: blurred city skyline through a large window. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI & Tech",
+          "hook": "AI adoption defies politics.",
+          "content": "The narrative that government scrutiny stifles innovation is often true. Yet, Anthropic's latest numbers tell a different story.\n\nBusiness users are voting with their wallets, prioritizing utility over political noise. This isn't just about Anthropic; it's about the unstoppable momentum of practical AI solutions in the enterprise.\n\nAre we underestimating the market's ability to self-correct and accelerate AI adoption, regardless of the headlines?\n\n#AIAdoption #BusinessStrategy #TechTrends #Anthropic",
+          "sourceArticle": "Anthropic’s latest feud with the Trump admin may actually help it, sales data suggests",
+          "imageHeadline": "TEST\nMULTI\nLINE",
+          "imageSubtext": "TEST SUBTEXT\nWITH NEWLINE",
+          "badgeText": "AI TREND"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1,
+        "avatarStyleIdx": 2,
+        "headlineFontSize": 35,
+        "subtextFontSize": 18
+      },
+      {
+        "designArchetype": "Technology Evangelist",
+        "layoutFamily": "phone-mockup",
+        "colorPalette": "Neon Cyan",
+        "characterRole": "Technology Evangelist",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist in a futuristic workspace, over-the-shoulder shot, wearing a turtleneck with blazer. Foreground: blurred holographic interface. Midground: the evangelist looking at a screen. Background: soft glow of futuristic tech. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI & Tech",
+          "hook": "Google just changed EVERYTHING.",
+          "content": "Android 17 and Wear OS 7 aren't just incremental updates; they're a strategic pivot.\n\nWith new multitasking, parental controls, and Gemini AI deeply integrated across devices, Google is reshaping how we interact with technology. The search box redesign after 25 years signals a fundamental shift in information access, prioritizing AI-driven answers.\n\nAre you ready for a world where your devices anticipate your needs, not just respond to commands?\n\n#GoogleAI #Android17 #Gemini #FutureTech #UX",
+          "sourceArticle": "Android 17 launches with new multitasking tools as Google expands Gemini features",
+          "imageHeadline": "GOOGLE'S *AI* SHIFT",
+          "imageSubtext": "Android 17 and Search redefine digital interaction.",
+          "badgeText": "FUTURE TECH"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Business Strategist",
+        "layoutFamily": "news-card",
+        "colorPalette": "Platinum Grey",
+        "characterRole": "Business Coach",
+        "environment": "Creative workspace",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach in a creative workspace, sitting at desk, wearing a smart casual blazer. Foreground: out-of-focus notebook and pen. Midground: the coach engaged in thought. Background: blurred whiteboard with strategy notes. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Insights",
+          "hook": "AI messaging is failing.",
+          "content": "A recent survey reveals 60% of US consumers are turned off by 'AI' in brand messaging. This isn't just a preference; it's a trust deficit.\n\nWhile companies rush to brand everything with AI, the market is signaling caution. Authenticity, transparency, and genuine value still trump buzzwords.\n\nHow can your brand leverage AI's power without alienating the very customers you're trying to reach?\n\n#MarketingStrategy #AITrust #ConsumerBehavior #BrandBuilding",
+          "sourceArticle": "Sixty percent of US consumers say ‘AI’ in brand messaging is a turnoff, survey finds",
+          "imageHeadline": "THE *AI* TURN-OFF",
+          "imageSubtext": "60% of consumers wary of 'AI' in brands.",
+          "badgeText": "MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Innovation Lab Researcher",
+        "layoutFamily": "layered-depth",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "Innovation Leader",
+        "environment": "Innovation lab",
+        "cameraStyle": "Looking away",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader in an innovation lab, looking away, wearing a white shirt with rolled sleeves. Foreground: out-of-focus circuit board. Midground: the leader observing a complex display. Background: blurred futuristic machinery. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI & Tech",
+          "hook": "AWS just got a rival.",
+          "content": "Railway just raised $100M to build an AI-native cloud infrastructure, directly challenging AWS.\n\nThis isn't just another cloud provider; it's a recognition that traditional cloud models are buckling under the demands of modern AI applications. We're seeing the dawn of infrastructure built from the ground up for intelligence.\n\nIs your organization prepared for a future where your cloud isn't just 'AI-ready,' but 'AI-native'?\n\n#CloudComputing #AINative #TechDisruption #AWS",
+          "sourceArticle": "Railway secures $100 million to challenge AWS with AI-native cloud infrastructure",
+          "imageHeadline": "*CLOUD* WARS *SHIFT*",
+          "imageSubtext": "AI-native infrastructure challenges legacy giants.",
+          "badgeText": "AI & TECH"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Book Author",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Dark Forest",
+        "characterRole": "Author",
+        "environment": "Library",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Author in a library, close-up portrait, wearing luxury business casual. Foreground: out-of-focus open book. Midground: the author with a thoughtful expression. Background: blurred shelves of books. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI & Tech",
+          "hook": "Free AI coding exists.",
+          "content": "Claude Code costs up to $200/month for autonomous AI coding. Meanwhile, 'Goose' offers similar capabilities for free.\n\nThis disparity highlights a critical turning point in AI tool accessibility. The barrier to entry for advanced AI development is rapidly diminishing, democratizing innovation.\n\nAre you leveraging the full spectrum of AI tools available, or are you overpaying for what's now freely accessible?\n\n#AICoding #DeveloperTools #OpenSourceAI #TechCost",
+          "sourceArticle": "Claude Code costs up to $200 a month. Goose does the same thing for free.",
+          "imageHeadline": "*AI* CODING: *FREE*?",
+          "imageSubtext": "High-cost vs. no-cost AI development tools.",
+          "badgeText": "AI & TECH"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
+    "date": "2026-06-16",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Startup Founder",
+        "environment": "Startup hub",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male manager in his late 30s, with warm tan skin, black hair, and black thick-framed glasses, wearing a modern startup hoodie, standing confidently in a bustling startup hub, with a friendly and determined expression. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Insights",
+          "hook": "Audience building is dead.",
+          "content": "Forget vanity metrics. Your audience isn't built on likes, it's built on value.\n\nStop chasing followers. Start solving problems.\n\nThis shift is non-negotiable for sustainable growth.\n\nWhat's your strategy for genuine connection?\n\n#AudienceBuilding #GrowthStrategy #DigitalMarketing",
+          "sourceArticle": "How to Build an Audience From Scratch In 2026",
+          "imageHeadline": "BUILD *REAL* AUDIENCE",
+          "imageSubtext": "Stop chasing vanity metrics, start solving problems for growth.",
+          "badgeText": "MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "TED Speaker",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "TED Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male manager in his late 30s, with warm tan skin, black hair, and black thick-framed glasses, wearing a conference speaker outfit, standing on an auditorium stage with a passionate and engaging expression. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Thought Leadership",
+          "hook": "Content courses are a scam.",
+          "content": "Most 'content marketing courses' are regurgitated noise.\n\nThey promise secrets, deliver basics.\n\nTrue mastery comes from doing, not watching.\n\nFocus on application, not just theory.\n\nWhat's the single best piece of advice you've received?\n\n#ContentMarketing #MarketingStrategy #DigitalEducation",
+          "sourceArticle": "Analyzing The 8 Best Content Marketing Courses",
+          "imageHeadline": "STOP *WASTING* TIME",
+          "imageSubtext": "Master content marketing through application, not just theory.",
+          "badgeText": "MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Harvard Professor",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Professor",
+        "environment": "University campus",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male manager in his late 30s, with warm tan skin, black hair, and black thick-framed glasses, wearing formal university attire, standing on a modern university campus with a thoughtful and intellectual expression. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "University Leadership",
+          "hook": "Copywriting is your superpower.",
+          "content": "Forget fancy tools. Your words are your greatest asset.\n\nClear, concise copy wins every time.\n\nIt's the foundation of all effective communication.\n\nMaster this, and you'll outmaneuver anyone.\n\nAre you investing enough in your copywriting skills?\n\n#Copywriting #MarketingSkills #BrandManagement",
+          "sourceArticle": "How to Become a Better Copywriter: Advice I Wish I Had",
+          "imageHeadline": "WORDS *ARE* GOLD",
+          "imageSubtext": "Master the art of clear, concise copy for ultimate impact.",
+          "badgeText": "MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Investor Pitch",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Investor",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male manager in his late 30s, with warm tan skin, black hair, and black thick-framed glasses, wearing a charcoal executive suit, standing in an executive boardroom, presenting with a sharp and confident expression. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Growth Strategy",
+          "hook": "Consistency is the growth hack.",
+          "content": "Stop random acts of marketing.\n\nFocus on a predictable client acquisition process.\n\nThis is how you build a scalable business.\n\nEvery touchpoint matters.\n\nHow are you ensuring consistent lead generation?\n\n#GrowthStrategy #ClientAcquisition #BusinessDevelopment",
+          "sourceArticle": "How to Get Coaching Clients Consistently (Simple Process)",
+          "imageHeadline": "PREDICTABLE *CLIENTS*",
+          "imageSubtext": "Build a scalable business with a consistent client acquisition process.",
+          "badgeText": "GROWTH STRATEGY"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Podcast Host",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Podcast Host",
+        "environment": "Podcast studio",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male manager in his late 30s, with warm tan skin, black hair, and black thick-framed glasses, wearing a premium polo shirt, sitting in a podcast studio with a friendly and engaging expression. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Brand Management",
+          "hook": "Your personal brand is failing.",
+          "content": "Posting on LinkedIn isn't enough.\n\nVisibility requires strategy, not just activity.\n\nYour personal brand is your most valuable asset.\n\nInvest in it wisely.\n\nAre you actively managing your personal brand?\n\n#PersonalBranding #LinkedInStrategy #BrandManagement",
+          "sourceArticle": "The 10 Best Personal Branding Courses: Detailed Analysis",
+          "imageHeadline": "BRAND *IS* KING",
+          "imageSubtext": "Elevate your personal brand with strategic visibility and engagement.",
+          "badgeText": "BRAND MANAGEMENT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
+    "date": "2026-06-15",
+    "category": "ai",
+    "posts": [
+      {
+        "id": 1,
+        "style": "Neon Split Panel",
+        "hook": "AI can't even trust itself.",
+        "content": "KPMG pulled an AI report on AI usage because the AI hallucinated. Let that sink in. We're building systems to automate critical decisions, yet they can't accurately report on their own domain.\n\nThis isn't just an \"oops.\" It's a flashing red light for every leader blindly trusting generative AI for factual accuracy. The human-in-the-loop isn't optional; it's existential.\n\nAre you stress-testing your AI's output, or just deploying and praying? 🤔\n#AIethics #AIgovernance #Hallucinations #TrustInAI #B2B",
+        "sourceArticle": "KPMG pulls report on AI usage due to apparent hallucinations",
+        "imageHeadline": "AI IS *LYING*",
+        "imageSubtext": "Even about itself. Why human oversight is non-negotiable.",
+        "avatarPrompt": "An Indian male manager in his late 30s, warm tan skin tone, clean-shaven, short styled black hair parted to the side, wearing black thick-framed glasses, having a friendly smile with visible teeth. He is looking skeptically at a holographic projection of AI-generated text with some words highlighted in red, wearing a futuristic dark grey tech jacket over a black t-shirt. Shot on 85mm lens, f/1.8 aperture, realistic lighting, highly detailed features, cinematic, photorealistic, professional color grading, vibrant background, clean composition, high-resolution.",
+        "scores": {
+          "design": 90,
+          "content": 95,
+          "branding": 90,
+          "total": 91
+        },
+        "layout": {
+          "background": {
+            "colors": [
+              "#050814",
+              "#0a0314"
+            ],
+            "isSunburst": false,
+            "rayColor": "rgba(255, 255, 255, 0.04)",
+            "drawGrid": false,
+            "gridColor": "rgba(255, 255, 255, 0.05)",
+            "gridSize": 40,
+            "glows": [
+              {
+                "x": 100,
+                "y": 200,
+                "r": 400,
+                "color": "rgba(0, 242, 254, 0.2)"
+              },
+              {
+                "x": 800,
+                "y": 800,
+                "r": 600,
+                "color": "rgba(255, 0, 127, 0.15)"
+              }
+            ]
+          },
+          "shapes": [
+            {
+              "type": "circle",
+              "x": 300,
+              "y": 600,
+              "r": 250,
+              "color": "rgba(255, 255, 255, 0.02)",
+              "strokeColor": "rgba(0, 242, 254, 0.4)",
+              "lineWidth": 3,
+              "glowColor": "#00f2fe",
+              "glowBlur": 30
+            }
+          ],
+          "avatar": {
+            "type": "circle",
+            "x": 260,
+            "y": 540,
+            "w": 360,
+            "h": 360,
+            "tilt": 0,
+            "glowColor": "#ff007f",
+            "glowBlur": 40,
+            "strokeColor": "#ff007f",
+            "lineWidth": 4
+          },
+          "text": {
+            "badge": {
+              "text": "AI ETHICS",
+              "bgColor": "#ff007f",
+              "glowColor": "#ff007f",
+              "glowBlur": 15,
+              "x": 520,
+              "y": 160
+            },
+            "headline": {
+              "fontSize": 44,
+              "color": "#ffffff",
+              "highlightColor": "#00f2fe",
+              "align": "left",
+              "x": 520,
+              "y": 240,
+              "w": 500
+            },
+            "subtext": {
+              "fontSize": 20,
+              "color": "#cbd5e1",
+              "x": 520,
+              "y": 560,
+              "w": 500
+            },
+            "cta": {
+              "text": "READ POST",
+              "bgColor": "#ff007f",
+              "glowColor": "#ff007f",
+              "glowBlur": 20,
+              "x": 520,
+              "y": 780,
+              "w": 260,
+              "h": 55
+            }
+          },
+          "floatingElements": [
+            {
+              "type": "linkedin",
+              "x": 600,
+              "y": 900,
+              "size": 36,
+              "color": "#00f2fe"
+            }
+          ]
+        }
+      },
+      {
+        "id": 2,
+        "style": "Modern Business Grid",
+        "hook": "AI's wealth gap is widening.",
+        "content": "While tens of thousands are laid off, a tiny AI elite gets obscenely wealthy. This isn't just market dynamics; it's a systemic challenge to our social contract.\n\nWe champion AI for productivity, but ignore the human cost at our peril. Are we building a future where innovation only serves the few, or one that lifts all boats? This isn't sustainable.\n\nWhat's your take on AI's economic distribution? 🤔\n#AIEconomics #FutureOfWork #TechLayoffs #WealthInequality #AIImpact",
+        "sourceArticle": "The AI layoff wave is becoming a powder keg",
+        "imageHeadline": "AI'S *DIVIDE*",
+        "imageSubtext": "Thousands laid off while a few become billionaires.",
+        "avatarPrompt": "An Indian male manager in his late 30s, warm tan skin tone, clean-shaven, short styled black hair parted to the side, wearing black thick-framed glasses, having a friendly smile with visible teeth. He is standing resolutely in a modern, high-rise office with a city skyline visible, one hand on his hip, wearing a sharp charcoal suit over a crisp white shirt. Shot on 85mm lens, f/1.8 aperture, realistic lighting, highly detailed features, cinematic, photorealistic, professional color grading, vibrant background, clean composition, high-resolution.",
+        "scores": {
+          "design": 92,
+          "content": 94,
+          "branding": 92,
+          "total": 92
+        },
+        "layout": {
+          "background": {
+            "colors": [
+              "#120802",
+              "#1f0f00"
+            ],
+            "isSunburst": false,
+            "rayColor": "rgba(255, 255, 255, 0.04)",
+            "drawGrid": true,
+            "gridColor": "rgba(255, 255, 255, 0.05)",
+            "gridSize": 40,
+            "glows": [
+              {
+                "x": 200,
+                "y": 800,
+                "r": 500,
+                "color": "rgba(255, 107, 0, 0.25)"
+              },
+              {
+                "x": 900,
+                "y": 300,
+                "r": 400,
+                "color": "rgba(255, 251, 0, 0.15)"
+              }
+            ]
+          },
+          "shapes": [],
+          "avatar": {
+            "type": "rect",
+            "x": 820,
+            "y": 540,
+            "w": 360,
+            "h": 720,
+            "tilt": 0,
+            "glowColor": "#ff6b00",
+            "glowBlur": 40,
+            "strokeColor": "#ff6b00",
+            "lineWidth": 4
+          },
+          "text": {
+            "badge": {
+              "text": "AI ECONOMICS",
+              "bgColor": "#ff6b00",
+              "glowColor": "#ff6b00",
+              "glowBlur": 15,
+              "x": 80,
+              "y": 160
+            },
+            "headline": {
+              "fontSize": 44,
+              "color": "#ffffff",
+              "highlightColor": "#fffb00",
+              "align": "left",
+              "x": 80,
+              "y": 240,
+              "w": 500
+            },
+            "subtext": {
+              "fontSize": 20,
+              "color": "#cbd5e1",
+              "x": 80,
+              "y": 560,
+              "w": 500
+            },
+            "cta": {
+              "text": "JOIN DEBATE",
+              "bgColor": "#ff6b00",
+              "glowColor": "#ff6b00",
+              "glowBlur": 20,
+              "x": 80,
+              "y": 780,
+              "w": 260,
+              "h": 55
+            }
+          },
+          "floatingElements": [
+            {
+              "type": "linkedin",
+              "x": 150,
+              "y": 900,
+              "size": 36,
+              "color": "#ff6b00"
+            }
+          ]
+        },
+        "imageUrl": "http://localhost:3000/creatives/creative-2026-06-15-2.png"
+      },
+      {
+        "id": 3,
+        "style": "Full Backdrop Banner",
+        "hook": "Google Search just changed forever.",
+        "content": "For 25 years, a white box and blue links defined information access. Now, Google's AI-native redesign signals a seismic shift.\n\nThis isn't just a UI update; it's a fundamental re-architecture of how we discover, process, and trust information. Your entire digital strategy, from SEO to content marketing, just got a forced reboot.\n\nAre you ready for the new paradigm, or still chasing blue links? 🚀\n#GoogleAI #SearchEngine #DigitalStrategy #AIImpact #FutureTech",
+        "sourceArticle": "Google just redesigned the search box for the first time in 25 years — here’s why it matters more than you think.",
+        "imageHeadline": "SEARCH *REBOOTED*",
+        "imageSubtext": "Google's 25-year paradigm shift. Are you ready?",
+        "avatarPrompt": "An Indian male manager in his late 30s, warm tan skin tone, clean-shaven, short styled black hair parted to the side, wearing black thick-framed glasses, having a friendly smile with visible teeth. He is looking thoughtfully at an abstract, glowing data visualization, wearing a stylish deep purple turtleneck sweater. Shot on 85mm lens, f/1.8 aperture, realistic lighting, highly detailed features, cinematic, photorealistic, professional color grading, vibrant background, clean composition, high-resolution.",
+        "scores": {
+          "design": 90,
+          "content": 93,
+          "branding": 91,
+          "total": 91
+        },
+        "layout": {
+          "background": {
+            "colors": [
+              "#050505",
+              "#140a00"
+            ],
+            "isSunburst": true,
+            "rayColor": "rgba(251, 191, 36, 0.08)",
+            "drawGrid": false,
+            "gridColor": "rgba(255, 255, 255, 0.05)",
+            "gridSize": 40,
+            "glows": [
+              {
+                "x": 540,
+                "y": 540,
+                "r": 600,
+                "color": "rgba(251, 191, 36, 0.2)"
+              },
+              {
+                "x": 100,
+                "y": 900,
+                "r": 400,
+                "color": "rgba(143, 0, 255, 0.15)"
+              }
+            ]
+          },
+          "shapes": [],
+          "avatar": {
+            "type": "circle",
+            "x": 540,
+            "y": 860,
+            "w": 160,
+            "h": 160,
+            "tilt": 0,
+            "glowColor": "#fbbf24",
+            "glowBlur": 40,
+            "strokeColor": "#8f00ff",
+            "lineWidth": 4
+          },
+          "text": {
+            "badge": {
+              "text": "FUTURE TECH",
+              "bgColor": "#fbbf24",
+              "glowColor": "#fbbf24",
+              "glowBlur": 15,
+              "x": 420,
+              "y": 120
+            },
+            "headline": {
+              "fontSize": 44,
+              "color": "#ffffff",
+              "highlightColor": "#8f00ff",
+              "align": "center",
+              "x": 90,
+              "y": 190,
+              "w": 900
+            },
+            "subtext": {
+              "fontSize": 20,
+              "color": "#cbd5e1",
+              "x": 90,
+              "y": 440,
+              "w": 900
+            },
+            "cta": {
+              "text": "EXPLORE NOW",
+              "bgColor": "#fbbf24",
+              "glowColor": "#fbbf24",
+              "glowBlur": 20,
+              "x": 410,
+              "y": 680,
+              "w": 260,
+              "h": 55
+            }
+          },
+          "floatingElements": [
+            {
+              "type": "linkedin",
+              "x": 540,
+              "y": 780,
+              "size": 36,
+              "color": "#fbbf24"
+            }
+          ]
+        }
+      },
+      {
+        "id": 4,
+        "style": "Realistic Portrait Split",
+        "hook": "AWS dominance is under fire.",
+        "content": "Railway just raised $100M to challenge AWS with AI-native cloud infrastructure. This isn't another \"me too\" cloud provider. It's a direct assault on the limitations of legacy infrastructure struggling to keep pace with AI's demands.\n\nThe next era of computing demands purpose-built foundations. Are you still building your AI on an old house, or are you looking for the future's blueprint? 💡\n#CloudComputing #AIInfrastructure #AWS #Railway #FutureOfTech",
+        "sourceArticle": "Railway secures $100 million to challenge AWS with AI-native cloud infrastructure",
+        "imageHeadline": "CLOUD *REVOLUTION*",
+        "imageSubtext": "$100M to challenge AWS with AI-native infrastructure.",
+        "avatarPrompt": "An Indian male manager in his late 30s, warm tan skin tone, clean-shaven, short styled black hair parted to the side, wearing black thick-framed glasses, having a friendly smile with visible teeth. He is standing confidently in a server room with subtle green glowing lights, arms crossed, wearing a sleek black tech vest over a grey long-sleeve shirt. Shot on 85mm lens, f/1.8 aperture, realistic lighting, highly detailed features, cinematic, photorealistic, professional color grading, vibrant background, clean composition, high-resolution.",
+        "scores": {
+          "design": 91,
+          "content": 92,
+          "branding": 90,
+          "total": 91
+        },
+        "layout": {
+          "background": {
+            "colors": [
+              "#020b08",
+              "#001a12"
+            ],
+            "isSunburst": false,
+            "rayColor": "rgba(255, 255, 255, 0.04)",
+            "drawGrid": false,
+            "gridColor": "rgba(255, 255, 255, 0.05)",
+            "gridSize": 40,
+            "glows": [
+              {
+                "x": 200,
+                "y": 400,
+                "r": 500,
+                "color": "rgba(57, 255, 20, 0.2)"
+              },
+              {
+                "x": 900,
+                "y": 700,
+                "r": 400,
+                "color": "rgba(0, 85, 255, 0.15)"
+              }
+            ]
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x1": 0,
+              "y1": 1080,
+              "x2": 1080,
+              "y2": 0,
+              "color": "rgba(57, 255, 20, 0.1)",
+              "lineWidth": 2
+            }
+          ],
+          "avatar": {
+            "type": "card",
+            "x": 800,
+            "y": 540,
+            "w": 440,
+            "h": 880,
+            "tilt": 0,
+            "glowColor": "#39ff14",
+            "glowBlur": 40,
+            "strokeColor": "#0055ff",
+            "lineWidth": 4
+          },
+          "text": {
+            "badge": {
+              "text": "AI INFRA",
+              "bgColor": "#39ff14",
+              "glowColor": "#39ff14",
+              "glowBlur": 15,
+              "x": 80,
+              "y": 120
+            },
+            "headline": {
+              "fontSize": 44,
+              "color": "#ffffff",
+              "highlightColor": "#0055ff",
+              "align": "left",
+              "x": 80,
+              "y": 190,
+              "w": 480
+            },
+            "subtext": {
+              "fontSize": 20,
+              "color": "#cbd5e1",
+              "x": 80,
+              "y": 520,
+              "w": 480
+            },
+            "cta": {
+              "text": "LEARN MORE",
+              "bgColor": "#39ff14",
+              "glowColor": "#39ff14",
+              "glowBlur": 20,
+              "x": 80,
+              "y": 780,
+              "w": 260,
+              "h": 55
+            }
+          },
+          "floatingElements": [
+            {
+              "type": "linkedin",
+              "x": 150,
+              "y": 900,
+              "size": 36,
+              "color": "#39ff14"
+            }
+          ]
+        }
+      },
+      {
+        "id": 5,
+        "style": "Minimalist Executive Quote",
+        "hook": "India's AI future: A wake-up call.",
+        "content": "Anthropic suspending model access sparks a critical debate in India. Relying solely on external AI models leaves national ambitions vulnerable.\n\nTrue AI sovereignty demands robust domestic development, not just consumption. We need to build, not just buy. The strategic imperative is clear.\n\nIs your nation (or company) strategically investing in homegrown AI, or just hoping for the best from global players? 🌍\n#IndiaAI #AISovereignty #TechPolicy #AIStrategy #GlobalTech",
+        "sourceArticle": "As Anthropic suspends access to new models, India debates its AI future",
+        "imageHeadline": "AI *SOVEREIGNTY*",
+        "imageSubtext": "India's wake-up call. Build or buy AI?",
+        "avatarPrompt": "An Indian male manager in his late 30s, warm tan skin tone, clean-shaven, short styled black hair parted to the side, wearing black thick-framed glasses, having a friendly smile with visible teeth. He is sitting at a minimalist desk, contemplating a glowing digital globe projection, wearing a tailored dark blue suit jacket with a light blue dress shirt. Shot on 85mm lens, f/1.8 aperture, realistic lighting, highly detailed features, cinematic, photorealistic, professional color grading, vibrant background, clean composition, high-resolution.",
+        "scores": {
+          "design": 88,
+          "content": 91,
+          "branding": 89,
+          "total": 89
+        },
+        "layout": {
+          "background": {
+            "colors": [
+              "#0d0214",
+              "#1c0024"
+            ],
+            "isSunburst": true,
+            "rayColor": "rgba(255, 0, 127, 0.08)",
+            "drawGrid": false,
+            "gridColor": "rgba(255, 255, 255, 0.05)",
+            "gridSize": 40,
+            "glows": [
+              {
+                "x": 200,
+                "y": 800,
+                "r": 500,
+                "color": "rgba(255, 0, 127, 0.2)"
+              },
+              {
+                "x": 800,
+                "y": 200,
+                "r": 400,
+                "color": "rgba(0, 242, 254, 0.15)"
+              }
+            ]
+          },
+          "shapes": [],
+          "avatar": {
+            "type": "circle",
+            "x": 900,
+            "y": 120,
+            "w": 120,
+            "h": 120,
+            "tilt": 0,
+            "glowColor": "#ff007f",
+            "glowBlur": 40,
+            "strokeColor": "#00f2fe",
+            "lineWidth": 4
+          },
+          "text": {
+            "badge": {
+              "text": "AI POLICY",
+              "bgColor": "#ff007f",
+              "glowColor": "#ff007f",
+              "glowBlur": 15,
+              "x": 80,
+              "y": 120
+            },
+            "headline": {
+              "fontSize": 44,
+              "color": "#ffffff",
+              "highlightColor": "#00f2fe",
+              "align": "center",
+              "x": 140,
+              "y": 220,
+              "w": 800
+            },
+            "subtext": {
+              "fontSize": 20,
+              "color": "#cbd5e1",
+              "x": 140,
+              "y": 540,
+              "w": 800
+            },
+            "cta": {
+              "text": "EXPLORE POLICY",
+              "bgColor": "#ff007f",
+              "glowColor": "#ff007f",
+              "glowBlur": 20,
+              "x": 410,
+              "y": 780,
+              "w": 260,
+              "h": 55
+            }
+          },
+          "floatingElements": [
+            {
+              "type": "linkedin",
+              "x": 540,
+              "y": 880,
+              "size": 36,
+              "color": "#ff007f"
+            }
+          ]
+        }
+      }
+    ],
+    "selectedPostId": 2,
+    "postedAt": "2026-06-15T09:40:30.318Z",
+    "status": "posted"
+  }
+]
