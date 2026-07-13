@@ -431,37 +431,8 @@ app.post('/api/upload-creative', async (req, res) => {
         } else {
           throw new Error(`HTTP Error ${imgbbResponse.status}`);
         }
-      } catch (imgbbErr) {
-        console.warn(`[API] ImgBB upload failed: ${imgbbErr.message}. Trying Catbox fallback...`);
-      }
-    }
-
     if (!imageUrl) {
-      console.log(`[API] Uploading creative image for Post ${postId} (${date}) to catbox.moe for permanent public hosting...`);
-      try {
-        const blob = new Blob([buffer], { type: 'image/png' });
-        const formData = new FormData();
-        formData.append('reqtype', 'fileupload');
-        formData.append('fileToUpload', blob, fileName);
-
-        const uploadResponse = await fetch('https://catbox.moe/user/api.php', {
-          method: 'POST',
-          body: formData
-        });
-
-        if (uploadResponse.ok) {
-          const resultUrl = await uploadResponse.text();
-          if (resultUrl && resultUrl.startsWith('https://files.catbox.moe/')) {
-            imageUrl = resultUrl.trim();
-            console.log(`[API] Image successfully hosted permanently on Catbox: ${imageUrl}`);
-          } else {
-            throw new Error(`Unexpected Catbox response format: ${resultUrl}`);
-          }
-        } else {
-          throw new Error(`HTTP Error ${uploadResponse.status}`);
-        }
-      } catch (uploadErr) {
-        console.warn(`[API] Permanent cloud upload to Catbox failed: ${uploadErr.message}. Trying tmpfiles.org fallback...`);
+      console.log(`[API] Uploading creative image for Post ${postId} (${date}) to tmpfiles.org for public hosting...`);
       try {
         const blob = new Blob([buffer], { type: 'image/png' });
         const formData = new FormData();
@@ -486,7 +457,7 @@ app.post('/api/upload-creative', async (req, res) => {
       } catch (tmpFilesErr) {
         console.warn(`[API] Fallback upload to tmpfiles.org failed: ${tmpFilesErr.message}. Falling back to local static URL.`);
         const host = req.get('host');
-        const protocol = host.includes('onrender.com') ? 'https' : req.protocol;
+        const protocol = host.includes('hf.space') || host.includes('onrender.com') ? 'https' : req.protocol;
         imageUrl = `${protocol}://${host}/creatives/${fileName}`;
       }
     }
