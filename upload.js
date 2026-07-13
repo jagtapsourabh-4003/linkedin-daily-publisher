@@ -7,7 +7,7 @@ if (!HF_TOKEN) {
   process.exit(1);
 }
 
-const REPO_ID = 'SourabhJagtap/Linkedin';
+const REPO_ID = process.argv[3] || 'SourabhJagtap/Linkedin';
 const IGNORE_PATTERNS = [
   '.git',
   'node_modules',
