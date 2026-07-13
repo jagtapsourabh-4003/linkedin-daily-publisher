@@ -618,6 +618,9 @@ async function downloadAvatars() {
       const targetPath = path.join(publicDir, relPath);
       
       if (!fs.existsSync(targetPath)) {
+        // Space out downloads by 200ms to avoid network/CPU spikes during startup
+        await new Promise(resolve => setTimeout(resolve, 200));
+        
         console.log(`[Startup] Downloading ${relPath} from cloud URL: ${cloudUrl}...`);
         try {
           const res = await fetch(cloudUrl);
@@ -641,7 +644,9 @@ async function downloadAvatars() {
 // Startup Check: Generate today's posts immediately if missing
 const startupCheck = async () => {
   try {
-    await downloadAvatars();
+    // Run avatar download completely in the background without blocking today's post checks
+    downloadAvatars().catch(err => console.error('[Startup] Background avatar download error:', err.message));
+
     const todayStr = getLocalDateString();
     const history = getHistory();
     const hasToday = history.some(item => item.date === todayStr);
