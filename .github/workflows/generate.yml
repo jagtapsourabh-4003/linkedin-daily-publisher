@@ -1,0 +1,57 @@
+name: Daily Draft Generation
+
+on:
+  schedule:
+    # Run daily at 9:00 AM Indian Standard Time (3:30 AM UTC)
+    - cron: '30 3 * * *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Force overwrite today\'s drafts'
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm install --omit=dev
+
+    - name: Run Generation Script
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      run: |
+        if [ "${{ github.event.inputs.force }}" = "true" ]; then
+          node generate-daily.js --force
+        else
+          node generate-daily.js
+        fi
+
+    - name: Commit and Push Changes
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        
+        # Check if history.json changed
+        git add public/data/history.json
+        if git diff-index --quiet HEAD; then
+          echo "No new drafts generated or saved. Skipping commit."
+        else
+          git commit -m "Automated: Daily LinkedIn drafts generated [skip ci]"
+          git push origin main
+        fi
