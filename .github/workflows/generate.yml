@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       force:
-        description: 'Force overwrite today\'s drafts'
+        description: "Force overwrite today's drafts"
         type: boolean
         required: false
         default: false
