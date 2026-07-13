@@ -47,11 +47,11 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         
-        # Check if history.json changed
-        git add docs/data/history.json
-        if git diff-index --quiet HEAD; then
+        # Check specifically if history.json has changes
+        if git diff --quiet docs/data/history.json; then
           echo "No new drafts generated or saved. Skipping commit."
         else
+          git add docs/data/history.json
           git commit -m "Automated: Daily LinkedIn drafts generated [skip ci]"
           git push origin main
         fi
