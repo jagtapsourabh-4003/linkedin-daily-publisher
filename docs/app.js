@@ -750,29 +750,36 @@ async function postToGoogleFlow(postId, btnElement) {
     let imageUrl = '';
     const imgbbKey = state.settings.imgbbApiKey;
     
-    if (imgbbKey) {
-      btnElement.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Uploading graphic...`;
+    if (!imgbbKey) {
+      throw new Error('ImgBB API Key is missing. Graphic hosting is required for LinkedIn publishing. Please configure it in Settings.');
+    }
+    
+    btnElement.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Uploading graphic...`;
+    
+    const rawBase64 = imageBase64.replace(/^data:image\/\w+;base64,/, '');
+    const formData = new FormData();
+    formData.append('image', rawBase64);
+    
+    try {
+      const imgbbResponse = await fetch(`https://api.imgbb.com/1/upload?key=${imgbbKey}`, {
+        method: 'POST',
+        body: formData
+      });
       
-      const rawBase64 = imageBase64.replace(/^data:image\/\w+;base64,/, '');
-      const formData = new FormData();
-      formData.append('image', rawBase64);
-      
-      try {
-        const imgbbResponse = await fetch(`https://api.imgbb.com/1/upload?key=${imgbbKey}`, {
-          method: 'POST',
-          body: formData
-        });
-        
-        if (imgbbResponse.ok) {
-          const result = await imgbbResponse.json();
-          if (result && result.success && result.data && result.data.url) {
-            imageUrl = result.data.url;
-            console.log(`[Browser ImgBB] Creative hosted successfully: ${imageUrl}`);
-          }
+      if (imgbbResponse.ok) {
+        const result = await imgbbResponse.json();
+        if (result && result.success && result.data && result.data.url) {
+          imageUrl = result.data.url;
+          console.log(`[Browser ImgBB] Creative hosted successfully: ${imageUrl}`);
+        } else {
+          throw new Error(result.error ? result.error.message : 'Unknown ImgBB API response error');
         }
-      } catch (uploadErr) {
-        console.warn(`[Browser ImgBB] Direct upload failed: ${uploadErr.message}. Continuing without hosted image.`);
+      } else {
+        const errText = await imgbbResponse.text().catch(() => `HTTP ${imgbbResponse.status}`);
+        throw new Error(`Server responded with ${errText}`);
       }
+    } catch (uploadErr) {
+      throw new Error(`ImgBB upload failed: ${uploadErr.message}. Check your ImgBB Key in Settings.`);
     }
 
     // 3. Post text and image URL directly to the Make.com Webhook from the browser
