@@ -11,10 +11,10 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const DATA_DIR = path.join(__dirname, 'public', 'data');
+const DATA_DIR = path.join(__dirname, 'docs', 'data');
 const HISTORY_FILE = path.join(DATA_DIR, 'history.json');
 
-// Ensure public/data directory exists
+// Ensure docs/data directory exists
 if (!fs.existsSync(DATA_DIR)) {
   fs.mkdirSync(DATA_DIR, { recursive: true });
 }
@@ -117,7 +117,7 @@ async function run() {
     const posts = await generatePosts(category, trends, geminiKey);
     console.log(`[CLI] Successfully generated ${posts.length} drafts.`);
 
-    console.log('[CLI] Step 3: Saving drafts to public/data/history.json...');
+    console.log('[CLI] Step 3: Saving drafts to docs/data/history.json...');
     saveGeneration(todayStr, category, posts);
     
     console.log('\n🎉 [CLI] Daily generation pipeline completed successfully!');

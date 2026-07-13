@@ -4,8 +4,8 @@ node_modules/
 # Local database and data (root only)
 /data/
 /db.json
-!/public/data/
-!/public/data/history.json
+!/docs/data/
+!/docs/data/history.json
 
 # Environment variables (API Keys, secrets)
 .env
@@ -23,5 +23,5 @@ yarn-error.log*
 Thumbs.db
 
 # Generated visual assets
-public/avatar_daily*.jpg
-public/creatives/
+docs/avatar_daily*.jpg
+docs/creatives/

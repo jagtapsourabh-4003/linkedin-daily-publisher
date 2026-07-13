@@ -48,7 +48,7 @@ jobs:
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         
         # Check if history.json changed
-        git add public/data/history.json
+        git add docs/data/history.json
         if git diff-index --quiet HEAD; then
           echo "No new drafts generated or saved. Skipping commit."
         else
