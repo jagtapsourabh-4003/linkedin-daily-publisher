@@ -1,5 +1,144 @@
 [
   {
+    "date": "2026-07-14",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Forbes Cover",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Startup Founder",
+        "environment": "Startup hub",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Startup Founder in a Startup hub, Close-up portrait, wearing a Modern startup hoodie. Out-of-focus whiteboard with scribbled ideas in foreground, manager in midground, blurred open-plan office in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "Growth experiments are your secret weapon.",
+          "content": "Marketing teams are now adopting growth experimentation. It's a smart way to test ideas across the whole customer journey.\n\nThis helps find what truly drives business growth. We need measurable, repeatable success, especially with tight budgets.\n\nIt's not just about spending more. It's about optimizing every channel.\n\nAre you testing enough for real growth?",
+          "sourceArticle": "Growth experimentation: A guide for growing marketing teams",
+          "imageHeadline": "GROWTH *EXPERIMENTS* WIN",
+          "imageSubtext": "Why testing ideas drives real business growth.",
+          "badgeText": "MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "TED Speaker",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Professor",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor on an Auditorium stage, Presentation shot, wearing Formal university attire. Out-of-focus lectern with notes in foreground, professor in midground, blurred audience in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Semantic keywords still matter for SEO.",
+          "content": "Many ask if semantic keywords are dead. They are not. AI engines actually make them more important.\n\nHere’s a quick playbook to use them.\n\n1. Find related terms: Don't just target 'shoes'. Think 'comfortable walking shoes' or 'best running sneakers'. Use tools like Google's 'People also ask'.\n\n2. Analyze user intent: What does a user really want when searching a term? Make sure your content answers that completely.\n\n3. Structure content logically: Organize your headings and subheadings to cover all related topics. This signals depth and relevance to search engines.\n\n4. Write naturally: Avoid stuffing keywords. Write content that flows well and makes sense to a human reader.\n\nThis approach builds authority. It helps your content rank higher.\n\nHow do you find your related terms?",
+          "sourceArticle": "What are semantic keywords? Here's how to find & use them",
+          "imageHeadline": "SEMANTIC *SEO* PLAYBOOK",
+          "imageSubtext": "4 steps to boost your content for AI search.",
+          "badgeText": "MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "news-card",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Technology Evangelist",
+        "environment": "Media studio",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist in a Media studio, Interview setup, wearing a Navy business suit. Out-of-focus studio microphone in foreground, manager in midground, blurred LED news screen in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "SERP ranks don't tell the full story.",
+          "content": "Marketers love seeing top search results. It feels like a win. But in the AI search era, it's not enough.\n\nWe need to rethink how we measure brand presence. Traditional SEO metrics miss a big piece of the pie.\n\nAI Overviews and answer engines change everything. Your brand might be cited without a click. This still builds authority.\n\nTracking only click-through rates ignores this crucial mention value. We need new ways to measure visibility.\n\nAre you still focusing solely on organic traffic?",
+          "sourceArticle": "How to track your brand’s presence in AI search",
+          "imageHeadline": "*AI* SEARCH IS DIFFERENT",
+          "imageSubtext": "Why traditional SEO metrics miss brand impact.",
+          "badgeText": "AI TREND"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "split-right",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Strategy Consultant",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant in an Executive boardroom, Sitting at desk, wearing a Charcoal executive suit. Out-of-focus laptop screen showing a spreadsheet in foreground, manager in midground, blurred modern conference table in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "Ignoring AI costs you leads.",
+          "content": "Many marketers are missing out. They don't use AI for campaign optimization.\n\nThis is a big mistake in today's landscape. Data shows 88% of marketers use AI daily for decisions.\n\nWhy? Marketing automation generates 80% more leads. It drives 77% higher conversion rates.\n\nGlobal ad spend is huge. There's too much data for humans alone. Without AI, you're guessing.\n\nAre you leaving conversions on the table?",
+          "sourceArticle": "Campaign optimization strategies that actually work in 2026",
+          "imageHeadline": "*NO AI*? HUGE MISTAKE.",
+          "imageSubtext": "Manual campaign optimization costs leads and revenue.",
+          "badgeText": "AI TREND"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "AI Consultant",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant in a Futuristic workspace, Looking at camera, wearing a Turtleneck with blazer. Out-of-focus holographic interface in foreground, manager in midground, blurred sleek, minimalist future tech background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "AI Search is the new frontier.",
+          "content": "AI search optimization (AEO) is rapidly changing marketing. It’s about being cited by answer engines like ChatGPT or Gemini.\n\nThe traffic from AI tools is small now. But it's very high-intent traffic. Visitors referred by AI convert at a rate 19 times higher than traditional search.\n\nIn the next 12-24 months, AEO will be critical. It's not just about clicks, but about mentions and recommendations.\n\nBrands need to focus on clear, fresh, and contextual content. This will earn citations and build trust.\n\nAre you ready for the AEO future?",
+          "sourceArticle": "What is AI search optimization? (& why marketers should care)",
+          "imageHeadline": "AI SEARCH *IS COMING*",
+          "imageSubtext": "High-intent traffic will redefine brand visibility.",
+          "badgeText": "AI TREND"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-07-13",
     "category": "ai",
     "posts": [
