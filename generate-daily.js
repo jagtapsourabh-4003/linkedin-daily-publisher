@@ -32,13 +32,17 @@ function getLocalDateString() {
   return `${year}-${month}-${day}`;
 }
 
-// Utility to determine the alternating category for a specific date
+// Utility to determine the category for a specific date (70% marketing, 30% ai split)
 function getCategoryForDate(dateStr) {
   const baseline = new Date('2026-01-01T00:00:00Z');
   const current = new Date(`${dateStr}T00:00:00Z`);
   const diffTime = Math.abs(current - baseline);
   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-  return diffDays % 2 === 0 ? 'marketing' : 'ai';
+  const cycleDay = diffDays % 10;
+  
+  // 7 days marketing (0, 1, 2, 4, 5, 6, 8) and 3 days ai (3, 7, 9) in a 10-day cycle
+  const aiDays = [3, 7, 9];
+  return aiDays.includes(cycleDay) ? 'ai' : 'marketing';
 }
 
 // Read existing history

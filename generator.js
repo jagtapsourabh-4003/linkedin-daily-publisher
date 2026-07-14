@@ -97,7 +97,8 @@ Guidelines for post content:
    - Post 2: "Actionable Playbook" - A step-by-step tutorial or checklist. Give the reader 3-4 specific actions they can take today.
    - Post 3: "Contrarian Debate" - Challenge a common myth or popular opinion in the industry. Be respectfully provocative.
    - Post 4: "Mistake/Failure Study" - Analyze a real or hypothetical failure case. Explain what went wrong and the exact lesson learned.
-   - Post 5: "Strategic Prediction" - A forward-looking, high-level outlook or framework. Explain where a trend is heading in the next 12-24 months.`;
+   - Post 5: "Strategic Prediction" - A forward-looking, high-level outlook or framework. Explain where a trend is heading in the next 12-24 months.
+9. ZERO TOPIC REPETITION: You MUST NOT write about the same headline, tool, or tip twice. Base each of the 5 posts on a COMPLETELY DIFFERENT article or trend from the scraped web trends context below. For example, Post 1 must utilize Trend 1, Post 2 must utilize Trend 2, Post 3 must utilize Trend 3, and so on. Ensure hooks, storylines, and takeaways are highly creative and distinct from one another. Do not reuse template-like opening questions across posts.`;
 
   const prompt = `Generate exactly 5 LinkedIn posts on the topic of: ${topicLabel}.
 Use the following scraped web trends as context and inspiration:
@@ -227,7 +228,7 @@ Each object in the array must follow this structure. Ensure that the "style" fie
           systemInstruction: systemInstruction,
           responseMimeType: 'application/json',
           responseSchema: responseSchema,
-          temperature: 0.7,
+          temperature: 0.95,
         }
       });
       

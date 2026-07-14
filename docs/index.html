@@ -133,9 +133,22 @@
         </div>
 
         <div class="form-group">
-          <label for="input-secret">Cron Secret Token</label>
-          <input type="text" id="input-secret" readonly>
-          <small class="form-help">Use this secret to trigger automated generation remotely from outside schedulers via POST: <br><code>/api/cron/trigger?secret=[token]</code></small>
+          <label for="input-github-pat">GitHub Personal Access Token (PAT)</label>
+          <div class="input-password-wrapper">
+            <input type="password" id="input-github-pat" placeholder="Enter your GitHub Classic Token (needs 'repo' permission)">
+          </div>
+          <small class="form-help">Enter a GitHub PAT to trigger draft regeneration directly from this dashboard. Create one at <a href="https://github.com/settings/tokens" target="_blank" style="color: var(--accent-light);">GitHub Settings</a>.</small>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label for="input-github-owner">GitHub Username</label>
+            <input type="text" id="input-github-owner" placeholder="jagtapsourabh-4003">
+          </div>
+          <div class="form-group">
+            <label for="input-github-repo">GitHub Repository</label>
+            <input type="text" id="input-github-repo" placeholder="linkedin-daily-publisher">
+          </div>
         </div>
 
         <div class="form-group">

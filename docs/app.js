@@ -353,7 +353,9 @@ const el = {
   inputWebhook: document.getElementById('input-webhook'),
   inputApiKey: document.getElementById('input-apikey'),
   inputImgbbApiKey: document.getElementById('input-imgbb-apikey'),
-  inputSecret: document.getElementById('input-secret'),
+  inputGithubPat: document.getElementById('input-github-pat'),
+  inputGithubOwner: document.getElementById('input-github-owner'),
+  inputGithubRepo: document.getElementById('input-github-repo'),
   inputAvatarFile: document.getElementById('input-avatar-file'),
   avatarPreview: document.getElementById('avatar-preview'),
   inputRotateOutfits: document.getElementById('input-rotate-outfits'),
@@ -447,13 +449,17 @@ async function loadSettings() {
       geminiApiKey: settings.geminiApiKey || '',
       imgbbApiKey: settings.imgbbApiKey || '',
       rotateOutfits: settings.rotateOutfits !== false,
-      customAvatar: settings.customAvatar || ''
+      customAvatar: settings.customAvatar || '',
+      githubPat: settings.githubPat || '',
+      githubOwner: settings.githubOwner || 'jagtapsourabh-4003',
+      githubRepo: settings.githubRepo || 'linkedin-daily-publisher'
     };
     
     // Fill fields
     el.inputWebhook.value = state.settings.webhookUrl;
-    el.inputSecret.placeholder = 'Managed via GitHub Secrets';
-    el.inputSecret.disabled = true; // Secrets are in GitHub secrets
+    el.inputGithubPat.value = state.settings.githubPat;
+    el.inputGithubOwner.value = state.settings.githubOwner;
+    el.inputGithubRepo.value = state.settings.githubRepo;
     el.inputApiKey.value = state.settings.geminiApiKey;
     el.inputImgbbApiKey.value = state.settings.imgbbApiKey;
     el.inputRotateOutfits.checked = state.settings.rotateOutfits;
@@ -569,6 +575,9 @@ async function handleSaveSettings(e) {
   const webhookUrl = el.inputWebhook.value.trim();
   const geminiApiKey = el.inputApiKey.value.trim();
   const imgbbApiKey = el.inputImgbbApiKey.value.trim();
+  const githubPat = el.inputGithubPat.value.trim();
+  const githubOwner = el.inputGithubOwner.value.trim() || 'jagtapsourabh-4003';
+  const githubRepo = el.inputGithubRepo.value.trim() || 'linkedin-daily-publisher';
   const rotateOutfits = el.inputRotateOutfits.checked;
   
   try {
@@ -591,7 +600,10 @@ async function handleSaveSettings(e) {
       geminiApiKey,
       imgbbApiKey,
       rotateOutfits,
-      customAvatar: customAvatarBase64
+      customAvatar: customAvatarBase64,
+      githubPat,
+      githubOwner,
+      githubRepo
     };
     
     localStorage.setItem('linkedin_settings', JSON.stringify(newSettings));
@@ -610,43 +622,136 @@ async function handleSaveSettings(e) {
   }
 }
 
-// Trigger Daily Post Generation manually (GitHub actions instructions)
+// Trigger Daily Post Generation manually (via GitHub Actions API if PAT is configured, otherwise fallback to instructions)
 async function triggerManualGeneration() {
-  const modalHtml = `
-    <div style="text-align: left; line-height: 1.6;">
-      <p style="margin-bottom: 12px;">Since the app runs <strong>100% serverless</strong> on GitHub Pages, draft generation is fully automated via <strong>GitHub Actions</strong> every morning at 9:00 AM.</p>
-      <p style="margin-bottom: 12px;"><strong>To trigger new drafts manually right now:</strong></p>
-      <ol style="margin-left: 20px; margin-bottom: 16px;">
-        <li>Go to your GitHub Repository.</li>
-        <li>Click the <strong>Actions</strong> tab.</li>
-        <li>Select <strong>Daily Draft Generation</strong> in the left sidebar.</li>
-        <li>Click the <strong>Run workflow</strong> dropdown on the right and click the green button.</li>
-      </ol>
-      <p style="font-size: 0.85rem; color: #94a3b8;">Once completed (takes ~30s), reload this dashboard page to see the new drafts!</p>
-    </div>
-  `;
-  
-  // Custom dialog alert
-  const dialog = document.createElement('div');
-  dialog.className = 'modal active';
-  dialog.style.zIndex = '9999';
-  dialog.innerHTML = `
-    <div class="modal-content" style="max-width: 500px;">
-      <div class="modal-header">
-        <h3>⚡ Manual Draft Generation</h3>
-        <button class="close-btn" id="close-manual-trigger-btn">&times;</button>
+  const pat = state.settings.githubPat;
+  const owner = state.settings.githubOwner || 'jagtapsourabh-4003';
+  const repo = state.settings.githubRepo || 'linkedin-daily-publisher';
+
+  if (!pat) {
+    // Show instruction modal since PAT is not configured
+    const modalHtml = `
+      <div style="text-align: left; line-height: 1.6;">
+        <p style="margin-bottom: 12px;">Since the app runs <strong>100% serverless</strong> on GitHub Pages, draft generation is automated via <strong>GitHub Actions</strong> every morning at 9:00 AM.</p>
+        <p style="margin-bottom: 12px; color: var(--accent-light); font-weight: bold;">💡 Tip: You can trigger generation directly from this dashboard! Just go to Settings (gear icon) and add a GitHub Personal Access Token (PAT).</p>
+        <hr style="border: 0; border-top: 1px solid var(--border-light); margin: 12px 0;">
+        <p style="margin-bottom: 12px;"><strong>To trigger manually on GitHub right now:</strong></p>
+        <ol style="margin-left: 20px; margin-bottom: 16px;">
+          <li>Go to your GitHub Repository.</li>
+          <li>Click the <strong>Actions</strong> tab.</li>
+          <li>Select <strong>.github/workflows/generate.yml</strong> in the left sidebar.</li>
+          <li>Click the <strong>Run workflow</strong> dropdown on the right and click the green button.</li>
+        </ol>
+        <p style="font-size: 0.85rem; color: #94a3b8;">Once completed (takes ~30s), reload this dashboard page to see the new drafts!</p>
       </div>
-      <div class="modal-body">${modalHtml}</div>
-      <div class="modal-footer" style="justify-content: flex-end;">
-        <button class="btn btn-secondary" id="ok-manual-trigger-btn">Got it</button>
+    `;
+    
+    const dialog = document.createElement('div');
+    dialog.className = 'modal active';
+    dialog.style.zIndex = '9999';
+    dialog.innerHTML = `
+      <div class="modal-content" style="max-width: 500px;">
+        <div class="modal-header">
+          <h3>⚡ Manual Draft Generation</h3>
+          <button class="close-btn" id="close-manual-trigger-btn">&times;</button>
+        </div>
+        <div class="modal-body">${modalHtml}</div>
+        <div class="modal-footer" style="justify-content: flex-end;">
+          <button class="btn btn-secondary" id="ok-manual-trigger-btn">Got it</button>
+        </div>
       </div>
-    </div>
-  `;
-  document.body.appendChild(dialog);
-  
-  const close = () => document.body.removeChild(dialog);
-  document.getElementById('close-manual-trigger-btn').onclick = close;
-  document.getElementById('ok-manual-trigger-btn').onclick = close;
+    `;
+    document.body.appendChild(dialog);
+    const close = () => document.body.removeChild(dialog);
+    document.getElementById('close-manual-trigger-btn').onclick = close;
+    document.getElementById('ok-manual-trigger-btn').onclick = close;
+    return;
+  }
+
+  // Trigger Action remotely using GitHub API
+  const btn = el.btnTriggerGeneration;
+  const originalText = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Starting...`;
+
+  try {
+    const triggerRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/actions/workflows/generate.yml/dispatches`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `token ${pat}`,
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28'
+      },
+      body: JSON.stringify({ ref: 'main' })
+    });
+
+    if (!triggerRes.ok) {
+      const errText = await triggerRes.text().catch(() => '');
+      throw new Error(errText ? JSON.parse(errText).message : `HTTP ${triggerRes.status}`);
+    }
+
+    showToast('GitHub Actions workflow triggered! Generating drafts...', 'info');
+    btn.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Generating...`;
+
+    // Start polling the run status
+    let pollAttempts = 0;
+    const maxPolls = 15; // 75 seconds maximum
+    const runStartTime = new Date();
+
+    const interval = setInterval(async () => {
+      pollAttempts++;
+      if (pollAttempts > maxPolls) {
+        clearInterval(interval);
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+        showToast('Generation is taking longer than expected. Please check GitHub Actions or reload later.', 'info');
+        return;
+      }
+
+      try {
+        const runsRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/actions/runs?event=workflow_dispatch&per_page=1`, {
+          headers: {
+            'Authorization': `token ${pat}`,
+            'Accept': 'application/vnd.github+json',
+            'X-GitHub-Api-Version': '2022-11-28'
+          }
+        });
+        
+        if (runsRes.ok) {
+          const runsData = await runsRes.json();
+          if (runsData.workflow_runs && runsData.workflow_runs.length > 0) {
+            const latest = runsData.workflow_runs[0];
+            const runTime = new Date(latest.created_at);
+            
+            // Verify this is the run we just triggered (started within the last minute)
+            if (Math.abs(runTime - runStartTime) < 60000) {
+              if (latest.status === 'completed') {
+                clearInterval(interval);
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+                
+                if (latest.conclusion === 'success') {
+                  showToast('Drafts regenerated and saved successfully!', 'success');
+                  await loadHistory();
+                } else {
+                  showToast(`Generation workflow failed: ${latest.conclusion || 'error'}. Check GitHub Actions.`, 'error');
+                }
+              } else {
+                btn.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Running (${latest.status})...`;
+              }
+            }
+          }
+        }
+      } catch (pollErr) {
+        console.warn('Error polling GitHub Actions runs:', pollErr.message);
+      }
+    }, 5000); // Poll every 5 seconds
+
+  } catch (err) {
+    btn.disabled = false;
+    btn.innerHTML = originalText;
+    showToast(`Failed to trigger generation: ${err.message}. Please check your GitHub PAT/Username in Settings.`, 'error');
+  }
 }
 
 // Save an inline draft edit to LocalStorage
