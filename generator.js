@@ -47,7 +47,7 @@ export async function generatePosts(category, trends, apiKey) {
   let mimeType = 'image/jpeg';
   try {
     console.log(`[Generator] Downloading reference creative: ${designRef.imageUrl}`);
-    const res = await fetch(designRef.imageUrl);
+    const res = await fetch(designRef.imageUrl, { signal: AbortSignal.timeout(10000) });
     if (res.ok) {
       const buffer = await res.arrayBuffer();
       base64Image = Buffer.from(buffer).toString('base64');
