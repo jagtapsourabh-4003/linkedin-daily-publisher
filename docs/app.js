@@ -718,16 +718,22 @@ async function triggerManualGeneration() {
 
     // Start polling the run status
     let pollAttempts = 0;
-    const maxPolls = 15; // 75 seconds maximum
+    const maxPolls = 60; // 5 minutes maximum
     const runStartTime = new Date();
 
     const interval = setInterval(async () => {
       pollAttempts++;
+      
+      // Reassure the user after 75 seconds that it's still running
+      if (pollAttempts === 15) {
+        showToast('Draft generation is taking a couple of minutes to spin up the GitHub server. Please keep this tab open...', 'info');
+      }
+      
       if (pollAttempts > maxPolls) {
         clearInterval(interval);
         btn.disabled = false;
         btn.innerHTML = originalText;
-        showToast('Generation is taking longer than expected. Please check GitHub Actions or reload later.', 'info');
+        showToast('Generation is still running in the background on GitHub. Please check back in 1-2 minutes or reload the page.', 'info');
         return;
       }
 
@@ -760,7 +766,9 @@ async function triggerManualGeneration() {
                   showToast(`Generation workflow failed: ${latest.conclusion || 'error'}. Check GitHub Actions.`, 'error');
                 }
               } else {
-                btn.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Running (${latest.status})...`;
+                // Update spinner text with GitHub Actions status
+                const runStatus = latest.status === 'in_progress' ? 'Generating Content & Images' : latest.status;
+                btn.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> ${runStatus}...`;
               }
             }
           }
