@@ -283,7 +283,7 @@ Each object in the array must follow this structure. Ensure that the "style" fie
     console.log('[Generator] Calling Imagen 3 for customized portraits...');
     for (let i = 0; i < posts.length; i++) {
       const post = posts[i];
-      const dailyAvatarPath = path.resolve('public', `avatar_daily_${post.id}.jpg`);
+      const dailyAvatarPath = path.resolve('docs', `avatar_daily_${post.id}.jpg`);
       
       try {
         const imagePrompt = post.avatarPrompt || `Studio portrait photography of an Indian male manager in his late 30s, warm tan skin, clean-shaven, short styled black hair parted to the side, wearing black thick-framed glasses, friendly smile with visible teeth, wearing a suit, sitting in an office. Shot on 85mm lens, f/1.8 aperture, realistic lighting, highly detailed features, cinematic, photorealistic, professional color grading, vibrant background, clean composition, high-resolution.`;
@@ -309,8 +309,8 @@ Each object in the array must follow this structure. Ensure that the "style" fie
         }
       } catch (err) {
         console.warn(`[Generator] Unique avatar ${post.id} generation failed. Falling back to default:`, err.message);
-        const styleAvatarPath = path.resolve('public', 'avatars', `avatar-${post.id}.png`);
-        const defaultAvatarPath = path.resolve('public', 'avatar.jpg');
+        const styleAvatarPath = path.resolve('docs', 'avatars', `avatar-${post.id}.png`);
+        const defaultAvatarPath = path.resolve('docs', 'avatar.jpg');
         if (fs.existsSync(styleAvatarPath)) {
           fs.copyFileSync(styleAvatarPath, dailyAvatarPath);
           console.log(`[Generator] Fallback avatar for Post ${post.id} copied from: ${styleAvatarPath}`);
@@ -321,8 +321,8 @@ Each object in the array must follow this structure. Ensure that the "style" fie
     }
 
     // Copy first avatar as the master daily avatar
-    const firstAvatar = path.resolve('public', 'avatar_daily_1.jpg');
-    const masterAvatar = path.resolve('public', 'avatar_daily.jpg');
+    const firstAvatar = path.resolve('docs', 'avatar_daily_1.jpg');
+    const masterAvatar = path.resolve('docs', 'avatar_daily.jpg');
     if (fs.existsSync(firstAvatar)) {
       fs.copyFileSync(firstAvatar, masterAvatar);
       console.log('[Generator] Copied avatar_daily_1.jpg to avatar_daily.jpg as fallback master');
