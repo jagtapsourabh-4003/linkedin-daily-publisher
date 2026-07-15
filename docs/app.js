@@ -668,6 +668,24 @@ async function triggerManualGeneration() {
     return;
   }
 
+  // Determine if today's drafts already exist in history
+  const d = new Date();
+  const utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+  const ist = new Date(utc + (3600000 * 5.5));
+  const year = ist.getFullYear();
+  const month = String(ist.getMonth() + 1).padStart(2, '0');
+  const day = String(ist.getDate()).padStart(2, '0');
+  const todayStr = `${year}-${month}-${day}`;
+  
+  const existing = state.history.find(h => h.date === todayStr);
+  let forceVal = "false";
+  
+  if (existing) {
+    const confirmOverwrite = confirm(`Drafts for today (${todayStr}) have already been generated.\n\nDo you want to regenerate and overwrite today's drafts with fresh new content?`);
+    if (!confirmOverwrite) return;
+    forceVal = "true";
+  }
+
   // Trigger Action remotely using GitHub API
   const btn = el.btnTriggerGeneration;
   const originalText = btn.innerHTML;
@@ -682,7 +700,12 @@ async function triggerManualGeneration() {
         'Accept': 'application/vnd.github+json',
         'X-GitHub-Api-Version': '2022-11-28'
       },
-      body: JSON.stringify({ ref: 'main' })
+      body: JSON.stringify({ 
+        ref: 'main',
+        inputs: {
+          force: forceVal
+        }
+      })
     });
 
     if (!triggerRes.ok) {
