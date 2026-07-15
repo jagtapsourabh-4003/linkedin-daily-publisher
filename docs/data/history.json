@@ -1,5 +1,144 @@
 [
   {
+    "date": "2026-07-15",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "news-card",
+        "colorPalette": "Neon Cyan",
+        "characterRole": "Technology Evangelist",
+        "environment": "Media studio",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist in a media studio, looking at camera. Modern startup hoodie. Out-of-focus microphone in foreground, the manager in midground, media studio with blurred screens in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "Instagram Reels just got smarter.",
+          "content": "New AI translations are live for Reels. This is a game-changer for global reach.\n\nNow, your video content can transcend language barriers. Imagine your brand message reaching millions more.\n\nIt makes localized content creation easier. You can speak to diverse audiences without re-shooting.\n\nThis update boosts engagement across markets. It’s a huge win for international brands.\n\nHow will your brand use this new translation power?",
+          "sourceArticle": "Instagram Reels adds more AI translations",
+          "imageHeadline": "*REELS* TRANSLATE",
+          "imageSubtext": "AI delivers your brand to global audiences.",
+          "badgeText": "AI TREND / MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Strategy Consultant",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant in an executive boardroom, presentation shot. Navy business suit. Glass screen with data in foreground, the manager in midground, executive boardroom with blurred whiteboards in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Boost content ROI today.",
+          "content": "Organic search drives real results. But you need the right tools.\n\nHere's a simple playbook for content optimization:\n\n1. Audit your top-performing content. Identify what works and where to improve.\n\n2. Use a tool like Surfer SEO or Clearscope. These tools show you keyword gaps and content suggestions.\n\n3. Optimize for user intent, not just keywords. Understand what your audience truly seeks.\n\n4. Refresh old posts. Add new data, examples, and internal links. This keeps content fresh and relevant.\n\nWhat's your favorite content optimization tool?",
+          "sourceArticle": "Best content optimization tools for ROI-focused teams",
+          "imageHeadline": "*CONTENT* ROI",
+          "imageSubtext": "4 steps to optimize for stronger organic returns.",
+          "badgeText": "MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Harvard Professor",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Premium Burgundy",
+        "characterRole": "Professor",
+        "environment": "Library",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor in a library, sitting at desk. Turtleneck with blazer. Stack of books in foreground, the manager in midground, library shelves, blurred in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "Semantic keywords: still matter?",
+          "content": "Many think AI search made semantic keywords obsolete. I disagree.\n\nAI engines reward context and relevance. Semantic keywords are all about understanding context.\n\nThey help AI understand the true meaning behind your content. This goes beyond exact match phrases.\n\nFocusing on user intent is more critical than ever. Semantic keywords align directly with intent.\n\nSo, yes, they absolutely still matter. They are central to clear communication with AI.\n\nAre you still ignoring semantic optimization?",
+          "sourceArticle": "What are semantic keywords? Here's how to find & use them",
+          "imageHeadline": "AI *KILLED* SEO?",
+          "imageSubtext": "Semantic keywords are more important than ever.",
+          "badgeText": "AI TREND / MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Corporate Executive",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Slate Blue",
+        "characterRole": "Corporate Executive",
+        "environment": "Luxury office",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive in a luxury office, half-body portrait. Charcoal executive suit. Office frame foreground, the manager in midground, luxury office with city view, blurred in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "C-Suite pressure can backfire.",
+          "content": "Driving digital marketing strategy from the top without input is risky.\n\nA common mistake: leadership mandates a new tool. But they don't consult the team.\n\nThis leads to low adoption and wasted budgets. The team doesn't feel ownership.\n\nForcing metrics without context also hurts. Teams need realistic targets.\n\nThe lesson: Involve your marketing experts. Trust their insights and workflow.\n\nHow do you balance top-down strategy with team autonomy?",
+          "sourceArticle": "C-Suite Pressure Puts Digital Marketing Strategy at Risk - EIN News",
+          "imageHeadline": "*STRATEGY* TRAP",
+          "imageSubtext": "Why C-Suite pressure can undermine marketing goals.",
+          "badgeText": "MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "AI Consultant",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant in a futuristic workspace, over-the-shoulder. White shirt with rolled sleeves. Digital interface elements in foreground, the manager in midground, futuristic workspace with holographic displays, blurred in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "AI search will change everything.",
+          "content": "Traditional SEO is evolving fast. AI search engines are taking over.\n\nIn 12-24 months, brands must master 'Relevance Engineering.' It's not just about keywords.\n\nYou'll need to optimize for visibility, recommendations, and bot access. AI values context.\n\nFocus on off-site signals and brand citations. These build trust with AI models.\n\nYour brand's presence in AI search is the new battleground. Adapt or be unseen.\n\nAre you ready for the AI search revolution?",
+          "sourceArticle": "How to track your brand’s presence in AI search / Stop Calling It SEO: 12 Strategies To Dominate AI Search in 2026",
+          "imageHeadline": "*AI SEARCH* WINS",
+          "imageSubtext": "Your brand's future visibility depends on this.",
+          "badgeText": "AI TREND / MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-07-14",
     "category": "marketing",
     "posts": [
