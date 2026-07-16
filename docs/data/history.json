@@ -1,5 +1,144 @@
 [
   {
+    "date": "2026-07-16",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Forbes Cover",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Electric Blue",
+        "characterRole": "AI Consultant",
+        "environment": "Innovation lab",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant in an Innovation lab, Half-body portrait, Smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "AI marketing systems are here.",
+          "content": "Haoxi Health just announced a big move.\nThey're building an AI digital marketing system.\nThis means smarter campaigns are coming fast.\nTargeting will get much more precise.\nFor B2B brands, this is huge.\nIt means better ad spend and conversion rates.\nAre you ready for AI to redefine your marketing stack?\n#AIDigitalMarketing #BrandGrowth #MarketingStrategy",
+          "sourceArticle": "Haoxi Health Technology Signs Strategic Cooperation to Develop AI Digital Marketing System - Yahoo Finance",
+          "imageHeadline": "AI MARKETING *DEAL*",
+          "imageSubtext": "Haoxi Health pioneers new AI digital strategies.",
+          "badgeText": "AI TREND"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "TED Speaker",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Professor",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor on an Auditorium stage, Presentation shot, Formal university attire. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Agentic AI content is different.",
+          "content": "You need a new framework for AI engines.\nTry the PEE framework: Clarity, Freshness, Context.\nHere’s your playbook:\n\n1. Clarity: Make sure your answer is direct. No fluff. AI loves clear, concise info.\n\n2. Freshness: Keep content updated. AI values the newest, most relevant data.\n\n3. Context: Provide rich details that surround your core topic. AI connects the dots.\n\nApply these to your content now for better AI citations.\n#ContentStrategy #AEO #DigitalMarketingTips",
+          "sourceArticle": "The PEE Framework for Agentic AI — Whiteboard Friday",
+          "imageHeadline": "PEE FRAMEWORK *UNLOCKED*",
+          "imageSubtext": "Improve AI content for better citations and mentions.",
+          "badgeText": "MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Harvard Professor",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Author",
+        "environment": "Library",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Author in a Library, Sitting at desk, Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "Semantic keywords are *not* dead.",
+          "content": "Many say semantic keywords no longer matter.\nThey argue AI makes them obsolete.\nI disagree strongly.\nSemantic keywords help AI understand context.\nThey connect related ideas, building a full picture.\nThis richness makes your content more relevant.\nAI engines reward depth and connected information.\nIgnoring them is a big mistake for your SEO.\nWhat’s your take on semantic keywords in the AI era?\n#SEO #SemanticSearch #ContentMarketing",
+          "sourceArticle": "What are semantic keywords? Here's how to find & use them",
+          "imageHeadline": "KEYWORDS: *DEAD* OR ALIVE?",
+          "imageSubtext": "Why semantic strategy still drives AI search relevance.",
+          "badgeText": "MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Business Strategist",
+        "layoutFamily": "split-right",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Strategy Consultant",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant in an Executive boardroom, Looking at camera, Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "C-suite pressure can break strategy.",
+          "content": "A common mistake: leadership demands too much, too fast.\nThis pressure often forces short-term thinking.\nDigital marketing strategies suffer.\nLong-term brand building gets ignored.\nWe see ad budgets cut just as growth starts.\nLesson learned: Protect your marketing strategy.\nEducate leaders on what real growth requires.\nOtherwise, you're just chasing metrics, not building a brand.\n#GrowthStrategy #DigitalMarketing #BrandBuilding",
+          "sourceArticle": "C-Suite Pressure Puts Digital Marketing Strategy at Risk - EIN News",
+          "imageHeadline": "STRATEGY *DERAILED*",
+          "imageSubtext": "How C-suite pressure threatens marketing success.",
+          "badgeText": "MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "layered-depth",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Technology Evangelist",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist in a Futuristic workspace, Side profile, Modern startup hoodie. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "AI search changes everything.",
+          "content": "Half of consumers use AI search already.\nOver 70% rely on it for questions.\nThis isn't a trend; it's a shift.\nAnswer Engine Optimization (AEO) is the new SEO.\nBrands must optimize for direct answers.\nYour content needs to be the definitive source.\nPredict: in 12-24 months, AEO will rule.\nAre you preparing your brand for the answer engine era?\n#AEO #AISearch #FutureOfMarketing",
+          "sourceArticle": "Profound vs. Peec AI: Which AEO tool supports your growth strategy?",
+          "imageHeadline": "AEO IS THE *FUTURE*",
+          "imageSubtext": "Prepare your brand for AI-powered answer engines now.",
+          "badgeText": "AI TREND"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-07-15",
     "category": "marketing",
     "posts": [
