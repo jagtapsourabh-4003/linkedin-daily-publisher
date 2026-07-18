@@ -1,5 +1,144 @@
 [
   {
+    "date": "2026-07-18",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Forbes Cover",
+        "layoutFamily": "split-left",
+        "colorPalette": "Electric Blue",
+        "characterRole": "AI Consultant",
+        "environment": "Innovation lab",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant in an Innovation lab, Half-body portrait, wearing a Smart casual blazer. Out-of-focus glass screen in foreground, subject in midground, blurred innovation lab background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "X's new AI insight is huge.",
+          "content": "X just integrated Grok-powered insights into its Ads Manager. This means smarter ad campaigns.\n\nExpect better targeting and more relevant ads. It could even lead to full automation. This is big for marketers looking for an edge.\n\nWe need to watch how this changes ad performance. Are your ad strategies ready for this shift?\n\n#AIAds #MarketingTech #GrokAI",
+          "sourceArticle": "X adds Grok-powered insights to Ads Manager",
+          "imageHeadline": "GROK *POWERS* ADS",
+          "imageSubtext": "X's new AI insights: a game changer for marketers.",
+          "badgeText": "AI TREND / MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "TED Speaker",
+        "layoutFamily": "split-right",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Business Coach",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach on an Auditorium stage, Presentation shot, wearing a Conference speaker outfit. Out-of-focus microphone in foreground, subject in midground, blurred auditorium background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Unify PR and SEO now.",
+          "content": "Stop treating PR and SEO as separate. They work best together. First, align your goals. What visibility do you want?\n\nSecond, share data between teams. PR mentions boost SEO authority. Third, optimize press releases for keywords. This drives organic traffic.\n\nFourth, promote earned media on your site. This builds topical authority. How are you breaking down marketing silos?\n\n#PRSEO #BrandVisibility #MarketingStrategy",
+          "sourceArticle": "How to Integrate PR & SEO for Maximum Brand Visibility",
+          "imageHeadline": "UNIFIED *BRAND* BOOST",
+          "imageSubtext": "Integrate PR and SEO for ultimate visibility.",
+          "badgeText": "MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Technology Evangelist",
+        "environment": "Startup hub",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist in a Startup hub, Looking at camera, wearing a Modern startup hoodie. Out-of-focus laptop in foreground, subject in midground, blurred startup hub background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "\"SEO\" is dead. Long live AEO.",
+          "content": "Many still call it SEO. But AI search is different. It's not about keywords anymore.\n\nIt's about 'Relevance Engineering'. Focus on how AI answers questions. Brands need to provide clear, contextual information.\n\nThis means optimizing for citations and retrieval. Stop thinking like a traditional search engine. Start thinking like an answer engine. Are you still stuck in old SEO ways?\n\n#AEO #AISearch #ContentStrategy",
+          "sourceArticle": "Stop Calling It SEO: 12 Strategies To Dominate AI Search in 2026",
+          "imageHeadline": "SEO IS *DEAD*?",
+          "imageSubtext": "Why AI search demands a new marketing approach.",
+          "badgeText": "AI TREND / MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Apple Keynote",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Corporate Executive",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive in an Executive boardroom, Sitting at desk, wearing a Charcoal executive suit. Out-of-focus document in foreground, subject in midground, blurred executive boardroom background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "Bad CRM migration destroys revenue.",
+          "content": "A client recently botched a CRM migration. Data was lost. Workflows broke down. Sales teams couldn't function.\n\nThe mistake? They didn't plan for data validation. They rushed the process. The lesson is simple. Your CRM is your revenue backbone.\n\nBad data here means everything fails. Test every step. Double-check your mappings. Don't let bad data kill your growth. Have you ever seen a CRM migration disaster?\n\n#CRMMigration #DataIntegrity #GrowthHacks",
+          "sourceArticle": "CRM data migration: A practical process overview",
+          "imageHeadline": "*DATA* MIGRATION FAILURE",
+          "imageSubtext": "How one CRM mistake cost a company millions.",
+          "badgeText": "MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "University Chancellor",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Professor",
+        "environment": "Library",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor in a Library, Side profile, wearing Formal university attire. Out-of-focus book in foreground, subject in midground, blurred library shelves background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "AI search is the future.",
+          "content": "Fifty percent of consumers now use AI search. Over seventy percent rely on it for info. This isn't a trend. It's the new normal.\n\nBrands must move to Answer Engine Optimization (AEO). Your content needs to answer questions directly. This means optimizing for AI overviews.\n\nExpect AI to change how people find you. Those who adapt will win. What's your AEO strategy for next year?\n\n#AEOStrategy #FutureOfSearch #AIMarketing",
+          "sourceArticle": "Profound vs. Peec AI: Which AEO tool supports your growth strategy?",
+          "imageHeadline": "THE *AEO* REVOLUTION",
+          "imageSubtext": "How AI search redefines brand visibility and growth.",
+          "badgeText": "AI TREND / MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-07-16",
     "category": "marketing",
     "posts": [
