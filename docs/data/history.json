@@ -1,5 +1,144 @@
 [
   {
+    "date": "2026-07-19",
+    "category": "ai",
+    "posts": [
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Technology Evangelist",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist in a Technology command center, Looking at camera, wearing a White shirt with rolled sleeves. Out-of-focus futuristic data display in foreground, manager in midground, blurred server racks and glow of screens in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "China's Kimi AI shakes things up.",
+          "content": "Moonshot AI just dropped Kimi. This new model from China is getting serious attention. Some even call it \"full AI communism.\"\n\nFor marketers, this means more competition. Global AI models are quickly evolving. Your brand needs to keep pace.\n\nHow will this impact global content strategies?\n#AI #MarketingNews #GlobalAI #BrandBuilding",
+          "sourceArticle": "Kimi: Threat or menace?",
+          "imageHeadline": "*KIMI* RISING",
+          "imageSubtext": "New Chinese AI model sparks global conversation on content.",
+          "badgeText": "AI TREND / MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "split-left",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Strategy Consultant",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant in an Executive boardroom, with a Presentation shot, wearing a Charcoal executive suit. Foreground with a modern glass conference table edge, manager in midground pointing to a screen, blurred presentation slides in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Don't waste money on AI agents.",
+          "content": "Vertu wants executives to buy an expensive AI agent phone. But how do you truly measure value?\n\nHere's a quick playbook. First, define the exact task. Is it truly saving human hours or boosting lead quality?\n\nSecond, test its output. Run an A/B test with human-generated content. Look at conversion rates directly.\n\nThird, calculate ROI. What's the cost of the agent versus the revenue lift? Don't just assume.\n\nWhat's your AI agent's real ROI?\n#AIagents #MarketingROI #ActionableAI #GrowthStrategy",
+          "sourceArticle": "Vertu wants executives to pay $6,880 for an AI agent — here’s how it actually performs",
+          "imageHeadline": "*AI AGENT* ROI",
+          "imageSubtext": "Measure agent value: task, test, and calculate results.",
+          "badgeText": "AI TREND / MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Podcast Host",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "Podcast Host",
+        "environment": "Podcast studio",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Podcast Host in a Podcast studio, in an Interview setup, wearing a Premium polo shirt. Out-of-focus microphone in foreground, manager in midground engaging with a guest off-camera, blurred soundproofing panels in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "More transcripts aren't always better.",
+          "content": "Everyone wants to transcribe everything now. Meetings, calls, even casual chats. The idea is \"more data is better.\"\n\nBut is it? We're drowning in information. A recent \"Zoom hack\" highlights the desire to opt out.\n\nRaw transcripts don't equal insight. They create fatigue. We need smart summaries, not endless text.\n\nFocus on *actionable* intelligence, not just data capture. Quality over quantity.\n\nDo we really need every word recorded?\n#ContentStrategy #AIdebate #MarketingTruth #InformationOverload",
+          "sourceArticle": "The Zoom hack that says, ‘Don’t record me’",
+          "imageHeadline": "*TRANSCRIPT* TRAP",
+          "imageSubtext": "More data doesn't mean more insight for your brand.",
+          "badgeText": "AI TREND / MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Corporate Executive",
+        "layoutFamily": "news-card",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Corporate Executive",
+        "environment": "Luxury office",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive in a Luxury office, Sitting at desk, wearing a Navy business suit. Foreground with a elegant pen and notebook, manager in midground looking thoughtful, blurred cityscape view from window in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "AI agent security is failing.",
+          "content": "Over half of companies had an AI agent security incident. This isn't a small problem.\n\nMany agents still share credentials. That's a huge risk for your brand data. It's a fundamental security flaw.\n\nThis failure impacts trust and compliance. Think about customer data, internal strategy documents.\n\nWe need unique, scoped identities for every agent. Don't cut corners on access control.\n\nWhat are you doing to secure your AI agents?\n#AISecurity #BrandRisk #MarketingTech #DataPrivacy",
+          "sourceArticle": "The agent security gap: 54% of enterprises have already had an AI agent incident, and most still let agents share credentials",
+          "imageHeadline": "*AGENT* BREACH",
+          "imageSubtext": "Over half of companies report AI agent security incidents.",
+          "badgeText": "AI TREND / MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Investor Pitch",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Investor",
+        "environment": "Startup hub",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Investor in a Startup hub, Speaking on stage, wearing a Turtleneck with blazer. Out-of-focus laser pointer in foreground, manager in midground presenting with conviction, blurred audience and projection screen in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "AI wealth redistribution is coming.",
+          "content": "Neil Rimer, Index Ventures co-founder, makes a bold prediction. AI's massive wealth will be redistributed.\n\nThis isn't just about tech. It impacts how marketing budgets are formed. How value is created and shared.\n\nBrands need to think beyond immediate gains. What's your long-term value proposition in this new economy?\n\nConsider ethical AI use and community impact now. Proactive strategy beats reactive policy.\n\nHow will your brand prepare for this shift?\n#AIstrategy #FutureofMarketing #BrandValue #EconomicTrends",
+          "sourceArticle": "Neil Rimer thinks the AI money is coming back out",
+          "imageHeadline": "*WEALTH* SHIFT",
+          "imageSubtext": "AI's economic impact will drive major market changes.",
+          "badgeText": "AI TREND / MARKETING INSIGHT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-07-18",
     "category": "marketing",
     "posts": [
