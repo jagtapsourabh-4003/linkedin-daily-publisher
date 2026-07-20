@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-07-20",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Forbes Cover",
+        "layoutFamily": "split-left",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "AI Consultant",
+        "environment": "Innovation lab",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant in an Innovation lab, Half-body portrait, Smart casual blazer. Out-of-focus glass screen in foreground, Indian male manager in his late 30s in midground, innovation lab with abstract tech displays in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "Grok just hit X Ads.",
+          "content": "This changes everything for paid social. X (formerly Twitter) is integrating Grok's AI to deliver insights in Ads Manager. It could lead to full advertising automation soon.\n\nThink smarter targeting, faster campaign adjustments, and more relevant content at scale. This isn't just an update; it's a leap in ad tech. What does this mean for your ad spend efficiency?\n\n#AIAds #XAds #DigitalMarketing #AIAutomation",
+          "sourceArticle": "X adds Grok-powered insights to Ads Manager",
+          "imageHeadline": "X ADS *GO* AI",
+          "imageSubtext": "Grok integration for smarter, automated ad campaigns.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "TED Speaker",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Strategy Consultant",
+        "environment": "Luxury office",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant in a Luxury office, Looking at camera, Navy business suit. Out-of-focus office frame in foreground, Indian male manager in his late 30s in midground, luxury office with cityscape view in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Win with AI citations.",
+          "content": "AI-powered search is the new battleground. We need to get our brands cited by ChatGPT and Gemini. Here's how to start:\n\n1. Research prompts: Understand what questions AI answers for your niche.\n2. Analyze sources: See which brands AI already cites. What makes them authoritative?\n3. Proactive outreach: Position your content as a go-to source for AI systems.\n\nThis isn't just SEO; it's about being the recognized authority. Ready to be quoted by AI?\n\n#AICitations #SEOStrategy #BrandAuthority #MarketingPlaybook",
+          "sourceArticle": "How to Build AI Citations — Whiteboard Friday",
+          "imageHeadline": "AI *CITATION* PLAYBOOK",
+          "imageSubtext": "3 steps to get your brand quoted by AI.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "Innovation Leader",
+        "environment": "Startup hub",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader in a Startup hub, Sitting at desk, Modern startup hoodie. Out-of-focus laptop screen in foreground, Indian male manager in his late 30s in midground, vibrant startup office with whiteboards in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "SEO is dead. Long live AEO.",
+          "content": "Many still treat AI search like traditional SEO. That's a mistake. With 50% of consumers using AI search, we need a new approach: Answer Engine Optimization (AEO).\n\nIt's not about keywords; it's about relevance engineering. Are you answering the right questions? Are you optimizing for retrieval, not just ranking? Stop chasing old metrics. Embrace the future of search. What's your AEO strategy?\n\n#AEO #AISearch #RelevanceEngineering #DigitalStrategy",
+          "sourceArticle": "Stop Calling It SEO: 12 Strategies To Dominate AI Search in 2026",
+          "imageHeadline": "SEO IS *DEAD*?",
+          "imageSubtext": "Why \"Relevance Engineering\" beats old SEO.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "news-card",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Technology Evangelist",
+        "environment": "Technology command center",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist in a Technology command center, Presentation shot, White shirt with rolled sleeves. Out-of-focus control panel in foreground, Indian male manager in his late 30s in midground, large data screens displaying analytics in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "CRM migration: The hidden risks.",
+          "content": "We often focus on the \"how\" of CRM migration. But what about the \"what if it breaks?\" A flawed data migration can cripple your revenue team.\n\nWrong data means broken processes. It leads to lost sales, angry customers, and wasted marketing spend. I've seen it happen. Don't rush this critical step. Plan every detail. Your business depends on it. What's your biggest data migration fear?\n\n#CRMMigration #DataIntegrity #MarketingOps #BusinessGrowth",
+          "sourceArticle": "CRM data migration: A practical process overview",
+          "imageHeadline": "CRM *MIGRATION* FAIL",
+          "imageSubtext": "How bad data destroys marketing and sales.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "floating-cards",
+        "colorPalette": "Neon Cyan",
+        "characterRole": "Business Coach",
+        "environment": "Creative workspace",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach in a Creative workspace, Close-up portrait, Premium polo shirt. Out-of-focus plant in foreground, Indian male manager in his late 30s in midground, bright creative office with mood boards in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "Brand strategy wins 2026.",
+          "content": "Many chase quick hacks for growth. But for 2026 and beyond, brand strategy is your top bet. As AI automates more tasks, genuine brand connection becomes crucial.\n\nIt builds trust. It drives loyalty. Strong brands cut through the noise. They command higher prices. They build lasting communities. Invest in your brand story now. It's not just marketing; it's your business foundation. Are you future-proofing your brand?\n\n#BrandStrategy #FutureOfMarketing #BusinessGrowth #BrandBuilding",
+          "sourceArticle": "Why Brand Strategy May Be the Best Growth Bet in 2026",
+          "imageHeadline": "*BRAND* BUILDS WEALTH",
+          "imageSubtext": "Why long-term brand strategy boosts growth.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "TRY WEB APP"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-07-19",
     "category": "ai",
     "posts": [
