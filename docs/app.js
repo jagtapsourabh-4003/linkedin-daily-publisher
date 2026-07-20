@@ -537,6 +537,16 @@ async function loadHistory() {
               if (!post.postContent) post.postContent = {};
               post.postContent.imageSubtext = custom.imageSubtext;
             }
+            if (custom.badgeText !== undefined) {
+              if (!post.postContent) post.postContent = {};
+              post.postContent.badgeText = custom.badgeText;
+              post.badgeText = custom.badgeText;
+            }
+            if (custom.ctaText !== undefined) {
+              if (!post.postContent) post.postContent = {};
+              post.postContent.ctaText = custom.ctaText;
+              post.ctaText = custom.ctaText;
+            }
           }
         });
       }
@@ -1032,7 +1042,8 @@ function renderActiveDrafts() {
     const headlineText = (post.postContent && post.postContent.imageHeadline) ? post.postContent.imageHeadline : (post.imageHeadline || 'AI Strategy');
     const subtextText = (post.postContent && post.postContent.imageSubtext) ? post.postContent.imageSubtext : (post.imageSubtext || 'Next-Gen Workflows');
     const sourceArticle = (post.postContent && post.postContent.sourceArticle) ? post.postContent.sourceArticle : (post.sourceArticle || 'General Trend');
-    const badgeText = (post.postContent && post.postContent.badgeText) ? post.postContent.badgeText : (post.postContent && post.postContent.badge) || '';
+    const badgeText = (post.postContent && (post.postContent.badgeText || post.postContent.badge)) || post.badgeText || (activeEntry.category === 'marketing' ? 'MARKETING TREND' : 'AI TECH TREND');
+    const ctaText = (post.postContent && (post.postContent.ctaText || post.postContent.cta)) || post.ctaText || 'READ FULL POST';
     const postStyle = post.designArchetype || (post.postContent && post.postContent.style) || post.style || 'Thought Leadership';
 
     // Calculate details for metadata row
@@ -1211,6 +1222,16 @@ function renderActiveDrafts() {
                 <input type="range" id="slider-subtext-size-${post.id}" min="12" max="40" value="${post.subtextFontSize || 22}" class="customizer-range">
               </div>
             </div>
+            <div class="customizer-row" style="margin-top: 10px;">
+              <div class="customizer-field">
+                <label for="input-badge-${post.id}">Top Tag / Badge Text</label>
+                <input type="text" id="input-badge-${post.id}" class="customizer-input" value="${badgeText}" placeholder="e.g. AI TREND / MARKETING INSIGHT">
+              </div>
+              <div class="customizer-field">
+                <label for="input-cta-${post.id}">Bottom Button / CTA Text</label>
+                <input type="text" id="input-cta-${post.id}" class="customizer-input" value="${ctaText}" placeholder="e.g. TRY WEB APP, READ FULL POST">
+              </div>
+            </div>
             <div class="customizer-row">
               <div class="customizer-field full-width">
                 <label for="input-headline-${post.id}">Creative Headline (supports Enter for new lines)</label>
@@ -1291,6 +1312,8 @@ function renderActiveDrafts() {
       const layoutSelect = cardEl.querySelector(`#select-layout-${post.id}`);
       const paletteSelect = cardEl.querySelector(`#select-palette-${post.id}`);
       const avatarSelect = cardEl.querySelector(`#select-avatar-${post.id}`);
+      const badgeInput = cardEl.querySelector(`#input-badge-${post.id}`);
+      const ctaInput = cardEl.querySelector(`#input-cta-${post.id}`);
       const headlineInput = cardEl.querySelector(`#input-headline-${post.id}`);
       const subtextInput = cardEl.querySelector(`#input-subtext-${post.id}`);
       const customColorsContainer = cardEl.querySelector(`#custom-colors-container-${post.id}`);
@@ -1315,6 +1338,10 @@ function renderActiveDrafts() {
         if (!post.postContent) post.postContent = {};
         post.postContent.imageHeadline = headlineInput.value;
         post.postContent.imageSubtext = subtextInput.value;
+        post.postContent.badgeText = badgeInput.value;
+        post.postContent.ctaText = ctaInput.value;
+        post.badgeText = badgeInput.value;
+        post.ctaText = ctaInput.value;
 
         // Custom colors mapping
         if (paletteSelect.value === 'Custom') {
@@ -1338,6 +1365,8 @@ function renderActiveDrafts() {
             avatarStyleIdx: parseInt(avatarSelect.value),
             imageHeadline: headlineInput.value,
             imageSubtext: subtextInput.value,
+            badgeText: badgeInput.value,
+            ctaText: ctaInput.value,
             headlineFontSize: parseInt(sliderHeadlineSize.value),
             subtextFontSize: parseInt(sliderSubtextSize.value),
             customColors: paletteSelect.value === 'Custom' ? {
@@ -1377,6 +1406,12 @@ function renderActiveDrafts() {
 
       avatarSelect.addEventListener('change', () => triggerRedrawAndSave(false));
       
+      badgeInput.addEventListener('input', () => triggerRedrawAndSave(true));
+      badgeInput.addEventListener('change', () => triggerRedrawAndSave(false));
+      
+      ctaInput.addEventListener('input', () => triggerRedrawAndSave(true));
+      ctaInput.addEventListener('change', () => triggerRedrawAndSave(false));
+
       headlineInput.addEventListener('input', () => triggerRedrawAndSave(true));
       headlineInput.addEventListener('change', () => triggerRedrawAndSave(false));
       
@@ -2198,10 +2233,14 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
                          PALETTES.find(p => colorPaletteName.toLowerCase().includes(p.name.toLowerCase())) ||
                          palette;
       }
-      const resolvedBadge = (customLayout.postContent && (customLayout.postContent.badgeText || customLayout.postContent.badge)) || (category === 'marketing' ? 'MARKETING TREND' : 'AI TECH TREND');
+      const resolvedBadge = (customLayout.postContent && (customLayout.postContent.badgeText || customLayout.postContent.badge)) || customLayout.badgeText || (category === 'marketing' ? 'MARKETING TREND' : 'AI TECH TREND');
+      const resolvedCta = (customLayout.postContent && (customLayout.postContent.ctaText || customLayout.postContent.cta)) || customLayout.ctaText || 'READ FULL POST';
       activeLayout = buildLayoutFromFamily(customLayout.layoutFamily || 'split-left', matchedPalette, headline, subtext, category, postId);
       if (activeLayout.text && activeLayout.text.badge) {
         activeLayout.text.badge.text = resolvedBadge.toUpperCase();
+      }
+      if (activeLayout.text && activeLayout.text.cta) {
+        activeLayout.text.cta.text = resolvedCta.toUpperCase();
       }
       if (colorPaletteName.toLowerCase() === 'custom') {
         if (activeLayout.text) {
@@ -3518,16 +3557,19 @@ function drawAvatarForCircle(ctx, cx, cy, r, filter, styleIdx, avatarImg) {
   ctx.restore();
 }
 
-function drawTextColumn(ctx, category, tx, ty, tw, th, headline, subtext, align = 'left', palette) {
+function drawTextColumn(ctx, category, tx, ty, tw, th, headline, subtext, align = 'left', palette, customLayout = null) {
   ctx.save();
   ctx.textAlign = align;
   
   // 1. Badge / Top Label
+  const badgeStr = ((customLayout && (customLayout.badgeText || (customLayout.postContent && customLayout.postContent.badgeText))) || (category === 'marketing' ? 'MARKETING TREND' : 'AI TECH TREND')).toUpperCase();
   ctx.save();
-  ctx.beginPath();
-  const badgeW = 240;
+  ctx.font = 'bold 15px Inter';
+  const badgeMetrics = ctx.measureText(badgeStr);
+  const badgeW = Math.max(240, badgeMetrics.width + 36);
   const badgeH = 36;
   const bx = align === 'center' ? tx + (tw - badgeW)/2 : tx;
+  ctx.beginPath();
   ctx.roundRect(bx, ty, badgeW, badgeH, 8);
   ctx.fillStyle = palette.badgeBg;
   ctx.fill();
@@ -3535,7 +3577,7 @@ function drawTextColumn(ctx, category, tx, ty, tw, th, headline, subtext, align 
   ctx.fillStyle = '#ffffff';
   ctx.font = 'bold 15px Inter';
   ctx.textAlign = 'center';
-  ctx.fillText(category === 'marketing' ? 'MARKETING TREND' : 'AI TECH TREND', bx + badgeW/2, ty + 23);
+  ctx.fillText(badgeStr, bx + badgeW/2, ty + 23);
   ctx.restore();
   
   // 2. Headline
@@ -3558,7 +3600,10 @@ function drawTextColumn(ctx, category, tx, ty, tw, th, headline, subtext, align 
   wrapTextAligned(ctx, subtext, tx, subtextY, tw, 30, align);
   
   // 5. Button/CTA
-  const btnW = 260;
+  const ctaStr = ((customLayout && (customLayout.ctaText || (customLayout.postContent && customLayout.postContent.ctaText))) || 'READ FULL POST').toUpperCase();
+  ctx.font = 'bold 20px Outfit';
+  const ctaMetrics = ctx.measureText(ctaStr);
+  const btnW = Math.max(260, ctaMetrics.width + 44);
   const btnH = 55;
   const btnX = align === 'center' ? tx + (tw - btnW)/2 : tx;
   const btnY = ty + 570;
@@ -3571,7 +3616,7 @@ function drawTextColumn(ctx, category, tx, ty, tw, th, headline, subtext, align 
   ctx.fillStyle = '#ffffff';
   ctx.font = 'bold 20px Outfit';
   ctx.textAlign = 'center';
-  ctx.fillText('READ FULL POST', btnX + btnW/2, btnY + 35);
+  ctx.fillText(ctaStr, btnX + btnW/2, btnY + 35);
   
   // 6. Profile Link
   ctx.fillStyle = '#94a3b8';

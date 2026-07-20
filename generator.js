@@ -132,7 +132,8 @@ Each object in the array must follow this structure. Ensure that the "style" fie
     "sourceArticle": "Title of the main article from the trends context that inspired this post, or 'General Trend' if inspired by multiple.",
     "imageHeadline": "A short, ultra-punchy graphic title in ALL CAPS (exactly 2-4 words). Wrap the most important 1-2 words in asterisks for neon highlight styling (e.g. '*99% FAILED*', 'STOP *CODING* NOW', 'THE *$0 STACK*', 'AI IS *DEAD*?').",
     "imageSubtext": "A highly compelling graphic subtitle (exactly 5-9 words) explaining the metric or strategy.",
-    "badgeText": "AI TREND / MARKETING INSIGHT"
+    "badgeText": "AI TREND / MARKETING INSIGHT",
+    "ctaText": "TRY WEB APP / READ FULL POST / GET REPORT"
   },
   "layoutConfig": {
     "dimensions": {
@@ -171,9 +172,10 @@ Each object in the array must follow this structure. Ensure that the "style" fie
             sourceArticle: { type: 'STRING' },
             imageHeadline: { type: 'STRING' },
             imageSubtext: { type: 'STRING' },
-            badgeText: { type: 'STRING' }
+            badgeText: { type: 'STRING' },
+            ctaText: { type: 'STRING' }
           },
-          required: ['style', 'hook', 'content', 'sourceArticle', 'imageHeadline', 'imageSubtext', 'badgeText']
+          required: ['style', 'hook', 'content', 'sourceArticle', 'imageHeadline', 'imageSubtext', 'badgeText', 'ctaText']
         },
         layoutConfig: {
           type: 'OBJECT',
