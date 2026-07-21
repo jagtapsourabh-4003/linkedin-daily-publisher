@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-07-21",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "news-card",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Technology Evangelist",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist in a Technology command center, looking at camera, wearing a navy business suit. Foreground: out-of-focus console screen. Midground: the manager. Background: futuristic monitors. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "AI search changed everything.",
+          "content": "Buyers now ask ChatGPT and Gemini. They trust these AI answers.\n\nIf your brand isn't named there, you're invisible. This is not about blue links anymore.\n\nIt's about being cited directly by AI. Your brand needs to be part of the AI conversation. We must adjust our marketing.\n\nHow are you updating your search strategy?\n#AISearch #MarketingTrends #AEO #BrandVisibility",
+          "sourceArticle": "HubSpot AEO vs SE Ranking: Features, pricing, and fit",
+          "imageHeadline": "AI *SEARCH* IS HERE",
+          "imageSubtext": "Your brand needs to appear in AI answers now.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Business Coach",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach in an Executive boardroom, presenting, wearing a charcoal executive suit. Foreground: out-of-focus presentation clicker. Midground: the manager. Background: large screen displaying a slide. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Win AI citations today.",
+          "content": "Getting your brand cited by AI is a new skill. First, research user prompts. Understand what questions people ask AI.\n\nSecond, analyze current AI sources. See which brands AI already cites for those queries.\n\nThird, use proactive outreach. Get your content in front of AI models. This builds authority. It ensures your brand gets noticed.\n\nReady to get cited by AI?\n#AIOptimization #ContentStrategy #MarketingPlaybook #DigitalMarketing",
+          "sourceArticle": "How to Build AI Citations — Whiteboard Friday",
+          "imageHeadline": "GET *AI* CITATIONS",
+          "imageSubtext": "A 3-step guide to ranking in AI answers.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "LinkedIn Thought Leader",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Startup Founder",
+        "environment": "Startup hub",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Startup Founder in a Startup hub, side profile, wearing a modern startup hoodie. Foreground: out-of-focus laptop screen. Midground: the manager. Background: vibrant open workspace. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "Is AI content ruining LinkedIn?",
+          "content": "A recent report says 41% of LinkedIn posts show AI generation. This is a huge increase. Some fear it will dilute authentic connection.\n\nI see it differently. The flood of AI content means human connection is *more* valuable. Real stories, real insights cut through the noise.\n\nIt challenges us to be more human, not less.\n\nWhat's your take on AI generated content?\n#AIContent #LinkedInStrategy #AuthenticMarketing #ThoughtLeadership",
+          "sourceArticle": "Can social media platforms survive the flood of AI content?",
+          "imageHeadline": "IS AI *KILLING* CONTENT?",
+          "imageSubtext": "The flood of AI content demands human connection.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Corporate Executive",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Corporate Executive",
+        "environment": "Luxury office",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive in a Luxury office, sitting at desk, wearing luxury business casual. Foreground: out-of-focus branded coffee cup. Midground: the manager. Background: city skyline visible through window. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "Social media fails conversions.",
+          "content": "Social platforms are great for product discovery. Globally, it's the top channel. But trust in social checkout experiences? It often falls short.\n\nMany brands make this mistake. They drive traffic but don't optimize the buying path. A fragmented customer journey loses sales.\n\nYou need a smooth, trusted checkout.\n\nWhere do your social sales break?\n#SocialCommerce #ConversionRate #MarketingMistakes #CustomerJourney",
+          "sourceArticle": "Social platforms draw consumers in, but conversions falter",
+          "imageHeadline": "CONVERSION *FAIL*",
+          "imageSubtext": "Social discovery doesn't equal sales. Fix your funnel.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Royal Gold",
+        "characterRole": "AI Consultant",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant in a Futuristic workspace, half-body portrait, wearing a turtleneck with blazer. Foreground: out-of-focus holographic display. Midground: the manager. Background: glowing data streams. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "AEO is the future.",
+          "content": "McKinsey found 50% of consumers use AI search. Over 70% rely on it for info. This shift is massive.\n\nTraditional SEO is not enough. We need Answer Engine Optimization (AEO). Brands must build strategies for AI overviews.\n\nThis ensures presence where buyers get answers. It is the next wave of discoverability.\n\nAre you ready for the AEO era?\n#AEO #AISearch #FutureOfMarketing #GrowthStrategy",
+          "sourceArticle": "Profound vs. Peec AI: Which AEO tool supports your growth strategy?",
+          "imageHeadline": "AEO IS *THE* FUTURE",
+          "imageSubtext": "Predict the next generation of search strategy now.",
+          "badgeText": "AI TREND",
+          "ctaText": "TRY WEB APP"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-07-20",
     "category": "marketing",
     "posts": [
