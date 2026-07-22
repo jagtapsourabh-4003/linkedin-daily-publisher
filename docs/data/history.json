@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-07-22",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "news-card",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Technology Evangelist",
+        "environment": "Media studio",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist in a modern media studio, in an interview setup. Wearing a navy business suit. Foreground: out-of-focus microphone. Midground: subject. Background: blurred media studio backdrop. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "AI answers rule search now.",
+          "content": "Buyers don't just use Google anymore. They ask ChatGPT, Gemini, and Perplexity.\n\nIf your brand isn't named in those AI answers, you might not even be considered. This shift is huge for brand visibility.\n\nTraditional SEO still matters, but AI search optimization is the new frontier. We need to adapt our content strategy today.\n\nHow are you preparing for this new search reality?",
+          "sourceArticle": "HubSpot AEO vs SE Ranking: Features, pricing, and fit",
+          "imageHeadline": "*AI* ANSWERS WIN",
+          "imageSubtext": "Brands must rethink ranking for new search reality.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Business Coach",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach in a modern executive boardroom, in a presentation shot. Wearing a smart casual blazer. Foreground: glass screen with data visuals. Midground: subject. Background: blurred modern executive boardroom. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Get AI to cite YOUR brand.",
+          "content": "Want ChatGPT or Gemini to reference your content? It's a new marketing battleground.\n\nHere’s a quick playbook:\n\n1. Research Prompts: Understand what questions AI answers. Use tools to see common queries.\n\n2. Analyze Sources: Look at what sources AI currently cites. Emulate their structure and depth.\n\n3. Proactive Outreach: Engage with platforms and influencers where AI pulls information. Make your brand unmissable.\n\nThis isn't about keywords. It's about authority and relevance.",
+          "sourceArticle": "How to Build AI Citations — Whiteboard Friday",
+          "imageHeadline": "*CITE* ME, AI",
+          "imageSubtext": "3 steps to get your brand referenced by AI.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET THE PLAYBOOK"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "LinkedIn Thought Leader",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Strategy Consultant",
+        "environment": "Luxury office",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant in a luxury office, looking at camera. Wearing a charcoal executive suit. Foreground: out-of-focus desk plant. Midground: subject. Background: blurred luxury office with city view. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "Stop calling it SEO.",
+          "content": "The rules for ranking in AI search are different. It's not just about blue links anymore.\n\nWe need to stop thinking 'SEO' in the traditional sense. It's about 'Relevance Engineering' now.\n\nThis means building content that AI trusts, understands, and prioritizes for answers. It's a fundamental shift.\n\nAre you still optimizing for old search engines, or for the AI-first world?",
+          "sourceArticle": "Stop Calling It SEO: 12 Strategies To Dominate AI Search in 2026",
+          "imageHeadline": "*SEO* IS DEAD",
+          "imageSubtext": "Why \"Relevance Engineering\" is the new search game.",
+          "badgeText": "AI TREND",
+          "ctaText": "JOIN THE DEBATE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Documentary Interview",
+        "layoutFamily": "split-right",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "Researcher",
+        "environment": "Library",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Researcher in a classic library, side profile. Wearing a turtleneck with blazer. Foreground: out-of-focus book spines. Midground: subject. Background: blurred library bookshelves. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "Social engagement doesn't convert.",
+          "content": "Social media is great for discovery. Consumers find new products there all the time.\n\nBut here's the problem: conversions often falter. The journey from discovery to purchase is broken.\n\nTrust in social checkout experiences is low. This creates a fragmented customer path, costing brands sales.\n\nAre your social media efforts truly driving revenue, or just eyeballs?",
+          "sourceArticle": "Social platforms draw consumers in, but conversions falter",
+          "imageHeadline": "*CONVERSION* GAP",
+          "imageSubtext": "Social media fails to close the sales loop.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "LEARN MORE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Neon Cyan",
+        "characterRole": "Innovation Leader",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader in a futuristic workspace, over-the-shoulder shot. Wearing a modern startup hoodie. Foreground: glowing interface element. Midground: subject. Background: blurred futuristic workspace with holographic displays. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "Marketing budgets are shifting.",
+          "content": "We often hear about AI dominating future marketing spend. But the reality is more nuanced.\n\nBy 2027, marketing budgets will prioritize new categories beyond just direct AI line items.\n\nThink strategic investments in data privacy tools, hyper-personalization engines, and specialized content delivery systems.\n\nWhere will your budget make the biggest impact in the next 24 months?",
+          "sourceArticle": "2027 Marketing Budgets: Why New Categories Beat Bigger AI Line Items",
+          "imageHeadline": "*FUTURE* BUDGETS",
+          "imageSubtext": "New categories, not just AI, drive 2027 spend.",
+          "badgeText": "STRATEGIC PREDICTION",
+          "ctaText": "GET THE REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-07-21",
     "category": "marketing",
     "posts": [
