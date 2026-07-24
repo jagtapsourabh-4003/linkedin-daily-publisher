@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-07-24",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Forbes Cover",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Electric Blue",
+        "characterRole": "AI Consultant",
+        "environment": "Innovation lab",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male in his late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. He is an AI Consultant in a modern innovation lab, wearing a smart casual blazer. The background shows sleek workstations and holographic displays. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "AI search is here.",
+          "content": "Buyers ask ChatGPT and Gemini questions.\nThey trust the answers they get.\nIf your brand isn't mentioned, you're invisible.\nThis is the new reality for discovery.\nAre you ready for AEO?\n#AEO #AISearch #BrandVisibility",
+          "sourceArticle": "HubSpot Marketing: HubSpot AEO vs SE Ranking",
+          "imageHeadline": "GET *CITED* IN AI",
+          "imageSubtext": "Win citations and rank in AI search answers.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "TED Speaker",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "AI Consultant",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male in his late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. He is a TED Speaker on an auditorium stage, wearing a white shirt with rolled sleeves. The background is a blurred audience. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Win AI search visibility.",
+          "content": "1. Research prompts your audience uses.\n2. Analyze top AI answer sources.\n3. Create content answering these prompts.\n4. Use proactive outreach to build citations.\nThis is how you get found.\n#SEO #ContentStrategy #AISearch",
+          "sourceArticle": "Moz Blog: How to Build AI Citations — Whiteboard Friday",
+          "imageHeadline": "*RANK* IN AI ANSWERS",
+          "imageSubtext": "Actionable steps to build AI citations and visibility.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Emerald Green",
+        "characterRole": "AI Consultant",
+        "environment": "Startup hub",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male in his late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. He is a Startup Founder in a vibrant startup hub, wearing a modern hoodie. The background shows collaborative workspaces. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "Backlinks still matter?",
+          "content": "For AI search, yes, but differently.\nThink citations, not just domain authority.\nAI needs trustworthy sources.\nQuality backlinks signal that trust.\nDon't ignore them yet.\n#Backlinks #SEO #AEO",
+          "sourceArticle": "HubSpot Marketing: Do backlinks matter for AEO (answer engine optimization)?",
+          "imageHeadline": "BACKLINKS *ARE* KEY",
+          "imageSubtext": "Why backlinks remain vital for AI search visibility.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "University Chancellor",
+        "layoutFamily": "news-card",
+        "colorPalette": "Crimson Red",
+        "characterRole": "AI Consultant",
+        "environment": "Modern university campus",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male in his late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. He is a University Chancellor on a modern university campus, wearing formal attire. The background features academic buildings. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "Ignoring AI visibility.",
+          "content": "Brands think traditional SEO is enough.\nThey focus only on Google search results.\nBut AI answers are the new front page.\nMissing AI citations means losing customers.\nDon't repeat this costly error.\n#BrandBuilding #DigitalMarketing #AEO",
+          "sourceArticle": "Moz Blog: Stop Calling It SEO: 12 Strategies To Dominate AI Search in 2026",
+          "imageHeadline": "STOP *IGNORING* AI",
+          "imageSubtext": "The critical mistake brands make in AI search.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Apple Keynote",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Royal Gold",
+        "characterRole": "AI Consultant",
+        "environment": "Conference venue",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Corporate executive suit",
+        "avatarPrompt": "Indian male in his late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. He is an AI Consultant presenting at a conference venue, wearing a corporate executive suit. The background is a stage with a large screen. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "AI will dominate search.",
+          "content": "By 2026, AI search will be standard.\nTraditional SEO needs a new name.\nThink 'Relevance Engineering'.\nFocus on citations and retrieval.\nThis is how you win future searches.\n#FutureOfSearch #AI #MarketingStrategy",
+          "sourceArticle": "Moz Blog: Stop Calling It SEO: 12 Strategies To Dominate AI Search in 2026",
+          "imageHeadline": "THE *FUTURE* OF SEARCH",
+          "imageSubtext": "Predicting AI's impact on search and marketing.",
+          "badgeText": "AI TREND",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-07-22",
     "category": "marketing",
     "posts": [
