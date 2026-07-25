@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-07-25",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Forbes Cover",
+        "layoutFamily": "split-left",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Startup Founder",
+        "environment": "Startup hub",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Out-of-focus laptop screen in foreground, Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance in midground, Startup Founder, Startup hub in background, Looking at camera, Modern startup hoodie. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "AI visibility is changing.",
+          "content": "We're seeing a shift in how brands get found by AI answer engines.\n\nTraditional SEO tools like Ahrefs are adding AI features. But new players, like Scrunch, are built specifically for Answer Engine Optimization (AEO).\n\nScrunch focuses on monitoring AI citations and optimizing for AI bots. Ahrefs Brand Radar is more of an add-on to existing SEO efforts.\n\nThis isn't just a tool battle. It's about rethinking your search strategy for AI-first discovery.\n\nAre you ready for the AEO era?",
+          "sourceArticle": "Scrunch vs Ahrefs: AI visibility tracking comparison",
+          "imageHeadline": "*AI* VISIBILITY WARS",
+          "imageSubtext": "Scrunch vs Ahrefs: Who wins the AEO race?",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "TED Speaker",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Author",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Out-of-focus podium mic in foreground, Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance in midground, Author, Auditorium stage in background, Speaking on stage, Smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Get referenced by AI.",
+          "content": "AI answer engines are how people discover brands now. Here's how you build AI citations.\n\nStep 1: Research prompts. Find out what questions people ask AI related to your niche. Use AI tools to help.\n\nStep 2: Analyze sources. See which websites AI answers often cite. Understand their content structure and authority.\n\nStep 3: Create rich content. Build in-depth, clear answers on your site. Make it easy for AI to understand and extract information.\n\nStep 4: Proactive outreach. Connect with sites AI already trusts. Suggest your content as a valuable resource.\n\nHow are you building your AI references?",
+          "sourceArticle": "How to Build AI Citations — Whiteboard Friday",
+          "imageHeadline": "BUILD *AI* CITATIONS",
+          "imageSubtext": "4 simple steps to get referenced by AI.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET THE PLAYBOOK"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Harvard Professor",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Professor",
+        "environment": "Library",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Stacks of academic books in foreground, Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance in midground, Professor, Library in background, Sitting at desk, Formal university attire. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "Backlinks: still relevant for AI?",
+          "content": "Many believe backlinks are the ultimate signal for all search. But with AI Answer Engines, things are changing.\n\nAI prioritizes direct, factual answers. It pulls information, not just links. Authority comes from being cited, not just linked.\n\nThis isn't to say backlinks are useless. They still build site authority. But their role for AEO is different.\n\nFocus shifts to being a primary source AI can trust and quote. It's about direct answers, not just link equity.\n\nAre backlinks becoming less important for AI visibility?",
+          "sourceArticle": "Do backlinks matter for AEO (answer engine optimization)?",
+          "imageHeadline": "ARE BACKLINKS *DEAD*?",
+          "imageSubtext": "The surprising truth for AI Answer Engine Optimization.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Corporate Executive",
+        "layoutFamily": "news-card",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Corporate Executive",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Glass conference table edge in foreground, Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance in midground, Corporate Executive, Executive boardroom in background, Half-body portrait, Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "Social insights: lost in translation.",
+          "content": "Just 14% of social media data ever reaches decision-makers. That's a huge missed opportunity.\n\nThe mistake? Presenting raw data, not actionable insights. Social media teams often speak a different language than leadership.\n\nTo fix this, translate social data into business outcomes. Show how trends impact revenue, customer retention, or brand perception.\n\nConnect social sentiment to market shifts. Turn follower growth into potential sales figures. Frame engagement as brand loyalty.\n\nAre your social insights driving business strategy?",
+          "sourceArticle": "Social insights fail to reach decision-makers: Here’s what the numbers say",
+          "imageHeadline": "INSIGHTS *LOST*",
+          "imageSubtext": "Only 14% of social data reaches leadership.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Technology Evangelist",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Transparent display panel in foreground, Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance in midground, Technology Evangelist, Futuristic workspace in background, Presentation shot, Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "Search is becoming less 'searchy'.",
+          "content": "The 'TikTokification' of search is here. We are moving from a ranking model to a creator model.\n\nWhat does this mean? It's less about static pages and more about dynamic, engaging content. Think short videos, interactive experiences, and trusted personalities.\n\nYour brand needs to act more like a creator. Focus on building an audience, not just ranking keywords. Deliver value directly.\n\nIn the next 12-24 months, brands that master this creator-first approach will win attention. Your rankings might be stable, but traffic will fall if you don't adapt.\n\nHow will you become a search-savvy creator?",
+          "sourceArticle": "The \"TikTokification\" of Search: Why the Creator Model Is Replacing the Ranking Model",
+          "imageHeadline": "SEARCH'S *NEW* ERA",
+          "imageSubtext": "Creator models are replacing old ranking algorithms.",
+          "badgeText": "AI TREND",
+          "ctaText": "DISCOVER MORE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-07-24",
     "category": "marketing",
     "posts": [
