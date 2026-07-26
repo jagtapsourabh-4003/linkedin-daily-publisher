@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-07-26",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Forbes Cover",
+        "layoutFamily": "split-left",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Corporate Executive",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Corporate Executive, in an Executive boardroom, Half-body portrait, wearing a Navy business suit. Foreground: out-of-focus microphone. Midground: the manager. Background: blurred boardroom table and screen. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "SEO tools overwhelm small businesses.",
+          "content": "SEO tools overwhelm small businesses.\n\nNew data shows small businesses struggle with too many options. Limited budgets make choosing the right tech stack tough.\n\nMost tools promise everything. But few deliver real competitive edge without breaking the bank. It's not about more tools. It's about the right ones.\n\nWe need smarter selection. Focus on core features that drive measurable growth.\n\nWhat's your essential SEO tool?\n#SEOTools #SmallBusinessSEO #DigitalMarketing #GrowthStrategy",
+          "sourceArticle": "Which SEO tools are worth it for small businesses?",
+          "imageHeadline": "*SMART* SEO STACK",
+          "imageSubtext": "Small businesses need strategic tool choices, not more.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "TED Speaker",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Technology Evangelist",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Technology Evangelist, on an Auditorium stage, Speaking on stage, wearing a Conference speaker outfit. Foreground: blurred stage lights. Midground: the manager. Background: large projection screen showing abstract data visualization. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Win with AI Answer Engines.",
+          "content": "Win with AI Answer Engines.\n\nAI is changing search fast. Your brand needs visibility in AI answers. This isn't traditional SEO.\n\nFirst, monitor AI citations. See where your brand appears in AI responses. Tools like Scrunch help here.\n\nSecond, audit AI crawlability. Ensure AI bots can easily find your key content. Optimize site structure for them.\n\nThird, actively optimize how AI experiences your site. Focus on clear, concise, answer-focused content. Direct answers get picked up.\n\nAre you ready for AEO?\n#AEO #AISearch #ContentStrategy #BrandVisibility",
+          "sourceArticle": "Scrunch vs Ahrefs: AI visibility tracking comparison",
+          "imageHeadline": "*AEO* PLAYBOOK",
+          "imageSubtext": "Track, audit, and optimize for AI search answers.",
+          "badgeText": "AI TREND",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Innovation Leader",
+        "environment": "Startup hub",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Innovation Leader, in a Startup hub, Sitting at desk, wearing a Modern startup hoodie. Foreground: out-of-focus laptop screen. Midground: the manager. Background: blurred open-plan workspace with whiteboards. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "Stop buying every AI tool.",
+          "content": "Stop buying every AI tool.\n\nMany think more AI tools equal better marketing. This is a common trap for small businesses.\n\nThe market is flooded with AI solutions. Each promises to solve every problem. Most just add complexity.\n\nTruth is, you need only a few powerful tools. Focus on those that truly move your needle.\n\nEvaluate value, not hype. Does it save time or boost results significantly? If not, skip it.\n\nDo you really need all those AI subscriptions?\n#AITools #MarketingStrategy #StartupGrowth #Efficiency",
+          "sourceArticle": "AI SEO tools small businesses actually use",
+          "imageHeadline": "AI TOOLS *OVERLOAD*",
+          "imageSubtext": "Don't just buy more; choose smart for growth.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "LEARN MORE HERE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Apple Keynote",
+        "layoutFamily": "phone-mockup",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Strategy Consultant",
+        "environment": "Luxury office",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Strategy Consultant, in a Luxury office, Close-up portrait, wearing a White shirt with rolled sleeves. Foreground: out-of-focus desk plant. Midground: the manager. Background: blurred modern city skyline view. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "Backlinks for AI answers?",
+          "content": "Backlinks for AI answers?\n\nMany teams are still guessing about AEO. They assume old SEO rules apply directly. This is a big mistake.\n\nWe know 58% of consumers use AI for research weekly. AI Overviews and ChatGPT are new discovery surfaces.\n\nFocusing only on traditional backlinks for AI visibility might miss the point. AI prioritizes direct answers and factual accuracy.\n\nTrust signals matter, yes. But content clarity and directness are now king for AI citation. Adapt your strategy.\n\nHow are you shifting your AEO focus?\n#AEO #Backlinks #SEOError #ContentOptimization",
+          "sourceArticle": "Do backlinks matter for AEO (answer engine optimization)?",
+          "imageHeadline": "*AEO* BACKLINK MYTH",
+          "imageSubtext": "AI answers need more than traditional SEO signals.",
+          "badgeText": "AI TREND",
+          "ctaText": "GET THE GUIDE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "University Chancellor",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Business Coach",
+        "environment": "Coffee shop workspace",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Coach, in a Coffee shop workspace, Looking at camera, wearing a Smart casual blazer. Foreground: out-of-focus coffee cup. Midground: the manager. Background: blurred cozy cafe interior. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "SaaS SEO needs a refresh.",
+          "content": "SaaS SEO needs a refresh.\n\nSaaS businesses get huge ROI from SEO. But many use outdated tool stacks. This will change rapidly.\n\nOver the next 12-24 months, we'll see tools focused on AEO integration. They will prioritize AI bot understanding.\n\nContent operations will become smarter. Tools will predict AI content needs. They will automate content generation for AI answers.\n\nExpect platforms that unify traditional SEO with AI citation building. This means faster scaling and better brand visibility.\n\nIs your SaaS SEO stack ready?\n#SaaSMarketing #SEOFuture #AEO #PredictiveAI",
+          "sourceArticle": "SEO tools for SaaS: 13 best options to scale your content ops",
+          "imageHeadline": "*FUTURE* SEO STACK",
+          "imageSubtext": "SaaS needs integrated tools for AI answer engines.",
+          "badgeText": "AI TREND",
+          "ctaText": "EXPLORE INSIGHTS"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-07-25",
     "category": "marketing",
     "posts": [
