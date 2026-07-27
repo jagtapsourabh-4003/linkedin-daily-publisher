@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-07-27",
+    "category": "ai",
+    "posts": [
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "news-card",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Technology Evangelist",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist in a Technology command center, looking at camera, wearing a Charcoal executive suit. Out-of-focus server racks in foreground, manager in midground, glowing data screens in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "Google's search box just changed.",
+          "content": "Google just redesigned its search box. It's the first change in 25 years. This signals a big shift for search.\n\nThe old blue links are fading. AI-powered answers are taking over. This affects how users find information.\n\nFor marketers, it means SEO is changing. Ranking for keywords is still key. But ranking for direct answers becomes crucial. Content strategy needs to adapt now.\n\nHow will your brand adapt to this new search landscape?",
+          "sourceArticle": "Google just redesigned the search box for the first time in 25 years — here’s why it matters more than you think.",
+          "imageHeadline": "GOOGLE'S *NEW* SEARCH",
+          "imageSubtext": "25 years of search history changed forever.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Business Strategist",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Teal White",
+        "characterRole": "Business Coach",
+        "environment": "Creative workspace",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach in a Creative workspace, sitting at desk, wearing a White shirt with rolled sleeves. Out-of-focus notebook and pen in foreground, manager in midground, mood board with ideas in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "AI helps news organizations thrive.",
+          "content": "Newsrooms are using AI for vital work. Marketers can learn from their playbook. Here are 3 steps for your brand.\n\n1. AI for Content Discovery: Use AI to find trending topics. Understand what your audience truly cares about. This helps you create relevant content.\n\n2. AI for Audience Growth: Deploy AI tools to personalize content delivery. Match your stories to the right readers. This boosts engagement.\n\n3. AI for Operations: Automate repetitive tasks. Think scheduling, basic copywriting, or data analysis. Free up your team for creative work.\n\nWhich AI tool will you try first?",
+          "sourceArticle": "How news organizations are using AI to advance their vital missions",
+          "imageHeadline": "*AI* MARKETING PLAYBOOK",
+          "imageSubtext": "3 steps to grow your brand with smart AI.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "LinkedIn Thought Leader",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "Author",
+        "environment": "Library",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Author in a Library, side profile, wearing a Turtleneck with blazer. Out-of-focus stack of books in foreground, manager in midground, bookshelves receding in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "Avoiding AI is a mistake.",
+          "content": "Some people are hosting 'Avoiding AI' workshops. They fear Big Tech. I think this approach misses the point.\n\nAI isn't going away. It's a tool, like the internet. We shouldn't avoid it; we should learn to use it wisely.\n\nFor brands, ignoring AI means missing out. Missing better customer insights. Missing faster content creation. Missing competitive advantages.\n\nInstead of avoiding AI, how can we best integrate it ethically?",
+          "sourceArticle": "Librarians are hosting viral ‘Avoiding AI’ workshops for people who are fed up with Big Tech",
+          "imageHeadline": "EMBRACE *AI* OR FALL?",
+          "imageSubtext": "Why 'Avoiding AI' workshops are missing the bigger picture.",
+          "badgeText": "AI TREND",
+          "ctaText": "JOIN THE DEBATE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Corporate Executive",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Corporate Executive",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive in an Executive boardroom, over-the-shoulder, wearing a Navy business suit. Out-of-focus meeting notes on table in foreground, manager in midground, large strategy screen in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "AI caused layoffs. Why?",
+          "content": "More tech companies blame AI for recent layoffs. This is a tough reality. But it also holds a key lesson for marketers.\n\nThe mistake? Not adapting fast enough. Many roles become redundant when AI handles repetitive tasks. It's not AI's fault, but a failure to evolve.\n\nFor your marketing team, this means reskilling. Focus on strategy, creativity, and AI oversight. Don't just automate; innovate.\n\nHow are you upskilling your marketing talent for the AI era?",
+          "sourceArticle": "Monday.com is the latest tech company to blame AI for layoffs — here are 20 others",
+          "imageHeadline": "*AI* LAYOFFS LESSON",
+          "imageSubtext": "Why companies blame AI and what to do.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "LEARN MORE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "floating-cards",
+        "colorPalette": "Neon Cyan",
+        "characterRole": "AI Consultant",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant in a Futuristic workspace, half-body portrait, wearing a Smart casual blazer. Out-of-focus holographic interface in foreground, manager in midground, glowing architectural elements in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "AI influencers are next.",
+          "content": "Are you following brand-sponsored AI influencers yet? If not, you will be soon. This is where branding is heading.\n\nVirtual personalities are gaining traction. They offer unique control for brands. They are always on message and never tire. Expect their impact to grow exponentially.\n\nThis means new avenues for marketing. New ways to tell stories. New ways to connect with audiences. Brands must prepare for this shift.\n\nHow will your brand use AI-driven personalities in the next year?",
+          "sourceArticle": "Are you following brand-sponsored AI influencers? - CBS News",
+          "imageHeadline": "*VIRTUAL* INFLUENCERS RISE",
+          "imageSubtext": "The future of branding is AI-driven personalities.",
+          "badgeText": "AI TREND",
+          "ctaText": "EXPLORE THE FUTURE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-07-26",
     "category": "marketing",
     "posts": [
