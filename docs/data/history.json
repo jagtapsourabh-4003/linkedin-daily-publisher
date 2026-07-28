@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-07-28",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "news-card",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Corporate Executive",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive role. Executive boardroom environment. Looking at camera camera composition. Navy business suit clothing style. Focused studio lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "Gap's new influencer play.",
+          "content": "Gap Inc. is tapping its own employees as influencers. This is smart.\nIt builds authenticity from the inside out. Real voices connect with customers better than polished ads.\nThink about your brand's biggest fans. They might already be on your payroll. How can you empower them to share your story?\n#BrandBuilding #EmployeeAdvocacy #MarketingStrategy",
+          "sourceArticle": "Gap Inc. opens creator program to employees",
+          "imageHeadline": "GAP'S *INFLUENCER* MOVE",
+          "imageSubtext": "Employees now part of brand's content strategy.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "AI Consultant",
+        "environment": "Innovation lab",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant role. Innovation lab environment. Presentation shot camera composition. Smart casual blazer clothing style. Bright, modern ambient lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Get cited by AI.",
+          "content": "Want AI like ChatGPT to reference your brand? It's a new SEO frontier.\nFirst, identify key industry prompts related to your business. Next, create deep, valuable content that answers these questions thoroughly.\nActively seek partnerships with sites AI already trusts. Then, reach out to them. Ask for citations and links. This builds your authority for AI models.\n#AISEO #ContentStrategy #DigitalMarketing",
+          "sourceArticle": "How to Build AI Citations — Whiteboard Friday",
+          "imageHeadline": "*AI* CITATION PLAYBOOK",
+          "imageSubtext": "3 steps to get your brand referenced by AI.",
+          "badgeText": "AI TREND",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "LinkedIn Thought Leader",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "Technology Evangelist",
+        "environment": "Creative workspace",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist role. Creative workspace environment. Side profile camera composition. Turtleneck with blazer clothing style. Soft, artistic key lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "Rankings are dead.",
+          "content": "We obsess over search rankings. But what if the model itself is changing?\nTraditional SEO focused on ranking signals. Now, search acts more like a creator platform. It prioritizes engagement, authority, and user-generated content.\nYour traffic might be down even if your rankings hold. We need to shift to a creator-first mindset. Focus on community and authentic content, not just keywords.\n#SEO #CreatorEconomy #DigitalStrategy",
+          "sourceArticle": "The \"TikTokification\" of Search: Why the Creator Model Is Replacing the Ranking Model",
+          "imageHeadline": "*SEARCH* IS CHANGING",
+          "imageSubtext": "Creator model replaces old ranking algorithms.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "JOIN THE DEBATE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "floating-cards",
+        "colorPalette": "Platinum Grey",
+        "characterRole": "Startup Founder",
+        "environment": "Startup hub",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Startup Founder role. Startup hub environment. Sitting at desk camera composition. Modern startup hoodie clothing style. Natural daylight with studio fill. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "Small business SEO mistakes.",
+          "content": "Many small businesses waste money on SEO tools. They often pick expensive platforms with features they don't need.\nThis leads to budget drain and frustration. The mistake is buying complexity when simplicity works.\nStart with free tools. Understand your core needs first. Then, invest in targeted solutions that solve specific problems.\n#SmallBusiness #SEOTools #GrowthStrategy",
+          "sourceArticle": "Which SEO tools are worth it for small businesses?",
+          "imageHeadline": "*SEO* TOOL TRAPS",
+          "imageSubtext": "Small businesses overspend on complex platforms.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "AVOID THESE MISTAKES"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "layered-depth",
+        "colorPalette": "Neon Cyan",
+        "characterRole": "Innovation Leader",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Looking away",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader role. Futuristic workspace environment. Looking away camera composition. Luxury business casual clothing style. Dynamic, future-tech inspired lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "Instagram in 2026.",
+          "content": "Instagram is changing fast. By 2026, AI will be central to your strategy.\nExpect Meta AI to personalize feeds even more. Influencer partnerships will evolve, becoming more integrated with AI-driven recommendations.\nShort-form video will still dominate. Brands must embrace AI for content creation and audience targeting. It's about smart growth, not just reach.\n#InstagramMarketing #FutureMarketing #AIStrategy",
+          "sourceArticle": "How to maximize Instagram marketing in 2026",
+          "imageHeadline": "INSTAGRAM'S *FUTURE*",
+          "imageSubtext": "AI, influencers, and short video dominate in 2026.",
+          "badgeText": "AI TREND",
+          "ctaText": "PREDICT THE FUTURE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-07-27",
     "category": "ai",
     "posts": [
