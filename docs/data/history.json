@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-07-30",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "news-card",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Technology Evangelist",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist in a Technology command center, Looking at camera, wearing a Navy business suit. Foreground: out-of-focus monitor display, Midground: the manager, Background: blurred server racks. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "AEO tools are battling it out.",
+          "content": "HubSpot's report on Profound vs. Semrush AEO just dropped.\n\nThese tools target different teams. One is for deep, engine-specific content. The other offers broader prompt research and coverage.\n\nKnowing the differences saves you time and marketing budget.\n\nAI search is not going anywhere. Your brand needs to show up where customers are asking questions.\n\nWhich tool fits your team better?",
+          "sourceArticle": "Profound vs. Semrush AEO: What each tool actually does",
+          "imageHeadline": "AEO *TOOL* BATTLE",
+          "imageSubtext": "Decoding Profound vs. Semrush for AI Search.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Business Strategist",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Business Coach",
+        "environment": "Creative workspace",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach in a Creative workspace, Presentation shot, wearing a Smart casual blazer. Foreground: blurred whiteboard with notes, Midground: the manager, Background: soft-focus ergonomic office furniture. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Master Pinterest for your brand.",
+          "content": "Pinterest is a visual search powerhouse. It connects brands to over 630 million active users ready to shop.\n\nHere's a quick playbook to boost your brand:\n\n1. Use high-quality images. Visuals are everything here.\n2. Optimize pin descriptions with keywords. Think like a search engine.\n3. Create Idea Pins for storytelling. Engage users with multi-page content.\n4. Link directly to product pages. Make buying easy.\n\nAre you using Pinterest to its full potential?",
+          "sourceArticle": "6 tips for building a brand on Pinterest",
+          "imageHeadline": "PINTEREST *POWER*",
+          "imageSubtext": "4 steps to build your brand on Pinterest.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "LinkedIn Thought Leader",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Innovation Leader",
+        "environment": "Startup hub",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader in a Startup hub, Side profile, wearing a Modern startup hoodie. Foreground: out-of-focus coffee mug, Midground: the manager, Background: blurred exposed brick wall and collaborative desks. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "Search is changing. Fast.",
+          "content": "Your SEO rankings might hold steady, but traffic drops. Why?\n\nThe 'TikTokification' of search. It's about creators, not just rankings anymore. Search engines are behaving more like social platforms.\n\nContent that performs well now is highly engaging. It holds attention. It builds connection.\n\nAre we too focused on old SEO metrics? The model is shifting to a creator-first approach. Your brand needs to adapt.\n\nWhat's your take on this shift?",
+          "sourceArticle": "The \"TikTokification\" of Search: Why the Creator Model Is Replacing the Ranking Model",
+          "imageHeadline": "IS SEO *DEAD*?",
+          "imageSubtext": "Why search is becoming a creator's game.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "JOIN DEBATE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "Strategy Consultant",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant in an Executive boardroom, Sitting at desk, wearing a Charcoal executive suit. Foreground: blurry notepad and pen, Midground: the manager, Background: out-of-focus conference table and chairs. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "Bad CRM data costs millions.",
+          "content": "Ever seen a pipeline report that just doesn't add up? Marketing and sales disagree on definitions?\n\nThis often happens when your CRM data model is poorly designed. A new integration can break everything if relationships aren't clear.\n\nWe learned this the hard way.\n\nThe lesson: a robust CRM data model is foundational. It ensures everyone speaks the same language. It prevents reporting nightmares and lost revenue.\n\nHow clean is your CRM data today?",
+          "sourceArticle": "What is a CRM data model? Objects and relationships",
+          "imageHeadline": "*CRM* CHAOS",
+          "imageSubtext": "The hidden cost of bad CRM data models.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "LEARN MORE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "AI Consultant",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Looking away",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant in a Futuristic workspace, Looking away, wearing a Turtleneck with blazer. Foreground: glowing holographic interface, Midground: the manager, Background: subtle, blurred architectural lines of a futuristic office. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "AI search will dominate. Soon.",
+          "content": "Answer Engine Optimization (AEO) is a small traffic source now. But it's growing fast.\n\nHubSpot research shows 42% of buyers use AI search. It's the top predictor of purchase intent. Brands winning here earn the conversation first.\n\nIn the next 12-24 months, AEO traffic will explode. It drives highly-intent site visitors who are ready to convert.\n\nYour content needs to be optimized for AI answers, not just web pages. This is where future conversions will come from.\n\nAre you preparing for an AEO-first world?",
+          "sourceArticle": "How AEO drives higher-intent site visitors than other channels",
+          "imageHeadline": "AEO: THE *FUTURE*",
+          "imageSubtext": "Why AI search drives ultra-high intent traffic.",
+          "badgeText": "AI TREND",
+          "ctaText": "PLAN STRATEGY"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-07-28",
     "category": "marketing",
     "posts": [
