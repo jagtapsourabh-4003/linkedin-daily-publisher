@@ -504,16 +504,20 @@ async function loadHistory() {
             'Authorization': `token ${pat}`,
             'Accept': 'application/vnd.github.v3.raw',
             'X-GitHub-Api-Version': '2022-11-28'
-          }
+          },
+          signal: AbortSignal.timeout(10000) // 10s timeout - never hang
         });
       } catch (apiErr) {
         console.warn('[History] GitHub API raw fetch failed, falling back to static path:', apiErr.message);
+        res = null; // Ensure fallback triggers
       }
     }
     
     // Fallback if not configured, or if API fails, load from static file
     if (!res || !res.ok) {
-      res = await fetch(`data/history.json?t=${Date.now()}`);
+      res = await fetch(`data/history.json?t=${Date.now()}`, {
+        signal: AbortSignal.timeout(15000) // 15s timeout
+      });
     }
 
     if (!res.ok) {
