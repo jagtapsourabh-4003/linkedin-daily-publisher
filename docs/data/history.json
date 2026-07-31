@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-07-31",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Forbes Cover",
+        "layoutFamily": "split-left",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Investor",
+        "environment": "Luxury office",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Investor in a luxury office, looking at camera, wearing a navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "Snapchat + HubSpot. Big news.",
+          "content": "Snapchat just made a smart move.\nThey now integrate with HubSpot for lead generation ads. This helps brands meet customers where they are.\n\nIt’s about streamlining the sales funnel. From a casual swipe to a direct lead, without leaving the ecosystem.\n\nFor marketers, this means less friction. More qualified leads directly into your CRM. It’s about making your ad spend work harder.\n\nAre you ready for seamless social lead capture?",
+          "sourceArticle": "Snapchat shores up lead gen ads with new HubSpot integration",
+          "imageHeadline": "*SNAPCHAT* LEADS",
+          "imageSubtext": "New HubSpot integration boosts lead gen ads.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "TED Speaker",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Professor",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor on an auditorium stage, speaking on stage, wearing formal university attire. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Rank in AI search. Here's how.",
+          "content": "AI answers are now key. Your brand needs to show up there.\nBuilding AI citations is a new skill. But it's easier than you think.\n\nFirst, research AI prompts. What questions are users asking? What answers do AI models give?\n\nSecond, analyze sources. See which brands AI cites for relevant topics. Understand their content structure.\n\nThird, proactive outreach. Create great content. Then, reach out to AI developers or content aggregators. Ask them to reference your brand.\n\nDon't miss out on AI visibility. What's your first step?",
+          "sourceArticle": "How to Build AI Citations — Whiteboard Friday",
+          "imageHeadline": "*AI* RANKING PLAYBOOK",
+          "imageSubtext": "3 steps to get your brand cited by AI.",
+          "badgeText": "AI TREND",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Harvard Professor",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Researcher",
+        "environment": "Library",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Researcher in a library, sitting at desk, wearing a turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "Schema markup: direct ranking factor? Maybe not.",
+          "content": "Many believe schema markup directly boosts SERP rank. But is that true?\nResearch shows it's more about good housekeeping.\n\nSchema helps search engines understand your content better. It improves visibility.\nBut it might not directly push you up the rankings.\n\nThink of it as clear labeling for your products. It helps shoppers find what they need faster. They trust the store more.\n\nThis makes your site more attractive. It leads to better user experience.\n\nDoes structured data directly rank you, or just make you more discoverable?",
+          "sourceArticle": "Does Schema Markup Impact SERP Rank?",
+          "imageHeadline": "SCHEMA *MYTH*",
+          "imageSubtext": "Unpacking its true impact on SERP rankings.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Corporate Executive",
+        "layoutFamily": "news-card",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Corporate Executive",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive in an executive boardroom, in an interview setup, wearing a charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "CRM reports broke. Why?",
+          "content": "A common mistake happens after a CRM goes live.\nPipeline reports don't add up. Marketing and sales use different terms.\n\nThis is often due to a poor CRM data model. Objects and relationships aren't clear.\nTeams end up defining the same data differently. This leads to broken reports and bad decisions.\n\nWe saw a case where a new integration broke three sales reports. No one knew they shared a data source.\n\nThe lesson? Define your CRM data model early. Ensure everyone agrees on definitions.\n\nHow do you prevent data chaos in your CRM?",
+          "sourceArticle": "What is a CRM data model? Objects and relationships",
+          "imageHeadline": "*CRM* DATA CHAOS",
+          "imageSubtext": "Why pipeline reports can suddenly fail.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Technology Evangelist",
+        "environment": "Technology command center",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist in a technology command center, over-the-shoulder shot, wearing a modern startup hoodie. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "Search is changing fast. Get ready.",
+          "content": "The 'TikTokification' of search is here. It's a major shift.\nYour rankings might hold, but your traffic could drop.\n\nThe old ranking model is fading. The creator model is replacing it.\nThis means search is behaving more like social media feeds.\n\nContent creators, not just SEO experts, will win. Brands need to adapt.\nFocus on engaging, shareable content. Think beyond keywords.\n\nFor marketers, this means prioritizing brand storytelling. Connect with your audience, not just search algorithms.\n\nIs your content ready for the new creator economy of search?",
+          "sourceArticle": "The \"TikTokification\" of Search: Why the Creator Model Is Replacing the Ranking Model",
+          "imageHeadline": "*SEARCH* IS SOCIAL",
+          "imageSubtext": "The creator model reshapes how we find content.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-07-30",
     "category": "marketing",
     "posts": [
