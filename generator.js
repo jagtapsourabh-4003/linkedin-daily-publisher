@@ -18,7 +18,7 @@ export async function generatePosts(category, trends, apiKey) {
 
   // Initialize SDK
   const ai = new GoogleGenAI({ apiKey });
-  const modelName = 'gemini-2.5-pro';
+  const modelName = 'gemini-2.5-flash';
 
   console.log(`[Generator] Initializing Gemini request for ${category} using ${modelName}`);
 
@@ -143,7 +143,7 @@ Each object in the array must follow this structure. Ensure that the "style" fie
   }
 }`;
 
-  const models = ['gemini-2.5-pro', 'gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-2.5-flash-lite'];
+  const models = ['gemini-2.5-flash', 'gemini-2.5-pro', 'gemini-2.0-flash', 'gemini-2.5-flash-lite'];
   let modelIdx = 0;
   let activeModel = models[modelIdx];
   let posts = null;
@@ -280,16 +280,17 @@ Each object in the array must follow this structure. Ensure that the "style" fie
   }
 
 
-  // 3. Generate 5 unique customized AI avatars based on Gemini's returned prompts
+  // 3. Generate 5 unique customized AI avatars IN PARALLEL (not sequentially!)
+  // This reduces total time from ~10 min (5 sequential) to ~2 min (all parallel)
   if (posts) {
-    console.log('[Generator] Calling Imagen 3 for customized portraits...');
-    for (let i = 0; i < posts.length; i++) {
-      const post = posts[i];
+    console.log('[Generator] Calling Imagen 4 for all 5 customized portraits IN PARALLEL...');
+    
+    const avatarPromises = posts.map(async (post) => {
       const dailyAvatarPath = path.resolve('docs', `avatar_daily_${post.id}.jpg`);
       
       try {
         const imagePrompt = post.avatarPrompt || `Studio portrait photography of an Indian male manager in his late 30s, warm tan skin, clean-shaven, short styled black hair parted to the side, wearing black thick-framed glasses, friendly smile with visible teeth, wearing a suit, sitting in an office. Shot on 85mm lens, f/1.8 aperture, realistic lighting, highly detailed features, cinematic, photorealistic, professional color grading, vibrant background, clean composition, high-resolution.`;
-        console.log(`[Generator] Generating customized avatar for Post ${post.id}... Prompt: "${imagePrompt.slice(0, 100)}..."`);
+        console.log(`[Generator] Starting avatar for Post ${post.id}... Prompt: "${imagePrompt.slice(0, 80)}..."`);
         
         const imageResponse = await ai.models.generateImages({
           model: 'imagen-4.0-generate-001',
@@ -305,22 +306,27 @@ Each object in the array must follow this structure. Ensure that the "style" fie
           const imgBytes = imageResponse.generatedImages[0].image.imageBytes;
           const buffer = Buffer.from(imgBytes, "base64");
           fs.writeFileSync(dailyAvatarPath, buffer);
-          console.log(`[Generator] Successfully saved unique avatar ${post.id}: ${dailyAvatarPath}`);
+          console.log(`[Generator] ✅ Avatar ${post.id} saved: ${dailyAvatarPath}`);
+          return { id: post.id, success: true };
         } else {
           throw new Error('Image response did not contain images');
         }
       } catch (err) {
-        console.warn(`[Generator] Unique avatar ${post.id} generation failed. Falling back to default:`, err.message);
+        console.warn(`[Generator] ⚠️ Avatar ${post.id} failed, using fallback:`, err.message);
         const styleAvatarPath = path.resolve('docs', 'avatars', `avatar-${post.id}.png`);
         const defaultAvatarPath = path.resolve('docs', 'avatar.jpg');
         if (fs.existsSync(styleAvatarPath)) {
           fs.copyFileSync(styleAvatarPath, dailyAvatarPath);
-          console.log(`[Generator] Fallback avatar for Post ${post.id} copied from: ${styleAvatarPath}`);
         } else if (fs.existsSync(defaultAvatarPath)) {
           fs.copyFileSync(defaultAvatarPath, dailyAvatarPath);
         }
+        return { id: post.id, success: false };
       }
-    }
+    });
+
+    const results = await Promise.allSettled(avatarPromises);
+    const succeeded = results.filter(r => r.status === 'fulfilled' && r.value.success).length;
+    console.log(`[Generator] Avatar generation complete: ${succeeded}/${posts.length} succeeded`);
 
     // Copy first avatar as the master daily avatar
     const firstAvatar = path.resolve('docs', 'avatar_daily_1.jpg');
