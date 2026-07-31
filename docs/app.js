@@ -620,20 +620,6 @@ async function loadHistory() {
     } else {
       renderEmptyState();
     }
-
-    // Self-healing auto-trigger: if today's drafts are missing and PAT is configured,
-    // automatically trigger generation in the background without user intervention.
-    const todayIST = getTodayIST();
-    const hasTodayDrafts = state.history.some(item => item.date === todayIST);
-    if (!hasTodayDrafts && pat && !state._autoTriggerFired) {
-      state._autoTriggerFired = true; // Prevent multiple auto-triggers per session
-      console.log(`[AutoTrigger] Today's drafts (${todayIST}) are missing. Auto-triggering generation...`);
-      showToast(`Today's drafts (${todayIST}) are missing. Auto-generating now...`, 'info');
-      // Delay slightly to let the UI render first
-      setTimeout(() => {
-        triggerManualGeneration();
-      }, 2000);
-    }
   } catch (err) {
     console.error('[loadHistory] Error:', err);
     el.dateSelectorList.innerHTML = '<div style="padding:10px; color:#f87171; font-size:0.85rem;">Failed to load dates</div>';
