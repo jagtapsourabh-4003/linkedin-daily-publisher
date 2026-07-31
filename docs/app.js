@@ -434,6 +434,12 @@ function saveLocalDb(db) {
   }
 }
 
+// Bulletproof IST date helper — works on any browser/timezone
+function getTodayIST() {
+  return new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
+  // Returns 'YYYY-MM-DD' format in IST regardless of user's system timezone
+}
+
 // Load Settings from LocalStorage
 async function loadSettings() {
   try {
@@ -587,6 +593,21 @@ async function loadHistory() {
     } else {
       renderEmptyState();
     }
+
+    // Self-healing auto-trigger: if today's drafts are missing and PAT is configured,
+    // automatically trigger generation in the background without user intervention.
+    const todayIST = getTodayIST();
+    const hasTodayDrafts = state.history.some(item => item.date === todayIST);
+    const pat = state.settings.githubPat;
+    if (!hasTodayDrafts && pat && !state._autoTriggerFired) {
+      state._autoTriggerFired = true; // Prevent multiple auto-triggers per session
+      console.log(`[AutoTrigger] Today's drafts (${todayIST}) are missing. Auto-triggering generation...`);
+      showToast(`Today's drafts (${todayIST}) are missing. Auto-generating now...`, 'info');
+      // Delay slightly to let the UI render first
+      setTimeout(() => {
+        triggerManualGeneration();
+      }, 2000);
+    }
   } catch (err) {
     el.dateSelectorList.innerHTML = '<p class="error-text">Failed to load dates</p>';
     showToast(`Error: ${err.message}`, 'error');
@@ -703,13 +724,7 @@ async function triggerManualGeneration() {
   }
 
   // Determine if today's drafts already exist in history
-  const d = new Date();
-  const utc = d.getTime() + (d.getTimezoneOffset() * 60000);
-  const ist = new Date(utc + (3600000 * 5.5));
-  const year = ist.getFullYear();
-  const month = String(ist.getMonth() + 1).padStart(2, '0');
-  const day = String(ist.getDate()).padStart(2, '0');
-  const todayStr = `${year}-${month}-${day}`;
+  const todayStr = getTodayIST();
   
   const existing = state.history.find(h => h.date === todayStr);
   let forceVal = "false";
