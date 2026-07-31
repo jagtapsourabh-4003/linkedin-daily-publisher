@@ -767,27 +767,31 @@ async function triggerManualGeneration() {
 
     // Start polling the run status
     let pollAttempts = 0;
-    const maxPolls = 60; // 5 minutes maximum
+    const maxPolls = 120; // 10 minutes maximum (120 * 5s)
     const runStartTime = new Date();
 
     const interval = setInterval(async () => {
       pollAttempts++;
+      const elapsed = Math.round((Date.now() - runStartTime.getTime()) / 1000);
       
-      // Reassure the user after 75 seconds that it's still running
-      if (pollAttempts === 15) {
-        showToast('Draft generation is taking a couple of minutes to spin up the GitHub server. Please keep this tab open...', 'info');
+      // Progressive reassurance toasts
+      if (pollAttempts === 6) { // 30s
+        showToast('GitHub is spinning up the server. This takes 15-30 seconds...', 'info');
+      }
+      if (pollAttempts === 24) { // 2 min
+        showToast('AI is generating content and avatar images. Almost there...', 'info');
       }
       
       if (pollAttempts > maxPolls) {
         clearInterval(interval);
         btn.disabled = false;
         btn.innerHTML = originalText;
-        showToast('Generation is still running in the background on GitHub. Please check back in 1-2 minutes or reload the page.', 'info');
+        showToast('Generation is still running in the background on GitHub. Please reload the page in 1-2 minutes.', 'info');
         return;
       }
 
       try {
-        const runsRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/actions/runs?event=workflow_dispatch&per_page=1`, {
+        const runsRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/actions/runs?event=workflow_dispatch&per_page=3`, {
           headers: {
             'Authorization': `token ${pat}`,
             'Accept': 'application/vnd.github+json',
@@ -798,27 +802,32 @@ async function triggerManualGeneration() {
         if (runsRes.ok) {
           const runsData = await runsRes.json();
           if (runsData.workflow_runs && runsData.workflow_runs.length > 0) {
-            const latest = runsData.workflow_runs[0];
-            const runTime = new Date(latest.created_at);
+            // Find any workflow_dispatch run created within 5 minutes of our trigger
+            const matchingRun = runsData.workflow_runs.find(run => {
+              const runTime = new Date(run.created_at);
+              return Math.abs(runTime - runStartTime) < 300000; // 5 minute window
+            });
             
-            // Verify this is the run we just triggered (started within the last minute)
-            if (Math.abs(runTime - runStartTime) < 60000) {
-              if (latest.status === 'completed') {
+            if (matchingRun) {
+              if (matchingRun.status === 'completed') {
                 clearInterval(interval);
                 btn.disabled = false;
                 btn.innerHTML = originalText;
                 
-                if (latest.conclusion === 'success') {
+                if (matchingRun.conclusion === 'success') {
                   showToast('Drafts regenerated and saved successfully!', 'success');
                   await loadHistory();
                 } else {
-                  showToast(`Generation workflow failed: ${latest.conclusion || 'error'}. Check GitHub Actions.`, 'error');
+                  showToast(`Generation workflow failed: ${matchingRun.conclusion || 'error'}. Check GitHub Actions.`, 'error');
                 }
               } else {
-                // Update spinner text with GitHub Actions status
-                const runStatus = latest.status === 'in_progress' ? 'Generating Content & Images' : latest.status;
-                btn.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> ${runStatus}...`;
+                // Update spinner text with real-time elapsed timer
+                const statusText = matchingRun.status === 'in_progress' ? 'Generating' : 'Queued';
+                btn.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> ${statusText}... ${elapsed}s`;
               }
+            } else {
+              // Run hasn't appeared yet - GitHub is still queuing
+              btn.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Queuing... ${elapsed}s`;
             }
           }
         }
