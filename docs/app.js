@@ -370,6 +370,12 @@ const el = {
 async function init() {
   setupEventListeners();
   await loadSettings();
+  
+  // Auto-open settings if requested via URL hash (#settings) or query parameter (?settings=true)
+  if (window.location.hash === '#settings' || window.location.search.includes('settings')) {
+    openSettings();
+  }
+  
   await loadHistory();
   
   // Set initial badge status based on today's calculated category
@@ -3847,13 +3853,15 @@ function applyNoiseTexture(ctx, w, h, opacity = 0.015) {
 
 // Modal control
 function openSettings() {
-  el.settingsModal.classList.remove('hidden');
+  if (el.settingsModal) el.settingsModal.classList.remove('hidden');
 }
+window.openSettings = openSettings;
 
 // Close Settings Modal
 function closeSettings() {
-  el.settingsModal.classList.add('hidden');
+  if (el.settingsModal) el.settingsModal.classList.add('hidden');
 }
+window.closeSettings = closeSettings;
 
 
 
