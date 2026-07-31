@@ -625,7 +625,6 @@ async function loadHistory() {
     // automatically trigger generation in the background without user intervention.
     const todayIST = getTodayIST();
     const hasTodayDrafts = state.history.some(item => item.date === todayIST);
-    const pat = state.settings.githubPat;
     if (!hasTodayDrafts && pat && !state._autoTriggerFired) {
       state._autoTriggerFired = true; // Prevent multiple auto-triggers per session
       console.log(`[AutoTrigger] Today's drafts (${todayIST}) are missing. Auto-triggering generation...`);
