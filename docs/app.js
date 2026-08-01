@@ -1633,7 +1633,7 @@ function renderActiveDrafts() {
         navigator.clipboard.writeText(payloadText);
         showToast('Copied headline & post content to clipboard! Opening Canva...', 'success');
         
-        const canvaTargetUrl = state.settings.canvaTemplateUrl || 'https://www.canva.com/create/social-media-posts/';
+        const canvaTargetUrl = state.settings.canvaTemplateUrl || 'https://www.canva.com/';
         window.open(canvaTargetUrl, '_blank');
       });
     }
