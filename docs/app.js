@@ -1047,8 +1047,28 @@ async function postToGoogleFlow(postId, btnElement) {
 function renderDateList() {
   el.dateSelectorList.innerHTML = '';
   
+  const todayIST = getTodayIST();
+  const hasToday = state.history.some(item => item.date === todayIST);
+
+  // If today's date is not generated yet, show a Pending entry at the top
+  if (!hasToday) {
+    const todayEl = document.createElement('div');
+    todayEl.className = 'date-item today-pending';
+    todayEl.style.cssText = 'border: 1px dashed rgba(245, 158, 11, 0.5); background: rgba(245, 158, 11, 0.05); margin-bottom: 8px; cursor: pointer;';
+    todayEl.onclick = () => triggerManualGeneration();
+    todayEl.title = "Today's drafts have not been generated yet. Click to generate now.";
+    todayEl.innerHTML = `
+      <div class="date-info">
+        <span class="date-text" style="color: #fbbf24; font-weight: 600;">Today (${formatDateHuman(todayIST)})</span>
+        <span class="date-cat ai" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b; border-color: rgba(245, 158, 11, 0.4);">Pending</span>
+      </div>
+      <div class="status-indicator" style="background: #f59e0b;" title="Pending generation"></div>
+    `;
+    el.dateSelectorList.appendChild(todayEl);
+  }
+
   if (state.history.length === 0) {
-    el.dateSelectorList.innerHTML = '<p class="empty-text">No history drafts found.</p>';
+    el.dateSelectorList.innerHTML += '<p class="empty-text">No history drafts found.</p>';
     return;
   }
 
@@ -1089,8 +1109,31 @@ function renderActiveDrafts() {
   el.activeCategoryText.textContent = activeEntry.category;
   el.activeCategoryPill.className = `category-indicator ${activeEntry.category}`;
 
-  // Apply accent glow themes to the background glows based on topic
-  applyTopicTheme(activeEntry.category);
+  // Render Today Pending Notice Banner if today's date is missing from history
+  const todayIST = getTodayIST();
+  const hasToday = state.history.some(item => item.date === todayIST);
+  let pendingBanner = document.getElementById('today-pending-banner');
+  if (!hasToday) {
+    if (!pendingBanner) {
+      pendingBanner = document.createElement('div');
+      pendingBanner.id = 'today-pending-banner';
+      pendingBanner.style.cssText = 'background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.35); color: #fbbf24; padding: 14px 18px; border-radius: 14px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 0.9rem; width: 100%; box-shadow: 0 4px 12px rgba(0,0,0,0.15);';
+      const contentHeader = document.querySelector('.content-header');
+      if (contentHeader && contentHeader.parentNode) {
+        contentHeader.parentNode.insertBefore(pendingBanner, contentHeader.nextSibling);
+      }
+    }
+    pendingBanner.innerHTML = `
+      <div>
+        <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 2px;">📅 Today's Drafts (${formatDateHuman(todayIST)}) Pending</div>
+        <div style="opacity: 0.85; font-size: 0.82rem;">GitHub Actions morning schedule is queued. Click to generate today's 5 fresh drafts right now!</div>
+      </div>
+      <button class="btn btn-sm btn-primary" onclick="triggerManualGeneration()" style="white-space: nowrap; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">⚡ Generate Today's Drafts</button>
+    `;
+    pendingBanner.style.display = 'flex';
+  } else if (pendingBanner) {
+    pendingBanner.style.display = 'none';
+  }
 
   // Clear posts workspace
   el.draftsContainer.innerHTML = '';

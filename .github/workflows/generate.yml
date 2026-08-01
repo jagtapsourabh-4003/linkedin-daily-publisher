@@ -2,11 +2,18 @@ name: Daily Draft Generation
 
 on:
   schedule:
-    # Multiple cron triggers for reliability — GitHub cron can silently skip runs.
-    # The generation script skips if today's drafts already exist, so duplicate triggers are safe.
-    - cron: '30 3 * * *'   # 9:00 AM IST (primary)
-    - cron: '0 5 * * *'    # 10:30 AM IST (backup 1)
-    - cron: '30 6 * * *'   # 12:00 PM IST (backup 2)
+    # High-frequency morning cron schedule matrix (8:30 AM to 12:30 PM IST).
+    # GitHub Actions can delay cron jobs by 1-2 hours during peak load.
+    # The generation script skips instantly if today's drafts already exist, so multiple triggers are 100% safe and fast (~10s).
+    - cron: '0 3 * * *'   # 8:30 AM IST
+    - cron: '30 3 * * *'  # 9:00 AM IST (primary)
+    - cron: '0 4 * * *'   # 9:30 AM IST
+    - cron: '30 4 * * *'  # 10:00 AM IST
+    - cron: '0 5 * * *'   # 10:30 AM IST
+    - cron: '30 5 * * *'  # 11:00 AM IST
+    - cron: '0 6 * * *'   # 11:30 AM IST
+    - cron: '30 6 * * *'  # 12:00 PM IST
+    - cron: '0 7 * * *'   # 12:30 PM IST
   workflow_dispatch:
     inputs:
       force:
