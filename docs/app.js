@@ -860,7 +860,18 @@ async function triggerManualGeneration() {
   } catch (err) {
     btn.disabled = false;
     btn.innerHTML = originalText;
-    showToast(`Failed to trigger generation: ${err.message}. Please check your GitHub PAT/Username in Settings.`, 'error');
+    const isBadAuth = err.message.includes('Bad credentials') || err.message.includes('401');
+    if (isBadAuth) {
+      showToast('🔑 GitHub PAT token expired or invalid. Opening Settings to update...', 'error');
+      openSettings();
+      if (el.inputGithubPat) {
+        el.inputGithubPat.style.borderColor = '#ef4444';
+        el.inputGithubPat.focus();
+        el.inputGithubPat.placeholder = 'Paste your NEW GitHub PAT here (starts with ghp_...)';
+      }
+    } else {
+      showToast(`Failed to trigger generation: ${err.message}. Please check your GitHub PAT/Username in Settings.`, 'error');
+    }
   }
 }
 
