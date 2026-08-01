@@ -1631,7 +1631,11 @@ function renderActiveDrafts() {
         
         const payloadText = `HEADLINE:\n${headlineVal}\n\nSUBTEXT:\n${subtextVal}\n\nTOP TAG:\n${badgeVal}\n\nFULL POST BODY:\n${textarea.value}`;
         navigator.clipboard.writeText(payloadText);
-        showToast('Copied headline & post content to clipboard! Opening Canva...', 'success');
+        if (!state.settings.canvaTemplateUrl) {
+          showToast('Copied text! Opening Canva... (Tip: Add your custom Template link in Settings)', 'info');
+        } else {
+          showToast('Copied headline & post text! Opening your custom Canva template...', 'success');
+        }
         
         const canvaTargetUrl = state.settings.canvaTemplateUrl || 'https://www.canva.com/';
         window.open(canvaTargetUrl, '_blank');
