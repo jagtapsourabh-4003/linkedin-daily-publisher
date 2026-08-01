@@ -156,17 +156,31 @@
         </div>
 
         <div class="form-group">
-          <label for="input-avatar-file">Your Profile Picture (Avatar)</label>
-          <div style="display: flex; gap: 12px; align-items: center;">
-            <input type="file" id="input-avatar-file" accept="image/*" aria-label="Upload Profile Picture">
-            <img id="avatar-preview" src="avatar.jpg" alt="Profile Avatar" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border-light); background: rgba(255,255,255,0.05);">
+          <label for="input-canva-template">Canva Brand Template Link (Optional)</label>
+          <input type="text" id="input-canva-template" placeholder="e.g. https://www.canva.com/design/DAF.../view">
+          <small class="form-help">Paste your Canva template URL. Clicking "Open in Canva" on any card will open this template with headline pre-copied!</small>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label for="input-avatar-file">Profile Avatar</label>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <input type="file" id="input-avatar-file" accept="image/*" aria-label="Upload Profile Picture" style="font-size: 0.8rem;">
+              <img id="avatar-preview" src="avatar.jpg" alt="Profile Avatar" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border-light);">
+            </div>
           </div>
-          <small class="form-help">Upload your profile picture (recommends high resolution, square crop) to display on your LinkedIn graphics.</small>
+          <div class="form-group">
+            <label for="input-brand-logo-file">Brand Logo Watermark</label>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <input type="file" id="input-brand-logo-file" accept="image/*" aria-label="Upload Brand Logo" style="font-size: 0.8rem;">
+              <img id="brand-logo-preview" src="" alt="Logo" style="width: 36px; height: 36px; border-radius: 6px; object-fit: contain; border: 1px solid var(--border-light); background: rgba(255,255,255,0.05); display: none;">
+            </div>
+          </div>
         </div>
 
         <div class="form-group" style="display: flex; flex-direction: row; align-items: center; gap: 10px; margin-top: 8px;">
           <input type="checkbox" id="input-rotate-outfits" style="width: 18px; height: 18px; cursor: pointer;" checked aria-label="Enable Daily Dress Rotation">
-          <label for="input-rotate-outfits" style="cursor: pointer; font-size: 0.9rem;">Enable daily AI-generated dress & outfit rotation</label>
+          <label for="input-rotate-outfits" style="cursor: pointer; font-size: 0.9rem;">Enable daily AI-generated dress &amp; outfit rotation</label>
         </div>
 
         <div class="modal-footer">
@@ -182,6 +196,6 @@
   <!-- Toast Notification System -->
   <div class="toast-container" id="toast-container"></div>
 
-  <script src="app.js?v=4.2.0"></script>
+  <script src="app.js?v=4.3.0"></script>
 </body>
 </html>

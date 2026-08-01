@@ -359,11 +359,12 @@ const el = {
   inputAvatarFile: document.getElementById('input-avatar-file'),
   avatarPreview: document.getElementById('avatar-preview'),
   inputRotateOutfits: document.getElementById('input-rotate-outfits'),
+  inputCanvaTemplate: document.getElementById('input-canva-template'),
+  inputBrandLogoFile: document.getElementById('input-brand-logo-file'),
+  brandLogoPreview: document.getElementById('brand-logo-preview'),
   toastContainer: document.getElementById('toast-container'),
   glow1: document.getElementById('glow-1'),
   glow2: document.getElementById('glow-2'),
-  
-
 };
 
 // Initialize Application
@@ -418,6 +419,22 @@ function setupEventListeners() {
       }
     });
   }
+
+  // Brand Logo upload preview change listener
+  if (el.inputBrandLogoFile) {
+    el.inputBrandLogoFile.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files[0]) {
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          if (el.brandLogoPreview) {
+            el.brandLogoPreview.src = ev.target.result;
+            el.brandLogoPreview.style.display = 'block';
+          }
+        };
+        reader.readAsDataURL(e.target.files[0]);
+      }
+    });
+  }
 }
 
 // ================= API CALLS & DATA FETCHING (SERVERLESS REFACTOR) =================
@@ -462,6 +479,8 @@ async function loadSettings() {
       imgbbApiKey: settings.imgbbApiKey || '',
       rotateOutfits: settings.rotateOutfits !== false,
       customAvatar: settings.customAvatar || '',
+      brandLogo: settings.brandLogo || '',
+      canvaTemplateUrl: settings.canvaTemplateUrl || '',
       githubPat: settings.githubPat || '',
       githubOwner: settings.githubOwner || 'jagtapsourabh-4003',
       githubRepo: settings.githubRepo || 'linkedin-daily-publisher'
@@ -475,9 +494,15 @@ async function loadSettings() {
     el.inputApiKey.value = state.settings.geminiApiKey;
     el.inputImgbbApiKey.value = state.settings.imgbbApiKey;
     el.inputRotateOutfits.checked = state.settings.rotateOutfits;
+    if (el.inputCanvaTemplate) el.inputCanvaTemplate.value = state.settings.canvaTemplateUrl;
     
     if (state.settings.customAvatar) {
       el.avatarPreview.src = state.settings.customAvatar;
+    }
+
+    if (state.settings.brandLogo && el.brandLogoPreview) {
+      el.brandLogoPreview.src = state.settings.brandLogo;
+      el.brandLogoPreview.style.display = 'block';
     }
     
     refreshAvatarImage();
@@ -658,9 +683,11 @@ async function handleSaveSettings(e) {
   
   try {
     let customAvatarBase64 = state.settings.customAvatar || '';
+    let brandLogoBase64 = state.settings.brandLogo || '';
+    const canvaTemplateUrl = el.inputCanvaTemplate ? el.inputCanvaTemplate.value.trim() : '';
 
     // 1. Convert custom avatar if a new one is selected
-    if (el.inputAvatarFile.files && el.inputAvatarFile.files[0]) {
+    if (el.inputAvatarFile && el.inputAvatarFile.files && el.inputAvatarFile.files[0]) {
       showToast('Saving profile picture in browser storage...', 'info');
       const file = el.inputAvatarFile.files[0];
       customAvatarBase64 = await convertFileToBase64(file);
@@ -670,6 +697,13 @@ async function handleSaveSettings(e) {
       avatarImg.src = customAvatarBase64;
     }
 
+    // Convert brand logo if selected
+    if (el.inputBrandLogoFile && el.inputBrandLogoFile.files && el.inputBrandLogoFile.files[0]) {
+      showToast('Saving brand logo watermark in browser storage...', 'info');
+      const logoFile = el.inputBrandLogoFile.files[0];
+      brandLogoBase64 = await convertFileToBase64(logoFile);
+    }
+
     // 2. Save configurations in local storage
     const newSettings = {
       webhookUrl,
@@ -677,6 +711,8 @@ async function handleSaveSettings(e) {
       imgbbApiKey,
       rotateOutfits,
       customAvatar: customAvatarBase64,
+      brandLogo: brandLogoBase64,
+      canvaTemplateUrl,
       githubPat,
       githubOwner,
       githubRepo
@@ -1376,6 +1412,10 @@ function renderActiveDrafts() {
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
           Copy Content
         </button>
+        <button class="btn btn-secondary btn-sm" id="btn-canva-${post.id}" title="Copy headline & open Canva editor/template" style="background: rgba(168, 85, 247, 0.12); border-color: rgba(168, 85, 247, 0.3); color: #c084fc;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          Open in Canva
+        </button>
         ${
           isThisPostSelected
             ? `<div class="posted-status-btn" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
@@ -1580,6 +1620,23 @@ function renderActiveDrafts() {
       navigator.clipboard.writeText(textarea.value);
       showToast('Copied content to clipboard!', 'success');
     });
+
+    // Open in Canva Button Listener
+    const canvaBtn = cardEl.querySelector(`#btn-canva-${post.id}`);
+    if (canvaBtn) {
+      canvaBtn.addEventListener('click', () => {
+        const headlineVal = (document.getElementById(`input-headline-${post.id}`) || {}).value || headlineText;
+        const subtextVal = (document.getElementById(`input-subtext-${post.id}`) || {}).value || subtextText;
+        const badgeVal = (document.getElementById(`input-badge-${post.id}`) || {}).value || badgeText;
+        
+        const payloadText = `HEADLINE:\n${headlineVal}\n\nSUBTEXT:\n${subtextVal}\n\nTOP TAG:\n${badgeVal}\n\nFULL POST BODY:\n${textarea.value}`;
+        navigator.clipboard.writeText(payloadText);
+        showToast('Copied headline & post content to clipboard! Opening Canva...', 'success');
+        
+        const canvaTargetUrl = state.settings.canvaTemplateUrl || 'https://www.canva.com/create/social-media-posts/';
+        window.open(canvaTargetUrl, '_blank');
+      });
+    }
 
     // Post to Google Flow button listener
     if (!isDayPosted) {
@@ -3220,6 +3277,27 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
   
   // 4. Apply a subtle premium noise/grain texture over the entire creative card
   applyNoiseTexture(ctx, w, h, 0.015);
+
+  // 5. Apply Brand Logo Watermark if configured in Settings
+  if (state.settings.brandLogo) {
+    try {
+      const logoImg = new Image();
+      logoImg.src = state.settings.brandLogo;
+      if (logoImg.complete && logoImg.naturalWidth > 0) {
+        const logoMaxH = 50;
+        const aspect = logoImg.naturalWidth / logoImg.naturalHeight;
+        const logoW = Math.min(160, logoMaxH * aspect);
+        const logoH = logoW / aspect;
+        ctx.save();
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+        ctx.shadowBlur = 8;
+        ctx.drawImage(logoImg, w - logoW - 40, 40, logoW, logoH);
+        ctx.restore();
+      }
+    } catch (e) {
+      console.warn('[Canvas] Brand logo draw error:', e);
+    }
+  }
 }
 
 // Drawing Sub-routines
