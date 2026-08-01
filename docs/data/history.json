@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-08-01",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Forbes Cover",
+        "layoutFamily": "split-left",
+        "colorPalette": "Electric Blue",
+        "characterRole": "AI Consultant",
+        "environment": "Innovation lab",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant in an Innovation lab, Half-body portrait, Smart casual blazer. Out-of-focus glass screen in foreground, midground subject, innovation lab background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "AI search is changing everything.",
+          "content": "HubSpot's research shows 42% of buyers now use AI search. This is not a niche experiment. It's the top predictor of purchase intent.\n\nBrands appearing in AI answers earn the conversation early. They capture interest before a single click. Your visibility here matters more than ever.\n\nAre you optimizing for AI search? What’s your strategy to show up?",
+          "sourceArticle": "HubSpot AEO vs. Rank Prompt: Which AI visibility tool should you choose?",
+          "imageHeadline": "AI SEARCH *WINS*",
+          "imageSubtext": "42% of buyers use AI. Earn the first conversation.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "TED Speaker",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Technology Evangelist",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist on an Auditorium stage, Presentation shot, Conference speaker outfit. Out-of-focus microphone in foreground, midground subject, auditorium stage background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Rank higher in AI answers.",
+          "content": "Want your brand referenced by ChatGPT and Gemini? Here’s a simple playbook for AI citations.\n\nFirst, research prompts your audience uses. Understand how they ask questions. Second, analyze current AI sources for those prompts. See who already gets cited.\n\nThird, proactively outreach to get your brand included. Position your content as a valuable resource. This builds critical brand visibility. It’s like SEO, but for AI.\n\nWhat are your top AI citation tactics?",
+          "sourceArticle": "How to Build AI Citations — Whiteboard Friday",
+          "imageHeadline": "*AI* CITATIONS GUIDE",
+          "imageSubtext": "Research prompts, analyze sources, get your brand referenced.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Innovation Leader",
+        "environment": "Startup hub",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader in a Startup hub, Looking at camera, Modern startup hoodie. Out-of-focus coffee cup in foreground, midground subject, startup hub background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "Your SEO is NOT broken.",
+          "content": "Many think their SEO is failing because traffic is down. But rankings might be stable. The problem isn't always your strategy.\n\nSearch is evolving. It's moving from a pure ranking model to a creator model. Think 'TikTokification' of results.\n\nContent creators, not just ranking algorithms, now drive discovery. Your brand needs to adapt. It's about engagement, not just keywords.\n\nAre you still focused only on rankings? What does a 'creator model' mean for you?",
+          "sourceArticle": "The \"TikTokification\" of Search: Why the Creator Model Is Replacing the Ranking Model",
+          "imageHeadline": "RANKING IS *DEAD*?",
+          "imageSubtext": "Creator model replaces old SEO. What's your play?",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Harvard Professor",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Professor",
+        "environment": "Library",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor in a Library, Sitting at desk, Formal university attire. Out-of-focus open book in foreground, midground subject, library background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "CRM data models fail daily.",
+          "content": "We've all seen it: pipeline reports that don't add up. Marketing and sales use different terms for the same thing. New integrations break old reports.\n\nThis isn't just an IT problem. It's a branding and growth issue. Bad data creates confusion. It leads to inaccurate forecasting and wasted marketing spend.\n\nA clear CRM data model is crucial. Define objects and relationships upfront. This avoids future headaches and ensures reliable insights.\n\nWhat was your biggest CRM data model mistake?",
+          "sourceArticle": "What is a CRM data model? Objects and relationships",
+          "imageHeadline": "CRM DATA *ISSUES*",
+          "imageSubtext": "Bad data breaks reports. Fix your model now.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "DOWNLOAD GUIDE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Business Strategist",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Strategy Consultant",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant in an Executive boardroom, Speaking on stage, Charcoal executive suit. Out-of-focus water glass in foreground, midground subject, executive boardroom background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "Brand strategy is your future.",
+          "content": "Looking ahead to 2026, one thing is clear. Brand strategy will be your best growth bet. It's not just about marketing tactics anymore.\n\nStrong brands cut through noise. They build trust and command loyalty. This directly impacts acquisition costs and conversion rates.\n\nInvest in a clear, consistent brand narrative now. It future-proofs your business. It turns customers into advocates.\n\nHow robust is your brand strategy for 2026?",
+          "sourceArticle": "Why Brand Strategy May Be the Best Growth Bet in 2026",
+          "imageHeadline": "*BRAND* WINS 2026",
+          "imageSubtext": "Strategy is the ultimate growth bet. Plan now.",
+          "badgeText": "STRATEGY OUTLOOK",
+          "ctaText": "READ ANALYTICS"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-07-31",
     "category": "marketing",
     "posts": [
