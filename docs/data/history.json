@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-08-03",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "TED Speaker",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Electric Blue",
+        "characterRole": "AI Consultant",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant on an Auditorium stage, speaking on stage, wearing a Conference speaker outfit. In the foreground, an out-of-focus microphone. In the midground, the manager. In the background, a large screen showing a presentation. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "AI search needs attention now.",
+          "content": "A big question in AI search optimization: platform or standalone tool?\n\nHubSpot's AEO or Otterly, for example, offer different paths. Do you need a tool that just monitors AI answers? Or one that links those insights to your existing content and CRM? \n\nMost teams want integration. Seeing how your brand appears in AI search is great. Acting on it efficiently is better. That means connecting AI visibility to your marketing workflows.\n\nAre you integrating AI search insights into your content strategy?",
+          "sourceArticle": "HubSpot AEO vs. Otterly: Platform or standalone tool?",
+          "imageHeadline": "AI *SEARCH* RACE",
+          "imageSubtext": "Platform or standalone: Winning AI visibility in B2B.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Startup Founder",
+        "environment": "Startup hub",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Startup Founder in a Startup hub, sitting at desk, wearing a Modern startup hoodie. In the foreground, a laptop screen with code. In the midground, the manager. In the background, blurred team members collaborating. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Pick the right AI search tool.",
+          "content": "Choosing an AI search optimization tool can feel complex. Profound and Semrush offer different strengths. Here’s a simple playbook to decide.\n\nFirst, define your team's goal. Are you an SEO agency or an in-house marketing team? Your needs will differ widely. This shapes everything.\n\nNext, check engine coverage. Does the tool track AI answers where your buyers search? Prompt research features are key here. \n\nFinally, compare reporting. Dashboards must be clear and actionable. Can you easily see what's working and what's not?\n\nWhat’s your top priority when evaluating new marketing tools?",
+          "sourceArticle": "Profound vs. Semrush AEO: What each tool actually does",
+          "imageHeadline": "AEO *TOOL* KIT",
+          "imageSubtext": "3 steps to pick your AI search visibility platform.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Harvard Professor",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Professor",
+        "environment": "Library",
+        "cameraStyle": "Looking away",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor in a Library, looking away, wearing a Turtleneck with blazer. In the foreground, a stack of old books. In the midground, the manager. In the background, blurred bookshelves stretching high. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "SEO is not dying. It's evolving.",
+          "content": "Many say AI threatens SEO. I disagree completely. Data shows a different story.\n\nWebsite, blog, and SEO still deliver massive ROI. A recent HubSpot survey found 27% of marketers agree. This channel is a top performer.\n\nAI changes how people search. It does not remove the need for brands to show up. SEO tools are more vital than ever. We simply adapt our strategies.\n\nAre you still investing in your SEO efforts?",
+          "sourceArticle": "SEO tools marketers rely on (free & paid options)",
+          "imageHeadline": "SEO IS *NOT* DEAD",
+          "imageSubtext": "Why AI makes SEO tools more important, not less.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Corporate Executive",
+        "layoutFamily": "news-card",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Corporate Executive",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive in an Executive boardroom, in an interview setup, wearing a Navy business suit. In the foreground, a branded water bottle. In the midground, the manager. In the background, a sleek modern boardroom table with chairs. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "Ignoring AI search costs sales.",
+          "content": "Here’s a common mistake brands make: not showing up in AI search. It's a huge missed opportunity.\n\nHUBspot research shows 42% of buyers use AI search to evaluate products. It's the top sign of purchase intent. If you're not there, your competitors are.\n\nBrands that appear in AI answers win the conversation early. They capture prospects before a click even happens. Missing this means losing qualified leads.\n\nHow much focus are you putting on AI search visibility?",
+          "sourceArticle": "HubSpot AEO vs. Rank Prompt: Which AI visibility tool should you choose?",
+          "imageHeadline": "THE *AI* BLINDSPOT",
+          "imageSubtext": "Missing AI search visibility means losing your best buyers.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "TRY WEB APP"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Business Strategist",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "Strategy Consultant",
+        "environment": "Luxury office",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant in a Luxury office, in side profile, wearing Luxury business casual attire. In the foreground, a blurred sleek desk lamp. In the midground, the manager. In the background, a sophisticated office with city skyline views. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "Your CRM data model is crucial.",
+          "content": "I predict CRM data models will become central to all growth strategies. Right now, data often doesn't add up. \n\nMarketing and sales use different definitions. Reports break. This creates chaos, not clarity. \n\nA solid CRM data model prevents these issues. It defines objects and relationships clearly. Everyone works from the same playbook.\n\nThis clarity boosts pipeline reporting. It improves integrations. It means marketing and sales truly align. A unified data model will predict your future growth. \n\nIs your team united by a single data language?",
+          "sourceArticle": "What is a CRM data model? Objects and relationships",
+          "imageHeadline": "CRM *FUTURE* IS NOW",
+          "imageSubtext": "Unified data models will redefine B2B marketing efficiency.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-08-02",
     "category": "ai",
     "posts": [
