@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-08-04",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "news-card",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Technology Evangelist",
+        "environment": "Technology command center",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist, Technology command center, Presentation shot, Navy business suit. Foreground: out-of-focus monitor display showing data, Midground: Indian male Technology Evangelist, Background: blurred technology command center with multiple screens. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "AI search is changing everything.",
+          "content": "New data shows 42% of buyers now use AI search. This is huge for purchase intent.\n\nBrands showing up in these AI answers get the first conversation. It happens before a click even occurs.\n\nAre you visible where buyers start their journey? This impacts your entire marketing funnel.\n\nHow will your brand lead in AI search results?",
+          "sourceArticle": "HubSpot AEO vs. Rank Prompt: Which AI visibility tool should you choose?",
+          "imageHeadline": "*AI* SEARCH *DOMINATES*",
+          "imageSubtext": "42% of buyers use AI search. Brands must adapt.",
+          "badgeText": "AI TREND",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Strategy Consultant",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant, Executive boardroom, Sitting at desk, Charcoal executive suit. Foreground: a discreet water bottle and notebook, Midground: Indian male Strategy Consultant, Background: blurred executive boardroom with a large screen displaying charts. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Win AI answers today.",
+          "content": "Want your brand cited in ChatGPT or Gemini? Here's how.\n\nFirst, research the prompts your audience uses. Understand their questions.\n\nSecond, analyze the sources AI uses for answers. See who's already there.\n\nThird, do proactive outreach. Get your brand referenced directly by AI models.\n\nStart building your AI citations now.",
+          "sourceArticle": "How to Build AI Citations — Whiteboard Friday",
+          "imageHeadline": "*AI* CITATIONS *GUIDE*",
+          "imageSubtext": "Research prompts. Analyze sources. Proactive outreach.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "LinkedIn Thought Leader",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Author",
+        "environment": "Library",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Author, Library, Close-up portrait, Turtleneck with blazer. Foreground: an open book with blurred text, Midground: Indian male Author, Background: blurred library shelves filled with books. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "AI art backlash is wrong.",
+          "content": "Some people reject AI content just because it's AI. This is a mistake.\n\nAn experiment showed backlash when users knew Monet art was AI. But does origin truly matter?\n\nFor brands, the value is in the impact. Does it connect? Does it convert? Does it build your brand?\n\nWe need to judge content by its effectiveness, not its creation method. What are your thoughts?",
+          "sourceArticle": "What happened when 6.8m people were told real Monet art was AI",
+          "imageHeadline": "*AI* ART *DEBATE*",
+          "imageSubtext": "Authenticity vs. Impact: A new brand perspective.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Corporate Executive",
+        "layoutFamily": "split-right",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "Corporate Executive",
+        "environment": "Luxury office",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive, Luxury office, Half-body portrait, White shirt with rolled sleeves. Foreground: a stylish desk lamp, Midground: Indian male Corporate Executive, Background: blurred luxury office with a city view. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "Snapchat's ad misstep.",
+          "content": "Snapchat is pitching its ad platform to SMBs. This is great for smaller brands.\n\nBut a strong focus here might alienate larger clients. That's a huge risk.\n\nA balanced strategy is crucial. You need diverse revenue streams to scale.\n\nIgnoring your bigger partners for new ones can cost more than it gains. How do you balance client focus?",
+          "sourceArticle": "Snapchat pitches its ad platform to SMBs",
+          "imageHeadline": "*AD* STRATEGY *FAIL*",
+          "imageSubtext": "Balancing SMBs and enterprise clients for growth.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "LEARN MORE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "floating-cards",
+        "colorPalette": "Neon Cyan",
+        "characterRole": "AI Consultant",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Looking away",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant, Futuristic workspace, Looking away, Modern startup hoodie. Foreground: out-of-focus holographic interface element, Midground: Indian male AI Consultant, Background: blurred futuristic workspace with glowing data displays. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "Search is changing, fast.",
+          "content": "Your SEO rankings might be steady, but traffic often isn't. The problem isn't just SEO tactics.\n\nSearch is adopting a 'creator model.' Think TikTok, not just traditional rankings.\n\nBrands must become content creators. Focus on direct engagement and valuable content, not just keywords.\n\nPrepare your brand for the new search reality. What's your creator strategy?",
+          "sourceArticle": "The \"TikTokification\" of Search: Why the Creator Model Is Replacing the Ranking Model",
+          "imageHeadline": "*SEARCH* REVOLUTION *NOW*",
+          "imageSubtext": "Creator model replaces ranking. Adapt your brand.",
+          "badgeText": "AI TREND",
+          "ctaText": "EXPLORE FUTURE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-08-03",
     "category": "marketing",
     "posts": [
