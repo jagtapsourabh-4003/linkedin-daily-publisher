@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-08-05",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "news-card",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Technology Evangelist",
+        "environment": "Media studio",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist, in a Media studio, Looking at camera, wearing a Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "AI search is changing everything.",
+          "content": "Your brand's visibility needs a new strategy. Buyers now ask ChatGPT for recommendations. This means AI search engine optimization (AEO) is vital. It's more important than old SEO rankings. We need to adapt fast. Are you ready for this shift?",
+          "sourceArticle": "HubSpot AEO Grader vs. Peec AI: Features, pricing, and use cases",
+          "imageHeadline": "*MASTER* AEO NOW",
+          "imageSubtext": "How AI search impacts your brand's future.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Strategy Consultant",
+        "environment": "Conference venue",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant, in a Conference venue, Presentation shot, wearing a Conference speaker outfit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "AI changed SEO. Here's how.",
+          "content": "Traditional SEO is not enough anymore. AI search needs a different approach. First, understand new query types. How are people asking AI questions? Second, build strong third-party citations. AI trusts authority. Third, measure success beyond just traffic. Focus on direct answers and conversions. Adapt your content strategy now. What steps will you take first?",
+          "sourceArticle": "The New (AI) SEO Playbook — Whiteboard Friday",
+          "imageHeadline": "*NEW* AI SEO",
+          "imageSubtext": "3 steps to dominate future search results.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "LinkedIn Thought Leader",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Author",
+        "environment": "Library",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Author, in a Library, Side profile, wearing a Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "Is AI content really bad?",
+          "content": "Many people say they dislike AI-generated content. But is it the content, or just the label? A study showed millions reacted negatively to a Monet painting, just because they thought AI made it. This proves our bias. High-quality content is high-quality, regardless of the tool. Let's judge results, not methods. What are your thoughts on this bias?",
+          "sourceArticle": "What happened when 6.8m people were told real Monet art was AI",
+          "imageHeadline": "*AI* BIAS EXPOSED",
+          "imageSubtext": "Monet vs. AI: The real test of content value.",
+          "badgeText": "AI TREND",
+          "ctaText": "JOIN THE DEBATE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "phone-mockup",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "Innovation Leader",
+        "environment": "Startup hub",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader, in a Startup hub, Sitting at desk, wearing a Modern startup hoodie. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "Don't just monitor AI. Act.",
+          "content": "Many teams track AI search visibility. That's a good start. But a common mistake is stopping there. What good is knowing your brand shows up if you can't quickly improve it? You need tools that connect monitoring to your content workflows. Don't let your insights sit idle. How do you connect insights to action?",
+          "sourceArticle": "HubSpot AEO vs. Otterly: Platform or standalone tool?",
+          "imageHeadline": "AEO *MISTAKE* ALERT",
+          "imageSubtext": "Why monitoring without action is a lost cause.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "LEARN FROM FAILURES"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "AI Consultant",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant, in a Futuristic workspace, Over-the-shoulder, wearing a Premium polo shirt. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "Search is changing, fast.",
+          "content": "We are moving past traditional SEO rankings. Search engines now act more like creator platforms. Think TikTok, but for information. Your brand's visibility will depend more on engaging content and creator logic. Focus on authentic connection, not just keywords. Adapt your strategy for this shift. What does this mean for your brand?",
+          "sourceArticle": "The \"TikTokification\" of Search: Why the Creator Model Is Replacing the Ranking Model",
+          "imageHeadline": "*FUTURE* OF SEARCH",
+          "imageSubtext": "Creator model replacing old ranking algorithms.",
+          "badgeText": "AI TREND",
+          "ctaText": "DISCOVER THE FUTURE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-08-04",
     "category": "marketing",
     "posts": [
