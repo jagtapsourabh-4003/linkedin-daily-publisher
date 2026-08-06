@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-08-06",
+    "category": "ai",
+    "posts": [
+      {
+        "designArchetype": "Forbes Cover",
+        "layoutFamily": "asymmetrical-grid",
+        "colorPalette": "Electric Blue",
+        "characterRole": "AI Consultant",
+        "environment": "Innovation lab",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male manager in his late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. He is standing in a modern innovation lab, wearing a smart casual blazer over a dark t-shirt, with a slight smile. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "Shopify's AI Search Surge",
+          "content": "Shopify's AI search is delivering big. \n\nTraffic and orders tripled year-over-year in Q2. \n\nThis shows AI isn't just a buzzword. It's driving real business results. \n\nWe're seeing AI assist, not replace, traditional search. \n\nWhat's your take on AI's impact on e-commerce search?\n\n#AISearch #Ecommerce #Shopify #MarketingStrategy #GenerativeAI",
+          "sourceArticle": "Shopify says AI search is driving more traffic and sales, not replacing Google",
+          "imageHeadline": "AI *DOUBLES* Shopify TRAFFIC",
+          "imageSubtext": "AI-driven search triples orders year-over-year. A new era for e-commerce.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "TED Speaker",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "TED Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male manager in his late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. He is on an auditorium stage, wearing a modern conference speaker outfit, gesturing enthusiastically. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Master AI Customer Interviews",
+          "content": "Listen Labs scaled hiring with AI.\n\nHere's how you can too:\n\n1. Use AI for initial candidate screening.\n2. Analyze sentiment in recorded interviews.\n3. Identify key traits for success.\n4. Refine your hiring criteria based on data.\n\nAI can make your recruitment smarter.\n\nReady to upgrade your hiring process?\n\n#AIHiring #Recruitment #ListenLabs #CustomerInterviews #HRTech",
+          "sourceArticle": "Listen Labs raises $69M after viral billboard hiring stunt to scale AI customer interviews",
+          "imageHeadline": "*SCALE* HIRING WITH AI",
+          "imageSubtext": "AI analyzes customer interviews for faster, smarter hiring decisions.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Startup Founder",
+        "environment": "Startup hub",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male manager in his late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. He is in a vibrant startup hub workspace, sitting at a desk wearing a modern startup hoodie, looking thoughtfully to the side. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "AI Ads Risk Misinformation",
+          "content": "The UN warns about AI in advertising. \n\nIt could worsen the misinformation crisis. \n\nAre we rushing into AI ads without controls? \n\nThis isn't about banning AI. It's about responsible deployment. \n\nWe need ethical guardrails now. \n\nWhat are your thoughts on AI ethics in marketing?\n\n#AIMarketing #Misinformation #EthicalAI #Advertising #BrandSafety",
+          "sourceArticle": "AI in advertising risks fuelling misinformation crisis, UN warns - Welcome to the United Nations",
+          "imageHeadline": "AI ADS: *ETHICS* FIRST",
+          "imageSubtext": "UN warns AI in advertising fuels misinformation crisis. Act responsibly.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "University Chancellor",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Crimson Red",
+        "characterRole": "University Chancellor",
+        "environment": "Modern university campus",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male manager in his late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. He is on a modern university campus, wearing formal university attire, looking directly at the camera with a slight smile. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "OpenAI's Sales Goal Miss",
+          "content": "Reports suggest OpenAI missed sales goals. \n\nThis highlights a common startup pitfall. \n\nOverestimating market adoption or pricing challenges. \n\nBuilding amazing tech is only half the battle. \n\nCommercialization needs equal focus. \n\nWhat lessons can founders learn from this?\n\n#OpenAI #StartupFailure #BusinessStrategy #AI #SalesGoals",
+          "sourceArticle": "OpenAI Appears to Be Missing Its Sales Goals by a Vast Margin - Futurism",
+          "imageHeadline": "OpenAI *MISSES* SALES",
+          "imageSubtext": "Vast margin suggests market adoption or pricing challenges. Learn from it.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Apple Keynote",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Royal Gold",
+        "characterRole": "AI Futurist",
+        "environment": "Technology command center",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male manager in his late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. He is in a futuristic technology command center, wearing a premium polo shirt, with an over-the-shoulder view looking at a holographic display. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "The Future of Code is AI",
+          "content": "Meta's Muse Code agent handles complex codebases. \n\nThis isn't just about writing code faster. \n\nIt's about accelerating innovation cycles. \n\nIn 1-2 years, AI agents will write most business logic. \n\nMarketers must adapt. Understand AI capabilities. \n\nWhat skills will marketers need in this future?\n\n#AICoding #GenerativeAI #FutureOfWork #TechInnovation #MetaMuse",
+          "sourceArticle": "Meta launches Muse Code, an AI agent for large code bases",
+          "imageHeadline": "AI *WRITES* FUTURE",
+          "imageSubtext": "AI agents will write most business logic in 1-2 years.",
+          "badgeText": "AI TREND",
+          "ctaText": "TRY WEB APP"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-08-05",
     "category": "marketing",
     "posts": [
