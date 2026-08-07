@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-08-07",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "news-card",
+        "colorPalette": "Electric Blue",
+        "characterRole": "AI Consultant",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, AI Consultant in a Technology command center, Looking at camera, wearing a Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "AI search is changing everything.",
+          "content": "New tools like HubSpot AEO and Ahrefs Brand Radar are here.\n\nBuyers now go straight to ChatGPT or Gemini. They form opinions before even seeing your website.\n\nThese platforms show you how your brand appears in AI answers. They tell you what to improve.\n\nIgnoring this shift is risky. Your brand's voice in AI is your new homepage.\n\nHow are you tracking your brand's AI presence?",
+          "sourceArticle": "HubSpot AEO vs. Ahrefs Brand Radar: Features compared [2026]",
+          "imageHeadline": "AI *BRAND* RACE",
+          "imageSubtext": "Track your brand's voice in new answer engines.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Business Coach",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Coach in an Executive boardroom, Presentation shot, wearing a Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "CRM rollouts often fail.",
+          "content": "It's rarely the software. It's the plan. Over 60% of CRM failures come from people and process issues.\n\nHere’s a quick playbook to win. First, clearly define your goals. What do you need it to do?\n\nSecond, involve your team early. User adoption is everything. Training is key.\n\nThird, start small. Pilot with a small group. Gather feedback. Then scale.\n\nFourth, measure impact constantly. Adjust your processes as needed. Don't set it and forget it.\n\nWhat's your biggest CRM deployment challenge?",
+          "sourceArticle": "CRM deployment: A step-by-step process for growing teams",
+          "imageHeadline": "CRM *SUCCESS* GUIDE",
+          "imageSubtext": "Step-by-step plan for a flawless CRM launch.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Harvard Professor",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Professor",
+        "environment": "Library",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Professor in a Library, Side profile, wearing Formal university attire. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "Banning social media fails.",
+          "content": "Australia tried to ban social media for teens. New reports show usage hasn't changed.\n\nTeens just find ways around restrictions. This approach ignores the core issue. It doesn't teach digital literacy.\n\nInstead of bans, we need education. Teach responsible use. Guide critical thinking.\n\nBrands and marketers must adapt. Understand where your audience truly is. Connect authentically.\n\nDo bans truly protect, or just push problems underground?",
+          "sourceArticle": "Australia’s teen social bans are having little effect",
+          "imageHeadline": "BANS *DON'T* WORK",
+          "imageSubtext": "Why teen social media restrictions miss the mark.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Corporate Executive",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "Corporate Executive",
+        "environment": "Luxury office",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Corporate Executive in a Luxury office, Sitting at desk, wearing a Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "TikTok made a big error.",
+          "content": "TikTok shut its Nashville office. 250 employees were laid off. Most were moderation staff.\n\nThis move impacts content quality. It affects platform safety. Brands rely on safe environments.\n\nReduced moderation can hurt brand perception. It risks user trust. This is a costly lesson.\n\nUser-generated content needs careful oversight. Brand safety isn't optional.\n\nWhat are the hidden costs of cutting content moderation?",
+          "sourceArticle": "TikTok shutters Nashville office, lays off 250 employees",
+          "imageHeadline": "TIKTOK *OFFICE* SHUT",
+          "imageSubtext": "The hidden cost of content moderation changes.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "Technology Evangelist",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Technology Evangelist in a Futuristic workspace, Interview setup, wearing a Modern startup hoodie. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "AI will redefine SEO dashboards.",
+          "content": "The Moz API MCP server is a glimpse into this future. It connects AI assistants to SEO data.\n\nImagine plain English prompts creating full dashboards. Instant insights, no coding required.\n\nThis means faster strategy adjustments. Better real-time tracking. More informed decisions.\n\nMarketers will move from data collection to pure analysis. Focus shifts to action, not setup.\n\nAre you ready for truly intelligent SEO reporting?",
+          "sourceArticle": "How to Build a Full SEO Analysis Dashboard with the Moz API MCP Server",
+          "imageHeadline": "SEO *FUTURE* IS AI",
+          "imageSubtext": "Predictive insights with new API integrations.",
+          "badgeText": "AI TREND",
+          "ctaText": "TRY WEB APP"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-08-06",
     "category": "ai",
     "posts": [
