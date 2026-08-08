@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-08-08",
+    "category": "ai",
+    "posts": [
+      {
+        "designArchetype": "Forbes Cover",
+        "layoutFamily": "news-card",
+        "colorPalette": "Electric Blue",
+        "characterRole": "AI Consultant",
+        "environment": "Innovation lab",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. As an AI Consultant, standing in an innovation lab with a blurred foreground monitor screen showing code, looking at the camera. Wearing a smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "AI security just got real.",
+          "content": "OpenAI paused Astra. It found the model could launch cyberattacks.\n\nThis isn't just a tech issue. It's a huge alert for brands using AI. Your data security must be bulletproof.\n\nAlways audit your AI tools. What's your brand's AI security plan?\n\n#AISecurity #BrandProtection #TechNews",
+          "sourceArticle": "OpenAI says it slowed Astra model development over security concerns",
+          "imageHeadline": "*AI* SECURITY *ALERT*",
+          "imageSubtext": "OpenAI model paused due to independent cyberattack capabilities.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Startup Founder",
+        "environment": "Startup hub",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. As a Startup Founder, standing in a vibrant startup hub with a blurred foreground white board showing ideas, looking at the camera. Wearing a modern startup hoodie. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Stop wasting AI budget.",
+          "content": "Rippling lost millions on AI. So they built a cost tracker. You need one too.\n\nHere's your playbook:\n1. Track every AI tool subscription.\n2. Assign AI spend to projects.\n3. Review ROI monthly for AI tools.\n4. Cut tools not driving results.\n\nControl your spend, boost your marketing ROI. How do you track AI costs?\n\n#AIMarketing #Budgeting #MarketingTips",
+          "sourceArticle": "After Rippling blew millions on AI in months, it built an employee ROI tool",
+          "imageHeadline": "TRACK *AI* SPEND",
+          "imageSubtext": "Implement Rippling's strategy to save millions on AI tools.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "LinkedIn Thought Leader",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Technology Evangelist",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. As a Technology Evangelist, in a futuristic workspace with a blurred foreground holographic interface, looking away thoughtfully. Wearing a turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "Your browser is outdated.",
+          "content": "Everyone uses Chrome. But is it right for AI? Cloudflare launched Kitesurf. It's a browser *for* AI agents.\n\nThis means traditional browsers are inefficient for automation. Marketers, think about your AI agents. Are they truly optimized?\n\nWe need dedicated tools, not human-first compromises. Are you still using human-centric tools for AI tasks?\n\n#AIAutomation #Cloudflare #MarketingTech",
+          "sourceArticle": "Cloudflare launches Kitesurf, a browser built for AI agents",
+          "imageHeadline": "AI NEEDS *NEW* BROWSERS",
+          "imageSubtext": "Human-designed interfaces limit AI agent efficiency and speed.",
+          "badgeText": "AI TREND",
+          "ctaText": "DISCOVER MORE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Corporate Executive",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Corporate Executive",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. As a Corporate Executive, sitting at a polished desk in an executive boardroom with a blurred foreground cup of coffee, looking at the camera. Wearing a navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "Slow launches cost sales.",
+          "content": "Remember product launches taking forever? That was the mistake. Airbnb now uses AI to ship features fast. Their new AI search function is a direct result.\n\nThe lesson: if your marketing or product cycles are slow, you're losing market share. AI shortens feedback loops. It cuts development time.\n\nBrands must adopt this speed. How fast can your team launch new features?\n\n#ProductLaunch #AIMarketing #GrowthStrategy",
+          "sourceArticle": "Airbnb says AI is helping it ship features faster as it tests a new search function",
+          "imageHeadline": "*SPEED* WINS NOW",
+          "imageSubtext": "Traditional slow feature development kills market advantage and growth.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "LEARN STRATEGY"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Book Author",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Author",
+        "environment": "Library",
+        "cameraStyle": "Looking away",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. As an Author, in a classic library with a blurred foreground open book, looking away thoughtfully. Wearing a white shirt with rolled sleeves. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "AI's biggest branding risk.",
+          "content": "Tech leaders use big words. \"New government,\" \"town hall.\" Historian Jill Lepore calls it the \"Artificial State.\"\n\nMy prediction: brands leaning too heavily into utopian AI narratives will fail. Authenticity matters.\n\nPeople want real solutions, not abstract promises. Marketing must ground AI in tangible value, not sci-fi dreams. What's the real promise of AI for your audience?\n\n#BrandStrategy #AIBusiness #MarketingTrends",
+          "sourceArticle": "Jill Lepore on the ‘Artificial State’ and why Silicon Valley’s leaders are bad sci-fi readers",
+          "imageHeadline": "*BEYOND* HYPE *CYCLES*",
+          "imageSubtext": "Future of AI branding requires authenticity over grand utopian visions.",
+          "badgeText": "STRATEGY FORECAST",
+          "ctaText": "READ THOUGHTS"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-08-07",
     "category": "marketing",
     "posts": [
