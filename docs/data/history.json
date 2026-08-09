@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-08-09",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "news-card",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Corporate Executive",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive in an Executive boardroom. Close-up portrait. Charcoal executive suit. In the foreground, a sleek, out-of-focus glass desk. In the midground, the manager. In the background, a modern boardroom with a large screen displaying charts. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "Big Meta fine changes rules.",
+          "content": "Meta just faced a huge $567M fine. This shows a growing focus on platform accountability.\n\nFor brands, it means understanding social media risk is critical. Your ad placements and brand safety need constant review. You must align with platforms that prioritize user well-being.\n\nHow will this impact your social media ad strategy?",
+          "sourceArticle": "Meta fined $567M for failing to protect teens",
+          "imageHeadline": "*META* FINED *BIG*",
+          "imageSubtext": "Social platform penalties impact brand safety and ad spend.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Business Coach",
+        "environment": "Conference venue",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach in a Conference venue. Presentation shot. Navy business suit. In the foreground, an out-of-focus projector screen showing a blurred graph. In the midground, the manager. In the background, a large conference hall with rows of seats. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Automate marketing, grow faster.",
+          "content": "Enterprise marketing automation helps big teams. It scales personalization. Here's a 3-step playbook for your business.\n\n1. Map your customer journey: Understand every touchpoint. Identify where manual tasks slow you down.\n\n2. Consolidate your tools: Fragmented systems kill efficiency. Integrate your CRM, email, and content platforms. A unified view helps everyone.\n\n3. Start small, then expand: Don't automate everything at once. Pick one key workflow, like lead nurturing. Perfect it, then add more.\n\nWhat's your first automation goal?",
+          "sourceArticle": "What is enterprise marketing automation? Features, platforms, and best practices",
+          "imageHeadline": "*AUTOMATE* FASTER",
+          "imageSubtext": "Simple steps to scale your marketing efforts today.",
+          "badgeText": "AI TREND",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "LinkedIn Thought Leader",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Dark Forest",
+        "characterRole": "Professor",
+        "environment": "Library",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor in a Library. Sitting at desk. Turtleneck with blazer. In the foreground, an open book with blurred text. In the midground, the manager. In the background, floor-to-ceiling bookshelves. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "Bans don't always work.",
+          "content": "Australia tried to ban teens from social media. A new report shows usage hasn't changed much.\n\nThis challenges common thinking. Outright bans often lead to workarounds. Real engagement requires understanding, not just restriction.\n\nFor brands, it means you can't ignore younger audiences. You must adapt your messaging to where they truly are. Focus on building real connections.\n\nAre bans truly effective for digital habits?",
+          "sourceArticle": "Australia’s teen social bans are having little effect",
+          "imageHeadline": "*BANS* DON'T WORK",
+          "imageSubtext": "Teen social media usage challenges old restrictions.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "Startup Founder",
+        "environment": "Startup hub",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Startup Founder in a Startup hub. Full-body standing. Modern startup hoodie. In the foreground, a blurred whiteboard with ideation notes. In the midground, the manager. In the background, an open-plan startup office with modern furniture. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "CRM failure isn't tech.",
+          "content": "Over 60% of CRM rollouts fail. The shocking truth? It's rarely the software's fault.\n\nMost failures come from people and process issues. Teams don't adopt it. Workflows aren't updated. The tool gets blamed for human resistance.\n\nWe learned this the hard way. A great CRM needs a great plan. Train your team. Redesign your processes first. Then, launch the tech.\n\nWhat was your biggest CRM challenge?",
+          "sourceArticle": "CRM deployment: A step-by-step process for growing teams",
+          "imageHeadline": "*CRM* ROLLOUTS *FAIL*",
+          "imageSubtext": "Avoid common pitfalls in your next CRM deployment.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "AI Consultant",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant in a Futuristic workspace. Looking at camera. Luxury business casual. In the foreground, a glowing, out-of-focus holographic interface. In the midground, the manager. In the background, a sleek, minimalist office with ambient blue lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "Agentic AI changes marketing.",
+          "content": "Gartner's 2026 CMO agenda highlights agentic AI. It's putting brand value at the core of marketing leadership.\n\nThis means AI won't just optimize campaigns. It will create, adapt, and execute them autonomously. Your brand's identity and values become even more critical.\n\nWe need to build AI systems that understand our brand voice. They must protect brand integrity at scale. The future of marketing is less about manual tasks and more about strategic AI guidance.\n\nAre you ready for agentic AI in marketing?",
+          "sourceArticle": "Gartner's 2026 CMO research agenda puts agentic AI and brand value at the center of marketing leadership - marketscale.com",
+          "imageHeadline": "*AGENTIC* AI *FUTURE*",
+          "imageSubtext": "How AI will redefine brand value and marketing leadership.",
+          "badgeText": "AI TREND",
+          "ctaText": "TRY WEB APP"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-08-08",
     "category": "ai",
     "posts": [
