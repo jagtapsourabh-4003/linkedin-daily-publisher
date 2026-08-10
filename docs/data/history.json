@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-08-10",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "news-card",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Technology Evangelist",
+        "environment": "Media studio",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist in a Media studio, Looking at camera, Charcoal executive suit. Out-of-focus microphone in foreground, subject in midground, blurred media studio background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "LinkedIn just changed its feed.",
+          "content": "LinkedIn's new algorithm is live. It now prioritizes post replies and comments.\n\nThis means passive likes matter less. Real conversations get more reach.\n\nYour content strategy needs to adapt. Ask questions. Spark discussions. Drive engagement.\n\nAre you ready to shift your content approach?",
+          "sourceArticle": "LinkedIn updates feed display to drive more post replies and comments",
+          "imageHeadline": "LINKEDIN *SHIFT*.",
+          "imageSubtext": "New algorithm prioritizes replies for wider reach.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Strategy Consultant",
+        "environment": "Conference venue",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant in a Conference venue, Presentation shot, Navy business suit. Glass screen in foreground, subject in midground, blurred conference venue background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Agentic commerce is here.",
+          "content": "AI agents are changing how people buy. Optimizing for this new world is key for marketers.\n\nHere's a quick playbook to start:\n\n1. Use Markdown for clear product descriptions. AI loves structured text.\n2. Optimize product feeds. Ensure rich, detailed data points.\n3. Implement structured data. Help AI understand your offerings easily.\n4. Integrate with MCP (Model Context Protocol). Connect your products directly to AI answers.\n\nWhat's your first step?",
+          "sourceArticle": "The SEO’s Guide to Agentic Commerce — Whiteboard Friday",
+          "imageHeadline": "AGENTIC SEO *GUIDE*.",
+          "imageSubtext": "Three steps to optimize for AI-driven commerce.",
+          "badgeText": "AI TREND",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Startup Founder",
+        "environment": "Startup hub",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Startup Founder in a Startup hub, Side profile, Modern startup hoodie. Office frame in foreground, subject in midground, blurred startup hub background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "Your CRM isn't failing.",
+          "content": "Many blame software when CRM rollouts struggle. That's a common mistake.\n\nOver 60% of CRM failures come from people and process issues. Not the tech itself.\n\nA great CRM needs a solid plan. It needs teams on board. It needs clear workflows.\n\nAre we looking at the real problem?",
+          "sourceArticle": "CRM deployment: A step-by-step process for growing teams",
+          "imageHeadline": "CRM *MYTH* BUSTED.",
+          "imageSubtext": "Why 60% of CRM projects fail isn't the software.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Harvard Professor",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Slate Blue",
+        "characterRole": "Professor",
+        "environment": "Library",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor in a Library, Sitting at desk, Formal university attire. Out-of-focus books in foreground, subject in midground, blurred library background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "AI 'experts' are exposed.",
+          "content": "LinkedIn's crackdown on 'AI slop' content is a big wake-up call. Many relied on AI to generate generic posts.\n\nThis led to a flood of low-value content. It lacked real insight. It lacked human touch.\n\nThe lesson: True thought leadership needs original ideas. AI is a tool, not a ghostwriter for your expertise.\n\nWhat does 'authentic' mean to you now?",
+          "sourceArticle": "LinkedIn’s AI Slop Crackdown Could Expose the Fake Experts Flooding the Digital Marketing Industry - HackerNoon",
+          "imageHeadline": "*FAKE* AI EXPERTS.",
+          "imageSubtext": "Lessons from LinkedIn's content quality crackdown.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "AI Consultant",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant in a Futuristic workspace, Over-the-shoulder, Turtleneck with blazer. Glass screen with digital data in foreground, subject in midground, blurred futuristic workspace background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "CMOs will focus here.",
+          "content": "Gartner's 2026 CMO agenda points to two big areas: agentic AI and brand value.\n\nThis isn't just about tools. It's about how AI directly impacts your brand's reputation and perception.\n\nMarketers need to master agentic AI for growth. They need to protect and build brand value in an AI-driven world.\n\nAre you building your strategy around these shifts?",
+          "sourceArticle": "Gartner's 2026 CMO research agenda puts agentic AI and brand value at the center of marketing leadership - MarketScale",
+          "imageHeadline": "CMO *FUTURE* FOCUS.",
+          "imageSubtext": "Agentic AI and brand value drive 2026 strategy.",
+          "badgeText": "STRATEGY INSIGHT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-08-09",
     "category": "marketing",
     "posts": [
