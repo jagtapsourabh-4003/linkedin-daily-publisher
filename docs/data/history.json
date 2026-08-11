@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-08-11",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Forbes Cover",
+        "layoutFamily": "split-left",
+        "colorPalette": "Electric Blue",
+        "characterRole": "AI Consultant",
+        "environment": "Innovation lab",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant, in an Innovation lab. Half-body portrait, wearing a Smart casual blazer. Foreground: out-of-focus microphone. Midground: the manager. Background: innovation lab. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "Meta just changed ad targeting.",
+          "content": "Meta just changed ad targeting.\nThey added dedicated ad exclusion audiences. This means brands can now avoid showing ads to specific groups. It prevents wasted ad spend. It also helps with compliance for sensitive products. Think about refining your campaigns. No more reaching people who don't want your message. This makes ads more effective and less intrusive.\nHow will you use this new feature?\n#MetaAds #AdTargeting #DigitalMarketing",
+          "sourceArticle": "Meta adds dedicated ad exclusion audiences",
+          "imageHeadline": "META *TARGETING* UPDATE",
+          "imageSubtext": "Exclude audiences for smarter ad spend.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "TED Speaker",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Business Coach",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach, on an Auditorium stage. Speaking on stage, wearing a Conference speaker outfit. Foreground: out-of-focus glass screen. Midground: the manager. Background: auditorium stage. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Make your claims *more* believable.",
+          "content": "Make your claims *more* believable. Ever heard Mount Everest is 29,002 feet, not 29,000? That extra '02' makes it feel more precise and real. Your marketing can do the same.\nHere’s how: 1. Use odd numbers: '27% growth' feels more real than 'around 30%'. 2. Add specific details: 'Saved 1,234 hours last year' beats 'saved many hours'. 3. Cite your sources: Even internal data helps. 4. Avoid round figures: Precision builds trust.\nTry it in your next campaign.\n#BrandTrust #CopywritingTips #MarketingStrategy",
+          "sourceArticle": "The simple way to make your marketing claims 42.9% more believable",
+          "imageHeadline": "*PRECISE* CLAIMS WORK",
+          "imageSubtext": "Boost trust by adding specific data points.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Technology Evangelist",
+        "environment": "Startup hub",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist, in a Startup hub. Close-up portrait, wearing a Modern startup hoodie. Foreground: out-of-focus plants. Midground: the manager. Background: startup hub. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "AI slop isn't the real problem.",
+          "content": "AI slop isn't the real problem. Everyone talks about AI generating low-quality content. But what about human-generated 'fake expertise'?\nLinkedIn's crackdown on AI content is good. Yet, the bigger issue might be experts who offer no real value. They just parrot general advice. I'd rather see a transparently AI-generated post with actual data. Real insights, even from AI, beat vague human opinions.\nDon't you agree?\n#AISlop #FakeExperts #ContentStrategy",
+          "sourceArticle": "LinkedIn’s AI Slop Crackdown Could Expose the Fake Experts Flooding the Digital Marketing Industry",
+          "imageHeadline": "FAKE *EXPERTS* LOSE",
+          "imageSubtext": "Is human 'slop' worse than AI content?",
+          "badgeText": "AI TREND",
+          "ctaText": "JOIN THE DEBATE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Corporate Executive",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Corporate Executive",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive, in an Executive boardroom. Sitting at desk, wearing a Charcoal executive suit. Foreground: out-of-focus office frame. Midground: the manager. Background: executive boardroom. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "CRM failures are preventable.",
+          "content": "CRM failures are preventable. We often blame the software. But over 60% of CRM rollouts fail due to people and process issues. Not the tech itself. The mistake? Not preparing your team. Not defining clear workflows. Thinking a tool will fix broken processes.\nThe lesson: Before you buy, map your current process. Train your team thoroughly. Get everyone on board. The best CRM won't save a bad plan.\nWhat was your biggest CRM challenge?\n#CRMStrategy #GrowthMarketing #BusinessProcess",
+          "sourceArticle": "CRM deployment: A step-by-step process for growing teams",
+          "imageHeadline": "CRM *ROLLOUTS* FAIL",
+          "imageSubtext": "People and process break more than software.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "LEARN BEST PRACTICES"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "layered-depth",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Innovation Leader",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Looking away",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader, in a Futuristic workspace. Looking away, wearing Luxury business casual. Foreground: out-of-focus glass screen. Midground: the manager. Background: futuristic workspace. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "AI changes brand visibility.",
+          "content": "AI changes brand visibility. We're seeing 'query fan-outs' with LLMs. One simple question can trigger many related searches and data pulls. This means brands need to be visible across more touchpoints. Not just traditional search. AI bias in these responses is real. Brands must optimize for how AI 'sees' them. This isn't just SEO anymore. It's about AI content hygiene.\nExpect brands to invest heavily in brand monitoring tools for AI answers.\nHow will your brand prepare?\n#AIOptimization #BrandBuilding #FutureOfSearch",
+          "sourceArticle": "What 50k Query Fan-Outs Reveal About Brands (+ Free Data!)",
+          "imageHeadline": "AI *BRAND* SHIFT",
+          "imageSubtext": "Optimize for how AI 'sees' your brand now.",
+          "badgeText": "AI TREND",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-08-10",
     "category": "marketing",
     "posts": [
