@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-08-12",
+    "category": "ai",
+    "posts": [
+      {
+        "designArchetype": "LinkedIn Thought Leader",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Electric Blue",
+        "characterRole": "AI Consultant",
+        "environment": "Innovation lab",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant in an Innovation lab. Close-up portrait. Smart casual blazer. Foreground: out-of-focus server racks, midground: manager, background: bright monitors showing code. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "Linux users, your wait is over.",
+          "content": "OpenAI just launched ChatGPT desktop for Linux. This is big for marketers who use Linux environments.\nIt streamlines content creation and research. Think faster copy drafts and quicker market analysis.\nWe can integrate AI tools more smoothly into our daily tasks. This means less friction and more output.\nHow will this change your content flow? #AITools #MarketingTech #LinuxAI",
+          "sourceArticle": "OpenAI launches ChatGPT desktop app for Linux",
+          "imageHeadline": "*AI* GOES LINUX",
+          "imageSubtext": "Desktop ChatGPT now boosts marketing efficiency.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "split-right",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Startup Founder",
+        "environment": "Startup hub",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Startup Founder in a Startup hub. Half-body portrait. Modern startup hoodie. Foreground: out-of-focus coffee cup on a modern desk, midground: manager, background: collaborative whiteboard with ideas. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Google search changed. What now?",
+          "content": "Google redesigned its search box after 25 years. This isn't just cosmetic. It signals a shift in how search works.\nFor marketers, this means rethinking brand visibility.\n*   **Action 1:** Prioritize rich snippets and visual content. Google favors diverse results.\n*   **Action 2:** Focus on conversational SEO. People are using more natural language queries.\n*   **Action 3:** Update your local listings. Local search is becoming more prominent.\n*   **Action 4:** Monitor user behavior data. Adapt quickly to new search patterns.\nThis new era demands agility. Are you ready to adapt your strategy? #GoogleSearch #SEOStrategy #MarketingPlaybook",
+          "sourceArticle": "Google just redesigned the search box for the first time in 25 years — here’s why it matters more than you think.",
+          "imageHeadline": "*NEW* SEARCH GAME",
+          "imageSubtext": "Google's 25-year redesign: adapt your SEO now.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Creative Director",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Innovation Leader",
+        "environment": "Creative workspace",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader in a Creative workspace. Presentation shot. White shirt with rolled sleeves. Foreground: out-of-focus design sketches, midground: manager, background: open-plan office with art. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "Don't pay for AI code.",
+          "content": "Everyone talks about premium AI coding agents. Like Claude Code, costing hundreds monthly. But do you *really* need that for marketing ops? I say no.\nFree alternatives like Goose deliver similar value. They automate tasks, build landing pages, or integrate APIs without the hefty price tag.\nFor marketers, budget matters. We need efficient tools, not just expensive ones. Let's build smart, not just spend big.\nWhat's in your lean AI stack? #AICoding #MarketingBudget #TechStack",
+          "sourceArticle": "Claude Code costs up to $200 a month. Goose does the same thing for free.",
+          "imageHeadline": "*FREE* AI POWER",
+          "imageSubtext": "Skip costly AI tools for smart marketing builds.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Business Strategist",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Strategy Consultant",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant in an Executive boardroom. Looking at camera. Navy business suit. Foreground: out-of-focus polished conference table corner, midground: manager, background: strategic data visualizations on a screen. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "AI ads risk brand trust.",
+          "content": "The UN warns about AI in advertising fueling misinformation. This is a critical lesson for every brand.\nA recent campaign relied too heavily on AI-generated content without human oversight. It spread inaccurate claims quickly.\nThe immediate result? A huge drop in brand trust and public backlash. The mistake was clear: sacrificing ethical guidelines for speed.\nAlways verify AI output. Build trust, don't break it. How do you ensure ethical AI in your campaigns? #BrandTrust #AIMarketing #Misinformation",
+          "sourceArticle": "AI in advertising risks fuelling misinformation crisis, UN warns",
+          "imageHeadline": "*TRUST* CRISIS AHEAD?",
+          "imageSubtext": "Misinformation risks: AI in ads needs human oversight.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Innovation Lab Researcher",
+        "layoutFamily": "floating-cards",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Technology Evangelist",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist in a Futuristic workspace. Side profile. Premium polo shirt. Foreground: out-of-focus holographic display with data, midground: manager, background: sleek, minimalist office design. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "Your personal AI is coming.",
+          "content": "River AI just raised $1.1B for personal agents. This is where AI is heading.\nImagine an AI that truly understands your habits, needs, and preferences across all platforms. For marketers, this changes everything.\nWe'll move from segmenting audiences to hyper-individualized engagement. Brands will need to think like personal agents.\nContent, offers, and interactions will be bespoke. Get ready for a new era of 1:1 marketing at scale. What will your brand's personal agent strategy look like? #PersonalAI #FutureOfMarketing #HyperPersonalization",
+          "sourceArticle": "General Catalyst leads $1.1B round into 2-month-old River AI",
+          "imageHeadline": "*AGENTS* ARE NEXT",
+          "imageSubtext": "River AI's vision for hyper-personalized marketing future.",
+          "badgeText": "AI TREND",
+          "ctaText": "TRY WEB APP"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-08-11",
     "category": "marketing",
     "posts": [
