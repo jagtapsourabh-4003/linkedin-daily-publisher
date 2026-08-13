@@ -14,7 +14,6 @@ let state = {
 
 // Global Image Resources (Custom Avatar)
 const avatarImg = new Image();
-avatarImg.crossOrigin = 'anonymous';
 let avatarImageLoaded = false;
 
 // Multi-avatar resources for the 18 draft options
@@ -23,7 +22,6 @@ const optionAvatarsLoaded = Array(18).fill(false);
 
 for (let i = 1; i <= 18; i++) {
   const img = new Image();
-  img.crossOrigin = 'anonymous';
   img.onload = () => {
     optionAvatarsLoaded[i - 1] = true;
     console.log(`[Avatar] Option avatar ${i} loaded.`);
@@ -2490,41 +2488,58 @@ function buildLayoutFromFamily(layoutFamily, palette, headline, subtext, categor
 }
 
 // Pure JS client-side image background removal helper
-function createCutoutAvatarCanvas(sourceImg, sensitivity = 45) {
+function createCutoutAvatarCanvas(sourceImg, sensitivity = 55) {
   const c = document.createElement('canvas');
-  c.width = sourceImg.naturalWidth || sourceImg.width || 400;
-  c.height = sourceImg.naturalHeight || sourceImg.height || 400;
-  const ctx = c.getContext('2d');
-  ctx.drawImage(sourceImg, 0, 0, c.width, c.height);
+  const w = sourceImg.naturalWidth || sourceImg.width || 400;
+  const h = sourceImg.naturalHeight || sourceImg.height || 400;
+  c.width = w;
+  c.height = h;
+  const ctx = c.getContext('2d', { willReadFrequently: true });
 
   try {
-    const imgData = ctx.getImageData(0, 0, c.width, c.height);
+    ctx.drawImage(sourceImg, 0, 0, w, h);
+    const imgData = ctx.getImageData(0, 0, w, h);
     const data = imgData.data;
 
-    // Sample background colors from top-left, top-right, and top-center corners
-    const bgR = (data[0] + data[(c.width - 1) * 4] + data[Math.floor(c.width / 2) * 4]) / 3;
-    const bgG = (data[1] + data[(c.width - 1) * 4 + 1] + data[Math.floor(c.width / 2) * 4 + 1]) / 3;
-    const bgB = (data[2] + data[(c.width - 1) * 4 + 2] + data[Math.floor(c.width / 2) * 4 + 2]) / 3;
+    // Sample background colors from 4 corners + top middle
+    const corners = [
+      0,                            // top-left
+      (w - 1) * 4,                  // top-right
+      (h - 1) * w * 4,              // bottom-left
+      ((h - 1) * w + (w - 1)) * 4,  // bottom-right
+      Math.floor(w / 2) * 4         // top-center
+    ];
+
+    const bgColors = corners.map(idx => ({
+      r: data[idx] || 255,
+      g: data[idx + 1] || 255,
+      b: data[idx + 2] || 255
+    }));
 
     for (let i = 0; i < data.length; i += 4) {
       const r = data[i];
       const g = data[i + 1];
       const b = data[i + 2];
 
-      // Calculate Euclidean distance in RGB color space from background color
-      const dist = Math.sqrt((r - bgR) ** 2 + (g - bgG) ** 2 + (b - bgB) ** 2);
+      let minDist = 999;
+      for (const bg of bgColors) {
+        const dist = Math.sqrt((r - bg.r) ** 2 + (g - bg.g) ** 2 + (b - bg.b) ** 2);
+        if (dist < minDist) minDist = dist;
+      }
 
-      if (dist < sensitivity) {
-        data[i + 3] = 0; // Make pixel 100% transparent
-      } else if (dist < sensitivity + 20) {
-        // Feather alpha edge for smooth cutout blending
-        data[i + 3] = Math.floor(((dist - sensitivity) / 20) * 255);
+      // Detect white/light studio background
+      const isWhiteStudioBg = (r > 215 && g > 215 && b > 215);
+
+      if (minDist < sensitivity || isWhiteStudioBg) {
+        data[i + 3] = 0; // 100% transparent
+      } else if (minDist < sensitivity + 30) {
+        data[i + 3] = Math.floor(((minDist - sensitivity) / 30) * 255); // Smooth edge feathering
       }
     }
 
     ctx.putImageData(imgData, 0, 0);
   } catch (e) {
-    console.warn('[Cutout] Canvas ImageData access failed:', e.message);
+    console.warn('[Cutout] Canvas ImageData fallback:', e.message);
   }
   return c;
 }
