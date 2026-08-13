@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-08-13",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "news-card",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Technology Evangelist",
+        "environment": "Media studio",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist in a Media studio, looking at camera, wearing a Modern startup hoodie. Out-of-focus microphone in foreground, manager in midground, blurred media studio background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "YouTube's AI chatbot is here.",
+          "content": "YouTube just opened its AI chatbot access. This is big news for content creators.\n\nThe bot gives contextual answers right inside the app. It's on desktop, mobile, and TV.\n\nThink about the immediate impact. Viewers get instant info without leaving the platform.\n\nFor brands, this means your video content needs to be ultra-clear and answer questions directly. Optimize for concise, AI-digestible takeaways. Your video descriptions and spoken content are now AI data sources.\n\nAre you ready for AI to summarize your brand message?",
+          "sourceArticle": "YouTube expands access to its in-app AI chatbot",
+          "imageHeadline": "YOUTUBE'S *AI*",
+          "imageSubtext": "New chatbot expands access, changes content strategy.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Strategy Consultant",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant in an Executive boardroom, presentation shot, wearing a Navy business suit. Glass screen in foreground, manager in midground, blurred executive boardroom background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Boost local SEO with AI.",
+          "content": "AI for local SEO isn't just hype. It's a game-changer.\n\nHere's a quick playbook to get started without wasted effort:\n\n1. AI for review responses: Automate personalized, positive replies. This builds trust and saves time.\n\n2. AI for content localization: Generate service page content tailored to specific neighborhoods. This hits local search terms precisely.\n\n3. AI for competitor analysis: Use AI to quickly summarize local competitor strategies. Find their weak spots fast.\n\n4. AI for Google Business Profile updates: Create fresh, engaging posts and Q&A content. Keep your profile active and visible.\n\nReady to get more local leads?",
+          "sourceArticle": "5 AI Workflows for Local SEO",
+          "imageHeadline": "LOCAL SEO *AI*",
+          "imageSubtext": "Four clear steps to grow your local search visibility.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Harvard Professor",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Professor",
+        "environment": "Library",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor in a Library, side profile, wearing Formal university attire. Bookshelves in foreground (blurry), manager in midground, blurred library background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "Are your KPIs vanity metrics?",
+          "content": "For years, we've chased traffic and search rank. But AI search changes everything.\n\nHigh traffic and top rankings can now be vanity metrics. If that traffic doesn't convert, it's just noise.\n\nWhat matters is AI search visibility ROI. Are your AI efforts actually bringing leads? Are they impacting sales?\n\nFocus on metrics that connect directly to business outcomes. Look at conversion rates from AI-influenced searches. Track customer questions answered by AI that led to purchases.\n\nAre you measuring real business impact or just pretty numbers?",
+          "sourceArticle": "AI search performance KPIs every marketer should track",
+          "imageHeadline": "*AI* SEARCH MYTH",
+          "imageSubtext": "Why traffic and rank are often just vanity metrics now.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Corporate Executive",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Slate Blue",
+        "characterRole": "Corporate Executive",
+        "environment": "Luxury office",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive in a Luxury office, sitting at desk, wearing a Charcoal executive suit. Office frame in foreground, manager in midground, blurred luxury office background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "Martech spending, zero impact.",
+          "content": "Companies pour millions into marketing technology. Yet, many see little real impact.\n\nWhy? Often, it's a fragmentation issue. Too many tools, not enough strategy.\n\nWe buy solutions without connecting them to clear business goals. We implement without integrating them into existing workflows.\n\nThe mistake is focusing on the 'tech' instead of the 'marketing'. Martech should serve your strategy, not define it.\n\nWhat's the real lesson? Start with your growth goals. Then find the simplest tech to get there.",
+          "sourceArticle": "Too Much Marketing Technology, Too Little Impact - Bain & Company",
+          "imageHeadline": "MARTECH *FAIL*",
+          "imageSubtext": "High spend, low return: A common marketing tech mistake.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Business Strategist",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "Business Coach",
+        "environment": "Coffee shop workspace",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach in a Coffee shop workspace, interview setup, wearing Luxury business casual. Plants in foreground, manager in midground, blurred coffee shop background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "Marketing's new 'Trust Department.'",
+          "content": "The concept of a 'Trust Department' in marketing is gaining traction. This isn't just a trend; it's a future necessity.\n\nAs AI deepens, trust becomes a brand's most valuable asset. Consumers are wary of AI-generated content and information.\n\nThis 'department' will focus on transparency, ethical AI use, and authentic brand communication. It will oversee how AI impacts brand reputation and customer perception.\n\nExpect to see Chief Trust Officers or dedicated teams. Their job? To ensure brand integrity in an AI-driven world.\n\nWill your organization prioritize trust in its marketing strategy?",
+          "sourceArticle": "Why the 'Trust Department' May Be Marketing's Next Org Chart Fix - cmswire.com",
+          "imageHeadline": "TRUST *MARKETING*",
+          "imageSubtext": "The next big shift in brand building and organizational structure.",
+          "badgeText": "STRATEGY OUTLOOK",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-08-12",
     "category": "ai",
     "posts": [
