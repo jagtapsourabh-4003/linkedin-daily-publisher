@@ -989,19 +989,22 @@ body {
 @media (min-width: 992px) {
   .creative-content-body {
     flex-direction: row;
-    align-items: stretch;
-    justify-content: space-around;
+    align-items: flex-start;
+    justify-content: center;
   }
 }
 
 .creative-canvas {
   width: 100%;
   max-width: 420px;
-  aspect-ratio: 1;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
   border-radius: 8px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.05);
   flex-shrink: 0;
+  align-self: flex-start;
 }
 
 .disabled-item {

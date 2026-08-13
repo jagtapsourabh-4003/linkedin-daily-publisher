@@ -1535,7 +1535,8 @@ function renderActiveDrafts() {
       const sliderHeadlineSize = cardEl.querySelector(`#slider-headline-size-${post.id}`);
       const sliderSubtextSize = cardEl.querySelector(`#slider-subtext-size-${post.id}`);
       const labelHeadlineSize = cardEl.querySelector(`#val-headline-size-${post.id}`);
-      const labelSubtextSize = cardEl.querySelector(`#val-subtext-size-${post.id}`);
+      const checkOverlayAvatar = cardEl.querySelector(`#check-overlay-avatar-${post.id}`);
+      const checkBgRemove = cardEl.querySelector(`#check-bg-remove-${post.id}`);
 
       const triggerRedrawAndSave = (isKeystroke = false) => {
         // Update local object memory
@@ -1544,6 +1545,9 @@ function renderActiveDrafts() {
         post.avatarStyleIdx = parseInt(avatarSelect.value);
         post.headlineFontSize = parseInt(sliderHeadlineSize.value);
         post.subtextFontSize = parseInt(sliderSubtextSize.value);
+        if (checkOverlayAvatar) post.overlayAvatar = checkOverlayAvatar.checked;
+        if (checkBgRemove) post.removeAvatarBg = checkBgRemove.checked;
+        
         if (!post.postContent) post.postContent = {};
         post.postContent.imageHeadline = headlineInput.value;
         post.postContent.imageSubtext = subtextInput.value;
@@ -1566,7 +1570,7 @@ function renderActiveDrafts() {
         // Re-draw canvas
         drawCreative(canvas, activeEntry.category, headlineInput.value, subtextInput.value, post.id, activeEntry.date, post.layout || post);
 
-        // Save layout modifications to server (only on select change or text input blur)
+        // Save layout modifications to server/localStorage (only on select change or text input blur)
         if (!isKeystroke) {
           saveDesignEdit(state.activeDate, post.id, {
             layoutFamily: layoutSelect.value,
@@ -1578,6 +1582,8 @@ function renderActiveDrafts() {
             ctaText: ctaInput.value,
             headlineFontSize: parseInt(sliderHeadlineSize.value),
             subtextFontSize: parseInt(sliderSubtextSize.value),
+            overlayAvatar: checkOverlayAvatar ? checkOverlayAvatar.checked : true,
+            removeAvatarBg: checkBgRemove ? checkBgRemove.checked : false,
             customColors: paletteSelect.value === 'Custom' ? {
               textColor: colorText.value,
               primary: colorPrimary.value,
@@ -1756,28 +1762,22 @@ function renderActiveDrafts() {
     }
 
     // Avatar Overlay & Background Removal Checkbox Listeners
-    const checkOverlayAvatar = cardEl.querySelector(`#check-overlay-avatar-${post.id}`);
-    const checkBgRemove = cardEl.querySelector(`#check-bg-remove-${post.id}`);
-
-    if (checkOverlayAvatar) {
-      checkOverlayAvatar.addEventListener('change', (e) => {
-        post.overlayAvatar = e.target.checked;
-        saveCustomizerState(post.id, { overlayAvatar: e.target.checked });
-        triggerRedrawAndSave(false);
-      });
-    }
-
-    if (checkBgRemove) {
-      checkBgRemove.addEventListener('change', (e) => {
-        post.removeAvatarBg = e.target.checked;
-        saveCustomizerState(post.id, { removeAvatarBg: e.target.checked });
-        if (e.target.checked) {
-          showToast('✨ Automatic background removal applied to avatar cutout!', 'success');
-        } else {
-          showToast('Restored standard avatar photo frame.', 'info');
-        }
-        triggerRedrawAndSave(false);
-      });
+    if (!isDayPosted) {
+      if (checkOverlayAvatar) {
+        checkOverlayAvatar.addEventListener('change', () => {
+          triggerRedrawAndSave(false);
+        });
+      }
+      if (checkBgRemove) {
+        checkBgRemove.addEventListener('change', (e) => {
+          if (e.target.checked) {
+            showToast('✨ Automatic background removal applied to photo cutout!', 'success');
+          } else {
+            showToast('Restored default avatar photo frame.', 'info');
+          }
+          triggerRedrawAndSave(false);
+        });
+      }
     }
 
     // Post to Google Flow button listener
