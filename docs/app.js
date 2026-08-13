@@ -1435,6 +1435,10 @@ function renderActiveDrafts() {
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
           Open in Canva
         </button>
+        <button class="btn btn-secondary btn-sm" id="btn-photo-${post.id}" title="Open selected photo in new tab to drag directly into Canva" style="background: rgba(59, 130, 246, 0.12); border-color: rgba(59, 130, 246, 0.3); color: #60a5fa;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          Open Photo
+        </button>
         ${
           isThisPostSelected
             ? `<div class="posted-status-btn" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
@@ -1665,6 +1669,30 @@ function renderActiveDrafts() {
         
         const canvaTargetUrl = state.settings.canvaTemplateUrl || 'https://www.canva.com/';
         window.open(canvaTargetUrl, '_blank');
+      });
+    }
+
+    // Open Photo Button Listener (Opens selected avatar/profile photo in dedicated tab to drag & drop into Canva)
+    const photoBtn = cardEl.querySelector(`#btn-photo-${post.id}`);
+    if (photoBtn) {
+      photoBtn.addEventListener('click', () => {
+        let photoSrc = '';
+        if (state.settings.customAvatar) {
+          photoSrc = state.settings.customAvatar;
+        } else {
+          const originUrl = window.location.origin + window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
+          photoSrc = `${originUrl}/avatar_daily_${post.id}.jpg`;
+        }
+        
+        const win = window.open();
+        if (win) {
+          win.document.write(`<html><head><title>Selected Photo - Post ${post.id}</title></head><body style="background:#0f172a; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; margin:0; font-family:sans-serif; color:#fff;">
+            <h3 style="margin-bottom:12px;">📷 Your Selected Photo (Drag & Drop into Canva)</h3>
+            <img src="${photoSrc}" style="max-width:80vw; max-height:75vh; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.5);" />
+            <p style="margin-top:16px; opacity:0.85; font-size:0.9rem;">Drag this image directly into your open Canva tab or right-click to copy image!</p>
+          </body></html>`);
+          showToast('Opened selected photo in a new tab! Drag & drop it directly into Canva.', 'success');
+        }
       });
     }
 
@@ -2417,6 +2445,27 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
   const w = canvas.width;  // 1080
   const h = canvas.height; // 1080
   
+  // 0. IF CUSTOM CANVA GRAPHIC IS ATTACHED, DRAW ONLY THIS IMAGE AND EXIT IMMEDIATELY!
+  const customGraphic = (customLayout && customLayout.customCanvaGraphic) 
+    ? customLayout.customCanvaGraphic 
+    : (customLayout && customLayout.post && customLayout.post.customCanvaGraphic) 
+      ? customLayout.post.customCanvaGraphic 
+      : null;
+
+  if (customGraphic) {
+    const cImg = new Image();
+    cImg.onload = () => {
+      ctx.clearRect(0, 0, w, h);
+      ctx.drawImage(cImg, 0, 0, w, h);
+    };
+    cImg.src = customGraphic;
+    if (cImg.complete && cImg.naturalWidth > 0) {
+      ctx.clearRect(0, 0, w, h);
+      ctx.drawImage(cImg, 0, 0, w, h);
+    }
+    return; // Stop! Do not draw background gradients or default layout shapes over the custom image!
+  }
+
   // Calculate common visual variables used by both customLayout and fallback branches
   const dayIdx = getDayIndex(dateStr);
   const layoutIdx = (dayIdx + postId - 1) % 5;
