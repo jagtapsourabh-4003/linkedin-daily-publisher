@@ -629,6 +629,9 @@ async function loadHistory() {
               post.postContent.ctaText = custom.ctaText;
               post.ctaText = custom.ctaText;
             }
+            if (custom.customCanvaGraphic !== undefined) {
+              post.customCanvaGraphic = custom.customCanvaGraphic;
+            }
           }
         });
       }
@@ -968,18 +971,26 @@ async function postToGoogleFlow(postId, btnElement) {
   btnElement.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Generating graphic...`;
 
   try {
-    // 1. Grab matching canvas and export as data URL
-    const canvas = document.getElementById(`canvas-${postId}`);
-    if (!canvas) throw new Error('Image canvas element not found. Please scroll to the post card first.');
+    const activeEntry = state.history.find(h => h.date === date);
+    const post = activeEntry ? activeEntry.posts.find(p => p.id === postId) : null;
 
     let imageBase64 = null;
 
-    try {
-      imageBase64 = canvas.toDataURL('image/png');
-      if (!imageBase64 || imageBase64.length < 5000) {
-        throw new Error('Canvas appears blank or tainted');
-      }
-    } catch (taintErr) {
+    // 1. If custom Canva graphic is attached to this post card, use it directly!
+    if (post && post.customCanvaGraphic) {
+      console.log('[Publish] Using attached custom Canva graphic image for LinkedIn publishing');
+      imageBase64 = post.customCanvaGraphic;
+    } else {
+      // Grab matching canvas and export as data URL
+      const canvas = document.getElementById(`canvas-${postId}`);
+      if (!canvas) throw new Error('Image canvas element not found. Please scroll to the post card first.');
+
+      try {
+        imageBase64 = canvas.toDataURL('image/png');
+        if (!imageBase64 || imageBase64.length < 5000) {
+          throw new Error('Canvas appears blank or tainted');
+        }
+      } catch (taintErr) {
       console.warn('[Publish] Canvas toDataURL failed (tainted canvas). Re-drawing on a clean offscreen canvas without cross-origin images:', taintErr.message);
       showToast('Redrawing graphic on clean canvas (cross-origin image issue)...', 'info');
 
@@ -988,17 +999,13 @@ async function postToGoogleFlow(postId, btnElement) {
       offscreen.width = canvas.width;
       offscreen.height = canvas.height;
 
-      const activeEntry = state.history.find(h => h.date === date);
-      if (activeEntry) {
-        const post = activeEntry.posts.find(p => p.id === postId);
-        if (post) {
-          const headlineText = post.postContent?.imageHeadline || post.imageHeadline || '';
-          const subtextText = post.postContent?.imageSubtext || post.imageSubtext || '';
-          const savedAvatar = avatarImg.src;
-          avatarImg.src = '';
-          drawCreative(offscreen, activeEntry.category, headlineText, subtextText, post.id, activeEntry.date, post.layout || post);
-          avatarImg.src = savedAvatar;
-        }
+      if (activeEntry && post) {
+        const headlineText = post.postContent?.imageHeadline || post.imageHeadline || '';
+        const subtextText = post.postContent?.imageSubtext || post.imageSubtext || '';
+        const savedAvatar = avatarImg.src;
+        avatarImg.src = '';
+        drawCreative(offscreen, activeEntry.category, headlineText, subtextText, post.id, activeEntry.date, post.layout || post);
+        avatarImg.src = savedAvatar;
       }
 
       try {
@@ -1006,6 +1013,7 @@ async function postToGoogleFlow(postId, btnElement) {
       } catch (finalErr) {
         throw new Error(`Cannot export canvas: ${finalErr.message}. Please try re-uploading your profile picture from the Settings panel.`);
       }
+    }
     }
 
     // 2. Upload image directly from the browser to ImgBB
@@ -1046,9 +1054,6 @@ async function postToGoogleFlow(postId, btnElement) {
 
     // 3. Post text and image URL directly to the Make.com Webhook from the browser
     btnElement.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Publishing...`;
-    
-    const activeEntry = state.history.find(h => h.date === date);
-    const post = activeEntry.posts.find(p => p.id === postId);
     
     const res = await fetch(state.settings.webhookUrl, {
       method: 'POST',
@@ -1403,6 +1408,20 @@ function renderActiveDrafts() {
                 <textarea id="input-subtext-${post.id}" class="customizer-textarea" rows="2" placeholder="Enter subtext info...">${subtextText}</textarea>
               </div>
             </div>
+            <!-- Import Canva Graphic Image Section -->
+            <div class="customizer-row" style="margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--border-light);">
+              <div class="customizer-field full-width">
+                <label for="input-canva-graphic-${post.id}" style="color: #c084fc; font-weight: 600; display: flex; align-items: center; justify-content: space-between;">
+                  <span>📥 Import Final Canva Graphic Image (PNG / JPG)</span>
+                  ${post.customCanvaGraphic ? `<span class="badge" style="background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); font-size: 0.72rem;">✨ Canva Graphic Attached</span>` : ''}
+                </label>
+                <div style="display: flex; gap: 8px; align-items: center;">
+                  <input type="file" id="input-canva-graphic-${post.id}" accept="image/*" class="customizer-input" style="font-size: 0.8rem; padding: 6px 10px;">
+                  ${post.customCanvaGraphic ? `<button class="btn btn-sm" id="btn-remove-canva-${post.id}" type="button" style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; white-space: nowrap; font-size: 0.78rem;">🗑 Remove</button>` : ''}
+                </div>
+                <small style="color: #94a3b8; font-size: 0.75rem; display: block; margin-top: 4px;">Upload your finished graphic exported from Canva. It will replace the preview card and automatically publish to LinkedIn when you click "Select &amp; Publish".</small>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1621,24 +1640,67 @@ function renderActiveDrafts() {
       showToast('Copied content to clipboard!', 'success');
     });
 
-    // Open in Canva Button Listener
+    // Open in Canva Button Listener (Minimalist Export + Photo URL)
     const canvaBtn = cardEl.querySelector(`#btn-canva-${post.id}`);
     if (canvaBtn) {
       canvaBtn.addEventListener('click', () => {
         const headlineVal = (document.getElementById(`input-headline-${post.id}`) || {}).value || headlineText;
         const subtextVal = (document.getElementById(`input-subtext-${post.id}`) || {}).value || subtextText;
         const badgeVal = (document.getElementById(`input-badge-${post.id}`) || {}).value || badgeText;
+        const ctaVal = (document.getElementById(`input-cta-${post.id}`) || {}).value || ctaText;
         
-        const payloadText = `HEADLINE:\n${headlineVal}\n\nSUBTEXT:\n${subtextVal}\n\nTOP TAG:\n${badgeVal}\n\nFULL POST BODY:\n${textarea.value}`;
+        // Construct selected photo / avatar URL for Canva template
+        const originUrl = window.location.origin + window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
+        const photoUrl = state.settings.customAvatar ? state.settings.customAvatar : `${originUrl}/avatar_daily_${post.id}.jpg`;
+
+        // Minimalist payload - NO huge post body text
+        const payloadText = `[HEADLINE]\n${headlineVal}\n\n[SUBTEXT]\n${subtextVal}\n\n[TOP TAG]\n${badgeVal}\n\n[CTA BUTTON]\n${ctaVal}\n\n[SELECTED PHOTO LINK]\n${photoUrl}`;
+        
         navigator.clipboard.writeText(payloadText);
         if (!state.settings.canvaTemplateUrl) {
-          showToast('Copied text! Opening Canva... (Tip: Add your custom Template link in Settings)', 'info');
+          showToast('Copied minimalist text & photo URL to clipboard! Opening Canva...', 'info');
         } else {
-          showToast('Copied headline & post text! Opening your custom Canva template...', 'success');
+          showToast('Copied minimalist text & photo URL! Opening your custom Canva template...', 'success');
         }
         
         const canvaTargetUrl = state.settings.canvaTemplateUrl || 'https://www.canva.com/';
         window.open(canvaTargetUrl, '_blank');
+      });
+    }
+
+    // Canva Graphic File Uploader Listener
+    const canvaFileInput = cardEl.querySelector(`#input-canva-graphic-${post.id}`);
+    if (canvaFileInput) {
+      canvaFileInput.addEventListener('change', async (e) => {
+        if (e.target.files && e.target.files[0]) {
+          showToast('Attaching custom Canva graphic to this card...', 'info');
+          const base64Data = await convertFileToBase64(e.target.files[0]);
+          
+          const localDb = getLocalDb();
+          localDb.designs = localDb.designs || {};
+          localDb.designs[`${state.activeDate}-post-${post.id}`] = localDb.designs[`${state.activeDate}-post-${post.id}`] || {};
+          localDb.designs[`${state.activeDate}-post-${post.id}`].customCanvaGraphic = base64Data;
+          saveLocalDb(localDb);
+          
+          post.customCanvaGraphic = base64Data;
+          showToast('✨ Custom Canva graphic attached! It will publish with this post.', 'success');
+          renderActiveDrafts();
+        }
+      });
+    }
+
+    // Remove Canva Graphic Listener
+    const removeCanvaBtn = cardEl.querySelector(`#btn-remove-canva-${post.id}`);
+    if (removeCanvaBtn) {
+      removeCanvaBtn.addEventListener('click', () => {
+        const localDb = getLocalDb();
+        if (localDb.designs && localDb.designs[`${state.activeDate}-post-${post.id}`]) {
+          delete localDb.designs[`${state.activeDate}-post-${post.id}`].customCanvaGraphic;
+          saveLocalDb(localDb);
+        }
+        delete post.customCanvaGraphic;
+        showToast('Removed custom Canva graphic. Reverted to default canvas preview.', 'info');
+        renderActiveDrafts();
       });
     }
 
