@@ -14,6 +14,7 @@ let state = {
 
 // Global Image Resources (Custom Avatar)
 const avatarImg = new Image();
+avatarImg.crossOrigin = 'anonymous';
 let avatarImageLoaded = false;
 
 // Multi-avatar resources for the 18 draft options
@@ -22,6 +23,7 @@ const optionAvatarsLoaded = Array(18).fill(false);
 
 for (let i = 1; i <= 18; i++) {
   const img = new Image();
+  img.crossOrigin = 'anonymous';
   img.onload = () => {
     optionAvatarsLoaded[i - 1] = true;
     console.log(`[Avatar] Option avatar ${i} loaded.`);
@@ -2551,10 +2553,10 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
 
       // Draw Avatar Photo Overlay on top of custom uploaded graphic if enabled!
       if (overlayAvatar) {
-        let styleIdx = (postId - 1) % 5;
+        let styleIdx = (postId - 1) % 18;
         if (customLayout && customLayout.avatarStyleIdx !== undefined) styleIdx = customLayout.avatarStyleIdx;
         let activeAvImg = avatarImg;
-        if (state.settings.rotateOutfits !== false && optionAvatarsLoaded[styleIdx]) {
+        if (optionAvatars[styleIdx] && (optionAvatars[styleIdx].complete || optionAvatarsLoaded[styleIdx])) {
           activeAvImg = optionAvatars[styleIdx];
         }
 
@@ -2598,7 +2600,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
   // Calculate common visual variables used by both customLayout and fallback branches
   const dayIdx = getDayIndex(dateStr);
   const layoutIdx = (dayIdx + postId - 1) % 5;
-  let styleIdx = (postId - 1) % 5; // Outfit style rotates by postId
+  let styleIdx = (postId - 1) % 18; // Outfit style rotates by postId
   if (customLayout && customLayout.avatarStyleIdx !== undefined) {
     styleIdx = customLayout.avatarStyleIdx;
   }
@@ -2629,8 +2631,10 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
   const filter = filters[styleIdx] || 'none';
   
   let activeAvImg = avatarImg;
-  if (state.settings.rotateOutfits !== false && optionAvatarsLoaded[styleIdx]) {
+  if (optionAvatars[styleIdx] && (optionAvatars[styleIdx].complete || optionAvatarsLoaded[styleIdx])) {
     activeAvImg = optionAvatars[styleIdx];
+  } else if (state.settings.rotateOutfits !== false && optionAvatarsLoaded[styleIdx % 18]) {
+    activeAvImg = optionAvatars[styleIdx % 18];
   }
   
   // Dynamic design layout mapping
@@ -3955,13 +3959,18 @@ function drawAvatarForPhone(ctx, x, y, w, h, filter, styleIdx, avatarImg) {
   ctx.restore();
 }
 
-function drawAvatarForCard(ctx, x, y, w, h, filter, styleIdx, avatarImg) {
+function drawAvatarForCard(ctx, x, y, w, h, filter, styleIdx, avatarImg, removeBg = false) {
   ctx.save();
   if (avatarImg && avatarImg.complete && avatarImg.naturalWidth !== 0) {
     if (filter) ctx.filter = filter;
     
-    const imgW = avatarImg.width;
-    const imgH = avatarImg.height;
+    let targetImg = avatarImg;
+    if (removeBg) {
+      targetImg = createCutoutAvatarCanvas(avatarImg, 50);
+    }
+    
+    const imgW = targetImg.width || targetImg.naturalWidth || 400;
+    const imgH = targetImg.height || targetImg.naturalHeight || 400;
     
     // Fill the card rectangle (x, y, w, h) cover-fit
     const destRatio = w / h;
@@ -3978,7 +3987,7 @@ function drawAvatarForCard(ctx, x, y, w, h, filter, styleIdx, avatarImg) {
     const cropX = (imgW - cropW) / 2;
     const cropY = Math.max(0, (imgH - cropH) * 0.05);
     
-    ctx.drawImage(avatarImg, cropX, cropY, cropW, cropH, x, y, w, h);
+    ctx.drawImage(targetImg, cropX, cropY, cropW, cropH, x, y, w, h);
   } else {
     ctx.fillStyle = '#1e293b';
     ctx.fillRect(x, y, w, h);
