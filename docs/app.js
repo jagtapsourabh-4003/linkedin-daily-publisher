@@ -632,6 +632,12 @@ async function loadHistory() {
             if (custom.customCanvaGraphic !== undefined) {
               post.customCanvaGraphic = custom.customCanvaGraphic;
             }
+            if (custom.overlayAvatar !== undefined) {
+              post.overlayAvatar = custom.overlayAvatar;
+            }
+            if (custom.removeAvatarBg !== undefined) {
+              post.removeAvatarBg = custom.removeAvatarBg;
+            }
           }
         });
       }
@@ -1422,6 +1428,23 @@ function renderActiveDrafts() {
                 <small style="color: #94a3b8; font-size: 0.75rem; display: block; margin-top: 4px;">Upload your finished graphic exported from Canva. It will replace the preview card and automatically publish to LinkedIn when you click "Select &amp; Publish".</small>
               </div>
             </div>
+            <!-- Avatar Overlay & Background Removal Tool Options -->
+            <div class="customizer-row" style="margin-top: 12px; background: rgba(59, 130, 246, 0.06); padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(59, 130, 246, 0.25); display: flex; flex-direction: column; gap: 8px;">
+              <div style="font-weight: 700; font-size: 0.85rem; color: #93c5fd; display: flex; align-items: center; justify-content: space-between;">
+                <span>👤 Avatar &amp; Photo Controls for Graphic</span>
+                <span style="font-size: 0.75rem; color: #94a3b8; font-weight: 400;">Apply to Canvas / Uploaded Graphic</span>
+              </div>
+              <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.85rem; color: #e2e8f0;">
+                  <input type="checkbox" id="check-overlay-avatar-${post.id}" ${post.overlayAvatar !== false ? 'checked' : ''} style="width: 16px; height: 16px; cursor: pointer;">
+                  📷 Overlay Photo on Graphic
+                </label>
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.85rem; color: #f472b6;">
+                  <input type="checkbox" id="check-bg-remove-${post.id}" ${post.removeAvatarBg ? 'checked' : ''} style="width: 16px; height: 16px; cursor: pointer;">
+                  ✨ Remove Avatar Background (Cutout)
+                </label>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1729,6 +1752,31 @@ function renderActiveDrafts() {
         delete post.customCanvaGraphic;
         showToast('Removed custom Canva graphic. Reverted to default canvas preview.', 'info');
         renderActiveDrafts();
+      });
+    }
+
+    // Avatar Overlay & Background Removal Checkbox Listeners
+    const checkOverlayAvatar = cardEl.querySelector(`#check-overlay-avatar-${post.id}`);
+    const checkBgRemove = cardEl.querySelector(`#check-bg-remove-${post.id}`);
+
+    if (checkOverlayAvatar) {
+      checkOverlayAvatar.addEventListener('change', (e) => {
+        post.overlayAvatar = e.target.checked;
+        saveCustomizerState(post.id, { overlayAvatar: e.target.checked });
+        triggerRedrawAndSave(false);
+      });
+    }
+
+    if (checkBgRemove) {
+      checkBgRemove.addEventListener('change', (e) => {
+        post.removeAvatarBg = e.target.checked;
+        saveCustomizerState(post.id, { removeAvatarBg: e.target.checked });
+        if (e.target.checked) {
+          showToast('✨ Automatic background removal applied to avatar cutout!', 'success');
+        } else {
+          showToast('Restored standard avatar photo frame.', 'info');
+        }
+        triggerRedrawAndSave(false);
       });
     }
 
@@ -2439,13 +2487,57 @@ function buildLayoutFromFamily(layoutFamily, palette, headline, subtext, categor
   return layout;
 }
 
+// Pure JS client-side image background removal helper
+function createCutoutAvatarCanvas(sourceImg, sensitivity = 45) {
+  const c = document.createElement('canvas');
+  c.width = sourceImg.naturalWidth || sourceImg.width || 400;
+  c.height = sourceImg.naturalHeight || sourceImg.height || 400;
+  const ctx = c.getContext('2d');
+  ctx.drawImage(sourceImg, 0, 0, c.width, c.height);
+
+  try {
+    const imgData = ctx.getImageData(0, 0, c.width, c.height);
+    const data = imgData.data;
+
+    // Sample background colors from top-left, top-right, and top-center corners
+    const bgR = (data[0] + data[(c.width - 1) * 4] + data[Math.floor(c.width / 2) * 4]) / 3;
+    const bgG = (data[1] + data[(c.width - 1) * 4 + 1] + data[Math.floor(c.width / 2) * 4 + 1]) / 3;
+    const bgB = (data[2] + data[(c.width - 1) * 4 + 2] + data[Math.floor(c.width / 2) * 4 + 2]) / 3;
+
+    for (let i = 0; i < data.length; i += 4) {
+      const r = data[i];
+      const g = data[i + 1];
+      const b = data[i + 2];
+
+      // Calculate Euclidean distance in RGB color space from background color
+      const dist = Math.sqrt((r - bgR) ** 2 + (g - bgG) ** 2 + (b - bgB) ** 2);
+
+      if (dist < sensitivity) {
+        data[i + 3] = 0; // Make pixel 100% transparent
+      } else if (dist < sensitivity + 20) {
+        // Feather alpha edge for smooth cutout blending
+        data[i + 3] = Math.floor(((dist - sensitivity) / 20) * 255);
+      }
+    }
+
+    ctx.putImageData(imgData, 0, 0);
+  } catch (e) {
+    console.warn('[Cutout] Canvas ImageData access failed:', e.message);
+  }
+  return c;
+}
+
 // Draw custom creative card matching user template design structure
 function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr = '', customLayout = null) {
   const ctx = canvas.getContext('2d');
   const w = canvas.width;  // 1080
   const h = canvas.height; // 1080
   
-  // 0. IF CUSTOM CANVA GRAPHIC IS ATTACHED, DRAW ONLY THIS IMAGE AND EXIT IMMEDIATELY!
+  // Extract custom layout flags
+  const overlayAvatar = customLayout ? (customLayout.overlayAvatar !== false) : true;
+  const removeAvatarBg = customLayout ? !!customLayout.removeAvatarBg : false;
+
+  // 0. IF CUSTOM CANVA GRAPHIC IS ATTACHED, DRAW CANVA GRAPHIC + OPTIONAL OVERLAY AVATAR & EXIT IMMEDIATELY!
   const customGraphic = (customLayout && customLayout.customCanvaGraphic) 
     ? customLayout.customCanvaGraphic 
     : (customLayout && customLayout.post && customLayout.post.customCanvaGraphic) 
@@ -2453,15 +2545,52 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
       : null;
 
   if (customGraphic) {
-    const cImg = new Image();
-    cImg.onload = () => {
+    const renderCustomWithAvatar = (cImg) => {
       ctx.clearRect(0, 0, w, h);
       ctx.drawImage(cImg, 0, 0, w, h);
+
+      // Draw Avatar Photo Overlay on top of custom uploaded graphic if enabled!
+      if (overlayAvatar) {
+        let styleIdx = (postId - 1) % 5;
+        if (customLayout && customLayout.avatarStyleIdx !== undefined) styleIdx = customLayout.avatarStyleIdx;
+        let activeAvImg = avatarImg;
+        if (state.settings.rotateOutfits !== false && optionAvatarsLoaded[styleIdx]) {
+          activeAvImg = optionAvatars[styleIdx];
+        }
+
+        if (activeAvImg && (activeAvImg.complete || activeAvImg.naturalWidth > 0)) {
+          ctx.save();
+          ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
+          ctx.shadowBlur = 30;
+          ctx.shadowOffsetX = -10;
+          ctx.shadowOffsetY = 15;
+
+          const avW = 320;
+          const avH = 460;
+          const avX = w - avW - 50;
+          const avY = h - avH - 30;
+
+          if (removeAvatarBg) {
+            // Cutout transparent avatar without background
+            const cutoutCanvas = createCutoutAvatarCanvas(activeAvImg, 50);
+            ctx.drawImage(cutoutCanvas, avX, avY, avW, avH);
+          } else {
+            // Draw clean rounded avatar frame
+            ctx.beginPath();
+            ctx.roundRect(avX, avY, avW, avH, 20);
+            ctx.clip();
+            ctx.drawImage(activeAvImg, avX, avY, avW, avH);
+          }
+          ctx.restore();
+        }
+      }
     };
+
+    const cImg = new Image();
+    cImg.onload = () => renderCustomWithAvatar(cImg);
     cImg.src = customGraphic;
     if (cImg.complete && cImg.naturalWidth > 0) {
-      ctx.clearRect(0, 0, w, h);
-      ctx.drawImage(cImg, 0, 0, w, h);
+      renderCustomWithAvatar(cImg);
     }
     return; // Stop! Do not draw background gradients or default layout shapes over the custom image!
   }
