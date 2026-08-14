@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-08-14",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Forbes Cover",
+        "layoutFamily": "split-left",
+        "colorPalette": "Electric Blue",
+        "characterRole": "AI Consultant",
+        "environment": "Innovation lab",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant in an Innovation lab. Half-body portrait, foreground element (out-of-focus futuristic monitor), midground subject (the manager), background element (blurred lab equipment), wearing a Smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "AI search is changing everything.",
+          "content": "HubSpot just released AEO, their new Answer Engine Optimization tool.\n\nThis is big. It directly tracks how your brand shows up in AI-generated answers.\n\nWe need to move beyond just tracking Google rankings. Your brand's visibility in AI search is now equally critical.\n\nAre you ready for the new AI search landscape?",
+          "sourceArticle": "HubSpot AEO vs. Profound: Features, pricing, and use cases",
+          "imageHeadline": "*AI SEARCH* RISING",
+          "imageSubtext": "Track brand visibility in new AI answers.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Business Coach",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach in an Executive boardroom. Presentation shot, foreground element (out-of-focus projector screen showing a diagram), midground subject (the manager), background element (blurred modern office furniture), wearing a Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Boost local SEO with AI.",
+          "content": "Using AI for local SEO can feel risky. But there are smart ways to do it.\n\nHere are 3 simple workflows:\n\n1.  **Automate listing updates:** Use AI to review and suggest changes to your Google Business Profile descriptions and services based on local trends.\n2.  **Generate local content ideas:** Feed AI local news and events. Get ideas for blog posts that resonate with your community.\n3.  **Refine customer FAQs:** Analyze customer questions with AI. Create better, more direct answers for your website and local listings.\n\nHow will you use AI for local growth?",
+          "sourceArticle": "5 AI Workflows for Local SEO",
+          "imageHeadline": "*LOCAL SEO* AI",
+          "imageSubtext": "Automate tasks without losing human strategy.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Harvard Professor",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "Professor",
+        "environment": "Library",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor in a Library. Side profile, foreground element (out-of-focus open book on a desk), midground subject (the manager), background element (blurred bookshelves), wearing Formal university attire. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "Is Google really obsolete?",
+          "content": "Many say B2B buyers now start with AI chatbots. True, but it's not the full story.\n\nTraditional search still matters. It’s where many buyers confirm details and compare options.\n\nAI chatbots often pull data from well-ranked sources.\n\nSo, Google isn't dead. It's just part of a bigger search ecosystem. You need both to win.\n\nDo you think Google's role is shrinking or shifting?",
+          "sourceArticle": "Ahrefs Brand Radar alternatives for marketing teams",
+          "imageHeadline": "*GOOGLE* ISN'T DEAD",
+          "imageSubtext": "But AI chatbots are changing buyer research.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "DEBATE THIS VIEW"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "news-card",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Technology Evangelist",
+        "environment": "Media studio",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist in a Media studio. Interview setup, foreground element (out-of-focus microphone boom), midground subject (the manager), background element (blurred news ticker and screens), wearing a Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "Don't ignore crucial audience data.",
+          "content": "Meta recently removed 750,000 teen accounts using AI. This shows the power of AI for audience analysis.\n\nMany marketing teams miss out by not using AI for deeper audience insights.\n\nFailing to understand your *actual* demographic reach means wasted ad spend and missed opportunities.\n\nUse AI to ensure your campaigns reach the right people legally and effectively.\n\nHow do you currently verify your audience segmentation?",
+          "sourceArticle": "Meta removed more than 750,000 teen accounts in Australia",
+          "imageHeadline": "*MISSED* AUDIENCE DATA",
+          "imageSubtext": "Ignoring AI tools for audience insights is a mistake.",
+          "badgeText": "AI TREND",
+          "ctaText": "LEARN MORE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Corporate Executive",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Corporate Executive",
+        "environment": "Luxury office",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive in a Luxury office. Looking at camera, foreground element (out-of-focus high-end pen and notebook), midground subject (the manager), background element (blurred city view from window), wearing a White shirt with rolled sleeves. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "ROI is about to change.",
+          "content": "Measuring marketing ROI is getting complex. AI search visibility will become a key metric.\n\nIn the next 12-24 months, brands won't just track clicks. They will track mentions in AI answers.\n\nWe will see new tools focused solely on your brand's presence within generative AI outputs.\n\nThis shift means your content strategy must adapt to feed both human and AI 'searchers'.\n\nAre your current metrics ready for this future?",
+          "sourceArticle": "AI search visibility ROI: How to measure what matters (& ignore what doesn’t)",
+          "imageHeadline": "*FUTURE* ROI METRICS",
+          "imageSubtext": "AI search visibility will redefine marketing success.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "PLAN YOUR STRATEGY"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-08-13",
     "category": "marketing",
     "posts": [
