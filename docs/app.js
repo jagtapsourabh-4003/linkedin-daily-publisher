@@ -638,6 +638,15 @@ async function loadHistory() {
             if (custom.removeAvatarBg !== undefined) {
               post.removeAvatarBg = custom.removeAvatarBg;
             }
+            if (custom.avatarPos !== undefined) {
+              post.avatarPos = custom.avatarPos;
+            }
+            if (custom.avatarSize !== undefined) {
+              post.avatarSize = custom.avatarSize;
+            }
+            if (custom.bgSensitivity !== undefined) {
+              post.bgSensitivity = custom.bgSensitivity;
+            }
           }
         });
       }
@@ -1428,11 +1437,11 @@ function renderActiveDrafts() {
                 <small style="color: #94a3b8; font-size: 0.75rem; display: block; margin-top: 4px;">Upload your finished graphic exported from Canva. It will replace the preview card and automatically publish to LinkedIn when you click "Select &amp; Publish".</small>
               </div>
             </div>
-            <!-- Avatar Overlay & Background Removal Tool Options -->
-            <div class="customizer-row" style="margin-top: 12px; background: rgba(59, 130, 246, 0.06); padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(59, 130, 246, 0.25); display: flex; flex-direction: column; gap: 8px;">
+            <!-- Avatar Overlay, Position, Size & Background Removal Controls -->
+            <div class="customizer-row" style="margin-top: 12px; background: rgba(59, 130, 246, 0.06); padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(59, 130, 246, 0.25); display: flex; flex-direction: column; gap: 10px;">
               <div style="font-weight: 700; font-size: 0.85rem; color: #93c5fd; display: flex; align-items: center; justify-content: space-between;">
-                <span>👤 Avatar &amp; Photo Controls for Graphic</span>
-                <span style="font-size: 0.75rem; color: #94a3b8; font-weight: 400;">Apply to Canvas / Uploaded Graphic</span>
+                <span>👤 Avatar Position, Size &amp; Cutout Controls</span>
+                <span style="font-size: 0.75rem; color: #94a3b8; font-weight: 400;">Relocate &amp; Resize Photo</span>
               </div>
               <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
                 <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.85rem; color: #e2e8f0;">
@@ -1443,6 +1452,26 @@ function renderActiveDrafts() {
                   <input type="checkbox" id="check-bg-remove-${post.id}" ${post.removeAvatarBg ? 'checked' : ''} style="width: 16px; height: 16px; cursor: pointer;">
                   ✨ Remove Avatar Background (Cutout)
                 </label>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px;">
+                <div>
+                  <label for="select-avatar-pos-${post.id}" style="font-size: 0.78rem; color: #cbd5e1; display: block; margin-bottom: 4px;">Avatar Position</label>
+                  <select id="select-avatar-pos-${post.id}" class="customizer-select" style="font-size: 0.8rem; padding: 4px 8px;">
+                    <option value="bottom-right" ${(!post.avatarPos || post.avatarPos === 'bottom-right') ? 'selected' : ''}>Bottom Right</option>
+                    <option value="bottom-left" ${post.avatarPos === 'bottom-left' ? 'selected' : ''}>Bottom Left</option>
+                    <option value="top-right" ${post.avatarPos === 'top-right' ? 'selected' : ''}>Top Right</option>
+                    <option value="top-left" ${post.avatarPos === 'top-left' ? 'selected' : ''}>Top Left</option>
+                    <option value="center" ${post.avatarPos === 'center' ? 'selected' : ''}>Center</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="slider-avatar-size-${post.id}" style="font-size: 0.78rem; color: #cbd5e1; display: block; margin-bottom: 4px;">Avatar Size: <strong id="val-avatar-size-${post.id}" style="color: #60a5fa;">${post.avatarSize || 340}px</strong></label>
+                  <input type="range" id="slider-avatar-size-${post.id}" min="150" max="600" step="10" value="${post.avatarSize || 340}" class="customizer-range">
+                </div>
+              </div>
+              <div style="margin-top: 4px;">
+                <label for="slider-bg-sensitivity-${post.id}" style="font-size: 0.78rem; color: #cbd5e1; display: block; margin-bottom: 4px;">Cutout Sensitivity (Background Remover): <strong id="val-bg-sensitivity-${post.id}" style="color: #f472b6;">${post.bgSensitivity || 55}</strong></label>
+                <input type="range" id="slider-bg-sensitivity-${post.id}" min="15" max="130" step="5" value="${post.bgSensitivity || 55}" class="customizer-range">
               </div>
             </div>
           </div>
@@ -1537,6 +1566,11 @@ function renderActiveDrafts() {
       const labelHeadlineSize = cardEl.querySelector(`#val-headline-size-${post.id}`);
       const checkOverlayAvatar = cardEl.querySelector(`#check-overlay-avatar-${post.id}`);
       const checkBgRemove = cardEl.querySelector(`#check-bg-remove-${post.id}`);
+      const selectAvatarPos = cardEl.querySelector(`#select-avatar-pos-${post.id}`);
+      const sliderAvatarSize = cardEl.querySelector(`#slider-avatar-size-${post.id}`);
+      const labelAvatarSize = cardEl.querySelector(`#val-avatar-size-${post.id}`);
+      const sliderBgSensitivity = cardEl.querySelector(`#slider-bg-sensitivity-${post.id}`);
+      const labelBgSensitivity = cardEl.querySelector(`#val-bg-sensitivity-${post.id}`);
 
       const triggerRedrawAndSave = (isKeystroke = false) => {
         // Update local object memory
@@ -1547,7 +1581,10 @@ function renderActiveDrafts() {
         post.subtextFontSize = parseInt(sliderSubtextSize.value);
         if (checkOverlayAvatar) post.overlayAvatar = checkOverlayAvatar.checked;
         if (checkBgRemove) post.removeAvatarBg = checkBgRemove.checked;
-        
+        if (selectAvatarPos) post.avatarPos = selectAvatarPos.value;
+        if (sliderAvatarSize) post.avatarSize = parseInt(sliderAvatarSize.value);
+        if (sliderBgSensitivity) post.bgSensitivity = parseInt(sliderBgSensitivity.value);
+
         if (!post.postContent) post.postContent = {};
         post.postContent.imageHeadline = headlineInput.value;
         post.postContent.imageSubtext = subtextInput.value;
@@ -1584,6 +1621,9 @@ function renderActiveDrafts() {
             subtextFontSize: parseInt(sliderSubtextSize.value),
             overlayAvatar: checkOverlayAvatar ? checkOverlayAvatar.checked : true,
             removeAvatarBg: checkBgRemove ? checkBgRemove.checked : false,
+            avatarPos: selectAvatarPos ? selectAvatarPos.value : 'bottom-right',
+            avatarSize: sliderAvatarSize ? parseInt(sliderAvatarSize.value) : 340,
+            bgSensitivity: sliderBgSensitivity ? parseInt(sliderBgSensitivity.value) : 55,
             customColors: paletteSelect.value === 'Custom' ? {
               textColor: colorText.value,
               primary: colorPrimary.value,
@@ -1761,15 +1801,18 @@ function renderActiveDrafts() {
       });
     }
 
-    // Avatar Overlay & Background Removal Checkbox Listeners
+    // Avatar Overlay, Position, Size & Background Removal Listeners
     if (!isDayPosted) {
       const checkOverlayAvatar = cardEl.querySelector(`#check-overlay-avatar-${post.id}`);
       const checkBgRemove = cardEl.querySelector(`#check-bg-remove-${post.id}`);
+      const selectAvatarPos = cardEl.querySelector(`#select-avatar-pos-${post.id}`);
+      const sliderAvatarSize = cardEl.querySelector(`#slider-avatar-size-${post.id}`);
+      const labelAvatarSize = cardEl.querySelector(`#val-avatar-size-${post.id}`);
+      const sliderBgSensitivity = cardEl.querySelector(`#slider-bg-sensitivity-${post.id}`);
+      const labelBgSensitivity = cardEl.querySelector(`#val-bg-sensitivity-${post.id}`);
 
       if (checkOverlayAvatar) {
-        checkOverlayAvatar.addEventListener('change', () => {
-          triggerRedrawAndSave(false);
-        });
+        checkOverlayAvatar.addEventListener('change', () => triggerRedrawAndSave(false));
       }
       if (checkBgRemove) {
         checkBgRemove.addEventListener('change', (e) => {
@@ -1780,6 +1823,23 @@ function renderActiveDrafts() {
           }
           triggerRedrawAndSave(false);
         });
+      }
+      if (selectAvatarPos) {
+        selectAvatarPos.addEventListener('change', () => triggerRedrawAndSave(false));
+      }
+      if (sliderAvatarSize) {
+        sliderAvatarSize.addEventListener('input', () => {
+          if (labelAvatarSize) labelAvatarSize.textContent = `${sliderAvatarSize.value}px`;
+          triggerRedrawAndSave(true);
+        });
+        sliderAvatarSize.addEventListener('change', () => triggerRedrawAndSave(false));
+      }
+      if (sliderBgSensitivity) {
+        sliderBgSensitivity.addEventListener('input', () => {
+          if (labelBgSensitivity) labelBgSensitivity.textContent = sliderBgSensitivity.value;
+          triggerRedrawAndSave(true);
+        });
+        sliderBgSensitivity.addEventListener('change', () => triggerRedrawAndSave(false));
       }
     }
 
@@ -2585,14 +2645,31 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           ctx.shadowOffsetX = -10;
           ctx.shadowOffsetY = 15;
 
-          const avW = 320;
-          const avH = 460;
-          const avX = w - avW - 50;
-          const avY = h - avH - 30;
+          const avW = (customLayout && customLayout.avatarSize) ? customLayout.avatarSize : 340;
+          const avH = Math.round(avW * 1.38);
+          const pos = (customLayout && customLayout.avatarPos) ? customLayout.avatarPos : 'bottom-right';
+          let avX = w - avW - 40;
+          let avY = h - avH - 20;
+
+          if (pos === 'bottom-left') {
+            avX = 40;
+            avY = h - avH - 20;
+          } else if (pos === 'top-right') {
+            avX = w - avW - 40;
+            avY = 40;
+          } else if (pos === 'top-left') {
+            avX = 40;
+            avY = 40;
+          } else if (pos === 'center') {
+            avX = Math.round((w - avW) / 2);
+            avY = Math.round((h - avH) / 2);
+          }
+
+          const sensitivity = (customLayout && customLayout.bgSensitivity) ? customLayout.bgSensitivity : 55;
 
           if (removeAvatarBg) {
             // Cutout transparent avatar without background
-            const cutoutCanvas = createCutoutAvatarCanvas(activeAvImg, 50);
+            const cutoutCanvas = createCutoutAvatarCanvas(activeAvImg, sensitivity);
             ctx.drawImage(cutoutCanvas, avX, avY, avW, avH);
           } else {
             // Draw clean rounded avatar frame
