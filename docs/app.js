@@ -1763,6 +1763,9 @@ function renderActiveDrafts() {
 
     // Avatar Overlay & Background Removal Checkbox Listeners
     if (!isDayPosted) {
+      const checkOverlayAvatar = cardEl.querySelector(`#check-overlay-avatar-${post.id}`);
+      const checkBgRemove = cardEl.querySelector(`#check-bg-remove-${post.id}`);
+
       if (checkOverlayAvatar) {
         checkOverlayAvatar.addEventListener('change', () => {
           triggerRedrawAndSave(false);
