@@ -1010,7 +1010,7 @@ async function postToGoogleFlow(postId, btnElement) {
         const subtextText = post.postContent?.imageSubtext || post.imageSubtext || '';
         const savedAvatar = avatarImg.src;
         avatarImg.src = '';
-        drawCreative(offscreen, activeEntry.category, headlineText, subtextText, post.id, activeEntry.date, post.layout || post);
+        drawCreative(offscreen, activeEntry.category, headlineText, subtextText, post.id, activeEntry.date, Object.assign({}, post.layout || {}, post));
         avatarImg.src = savedAvatar;
       }
 
@@ -1500,7 +1500,7 @@ function renderActiveDrafts() {
     // Render Canvas
     const canvas = cardEl.querySelector(`#canvas-${post.id}`);
     if (canvas) {
-      drawCreative(canvas, activeEntry.category, headlineText, subtextText, post.id, activeEntry.date, post.layout || post);
+      drawCreative(canvas, activeEntry.category, headlineText, subtextText, post.id, activeEntry.date, Object.assign({}, post.layout || {}, post));
     }
 
     // Textarea auto-save and length counters listener
@@ -1568,7 +1568,7 @@ function renderActiveDrafts() {
         }
 
         // Re-draw canvas
-        drawCreative(canvas, activeEntry.category, headlineInput.value, subtextInput.value, post.id, activeEntry.date, post.layout || post);
+        drawCreative(canvas, activeEntry.category, headlineInput.value, subtextInput.value, post.id, activeEntry.date, Object.assign({}, post.layout || {}, post));
 
         // Save layout modifications to server/localStorage (only on select change or text input blur)
         if (!isKeystroke) {
