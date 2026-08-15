@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-08-15",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Forbes Cover",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "AI Consultant",
+        "environment": "Innovation lab",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. University Chancellor. Modern university campus. Close-up portrait. Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "AI search is here.",
+          "content": "Buyers now start with AI chatbots.\nThis changes B2B SEO.\nRankings aren't enough anymore.\nWe need AI visibility too.\nTrack how AI mentions your brand.\nOptimize for answer engines.\nThis is the new frontier.\n\nHow are you adapting your strategy?",
+          "sourceArticle": "Ahrefs Brand Radar alternatives for marketing teams",
+          "imageHeadline": "BUYERS USE *AI* FIRST",
+          "imageSubtext": "51% of B2B buyers start research with AI chatbots.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "TED Speaker",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Electric Blue",
+        "characterRole": "AI Consultant",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. TED Speaker. Auditorium stage. Speaking on stage. Conference speaker outfit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Boost your local SEO.",
+          "content": "Use AI for local search.\nHere are 5 workflows:\n\n1. Automate content briefs.\n2. Optimize for AI answers.\n3. Analyze local AI queries.\n4. Personalize outreach.\n5. Track local AI mentions.\n\nKeep humans in strategy.\nAI handles the execution.\n\nWhat AI workflows are you testing?",
+          "sourceArticle": "5 AI Workflows for Local SEO",
+          "imageHeadline": "5 AI *SEO* WORKFLOWS",
+          "imageSubtext": "Automate execution, keep humans in strategy for local SEO.",
+          "badgeText": "AI TREND",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Neon Cyan",
+        "characterRole": "AI Consultant",
+        "environment": "Startup hub",
+        "cameraStyle": "Walking shot",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Startup Founder. Startup hub. Walking shot. Modern startup hoodie. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "AI search won't kill SEO.",
+          "content": "Many fear AI answers kill SEO.\nThat's missing the point.\nAI search is just a new channel.\nIt's an evolution, not an end.\n\nYour goal is visibility.\nThat's true for Google or AI.\nFocus on user intent.\nProvide real value always.\n\nAre you scared of AI search?",
+          "sourceArticle": "The SEO’s Guide to Agentic Commerce — Whiteboard Friday",
+          "imageHeadline": "AI SEARCH ISN'T *DEAD* SEO",
+          "imageSubtext": "It's an evolution, focus on user intent and value.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "University Chancellor",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "AI Consultant",
+        "environment": "Modern university campus",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. University Chancellor. Modern university campus. Sitting at desk. Formal university attire. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "Stop chasing vanity metrics.",
+          "content": "Many tools track AI mentions.\nBut they don't help execution.\nThis leads to wasted effort.\nYou need action, not just data.\n\nMonitoring is step one.\nOptimization is step two.\nSeparate these functions clearly.\n\nDon't get stuck in monitoring.",
+          "sourceArticle": "Scrunch AI alternatives compared: Features, pricing, and fit [2026]",
+          "imageHeadline": "MONITORING IS *NOT* ENOUGH",
+          "imageSubtext": "Separate AI monitoring from actionable optimization tools.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Harvard Professor",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "AI Consultant",
+        "environment": "Library",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Harvard Professor. Library. Side profile. Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "Marketing is becoming agentic.",
+          "content": "AI agents will buy for us.\nThis changes everything.\nWebsites need structured data.\nProduct feeds must be perfect.\nSchema markup is non-negotiable.\n\nOptimize for AI agents.\nThink beyond human search.\nThis is commerce's next phase.\n\nAre you ready for agentic commerce?",
+          "sourceArticle": "The SEO’s Guide to Agentic Commerce — Whiteboard Friday",
+          "imageHeadline": "THE AGE OF *AGENTIC* COMMERCE",
+          "imageSubtext": "Optimize for AI agents driving future purchasing decisions.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-08-14",
     "category": "marketing",
     "posts": [
