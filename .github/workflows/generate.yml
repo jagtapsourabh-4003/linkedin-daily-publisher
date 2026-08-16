@@ -70,7 +70,7 @@ jobs:
         if git diff --quiet docs/data/history.json; then
           echo "No new drafts generated or saved. Skipping commit."
         else
-          git add docs/data/history.json
+          git add docs/data/history.json docs/avatar_daily_*.jpg || git add docs/data/history.json
           git commit -m "Automated: Daily LinkedIn drafts generated"
           
           # Retry push up to 3 times in case of concurrent cron conflicts

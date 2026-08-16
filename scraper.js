@@ -86,10 +86,14 @@ export async function scrapeTrends(category) {
   for (const feed of feeds) {
     try {
       console.log(`[Scraper] Fetching feed: ${feed.name} (${feed.url})`);
-      const parsedFeed = await parser.parseURL(feed.url);
+      const fetchPromise = parser.parseURL(feed.url);
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Feed request timed out after 5s')), 5000)
+      );
+      const parsedFeed = await Promise.race([fetchPromise, timeoutPromise]);
       
       // Take top 5 items from each feed
-      const items = parsedFeed.items.slice(0, 5).map(item => ({
+      const items = (parsedFeed.items || []).slice(0, 5).map(item => ({
         title: item.title || '',
         description: cleanText(item.contentSnippet || item.content || ''),
         source: feed.name,
@@ -99,8 +103,7 @@ export async function scrapeTrends(category) {
       results.push(...items);
       console.log(`[Scraper] Successfully fetched ${items.length} items from ${feed.name}`);
     } catch (error) {
-      console.error(`[Scraper] Failed to fetch feed ${feed.name}:`, error.message);
-      // Continue to next feed if one fails
+      console.warn(`[Scraper] Feed ${feed.name} skipped (${error.message})`);
     }
   }
 
