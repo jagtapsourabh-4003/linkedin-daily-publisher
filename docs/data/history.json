@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-08-16",
+    "category": "ai",
+    "posts": [
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "news-card",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Technology Evangelist",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Foreground: out-of-focus holographic display, Midground: Technology Evangelist in a navy business suit, looking at camera, Background: blurred technology command center. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Breaking Trend/News",
+          "hook": "Google search just changed.",
+          "content": "Google just redesigned its search box for the first time in 25 years. This isn't just a visual update.\n\nIt signals a major shift in how people find information. The new design prioritizes direct answers and rich content, moving away from simple blue link lists.\n\nFor marketers, this means SEO and content strategy must adapt. Focus on providing clear, concise answers that AI can easily pull. Your brand's discoverability depends on it. We must think beyond just keywords.\n\nHow will your brand adapt its content for this new search reality? #GoogleSearch #SEO #MarketingStrategy #AIinMarketing",
+          "sourceArticle": "Google just redesigned the search box for the first time in 25 years — here’s why it matters more than you think.",
+          "imageHeadline": "GOOGLE'S *BIG* SHIFT",
+          "imageSubtext": "Search interface redesign means new rules for brands.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Strategy Consultant",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Foreground: blurred glass presentation screen, Midground: Strategy Consultant in a charcoal executive suit, giving a presentation shot, Background: blurred executive boardroom. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Actionable Playbook",
+          "hook": "Build AI faster, cheaper.",
+          "content": "OpenAI's GPT-5.6 and Ultrafast mode are changing the game. We can now build more efficient AI agents for marketing.\n\nHere’s a quick playbook to boost your AI marketing tools today:\n\n1. Smart Model Selection: Pick specific GPT-5.6 models for each task. Don’t use a hammer for every nail. This saves costs and improves relevance.\n\n2. Speed for Key Moments: Use Ultrafast mode for time-sensitive tasks. Think real-time ad copy generation or instant customer service responses. It delivers 14x faster outputs.\n\n3. Optimize API Calls: Carefully craft your prompts. Shorter, clearer requests mean fewer tokens and lower costs. Every word counts for your budget.\n\nWhat’s your first AI marketing agent project? #AIAgents #GPT5 #MarketingAutomation #CostEfficiency",
+          "sourceArticle": "The builder’s guide to GPT‑5.6",
+          "imageHeadline": "GPT-5.6 *BOOST*",
+          "imageSubtext": "3 steps to faster, cheaper AI marketing agents.",
+          "badgeText": "AI TREND",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "LinkedIn Thought Leader",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "Innovation Leader",
+        "environment": "Startup hub",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Foreground: out-of-focus coffee cup, Midground: Innovation Leader in a smart casual blazer, side profile, Background: blurred startup hub. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Contrarian Debate",
+          "hook": "Is AI truly “for everyone”?",
+          "content": "Mark Zuckerberg champions AI for everyone. Meta released Glimmer, an open-weight model. But they kept Muse Spark, their more powerful model, locked behind APIs.\n\nThis raises a question: Is 'open AI' really open?\n\nFor small businesses and individual creators, access to truly powerful models is key. If the best tools stay proprietary, does the 'everyone' promise hold up? It's a debate about access and true innovation.\n\nWhat does 'AI for everyone' mean for your brand's growth? #OpenAI #Meta #AIInnovation #BrandBuilding",
+          "sourceArticle": "Does Mark Zuckerberg really believe AI is ‘for everyone’?",
+          "imageHeadline": "OPEN AI: *MYTH*?",
+          "imageSubtext": "Examining real access to powerful AI models.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Documentary Interview",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Researcher",
+        "environment": "Library",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Foreground: out-of-focus microphone, Midground: Researcher in a turtleneck with blazer, in an interview setup, Background: blurred library. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Mistake/Failure Study",
+          "hook": "AI's dark side surfaced.",
+          "content": "A recent claim highlights a severe misuse of Grok AI, transforming a childhood photo into explicit imagery. This is a stark reminder of AI's ethical dangers.\n\nThe lesson here is simple: unchecked AI capabilities can cause immense harm. For brands using AI, this means ethical guardrails are not optional.\n\nWithout strong safeguards, trust evaporates. We must ensure accountability and protect users. It's about more than just technology; it's about human impact.\n\nHow do you ensure ethical AI use within your brand? #AIEthics #BrandTrust #RiskManagement #AIResponsible",
+          "sourceArticle": "Woman claims her stepfather used Grok to transform childhood photo into explicit imagery",
+          "imageHeadline": "AI *ETHICS* FAIL",
+          "imageSubtext": "The cost of unchecked AI in brand trust.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "AI Consultant",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Foreground: out-of-focus glass screen with glowing data, Midground: AI Consultant in luxury business casual, half-body portrait, Background: blurred futuristic workspace. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Strategic Prediction",
+          "hook": "Misinformation will surge.",
+          "content": "The UN warns: AI in advertising risks fueling a misinformation crisis. This isn't just a distant threat; it's a strategic prediction for the next 12-24 months.\n\nGenerative AI makes creating convincing, but false, content easy. Brands must prepare for an environment where consumer trust is fragile.\n\nOur strategy must shift. Authenticity, transparent sourcing, and brand integrity will become the ultimate currency. Marketers need to build trust like never before.\n\nHow will your brand maintain trust in an AI-driven misinformation era? #AIPrediction #BrandCredibility #MarketingFuture #Trust",
+          "sourceArticle": "AI in advertising risks fuelling misinformation crisis, UN warns",
+          "imageHeadline": "BRAND TRUST: *CRISIS*",
+          "imageSubtext": "How AI will reshape advertising credibility in 24 months.",
+          "badgeText": "MARKETING INSIGHT",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-08-15",
     "category": "marketing",
     "posts": [
