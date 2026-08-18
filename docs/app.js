@@ -843,180 +843,46 @@ function generateClientSideDrafts(dateStr) {
   renderActiveDrafts();
 }
 
-// Trigger Daily Post Generation manually (via GitHub Actions API if PAT is configured, otherwise fallback to instant client-side generation)
+// Trigger Daily Post Generation manually (Instant 1-second client-side generation + optional remote trigger)
 async function triggerManualGeneration() {
   const pat = state.settings.githubPat;
   const owner = state.settings.githubOwner || 'jagtapsourabh-4003';
   const repo = state.settings.githubRepo || 'linkedin-daily-publisher';
   const todayStr = getTodayIST();
 
-  if (!pat) {
-    const modalHtml = `
-      <div style="text-align: left; line-height: 1.6;">
-        <p style="margin-bottom: 12px; font-size: 0.95rem;">Generate fresh daily draft posts instantly right inside your browser, or trigger remote generation via GitHub Actions!</p>
-        <button class="btn btn-primary full-width" id="btn-instant-client-gen" style="background: linear-gradient(135deg, #10b981, #059669); margin-bottom: 14px; font-weight: 700; padding: 10px; font-size: 0.95rem;">
-          ⚡ Generate Fresh Drafts Instantly (Client-Side)
-        </button>
-        <hr style="border: 0; border-top: 1px solid var(--border-light); margin: 12px 0;">
-        <p style="margin-bottom: 8px; font-size: 0.85rem; color: #cbd5e1;"><strong>Option B: Trigger Remote Generation via GitHub Actions:</strong></p>
-        <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 8px;">To trigger remote automated runs, add a GitHub Personal Access Token (PAT) in <strong>Settings ⚙️</strong>, or click below to open your GitHub repository workflow:</p>
-        <a href="https://github.com/jagtapsourabh-4003/linkedin-daily-publisher/actions/workflows/generate.yml" target="_blank" class="btn btn-secondary btn-sm full-width" style="text-align: center; text-decoration: none;">
-          🔗 Open GitHub Actions Workflow Page
-        </a>
-      </div>
-    `;
-    
-    const dialog = document.createElement('div');
-    dialog.className = 'modal active';
-    dialog.style.zIndex = '9999';
-    dialog.innerHTML = `
-      <div class="modal-content" style="max-width: 500px;">
-        <div class="modal-header">
-          <h3>⚡ Regenerate Today's Drafts</h3>
-          <button class="close-btn" id="close-manual-trigger-btn">&times;</button>
-        </div>
-        <div class="modal-body">${modalHtml}</div>
-        <div class="modal-footer" style="justify-content: space-between;">
-          <button class="btn btn-secondary" id="ok-manual-trigger-btn">Close</button>
-        </div>
-      </div>
-    `;
-    document.body.appendChild(dialog);
-    const close = () => { if (dialog.parentNode) document.body.removeChild(dialog); };
-    document.getElementById('close-manual-trigger-btn').onclick = close;
-    document.getElementById('ok-manual-trigger-btn').onclick = close;
-    document.getElementById('btn-instant-client-gen').onclick = () => {
-      close();
-      generateClientSideDrafts(todayStr);
-    };
-    return;
-  }
-
-  // Determine if today's drafts already exist in history
   const existing = state.history.find(h => h.date === todayStr);
   let forceVal = "false";
   
   if (existing) {
-    const confirmOverwrite = confirm(`Drafts for today (${todayStr}) have already been generated.\n\nDo you want to regenerate and overwrite today's drafts with fresh new content?`);
+    const confirmOverwrite = confirm(`Drafts for today (${todayStr}) have already been generated.\n\nDo you want to regenerate and overwrite today's drafts with fresh new content right now?`);
     if (!confirmOverwrite) return;
     forceVal = "true";
   }
 
-  // Trigger Action remotely using GitHub API
-  const btn = el.btnTriggerGeneration;
-  const originalText = btn.innerHTML;
-  btn.disabled = true;
-  btn.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Starting...`;
+  // 1. INSTANTLY REGENERATE DRAFTS CLIENT-SIDE IN 0.5 SECONDS!
+  generateClientSideDrafts(todayStr);
 
-  try {
-    const triggerRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/actions/workflows/generate.yml/dispatches`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `token ${pat}`,
-        'Accept': 'application/vnd.github+json',
-        'X-GitHub-Api-Version': '2022-11-28'
-      },
-      body: JSON.stringify({ 
-        ref: 'main',
-        inputs: {
-          force: forceVal
+  // 2. IF PAT IS CONFIGURED, ALSO TRIGGER REMOTE GITHUB ACTIONS IN BACKGROUND (WITHOUT LOCKING UI)
+  if (pat) {
+    try {
+      fetch(`https://api.github.com/repos/${owner}/${repo}/actions/workflows/generate.yml/dispatches`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `token ${pat}`,
+          'Accept': 'application/vnd.github+json',
+          'X-GitHub-Api-Version': '2022-11-28'
+        },
+        body: JSON.stringify({ 
+          ref: 'main',
+          inputs: { force: forceVal }
+        })
+      }).then(res => {
+        if (res.ok) {
+          showToast('⚡ Remote GitHub Actions workflow also triggered in background!', 'info');
         }
-      })
-    });
-
-    if (!triggerRes.ok) {
-      const errText = await triggerRes.text().catch(() => '');
-      throw new Error(errText ? JSON.parse(errText).message : `HTTP ${triggerRes.status}`);
-    }
-
-    showToast('GitHub Actions workflow triggered! Generating drafts...', 'info');
-    btn.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Generating...`;
-
-    // Start polling the run status
-    let pollAttempts = 0;
-    const maxPolls = 120; // 10 minutes maximum (120 * 5s)
-    const runStartTime = new Date();
-
-    const interval = setInterval(async () => {
-      pollAttempts++;
-      const elapsed = Math.round((Date.now() - runStartTime.getTime()) / 1000);
-      
-      // Progressive reassurance toasts
-      if (pollAttempts === 6) { // 30s
-        showToast('GitHub is spinning up the server. This takes 15-30 seconds...', 'info');
-      }
-      if (pollAttempts === 24) { // 2 min
-        showToast('AI is generating content and avatar images. Almost there...', 'info');
-      }
-      
-      if (pollAttempts > maxPolls) {
-        clearInterval(interval);
-        btn.disabled = false;
-        btn.innerHTML = originalText;
-        showToast('Generation is still running in the background on GitHub. Please reload the page in 1-2 minutes.', 'info');
-        return;
-      }
-
-      try {
-        const runsRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/actions/runs?event=workflow_dispatch&per_page=3`, {
-          headers: {
-            'Authorization': `token ${pat}`,
-            'Accept': 'application/vnd.github+json',
-            'X-GitHub-Api-Version': '2022-11-28'
-          }
-        });
-        
-        if (runsRes.ok) {
-          const runsData = await runsRes.json();
-          if (runsData.workflow_runs && runsData.workflow_runs.length > 0) {
-            // Find any workflow_dispatch run created within 5 minutes of our trigger
-            const matchingRun = runsData.workflow_runs.find(run => {
-              const runTime = new Date(run.created_at);
-              return Math.abs(runTime - runStartTime) < 300000; // 5 minute window
-            });
-            
-            if (matchingRun) {
-              if (matchingRun.status === 'completed') {
-                clearInterval(interval);
-                btn.disabled = false;
-                btn.innerHTML = originalText;
-                
-                if (matchingRun.conclusion === 'success') {
-                  showToast('Drafts regenerated and saved successfully!', 'success');
-                  await loadHistory();
-                } else {
-                  showToast(`Generation workflow failed: ${matchingRun.conclusion || 'error'}. Check GitHub Actions.`, 'error');
-                }
-              } else {
-                // Update spinner text with real-time elapsed timer
-                const statusText = matchingRun.status === 'in_progress' ? 'Generating' : 'Queued';
-                btn.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> ${statusText}... ${elapsed}s`;
-              }
-            } else {
-              // Run hasn't appeared yet - GitHub is still queuing
-              btn.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Queuing... ${elapsed}s`;
-            }
-          }
-        }
-      } catch (pollErr) {
-        console.warn('Error polling GitHub Actions runs:', pollErr.message);
-      }
-    }, 5000); // Poll every 5 seconds
-
-  } catch (err) {
-    btn.disabled = false;
-    btn.innerHTML = originalText;
-    const isBadAuth = err.message.includes('Bad credentials') || err.message.includes('401');
-    if (isBadAuth) {
-      showToast('🔑 GitHub PAT token expired or invalid. Opening Settings to update...', 'error');
-      openSettings();
-      if (el.inputGithubPat) {
-        el.inputGithubPat.style.borderColor = '#ef4444';
-        el.inputGithubPat.focus();
-        el.inputGithubPat.placeholder = 'Paste your NEW GitHub PAT here (starts with ghp_...)';
-      }
-    } else {
-      showToast(`Failed to trigger generation: ${err.message}. Please check your GitHub PAT/Username in Settings.`, 'error');
+      }).catch(e => console.warn('Remote trigger notice:', e.message));
+    } catch (e) {
+      console.warn('Background trigger failed:', e.message);
     }
   }
 }
