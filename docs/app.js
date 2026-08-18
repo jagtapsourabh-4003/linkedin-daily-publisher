@@ -761,27 +761,108 @@ async function handleSaveSettings(e) {
   }
 }
 
-// Trigger Daily Post Generation manually (via GitHub Actions API if PAT is configured, otherwise fallback to instructions)
+// Instant client-side draft generator for testing and offline usage
+function generateClientSideDrafts(dateStr) {
+  const isMarketing = Math.random() > 0.3; // 70% marketing, 30% AI
+  const category = isMarketing ? 'marketing' : 'ai';
+  
+  const archetypes = [
+    { name: 'News Anchor', layout: 'news-card', palette: 'Corporate Navy', role: 'AI Consultant', env: 'Technology command center', cam: 'Looking at camera', suit: 'Navy business suit' },
+    { name: 'Consultant Presentation', layout: 'presentation-slide', palette: 'Emerald Green', role: 'Business Coach', env: 'Executive boardroom', cam: 'Presentation shot', suit: 'Charcoal executive suit' },
+    { name: 'Forbes Cover', layout: 'magazine-cover', palette: 'Electric Blue', role: 'Startup Founder', env: 'Luxury office', cam: 'Half-body portrait', suit: 'Smart casual blazer' },
+    { name: 'Podcast Host', layout: 'podcast-layout', palette: 'Cyber Purple', role: 'Podcast Host', env: 'Podcast studio', cam: 'Sitting at desk', suit: 'Turtleneck with blazer' },
+    { name: 'TED Speaker', layout: 'hero-center', palette: 'Crimson Red', role: 'TED Speaker', env: 'Auditorium stage', cam: 'Speaking on stage', suit: 'Conference speaker outfit' }
+  ];
+
+  const topicsPool = isMarketing ? [
+    { hook: "AI search is changing SEO forever.", topic: "HubSpot AEO vs Profound: Optimizing for AI answer engines.", headline: "*AI* SEARCH *EXPLODES*", subtext: "New tools track brand visibility in AI answers.", badge: "AI TREND" },
+    { hook: "Stop writing generic B2B emails.", topic: "How high-converting brands use personalized RAG prompts for outreach.", headline: "B2B *EMAIL* *PLAYBOOK*", subtext: "Step-by-step framework to double response rates.", badge: "PLAYBOOK" },
+    { hook: "Why third-party cookies don't matter.", topic: "First-party data attribution is the new competitive moat.", headline: "COOKIE-LESS *FUTURE*", subtext: "3 first-party data strategies for 2026.", badge: "STRATEGY" },
+    { hook: "The 1 biggest marketing mistake.", topic: "Focusing on features instead of customer pain points.", headline: "THE *BIGGEST* *MISTAKE*", subtext: "Why feature lists decrease landing page conversions.", badge: "CASE STUDY" },
+    { hook: "5 predictions for digital growth.", topic: "Where marketing automation & voice search are headed in 2027.", headline: "2027 *GROWTH* *OUTLOOK*", subtext: "Future-proofing your brand's digital presence.", badge: "PREDICTION" }
+  ] : [
+    { hook: "Generative AI video is here.", topic: "Sora & Gen-3 models are revolutionizing ad creative production.", headline: "AI *VIDEO* *REVOLUTION*", subtext: "Lower ad costs with dynamic AI video assets.", badge: "AI NEWS" },
+    { hook: "Build your own marketing copilot.", topic: "How to fine-tune a private SLM on your historical sales copy.", headline: "CUSTOM *MARKETING* *COPILOT*", subtext: "Train lightweight models on your brand voice.", badge: "TUTORIAL" },
+    { hook: "AI copy isn't replacing writers.", topic: "Why human editing is mandatory for high-converting brand messaging.", headline: "HUMAN + *AI* *SYNERGY*", subtext: "Drafting fast without sacrificing authentic tone.", badge: "DEBATE" },
+    { hook: "Why public AI tools leak data.", topic: "Implementing strict enterprise data guardrails for AI tools.", headline: "ENTERPRISE *AI* *SECURITY*", subtext: "Preventing sensitive data leaks in AI writers.", badge: "GUIDE" },
+    { hook: "Voice search is taking over.", topic: "How multi-modal Gemini Live changes brand discovery habits.", headline: "VOICE *SEARCH* *ERA*", subtext: "Optimizing content for conversational AI queries.", badge: "FUTURE TREND" }
+  ];
+
+  const shuffled = [...topicsPool].sort(() => 0.5 - Math.random());
+
+  const newPosts = archetypes.map((arch, idx) => {
+    const t = shuffled[idx % shuffled.length];
+    return {
+      id: idx + 1,
+      designArchetype: arch.name,
+      layoutFamily: arch.layout,
+      colorPalette: arch.palette,
+      characterRole: arch.role,
+      environment: arch.env,
+      cameraStyle: arch.cam,
+      clothingStyle: arch.suit,
+      avatarPrompt: `Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, ${arch.role} in a ${arch.env}, ${arch.cam}, ${arch.suit}. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.`,
+      postContent: {
+        style: arch.name,
+        hook: t.hook,
+        content: `${t.hook}\n\n${t.topic}\n\nBrands need to adapt their strategy today. Connect these insights directly to your campaigns for maximum impact.\n\nWhat is your team's strategy for this?`,
+        sourceArticle: t.topic,
+        imageHeadline: t.headline,
+        imageSubtext: t.subtext,
+        badgeText: t.badge,
+        ctaText: "READ FULL POST"
+      },
+      layoutConfig: { dimensions: { width: 1080, height: 1080 } }
+    };
+  });
+
+  const entryIndex = state.history.findIndex(h => h.date === dateStr);
+  const newEntry = {
+    date: dateStr,
+    category: category,
+    posts: newPosts,
+    selectedPostId: null,
+    postedAt: null,
+    status: 'draft'
+  };
+
+  if (entryIndex !== -1) {
+    state.history[entryIndex] = newEntry;
+  } else {
+    state.history.unshift(newEntry);
+  }
+
+  state.activeDate = dateStr;
+
+  const localDb = getLocalDb();
+  localDb.clientHistory = state.history;
+  saveLocalDb(localDb);
+
+  showToast(`⚡ Generated fresh ${category.toUpperCase()} drafts for ${dateStr}!`, 'success');
+  renderDateList();
+  renderActiveDrafts();
+}
+
+// Trigger Daily Post Generation manually (via GitHub Actions API if PAT is configured, otherwise fallback to instant client-side generation)
 async function triggerManualGeneration() {
   const pat = state.settings.githubPat;
   const owner = state.settings.githubOwner || 'jagtapsourabh-4003';
   const repo = state.settings.githubRepo || 'linkedin-daily-publisher';
+  const todayStr = getTodayIST();
 
   if (!pat) {
-    // Show instruction modal since PAT is not configured
     const modalHtml = `
       <div style="text-align: left; line-height: 1.6;">
-        <p style="margin-bottom: 12px;">Since the app runs <strong>100% serverless</strong> on GitHub Pages, draft generation is automated via <strong>GitHub Actions</strong> every morning at 9:00 AM.</p>
-        <p style="margin-bottom: 12px; color: var(--accent-light); font-weight: bold;">💡 Tip: You can trigger generation directly from this dashboard! Just go to Settings (gear icon) and add a GitHub Personal Access Token (PAT).</p>
+        <p style="margin-bottom: 12px; font-size: 0.95rem;">Generate fresh daily draft posts instantly right inside your browser, or trigger remote generation via GitHub Actions!</p>
+        <button class="btn btn-primary full-width" id="btn-instant-client-gen" style="background: linear-gradient(135deg, #10b981, #059669); margin-bottom: 14px; font-weight: 700; padding: 10px; font-size: 0.95rem;">
+          ⚡ Generate Fresh Drafts Instantly (Client-Side)
+        </button>
         <hr style="border: 0; border-top: 1px solid var(--border-light); margin: 12px 0;">
-        <p style="margin-bottom: 12px;"><strong>To trigger manually on GitHub right now:</strong></p>
-        <ol style="margin-left: 20px; margin-bottom: 16px;">
-          <li>Go to your GitHub Repository.</li>
-          <li>Click the <strong>Actions</strong> tab.</li>
-          <li>Select <strong>.github/workflows/generate.yml</strong> in the left sidebar.</li>
-          <li>Click the <strong>Run workflow</strong> dropdown on the right and click the green button.</li>
-        </ol>
-        <p style="font-size: 0.85rem; color: #94a3b8;">Once completed (takes ~30s), reload this dashboard page to see the new drafts!</p>
+        <p style="margin-bottom: 8px; font-size: 0.85rem; color: #cbd5e1;"><strong>Option B: Trigger Remote Generation via GitHub Actions:</strong></p>
+        <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 8px;">To trigger remote automated runs, add a GitHub Personal Access Token (PAT) in <strong>Settings ⚙️</strong>, or click below to open your GitHub repository workflow:</p>
+        <a href="https://github.com/jagtapsourabh-4003/linkedin-daily-publisher/actions/workflows/generate.yml" target="_blank" class="btn btn-secondary btn-sm full-width" style="text-align: center; text-decoration: none;">
+          🔗 Open GitHub Actions Workflow Page
+        </a>
       </div>
     `;
     
@@ -791,25 +872,27 @@ async function triggerManualGeneration() {
     dialog.innerHTML = `
       <div class="modal-content" style="max-width: 500px;">
         <div class="modal-header">
-          <h3>⚡ Manual Draft Generation</h3>
+          <h3>⚡ Regenerate Today's Drafts</h3>
           <button class="close-btn" id="close-manual-trigger-btn">&times;</button>
         </div>
         <div class="modal-body">${modalHtml}</div>
-        <div class="modal-footer" style="justify-content: flex-end;">
-          <button class="btn btn-secondary" id="ok-manual-trigger-btn">Got it</button>
+        <div class="modal-footer" style="justify-content: space-between;">
+          <button class="btn btn-secondary" id="ok-manual-trigger-btn">Close</button>
         </div>
       </div>
     `;
     document.body.appendChild(dialog);
-    const close = () => document.body.removeChild(dialog);
+    const close = () => { if (dialog.parentNode) document.body.removeChild(dialog); };
     document.getElementById('close-manual-trigger-btn').onclick = close;
     document.getElementById('ok-manual-trigger-btn').onclick = close;
+    document.getElementById('btn-instant-client-gen').onclick = () => {
+      close();
+      generateClientSideDrafts(todayStr);
+    };
     return;
   }
 
   // Determine if today's drafts already exist in history
-  const todayStr = getTodayIST();
-  
   const existing = state.history.find(h => h.date === todayStr);
   let forceVal = "false";
   
