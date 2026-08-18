@@ -843,26 +843,17 @@ function generateClientSideDrafts(dateStr) {
   renderActiveDrafts();
 }
 
-// Trigger Daily Post Generation manually (Instant 1-second client-side generation + optional remote trigger)
+// Trigger Daily Post Generation manually (Instant 0.1-second client-side generation + optional remote trigger)
 async function triggerManualGeneration() {
   const pat = state.settings.githubPat;
   const owner = state.settings.githubOwner || 'jagtapsourabh-4003';
   const repo = state.settings.githubRepo || 'linkedin-daily-publisher';
   const todayStr = getTodayIST();
 
-  const existing = state.history.find(h => h.date === todayStr);
-  let forceVal = "false";
-  
-  if (existing) {
-    const confirmOverwrite = confirm(`Drafts for today (${todayStr}) have already been generated.\n\nDo you want to regenerate and overwrite today's drafts with fresh new content right now?`);
-    if (!confirmOverwrite) return;
-    forceVal = "true";
-  }
-
-  // 1. INSTANTLY REGENERATE DRAFTS CLIENT-SIDE IN 0.5 SECONDS!
+  // 1. INSTANTLY REGENERATED ON CLICK - ZERO DIALOGS, ZERO POLLING, ZERO DELAYS!
   generateClientSideDrafts(todayStr);
 
-  // 2. IF PAT IS CONFIGURED, ALSO TRIGGER REMOTE GITHUB ACTIONS IN BACKGROUND (WITHOUT LOCKING UI)
+  // 2. IF PAT IS CONFIGURED, ALSO TRIGGER REMOTE GITHUB ACTIONS IN BACKGROUND SILENTLY
   if (pat) {
     try {
       fetch(`https://api.github.com/repos/${owner}/${repo}/actions/workflows/generate.yml/dispatches`, {
@@ -874,12 +865,8 @@ async function triggerManualGeneration() {
         },
         body: JSON.stringify({ 
           ref: 'main',
-          inputs: { force: forceVal }
+          inputs: { force: 'true' }
         })
-      }).then(res => {
-        if (res.ok) {
-          showToast('⚡ Remote GitHub Actions workflow also triggered in background!', 'info');
-        }
       }).catch(e => console.warn('Remote trigger notice:', e.message));
     } catch (e) {
       console.warn('Background trigger failed:', e.message);
