@@ -2937,18 +2937,68 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
       }
       
       // 3. Draw Avatar
-      if (activeLayout.avatar) {
-        const av = activeLayout.avatar;
-        
+      const overlayAvatar = customLayout ? (customLayout.overlayAvatar !== false) : true;
+
+      if (activeLayout.avatar && overlayAvatar) {
+        const av = Object.assign({}, activeLayout.avatar);
+
+        let styleIdx = (postId - 1) % 18;
+        if (customLayout && customLayout.avatarStyleIdx !== undefined) styleIdx = customLayout.avatarStyleIdx;
+
+        let dynamicAvImg = avatarImg;
+        if (styleIdx >= 0 && optionAvatars[styleIdx] && (optionAvatars[styleIdx].complete || optionAvatarsLoaded[styleIdx])) {
+          dynamicAvImg = optionAvatars[styleIdx];
+        }
+
+        // Apply custom size scaling if modified
+        if (customLayout && customLayout.avatarSize) {
+          const newW = customLayout.avatarSize;
+          const ratio = newW / (av.w || 340);
+          av.w = newW;
+          av.h = Math.round((av.h || 340) * ratio);
+        }
+
+        // Apply position anchor override if specified
+        if (customLayout && customLayout.avatarPos) {
+          const pos = customLayout.avatarPos;
+          if (pos === 'bottom-right') {
+            av.x = w - av.w / 2 - 40;
+            av.y = h - av.h / 2 - 20;
+          } else if (pos === 'bottom-left') {
+            av.x = av.w / 2 + 40;
+            av.y = h - av.h / 2 - 20;
+          } else if (pos === 'top-right') {
+            av.x = w - av.w / 2 - 40;
+            av.y = av.h / 2 + 40;
+          } else if (pos === 'top-left') {
+            av.x = av.w / 2 + 40;
+            av.y = av.h / 2 + 40;
+          } else if (pos === 'center') {
+            av.x = w / 2;
+            av.y = h / 2;
+          }
+        }
+
+        // Apply manual X and Y offsets
+        if (customLayout && customLayout.avatarOffsetX) av.x += customLayout.avatarOffsetX;
+        if (customLayout && customLayout.avatarOffsetY) av.y += customLayout.avatarOffsetY;
+
+        const rotation = (customLayout && customLayout.avatarRotation) ? customLayout.avatarRotation : 0;
+        const removeAvatarBg = customLayout ? !!customLayout.removeAvatarBg : false;
+        const sensitivity = (customLayout && customLayout.bgSensitivity) ? customLayout.bgSensitivity : 55;
+
         ctx.save();
-        if (av.tilt) {
+        
+        // Tilt or manual rotation
+        const totalRotation = (av.tilt || 0) + (rotation * Math.PI / 180);
+        if (totalRotation !== 0) {
           ctx.translate(av.x, av.y);
-          ctx.rotate(av.tilt);
+          ctx.rotate(totalRotation);
           ctx.translate(-av.x, -av.y);
         }
         
         // Glow backdrop behind avatar
-        if (av.glowColor) {
+        if (av.glowColor && !removeAvatarBg) {
           ctx.save();
           ctx.shadowColor = av.glowColor;
           ctx.shadowBlur = av.glowBlur || 40;
@@ -2964,18 +3014,25 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
         }
         
         // Draw the avatar
-        let dynamicAvImg = activeAvImg;
-
-        if (av.type === 'circle') {
+        if (removeAvatarBg && dynamicAvImg && (dynamicAvImg.complete || dynamicAvImg.naturalWidth > 0)) {
+          ctx.save();
+          ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
+          ctx.shadowBlur = 30;
+          ctx.shadowOffsetX = -10;
+          ctx.shadowOffsetY = 15;
+          const cutoutCanvas = createCutoutAvatarCanvas(dynamicAvImg, sensitivity);
+          ctx.drawImage(cutoutCanvas, av.x - av.w/2, av.y - av.h/2, av.w, av.h);
+          ctx.restore();
+        } else if (av.type === 'circle') {
           drawAvatarForCircle(ctx, av.x, av.y, av.w / 2, av.filter, styleIdx, dynamicAvImg);
         } else if (av.type === 'phone') {
           drawPhoneMockup(ctx, av.x - av.w/2, av.y - av.h/2, av.w, av.h, true, dynamicAvImg, av.filter, styleIdx, palette);
         } else {
-          drawAvatarForCard(ctx, av.x - av.w/2, av.y - av.h/2, av.w, av.h, av.filter, styleIdx, dynamicAvImg);
+          drawAvatarForCard(ctx, av.x - av.w/2, av.y - av.h/2, av.w, av.h, av.filter, styleIdx, dynamicAvImg, removeAvatarBg, sensitivity);
         }
         
         // Neon stroke border outline on top
-        if (av.strokeColor) {
+        if (av.strokeColor && !removeAvatarBg) {
           ctx.save();
           ctx.strokeStyle = av.strokeColor;
           ctx.lineWidth = av.lineWidth || 4;
