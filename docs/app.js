@@ -14,6 +14,7 @@ let state = {
 
 // Global Image Resources (Custom Avatar)
 const avatarImg = new Image();
+avatarImg.crossOrigin = 'anonymous';
 let avatarImageLoaded = false;
 
 // Multi-avatar resources for the 18 draft options
@@ -22,6 +23,7 @@ const optionAvatarsLoaded = Array(18).fill(false);
 
 for (let i = 1; i <= 18; i++) {
   const img = new Image();
+  img.crossOrigin = 'anonymous';
   img.onload = () => {
     optionAvatarsLoaded[i - 1] = true;
     console.log(`[Avatar] Option avatar ${i} loaded.`);
@@ -951,10 +953,10 @@ async function postToGoogleFlow(postId, btnElement) {
           throw new Error('Canvas appears blank or tainted');
         }
       } catch (taintErr) {
-      console.warn('[Publish] Canvas toDataURL failed (tainted canvas). Re-drawing on a clean offscreen canvas without cross-origin images:', taintErr.message);
-      showToast('Redrawing graphic on clean canvas (cross-origin image issue)...', 'info');
+      console.warn('[Publish] Canvas toDataURL failed (tainted canvas). Re-drawing on a clean offscreen canvas:', taintErr.message);
+      showToast('Redrawing graphic for publishing...', 'info');
 
-      // Fallback: draw on a fresh offscreen canvas with no cross-origin images
+      // Fallback: draw on a fresh offscreen canvas, keeping avatar intact
       const offscreen = document.createElement('canvas');
       offscreen.width = canvas.width;
       offscreen.height = canvas.height;
@@ -962,10 +964,8 @@ async function postToGoogleFlow(postId, btnElement) {
       if (activeEntry && post) {
         const headlineText = post.postContent?.imageHeadline || post.imageHeadline || '';
         const subtextText = post.postContent?.imageSubtext || post.imageSubtext || '';
-        const savedAvatar = avatarImg.src;
-        avatarImg.src = '';
+        // Draw WITH the avatar (do NOT blank avatarImg.src!)
         drawCreative(offscreen, activeEntry.category, headlineText, subtextText, post.id, activeEntry.date, Object.assign({}, post.layout || {}, post));
-        avatarImg.src = savedAvatar;
       }
 
       try {
@@ -2554,7 +2554,8 @@ function buildLayoutFromFamily(layoutFamily, palette, headline, subtext, categor
   return layout;
 }
 
-// High-resolution cached sharp cutout background removal helper (protects face/hair, zero negative film holes)
+// Background removal using flood-fill from image corners.
+// Only removes pixels connected to the border edges, never cuts holes in the person's face/body.
 const avatarCutoutCache = new Map();
 
 function createCutoutAvatarCanvas(sourceImg, sensitivity = 45) {
@@ -2577,60 +2578,91 @@ function createCutoutAvatarCanvas(sourceImg, sensitivity = 45) {
     const imgData = ctx.getImageData(0, 0, w, h);
     const data = imgData.data;
 
-    // Sample background colors exclusively from the top 5% outer corners (avoiding subject body)
-    const bgSamples = [];
-    const cornerMargin = Math.floor(w * 0.08);
+    // Get the background reference color from the average of the 4 corners
+    const getPixel = (px, py) => {
+      const idx = (py * w + px) * 4;
+      return { r: data[idx], g: data[idx + 1], b: data[idx + 2] };
+    };
 
-    // Top-left corner
-    for (let x = 0; x < cornerMargin; x += 2) {
-      for (let y = 0; y < cornerMargin; y += 2) {
-        const idx = (y * w + x) * 4;
-        bgSamples.push({ r: data[idx], g: data[idx + 1], b: data[idx + 2] });
+    const corners = [
+      getPixel(2, 2),
+      getPixel(w - 3, 2),
+      getPixel(2, h - 3),
+      getPixel(w - 3, h - 3)
+    ];
+
+    // Check if corners are similar (uniform background)
+    const colorDist = (a, b) => Math.sqrt((a.r - b.r) ** 2 + (a.g - b.g) ** 2 + (a.b - b.b) ** 2);
+    const cornersSimilar = corners.every((c, i) => {
+      for (let j = i + 1; j < corners.length; j++) {
+        if (colorDist(c, corners[j]) > 80) return false;
+      }
+      return true;
+    });
+
+    if (!cornersSimilar) {
+      // Background is NOT uniform (scenic/complex) - don't attempt removal, return original
+      console.log('[Cutout] Background is not uniform, skipping removal to preserve image quality');
+      avatarCutoutCache.set(cacheKey, c);
+      return c;
+    }
+
+    // Background IS uniform - use flood fill from all border pixels
+    const bgRef = {
+      r: Math.round(corners.reduce((s, c) => s + c.r, 0) / 4),
+      g: Math.round(corners.reduce((s, c) => s + c.g, 0) / 4),
+      b: Math.round(corners.reduce((s, c) => s + c.b, 0) / 4)
+    };
+
+    // Flood-fill mask: 0 = not visited, 1 = background, 2 = foreground
+    const mask = new Uint8Array(w * h);
+    const threshold = sensitivity;
+
+    const matchesBg = (idx) => {
+      const r = data[idx * 4];
+      const g = data[idx * 4 + 1];
+      const b = data[idx * 4 + 2];
+      const dist = Math.sqrt((r - bgRef.r) ** 2 + (g - bgRef.g) ** 2 + (b - bgRef.b) ** 2);
+      return dist < threshold;
+    };
+
+    // Seed the flood fill queue from all 4 borders
+    const queue = [];
+    for (let x = 0; x < w; x++) {
+      queue.push(x);                  // top row
+      queue.push((h - 1) * w + x);    // bottom row
+    }
+    for (let y = 1; y < h - 1; y++) {
+      queue.push(y * w);              // left column
+      queue.push(y * w + (w - 1));    // right column
+    }
+
+    // BFS flood fill - only mark pixels reachable from the border that match bg color
+    let qi = 0;
+    while (qi < queue.length) {
+      const pixIdx = queue[qi++];
+      if (pixIdx < 0 || pixIdx >= w * h) continue;
+      if (mask[pixIdx] !== 0) continue;
+
+      if (matchesBg(pixIdx)) {
+        mask[pixIdx] = 1; // background
+        const px = pixIdx % w;
+        const py = Math.floor(pixIdx / w);
+        if (px > 0) queue.push(pixIdx - 1);
+        if (px < w - 1) queue.push(pixIdx + 1);
+        if (py > 0) queue.push(pixIdx - w);
+        if (py < h - 1) queue.push(pixIdx + w);
+      } else {
+        mask[pixIdx] = 2; // foreground - stop spreading
       }
     }
 
-    // Top-right corner
-    for (let x = w - cornerMargin; x < w; x += 2) {
-      for (let y = 0; y < cornerMargin; y += 2) {
-        const idx = (y * w + x) * 4;
-        bgSamples.push({ r: data[idx], g: data[idx + 1], b: data[idx + 2] });
+    // Apply mask: make background pixels transparent
+    for (let i = 0; i < w * h; i++) {
+      if (mask[i] === 1) {
+        data[i * 4 + 3] = 0; // transparent
       }
-    }
-
-    for (let y = 0; y < h; y++) {
-      for (let x = 0; x < w; x++) {
-        const i = (y * w + x) * 4;
-        const r = data[i];
-        const g = data[i + 1];
-        const b = data[i + 2];
-
-        // Central subject zone (head, face, glasses, shirt) -> NEVER cut out central face pixels!
-        const isInCentralSubjectZone = (x > w * 0.22 && x < w * 0.78 && y > h * 0.12 && y < h * 0.88);
-
-        // Human skin tone detection
-        const isSkinTone = (r > 50 && g > 30 && b > 15 && r > g && g > b && (r - Math.min(g, b)) > 10);
-
-        if (isInCentralSubjectZone && (isSkinTone || (r > 40 && g > 40 && b > 40))) {
-          data[i + 3] = 255; // Always preserve subject face & body!
-          continue;
-        }
-
-        // Calculate minimum color distance to corner background samples
-        let minDist = 999;
-        for (let s = 0; s < bgSamples.length; s += 2) {
-          const bg = bgSamples[s];
-          const dist = Math.sqrt((r - bg.r) ** 2 + (g - bg.g) ** 2 + (b - bg.b) ** 2);
-          if (dist < minDist) minDist = dist;
-        }
-
-        const isWhiteStudioBg = (r > 215 && g > 215 && b > 215);
-
-        if (!isSkinTone && (minDist < sensitivity || isWhiteStudioBg)) {
-          data[i + 3] = 0; // 100% transparent background
-        } else {
-          data[i + 3] = 255; // Crisp opaque subject
-        }
-      }
+      // All other pixels (foreground + unvisited interior) stay fully opaque
     }
 
     ctx.putImageData(imgData, 0, 0);
