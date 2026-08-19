@@ -2554,10 +2554,10 @@ function buildLayoutFromFamily(layoutFamily, palette, headline, subtext, categor
   return layout;
 }
 
-// High-resolution cached sharp cutout background removal helper (sharp edges, zero blur, high-DPI crispness)
+// High-resolution cached sharp cutout background removal helper (protects face/hair, zero negative film holes)
 const avatarCutoutCache = new Map();
 
-function createCutoutAvatarCanvas(sourceImg, sensitivity = 50) {
+function createCutoutAvatarCanvas(sourceImg, sensitivity = 45) {
   const cacheKey = `${sourceImg.src || sourceImg.currentSrc || 'img'}_${sensitivity}_${sourceImg.naturalWidth || sourceImg.width || 0}`;
   if (avatarCutoutCache.has(cacheKey)) {
     return avatarCutoutCache.get(cacheKey);
@@ -2577,44 +2577,59 @@ function createCutoutAvatarCanvas(sourceImg, sensitivity = 50) {
     const imgData = ctx.getImageData(0, 0, w, h);
     const data = imgData.data;
 
-    // Sample background colors along border margins
+    // Sample background colors exclusively from the top 5% outer corners (avoiding subject body)
     const bgSamples = [];
-    const step = Math.max(1, Math.floor(w / 50));
+    const cornerMargin = Math.floor(w * 0.08);
 
-    for (let x = 0; x < w; x += step) {
-      const topIdx = x * 4;
-      bgSamples.push({ r: data[topIdx], g: data[topIdx + 1], b: data[topIdx + 2] });
-      const botIdx = ((h - 1) * w + x) * 4;
-      bgSamples.push({ r: data[botIdx], g: data[botIdx + 1], b: data[botIdx + 2] });
-    }
-
-    for (let y = 0; y < h; y += step) {
-      const leftIdx = (y * w) * 4;
-      bgSamples.push({ r: data[leftIdx], g: data[leftIdx + 1], b: data[leftIdx + 2] });
-      const rightIdx = (y * w + (w - 1)) * 4;
-      bgSamples.push({ r: data[rightIdx], g: data[rightIdx + 1], b: data[rightIdx + 2] });
-    }
-
-    for (let i = 0; i < data.length; i += 4) {
-      const r = data[i];
-      const g = data[i + 1];
-      const b = data[i + 2];
-
-      let minDist = 999;
-      for (let s = 0; s < bgSamples.length; s++) {
-        const bg = bgSamples[s];
-        const dist = Math.sqrt((r - bg.r) ** 2 + (g - bg.g) ** 2 + (b - bg.b) ** 2);
-        if (dist < minDist) minDist = dist;
+    // Top-left corner
+    for (let x = 0; x < cornerMargin; x += 2) {
+      for (let y = 0; y < cornerMargin; y += 2) {
+        const idx = (y * w + x) * 4;
+        bgSamples.push({ r: data[idx], g: data[idx + 1], b: data[idx + 2] });
       }
+    }
 
-      const isWhiteStudioBg = (r > 205 && g > 205 && b > 205);
-      const isSkinTone = (r > 60 && g > 35 && b > 20 && r > g && g > b && (r - Math.min(g, b)) > 12);
+    // Top-right corner
+    for (let x = w - cornerMargin; x < w; x += 2) {
+      for (let y = 0; y < cornerMargin; y += 2) {
+        const idx = (y * w + x) * 4;
+        bgSamples.push({ r: data[idx], g: data[idx + 1], b: data[idx + 2] });
+      }
+    }
 
-      // Sharp crisp thresholding (NO fuzzy blur!)
-      if (!isSkinTone && (minDist < sensitivity || isWhiteStudioBg)) {
-        data[i + 3] = 0; // 100% transparent
-      } else {
-        data[i + 3] = 255; // 100% sharp crisp opaque
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        const i = (y * w + x) * 4;
+        const r = data[i];
+        const g = data[i + 1];
+        const b = data[i + 2];
+
+        // Central subject zone (head, face, glasses, shirt) -> NEVER cut out central face pixels!
+        const isInCentralSubjectZone = (x > w * 0.22 && x < w * 0.78 && y > h * 0.12 && y < h * 0.88);
+
+        // Human skin tone detection
+        const isSkinTone = (r > 50 && g > 30 && b > 15 && r > g && g > b && (r - Math.min(g, b)) > 10);
+
+        if (isInCentralSubjectZone && (isSkinTone || (r > 40 && g > 40 && b > 40))) {
+          data[i + 3] = 255; // Always preserve subject face & body!
+          continue;
+        }
+
+        // Calculate minimum color distance to corner background samples
+        let minDist = 999;
+        for (let s = 0; s < bgSamples.length; s += 2) {
+          const bg = bgSamples[s];
+          const dist = Math.sqrt((r - bg.r) ** 2 + (g - bg.g) ** 2 + (b - bg.b) ** 2);
+          if (dist < minDist) minDist = dist;
+        }
+
+        const isWhiteStudioBg = (r > 215 && g > 215 && b > 215);
+
+        if (!isSkinTone && (minDist < sensitivity || isWhiteStudioBg)) {
+          data[i + 3] = 0; // 100% transparent background
+        } else {
+          data[i + 3] = 255; // Crisp opaque subject
+        }
       }
     }
 
@@ -3320,10 +3335,14 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
         // Draw the avatar
         if (removeAvatarBg && dynamicAvImg && (dynamicAvImg.complete || dynamicAvImg.naturalWidth > 0)) {
           ctx.save();
+          // Draw subtle dark backing frame so red/orange card shapes do NOT bleed through face as negative film!
+          ctx.fillStyle = 'rgba(10, 15, 30, 0.92)';
           ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
-          ctx.shadowBlur = 30;
-          ctx.shadowOffsetX = -10;
-          ctx.shadowOffsetY = 15;
+          ctx.shadowBlur = 25;
+          ctx.beginPath();
+          ctx.roundRect(av.x - av.w/2, av.y - av.h/2, av.w, av.h, 20);
+          ctx.fill();
+
           const cutoutCanvas = createCutoutAvatarCanvas(dynamicAvImg, sensitivity);
           ctx.drawImage(cutoutCanvas, av.x - av.w/2, av.y - av.h/2, av.w, av.h);
           ctx.restore();
