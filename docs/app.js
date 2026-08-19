@@ -1843,7 +1843,7 @@ function renderActiveDrafts() {
 
       // Attach Interactive Mouse Drag, Drop & Scroll-Resize to Canvas
       if (canvas) {
-        makeCanvasInteractive(canvas, post, cardEl, activeEntry.category, headlineInput, subtextInput, state.activeDate);
+        makeCanvasInteractive(canvas, post, cardEl, activeEntry.category, state.activeDate);
       }
     }
 
@@ -2742,7 +2742,7 @@ function drawInteractiveAvatarOverlay(canvas, post) {
 }
 
 // Attach interactive mouse drag, drop & wheel resize listeners directly to canvas element
-function makeCanvasInteractive(canvas, post, cardEl, category, headlineInput, subtextInput, activeDate) {
+function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
   if (canvas._hasMouseListeners) return;
   canvas._hasMouseListeners = true;
 
@@ -2760,6 +2760,15 @@ function makeCanvasInteractive(canvas, post, cardEl, category, headlineInput, su
   const labelY = cardEl.querySelector(`#val-avatar-y-${post.id}`);
   const sliderSize = cardEl.querySelector(`#slider-avatar-size-${post.id}`);
   const labelSize = cardEl.querySelector(`#val-avatar-size-${post.id}`);
+
+  const getHeadlineVal = () => {
+    const el = cardEl.querySelector(`#input-headline-${post.id}`);
+    return el ? el.value : (post.postContent ? (post.postContent.imageHeadline || '') : '');
+  };
+  const getSubtextVal = () => {
+    const el = cardEl.querySelector(`#input-subtext-${post.id}`);
+    return el ? el.value : (post.postContent ? (post.postContent.imageSubtext || '') : '');
+  };
 
   const getCanvasMousePos = (e) => {
     const rect = canvas.getBoundingClientRect();
@@ -2815,7 +2824,7 @@ function makeCanvasInteractive(canvas, post, cardEl, category, headlineInput, su
       if (sliderY) sliderY.value = post.avatarOffsetY;
       if (labelY) labelY.textContent = `${post.avatarOffsetY}px`;
 
-      drawCreative(canvas, category, headlineInput.value, subtextInput.value, post.id, activeDate, Object.assign({}, post.layout || {}, post));
+      drawCreative(canvas, category, getHeadlineVal(), getSubtextVal(), post.id, activeDate, Object.assign({}, post.layout || {}, post));
       drawInteractiveAvatarOverlay(canvas, post);
     } else if (isResizing) {
       canvas.style.cursor = 'nwse-resize';
@@ -2825,7 +2834,7 @@ function makeCanvasInteractive(canvas, post, cardEl, category, headlineInput, su
       if (sliderSize) sliderSize.value = post.avatarSize;
       if (labelSize) labelSize.textContent = `${post.avatarSize}px`;
 
-      drawCreative(canvas, category, headlineInput.value, subtextInput.value, post.id, activeDate, Object.assign({}, post.layout || {}, post));
+      drawCreative(canvas, category, getHeadlineVal(), getSubtextVal(), post.id, activeDate, Object.assign({}, post.layout || {}, post));
       drawInteractiveAvatarOverlay(canvas, post);
     }
   });
@@ -2881,7 +2890,7 @@ function makeCanvasInteractive(canvas, post, cardEl, category, headlineInput, su
       if (sliderSize) sliderSize.value = post.avatarSize;
       if (labelSize) labelSize.textContent = `${post.avatarSize}px`;
 
-      drawCreative(canvas, category, headlineInput.value, subtextInput.value, post.id, activeDate, Object.assign({}, post.layout || {}, post));
+      drawCreative(canvas, category, getHeadlineVal(), getSubtextVal(), post.id, activeDate, Object.assign({}, post.layout || {}, post));
       drawInteractiveAvatarOverlay(canvas, post);
 
       saveDesignEdit(activeDate, post.id, { avatarSize: post.avatarSize });
