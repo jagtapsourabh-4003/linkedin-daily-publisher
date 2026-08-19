@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-08-19",
+    "category": "marketing",
+    "posts": [
+      {
+        "id": 1,
+        "designArchetype": "News Anchor",
+        "layoutFamily": "news-card",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "AI Consultant",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, AI Consultant in a Technology command center, Looking at camera, Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "News Anchor",
+          "hook": "AI search is changing SEO forever.",
+          "content": "AI search is changing SEO forever.\n\nHubSpot AEO vs Profound: Optimizing for AI answer engines.\n\nBrands need to adapt their strategy today. Connect these insights directly to your campaigns for maximum impact.\n\nWhat is your team's strategy for this?",
+          "sourceArticle": "HubSpot AEO vs Profound: Optimizing for AI answer engines.",
+          "imageHeadline": "*AI* SEARCH *EXPLODES*",
+          "imageSubtext": "New tools track brand visibility in AI answers.",
+          "badgeText": "AI TREND",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 2,
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Business Coach",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Coach in a Executive boardroom, Presentation shot, Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Consultant Presentation",
+          "hook": "Stop writing generic B2B emails.",
+          "content": "Stop writing generic B2B emails.\n\nHow high-converting brands use personalized RAG prompts for outreach.\n\nBrands need to adapt their strategy today. Connect these insights directly to your campaigns for maximum impact.\n\nWhat is your team's strategy for this?",
+          "sourceArticle": "How high-converting brands use personalized RAG prompts for outreach.",
+          "imageHeadline": "B2B *EMAIL* *PLAYBOOK*",
+          "imageSubtext": "Step-by-step framework to double response rates.",
+          "badgeText": "PLAYBOOK",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 3,
+        "designArchetype": "Forbes Cover",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Startup Founder",
+        "environment": "Luxury office",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Startup Founder in a Luxury office, Half-body portrait, Smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Forbes Cover",
+          "hook": "Why third-party cookies don't matter.",
+          "content": "Why third-party cookies don't matter.\n\nFirst-party data attribution is the new competitive moat.\n\nBrands need to adapt their strategy today. Connect these insights directly to your campaigns for maximum impact.\n\nWhat is your team's strategy for this?",
+          "sourceArticle": "First-party data attribution is the new competitive moat.",
+          "imageHeadline": "COOKIE-LESS *FUTURE*",
+          "imageSubtext": "3 first-party data strategies for 2026.",
+          "badgeText": "STRATEGY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 4,
+        "designArchetype": "Podcast Host",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Podcast Host",
+        "environment": "Podcast studio",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Podcast Host in a Podcast studio, Sitting at desk, Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Podcast Host",
+          "hook": "The 1 biggest marketing mistake.",
+          "content": "The 1 biggest marketing mistake.\n\nFocusing on features instead of customer pain points.\n\nBrands need to adapt their strategy today. Connect these insights directly to your campaigns for maximum impact.\n\nWhat is your team's strategy for this?",
+          "sourceArticle": "Focusing on features instead of customer pain points.",
+          "imageHeadline": "THE *BIGGEST* *MISTAKE*",
+          "imageSubtext": "Why feature lists decrease landing page conversions.",
+          "badgeText": "CASE STUDY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 5,
+        "designArchetype": "TED Speaker",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Crimson Red",
+        "characterRole": "TED Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, TED Speaker in a Auditorium stage, Speaking on stage, Conference speaker outfit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "TED Speaker",
+          "hook": "5 predictions for digital growth.",
+          "content": "5 predictions for digital growth.\n\nWhere marketing automation & voice search are headed in 2027.\n\nBrands need to adapt their strategy today. Connect these insights directly to your campaigns for maximum impact.\n\nWhat is your team's strategy for this?",
+          "sourceArticle": "Where marketing automation & voice search are headed in 2027.",
+          "imageHeadline": "2027 *GROWTH* *OUTLOOK*",
+          "imageSubtext": "Future-proofing your brand's digital presence.",
+          "badgeText": "PREDICTION",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-08-18",
     "category": "ai",
     "posts": [
