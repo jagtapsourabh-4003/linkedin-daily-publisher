@@ -1840,6 +1840,11 @@ function renderActiveDrafts() {
         });
         sliderBgSensitivity.addEventListener('change', () => triggerRedrawAndSave(false));
       }
+
+      // Attach Interactive Mouse Drag, Drop & Scroll-Resize to Canvas
+      if (canvas) {
+        makeCanvasInteractive(canvas, post, cardEl, activeEntry.category, headlineInput, subtextInput, state.activeDate);
+      }
     }
 
     // Post to Google Flow button listener
@@ -2549,8 +2554,8 @@ function buildLayoutFromFamily(layoutFamily, palette, headline, subtext, categor
   return layout;
 }
 
-// Pure JS client-side image background removal helper
-function createCutoutAvatarCanvas(sourceImg, sensitivity = 55) {
+// Pure JS client-side image background removal helper (supports light, dark & colored backdrops + skin protection)
+function createCutoutAvatarCanvas(sourceImg, sensitivity = 50) {
   const c = document.createElement('canvas');
   const w = sourceImg.naturalWidth || sourceImg.width || 400;
   const h = sourceImg.naturalHeight || sourceImg.height || 400;
@@ -2563,47 +2568,325 @@ function createCutoutAvatarCanvas(sourceImg, sensitivity = 55) {
     const imgData = ctx.getImageData(0, 0, w, h);
     const data = imgData.data;
 
-    // Sample background colors from 4 corners + top middle
-    const corners = [
-      0,                            // top-left
-      (w - 1) * 4,                  // top-right
-      (h - 1) * w * 4,              // bottom-left
-      ((h - 1) * w + (w - 1)) * 4,  // bottom-right
-      Math.floor(w / 2) * 4         // top-center
-    ];
+    // Sample background colors along border edges (top 5%, bottom 5%, left 5%, right 5%)
+    const bgSamples = [];
+    const step = Math.max(1, Math.floor(w / 40));
 
-    const bgColors = corners.map(idx => ({
-      r: data[idx] || 255,
-      g: data[idx + 1] || 255,
-      b: data[idx + 2] || 255
-    }));
+    // Top & bottom rows
+    for (let x = 0; x < w; x += step) {
+      const topIdx = x * 4;
+      bgSamples.push({ r: data[topIdx], g: data[topIdx + 1], b: data[topIdx + 2] });
+      const botIdx = ((h - 1) * w + x) * 4;
+      bgSamples.push({ r: data[botIdx], g: data[botIdx + 1], b: data[botIdx + 2] });
+    }
+
+    // Left & right columns
+    for (let y = 0; y < h; y += step) {
+      const leftIdx = (y * w) * 4;
+      bgSamples.push({ r: data[leftIdx], g: data[leftIdx + 1], b: data[leftIdx + 2] });
+      const rightIdx = (y * w + (w - 1)) * 4;
+      bgSamples.push({ r: data[rightIdx], g: data[rightIdx + 1], b: data[rightIdx + 2] });
+    }
 
     for (let i = 0; i < data.length; i += 4) {
       const r = data[i];
       const g = data[i + 1];
       const b = data[i + 2];
 
+      // Calculate minimum color distance to sampled background colors
       let minDist = 999;
-      for (const bg of bgColors) {
+      for (let s = 0; s < bgSamples.length; s++) {
+        const bg = bgSamples[s];
         const dist = Math.sqrt((r - bg.r) ** 2 + (g - bg.g) ** 2 + (b - bg.b) ** 2);
         if (dist < minDist) minDist = dist;
       }
 
-      // Detect white/light studio background
-      const isWhiteStudioBg = (r > 215 && g > 215 && b > 215);
+      // Check if pixel is light/white studio backdrop (r, g, b all > 210)
+      const isWhiteStudioBg = (r > 210 && g > 210 && b > 210);
 
-      if (minDist < sensitivity || isWhiteStudioBg) {
-        data[i + 3] = 0; // 100% transparent
-      } else if (minDist < sensitivity + 30) {
-        data[i + 3] = Math.floor(((minDist - sensitivity) / 30) * 255); // Smooth edge feathering
+      // Human skin tone protection heuristic (prevent cutting out face/arms)
+      const isSkinTone = (r > 60 && g > 35 && b > 20 && r > g && g > b && (r - Math.min(g, b)) > 14);
+
+      if (!isSkinTone && (minDist < sensitivity || isWhiteStudioBg)) {
+        data[i + 3] = 0; // Transparent
+      } else if (!isSkinTone && minDist < sensitivity + 25) {
+        data[i + 3] = Math.floor(((minDist - sensitivity) / 25) * 255); // Edge feathering
       }
     }
 
     ctx.putImageData(imgData, 0, 0);
   } catch (e) {
-    console.warn('[Cutout] Canvas ImageData fallback:', e.message);
+    console.warn('[Cutout] Background removal fallback:', e.message);
   }
   return c;
+}
+
+// Calculate exact bounding box of avatar photo on 1080x1080 canvas
+function getAvatarBoundingBox(post, w = 1080, h = 1080) {
+  const avW = post.avatarSize || 340;
+  const avH = Math.round(avW * 1.38);
+  const pos = post.avatarPos || 'bottom-right';
+
+  let baseAvX = w - avW - 40;
+  let baseAvY = h - avH - 20;
+
+  if (post.customCanvaGraphic) {
+    if (pos === 'bottom-left') {
+      baseAvX = 40;
+      baseAvY = h - avH - 20;
+    } else if (pos === 'top-right') {
+      baseAvX = w - avW - 40;
+      baseAvY = 40;
+    } else if (pos === 'top-left') {
+      baseAvX = 40;
+      baseAvY = 40;
+    } else if (pos === 'center') {
+      baseAvX = Math.round((w - avW) / 2);
+      baseAvY = Math.round((h - avH) / 2);
+    }
+  } else {
+    const layoutFam = (post.layoutFamily || 'split-left').toLowerCase();
+    if (layoutFam === 'split-left') {
+      baseAvX = 280 - avW / 2;
+      baseAvY = 540 - avH / 2;
+    } else if (layoutFam === 'hero-center') {
+      baseAvX = 540 - avW / 2;
+      baseAvY = 450 - avH / 2;
+    } else if (layoutFam === 'news-card') {
+      baseAvX = 750 - avW / 2;
+      baseAvY = 540 - avH / 2;
+    } else if (layoutFam === 'magazine-cover') {
+      baseAvX = 540 - avW / 2;
+      baseAvY = 540 - avH / 2;
+    } else {
+      if (pos === 'bottom-left') {
+        baseAvX = 40;
+        baseAvY = h - avH - 20;
+      } else if (pos === 'top-right') {
+        baseAvX = w - avW - 40;
+        baseAvY = 40;
+      } else if (pos === 'top-left') {
+        baseAvX = 40;
+        baseAvY = 40;
+      } else if (pos === 'center') {
+        baseAvX = Math.round((w - avW) / 2);
+        baseAvY = Math.round((h - avH) / 2);
+      } else {
+        baseAvX = w - avW - 40;
+        baseAvY = h - avH - 20;
+      }
+    }
+  }
+
+  const avX = baseAvX + (post.avatarOffsetX || 0);
+  const avY = baseAvY + (post.avatarOffsetY || 0);
+
+  return { x: avX, y: avY, w: avW, h: avH };
+}
+
+// Draw interactive bounding box & drag handles around avatar photo when hovering/dragging
+function drawInteractiveAvatarOverlay(canvas, post) {
+  if (post.overlayAvatar === false) return;
+  const ctx = canvas.getContext('2d');
+  const bbox = getAvatarBoundingBox(post, canvas.width, canvas.height);
+
+  ctx.save();
+  const rotation = post.avatarRotation || 0;
+  if (rotation !== 0) {
+    const cx = bbox.x + bbox.w / 2;
+    const cy = bbox.y + bbox.h / 2;
+    ctx.translate(cx, cy);
+    ctx.rotate((rotation * Math.PI) / 180);
+    ctx.translate(-cx, -cy);
+  }
+
+  // Draw dashed neon border outline around avatar photo
+  ctx.strokeStyle = '#38bdf8';
+  ctx.lineWidth = 4;
+  ctx.setLineDash([12, 8]);
+  ctx.strokeRect(bbox.x - 6, bbox.y - 6, bbox.w + 12, bbox.h + 12);
+  ctx.setLineDash([]);
+
+  // Draw corner resize handle (bottom right)
+  const handleSize = 24;
+  ctx.fillStyle = '#38bdf8';
+  ctx.strokeStyle = '#ffffff';
+  ctx.lineWidth = 3;
+
+  ctx.beginPath();
+  ctx.arc(bbox.x + bbox.w + 6, bbox.y + bbox.h + 6, handleSize / 2, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
+
+  // Draw top-left handle
+  ctx.beginPath();
+  ctx.arc(bbox.x - 6, bbox.y - 6, handleSize / 3, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
+
+  // Drag Helper Label Badge
+  ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
+  ctx.beginPath();
+  ctx.roundRect(bbox.x, bbox.y - 42, bbox.w, 34, 8);
+  ctx.fill();
+  ctx.strokeStyle = '#38bdf8';
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  ctx.fillStyle = '#38bdf8';
+  ctx.font = 'bold 15px Inter, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('✋ Click & Drag | Scroll Mouse to Resize', bbox.x + bbox.w / 2, bbox.y - 20);
+
+  ctx.restore();
+}
+
+// Attach interactive mouse drag, drop & wheel resize listeners directly to canvas element
+function makeCanvasInteractive(canvas, post, cardEl, category, headlineInput, subtextInput, activeDate) {
+  if (canvas._hasMouseListeners) return;
+  canvas._hasMouseListeners = true;
+
+  let isDragging = false;
+  let isResizing = false;
+  let startMouseX = 0;
+  let startMouseY = 0;
+  let initOffsetX = 0;
+  let initOffsetY = 0;
+  let initSize = 340;
+
+  const sliderX = cardEl.querySelector(`#slider-avatar-x-${post.id}`);
+  const labelX = cardEl.querySelector(`#val-avatar-x-${post.id}`);
+  const sliderY = cardEl.querySelector(`#slider-avatar-y-${post.id}`);
+  const labelY = cardEl.querySelector(`#val-avatar-y-${post.id}`);
+  const sliderSize = cardEl.querySelector(`#slider-avatar-size-${post.id}`);
+  const labelSize = cardEl.querySelector(`#val-avatar-size-${post.id}`);
+
+  const getCanvasMousePos = (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    return {
+      x: (e.clientX - rect.left) * scaleX,
+      y: (e.clientY - rect.top) * scaleY
+    };
+  };
+
+  const isMouseOverAvatar = (mx, my) => {
+    const bbox = getAvatarBoundingBox(post, canvas.width, canvas.height);
+    return (
+      mx >= bbox.x - 20 &&
+      mx <= bbox.x + bbox.w + 20 &&
+      my >= bbox.y - 20 &&
+      my <= bbox.y + bbox.h + 20
+    );
+  };
+
+  const isMouseOverResizeHandle = (mx, my) => {
+    const bbox = getAvatarBoundingBox(post, canvas.width, canvas.height);
+    const handleX = bbox.x + bbox.w;
+    const handleY = bbox.y + bbox.h;
+    return Math.hypot(mx - handleX, my - handleY) < 40;
+  };
+
+  canvas.addEventListener('mousemove', (e) => {
+    const { x, y } = getCanvasMousePos(e);
+
+    if (!isDragging && !isResizing) {
+      if (isMouseOverResizeHandle(x, y)) {
+        canvas.style.cursor = 'nwse-resize';
+      } else if (isMouseOverAvatar(x, y)) {
+        canvas.style.cursor = 'grab';
+      } else {
+        canvas.style.cursor = 'default';
+      }
+      return;
+    }
+
+    if (isDragging) {
+      canvas.style.cursor = 'grabbing';
+      const dx = Math.round(x - startMouseX);
+      const dy = Math.round(y - startMouseY);
+
+      post.avatarOffsetX = Math.max(-600, Math.min(600, initOffsetX + dx));
+      post.avatarOffsetY = Math.max(-600, Math.min(600, initOffsetY + dy));
+
+      if (sliderX) sliderX.value = post.avatarOffsetX;
+      if (labelX) labelX.textContent = `${post.avatarOffsetX}px`;
+      if (sliderY) sliderY.value = post.avatarOffsetY;
+      if (labelY) labelY.textContent = `${post.avatarOffsetY}px`;
+
+      drawCreative(canvas, category, headlineInput.value, subtextInput.value, post.id, activeDate, Object.assign({}, post.layout || {}, post));
+      drawInteractiveAvatarOverlay(canvas, post);
+    } else if (isResizing) {
+      canvas.style.cursor = 'nwse-resize';
+      const dx = Math.round(x - startMouseX);
+      post.avatarSize = Math.max(100, Math.min(800, initSize + dx));
+
+      if (sliderSize) sliderSize.value = post.avatarSize;
+      if (labelSize) labelSize.textContent = `${post.avatarSize}px`;
+
+      drawCreative(canvas, category, headlineInput.value, subtextInput.value, post.id, activeDate, Object.assign({}, post.layout || {}, post));
+      drawInteractiveAvatarOverlay(canvas, post);
+    }
+  });
+
+  canvas.addEventListener('mousedown', (e) => {
+    const { x, y } = getCanvasMousePos(e);
+
+    if (isMouseOverResizeHandle(x, y)) {
+      isResizing = true;
+      startMouseX = x;
+      startMouseY = y;
+      initSize = post.avatarSize || 340;
+      e.preventDefault();
+    } else if (isMouseOverAvatar(x, y)) {
+      isDragging = true;
+      startMouseX = x;
+      startMouseY = y;
+      initOffsetX = post.avatarOffsetX || 0;
+      initOffsetY = post.avatarOffsetY || 0;
+      canvas.style.cursor = 'grabbing';
+      e.preventDefault();
+    }
+  });
+
+  const stopDragOrResize = () => {
+    if (isDragging || isResizing) {
+      isDragging = false;
+      isResizing = false;
+      canvas.style.cursor = 'grab';
+
+      saveDesignEdit(activeDate, post.id, {
+        avatarOffsetX: post.avatarOffsetX || 0,
+        avatarOffsetY: post.avatarOffsetY || 0,
+        avatarSize: post.avatarSize || 340,
+        avatarRotation: post.avatarRotation || 0,
+        avatarPos: post.avatarPos || 'bottom-right'
+      });
+      showToast('🎯 Photo position updated via mouse!', 'info');
+    }
+  };
+
+  window.addEventListener('mouseup', stopDragOrResize);
+
+  // Mouse wheel scroll to resize avatar size smoothly
+  canvas.addEventListener('wheel', (e) => {
+    const { x, y } = getCanvasMousePos(e);
+    if (isMouseOverAvatar(x, y)) {
+      e.preventDefault();
+      const delta = e.deltaY < 0 ? 15 : -15;
+      const curSize = post.avatarSize || 340;
+      post.avatarSize = Math.max(100, Math.min(800, curSize + delta));
+
+      if (sliderSize) sliderSize.value = post.avatarSize;
+      if (labelSize) labelSize.textContent = `${post.avatarSize}px`;
+
+      drawCreative(canvas, category, headlineInput.value, subtextInput.value, post.id, activeDate, Object.assign({}, post.layout || {}, post));
+      drawInteractiveAvatarOverlay(canvas, post);
+
+      saveDesignEdit(activeDate, post.id, { avatarSize: post.avatarSize });
+    }
+  }, { passive: false });
 }
 
 // Draw custom creative card matching user template design structure
