@@ -2554,25 +2554,33 @@ function buildLayoutFromFamily(layoutFamily, palette, headline, subtext, categor
   return layout;
 }
 
-// Pure JS client-side image background removal helper (supports light, dark & colored backdrops + skin protection)
+// High-resolution cached sharp cutout background removal helper (sharp edges, zero blur, high-DPI crispness)
+const avatarCutoutCache = new Map();
+
 function createCutoutAvatarCanvas(sourceImg, sensitivity = 50) {
+  const cacheKey = `${sourceImg.src || sourceImg.currentSrc || 'img'}_${sensitivity}_${sourceImg.naturalWidth || sourceImg.width || 0}`;
+  if (avatarCutoutCache.has(cacheKey)) {
+    return avatarCutoutCache.get(cacheKey);
+  }
+
   const c = document.createElement('canvas');
-  const w = sourceImg.naturalWidth || sourceImg.width || 400;
-  const h = sourceImg.naturalHeight || sourceImg.height || 400;
+  const w = sourceImg.naturalWidth || sourceImg.width || 800;
+  const h = sourceImg.naturalHeight || sourceImg.height || 800;
   c.width = w;
   c.height = h;
   const ctx = c.getContext('2d', { willReadFrequently: true });
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'high';
 
   try {
     ctx.drawImage(sourceImg, 0, 0, w, h);
     const imgData = ctx.getImageData(0, 0, w, h);
     const data = imgData.data;
 
-    // Sample background colors along border edges (top 5%, bottom 5%, left 5%, right 5%)
+    // Sample background colors along border margins
     const bgSamples = [];
-    const step = Math.max(1, Math.floor(w / 40));
+    const step = Math.max(1, Math.floor(w / 50));
 
-    // Top & bottom rows
     for (let x = 0; x < w; x += step) {
       const topIdx = x * 4;
       bgSamples.push({ r: data[topIdx], g: data[topIdx + 1], b: data[topIdx + 2] });
@@ -2580,7 +2588,6 @@ function createCutoutAvatarCanvas(sourceImg, sensitivity = 50) {
       bgSamples.push({ r: data[botIdx], g: data[botIdx + 1], b: data[botIdx + 2] });
     }
 
-    // Left & right columns
     for (let y = 0; y < h; y += step) {
       const leftIdx = (y * w) * 4;
       bgSamples.push({ r: data[leftIdx], g: data[leftIdx + 1], b: data[leftIdx + 2] });
@@ -2593,7 +2600,6 @@ function createCutoutAvatarCanvas(sourceImg, sensitivity = 50) {
       const g = data[i + 1];
       const b = data[i + 2];
 
-      // Calculate minimum color distance to sampled background colors
       let minDist = 999;
       for (let s = 0; s < bgSamples.length; s++) {
         const bg = bgSamples[s];
@@ -2601,20 +2607,19 @@ function createCutoutAvatarCanvas(sourceImg, sensitivity = 50) {
         if (dist < minDist) minDist = dist;
       }
 
-      // Check if pixel is light/white studio backdrop (r, g, b all > 210)
-      const isWhiteStudioBg = (r > 210 && g > 210 && b > 210);
+      const isWhiteStudioBg = (r > 205 && g > 205 && b > 205);
+      const isSkinTone = (r > 60 && g > 35 && b > 20 && r > g && g > b && (r - Math.min(g, b)) > 12);
 
-      // Human skin tone protection heuristic (prevent cutting out face/arms)
-      const isSkinTone = (r > 60 && g > 35 && b > 20 && r > g && g > b && (r - Math.min(g, b)) > 14);
-
+      // Sharp crisp thresholding (NO fuzzy blur!)
       if (!isSkinTone && (minDist < sensitivity || isWhiteStudioBg)) {
-        data[i + 3] = 0; // Transparent
-      } else if (!isSkinTone && minDist < sensitivity + 25) {
-        data[i + 3] = Math.floor(((minDist - sensitivity) / 25) * 255); // Edge feathering
+        data[i + 3] = 0; // 100% transparent
+      } else {
+        data[i + 3] = 255; // 100% sharp crisp opaque
       }
     }
 
     ctx.putImageData(imgData, 0, 0);
+    avatarCutoutCache.set(cacheKey, c);
   } catch (e) {
     console.warn('[Cutout] Background removal fallback:', e.message);
   }
@@ -2797,6 +2802,16 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
     return Math.hypot(mx - handleX, my - handleY) < 40;
   };
 
+  let animFrameId = null;
+  const scheduleRedraw = () => {
+    if (animFrameId) return;
+    animFrameId = requestAnimationFrame(() => {
+      animFrameId = null;
+      drawCreative(canvas, category, getHeadlineVal(), getSubtextVal(), post.id, activeDate, Object.assign({}, post.layout || {}, post));
+      drawInteractiveAvatarOverlay(canvas, post);
+    });
+  };
+
   canvas.addEventListener('mousemove', (e) => {
     const { x, y } = getCanvasMousePos(e);
 
@@ -2824,8 +2839,7 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
       if (sliderY) sliderY.value = post.avatarOffsetY;
       if (labelY) labelY.textContent = `${post.avatarOffsetY}px`;
 
-      drawCreative(canvas, category, getHeadlineVal(), getSubtextVal(), post.id, activeDate, Object.assign({}, post.layout || {}, post));
-      drawInteractiveAvatarOverlay(canvas, post);
+      scheduleRedraw();
     } else if (isResizing) {
       canvas.style.cursor = 'nwse-resize';
       const dx = Math.round(x - startMouseX);
@@ -2834,8 +2848,7 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
       if (sliderSize) sliderSize.value = post.avatarSize;
       if (labelSize) labelSize.textContent = `${post.avatarSize}px`;
 
-      drawCreative(canvas, category, getHeadlineVal(), getSubtextVal(), post.id, activeDate, Object.assign({}, post.layout || {}, post));
-      drawInteractiveAvatarOverlay(canvas, post);
+      scheduleRedraw();
     }
   });
 
@@ -2890,8 +2903,7 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
       if (sliderSize) sliderSize.value = post.avatarSize;
       if (labelSize) labelSize.textContent = `${post.avatarSize}px`;
 
-      drawCreative(canvas, category, getHeadlineVal(), getSubtextVal(), post.id, activeDate, Object.assign({}, post.layout || {}, post));
-      drawInteractiveAvatarOverlay(canvas, post);
+      scheduleRedraw();
 
       saveDesignEdit(activeDate, post.id, { avatarSize: post.avatarSize });
     }
