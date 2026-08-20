@@ -355,6 +355,7 @@ const el = {
   inputWebhook: document.getElementById('input-webhook'),
   inputApiKey: document.getElementById('input-apikey'),
   inputImgbbApiKey: document.getElementById('input-imgbb-apikey'),
+  inputRemovebgApiKey: document.getElementById('input-removebg-apikey'),
   inputGithubPat: document.getElementById('input-github-pat'),
   inputGithubOwner: document.getElementById('input-github-owner'),
   inputGithubRepo: document.getElementById('input-github-repo'),
@@ -479,6 +480,7 @@ async function loadSettings() {
       webhookUrl: settings.webhookUrl || 'https://hook.eu1.make.com/8hd357m87nxbmvrw8i5f7i3ughh4jp9g',
       geminiApiKey: settings.geminiApiKey || '',
       imgbbApiKey: settings.imgbbApiKey || '',
+      removebgApiKey: settings.removebgApiKey || '',
       rotateOutfits: settings.rotateOutfits !== false,
       customAvatar: settings.customAvatar || '',
       brandLogo: settings.brandLogo || '',
@@ -495,6 +497,7 @@ async function loadSettings() {
     el.inputGithubRepo.value = state.settings.githubRepo;
     el.inputApiKey.value = state.settings.geminiApiKey;
     el.inputImgbbApiKey.value = state.settings.imgbbApiKey;
+    if (el.inputRemovebgApiKey) el.inputRemovebgApiKey.value = state.settings.removebgApiKey;
     el.inputRotateOutfits.checked = state.settings.rotateOutfits;
     if (el.inputCanvaTemplate) el.inputCanvaTemplate.value = state.settings.canvaTemplateUrl;
     
@@ -705,6 +708,7 @@ async function handleSaveSettings(e) {
   const webhookUrl = el.inputWebhook.value.trim();
   const geminiApiKey = el.inputApiKey.value.trim();
   const imgbbApiKey = el.inputImgbbApiKey.value.trim();
+  const removebgApiKey = el.inputRemovebgApiKey ? el.inputRemovebgApiKey.value.trim() : '';
   const githubPat = el.inputGithubPat.value.trim();
   const githubOwner = el.inputGithubOwner.value.trim() || 'jagtapsourabh-4003';
   const githubRepo = el.inputGithubRepo.value.trim() || 'linkedin-daily-publisher';
@@ -738,6 +742,7 @@ async function handleSaveSettings(e) {
       webhookUrl,
       geminiApiKey,
       imgbbApiKey,
+      removebgApiKey,
       rotateOutfits,
       customAvatar: customAvatarBase64,
       brandLogo: brandLogoBase64,
@@ -2554,123 +2559,100 @@ function buildLayoutFromFamily(layoutFamily, palette, headline, subtext, categor
   return layout;
 }
 
-// Background removal using flood-fill from image corners.
-// Only removes pixels connected to the border edges, never cuts holes in the person's face/body.
-const avatarCutoutCache = new Map();
+// Background removal using remove.bg API (AI-powered, pixel-perfect results).
+// Falls back to drawing the original image if no API key is configured.
+const avatarCutoutCache = new Map(); // key -> Image (with transparent bg)
+const avatarCutoutPending = new Set(); // keys currently being processed
 
 function createCutoutAvatarCanvas(sourceImg, sensitivity = 45) {
-  const cacheKey = `${sourceImg.src || sourceImg.currentSrc || 'img'}_${sensitivity}_${sourceImg.naturalWidth || sourceImg.width || 0}`;
+  // Build cache key from image source
+  const imgSrc = sourceImg.src || sourceImg.currentSrc || 'img';
+  const cacheKey = `removebg_${imgSrc.substring(imgSrc.length - 60)}`;
+
+  // Return cached cutout if available
   if (avatarCutoutCache.has(cacheKey)) {
-    return avatarCutoutCache.get(cacheKey);
+    const cached = avatarCutoutCache.get(cacheKey);
+    if (cached && (cached.complete || cached.naturalWidth > 0)) {
+      return cached;
+    }
   }
 
-  const c = document.createElement('canvas');
-  const w = sourceImg.naturalWidth || sourceImg.width || 800;
-  const h = sourceImg.naturalHeight || sourceImg.height || 800;
-  c.width = w;
-  c.height = h;
-  const ctx = c.getContext('2d', { willReadFrequently: true });
-  ctx.imageSmoothingEnabled = true;
-  ctx.imageSmoothingQuality = 'high';
+  // If already processing this image, return original (will redraw when done)
+  if (avatarCutoutPending.has(cacheKey)) {
+    return sourceImg;
+  }
 
+  // Check for remove.bg API key
+  const apiKey = state.settings.removebgApiKey || '';
+  if (!apiKey) {
+    console.warn('[Cutout] No Remove.bg API key configured. Go to Settings to add one.');
+    showToast('⚠️ Configure your Remove.bg API key in Settings for background removal', 'error');
+    return sourceImg;
+  }
+
+  // Start async API call
+  avatarCutoutPending.add(cacheKey);
+  console.log('[Cutout] Calling Remove.bg API...');
+  showToast('✨ Removing background via AI...', 'info');
+
+  // Convert source image to base64
+  const tempCanvas = document.createElement('canvas');
+  const tw = sourceImg.naturalWidth || sourceImg.width || 800;
+  const th = sourceImg.naturalHeight || sourceImg.height || 800;
+  tempCanvas.width = tw;
+  tempCanvas.height = th;
+  const tempCtx = tempCanvas.getContext('2d');
+  tempCtx.drawImage(sourceImg, 0, 0, tw, th);
+
+  let base64Data;
   try {
-    ctx.drawImage(sourceImg, 0, 0, w, h);
-    const imgData = ctx.getImageData(0, 0, w, h);
-    const data = imgData.data;
-
-    // Get the background reference color from the average of the 4 corners
-    const getPixel = (px, py) => {
-      const idx = (py * w + px) * 4;
-      return { r: data[idx], g: data[idx + 1], b: data[idx + 2] };
-    };
-
-    const corners = [
-      getPixel(2, 2),
-      getPixel(w - 3, 2),
-      getPixel(2, h - 3),
-      getPixel(w - 3, h - 3)
-    ];
-
-    // Check if corners are similar (uniform background)
-    const colorDist = (a, b) => Math.sqrt((a.r - b.r) ** 2 + (a.g - b.g) ** 2 + (a.b - b.b) ** 2);
-    const cornersSimilar = corners.every((c, i) => {
-      for (let j = i + 1; j < corners.length; j++) {
-        if (colorDist(c, corners[j]) > 80) return false;
-      }
-      return true;
-    });
-
-    if (!cornersSimilar) {
-      // Background is NOT uniform (scenic/complex) - don't attempt removal, return original
-      console.log('[Cutout] Background is not uniform, skipping removal to preserve image quality');
-      avatarCutoutCache.set(cacheKey, c);
-      return c;
-    }
-
-    // Background IS uniform - use flood fill from all border pixels
-    const bgRef = {
-      r: Math.round(corners.reduce((s, c) => s + c.r, 0) / 4),
-      g: Math.round(corners.reduce((s, c) => s + c.g, 0) / 4),
-      b: Math.round(corners.reduce((s, c) => s + c.b, 0) / 4)
-    };
-
-    // Flood-fill mask: 0 = not visited, 1 = background, 2 = foreground
-    const mask = new Uint8Array(w * h);
-    const threshold = sensitivity;
-
-    const matchesBg = (idx) => {
-      const r = data[idx * 4];
-      const g = data[idx * 4 + 1];
-      const b = data[idx * 4 + 2];
-      const dist = Math.sqrt((r - bgRef.r) ** 2 + (g - bgRef.g) ** 2 + (b - bgRef.b) ** 2);
-      return dist < threshold;
-    };
-
-    // Seed the flood fill queue from all 4 borders
-    const queue = [];
-    for (let x = 0; x < w; x++) {
-      queue.push(x);                  // top row
-      queue.push((h - 1) * w + x);    // bottom row
-    }
-    for (let y = 1; y < h - 1; y++) {
-      queue.push(y * w);              // left column
-      queue.push(y * w + (w - 1));    // right column
-    }
-
-    // BFS flood fill - only mark pixels reachable from the border that match bg color
-    let qi = 0;
-    while (qi < queue.length) {
-      const pixIdx = queue[qi++];
-      if (pixIdx < 0 || pixIdx >= w * h) continue;
-      if (mask[pixIdx] !== 0) continue;
-
-      if (matchesBg(pixIdx)) {
-        mask[pixIdx] = 1; // background
-        const px = pixIdx % w;
-        const py = Math.floor(pixIdx / w);
-        if (px > 0) queue.push(pixIdx - 1);
-        if (px < w - 1) queue.push(pixIdx + 1);
-        if (py > 0) queue.push(pixIdx - w);
-        if (py < h - 1) queue.push(pixIdx + w);
-      } else {
-        mask[pixIdx] = 2; // foreground - stop spreading
-      }
-    }
-
-    // Apply mask: make background pixels transparent
-    for (let i = 0; i < w * h; i++) {
-      if (mask[i] === 1) {
-        data[i * 4 + 3] = 0; // transparent
-      }
-      // All other pixels (foreground + unvisited interior) stay fully opaque
-    }
-
-    ctx.putImageData(imgData, 0, 0);
-    avatarCutoutCache.set(cacheKey, c);
+    base64Data = tempCanvas.toDataURL('image/png').replace(/^data:image\/\w+;base64,/, '');
   } catch (e) {
-    console.warn('[Cutout] Background removal fallback:', e.message);
+    console.warn('[Cutout] Cannot export image for API:', e.message);
+    avatarCutoutPending.delete(cacheKey);
+    return sourceImg;
   }
-  return c;
+
+  // Call remove.bg API
+  const formData = new FormData();
+  formData.append('image_file_b64', base64Data);
+  formData.append('size', 'auto');
+
+  fetch('https://api.remove.bg/v1.0/removebg', {
+    method: 'POST',
+    headers: { 'X-Api-Key': apiKey },
+    body: formData
+  })
+  .then(res => {
+    if (!res.ok) {
+      return res.json().then(err => {
+        throw new Error(err.errors ? err.errors.map(e => e.title).join(', ') : `HTTP ${res.status}`);
+      });
+    }
+    return res.blob();
+  })
+  .then(blob => {
+    const url = URL.createObjectURL(blob);
+    const cutoutImg = new Image();
+    cutoutImg.crossOrigin = 'anonymous';
+    cutoutImg.onload = () => {
+      avatarCutoutCache.set(cacheKey, cutoutImg);
+      avatarCutoutPending.delete(cacheKey);
+      console.log('[Cutout] Background removed successfully!');
+      showToast('✅ Background removed!', 'info');
+      // Trigger a full redraw of all visible cards
+      if (state.history.length > 0) renderActiveDrafts();
+    };
+    cutoutImg.src = url;
+  })
+  .catch(err => {
+    avatarCutoutPending.delete(cacheKey);
+    console.error('[Cutout] Remove.bg API error:', err.message);
+    showToast(`❌ Background removal failed: ${err.message}`, 'error');
+  });
+
+  // Return original image immediately while API processes in background
+  return sourceImg;
 }
 
 // Calculate exact bounding box of avatar photo on 1080x1080 canvas
@@ -3367,16 +3349,12 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
         // Draw the avatar
         if (removeAvatarBg && dynamicAvImg && (dynamicAvImg.complete || dynamicAvImg.naturalWidth > 0)) {
           ctx.save();
-          // Draw subtle dark backing frame so red/orange card shapes do NOT bleed through face as negative film!
-          ctx.fillStyle = 'rgba(10, 15, 30, 0.92)';
-          ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
-          ctx.shadowBlur = 25;
-          ctx.beginPath();
-          ctx.roundRect(av.x - av.w/2, av.y - av.h/2, av.w, av.h, 20);
-          ctx.fill();
-
-          const cutoutCanvas = createCutoutAvatarCanvas(dynamicAvImg, sensitivity);
-          ctx.drawImage(cutoutCanvas, av.x - av.w/2, av.y - av.h/2, av.w, av.h);
+          ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+          ctx.shadowBlur = 20;
+          ctx.shadowOffsetX = 5;
+          ctx.shadowOffsetY = 10;
+          const cutoutResult = createCutoutAvatarCanvas(dynamicAvImg, sensitivity);
+          ctx.drawImage(cutoutResult, av.x - av.w/2, av.y - av.h/2, av.w, av.h);
           ctx.restore();
         } else if (av.type === 'circle') {
           drawAvatarForCircle(ctx, av.x, av.y, av.w / 2, av.filter, styleIdx, dynamicAvImg);
