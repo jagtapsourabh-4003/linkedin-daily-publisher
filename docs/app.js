@@ -972,42 +972,32 @@ async function postToGoogleFlow(postId, btnElement) {
 
     let imageBase64 = null;
 
-    // 1. If custom Canva graphic is attached to this post card, use it directly!
-    if (post && post.customCanvaGraphic) {
-      console.log('[Publish] Using attached custom Canva graphic image for LinkedIn publishing');
-      imageBase64 = post.customCanvaGraphic;
-    } else {
-      // Grab matching canvas and export as data URL
-      const canvas = document.getElementById(`canvas-${postId}`);
-      if (!canvas) throw new Error('Image canvas element not found. Please scroll to the post card first.');
+    // Build a dedicated, clean, high-resolution 1080x1080 export canvas
+    const exportCanvas = document.createElement('canvas');
+    exportCanvas.width = 1080;
+    exportCanvas.height = 1080;
 
-      try {
-        imageBase64 = canvas.toDataURL('image/png');
-        if (!imageBase64 || imageBase64.length < 5000) {
-          throw new Error('Canvas appears blank or tainted');
-        }
-      } catch (taintErr) {
-      console.warn('[Publish] Canvas toDataURL failed (tainted canvas). Re-drawing on a clean offscreen canvas:', taintErr.message);
-      showToast('Redrawing graphic for publishing...', 'info');
+    const headlineText = (post && post.postContent && post.postContent.imageHeadline) || (post && post.imageHeadline) || '';
+    const subtextText = (post && post.postContent && post.postContent.imageSubtext) || (post && post.imageSubtext) || '';
 
-      // Fallback: draw on a fresh offscreen canvas, keeping avatar intact
-      const offscreen = document.createElement('canvas');
-      offscreen.width = canvas.width;
-      offscreen.height = canvas.height;
-
-      if (activeEntry && post) {
-        const headlineText = post.postContent?.imageHeadline || post.imageHeadline || '';
-        const subtextText = post.postContent?.imageSubtext || post.imageSubtext || '';
-        // Draw WITH the avatar (do NOT blank avatarImg.src!)
-        drawCreative(offscreen, activeEntry.category, headlineText, subtextText, post.id, activeEntry.date, Object.assign({}, post.layout || {}, post));
-      }
-
-      try {
-        imageBase64 = offscreen.toDataURL('image/png');
-      } catch (finalErr) {
-        throw new Error(`Cannot export canvas: ${finalErr.message}. Please try re-uploading your profile picture from the Settings panel.`);
-      }
+    // Draw the final creative with all avatar autoshapes, 3D popouts, layer orders, and custom Canva graphic overlays
+    if (activeEntry && post) {
+      drawCreative(exportCanvas, activeEntry.category, headlineText, subtextText, post.id, activeEntry.date, Object.assign({}, post.layout || {}, post));
     }
+
+    try {
+      imageBase64 = exportCanvas.toDataURL('image/png');
+      if (!imageBase64 || imageBase64.length < 5000) {
+        throw new Error('Canvas export produced empty data');
+      }
+    } catch (exportErr) {
+      console.warn('[Publish] Primary export canvas failed, falling back to on-screen canvas:', exportErr.message);
+      const onScreenCanvas = document.getElementById(`canvas-${postId}`);
+      if (onScreenCanvas) {
+        imageBase64 = onScreenCanvas.toDataURL('image/png');
+      } else {
+        throw new Error(`Cannot export graphic: ${exportErr.message}`);
+      }
     }
 
     // 2. Upload image directly from the browser to ImgBB
