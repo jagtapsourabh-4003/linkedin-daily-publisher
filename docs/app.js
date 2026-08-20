@@ -1588,7 +1588,7 @@ function renderActiveDrafts() {
         if (checkOverlayAvatar) post.overlayAvatar = checkOverlayAvatar.checked;
         if (checkBgRemove) post.removeAvatarBg = checkBgRemove.checked;
         if (selectAvatarPos) post.avatarPos = selectAvatarPos.value;
-        if (selectAvatarLayer) post.avatarLayer = selectAvatarLayer.value;
+        post.avatarLayer = post.avatarLayer || 'front';
         if (sliderAvatarSize) post.avatarSize = parseInt(sliderAvatarSize.value);
         if (sliderBgSensitivity) post.bgSensitivity = parseInt(sliderBgSensitivity.value);
         if (sliderAvatarX) post.avatarOffsetX = parseInt(sliderAvatarX.value);
@@ -1632,7 +1632,7 @@ function renderActiveDrafts() {
             overlayAvatar: checkOverlayAvatar ? checkOverlayAvatar.checked : true,
             removeAvatarBg: checkBgRemove ? checkBgRemove.checked : false,
             avatarPos: selectAvatarPos ? selectAvatarPos.value : 'bottom-right',
-            avatarLayer: selectAvatarLayer ? selectAvatarLayer.value : 'front',
+            avatarLayer: post.avatarLayer || 'front',
             avatarSize: sliderAvatarSize ? parseInt(sliderAvatarSize.value) : 340,
             avatarOffsetX: sliderAvatarX ? parseInt(sliderAvatarX.value) : 0,
             avatarOffsetY: sliderAvatarY ? parseInt(sliderAvatarY.value) : 0,
