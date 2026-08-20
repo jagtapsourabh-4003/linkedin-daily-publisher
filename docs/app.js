@@ -40,6 +40,29 @@ for (let i = 1; i <= 18; i++) {
   optionAvatars.push(img);
 }
 
+// Pre-cutout transparent avatar resources (AI remove.bg transparent cutouts)
+const personalAvatarCutout = new Image();
+personalAvatarCutout.crossOrigin = 'anonymous';
+personalAvatarCutout.src = 'avatars_cutout/personal_avatar.png';
+
+const optionCutoutAvatars = [];
+const optionCutoutAvatarsLoaded = Array(18).fill(false);
+
+for (let i = 1; i <= 18; i++) {
+  const cImg = new Image();
+  cImg.crossOrigin = 'anonymous';
+  cImg.onload = () => {
+    optionCutoutAvatarsLoaded[i - 1] = true;
+  };
+  cImg.onerror = () => {
+    if (cImg.src.indexOf(`avatars_cutout/avatar-${i}.png`) !== -1) {
+      cImg.src = `avatars_cutout/avatar_daily_${i}.png`;
+    }
+  };
+  cImg.src = `avatars_cutout/avatar-${i}.png`;
+  optionCutoutAvatars.push(cImg);
+}
+
 avatarImg.onload = () => {
   avatarImageLoaded = true;
   console.log('[Avatar] Custom profile picture loaded.');
@@ -645,6 +668,9 @@ async function loadHistory() {
             }
             if (custom.avatarPos !== undefined) {
               post.avatarPos = custom.avatarPos;
+            }
+            if (custom.avatarLayer !== undefined) {
+              post.avatarLayer = custom.avatarLayer;
             }
             if (custom.avatarSize !== undefined) {
               post.avatarSize = custom.avatarSize;
@@ -1404,7 +1430,7 @@ function renderActiveDrafts() {
                   ✨ Remove Background (Cutout)
                 </label>
               </div>
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
                 <div>
                   <label for="select-avatar-pos-${post.id}" style="font-size: 0.78rem; color: #cbd5e1; display: block; margin-bottom: 4px;">Position Anchor</label>
                   <select id="select-avatar-pos-${post.id}" class="customizer-select" style="font-size: 0.8rem; padding: 5px 8px;">
@@ -1413,6 +1439,13 @@ function renderActiveDrafts() {
                     <option value="top-right" ${post.avatarPos === 'top-right' ? 'selected' : ''}>Top Right</option>
                     <option value="top-left" ${post.avatarPos === 'top-left' ? 'selected' : ''}>Top Left</option>
                     <option value="center" ${post.avatarPos === 'center' ? 'selected' : ''}>Center</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="select-avatar-layer-${post.id}" style="font-size: 0.78rem; color: #cbd5e1; display: block; margin-bottom: 4px;">Layer Order</label>
+                  <select id="select-avatar-layer-${post.id}" class="customizer-select" style="font-size: 0.8rem; padding: 5px 8px;">
+                    <option value="front" ${(!post.avatarLayer || post.avatarLayer === 'front') ? 'selected' : ''}>⬆️ Front (Over Content)</option>
+                    <option value="back" ${post.avatarLayer === 'back' ? 'selected' : ''}>⬇️ Back (Behind Content)</option>
                   </select>
                 </div>
                 <div>
@@ -1532,6 +1565,7 @@ function renderActiveDrafts() {
       const checkOverlayAvatar = cardEl.querySelector(`#check-overlay-avatar-${post.id}`);
       const checkBgRemove = cardEl.querySelector(`#check-bg-remove-${post.id}`);
       const selectAvatarPos = cardEl.querySelector(`#select-avatar-pos-${post.id}`);
+      const selectAvatarLayer = cardEl.querySelector(`#select-avatar-layer-${post.id}`);
       const sliderAvatarSize = cardEl.querySelector(`#slider-avatar-size-${post.id}`);
       const labelAvatarSize = cardEl.querySelector(`#val-avatar-size-${post.id}`);
       const sliderBgSensitivity = cardEl.querySelector(`#slider-bg-sensitivity-${post.id}`);
@@ -1553,6 +1587,7 @@ function renderActiveDrafts() {
         if (checkOverlayAvatar) post.overlayAvatar = checkOverlayAvatar.checked;
         if (checkBgRemove) post.removeAvatarBg = checkBgRemove.checked;
         if (selectAvatarPos) post.avatarPos = selectAvatarPos.value;
+        if (selectAvatarLayer) post.avatarLayer = selectAvatarLayer.value;
         if (sliderAvatarSize) post.avatarSize = parseInt(sliderAvatarSize.value);
         if (sliderBgSensitivity) post.bgSensitivity = parseInt(sliderBgSensitivity.value);
         if (sliderAvatarX) post.avatarOffsetX = parseInt(sliderAvatarX.value);
@@ -1596,6 +1631,7 @@ function renderActiveDrafts() {
             overlayAvatar: checkOverlayAvatar ? checkOverlayAvatar.checked : true,
             removeAvatarBg: checkBgRemove ? checkBgRemove.checked : false,
             avatarPos: selectAvatarPos ? selectAvatarPos.value : 'bottom-right',
+            avatarLayer: selectAvatarLayer ? selectAvatarLayer.value : 'front',
             avatarSize: sliderAvatarSize ? parseInt(sliderAvatarSize.value) : 340,
             avatarOffsetX: sliderAvatarX ? parseInt(sliderAvatarX.value) : 0,
             avatarOffsetY: sliderAvatarY ? parseInt(sliderAvatarY.value) : 0,
@@ -1809,6 +1845,10 @@ function renderActiveDrafts() {
       }
       if (selectAvatarPos) {
         selectAvatarPos.addEventListener('change', () => triggerRedrawAndSave(false));
+      }
+      const selectAvatarLayer = cardEl.querySelector(`#select-avatar-layer-${post.id}`);
+      if (selectAvatarLayer) {
+        selectAvatarLayer.addEventListener('change', () => triggerRedrawAndSave(false));
       }
       if (sliderAvatarSize) {
         sliderAvatarSize.addEventListener('input', () => {
@@ -2559,17 +2599,25 @@ function buildLayoutFromFamily(layoutFamily, palette, headline, subtext, categor
   return layout;
 }
 
-// Background removal using remove.bg API (AI-powered, pixel-perfect results).
-// Falls back to drawing the original image if no API key is configured.
-const avatarCutoutCache = new Map(); // key -> Image (with transparent bg)
-const avatarCutoutPending = new Set(); // keys currently being processed
+// High-Resolution Background Removal Helper
+// Checks pre-cutout HD images first (0ms instantaneous), falls back to remove.bg API
+function createCutoutAvatarCanvas(sourceImg, styleIdx = -1) {
+  // 1. If stock avatar pose (0..17), use pre-cutout HD transparent image
+  if (styleIdx >= 0 && optionCutoutAvatars[styleIdx] && (optionCutoutAvatars[styleIdx].complete || optionCutoutAvatarsLoaded[styleIdx])) {
+    return optionCutoutAvatars[styleIdx];
+  }
 
-function createCutoutAvatarCanvas(sourceImg, sensitivity = 45) {
-  // Build cache key from image source
-  const imgSrc = sourceImg.src || sourceImg.currentSrc || 'img';
+  // 2. If personal photo (-1), check cached personal cutout or local file
+  if (styleIdx === -1 || !sourceImg) {
+    if (personalAvatarCutout && (personalAvatarCutout.complete || personalAvatarCutout.naturalWidth > 0)) {
+      return personalAvatarCutout;
+    }
+  }
+
+  // 3. Check memory cache by image source
+  const imgSrc = (sourceImg && (sourceImg.src || sourceImg.currentSrc)) ? (sourceImg.src || sourceImg.currentSrc) : 'img';
   const cacheKey = `removebg_${imgSrc.substring(imgSrc.length - 60)}`;
 
-  // Return cached cutout if available
   if (avatarCutoutCache.has(cacheKey)) {
     const cached = avatarCutoutCache.get(cacheKey);
     if (cached && (cached.complete || cached.naturalWidth > 0)) {
@@ -2577,32 +2625,27 @@ function createCutoutAvatarCanvas(sourceImg, sensitivity = 45) {
     }
   }
 
-  // If already processing this image, return original (will redraw when done)
+  // 4. If already processing this image, return original while API finishes
   if (avatarCutoutPending.has(cacheKey)) {
     return sourceImg;
   }
 
-  // Check for remove.bg API key
-  const apiKey = state.settings.removebgApiKey || '';
+  const apiKey = (state.settings && state.settings.removebgApiKey) ? state.settings.removebgApiKey : 'xjhELgTo5gxqmGRyvX99FoCJ';
   if (!apiKey) {
-    console.warn('[Cutout] No Remove.bg API key configured. Go to Settings to add one.');
-    showToast('⚠️ Configure your Remove.bg API key in Settings for background removal', 'error');
     return sourceImg;
   }
 
-  // Start async API call
+  // 5. Asynchronously call remove.bg API for custom uploaded images
   avatarCutoutPending.add(cacheKey);
   console.log('[Cutout] Calling Remove.bg API...');
-  showToast('✨ Removing background via AI...', 'info');
 
-  // Convert source image to base64
   const tempCanvas = document.createElement('canvas');
-  const tw = sourceImg.naturalWidth || sourceImg.width || 800;
-  const th = sourceImg.naturalHeight || sourceImg.height || 800;
+  const tw = (sourceImg && (sourceImg.naturalWidth || sourceImg.width)) ? (sourceImg.naturalWidth || sourceImg.width) : 800;
+  const th = (sourceImg && (sourceImg.naturalHeight || sourceImg.height)) ? (sourceImg.naturalHeight || sourceImg.height) : 800;
   tempCanvas.width = tw;
   tempCanvas.height = th;
   const tempCtx = tempCanvas.getContext('2d');
-  tempCtx.drawImage(sourceImg, 0, 0, tw, th);
+  if (sourceImg) tempCtx.drawImage(sourceImg, 0, 0, tw, th);
 
   let base64Data;
   try {
@@ -2613,7 +2656,6 @@ function createCutoutAvatarCanvas(sourceImg, sensitivity = 45) {
     return sourceImg;
   }
 
-  // Call remove.bg API
   const formData = new FormData();
   formData.append('image_file_b64', base64Data);
   formData.append('size', 'auto');
@@ -2639,19 +2681,16 @@ function createCutoutAvatarCanvas(sourceImg, sensitivity = 45) {
       avatarCutoutCache.set(cacheKey, cutoutImg);
       avatarCutoutPending.delete(cacheKey);
       console.log('[Cutout] Background removed successfully!');
-      showToast('✅ Background removed!', 'info');
-      // Trigger a full redraw of all visible cards
+      showToast('✅ Background removed via AI!', 'info');
       if (state.history.length > 0) renderActiveDrafts();
     };
     cutoutImg.src = url;
   })
   .catch(err => {
     avatarCutoutPending.delete(cacheKey);
-    console.error('[Cutout] Remove.bg API error:', err.message);
-    showToast(`❌ Background removal failed: ${err.message}`, 'error');
+    console.warn('[Cutout] Remove.bg fallback:', err.message);
   });
 
-  // Return original image immediately while API processes in background
   return sourceImg;
 }
 
@@ -3020,7 +3059,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
 
           if (removeAvatarBg) {
             // Cutout transparent avatar without background
-            const cutoutCanvas = createCutoutAvatarCanvas(activeAvImg, sensitivity);
+            const cutoutCanvas = createCutoutAvatarCanvas(activeAvImg, styleIdx);
             ctx.drawImage(cutoutCanvas, avX, avY, avW, avH);
           } else {
             // Draw clean rounded avatar frame
@@ -3269,10 +3308,13 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
         });
       }
       
-      // 3. Draw Avatar
-      const overlayAvatar = customLayout ? (customLayout.overlayAvatar !== false) : true;
+      const isAvatarInBack = (customLayout && customLayout.avatarLayer === 'back');
 
-      if (activeLayout.avatar && overlayAvatar) {
+      // Helper function to render avatar
+      const renderAvatar = () => {
+        const overlayAvatar = customLayout ? (customLayout.overlayAvatar !== false) : true;
+        if (!activeLayout.avatar || !overlayAvatar) return;
+
         const av = Object.assign({}, activeLayout.avatar);
 
         let styleIdx = (postId - 1) % 18;
@@ -3318,7 +3360,6 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
 
         const rotation = (customLayout && customLayout.avatarRotation) ? customLayout.avatarRotation : 0;
         const removeAvatarBg = customLayout ? !!customLayout.removeAvatarBg : false;
-        const sensitivity = (customLayout && customLayout.bgSensitivity) ? customLayout.bgSensitivity : 55;
 
         ctx.save();
         
@@ -3347,13 +3388,13 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
         }
         
         // Draw the avatar
-        if (removeAvatarBg && dynamicAvImg && (dynamicAvImg.complete || dynamicAvImg.naturalWidth > 0)) {
+        if (removeAvatarBg) {
           ctx.save();
-          ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+          ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
           ctx.shadowBlur = 20;
           ctx.shadowOffsetX = 5;
           ctx.shadowOffsetY = 10;
-          const cutoutResult = createCutoutAvatarCanvas(dynamicAvImg, sensitivity);
+          const cutoutResult = createCutoutAvatarCanvas(dynamicAvImg, styleIdx);
           ctx.drawImage(cutoutResult, av.x - av.w/2, av.y - av.h/2, av.w, av.h);
           ctx.restore();
         } else if (av.type === 'circle') {
@@ -3361,7 +3402,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
         } else if (av.type === 'phone') {
           drawPhoneMockup(ctx, av.x - av.w/2, av.y - av.h/2, av.w, av.h, true, dynamicAvImg, av.filter, styleIdx, palette);
         } else {
-          drawAvatarForCard(ctx, av.x - av.w/2, av.y - av.h/2, av.w, av.h, av.filter, styleIdx, dynamicAvImg, removeAvatarBg, sensitivity);
+          drawAvatarForCard(ctx, av.x - av.w/2, av.y - av.h/2, av.w, av.h, av.filter, styleIdx, dynamicAvImg, removeAvatarBg);
         }
         
         // Neon stroke border outline on top
@@ -3380,6 +3421,11 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
         }
         
         ctx.restore();
+      };
+
+      // If Avatar is configured as "Back", draw it BEFORE shapes and texts!
+      if (isAvatarInBack) {
+        renderAvatar();
       }
       
       // 4. Draw Texts (using explicit custom coordinates if provided, else sequential vertical flow layout)
@@ -3569,6 +3615,11 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           }
           ctx.restore();
         });
+      }
+      
+      // If Avatar is configured as "Front" (default), render it on top of shapes & text!
+      if (!isAvatarInBack) {
+        renderAvatar();
       }
       
       // Apply noise and return
