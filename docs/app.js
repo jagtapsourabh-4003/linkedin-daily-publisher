@@ -666,6 +666,9 @@ async function loadHistory() {
             if (custom.removeAvatarBg !== undefined) {
               post.removeAvatarBg = custom.removeAvatarBg;
             }
+            if (custom.avatarShape !== undefined) {
+              post.avatarShape = custom.avatarShape;
+            }
             if (custom.avatarPos !== undefined) {
               post.avatarPos = custom.avatarPos;
             }
@@ -1438,7 +1441,16 @@ function renderActiveDrafts() {
                   </button>
                 </div>
               </div>
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+                <div>
+                  <label for="select-avatar-shape-${post.id}" style="font-size: 0.78rem; color: #cbd5e1; display: block; margin-bottom: 4px;">Photo Framing (Shape)</label>
+                  <select id="select-avatar-shape-${post.id}" class="customizer-select" style="font-size: 0.8rem; padding: 5px 8px;">
+                    <option value="popout-circle" ${(!post.avatarShape || post.avatarShape === 'popout-circle') ? 'selected' : ''}>🔘 3D Circle Pop-Out</option>
+                    <option value="card" ${post.avatarShape === 'card' ? 'selected' : ''}>🔲 Rounded Card Frame</option>
+                    <option value="cutout" ${post.avatarShape === 'cutout' ? 'selected' : ''}>👤 Free Silhouette</option>
+                    <option value="phone" ${post.avatarShape === 'phone' ? 'selected' : ''}>📱 3D Phone Mockup</option>
+                  </select>
+                </div>
                 <div>
                   <label for="select-avatar-pos-${post.id}" style="font-size: 0.78rem; color: #cbd5e1; display: block; margin-bottom: 4px;">Position Anchor</label>
                   <select id="select-avatar-pos-${post.id}" class="customizer-select" style="font-size: 0.8rem; padding: 5px 8px;">
@@ -1565,8 +1577,8 @@ function renderActiveDrafts() {
       const labelHeadlineSize = cardEl.querySelector(`#val-headline-size-${post.id}`);
       const checkOverlayAvatar = cardEl.querySelector(`#check-overlay-avatar-${post.id}`);
       const checkBgRemove = cardEl.querySelector(`#check-bg-remove-${post.id}`);
+      const selectAvatarShape = cardEl.querySelector(`#select-avatar-shape-${post.id}`);
       const selectAvatarPos = cardEl.querySelector(`#select-avatar-pos-${post.id}`);
-      const selectAvatarLayer = cardEl.querySelector(`#select-avatar-layer-${post.id}`);
       const sliderAvatarSize = cardEl.querySelector(`#slider-avatar-size-${post.id}`);
       const labelAvatarSize = cardEl.querySelector(`#val-avatar-size-${post.id}`);
       const sliderBgSensitivity = cardEl.querySelector(`#slider-bg-sensitivity-${post.id}`);
@@ -1587,6 +1599,7 @@ function renderActiveDrafts() {
         post.subtextFontSize = parseInt(sliderSubtextSize.value);
         if (checkOverlayAvatar) post.overlayAvatar = checkOverlayAvatar.checked;
         if (checkBgRemove) post.removeAvatarBg = checkBgRemove.checked;
+        if (selectAvatarShape) post.avatarShape = selectAvatarShape.value;
         if (selectAvatarPos) post.avatarPos = selectAvatarPos.value;
         post.avatarLayer = post.avatarLayer || 'front';
         if (sliderAvatarSize) post.avatarSize = parseInt(sliderAvatarSize.value);
@@ -1631,6 +1644,7 @@ function renderActiveDrafts() {
             subtextFontSize: parseInt(sliderSubtextSize.value),
             overlayAvatar: checkOverlayAvatar ? checkOverlayAvatar.checked : true,
             removeAvatarBg: checkBgRemove ? checkBgRemove.checked : false,
+            avatarShape: selectAvatarShape ? selectAvatarShape.value : (post.avatarShape || 'popout-circle'),
             avatarPos: selectAvatarPos ? selectAvatarPos.value : 'bottom-right',
             avatarLayer: post.avatarLayer || 'front',
             avatarSize: sliderAvatarSize ? parseInt(sliderAvatarSize.value) : 340,
@@ -1843,6 +1857,9 @@ function renderActiveDrafts() {
           }
           triggerRedrawAndSave(false);
         });
+      }
+      if (selectAvatarShape) {
+        selectAvatarShape.addEventListener('change', () => triggerRedrawAndSave(false));
       }
       if (selectAvatarPos) {
         selectAvatarPos.addEventListener('change', () => triggerRedrawAndSave(false));
@@ -3369,22 +3386,37 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           ctx.restore();
         }
         
-        // Draw the avatar
-        if (removeAvatarBg) {
+        // Draw the avatar with auto-shape matching & 3D pop-out
+        const effectiveShape = (customLayout && customLayout.avatarShape && customLayout.avatarShape !== 'auto') 
+          ? customLayout.avatarShape 
+          : (av.type || 'popout-circle');
+
+        if (effectiveShape === 'popout-circle' || effectiveShape === 'circle') {
+          // 3D Pop-out circle: body clipped in circle, head pops out over the top!
+          drawAvatarPopoutCircle(ctx, av.x, av.y, av.w / 2, dynamicAvImg, palette, av.filter, removeAvatarBg, styleIdx);
+        } else if (effectiveShape === 'card' || effectiveShape === 'rect') {
           ctx.save();
-          ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
-          ctx.shadowBlur = 20;
-          ctx.shadowOffsetX = 5;
-          ctx.shadowOffsetY = 10;
-          const cutoutResult = createCutoutAvatarCanvas(dynamicAvImg, styleIdx);
-          ctx.drawImage(cutoutResult, av.x - av.w/2, av.y - av.h/2, av.w, av.h);
+          ctx.beginPath();
+          ctx.roundRect(av.x - av.w/2, av.y - av.h/2, av.w, av.h, 24);
+          ctx.clip();
+          drawAvatarForCard(ctx, av.x - av.w/2, av.y - av.h/2, av.w, av.h, av.filter, styleIdx, dynamicAvImg, removeAvatarBg);
           ctx.restore();
-        } else if (av.type === 'circle') {
-          drawAvatarForCircle(ctx, av.x, av.y, av.w / 2, av.filter, styleIdx, dynamicAvImg);
-        } else if (av.type === 'phone') {
+        } else if (effectiveShape === 'phone') {
           drawPhoneMockup(ctx, av.x - av.w/2, av.y - av.h/2, av.w, av.h, true, dynamicAvImg, av.filter, styleIdx, palette);
         } else {
-          drawAvatarForCard(ctx, av.x - av.w/2, av.y - av.h/2, av.w, av.h, av.filter, styleIdx, dynamicAvImg, removeAvatarBg);
+          // Free silhouette cutout
+          if (removeAvatarBg) {
+            ctx.save();
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+            ctx.shadowBlur = 20;
+            ctx.shadowOffsetX = 5;
+            ctx.shadowOffsetY = 10;
+            const cutoutResult = createCutoutAvatarCanvas(dynamicAvImg, styleIdx);
+            ctx.drawImage(cutoutResult, av.x - av.w/2, av.y - av.h/2, av.w, av.h);
+            ctx.restore();
+          } else {
+            drawAvatarForCard(ctx, av.x - av.w/2, av.y - av.h/2, av.w, av.h, av.filter, styleIdx, dynamicAvImg, false);
+          }
         }
         
         // Neon stroke border outline on top
@@ -4589,6 +4621,63 @@ function drawAvatarForCircle(ctx, cx, cy, r, filter, styleIdx, avatarImg) {
     ctx.arc(cx, cy, r, 0, Math.PI * 2);
     ctx.fill();
   }
+  ctx.restore();
+}
+
+// 3D Avatar Circle Pop-Out: Body is clipped inside circle, while Head pops out above the top ring!
+function drawAvatarPopoutCircle(ctx, cx, cy, r, avatarImg, palette, filter, removeBg, styleIdx) {
+  ctx.save();
+  
+  // 1. Draw Circle Base Shape & Glow
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, Math.PI * 2);
+  const circleGrad = ctx.createLinearGradient(cx - r, cy - r, cx + r, cy + r);
+  circleGrad.addColorStop(0, (palette && palette.secondary) ? palette.secondary : '#38bdf8');
+  circleGrad.addColorStop(1, (palette && palette.primary) ? palette.primary : '#ec4899');
+  ctx.fillStyle = circleGrad;
+  ctx.fill();
+
+  // Glow Stroke Ring
+  ctx.shadowColor = (palette && palette.primary) ? palette.primary : '#38bdf8';
+  ctx.shadowBlur = 28;
+  ctx.strokeStyle = '#ffffff';
+  ctx.lineWidth = 5;
+  ctx.stroke();
+  ctx.restore();
+
+  if (!avatarImg || !avatarImg.complete || avatarImg.naturalWidth === 0) {
+    ctx.restore();
+    return;
+  }
+
+  const activeImg = removeBg ? createCutoutAvatarCanvas(avatarImg, styleIdx) : avatarImg;
+  const size = r * 2.38;
+  const imgX = cx - size / 2;
+  const imgY = cy - size / 2 - r * 0.18; // Lifted slightly so head pops out over circle rim
+
+  // 2. Pass 1: Draw bottom torso clipped inside circle
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(cx, cy, r - 2, 0, Math.PI * 2);
+  ctx.clip();
+  if (filter) ctx.filter = filter;
+  ctx.drawImage(activeImg, imgX, imgY, size, size);
+  ctx.restore();
+
+  // 3. Pass 2: Draw the head and hair popping OUT above the top rim of the circle
+  ctx.save();
+  ctx.beginPath();
+  // Clip to the upper area above the horizontal center
+  ctx.rect(cx - size, cy - size * 1.5, size * 2, size * 0.96);
+  ctx.clip();
+  if (filter) ctx.filter = filter;
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.45)';
+  ctx.shadowBlur = 20;
+  ctx.shadowOffsetY = 10;
+  ctx.drawImage(activeImg, imgX, imgY, size, size);
+  ctx.restore();
+
   ctx.restore();
 }
 
