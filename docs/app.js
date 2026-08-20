@@ -972,32 +972,27 @@ async function postToGoogleFlow(postId, btnElement) {
 
     let imageBase64 = null;
 
-    // Build a dedicated, clean, high-resolution 1080x1080 export canvas
-    const exportCanvas = document.createElement('canvas');
-    exportCanvas.width = 1080;
-    exportCanvas.height = 1080;
-
-    const headlineText = (post && post.postContent && post.postContent.imageHeadline) || (post && post.imageHeadline) || '';
-    const subtextText = (post && post.postContent && post.postContent.imageSubtext) || (post && post.imageSubtext) || '';
-
-    // Draw the final creative with all avatar autoshapes, 3D popouts, layer orders, and custom Canva graphic overlays
-    if (activeEntry && post) {
-      drawCreative(exportCanvas, activeEntry.category, headlineText, subtextText, post.id, activeEntry.date, Object.assign({}, post.layout || {}, post));
+    // 1. Capture the exact live rendered canvas from the screen that user sees
+    const onScreenCanvas = document.getElementById(`canvas-${postId}`);
+    if (onScreenCanvas) {
+      try {
+        imageBase64 = onScreenCanvas.toDataURL('image/png');
+      } catch (err) {
+        console.warn('[Publish] Direct canvas export failed, creating offscreen buffer:', err.message);
+      }
     }
 
-    try {
+    // Fallback: draw directly if onScreenCanvas export was unavailable
+    if (!imageBase64 || imageBase64.length < 5000) {
+      const exportCanvas = document.createElement('canvas');
+      exportCanvas.width = 1080;
+      exportCanvas.height = 1080;
+      const headlineText = (post && post.postContent && post.postContent.imageHeadline) || (post && post.imageHeadline) || '';
+      const subtextText = (post && post.postContent && post.postContent.imageSubtext) || (post && post.imageSubtext) || '';
+      if (activeEntry && post) {
+        drawCreative(exportCanvas, activeEntry.category, headlineText, subtextText, post.id, activeEntry.date, Object.assign({}, post.layout || {}, post));
+      }
       imageBase64 = exportCanvas.toDataURL('image/png');
-      if (!imageBase64 || imageBase64.length < 5000) {
-        throw new Error('Canvas export produced empty data');
-      }
-    } catch (exportErr) {
-      console.warn('[Publish] Primary export canvas failed, falling back to on-screen canvas:', exportErr.message);
-      const onScreenCanvas = document.getElementById(`canvas-${postId}`);
-      if (onScreenCanvas) {
-        imageBase64 = onScreenCanvas.toDataURL('image/png');
-      } else {
-        throw new Error(`Cannot export graphic: ${exportErr.message}`);
-      }
     }
 
     // 2. Upload image directly from the browser to ImgBB
@@ -1039,18 +1034,26 @@ async function postToGoogleFlow(postId, btnElement) {
     // 3. Post text and image URL directly to the Make.com Webhook from the browser
     btnElement.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Publishing...`;
     
+    const postPayload = {
+      text: post.postContent ? post.postContent.content : post.content,
+      imageUrl: imageUrl || null,
+      image_url: imageUrl || null,
+      image: imageUrl || null,
+      mediaUrl: imageUrl || null,
+      media_url: imageUrl || null,
+      style: post.postContent ? post.postContent.style : post.style,
+      sourceArticle: post.postContent ? post.postContent.sourceArticle : post.sourceArticle,
+      category: activeEntry.category,
+      date: date,
+      author: 'Marketing Manager & AI Expert'
+    };
+
+    console.log('[Publish] Sending payload to webhook:', postPayload);
+
     const res = await fetch(state.settings.webhookUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        text: post.postContent ? post.postContent.content : post.content,
-        imageUrl: imageUrl || null,
-        style: post.postContent ? post.postContent.style : post.style,
-        sourceArticle: post.postContent ? post.postContent.sourceArticle : post.sourceArticle,
-        category: activeEntry.category,
-        date: date,
-        author: 'Marketing Manager & AI Expert'
-      })
+      body: JSON.stringify(postPayload)
     });
 
     if (!res.ok) {
