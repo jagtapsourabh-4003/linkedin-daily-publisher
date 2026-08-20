@@ -1444,7 +1444,8 @@ function renderActiveDrafts() {
                 <div>
                   <label for="select-avatar-pos-${post.id}" style="font-size: 0.78rem; color: #cbd5e1; display: block; margin-bottom: 4px;">Position Anchor</label>
                   <select id="select-avatar-pos-${post.id}" class="customizer-select" style="font-size: 0.8rem; padding: 5px 8px;">
-                    <option value="bottom-right" ${(!post.avatarPos || post.avatarPos === 'bottom-right') ? 'selected' : ''}>Bottom Right</option>
+                    <option value="auto" ${(!post.avatarPos || post.avatarPos === 'auto') ? 'selected' : ''}>📍 Auto (Match Post Layout)</option>
+                    <option value="bottom-right" ${post.avatarPos === 'bottom-right' ? 'selected' : ''}>Bottom Right</option>
                     <option value="bottom-left" ${post.avatarPos === 'bottom-left' ? 'selected' : ''}>Bottom Left</option>
                     <option value="top-right" ${post.avatarPos === 'top-right' ? 'selected' : ''}>Top Right</option>
                     <option value="top-left" ${post.avatarPos === 'top-left' ? 'selected' : ''}>Top Left</option>
@@ -1635,7 +1636,7 @@ function renderActiveDrafts() {
             overlayAvatar: checkOverlayAvatar ? checkOverlayAvatar.checked : true,
             removeAvatarBg: checkBgRemove ? checkBgRemove.checked : false,
             avatarShape: selectAvatarShape ? selectAvatarShape.value : (post.avatarShape || 'popout-circle'),
-            avatarPos: selectAvatarPos ? selectAvatarPos.value : 'bottom-right',
+            avatarPos: selectAvatarPos ? selectAvatarPos.value : (post.avatarPos || 'auto'),
             avatarLayer: post.avatarLayer || 'front',
             avatarSize: sliderAvatarSize ? parseInt(sliderAvatarSize.value) : 340,
             avatarOffsetX: sliderAvatarX ? parseInt(sliderAvatarX.value) : 0,
@@ -3322,8 +3323,8 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           av.h = Math.round((av.h || 340) * ratio);
         }
 
-        // Apply position anchor override if specified
-        if (customLayout && customLayout.avatarPos) {
+        // Apply position anchor override if explicitly specified (not auto/template)
+        if (customLayout && customLayout.avatarPos && customLayout.avatarPos !== 'auto') {
           const pos = customLayout.avatarPos;
           if (pos === 'bottom-right') {
             av.x = w - av.w / 2 - 40;
