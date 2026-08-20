@@ -1420,17 +1420,25 @@ function renderActiveDrafts() {
                 <span>👤 Avatar &amp; Photo Overlay Controls</span>
                 <span style="font-size: 0.75rem; color: #94a3b8; font-weight: 400;">Move, Scale, Rotate &amp; Cutout Photo</span>
               </div>
-              <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+              <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
                 <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.85rem; color: #e2e8f0;">
                   <input type="checkbox" id="check-overlay-avatar-${post.id}" ${post.overlayAvatar !== false ? 'checked' : ''} style="width: 16px; height: 16px; cursor: pointer;">
-                  📷 Overlay Photo on Graphic
+                  📷 Overlay Photo
                 </label>
                 <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.85rem; color: #f472b6;">
                   <input type="checkbox" id="check-bg-remove-${post.id}" ${post.removeAvatarBg ? 'checked' : ''} style="width: 16px; height: 16px; cursor: pointer;">
                   ✨ Remove Background (Cutout)
                 </label>
+                <div style="margin-left: auto; display: flex; gap: 4px; align-items: center; background: rgba(15, 23, 42, 0.7); padding: 4px 6px; border-radius: 8px; border: 1px solid rgba(59, 130, 246, 0.35);">
+                  <button type="button" id="btn-layer-front-${post.id}" class="btn btn-sm ${(!post.avatarLayer || post.avatarLayer === 'front') ? 'btn-primary' : 'btn-secondary'}" style="font-size: 0.75rem; padding: 4px 10px; line-height: 1.2;">
+                    ⬆️ In Front
+                  </button>
+                  <button type="button" id="btn-layer-back-${post.id}" class="btn btn-sm ${post.avatarLayer === 'back' ? 'btn-primary' : 'btn-secondary'}" style="font-size: 0.75rem; padding: 4px 10px; line-height: 1.2; ${post.avatarLayer === 'back' ? 'background: #ec4899; border-color: #db2777;' : ''}">
+                    ⬇️ Send to Background
+                  </button>
+                </div>
               </div>
-              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
                 <div>
                   <label for="select-avatar-pos-${post.id}" style="font-size: 0.78rem; color: #cbd5e1; display: block; margin-bottom: 4px;">Position Anchor</label>
                   <select id="select-avatar-pos-${post.id}" class="customizer-select" style="font-size: 0.8rem; padding: 5px 8px;">
@@ -1439,13 +1447,6 @@ function renderActiveDrafts() {
                     <option value="top-right" ${post.avatarPos === 'top-right' ? 'selected' : ''}>Top Right</option>
                     <option value="top-left" ${post.avatarPos === 'top-left' ? 'selected' : ''}>Top Left</option>
                     <option value="center" ${post.avatarPos === 'center' ? 'selected' : ''}>Center</option>
-                  </select>
-                </div>
-                <div>
-                  <label for="select-avatar-layer-${post.id}" style="font-size: 0.78rem; color: #cbd5e1; display: block; margin-bottom: 4px;">Layer Order</label>
-                  <select id="select-avatar-layer-${post.id}" class="customizer-select" style="font-size: 0.8rem; padding: 5px 8px;">
-                    <option value="front" ${(!post.avatarLayer || post.avatarLayer === 'front') ? 'selected' : ''}>⬆️ Front (Over Content)</option>
-                    <option value="back" ${post.avatarLayer === 'back' ? 'selected' : ''}>⬇️ Back (Behind Content)</option>
                   </select>
                 </div>
                 <div>
@@ -1846,9 +1847,35 @@ function renderActiveDrafts() {
       if (selectAvatarPos) {
         selectAvatarPos.addEventListener('change', () => triggerRedrawAndSave(false));
       }
-      const selectAvatarLayer = cardEl.querySelector(`#select-avatar-layer-${post.id}`);
-      if (selectAvatarLayer) {
-        selectAvatarLayer.addEventListener('change', () => triggerRedrawAndSave(false));
+      const btnLayerFront = cardEl.querySelector(`#btn-layer-front-${post.id}`);
+      const btnLayerBack = cardEl.querySelector(`#btn-layer-back-${post.id}`);
+      if (btnLayerFront) {
+        btnLayerFront.addEventListener('click', () => {
+          post.avatarLayer = 'front';
+          btnLayerFront.className = 'btn btn-sm btn-primary';
+          btnLayerFront.style.background = '';
+          btnLayerFront.style.borderColor = '';
+          if (btnLayerBack) {
+            btnLayerBack.className = 'btn btn-sm btn-secondary';
+            btnLayerBack.style.background = '';
+            btnLayerBack.style.borderColor = '';
+          }
+          showToast('⬆️ Avatar moved to front of card!', 'info');
+          triggerRedrawAndSave(false);
+        });
+      }
+      if (btnLayerBack) {
+        btnLayerBack.addEventListener('click', () => {
+          post.avatarLayer = 'back';
+          btnLayerBack.className = 'btn btn-sm btn-primary';
+          btnLayerBack.style.background = '#ec4899';
+          btnLayerBack.style.borderColor = '#db2777';
+          if (btnLayerFront) {
+            btnLayerFront.className = 'btn btn-sm btn-secondary';
+          }
+          showToast('⬇️ Avatar moved to background of post!', 'success');
+          triggerRedrawAndSave(false);
+        });
       }
       if (sliderAvatarSize) {
         sliderAvatarSize.addEventListener('input', () => {
@@ -3263,51 +3290,6 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
         ctx.restore();
       }
       
-      // 2. Draw Decorative Shapes
-      if (Array.isArray(activeLayout.shapes)) {
-        activeLayout.shapes.forEach(shape => {
-          ctx.save();
-          if (shape.tilt) {
-            ctx.translate(shape.x, shape.y);
-            ctx.rotate(shape.tilt);
-            ctx.translate(-shape.x, -shape.y);
-          }
-          ctx.fillStyle = shape.color || 'rgba(255,255,255,0.05)';
-          ctx.strokeStyle = shape.strokeColor || 'transparent';
-          ctx.lineWidth = shape.lineWidth || 1;
-          
-          if (shape.glowColor) {
-            ctx.shadowColor = shape.glowColor;
-            ctx.shadowBlur = shape.glowBlur || 30;
-            ctx.shadowOffsetX = 0;
-            ctx.shadowOffsetY = 0;
-          }
-          
-          if (shape.type === 'circle') {
-            ctx.beginPath();
-            ctx.arc(shape.x, shape.y, shape.r || 100, 0, Math.PI * 2);
-            ctx.fill();
-            if (shape.strokeColor && shape.strokeColor !== 'transparent') ctx.stroke();
-          } else if (shape.type === 'rect') {
-            ctx.beginPath();
-            const rRadius = shape.borderRadius !== undefined ? shape.borderRadius : 24;
-            ctx.roundRect(shape.x - shape.w/2, shape.y - shape.h/2, shape.w, shape.h, rRadius);
-            ctx.fill();
-            if (shape.strokeColor && shape.strokeColor !== 'transparent') ctx.stroke();
-          } else if (shape.type === 'line') {
-            ctx.beginPath();
-            ctx.moveTo(shape.x1, shape.y1);
-            ctx.lineTo(shape.x2, shape.y2);
-            ctx.stroke();
-          } else if (shape.type === 'text') {
-            ctx.font = shape.font || 'bold 120px Georgia';
-            ctx.fillStyle = shape.color || 'rgba(255,255,255,0.1)';
-            ctx.fillText(shape.text, shape.x, shape.y);
-          }
-          ctx.restore();
-        });
-      }
-      
       const isAvatarInBack = (customLayout && customLayout.avatarLayer === 'back');
 
       // Helper function to render avatar
@@ -3423,9 +3405,54 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
         ctx.restore();
       };
 
-      // If Avatar is configured as "Back", draw it BEFORE shapes and texts!
+      // If Avatar is configured as "Back", draw it FIRST directly in the background!
       if (isAvatarInBack) {
         renderAvatar();
+      }
+
+      // 2. Draw Decorative Shapes
+      if (Array.isArray(activeLayout.shapes)) {
+        activeLayout.shapes.forEach(shape => {
+          ctx.save();
+          if (shape.tilt) {
+            ctx.translate(shape.x, shape.y);
+            ctx.rotate(shape.tilt);
+            ctx.translate(-shape.x, -shape.y);
+          }
+          ctx.fillStyle = shape.color || 'rgba(255,255,255,0.05)';
+          ctx.strokeStyle = shape.strokeColor || 'transparent';
+          ctx.lineWidth = shape.lineWidth || 1;
+          
+          if (shape.glowColor) {
+            ctx.shadowColor = shape.glowColor;
+            ctx.shadowBlur = shape.glowBlur || 30;
+            ctx.shadowOffsetX = 0;
+            ctx.shadowOffsetY = 0;
+          }
+          
+          if (shape.type === 'circle') {
+            ctx.beginPath();
+            ctx.arc(shape.x, shape.y, shape.r || 100, 0, Math.PI * 2);
+            ctx.fill();
+            if (shape.strokeColor && shape.strokeColor !== 'transparent') ctx.stroke();
+          } else if (shape.type === 'rect') {
+            ctx.beginPath();
+            const rRadius = shape.borderRadius !== undefined ? shape.borderRadius : 24;
+            ctx.roundRect(shape.x - shape.w/2, shape.y - shape.h/2, shape.w, shape.h, rRadius);
+            ctx.fill();
+            if (shape.strokeColor && shape.strokeColor !== 'transparent') ctx.stroke();
+          } else if (shape.type === 'line') {
+            ctx.beginPath();
+            ctx.moveTo(shape.x1, shape.y1);
+            ctx.lineTo(shape.x2, shape.y2);
+            ctx.stroke();
+          } else if (shape.type === 'text') {
+            ctx.font = shape.font || 'bold 120px Georgia';
+            ctx.fillStyle = shape.color || 'rgba(255,255,255,0.1)';
+            ctx.fillText(shape.text, shape.x, shape.y);
+          }
+          ctx.restore();
+        });
       }
       
       // 4. Draw Texts (using explicit custom coordinates if provided, else sequential vertical flow layout)
