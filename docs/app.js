@@ -4636,37 +4636,45 @@ function drawAvatarPopoutCircle(ctx, cx, cy, r, avatarImg, palette, filter, remo
   ctx.stroke();
   ctx.restore();
 
-  if (!avatarImg || !avatarImg.complete || avatarImg.naturalWidth === 0) {
-    ctx.restore();
-    return;
+  // Resolve active avatar image
+  let activeImg = removeBg ? createCutoutAvatarCanvas(avatarImg, styleIdx) : avatarImg;
+  if (!activeImg || (!activeImg.complete && activeImg.naturalWidth === 0)) {
+    if (styleIdx >= 0 && optionCutoutAvatars[styleIdx]) {
+      activeImg = optionCutoutAvatars[styleIdx];
+    } else if (personalAvatarCutout) {
+      activeImg = personalAvatarCutout;
+    } else if (avatarImg) {
+      activeImg = avatarImg;
+    }
   }
 
-  const activeImg = removeBg ? createCutoutAvatarCanvas(avatarImg, styleIdx) : avatarImg;
-  const size = r * 2.38;
-  const imgX = cx - size / 2;
-  const imgY = cy - size / 2 - r * 0.18; // Lifted slightly so head pops out over circle rim
+  if (activeImg && (activeImg.complete || activeImg.naturalWidth > 0)) {
+    const size = r * 2.38;
+    const imgX = cx - size / 2;
+    const imgY = cy - size / 2 - r * 0.18; // Lifted slightly so head pops out over circle rim
 
-  // 2. Pass 1: Draw bottom torso clipped inside circle
-  ctx.save();
-  ctx.beginPath();
-  ctx.arc(cx, cy, r - 2, 0, Math.PI * 2);
-  ctx.clip();
-  if (filter) ctx.filter = filter;
-  ctx.drawImage(activeImg, imgX, imgY, size, size);
-  ctx.restore();
+    // 2. Pass 1: Draw bottom torso clipped inside circle
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(cx, cy, r - 2, 0, Math.PI * 2);
+    ctx.clip();
+    if (filter) ctx.filter = filter;
+    ctx.drawImage(activeImg, imgX, imgY, size, size);
+    ctx.restore();
 
-  // 3. Pass 2: Draw the head and hair popping OUT above the top rim of the circle
-  ctx.save();
-  ctx.beginPath();
-  // Clip to the upper area above the horizontal center
-  ctx.rect(cx - size, cy - size * 1.5, size * 2, size * 0.96);
-  ctx.clip();
-  if (filter) ctx.filter = filter;
-  ctx.shadowColor = 'rgba(0, 0, 0, 0.45)';
-  ctx.shadowBlur = 20;
-  ctx.shadowOffsetY = 10;
-  ctx.drawImage(activeImg, imgX, imgY, size, size);
-  ctx.restore();
+    // 3. Pass 2: Draw the head and hair popping OUT above the top rim of the circle
+    ctx.save();
+    ctx.beginPath();
+    // Clip to the upper area above the horizontal center
+    ctx.rect(cx - size, cy - size * 1.5, size * 2, size * 0.96);
+    ctx.clip();
+    if (filter) ctx.filter = filter;
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.45)';
+    ctx.shadowBlur = 20;
+    ctx.shadowOffsetY = 10;
+    ctx.drawImage(activeImg, imgX, imgY, size, size);
+    ctx.restore();
+  }
 
   ctx.restore();
 }
