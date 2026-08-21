@@ -1207,20 +1207,58 @@ function renderActiveDrafts() {
   const isDayPosted = activeEntry.status === 'posted';
   const selectedPostId = activeEntry.selectedPostId;
 
-  // Quick Option Navigation Bar
+  // Option Tab Bar (Tabs for Option 1, 2, 3, 4, 5 and View All 5)
   if (Array.isArray(activeEntry.posts) && activeEntry.posts.length > 0) {
-    const navBar = document.createElement('div');
-    navBar.className = 'options-jump-bar';
-    navBar.style.cssText = 'display: flex; gap: 8px; flex-wrap: wrap; align-items: center; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); padding: 10px 14px; border-radius: 12px; margin-bottom: 18px;';
-    navBar.innerHTML = `<span style="font-size: 0.82rem; font-weight: 600; color: #94a3b8; margin-right: 4px;">🎯 5 Post Options:</span>` +
-      activeEntry.posts.map(p => {
-        const styleName = p.designArchetype || (p.postContent && p.postContent.style) || `Option ${p.id}`;
-        return `<button type="button" class="btn btn-sm btn-secondary" onclick="document.getElementById('draft-card-${p.id}')?.scrollIntoView({behavior:'smooth', block:'start'})" style="font-size: 0.78rem; padding: 4px 10px;">#${p.id} ${styleName}</button>`;
-      }).join('');
-    el.draftsContainer.appendChild(navBar);
+    if (state.activeTabPostId === undefined) state.activeTabPostId = 'all';
+
+    const tabContainer = document.createElement('div');
+    tabContainer.className = 'options-tab-container';
+    tabContainer.style.cssText = 'display: flex; gap: 8px; flex-wrap: wrap; align-items: center; background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.1); padding: 8px 12px; border-radius: 12px; margin-bottom: 20px;';
+
+    const tabTitle = document.createElement('span');
+    tabTitle.style.cssText = 'font-size: 0.85rem; font-weight: 700; color: #60a5fa; margin-right: 4px;';
+    tabTitle.textContent = '📑 5 Post Options:';
+    tabContainer.appendChild(tabTitle);
+
+    // "View All 5" button
+    const allBtn = document.createElement('button');
+    allBtn.type = 'button';
+    const isAllActive = (state.activeTabPostId === 'all');
+    allBtn.className = `btn btn-sm ${isAllActive ? 'btn-primary' : 'btn-secondary'}`;
+    allBtn.style.cssText = `font-size: 0.8rem; padding: 6px 12px; font-weight: 600; ${isAllActive ? 'box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);' : ''}`;
+    allBtn.textContent = '👁️ View All (5)';
+    allBtn.addEventListener('click', () => {
+      state.activeTabPostId = 'all';
+      renderActiveDrafts();
+    });
+    tabContainer.appendChild(allBtn);
+
+    // Add individual tab buttons for each of the 5 posts
+    activeEntry.posts.forEach(p => {
+      const tabBtn = document.createElement('button');
+      tabBtn.type = 'button';
+      const isTabActive = (state.activeTabPostId === p.id);
+      tabBtn.className = `btn btn-sm ${isTabActive ? 'btn-primary' : 'btn-secondary'}`;
+      tabBtn.style.cssText = `font-size: 0.8rem; padding: 6px 12px; font-weight: 600; ${isTabActive ? 'box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);' : ''}`;
+      const pStyle = p.designArchetype || (p.postContent && p.postContent.style) || `Option ${p.id}`;
+      tabBtn.textContent = `Option ${p.id}: ${pStyle}`;
+      tabBtn.addEventListener('click', () => {
+        state.activeTabPostId = p.id;
+        renderActiveDrafts();
+      });
+      tabContainer.appendChild(tabBtn);
+    });
+
+    el.draftsContainer.appendChild(tabContainer);
   }
 
-  activeEntry.posts.forEach(post => {
+  const postsToRender = (state.activeTabPostId === 'all' || !state.activeTabPostId) 
+    ? activeEntry.posts 
+    : activeEntry.posts.filter(p => p.id === state.activeTabPostId);
+
+  const finalPosts = (postsToRender.length > 0) ? postsToRender : activeEntry.posts;
+
+  finalPosts.forEach(post => {
     const isThisPostSelected = isDayPosted && selectedPostId === post.id;
     const cardEl = document.createElement('article');
     // Only apply posted-item highlight to the selected card; others remain fully interactive
@@ -2071,7 +2109,9 @@ function updateHeaderBadge() {
   const current = new Date(`${todayStr}T00:00:00Z`);
   const diffTime = Math.abs(current - baseline);
   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-  const category = diffDays % 2 === 0 ? 'Marketing Day' : 'AI Trend Day';
+  const cycleDay = diffDays % 10;
+  const isAi = [4, 9].includes(cycleDay); // 80% Marketing, 20% AI
+  const category = isAi ? 'AI Trend Day' : 'Marketing Day';
   
   el.topicBadgeText.textContent = `Today: ${category}`;
   
