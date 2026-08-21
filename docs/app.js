@@ -1275,7 +1275,12 @@ async function postToGoogleFlow(postId, btnElement) {
       }
     }
 
-    // 3. Post text and image directly to Webhook (Google Apps Script / Make.com / Zapier)
+    // Fallback public image URL if ImgBB upload is not used
+    const originUrl = window.location.origin + window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
+    const fallbackPublicImageUrl = `${originUrl}/avatar_daily_${postId}.jpg`;
+    const finalImageUrl = imageUrl || fallbackPublicImageUrl;
+
+    // 3. Post text and image directly to Webhook (Make.com / Google Apps Script / Zapier)
     btnElement.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Publishing to LinkedIn...`;
     
     const postContentText = (post && post.postContent && post.postContent.content) ? post.postContent.content : (post ? post.content : '');
@@ -1285,11 +1290,11 @@ async function postToGoogleFlow(postId, btnElement) {
       content: postContentText,
       post: postContentText,
       body: postContentText,
-      imageUrl: imageUrl || '',
-      image_url: imageUrl || '',
-      image: imageUrl || imageBase64,
-      mediaUrl: imageUrl || '',
-      media_url: imageUrl || '',
+      imageUrl: finalImageUrl,
+      image_url: finalImageUrl,
+      mediaUrl: finalImageUrl,
+      media_url: finalImageUrl,
+      image: finalImageUrl,
       imageBase64: imageBase64 || '',
       image_base64: imageBase64 || '',
       dataUri: imageBase64 || '',
@@ -1304,29 +1309,39 @@ async function postToGoogleFlow(postId, btnElement) {
 
     console.log('[Publish] Sending payload to webhook:', postPayload);
 
-    // Send payload using text/plain to avoid CORS preflight failures on Google Apps Script / Make / Zapier
+    // Send payload as standard JSON with fallback
     let publishSuccess = false;
     try {
       const res = await fetch(state.settings.webhookUrl, {
         method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json, text/plain, */*'
+        },
         body: JSON.stringify(postPayload)
       });
-      if (res.ok || res.type === 'opaque' || res.status === 200 || res.status === 302) {
+      if (res.ok || res.status === 200 || res.status === 201 || res.status === 202) {
         publishSuccess = true;
+      } else {
+        const text = await res.text().catch(() => `HTTP ${res.status}`);
+        throw new Error(`Webhook returned status ${res.status}: ${text}`);
       }
-    } catch (corsErr) {
-      console.warn('[Publish] Standard fetch failed, attempting no-cors fallback for Google Flow...', corsErr.message);
+    } catch (fetchErr) {
+      console.warn('[Publish] Direct JSON fetch warning, attempting fallback:', fetchErr.message);
+      // Attempt plain text fallback if endpoint has preflight issues
       try {
-        await fetch(state.settings.webhookUrl, {
+        const fallbackRes = await fetch(state.settings.webhookUrl, {
           method: 'POST',
-          mode: 'no-cors',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
           body: JSON.stringify(postPayload)
         });
-        publishSuccess = true;
-      } catch (noCorsErr) {
-        throw new Error(`Webhook transmission error: ${noCorsErr.message}`);
+        if (fallbackRes.ok || fallbackRes.status === 200 || fallbackRes.status === 202) {
+          publishSuccess = true;
+        } else {
+          throw fetchErr;
+        }
+      } catch (e) {
+        throw new Error(`Could not deliver to webhook: ${fetchErr.message}`);
       }
     }
 
