@@ -85,20 +85,25 @@ CRITICAL RULES:
 ${recentDesignMemoryStr}
 
 Guidelines for post content:
-1. Tone: Conversational, simple, direct, and active. Write like you are explaining a concept to a colleague over coffee. Do NOT sound academic, overly formal, or robotic. Use active voice at all times (e.g. "We tested this model" instead of "This model was tested by us").
-2. Language Simplicity: Use simple words and write at an 8th-grade reading level. Avoid long, complex sentences. Use short, punchy sentences (under 15 words).
-3. STRICT JARGON BAN: You are strictly forbidden from using generic AI and corporate jargon words. Do NOT use: "delve", "tapestry", "testament", "revolutionize", "beacon", "shaping the future", "paradigm shift", "democratize", "game-changer", "transformative", "cutting-edge", "harnessing", "unveiled", "journey", "crucial", "essential", "furthermore", "moreover", "leverage", "robust", "synergy", "seamless".
-4. Structure: Start with an attention-grabbing hook (line 1) under 6 words. Write the body in short paragraphs (1-2 sentences max each, with a blank line between them). End with a non-cliché question or clear call to action, followed by 3-5 relevant hashtags.
-5. Formatting: Emojis very sparingly (no more than 2-3). Do NOT use fake bold/italic unicode characters.
-6. Perspectives: First-person ('I' or 'We') as an elite B2B Director who is also a deep AI automation architect.
-7. Marketing & Branding Focus: Every post (whether generated under the 'ai' category or 'marketing' category) MUST focus strongly on a B2B marketing, branding, copywriting, content creation, or growth strategy point of view. Even when discussing a technical AI announcement or AI news, connect it directly to how it affects branding, copywriting, search (SEO), ad costs, or conversion rates. Make it immediately useful to marketers, copywriters, founders, and brand owners.
-8. Post Angles (No Repetition): Each post in the 5-post batch must use a unique angle and style. The 5 posts must follow these exact 5 angles respectively:
-   - Post 1: "Breaking Trend/News" - A simple, direct analysis of a recent headline or industry announcement.
-   - Post 2: "Actionable Playbook" - A step-by-step tutorial or checklist. Give the reader 3-4 specific actions they can take today.
-   - Post 3: "Contrarian Debate" - Challenge a common myth or popular opinion in the industry. Be respectfully provocative.
-   - Post 4: "Mistake/Failure Study" - Analyze a real or hypothetical failure case. Explain what went wrong and the exact lesson learned.
-   - Post 5: "Strategic Prediction" - A forward-looking, high-level outlook or framework. Explain where a trend is heading in the next 12-24 months.
-9. ZERO TOPIC REPETITION: You MUST NOT write about the same headline, tool, or tip twice. Base each of the 5 posts on a COMPLETELY DIFFERENT article or trend from the scraped web trends context below. For example, Post 1 must utilize Trend 1, Post 2 must utilize Trend 2, Post 3 must utilize Trend 3, and so on. Ensure hooks, storylines, and takeaways are highly creative and distinct from one another. Do not reuse template-like opening questions across posts.`;
+1. Tone: Crystal clear, friendly, conversational, and simple. Write like you are explaining a concept to a smart friend over coffee. Do NOT sound academic, overly formal, or robotic.
+2. LAYMAN-FRIENDLY WRITING RULE (CRITICAL): Write so that ANY beginner or layman can easily understand the core message within 10 seconds. Use plain everyday words. If you introduce an idea about AI or marketing, explain it using a simple real-world analogy. Avoid complex acronyms (explain them in simple words if mentioned).
+3. STRICT JARGON BAN: You are strictly forbidden from using confusing buzzwords and corporate jargon. Do NOT use: "delve", "tapestry", "testament", "revolutionize", "beacon", "shaping the future", "paradigm shift", "democratize", "game-changer", "transformative", "cutting-edge", "harnessing", "unveiled", "journey", "crucial", "essential", "furthermore", "moreover", "leverage", "robust", "synergy", "seamless", "operationalize", "heuristic", "retrieval-augmented".
+4. Sentence Length: Keep sentences short and punchy (under 12-15 words). Break paragraphs into 1-2 lines maximum for effortless mobile reading.
+5. Structure:
+   - Line 1: An attention-grabbing, simple hook (under 6-8 words).
+   - Problem / Reality: Explain what is happening in simple everyday terms.
+   - 3 Simple Takeaways / Steps: Bullet points with numbers (1, 2, 3) that give concrete, easy advice.
+   - Friendly Question: Close with an easy question to encourage comments, followed by 3-4 relevant hashtags.
+6. Formatting: Emojis very sparingly (no more than 2-3). Do NOT use fake bold/italic unicode characters.
+7. Perspectives: First-person ('I' or 'We') as a friendly, knowledgeable mentor who simplifies complex topics.
+8. Marketing & Business Focus: Connect every topic directly to real business benefits: getting more customers, saving time, writing better, or standing out online.
+9. Post Angles (No Repetition): Each post in the 5-post batch must use a unique angle and style:
+   - Post 1: "Breaking Trend" - What is new and what it means in plain English.
+   - Post 2: "Step-by-Step Guide" - 3 simple steps anyone can do today.
+   - Post 3: "Common Myth" - Bust a popular misconception with simple logic.
+   - Post 4: "Mistake to Avoid" - The #1 mistake people make and how to easily fix it.
+   - Post 5: "Future Outlook" - A simple, exciting glimpse at where things are going.
+10. ZERO TOPIC REPETITION: Base each of the 5 posts on a completely different idea. Keep all 5 variations fresh and unique.`;
 
   const prompt = `Generate exactly 5 LinkedIn posts on the topic of: ${topicLabel}.
 Use the following scraped web trends as context and inspiration:
