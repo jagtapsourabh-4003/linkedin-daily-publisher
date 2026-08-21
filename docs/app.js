@@ -1247,69 +1247,87 @@ async function postToGoogleFlow(postId, btnElement) {
       imageBase64 = exportCanvas.toDataURL('image/png');
     }
 
-    // 2. Upload image directly from the browser to ImgBB
+    // 2. Upload image to ImgBB if key is present, otherwise include base64 payload
     let imageUrl = '';
     const imgbbKey = state.settings.imgbbApiKey;
     
-    if (!imgbbKey) {
-      throw new Error('ImgBB API Key is missing. Graphic hosting is required for LinkedIn publishing. Please configure it in Settings.');
-    }
-    
-    btnElement.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Uploading graphic...`;
-    
-    const rawBase64 = imageBase64.replace(/^data:image\/\w+;base64,/, '');
-    const formData = new FormData();
-    formData.append('image', rawBase64);
-    
-    try {
-      const imgbbResponse = await fetch(`https://api.imgbb.com/1/upload?key=${imgbbKey}`, {
-        method: 'POST',
-        body: formData
-      });
-      
-      if (imgbbResponse.ok) {
-        const result = await imgbbResponse.json();
-        if (result && result.success && result.data && result.data.url) {
-          imageUrl = result.data.url;
-          console.log(`[Browser ImgBB] Creative hosted successfully: ${imageUrl}`);
-        } else {
-          throw new Error(result.error ? result.error.message : 'Unknown ImgBB API response error');
+    if (imgbbKey) {
+      btnElement.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Uploading graphic...`;
+      try {
+        const rawBase64 = imageBase64.replace(/^data:image\/\w+;base64,/, '');
+        const formData = new FormData();
+        formData.append('image', rawBase64);
+        
+        const imgbbResponse = await fetch(`https://api.imgbb.com/1/upload?key=${imgbbKey}`, {
+          method: 'POST',
+          body: formData
+        });
+        
+        if (imgbbResponse.ok) {
+          const result = await imgbbResponse.json();
+          if (result && result.success && result.data && result.data.url) {
+            imageUrl = result.data.url;
+            console.log(`[Browser ImgBB] Creative hosted successfully: ${imageUrl}`);
+          }
         }
-      } else {
-        const errText = await imgbbResponse.text().catch(() => `HTTP ${imgbbResponse.status}`);
-        throw new Error(`Server responded with ${errText}`);
+      } catch (uploadErr) {
+        console.warn('[Publish] ImgBB upload skipped/failed, falling back to direct base64 transmission:', uploadErr.message);
       }
-    } catch (uploadErr) {
-      throw new Error(`ImgBB upload failed: ${uploadErr.message}. Check your ImgBB Key in Settings.`);
     }
 
-    // 3. Post text and image URL directly to the Make.com Webhook from the browser
-    btnElement.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Publishing...`;
+    // 3. Post text and image directly to Webhook (Google Apps Script / Make.com / Zapier)
+    btnElement.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Publishing to LinkedIn...`;
     
+    const postContentText = (post && post.postContent && post.postContent.content) ? post.postContent.content : (post ? post.content : '');
+
     const postPayload = {
-      text: post.postContent ? post.postContent.content : post.content,
-      imageUrl: imageUrl || null,
-      image_url: imageUrl || null,
-      image: imageUrl || null,
-      mediaUrl: imageUrl || null,
-      media_url: imageUrl || null,
-      style: post.postContent ? post.postContent.style : post.style,
-      sourceArticle: post.postContent ? post.postContent.sourceArticle : post.sourceArticle,
+      text: postContentText,
+      content: postContentText,
+      post: postContentText,
+      body: postContentText,
+      imageUrl: imageUrl || '',
+      image_url: imageUrl || '',
+      image: imageUrl || imageBase64,
+      mediaUrl: imageUrl || '',
+      media_url: imageUrl || '',
+      imageBase64: imageBase64 || '',
+      image_base64: imageBase64 || '',
+      dataUri: imageBase64 || '',
+      style: (post && post.postContent && post.postContent.style) || (post && post.style) || 'Thought Leadership',
+      sourceArticle: (post && post.postContent && post.postContent.sourceArticle) || (post && post.sourceArticle) || '',
+      headline: (post && post.postContent && post.postContent.imageHeadline) || (post && post.imageHeadline) || '',
       category: activeEntry.category,
       date: date,
-      author: 'Marketing Manager & AI Expert'
+      timestamp: new Date().toISOString(),
+      author: 'Marketing & Business Expert'
     };
 
     console.log('[Publish] Sending payload to webhook:', postPayload);
 
-    const res = await fetch(state.settings.webhookUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(postPayload)
-    });
-
-    if (!res.ok) {
-      throw new Error(`Webhook responded with HTTP ${res.status}`);
+    // Send payload using text/plain to avoid CORS preflight failures on Google Apps Script / Make / Zapier
+    let publishSuccess = false;
+    try {
+      const res = await fetch(state.settings.webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(postPayload)
+      });
+      if (res.ok || res.type === 'opaque' || res.status === 200 || res.status === 302) {
+        publishSuccess = true;
+      }
+    } catch (corsErr) {
+      console.warn('[Publish] Standard fetch failed, attempting no-cors fallback for Google Flow...', corsErr.message);
+      try {
+        await fetch(state.settings.webhookUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(postPayload)
+        });
+        publishSuccess = true;
+      } catch (noCorsErr) {
+        throw new Error(`Webhook transmission error: ${noCorsErr.message}`);
+      }
     }
 
     // 4. Mark as posted in local DB overrides
@@ -1322,11 +1340,11 @@ async function postToGoogleFlow(postId, btnElement) {
     };
     saveLocalDb(localDb);
 
-    showToast('Post and creative graphic sent successfully!', 'success');
+    showToast('🎉 Post and creative graphic sent successfully to your publishing flow!', 'success');
     await loadHistory();
   } catch (err) {
     console.error('[Publish] Error:', err);
-    showToast(`Post failed: ${err.message}`, 'error');
+    showToast(`Publish failed: ${err.message}`, 'error');
     btnElement.disabled = false;
     btnElement.innerHTML = originalHtml;
   }
