@@ -1999,150 +1999,7 @@ function renderActiveDrafts() {
       subtextInput.addEventListener('input', () => triggerRedrawAndSave(true));
       subtextInput.addEventListener('change', () => triggerRedrawAndSave(false));
 
-      // Font size sliders listeners
-      sliderHeadlineSize.addEventListener('input', () => {
-        labelHeadlineSize.textContent = `${sliderHeadlineSize.value}px`;
-        triggerRedrawAndSave(true);
-      });
-      sliderHeadlineSize.addEventListener('change', () => triggerRedrawAndSave(false));
-
-      sliderSubtextSize.addEventListener('input', () => {
-        labelSubtextSize.textContent = `${sliderSubtextSize.value}px`;
-        triggerRedrawAndSave(true);
-      });
-      sliderSubtextSize.addEventListener('change', () => triggerRedrawAndSave(false));
-
-      // Color pickers listeners
-      [colorText, colorPrimary, colorSecondary, colorBgStart, colorBgEnd].forEach(picker => {
-        picker.addEventListener('input', (e) => {
-          // Force dropdown palette selection to 'Custom' in the UI and state
-          paletteSelect.value = 'Custom';
-          
-          // Update hex label next to color input
-          const wrapper = e.target.closest('.color-picker-wrapper');
-          if (wrapper) {
-            const label = wrapper.querySelector('.color-hex-label');
-            if (label) label.textContent = e.target.value;
-          }
-          triggerRedrawAndSave(true);
-        });
-        picker.addEventListener('change', () => {
-          paletteSelect.value = 'Custom';
-          triggerRedrawAndSave(false);
-        });
-      });
-    }
-
-    // Copy Content Button Listener
-    cardEl.querySelector(`#btn-copy-${post.id}`).addEventListener('click', () => {
-      navigator.clipboard.writeText(textarea.value);
-      showToast('Copied content to clipboard!', 'success');
-    });
-
-    // Open in Canva Button Listener (Minimalist Export + Photo URL)
-    const canvaBtn = cardEl.querySelector(`#btn-canva-${post.id}`);
-    if (canvaBtn) {
-      canvaBtn.addEventListener('click', () => {
-        const headlineVal = (document.getElementById(`input-headline-${post.id}`) || {}).value || headlineText;
-        const subtextVal = (document.getElementById(`input-subtext-${post.id}`) || {}).value || subtextText;
-        const badgeVal = (document.getElementById(`input-badge-${post.id}`) || {}).value || badgeText;
-        const ctaVal = (document.getElementById(`input-cta-${post.id}`) || {}).value || ctaText;
-        
-        // Construct selected photo / avatar URL for Canva template
-        const originUrl = window.location.origin + window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
-        const photoUrl = state.settings.customAvatar ? state.settings.customAvatar : `${originUrl}/avatar_daily_${post.id}.jpg`;
-
-        // Minimalist payload - NO huge post body text
-        const payloadText = `[HEADLINE]\n${headlineVal}\n\n[SUBTEXT]\n${subtextVal}\n\n[TOP TAG]\n${badgeVal}\n\n[CTA BUTTON]\n${ctaVal}\n\n[SELECTED PHOTO LINK]\n${photoUrl}`;
-        
-        navigator.clipboard.writeText(payloadText);
-        if (!state.settings.canvaTemplateUrl) {
-          showToast('Copied minimalist text & photo URL to clipboard! Opening Canva...', 'info');
-        } else {
-          showToast('Copied minimalist text & photo URL! Opening your custom Canva template...', 'success');
-        }
-        
-        const canvaTargetUrl = state.settings.canvaTemplateUrl || 'https://www.canva.com/';
-        window.open(canvaTargetUrl, '_blank');
-      });
-    }
-
-    // Open Photo Button Listener (Opens selected avatar/profile photo in dedicated tab to drag & drop into Canva)
-    const photoBtn = cardEl.querySelector(`#btn-photo-${post.id}`);
-    if (photoBtn) {
-      photoBtn.addEventListener('click', () => {
-        let photoSrc = '';
-        if (state.settings.customAvatar) {
-          photoSrc = state.settings.customAvatar;
-        } else {
-          const originUrl = window.location.origin + window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
-          photoSrc = `${originUrl}/avatar_daily_${post.id}.jpg`;
-        }
-        
-        const win = window.open();
-        if (win) {
-          win.document.write(`<html><head><title>Selected Photo - Post ${post.id}</title></head><body style="background:#0f172a; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; margin:0; font-family:sans-serif; color:#fff;">
-            <h3 style="margin-bottom:12px;">📷 Your Selected Photo (Drag & Drop into Canva)</h3>
-            <img src="${photoSrc}" style="max-width:80vw; max-height:75vh; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.5);" />
-            <p style="margin-top:16px; opacity:0.85; font-size:0.9rem;">Drag this image directly into your open Canva tab or right-click to copy image!</p>
-          </body></html>`);
-          showToast('Opened selected photo in a new tab! Drag & drop it directly into Canva.', 'success');
-        }
-      });
-    }
-
-    // Canva Graphic File Uploader Listener
-    const canvaFileInput = cardEl.querySelector(`#input-canva-graphic-${post.id}`);
-    if (canvaFileInput) {
-      canvaFileInput.addEventListener('change', async (e) => {
-        if (e.target.files && e.target.files[0]) {
-          showToast('Attaching custom Canva graphic to this card...', 'info');
-          const base64Data = await convertFileToBase64(e.target.files[0]);
-          
-          const localDb = getLocalDb();
-          localDb.designs = localDb.designs || {};
-          localDb.designs[`${state.activeDate}-post-${post.id}`] = localDb.designs[`${state.activeDate}-post-${post.id}`] || {};
-          localDb.designs[`${state.activeDate}-post-${post.id}`].customCanvaGraphic = base64Data;
-          saveLocalDb(localDb);
-          
-          post.customCanvaGraphic = base64Data;
-          showToast('✨ Custom Canva graphic attached! It will publish with this post.', 'success');
-          renderActiveDrafts();
-        }
-      });
-    }
-
-    // Remove Canva Graphic Listener
-    const removeCanvaBtn = cardEl.querySelector(`#btn-remove-canva-${post.id}`);
-    if (removeCanvaBtn) {
-      removeCanvaBtn.addEventListener('click', () => {
-        const localDb = getLocalDb();
-        if (localDb.designs && localDb.designs[`${state.activeDate}-post-${post.id}`]) {
-          delete localDb.designs[`${state.activeDate}-post-${post.id}`].customCanvaGraphic;
-          saveLocalDb(localDb);
-        }
-        delete post.customCanvaGraphic;
-        showToast('Removed custom Canva graphic. Reverted to default canvas preview.', 'info');
-        renderActiveDrafts();
-      });
-    }
-
-    // Avatar Overlay, Position, Offset X/Y, Size, Rotation & Background Removal Listeners
-    if (!isDayPosted) {
-      const checkOverlayAvatar = cardEl.querySelector(`#check-overlay-avatar-${post.id}`);
-      const checkBgRemove = cardEl.querySelector(`#check-bg-remove-${post.id}`);
-      const selectAvatarPos = cardEl.querySelector(`#select-avatar-pos-${post.id}`);
-      const sliderAvatarSize = cardEl.querySelector(`#slider-avatar-size-${post.id}`);
-      const labelAvatarSize = cardEl.querySelector(`#val-avatar-size-${post.id}`);
-      const sliderBgSensitivity = cardEl.querySelector(`#slider-bg-sensitivity-${post.id}`);
-      const labelBgSensitivity = cardEl.querySelector(`#val-bg-sensitivity-${post.id}`);
-      const sliderAvatarX = cardEl.querySelector(`#slider-avatar-x-${post.id}`);
-      const labelAvatarX = cardEl.querySelector(`#val-avatar-x-${post.id}`);
-      const sliderAvatarY = cardEl.querySelector(`#slider-avatar-y-${post.id}`);
-      const labelAvatarY = cardEl.querySelector(`#val-avatar-y-${post.id}`);
-      const sliderAvatarRot = cardEl.querySelector(`#slider-avatar-rot-${post.id}`);
-      const labelAvatarRot = cardEl.querySelector(`#val-avatar-rot-${post.id}`);
-
+      // Avatar customizer sliders & dropdowns listeners
       if (checkOverlayAvatar) {
         checkOverlayAvatar.addEventListener('change', () => triggerRedrawAndSave(false));
       }
@@ -2232,6 +2089,103 @@ function renderActiveDrafts() {
       if (canvas) {
         makeCanvasInteractive(canvas, post, cardEl, activeEntry.category, state.activeDate);
       }
+    }
+
+    // Copy Content Button Listener
+    const copyBtn = cardEl.querySelector(`#btn-copy-${post.id}`);
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(textarea.value);
+        showToast('Copied content to clipboard!', 'success');
+      });
+    }
+
+    // Open in Canva Button Listener (Minimalist Export + Photo URL)
+    const canvaBtn = cardEl.querySelector(`#btn-canva-${post.id}`);
+    if (canvaBtn) {
+      canvaBtn.addEventListener('click', () => {
+        const headlineVal = (document.getElementById(`input-headline-${post.id}`) || {}).value || headlineText;
+        const subtextVal = (document.getElementById(`input-subtext-${post.id}`) || {}).value || subtextText;
+        const badgeVal = (document.getElementById(`input-badge-${post.id}`) || {}).value || badgeText;
+        const ctaVal = (document.getElementById(`input-cta-${post.id}`) || {}).value || ctaText;
+        
+        // Construct selected photo / avatar URL for Canva template
+        const originUrl = window.location.origin + window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
+        const photoUrl = state.settings.customAvatar ? state.settings.customAvatar : `${originUrl}/avatar_daily_${post.id}.jpg`;
+
+        // Minimalist payload
+        const payloadText = `[HEADLINE]\n${headlineVal}\n\n[SUBTEXT]\n${subtextVal}\n\n[TOP TAG]\n${badgeVal}\n\n[CTA BUTTON]\n${ctaVal}\n\n[SELECTED PHOTO LINK]\n${photoUrl}`;
+        
+        navigator.clipboard.writeText(payloadText);
+        if (!state.settings.canvaTemplateUrl) {
+          showToast('Copied text & photo URL to clipboard! Opening Canva...', 'info');
+        } else {
+          showToast('Copied text & photo URL! Opening your custom Canva template...', 'success');
+        }
+        
+        const canvaTargetUrl = state.settings.canvaTemplateUrl || 'https://www.canva.com/';
+        window.open(canvaTargetUrl, '_blank');
+      });
+    }
+
+    // Open Photo Button Listener
+    const photoBtn = cardEl.querySelector(`#btn-photo-${post.id}`);
+    if (photoBtn) {
+      photoBtn.addEventListener('click', () => {
+        let photoSrc = '';
+        if (state.settings.customAvatar) {
+          photoSrc = state.settings.customAvatar;
+        } else {
+          const originUrl = window.location.origin + window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
+          photoSrc = `${originUrl}/avatar_daily_${post.id}.jpg`;
+        }
+        
+        const win = window.open();
+        if (win) {
+          win.document.write(`<html><head><title>Selected Photo - Post ${post.id}</title></head><body style="background:#0f172a; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; margin:0; font-family:sans-serif; color:#fff;">
+            <h3 style="margin-bottom:12px;">📷 Your Selected Photo (Drag & Drop into Canva)</h3>
+            <img src="${photoSrc}" style="max-width:80vw; max-height:75vh; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.5);" />
+            <p style="margin-top:16px; opacity:0.85; font-size:0.9rem;">Drag this image directly into your open Canva tab or right-click to copy image!</p>
+          </body></html>`);
+          showToast('Opened selected photo in a new tab! Drag & drop it directly into Canva.', 'success');
+        }
+      });
+    }
+
+    // Canva Graphic File Uploader Listener
+    const canvaFileInput = cardEl.querySelector(`#input-canva-graphic-${post.id}`);
+    if (canvaFileInput) {
+      canvaFileInput.addEventListener('change', async (e) => {
+        if (e.target.files && e.target.files[0]) {
+          showToast('Attaching custom Canva graphic to this card...', 'info');
+          const base64Data = await convertFileToBase64(e.target.files[0]);
+          
+          const localDb = getLocalDb();
+          localDb.designs = localDb.designs || {};
+          localDb.designs[`${state.activeDate}-post-${post.id}`] = localDb.designs[`${state.activeDate}-post-${post.id}`] || {};
+          localDb.designs[`${state.activeDate}-post-${post.id}`].customCanvaGraphic = base64Data;
+          saveLocalDb(localDb);
+          
+          post.customCanvaGraphic = base64Data;
+          showToast('✨ Custom Canva graphic attached! It will publish with this post.', 'success');
+          renderActiveDrafts();
+        }
+      });
+    }
+
+    // Remove Canva Graphic Listener
+    const removeCanvaBtn = cardEl.querySelector(`#btn-remove-canva-${post.id}`);
+    if (removeCanvaBtn) {
+      removeCanvaBtn.addEventListener('click', () => {
+        const localDb = getLocalDb();
+        if (localDb.designs && localDb.designs[`${state.activeDate}-post-${post.id}`]) {
+          delete localDb.designs[`${state.activeDate}-post-${post.id}`].customCanvaGraphic;
+          saveLocalDb(localDb);
+        }
+        delete post.customCanvaGraphic;
+        showToast('Removed custom Canva graphic. Reverted to default canvas preview.', 'info');
+        renderActiveDrafts();
+      });
     }
 
     // Post to Google Flow button listener
