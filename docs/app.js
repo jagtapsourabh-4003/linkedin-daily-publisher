@@ -2993,7 +2993,10 @@ function createCutoutAvatarCanvas(sourceImg, styleIdx = -1) {
 }
 
 // Calculate exact bounding box of avatar photo on 1080x1080 canvas
-function getAvatarBoundingBox(post, w = 1080, h = 1080) {
+function getAvatarBoundingBox(canvas, post, w = 1080, h = 1080) {
+  if (canvas && canvas._avatarBBox) {
+    return canvas._avatarBBox;
+  }
   const avW = post.avatarSize || 340;
   const avH = Math.round(avW * 1.38);
   const pos = post.avatarPos || 'bottom-right';
@@ -3052,14 +3055,14 @@ function getAvatarBoundingBox(post, w = 1080, h = 1080) {
   const avX = baseAvX + (post.avatarOffsetX || 0);
   const avY = baseAvY + (post.avatarOffsetY || 0);
 
-  return { x: avX, y: avY, w: avW, h: avH };
+  return { x: avX, y: avY, w: avW, h: avH, cx: avX + avW / 2, cy: avY + avH / 2, r: avW / 2 };
 }
 
 // Draw interactive bounding box & drag handles around avatar photo when hovering/dragging
 function drawInteractiveAvatarOverlay(canvas, post) {
   if (post.overlayAvatar === false) return;
   const ctx = canvas.getContext('2d');
-  const bbox = getAvatarBoundingBox(post, canvas.width, canvas.height);
+  const bbox = getAvatarBoundingBox(canvas, post, canvas.width, canvas.height);
 
   ctx.save();
   const rotation = post.avatarRotation || 0;
@@ -3079,7 +3082,7 @@ function drawInteractiveAvatarOverlay(canvas, post) {
   ctx.setLineDash([]);
 
   // Draw corner resize handle (bottom right)
-  const handleSize = 24;
+  const handleSize = 28;
   ctx.fillStyle = '#38bdf8';
   ctx.strokeStyle = '#ffffff';
   ctx.lineWidth = 3;
@@ -3098,7 +3101,7 @@ function drawInteractiveAvatarOverlay(canvas, post) {
   // Drag Helper Label Badge
   ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
   ctx.beginPath();
-  ctx.roundRect(bbox.x, bbox.y - 42, bbox.w, 34, 8);
+  ctx.roundRect(bbox.x, Math.max(10, bbox.y - 42), bbox.w, 34, 8);
   ctx.fill();
   ctx.strokeStyle = '#38bdf8';
   ctx.lineWidth = 1.5;
@@ -3107,16 +3110,13 @@ function drawInteractiveAvatarOverlay(canvas, post) {
   ctx.fillStyle = '#38bdf8';
   ctx.font = 'bold 15px Inter, sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText('✋ Click & Drag | Scroll Mouse to Resize', bbox.x + bbox.w / 2, bbox.y - 20);
+  ctx.fillText('✋ Click & Drag | Scroll Wheel to Resize', bbox.x + bbox.w / 2, Math.max(32, bbox.y - 20));
 
   ctx.restore();
 }
 
 // Attach interactive mouse drag, drop & wheel resize listeners directly to canvas element
 function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
-  if (canvas._hasMouseListeners) return;
-  canvas._hasMouseListeners = true;
-
   let isDragging = false;
   let isResizing = false;
   let startMouseX = 0;
@@ -3141,45 +3141,47 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
     return el ? el.value : (post.postContent ? (post.postContent.imageSubtext || '') : '');
   };
 
-  const getCanvasMousePos = (e) => {
+  const getCanvasCoords = (clientX, clientY) => {
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
     return {
-      x: (e.clientX - rect.left) * scaleX,
-      y: (e.clientY - rect.top) * scaleY
+      x: (clientX - rect.left) * scaleX,
+      y: (clientY - rect.top) * scaleY
     };
   };
 
   const isMouseOverAvatar = (mx, my) => {
-    const bbox = getAvatarBoundingBox(post, canvas.width, canvas.height);
+    const bbox = getAvatarBoundingBox(canvas, post, canvas.width, canvas.height);
     return (
-      mx >= bbox.x - 20 &&
-      mx <= bbox.x + bbox.w + 20 &&
-      my >= bbox.y - 20 &&
-      my <= bbox.y + bbox.h + 20
+      mx >= bbox.x - 30 &&
+      mx <= bbox.x + bbox.w + 30 &&
+      my >= bbox.y - 30 &&
+      my <= bbox.y + bbox.h + 30
     );
   };
 
   const isMouseOverResizeHandle = (mx, my) => {
-    const bbox = getAvatarBoundingBox(post, canvas.width, canvas.height);
+    const bbox = getAvatarBoundingBox(canvas, post, canvas.width, canvas.height);
     const handleX = bbox.x + bbox.w;
     const handleY = bbox.y + bbox.h;
-    return Math.hypot(mx - handleX, my - handleY) < 40;
+    return Math.hypot(mx - handleX, my - handleY) < 50;
   };
 
   let animFrameId = null;
-  const scheduleRedraw = () => {
-    if (animFrameId) return;
+  const scheduleRedraw = (showOverlay = true) => {
+    if (animFrameId) cancelAnimationFrame(animFrameId);
     animFrameId = requestAnimationFrame(() => {
       animFrameId = null;
       drawCreative(canvas, category, getHeadlineVal(), getSubtextVal(), post.id, activeDate, Object.assign({}, post.layout || {}, post));
-      drawInteractiveAvatarOverlay(canvas, post);
+      if (showOverlay) {
+        drawInteractiveAvatarOverlay(canvas, post);
+      }
     });
   };
 
-  canvas.addEventListener('mousemove', (e) => {
-    const { x, y } = getCanvasMousePos(e);
+  const onPointerMove = (clientX, clientY) => {
+    const { x, y } = getCanvasCoords(clientX, clientY);
 
     if (!isDragging && !isResizing) {
       if (isMouseOverResizeHandle(x, y)) {
@@ -3205,7 +3207,7 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
       if (sliderY) sliderY.value = post.avatarOffsetY;
       if (labelY) labelY.textContent = `${post.avatarOffsetY}px`;
 
-      scheduleRedraw();
+      scheduleRedraw(true);
     } else if (isResizing) {
       canvas.style.cursor = 'nwse-resize';
       const dx = Math.round(x - startMouseX);
@@ -3214,19 +3216,19 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
       if (sliderSize) sliderSize.value = post.avatarSize;
       if (labelSize) labelSize.textContent = `${post.avatarSize}px`;
 
-      scheduleRedraw();
+      scheduleRedraw(true);
     }
-  });
+  };
 
-  canvas.addEventListener('mousedown', (e) => {
-    const { x, y } = getCanvasMousePos(e);
+  const onPointerDown = (clientX, clientY, e) => {
+    const { x, y } = getCanvasCoords(clientX, clientY);
 
     if (isMouseOverResizeHandle(x, y)) {
       isResizing = true;
       startMouseX = x;
       startMouseY = y;
       initSize = post.avatarSize || 340;
-      e.preventDefault();
+      if (e) e.preventDefault();
     } else if (isMouseOverAvatar(x, y)) {
       isDragging = true;
       startMouseX = x;
@@ -3234,11 +3236,11 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
       initOffsetX = post.avatarOffsetX || 0;
       initOffsetY = post.avatarOffsetY || 0;
       canvas.style.cursor = 'grabbing';
-      e.preventDefault();
+      if (e) e.preventDefault();
     }
-  });
+  };
 
-  const stopDragOrResize = () => {
+  const onPointerUp = () => {
     if (isDragging || isResizing) {
       isDragging = false;
       isResizing = false;
@@ -3249,17 +3251,38 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
         avatarOffsetY: post.avatarOffsetY || 0,
         avatarSize: post.avatarSize || 340,
         avatarRotation: post.avatarRotation || 0,
-        avatarPos: post.avatarPos || 'bottom-right'
+        avatarPos: post.avatarPos || 'auto'
       });
       showToast('🎯 Photo position updated via mouse!', 'info');
+      // Redraw clean canvas without overlay
+      scheduleRedraw(false);
     }
   };
 
-  window.addEventListener('mouseup', stopDragOrResize);
+  // Mouse event listeners
+  canvas.addEventListener('mousemove', (e) => onPointerMove(e.clientX, e.clientY));
+  canvas.addEventListener('mousedown', (e) => onPointerDown(e.clientX, e.clientY, e));
+  window.addEventListener('mouseup', onPointerUp);
+
+  // Touch event listeners for touchscreens & mobile
+  canvas.addEventListener('touchstart', (e) => {
+    if (e.touches && e.touches[0]) {
+      onPointerDown(e.touches[0].clientX, e.touches[0].clientY, e);
+    }
+  }, { passive: false });
+
+  canvas.addEventListener('touchmove', (e) => {
+    if (e.touches && e.touches[0]) {
+      onPointerMove(e.touches[0].clientX, e.touches[0].clientY);
+      if (isDragging || isResizing) e.preventDefault();
+    }
+  }, { passive: false });
+
+  canvas.addEventListener('touchend', onPointerUp);
 
   // Mouse wheel scroll to resize avatar size smoothly
   canvas.addEventListener('wheel', (e) => {
-    const { x, y } = getCanvasMousePos(e);
+    const { x, y } = getCanvasCoords(e.clientX, e.clientY);
     if (isMouseOverAvatar(x, y)) {
       e.preventDefault();
       const delta = e.deltaY < 0 ? 15 : -15;
@@ -3269,7 +3292,7 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
       if (sliderSize) sliderSize.value = post.avatarSize;
       if (labelSize) labelSize.textContent = `${post.avatarSize}px`;
 
-      scheduleRedraw();
+      scheduleRedraw(true);
 
       saveDesignEdit(activeDate, post.id, { avatarSize: post.avatarSize });
     }
@@ -3339,6 +3362,17 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
 
           const avX = baseAvX + offsetX;
           const avY = baseAvY + offsetY;
+
+          // Store exact computed bounding box on canvas for custom graphic
+          canvas._avatarBBox = {
+            x: avX,
+            y: avY,
+            w: avW,
+            h: avH,
+            cx: avX + avW / 2,
+            cy: avY + avH / 2,
+            r: avW / 2
+          };
 
           const sensitivity = (customLayout && customLayout.bgSensitivity) ? customLayout.bgSensitivity : 55;
 
@@ -3610,6 +3644,17 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
         // Apply manual X and Y offsets
         if (customLayout && customLayout.avatarOffsetX) av.x += customLayout.avatarOffsetX;
         if (customLayout && customLayout.avatarOffsetY) av.y += customLayout.avatarOffsetY;
+
+        // Store exact computed bounding box on canvas for seamless interactive mouse controls
+        canvas._avatarBBox = {
+          x: av.x - av.w / 2,
+          y: av.y - av.h / 2,
+          w: av.w,
+          h: av.h,
+          cx: av.x,
+          cy: av.y,
+          r: av.w / 2
+        };
 
         const rotation = (customLayout && customLayout.avatarRotation) ? customLayout.avatarRotation : 0;
         const removeAvatarBg = customLayout ? !!customLayout.removeAvatarBg : false;
