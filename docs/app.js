@@ -1207,6 +1207,19 @@ function renderActiveDrafts() {
   const isDayPosted = activeEntry.status === 'posted';
   const selectedPostId = activeEntry.selectedPostId;
 
+  // Quick Option Navigation Bar
+  if (Array.isArray(activeEntry.posts) && activeEntry.posts.length > 0) {
+    const navBar = document.createElement('div');
+    navBar.className = 'options-jump-bar';
+    navBar.style.cssText = 'display: flex; gap: 8px; flex-wrap: wrap; align-items: center; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); padding: 10px 14px; border-radius: 12px; margin-bottom: 18px;';
+    navBar.innerHTML = `<span style="font-size: 0.82rem; font-weight: 600; color: #94a3b8; margin-right: 4px;">🎯 5 Post Options:</span>` +
+      activeEntry.posts.map(p => {
+        const styleName = p.designArchetype || (p.postContent && p.postContent.style) || `Option ${p.id}`;
+        return `<button type="button" class="btn btn-sm btn-secondary" onclick="document.getElementById('draft-card-${p.id}')?.scrollIntoView({behavior:'smooth', block:'start'})" style="font-size: 0.78rem; padding: 4px 10px;">#${p.id} ${styleName}</button>`;
+      }).join('');
+    el.draftsContainer.appendChild(navBar);
+  }
+
   activeEntry.posts.forEach(post => {
     const isThisPostSelected = isDayPosted && selectedPostId === post.id;
     const cardEl = document.createElement('article');
@@ -1242,7 +1255,8 @@ function renderActiveDrafts() {
 
     cardEl.innerHTML = `
       <div class="draft-card-header">
-        <div class="header-main-info">
+        <div class="header-main-info" style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+          <span class="badge" style="background: rgba(59, 130, 246, 0.25); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.4); font-weight: 700; font-size: 0.78rem; padding: 3px 8px; border-radius: 6px;">Option ${post.id} of 5</span>
           <span class="style-tag">${postStyle}</span>
           <span class="source-tag">Inspiration: <em>${sourceArticle || 'General Trend'}</em></span>
         </div>
