@@ -96,7 +96,11 @@ function getCategoryForDate(dateStr) {
   const current = new Date(`${dateStr}T00:00:00Z`);
   const diffTime = Math.abs(current - baseline);
   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-  return diffDays % 2 === 0 ? 'marketing' : 'ai';
+  const cycleDay = diffDays % 10;
+  
+  // 80% marketing (8 days: 0, 1, 2, 3, 5, 6, 7, 8) and 20% ai (2 days: 4, 9) in a 10-day cycle
+  const aiDays = [4, 9];
+  return aiDays.includes(cycleDay) ? 'ai' : 'marketing';
 }
 
 /**

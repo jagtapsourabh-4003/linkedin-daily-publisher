@@ -2,9 +2,14 @@ name: Daily Draft Generation
 
 on:
   schedule:
-    # High-frequency morning cron schedule matrix (8:30 AM to 12:30 PM IST).
+    # High-frequency morning cron schedule matrix (6:00 AM to 1:00 PM IST).
     # GitHub Actions can delay cron jobs by 1-2 hours during peak load.
     # The generation script skips instantly if today's drafts already exist, so multiple triggers are 100% safe and fast (~10s).
+    - cron: '30 0 * * *'  # 6:00 AM IST
+    - cron: '0 1 * * *'   # 6:30 AM IST
+    - cron: '30 1 * * *'  # 7:00 AM IST
+    - cron: '0 2 * * *'   # 7:30 AM IST
+    - cron: '30 2 * * *'  # 8:00 AM IST
     - cron: '0 3 * * *'   # 8:30 AM IST
     - cron: '30 3 * * *'  # 9:00 AM IST (primary)
     - cron: '0 4 * * *'   # 9:30 AM IST
@@ -14,6 +19,7 @@ on:
     - cron: '0 6 * * *'   # 11:30 AM IST
     - cron: '30 6 * * *'  # 12:00 PM IST
     - cron: '0 7 * * *'   # 12:30 PM IST
+    - cron: '30 7 * * *'  # 1:00 PM IST
   workflow_dispatch:
     inputs:
       force:

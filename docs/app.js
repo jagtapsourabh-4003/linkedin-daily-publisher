@@ -797,10 +797,49 @@ async function handleSaveSettings(e) {
   }
 }
 
-// Instant client-side draft generator for testing and offline usage
+// Instant client-side draft generator with rich topic engine (80% Marketing / 20% AI)
+const CLIENT_TOPICS_LIBRARY = {
+  marketing: [
+    { hook: "AI search is changing SEO forever.", topic: "HubSpot AEO vs Profound: Optimizing brand visibility for conversational answer engines.", headline: "*AI* SEARCH *EXPLODES*", subtext: "New tools track brand visibility in AI answers.", badge: "AI TREND" },
+    { hook: "Stop writing generic B2B emails.", topic: "How high-converting brands use personalized RAG prompts and intent triggers for outreach.", headline: "B2B *EMAIL* *PLAYBOOK*", subtext: "Step-by-step framework to double response rates.", badge: "PLAYBOOK" },
+    { hook: "Why third-party cookies don't matter.", topic: "First-party data attribution and server-side tracking are the new competitive moat.", headline: "COOKIE-LESS *FUTURE*", subtext: "3 first-party data strategies for 2026.", badge: "STRATEGY" },
+    { hook: "The #1 landing page mistake.", topic: "Focusing on feature lists instead of visceral customer pain points cuts conversions in half.", headline: "THE *BIGGEST* *MISTAKE*", subtext: "Why feature lists decrease landing page conversions.", badge: "CASE STUDY" },
+    { hook: "5 predictions for digital growth.", topic: "Why retention loops generate 70% higher ROI than paid ad acquisition in 2026.", headline: "2026 *GROWTH* *OUTLOOK*", subtext: "Future-proofing your brand's digital presence.", badge: "PREDICTION" },
+    { hook: "Zero-click content is winning LinkedIn.", topic: "How to build high-authority thought leadership when social platforms punish external links.", headline: "ZERO-CLICK *AUTHORITY*", subtext: "Deliver 100% value directly in the feed.", badge: "LINKEDIN GROWTH" },
+    { hook: "Dark social drives 80% of your sales.", topic: "Conversational referrals on Slack, WhatsApp, and podcasts that traditional analytics fail to measure.", headline: "DARK *SOCIAL* *POWER*", subtext: "Measuring word-of-mouth pipeline in B2B.", badge: "ATTRIBUTION" },
+    { hook: "The 5-slide carousel anatomy.", topic: "How visual teardowns generated 1.2M organic impressions with zero advertising budget.", headline: "VIRAL *CAROUSEL* *GUIDE*", subtext: "Slide-by-slide structure for B2B engagement.", badge: "PLAYBOOK" },
+    { hook: "Tier-anchoring will boost your SaaS revenue.", topic: "How pricing page visual decoys and feature tiers increase average revenue per user.", headline: "PRICING *PSYCHOLOGY*", subtext: "Design tactics that drive enterprise plan upgrades.", badge: "GROWTH" },
+    { hook: "Interactive calculators outperform ebooks.", topic: "Why free web tools and ROI calculators convert 4x better than generic PDF whitepapers.", headline: "INTERACTIVE *LEAD* *GEN*", subtext: "Building self-serve tools that capture pipeline.", badge: "CONVERSION" },
+    { hook: "Kill your boring case studies.", topic: "The 'Hero-Villain-Resolution' storytelling framework that turns dry testimonials into closing assets.", headline: "STORYTELLING *MASTERY*", subtext: "How to write case studies that actually close.", badge: "CASE STUDY" },
+    { hook: "Founder videos beat agency ad studios.", topic: "Why raw smartphone talking-head videos consistently out-convert $10k commercial productions.", headline: "AUTHENTIC *VIDEO* *ADS*", subtext: "Low-budget creative formats winning on paid feeds.", badge: "PAID MEDIA" },
+    { hook: "Community-led growth cuts CAC by 60%.", topic: "Building customer Slack communities and roundtables that turn users into brand evangelists.", headline: "COMMUNITY *GROWTH* *MOAT*", subtext: "How peer networks replace expensive search ads.", badge: "STRATEGY" },
+    { hook: "The 3-second homepage clarity test.", topic: "Fixing above-the-fold value propositions to double free trial and demo signups.", headline: "HOMEPAGE *CONVERSION*", subtext: "Simple copy tweaks that double signup rates.", badge: "CRO" },
+    { hook: "The 4-part onboarding email sequence.", topic: "How to structure day-1 to day-7 onboarding emails to reduce customer churn by 45%.", headline: "RETENTION *PLAYBOOK*", subtext: "Automated nurture flows that activate users.", badge: "EMAIL MARKETING" }
+  ],
+  ai: [
+    { hook: "Generative AI video is here.", topic: "Runway Gen-3 & Sora workflows: How ad agencies produce dynamic video variations in minutes.", headline: "AI *VIDEO* *REVOLUTION*", subtext: "Lower ad costs with dynamic AI video assets.", badge: "AI NEWS" },
+    { hook: "Build your own marketing copilot.", topic: "How to fine-tune a private SLM on your historical sales letters and high-converting copy.", headline: "CUSTOM *MARKETING* *COPILOT*", subtext: "Train lightweight models on your brand voice.", badge: "TUTORIAL" },
+    { hook: "AI copy isn't replacing writers.", topic: "Why human editing is mandatory for high-converting brand messaging and tone integrity.", headline: "HUMAN + *AI* *SYNERGY*", subtext: "Drafting fast without sacrificing authentic tone.", badge: "DEBATE" },
+    { hook: "Why public AI tools leak data.", topic: "Implementing enterprise data governance to prevent customer data leaks in public AI writers.", headline: "ENTERPRISE *AI* *SECURITY*", subtext: "Preventing sensitive data leaks in AI writers.", badge: "GUIDE" },
+    { hook: "Voice search is taking over.", topic: "How multi-modal Gemini Live and GPT-4o voice changes brand discovery habits.", headline: "VOICE *SEARCH* *ERA*", subtext: "Optimizing content for conversational AI queries.", badge: "FUTURE TREND" },
+    { hook: "Autonomous marketing agents are live.", topic: "Deploying multi-agent research pipelines to monitor competitor pricing and ads 24/7.", headline: "AUTONOMOUS *AI* *AGENTS*", subtext: "Automate competitor intelligence around the clock.", badge: "AI TECH" },
+    { hook: "Synthetic focus groups test ad copy.", topic: "Simulating user persona reactions with AI agents before spending $50k on ad campaigns.", headline: "SYNTHETIC *PERSONA* *TESTS*", subtext: "Predicting ad performance before campaign launch.", badge: "EXPERIMENT" },
+    { hook: "Semantic RAG stops AI hallucinations.", topic: "Grounding internal brand copilots in product specs to generate 100% accurate marketing copy.", headline: "ACCURATE *BRAND* *RAG*", subtext: "Eliminate hallucinations in marketing workflows.", badge: "TUTORIAL" },
+    { hook: "Predictive ML lead scoring.", topic: "Using machine learning to score inbound demo requests and route top-tier accounts to senior reps.", headline: "PREDICTIVE *LEAD* *SCORING*", subtext: "AI routing that shortens sales cycle times.", badge: "B2B AI" },
+    { hook: "Dynamic real-time ad copy.", topic: "Serving personalized ad copy dynamically tailored to the viewer's industry and tech stack.", headline: "REAL-TIME *AD* *COPY*", subtext: "AI personalization that boosts click-throughs.", badge: "PAID MEDIA" }
+  ]
+};
+
 function generateClientSideDrafts(dateStr) {
-  const isMarketing = Math.random() > 0.3; // 70% marketing, 30% AI
-  const category = isMarketing ? 'marketing' : 'ai';
+  const baseline = new Date('2026-01-01T00:00:00Z');
+  const current = new Date(`${dateStr}T00:00:00Z`);
+  const diffDays = Math.floor(Math.abs(current - baseline) / (1000 * 60 * 60 * 24));
+  const cycleDay = diffDays % 10;
+  
+  // 80% Marketing (8 days: 0, 1, 2, 3, 5, 6, 7, 8) and 20% AI (2 days: 4, 9)
+  const isAi = [4, 9].includes(cycleDay);
+  const category = isAi ? 'ai' : 'marketing';
+  const pool = isAi ? CLIENT_TOPICS_LIBRARY.ai : CLIENT_TOPICS_LIBRARY.marketing;
   
   const archetypes = [
     { name: 'News Anchor', layout: 'news-card', palette: 'Corporate Navy', role: 'AI Consultant', env: 'Technology command center', cam: 'Looking at camera', suit: 'Navy business suit' },
@@ -810,24 +849,12 @@ function generateClientSideDrafts(dateStr) {
     { name: 'TED Speaker', layout: 'hero-center', palette: 'Crimson Red', role: 'TED Speaker', env: 'Auditorium stage', cam: 'Speaking on stage', suit: 'Conference speaker outfit' }
   ];
 
-  const topicsPool = isMarketing ? [
-    { hook: "AI search is changing SEO forever.", topic: "HubSpot AEO vs Profound: Optimizing for AI answer engines.", headline: "*AI* SEARCH *EXPLODES*", subtext: "New tools track brand visibility in AI answers.", badge: "AI TREND" },
-    { hook: "Stop writing generic B2B emails.", topic: "How high-converting brands use personalized RAG prompts for outreach.", headline: "B2B *EMAIL* *PLAYBOOK*", subtext: "Step-by-step framework to double response rates.", badge: "PLAYBOOK" },
-    { hook: "Why third-party cookies don't matter.", topic: "First-party data attribution is the new competitive moat.", headline: "COOKIE-LESS *FUTURE*", subtext: "3 first-party data strategies for 2026.", badge: "STRATEGY" },
-    { hook: "The 1 biggest marketing mistake.", topic: "Focusing on features instead of customer pain points.", headline: "THE *BIGGEST* *MISTAKE*", subtext: "Why feature lists decrease landing page conversions.", badge: "CASE STUDY" },
-    { hook: "5 predictions for digital growth.", topic: "Where marketing automation & voice search are headed in 2027.", headline: "2027 *GROWTH* *OUTLOOK*", subtext: "Future-proofing your brand's digital presence.", badge: "PREDICTION" }
-  ] : [
-    { hook: "Generative AI video is here.", topic: "Sora & Gen-3 models are revolutionizing ad creative production.", headline: "AI *VIDEO* *REVOLUTION*", subtext: "Lower ad costs with dynamic AI video assets.", badge: "AI NEWS" },
-    { hook: "Build your own marketing copilot.", topic: "How to fine-tune a private SLM on your historical sales copy.", headline: "CUSTOM *MARKETING* *COPILOT*", subtext: "Train lightweight models on your brand voice.", badge: "TUTORIAL" },
-    { hook: "AI copy isn't replacing writers.", topic: "Why human editing is mandatory for high-converting brand messaging.", headline: "HUMAN + *AI* *SYNERGY*", subtext: "Drafting fast without sacrificing authentic tone.", badge: "DEBATE" },
-    { hook: "Why public AI tools leak data.", topic: "Implementing strict enterprise data guardrails for AI tools.", headline: "ENTERPRISE *AI* *SECURITY*", subtext: "Preventing sensitive data leaks in AI writers.", badge: "GUIDE" },
-    { hook: "Voice search is taking over.", topic: "How multi-modal Gemini Live changes brand discovery habits.", headline: "VOICE *SEARCH* *ERA*", subtext: "Optimizing content for conversational AI queries.", badge: "FUTURE TREND" }
-  ];
-
-  const shuffled = [...topicsPool].sort(() => 0.5 - Math.random());
+  // Randomize start offset on each manual regeneration so user gets unique posts every click
+  const randomShift = Math.floor(Math.random() * pool.length);
 
   const newPosts = archetypes.map((arch, idx) => {
-    const t = shuffled[idx % shuffled.length];
+    const topicIndex = (diffDays * 5 + idx + randomShift) % pool.length;
+    const t = pool[topicIndex];
     return {
       id: idx + 1,
       designArchetype: arch.name,
@@ -841,7 +868,7 @@ function generateClientSideDrafts(dateStr) {
       postContent: {
         style: arch.name,
         hook: t.hook,
-        content: `${t.hook}\n\n${t.topic}\n\nBrands need to adapt their strategy today. Connect these insights directly to your campaigns for maximum impact.\n\nWhat is your team's strategy for this?`,
+        content: `${t.hook}\n\n${t.topic}\n\nHigh-growth teams are operationalizing these strategies right now to win market share and build defensible brand moats.\n\nWhat is your team's approach for this?`,
         sourceArticle: t.topic,
         imageHeadline: t.headline,
         imageSubtext: t.subtext,
