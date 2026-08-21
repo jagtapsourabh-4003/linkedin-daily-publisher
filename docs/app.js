@@ -1492,6 +1492,26 @@ function renderActiveDrafts() {
       tabContainer.appendChild(tabBtn);
     });
 
+    if (isDayPosted) {
+      const resetDayBtn = document.createElement('button');
+      resetDayBtn.type = 'button';
+      resetDayBtn.className = 'btn btn-secondary btn-sm';
+      resetDayBtn.style.cssText = 'font-size: 0.8rem; padding: 6px 12px; font-weight: 600; margin-left: auto; background: rgba(59, 130, 246, 0.15); border-color: rgba(59, 130, 246, 0.3); color: #93c5fd;';
+      resetDayBtn.innerHTML = '🔄 Unlock &amp; Reset to Draft';
+      resetDayBtn.addEventListener('click', () => {
+        const localDb = getLocalDb();
+        if (localDb.posted) {
+          delete localDb.posted[state.activeDate];
+          saveLocalDb(localDb);
+        }
+        activeEntry.status = 'draft';
+        activeEntry.selectedPostId = null;
+        showToast('🔓 Unlocked! You can edit and re-publish anytime.', 'success');
+        renderActiveDrafts();
+      });
+      tabContainer.appendChild(resetDayBtn);
+    }
+
     el.draftsContainer.appendChild(tabContainer);
   }
 
@@ -1569,7 +1589,6 @@ function renderActiveDrafts() {
           id="textarea-${post.id}"
           placeholder="Loading post content..."
           aria-label="Edit Post Content"
-          ${isDayPosted ? 'disabled' : ''}
         >${content}</textarea>
       </div>
       <div class="post-meta-row">
@@ -1596,7 +1615,7 @@ function renderActiveDrafts() {
           <canvas id="canvas-${post.id}" width="1080" height="1080" class="creative-canvas"></canvas>
           
           <!-- Design Customizer Panel -->
-          <div class="design-customizer-panel" ${isDayPosted ? 'style="opacity: 0.7; pointer-events: none;"' : ''}>
+          <div class="design-customizer-panel">
             <h4 class="customizer-title">🎨 Customize Graphic Design</h4>
             <div class="customizer-row">
               <div class="customizer-field">
@@ -1821,24 +1840,22 @@ function renderActiveDrafts() {
         ${
           isThisPostSelected
             ? `<div class="posted-status-btn" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-                <div style="display:flex;align-items:center;gap:6px;">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                  Published
-                </div>
-                <button class="btn btn-sm" id="btn-republish-${post.id}" style="background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);color:#93c5fd;font-size:0.78rem;">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38"/></svg>
-                  Re-publish
+                <span class="badge" style="background:rgba(34,197,94,0.15); color:#4ade80; border:1px solid rgba(34,197,94,0.3); padding:6px 12px; border-radius:6px; font-size:0.78rem; font-weight:700; display:inline-flex; align-items:center; gap:5px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Published
+                </span>
+                <button class="btn btn-primary btn-sm ${activeEntry.category === 'marketing' ? 'marketing-theme' : ''}" id="btn-post-${post.id}" title="Re-publish this post with your latest edits to LinkedIn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38"/></svg>
+                  Re-publish to LinkedIn
+                </button>
+                <button class="btn btn-secondary btn-sm" id="btn-reset-draft-${post.id}" title="Reset to Draft so you can start fresh" style="font-size:0.78rem;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                  Reset to Draft
                 </button>
                </div>`
-            : isDayPosted
-              ? `<button class="btn btn-secondary btn-sm" id="btn-reselect-${post.id}" style="font-size:0.78rem;opacity:0.8;">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-                  Select This Instead
-                </button>`
-              : `<button class="btn btn-primary btn-sm ${activeEntry.category === 'marketing' ? 'marketing-theme' : ''}" id="btn-post-${post.id}">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-                  Select &amp; Publish
-                 </button>`
+            : `<button class="btn btn-primary btn-sm ${activeEntry.category === 'marketing' ? 'marketing-theme' : ''}" id="btn-post-${post.id}">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                Select &amp; Publish
+               </button>`
         }
       </div>
     `;
@@ -1872,9 +1889,8 @@ function renderActiveDrafts() {
       saveDraftEdit(state.activeDate, post.id, e.target.value);
     });
 
-    // Design Customizer Event Listeners
-    if (!isDayPosted) {
-      const layoutSelect = cardEl.querySelector(`#select-layout-${post.id}`);
+    // Design Customizer Event Listeners (Always active for infinite editing!)
+    const layoutSelect = cardEl.querySelector(`#select-layout-${post.id}`);
       const paletteSelect = cardEl.querySelector(`#select-palette-${post.id}`);
       const avatarSelect = cardEl.querySelector(`#select-avatar-${post.id}`);
       const badgeInput = cardEl.querySelector(`#input-badge-${post.id}`);
@@ -2107,7 +2123,6 @@ function renderActiveDrafts() {
       if (canvas) {
         makeCanvasInteractive(canvas, post, cardEl, activeEntry.category, state.activeDate);
       }
-    }
 
     // Copy Content Button Listener
     const copyBtn = cardEl.querySelector(`#btn-copy-${post.id}`);
@@ -2206,62 +2221,27 @@ function renderActiveDrafts() {
       });
     }
 
-    // Post to Google Flow button listener
-    if (!isDayPosted) {
-      const postBtn = cardEl.querySelector(`#btn-post-${post.id}`);
-      if (postBtn) {
-        postBtn.addEventListener('click', (e) => {
-          postToGoogleFlow(post.id, e.currentTarget);
-        });
-      }
-    }
-
-    // Re-publish button (on the already-selected/published post)
-    const republishBtn = cardEl.querySelector(`#btn-republish-${post.id}`);
-    if (republishBtn) {
-      republishBtn.addEventListener('click', async (e) => {
-        const btn = e.currentTarget;
-        btn.disabled = true;
-        btn.textContent = 'Resetting...';
-        try {
-          // Reset locally in localStorage
-          const localDb = getLocalDb();
-          if (localDb.posted) {
-            delete localDb.posted[state.activeDate];
-            saveLocalDb(localDb);
-          }
-          showToast('Day reset. Re-publishing...', 'info');
-          await loadHistory();
-          // After reload, immediately trigger publish for this post
-          await postToGoogleFlow(post.id, btn);
-        } catch (err) {
-          showToast(`Re-publish failed: ${err.message}`, 'error');
-          btn.disabled = false;
-        }
+    // Post / Re-publish to Google Flow button listener (Always active!)
+    const postBtn = cardEl.querySelector(`#btn-post-${post.id}`);
+    if (postBtn) {
+      postBtn.addEventListener('click', (e) => {
+        postToGoogleFlow(post.id, e.currentTarget);
       });
     }
 
-    // "Select This Instead" button (on non-selected posts when day is already posted)
-    const reselectBtn = cardEl.querySelector(`#btn-reselect-${post.id}`);
-    if (reselectBtn) {
-      reselectBtn.addEventListener('click', async (e) => {
-        const btn = e.currentTarget;
-        btn.disabled = true;
-        btn.textContent = 'Switching...';
-        try {
-          // Reset locally in localStorage
-          const localDb = getLocalDb();
-          if (localDb.posted) {
-            delete localDb.posted[state.activeDate];
-            saveLocalDb(localDb);
-          }
-          showToast('Switched! Publishing this post...', 'info');
-          await loadHistory();
-          await postToGoogleFlow(post.id, btn);
-        } catch (err) {
-          showToast(`Failed: ${err.message}`, 'error');
-          btn.disabled = false;
+    // Reset to Draft button listener
+    const resetDraftBtn = cardEl.querySelector(`#btn-reset-draft-${post.id}`);
+    if (resetDraftBtn) {
+      resetDraftBtn.addEventListener('click', () => {
+        const localDb = getLocalDb();
+        if (localDb.posted) {
+          delete localDb.posted[state.activeDate];
+          saveLocalDb(localDb);
         }
+        activeEntry.status = 'draft';
+        activeEntry.selectedPostId = null;
+        showToast('🔄 Reset to draft! You can now edit and re-publish whenever you wish.', 'info');
+        renderActiveDrafts();
       });
     }
   });
