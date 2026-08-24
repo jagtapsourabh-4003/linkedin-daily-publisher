@@ -1,5 +1,293 @@
 [
   {
+    "date": "2026-08-24",
+    "category": "marketing",
+    "posts": [
+      {
+        "id": 1,
+        "designArchetype": "News Anchor",
+        "layoutFamily": "news-card",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Business Advisor",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Advisor in a Technology command center, Looking at camera, Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "News Anchor",
+          "hook": "The #1 marketing tool you can't buy.",
+          "content": "The #1 marketing tool you can't buy.\n\nThink about the last app, book, or service you bought. Chances are, a friend recommended it to you.\n\nWord of mouth is still the most powerful growth engine in the world.\n\nHow to get people talking about your business:\n\n1. Be insanely easy to work with.\n2. Deliver faster than you promised.\n3. Do one small unexpected nice gesture for every client.\n\nMake your service so good that people can't stop telling their friends.\n\nWhat is the last product you recommended to someone?",
+          "sourceArticle": "How delivering outstanding service turns everyday customers into your biggest promoters.",
+          "imageHeadline": "WORD OF *MOUTH POWER*",
+          "imageSubtext": "How great service creates free growth.",
+          "badgeText": "SUCCESS TIP",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 2,
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Business Coach",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Coach in a Executive boardroom, Presentation shot, Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Consultant Presentation",
+          "hook": "Most people search Google the wrong way.",
+          "content": "Most people search Google the wrong way.\n\nInstead of clicking through 10 different website links, people now just ask AI tools like ChatGPT to give them one quick, direct answer.\n\nIf you run a business or create content, here is what to do:\n\n1. Give direct answers: Put the important answers right at the top of your page.\n2. Answer real questions: What does your product cost? How does it help?\n3. Keep it simple: Write like you are explaining it to a smart friend.\n\nThink of it like being the friendly person everyone turns to for advice.\n\nHave you started using AI to search for things instead of Google? Let me know below!",
+          "sourceArticle": "How everyday people are using AI tools to find quick answers online instead of clicking 10 blue links.",
+          "imageHeadline": "SEARCH *IS CHANGING*",
+          "imageSubtext": "How customers find answers today.",
+          "badgeText": "SIMPLE GUIDE",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 3,
+        "designArchetype": "Forbes Cover",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Startup Founder",
+        "environment": "Luxury office",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Startup Founder in a Luxury office, Half-body portrait, Smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Forbes Cover",
+          "hook": "Stop sending boring sales emails.",
+          "content": "Stop sending boring sales emails.\n\nNobody likes opening an email that looks like a robot copied and pasted it to 1,000 strangers.\n\nHere are 3 simple rules to get real replies:\n\n1. Talk to one person: Write like you are sending a note to a colleague.\n2. Focus on their problem: Don't brag about your company. Ask how you can help them.\n3. Keep it short: If they can't read it in 30 seconds on their phone, they will delete it.\n\nGood marketing is just good conversation.\n\nWhat is the best sales email you ever received?",
+          "sourceArticle": "Simple rules to write friendly emails that people actually want to open and reply to.",
+          "imageHeadline": "BETTER *SALES EMAILS*",
+          "imageSubtext": "3 simple rules to get real replies.",
+          "badgeText": "HELPFUL TIP",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 4,
+        "designArchetype": "Podcast Host",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Podcast Host",
+        "environment": "Podcast studio",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Podcast Host in a Podcast studio, Sitting at desk, Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Podcast Host",
+          "hook": "Why your website isn't making sales.",
+          "content": "Why your website isn't making sales.\n\nWhen a customer lands on your website, you have about 3 seconds to answer one question:\n\n\"How does this help ME?\"\n\nMost websites make the mistake of listing complicated features instead of explaining the real benefit in plain English.\n\nHere is a simple example:\n- Complicated: \"We provide high-speed automated cloud sync technology.\"\n- Simple & Clear: \"Never lose a file again. Access your work from anywhere in 1 click.\"\n\nAlways sell the result, not the tool.\n\nDoes your website pass the 3-second test?",
+          "sourceArticle": "The #1 mistake businesses make on their homepage: listing complex features instead of simple benefits.",
+          "imageHeadline": "FIX YOUR *WEBSITE*",
+          "imageSubtext": "The #1 mistake most businesses make.",
+          "badgeText": "CASE STUDY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 5,
+        "designArchetype": "TED Speaker",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Speaker in a Auditorium stage, Speaking on stage, Conference speaker outfit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "TED Speaker",
+          "hook": "People buy from people, not logos.",
+          "content": "People buy from people, not logos.\n\nNotice how the most popular accounts on LinkedIn are real people sharing honest lessons, not boring corporate company pages?\n\nHere is how to build trust without being fake:\n\n1. Share your lessons: What went wrong this week and what did you learn from it?\n2. Show behind the scenes: People love seeing how things are actually made.\n3. Be helpful for free: Share your best advice without asking for anything back.\n\nWhen you build trust first, customers come to you naturally.\n\nDo you prefer buying from a person or a company?",
+          "sourceArticle": "Why personal stories and honest founder posts build 10x more trust than corporate brand pages.",
+          "imageHeadline": "BUILDING *REAL TRUST*",
+          "imageSubtext": "Why founder stories win every time.",
+          "badgeText": "GROWTH TIP",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
+    "date": "2026-08-23",
+    "category": "ai",
+    "posts": [
+      {
+        "id": 1,
+        "designArchetype": "News Anchor",
+        "layoutFamily": "news-card",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Business Advisor",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Advisor in a Technology command center, Looking at camera, Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "News Anchor",
+          "hook": "AI is not here to replace you.",
+          "content": "AI is not here to replace you.\n\nIt is here to replace the boring, repetitive tasks you hate doing.\n\nThink of AI like having a super fast intern who works 24/7:\n\n1. Brainstorming ideas: Ask it for 10 title ideas when you are feeling stuck.\n2. Summarizing long notes: Turn a 5-page document into 3 key bullet points in seconds.\n3. Fixing your grammar: Clean up typos and make your writing easier to read.\n\nYou are still the pilot. AI is just the co-pilot.\n\nWhat is the #1 task you wish AI could do for you automatically?",
+          "sourceArticle": "How everyday professionals use AI to save 5 hours every week on repetitive tasks.",
+          "imageHeadline": "WORK *SMARTER WITH AI*",
+          "imageSubtext": "How to save 5 hours every week.",
+          "badgeText": "AI BASICS",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 2,
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Business Coach",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Coach in a Executive boardroom, Presentation shot, Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Consultant Presentation",
+          "hook": "How to write better prompts in 10 seconds.",
+          "content": "How to write better prompts in 10 seconds.\n\nIf you give AI a vague question, it gives you a boring, robotic answer.\n\nTo get amazing results, use this simple 3-step formula:\n\n1. Who it is: \"Act as a friendly marketing coach.\"\n2. What you need: \"Write a short 3-sentence email invite for a free webinar.\"\n3. The audience: \"Make it simple for small shop owners to understand.\"\n\nThe clearer you are with AI, the better answers you get.\n\nTry this formula today and see the difference!",
+          "sourceArticle": "A simple 3-part formula to get great answers from ChatGPT or Gemini every time.",
+          "imageHeadline": "BETTER *AI PROMPTS*",
+          "imageSubtext": "A simple 3-step formula that works.",
+          "badgeText": "QUICK TUTORIAL",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 3,
+        "designArchetype": "Forbes Cover",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Startup Founder",
+        "environment": "Luxury office",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Startup Founder in a Luxury office, Half-body portrait, Smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Forbes Cover",
+          "hook": "Why you should never copy-paste AI text.",
+          "content": "Why you should never copy-paste AI text.\n\nAI tools are great at making a first draft in 5 seconds.\n\nBut if you post raw AI text without editing it, everyone can tell. It sounds generic, stiff, and robotic.\n\nHere is the smart way to use AI:\n1. Use AI to get your ideas down fast.\n2. Add your own personal stories and real experiences.\n3. Remove fancy buzzwords and make it sound like YOU.\n\nUse AI for speed, but keep your human heart in the story.\n\nDo you edit what AI writes, or post it directly?",
+          "sourceArticle": "Why human editing and your real voice are essential when using AI writing tools.",
+          "imageHeadline": "HUMAN + *AI TEAMWORK*",
+          "imageSubtext": "Why your personal voice matters.",
+          "badgeText": "AI ADVICE",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 4,
+        "designArchetype": "Podcast Host",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Podcast Host",
+        "environment": "Podcast studio",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Podcast Host in a Podcast studio, Sitting at desk, Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Podcast Host",
+          "hook": "Creating videos with AI just got simple.",
+          "content": "Creating videos with AI just got simple.\n\nYou used to need expensive cameras, studio lights, and editing software to create product videos.\n\nNow, new AI tools can create clean background videos and animations from a simple text sentence.\n\nWhat this means for small businesses:\n1. Faster testing: Test 5 different video ideas in an afternoon.\n2. Lower costs: No need to hire a film crew for simple social clips.\n3. More creativity: Turn any idea into a visual story in minutes.\n\nTechnology is making creative tools accessible to everyone.\n\nHave you tried generating an AI video yet?",
+          "sourceArticle": "How new video AI tools allow anyone to create professional short video clips from text.",
+          "imageHeadline": "AI *VIDEO CREATION*",
+          "imageSubtext": "Create video clips in minutes.",
+          "badgeText": "NEW TECH",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 5,
+        "designArchetype": "TED Speaker",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Speaker in a Auditorium stage, Speaking on stage, Conference speaker outfit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "TED Speaker",
+          "hook": "Keep your private data safe with AI.",
+          "content": "Keep your private data safe with AI.\n\nAI tools are powerful, but you have to be smart about what you share with them.\n\nHere are 3 simple safety rules for your daily work:\n\n1. Never paste private passwords, bank details, or secret client names into public AI tools.\n2. Use placeholder words: Change \"John from ABC Corp\" to \"Client A from a retail store.\"\n3. Check the facts: Always double-check numbers and claims before publishing.\n\nAI is an amazing assistant when used with common sense.\n\nDoes your company have clear guidelines for using AI?",
+          "sourceArticle": "Simple common-sense safety rules when using public AI tools for work.",
+          "imageHeadline": "SAFE *AI PRACTICES*",
+          "imageSubtext": "Simple rules to protect your privacy.",
+          "badgeText": "SAFETY GUIDE",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-08-21",
     "category": "marketing",
     "posts": [
