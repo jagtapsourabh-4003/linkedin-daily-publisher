@@ -425,6 +425,40 @@ function setupEventListeners() {
   // Settings Save
   el.settingsForm.addEventListener('submit', handleSaveSettings);
 
+  // Test Webhook Connection Button Listener
+  const testWebhookBtn = document.getElementById('btn-test-webhook');
+  if (testWebhookBtn) {
+    testWebhookBtn.addEventListener('click', async () => {
+      const url = el.inputWebhook.value.trim();
+      if (!url) {
+        showToast('Please enter a Webhook URL first.', 'error');
+        return;
+      }
+      testWebhookBtn.disabled = true;
+      testWebhookBtn.textContent = 'Testing...';
+      try {
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            test: true,
+            text: 'Test connection from LinkedIn Dashboard',
+            content: 'Test connection from LinkedIn Dashboard',
+            imageUrl: `${window.location.origin + window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '')}/avatar_daily_1.jpg`,
+            timestamp: new Date().toISOString()
+          })
+        });
+        const bodyText = await res.text().catch(() => '');
+        showToast(`✅ Webhook Connected! Status ${res.status}: ${bodyText || 'Accepted'}`, 'success');
+      } catch (err) {
+        showToast(`⚠️ Webhook Connection Failed: ${err.message}`, 'error');
+      } finally {
+        testWebhookBtn.disabled = false;
+        testWebhookBtn.textContent = '⚡ Test Connection';
+      }
+    });
+  }
+
 
 
   // Refresh History
@@ -1849,6 +1883,10 @@ function renderActiveDrafts() {
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
           Copy Content
         </button>
+        <button class="btn btn-secondary btn-sm" id="btn-linkedin-direct-${post.id}" title="Download creative image, copy text & open LinkedIn to post directly in 1 click" style="background: rgba(10, 102, 194, 0.15); border-color: rgba(10, 102, 194, 0.4); color: #60a5fa; font-weight: 600;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+          1-Click Post (Web)
+        </button>
         <button class="btn btn-secondary btn-sm" id="btn-canva-${post.id}" title="Copy headline & open Canva editor/template" style="background: rgba(168, 85, 247, 0.12); border-color: rgba(168, 85, 247, 0.3); color: #c084fc;">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
           Open in Canva
@@ -1863,18 +1901,18 @@ function renderActiveDrafts() {
                 <span class="badge" style="background:rgba(34,197,94,0.15); color:#4ade80; border:1px solid rgba(34,197,94,0.3); padding:6px 12px; border-radius:6px; font-size:0.78rem; font-weight:700; display:inline-flex; align-items:center; gap:5px;">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Published
                 </span>
-                <button class="btn btn-primary btn-sm ${activeEntry.category === 'marketing' ? 'marketing-theme' : ''}" id="btn-post-${post.id}" title="Re-publish this post with your latest edits to LinkedIn">
+                <button class="btn btn-primary btn-sm ${activeEntry.category === 'marketing' ? 'marketing-theme' : ''}" id="btn-post-${post.id}" title="Trigger Make.com / Google Webhook with your latest edits">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38"/></svg>
-                  Re-publish to LinkedIn
+                  ⚡ Webhook Publish
                 </button>
                 <button class="btn btn-secondary btn-sm" id="btn-reset-draft-${post.id}" title="Reset to Draft so you can start fresh" style="font-size:0.78rem;">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
                   Reset to Draft
                 </button>
                </div>`
-            : `<button class="btn btn-primary btn-sm ${activeEntry.category === 'marketing' ? 'marketing-theme' : ''}" id="btn-post-${post.id}">
+            : `<button class="btn btn-primary btn-sm ${activeEntry.category === 'marketing' ? 'marketing-theme' : ''}" id="btn-post-${post.id}" title="Send post and graphic directly to your publishing flow">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-                Select &amp; Publish
+                ⚡ Publish via Webhook
                </button>`
         }
       </div>
@@ -2238,6 +2276,44 @@ function renderActiveDrafts() {
         delete post.customCanvaGraphic;
         showToast('Removed custom Canva graphic. Reverted to default canvas preview.', 'info');
         renderActiveDrafts();
+      });
+    }
+
+    // 1-Click Post (Web) Button Listener
+    const linkedinDirectBtn = cardEl.querySelector(`#btn-linkedin-direct-${post.id}`);
+    if (linkedinDirectBtn) {
+      linkedinDirectBtn.addEventListener('click', async () => {
+        try {
+          // 1. Copy text to clipboard
+          await navigator.clipboard.writeText(textarea.value);
+
+          // 2. Download the rendered canvas graphic as PNG
+          const currentCanvas = cardEl.querySelector(`#canvas-${post.id}`);
+          if (currentCanvas) {
+            const link = document.createElement('a');
+            link.download = `linkedin_creative_${state.activeDate}_option_${post.id}.png`;
+            link.href = currentCanvas.toDataURL('image/png');
+            link.click();
+          }
+
+          // 3. Mark as posted in local DB
+          const localDb = getLocalDb();
+          localDb.posted = localDb.posted || {};
+          localDb.posted[state.activeDate] = {
+            status: 'posted',
+            selectedPostId: post.id,
+            postedAt: new Date().toISOString()
+          };
+          saveLocalDb(localDb);
+
+          // 4. Open LinkedIn share dialog in new tab
+          window.open('https://www.linkedin.com/feed/?shareActive=true', '_blank');
+
+          showToast('✅ Post text copied & graphic downloaded! Paste (Ctrl+V) & attach image in LinkedIn.', 'success');
+          renderActiveDrafts();
+        } catch (err) {
+          showToast(`Direct post helper: ${err.message}`, 'error');
+        }
       });
     }
 
