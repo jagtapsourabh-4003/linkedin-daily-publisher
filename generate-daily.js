@@ -405,6 +405,278 @@ How to use the Decoy Effect in your business:
 Pricing is psychology, not just math.
 
 Have you tested a 3-tier pricing structure for your offers?`
+    },
+    {
+      concept: "The Hook Model",
+      hook: "Why some apps are impossible to put down.",
+      topic: "The Hook Model by Nir Eyal: How Trigger, Action, Variable Reward, and Investment create daily user habits.",
+      headline: "THE *HOOK MODEL*",
+      subtext: "How products build unshakeable daily habits.",
+      badge: "PRODUCT PSYCHOLOGY",
+      content: `Why some apps are impossible to put down.
+
+Ever notice how you check your phone without even thinking about it?
+
+That is the Hook Model at work (created by Nir Eyal):
+
+1. Trigger: An external ping (notification) or internal feeling (boredom).
+2. Action: The simplest behavior in anticipation of reward (opening the app).
+3. Variable Reward: The excitement of not knowing what you will see next (likes, messages, new posts).
+4. Investment: Putting a little bit of work in (adding a photo, following a friend), which makes you return tomorrow.
+
+How to use the Hook Model ethically:
+- Build small rewards into your client experience.
+- Make the next action effortlessly easy.
+
+What is one product you use every single day?`
+    },
+    {
+      concept: "Loss Aversion",
+      hook: "People hate losing more than they like winning.",
+      topic: "Loss Aversion (Kahneman & Tversky): Why highlighting what customers stand to lose is 2x more persuasive than gain.",
+      headline: "LOSS *AVERSION*",
+      subtext: "Why fear of loss drives faster action.",
+      badge: "BEHAVIORAL SCIENCE",
+      content: `People hate losing more than they like winning.
+
+Nobel Prize-winning psychologists proved a surprising fact:
+The pain of losing $100 is TWICE as intense as the joy of winning $100!
+
+In marketing, this is Loss Aversion.
+
+How to write copy using Loss Aversion (ethically):
+- Instead of: "Save 2 hours every day with our tool."
+- Try: "Stop wasting 10 hours every week on boring admin tasks."
+
+People are motivated to protect what they already have (their time, money, and reputation).
+
+Show customers how your product protects them from painful mistakes.
+
+What is the biggest thing your product protects your clients from?`
+    },
+    {
+      concept: "The Mere Exposure Effect",
+      hook: "Familiarity is the secret ingredient of trust.",
+      topic: "The Mere Exposure Effect: Why repeated positive visibility creates subconscious buyer preference.",
+      headline: "MERE *EXPOSURE EFFECT*",
+      subtext: "Why consistent presence builds instant trust.",
+      badge: "PSYCHOLOGY",
+      content: `Familiarity is the secret ingredient of trust.
+
+Psychologist Robert Zajonc discovered the Mere Exposure Effect:
+People naturally prefer things simply because they are familiar with them.
+
+The first time someone sees your post: They scroll past.
+The 5th time: They recognize your name and face.
+The 20th time: They feel like they know you and trust your expertise!
+
+This is why posting consistently beats posting occasionally:
+1. You don't need every post to go viral.
+2. You just need to show up in their feed with helpful advice every weekday.
+3. When they are finally ready to buy, you are the first person they reach out to.
+
+Consistency is your unfair advantage.
+
+How often do you show up in your audience's feed?`
+    },
+    {
+      concept: "Network Effects",
+      hook: "Why the biggest platforms become impossible to beat.",
+      topic: "Network Effects (Metcalfe's Law): When every new user makes the product more valuable for everyone else.",
+      headline: "NETWORK *EFFECTS*",
+      subtext: "How each new user multiplies product value.",
+      badge: "GROWTH MODEL",
+      content: `Why the biggest platforms become impossible to beat.
+
+Why is it so hard to launch a rival to WhatsApp or LinkedIn?
+
+Network Effects.
+
+A telephone is completely useless if only one person owns it. But when 1 billion people own one, the network becomes indispensable.
+
+How to create Network Effects in your brand:
+1. Build a community: Connect your clients with one another so they share wins and trade ideas.
+2. User-generated templates: Let users share their custom creations publicly.
+3. Referral loops: Reward customers for bringing their team onto your platform.
+
+When your customers create value for other customers, growth becomes unstoppable.
+
+Does your business have a built-in network effect?`
+    },
+    {
+      concept: "Social Proof",
+      hook: "Why we always check the crowded restaurant.",
+      topic: "Social Proof by Robert Cialdini: Why customer reviews, numbers, and testimonials do the heavy lifting in sales.",
+      headline: "*SOCIAL PROOF* POWER",
+      subtext: "Why real customer proof beats any sales pitch.",
+      badge: "INFLUENCE PRINCIPLE",
+      content: `Why we always check the crowded restaurant.
+
+When you are in an unfamiliar city looking for dinner, which restaurant do you pick?
+The empty one with zero guests, or the bustling one with a line out the door?
+
+Almost everyone picks the crowded one. That is Social Proof.
+
+When people are uncertain, they look to the actions of others to guide their choice.
+
+3 easy ways to showcase social proof:
+1. Screenshot real feedback: Share genuine DMs and client compliments.
+2. Highlight specific metrics: "Helped 150+ founders launch their newsletter."
+3. Video case studies: 60 seconds of an authentic client talking about their before & after.
+
+Proof sells better than promises.
+
+What is the best testimonial your business has ever received?`
+    },
+    {
+      concept: "The Paradox of Choice",
+      hook: "Too many options kills your sales.",
+      topic: "The Paradox of Choice by Barry Schwartz: Why offering fewer options dramatically increases buying conversion.",
+      headline: "PARADOX OF *CHOICE*",
+      subtext: "Why fewer options lead to more sales.",
+      badge: "CONVERSION LAW",
+      content: `Too many options kills your sales.
+
+In a famous grocery store experiment:
+- Table 1 displayed 24 flavors of jam: 60% of people stopped to look, but only 3% bought.
+- Table 2 displayed only 6 flavors: 40% stopped, but 30% BOUGHT!
+
+Offering 6 choices produced 10x more sales than offering 24!
+
+Why?
+When faced with too many choices, the human brain gets overwhelmed, fears making the wrong decision, and chooses nothing.
+
+How to simplify your business:
+1. Don't offer 10 custom service packages: Offer 2 or 3 clear options.
+2. Have ONE clear Call To Action per page: "Book a Call" or "Buy Now."
+3. Help customers decide: Clearly state "Best for beginners" vs "Best for growing teams."
+
+Make buying effortless.
+
+Are you giving your customers too many options?`
+    },
+    {
+      concept: "Zero-Click Content",
+      hook: "Stop forcing people to leave the platform.",
+      topic: "Zero-Click Content: Why giving away the full answer in the feed earns 10x more reach and authority.",
+      headline: "*ZERO-CLICK* CONTENT",
+      subtext: "Give the full value directly in the feed.",
+      badge: "MODERN STRATEGY",
+      content: `Stop forcing people to leave the platform.
+
+Algorithms on LinkedIn, Twitter, and YouTube hate external links. They want users to stay on their platform.
+
+If your post says "Click the link in comments to read my guide," 95% of people will scroll past.
+
+Enter Zero-Click Content:
+- Give the full, high-value answer directly inside the post.
+- Teach the entire concept in clear, simple bullet points.
+- Leave nothing hidden behind a click.
+
+Why this works:
+1. The platform gives you 5x to 10x more reach.
+2. Readers get instant value and remember your expertise.
+3. The people who want hands-on help will naturally visit your profile to work with you.
+
+Give away your knowledge for free; sell the implementation.
+
+Have you tried posting Zero-Click content?`
+    },
+    {
+      concept: "The Category of One",
+      hook: "Don't compete with rivals. Make them irrelevant.",
+      topic: "The Category of One: How radical positioning eliminates comparison shopping.",
+      headline: "CATEGORY *OF ONE*",
+      subtext: "Eliminate competition with radical positioning.",
+      badge: "POSITIONING",
+      content: `Don't compete with rivals. Make them irrelevant.
+
+If you describe your service as "SEO Agency" or "Business Coach," prospective buyers will immediately compare your price to 10 other agencies.
+
+To escape the commodity trap, become a Category of One:
+
+- Instead of "Copywriter" -> "The Onboarding Email Specialist for B2B SaaS"
+- Instead of "Accountant" -> "The Tax Strategist for YouTube Creators"
+
+When you narrow your focus:
+1. You have zero direct competition.
+2. You can charge premium rates.
+3. Clients seek you out because you solve their exact specific problem.
+
+Niche down until you are the only option.
+
+What makes you a Category of One?`
+    },
+    {
+      concept: "The Rule of 7",
+      hook: "Why one marketing message is never enough.",
+      topic: "The Rule of 7: Why prospects need an average of 7 touchpoints before making a buying decision.",
+      headline: "THE *RULE OF 7*",
+      subtext: "Why repetition is the secret to conversion.",
+      badge: "MARKETING LAW",
+      content: `Why one marketing message is never enough.
+
+One of the oldest rules in advertising is the Rule of 7:
+A prospective buyer needs to hear your message at least 7 times before they take action.
+
+Why?
+- Touch 1-2: They don't notice.
+- Touch 3-4: They notice, but have no urgent need.
+- Touch 5-6: They remember your brand when a problem arises.
+- Touch 7: They finally trust you enough to reach out and buy!
+
+If you only mention your offer once a month, you will never build momentum.
+
+Show up consistently across posts, emails, comments, and case studies.
+
+Repetition builds conviction.
+
+How many touchpoints does your average customer have before buying?`
+    },
+    {
+      concept: "The Value Ladder",
+      hook: "How to turn a $0 reader into a $5,000 client.",
+      topic: "The Value Ladder Framework: Structuring offers with increasing value and price at each stage.",
+      headline: "THE *VALUE LADDER*",
+      subtext: "Ascend customers from free value to premium tiers.",
+      badge: "OFFER ARCHITECTURE",
+      content: `How to turn a $0 reader into a $5,000 client.
+
+You cannot expect a stranger on the internet to immediately buy your $5,000 premium consulting package.
+
+You need a Value Ladder:
+
+1. Rung 1 (Free Value): LinkedIn posts, free guides, or checklists (Builds awareness).
+2. Rung 2 (Low-Ticket Entry): A $20 book or $50 mini-course (Converts readers into buyers).
+3. Rung 3 (Core Offer): A $500 implementation program (Solves their main problem).
+4. Rung 4 (Premium Tier): High-touch 1-on-1 coaching or done-for-you service ($5,000+).
+
+As trust increases, the value and price increase together.
+
+What does your current Value Ladder look like?`
+    },
+    {
+      concept: "Growth Loops vs Funnels",
+      hook: "Funnels lose steam. Growth loops feed themselves.",
+      topic: "Growth Loops (Reforge): Designing product loops where the output of one user becomes the input for the next.",
+      headline: "GROWTH *LOOPS*",
+      subtext: "Build self-reinforcing acquisition engines.",
+      badge: "MODERN GROWTH",
+      content: `Funnels lose steam. Growth loops feed themselves.
+
+Traditional funnels are linear:
+You pour money into top of funnel ads -> a few people buy -> the process stops. You have to keep pouring more money to get more sales.
+
+A Growth Loop is circular:
+New User joins -> Uses the product -> Creates an asset (like a shared document or public review) -> Attracts the next New User!
+
+Classic examples:
+- Typeform: "Powered by Typeform" at the bottom of every survey.
+- Calendly: Every time someone sends an invite, the recipient discovers Calendly.
+
+Design moments in your service where existing clients naturally expose your brand to new prospects.
+
+Can you turn your customer experience into a self-feeding growth loop?`
     }
   ],
 

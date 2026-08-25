@@ -15,12 +15,12 @@
         "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Advisor in a Technology command center, Looking at camera, Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
         "postContent": {
           "style": "Marketing Concept Explained",
-          "hook": "Why 100-year-old ideas beat weekly trends.",
-          "content": "Why 100-year-old ideas beat weekly trends.\n\nThe Lindy Effect is a powerful mental model:\nThe longer an idea has survived in the past, the longer it is likely to survive in the future.\n\nA book that has been read for 50 years will likely be read for another 50. A trendy social media hack from last week will be forgotten by next month.\n\nWhat this means for your marketing:\n1. Focus on timeless human psychology: People will always care about saving time, making money, feeling respected, and protecting their families.\n2. Master clear storytelling: Stories have worked for 10,000 years; algorithms change every 3 months.\n3. Build assets that age well: High-quality guides, strong relationships, and genuine trust never go out of style.\n\nStop chasing every fleeting trend. Invest in timeless principles.\n\nWhat is one timeless marketing rule you swear by?",
-          "sourceArticle": "The Lindy Effect: Why timeless marketing principles outlast temporary social media fads.",
-          "imageHeadline": "THE *LINDY EFFECT*",
-          "imageSubtext": "Why timeless ideas outlast flash-in-the-pan fads.",
-          "badgeText": "MENTAL MODEL",
+          "hook": "Why some apps are impossible to put down.",
+          "content": "Why some apps are impossible to put down.\n\nEver notice how you check your phone without even thinking about it?\n\nThat is the Hook Model at work (created by Nir Eyal):\n\n1. Trigger: An external ping (notification) or internal feeling (boredom).\n2. Action: The simplest behavior in anticipation of reward (opening the app).\n3. Variable Reward: The excitement of not knowing what you will see next (likes, messages, new posts).\n4. Investment: Putting a little bit of work in (adding a photo, following a friend), which makes you return tomorrow.\n\nHow to use the Hook Model ethically:\n- Build small rewards into your client experience.\n- Make the next action effortlessly easy.\n\nWhat is one product you use every single day?",
+          "sourceArticle": "The Hook Model by Nir Eyal: How Trigger, Action, Variable Reward, and Investment create daily user habits.",
+          "imageHeadline": "THE *HOOK MODEL*",
+          "imageSubtext": "How products build unshakeable daily habits.",
+          "badgeText": "PRODUCT PSYCHOLOGY",
           "ctaText": "READ FULL POST"
         },
         "layoutConfig": {
@@ -42,12 +42,12 @@
         "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Coach in a Executive boardroom, Presentation shot, Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
         "postContent": {
           "style": "Marketing Framework Playbook",
-          "hook": "One great feature makes everything look good.",
-          "content": "One great feature makes everything look good.\n\nWhen Apple launched the iPod in 2001, something fascinating happened.\n\nSales of Apple Mac computers skyrocketed, even though Apple hadn't changed the computers at all!\n\nWhy? The Halo Effect.\n\nCustomers loved the iPod so much that they assumed ALL Apple products must be incredible. The positive glow of one product created a \"halo\" over the entire company.\n\nHow to create a Halo Effect for your business:\n1. Pick one signature strength: Be ridiculously fast, insanely polite, or offer unmatched packaging.\n2. Over-deliver on the first impression: Your onboarding experience sets the tone for everything that follows.\n3. Let your best product lead: Promote your absolute best offer as the gateway to your business.\n\nWhat is the single best \"halo\" feature of your product?",
-          "sourceArticle": "The Halo Effect in Branding: How one standout positive trait influences the overall impression of a company.",
-          "imageHeadline": "THE *HALO EFFECT*",
-          "imageSubtext": "How one great detail elevates your entire brand.",
-          "badgeText": "PSYCHOLOGY",
+          "hook": "People hate losing more than they like winning.",
+          "content": "People hate losing more than they like winning.\n\nNobel Prize-winning psychologists proved a surprising fact:\nThe pain of losing $100 is TWICE as intense as the joy of winning $100!\n\nIn marketing, this is Loss Aversion.\n\nHow to write copy using Loss Aversion (ethically):\n- Instead of: \"Save 2 hours every day with our tool.\"\n- Try: \"Stop wasting 10 hours every week on boring admin tasks.\"\n\nPeople are motivated to protect what they already have (their time, money, and reputation).\n\nShow customers how your product protects them from painful mistakes.\n\nWhat is the biggest thing your product protects your clients from?",
+          "sourceArticle": "Loss Aversion (Kahneman & Tversky): Why highlighting what customers stand to lose is 2x more persuasive than gain.",
+          "imageHeadline": "LOSS *AVERSION*",
+          "imageSubtext": "Why fear of loss drives faster action.",
+          "badgeText": "BEHAVIORAL SCIENCE",
           "ctaText": "READ FULL POST"
         },
         "layoutConfig": {
