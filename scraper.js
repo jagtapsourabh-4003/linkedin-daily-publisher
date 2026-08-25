@@ -13,13 +13,14 @@ const FEEDS = {
     { name: 'TechCrunch AI', url: 'https://techcrunch.com/category/artificial-intelligence/feed/' },
     { name: 'VentureBeat AI', url: 'https://venturebeat.com/category/ai/feed/' },
     { name: 'OpenAI Blog', url: 'https://openai.com/news/rss.xml' },
-    { name: 'Google News AI', url: 'https://news.google.com/rss/search?q=(artificial+intelligence+OR+generative+AI+OR+LLMs)+AND+(marketing+OR+branding+OR+advertising+OR+copywriting+OR+SEO)&hl=en-US&gl=US&ceid=US:en' }
+    { name: 'Google News AI Marketing', url: 'https://news.google.com/rss/search?q=(artificial+intelligence+OR+generative+AI+OR+LLMs)+AND+(marketing+OR+branding+OR+advertising+OR+copywriting+OR+SEO)&hl=en-US&gl=US&ceid=US:en' }
   ],
   marketing: [
     { name: 'HubSpot Marketing', url: 'https://blog.hubspot.com/marketing/rss.xml' },
     { name: 'Social Media Today', url: 'https://www.socialmediatoday.com/feeds/news/' },
     { name: 'Moz Blog', url: 'https://moz.com/feeds/blog.rss' },
-    { name: 'Google News Marketing', url: 'https://news.google.com/rss/search?q=digital+marketing+OR+brand+strategy+OR+marketing+technology&hl=en-US&gl=US&ceid=US:en' }
+    { name: 'Google News Marketing Concepts', url: 'https://news.google.com/rss/search?q=(marketing+concept+OR+mental+model+OR+growth+framework+OR+pricing+strategy+OR+brand+positioning)&hl=en-US&gl=US&ceid=US:en' },
+    { name: 'Google News Digital Marketing', url: 'https://news.google.com/rss/search?q=digital+marketing+OR+brand+strategy+OR+copywriting+strategy&hl=en-US&gl=US&ceid=US:en' }
   ]
 };
 

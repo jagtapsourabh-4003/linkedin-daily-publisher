@@ -22,11 +22,12 @@ export async function generatePosts(category, trends, apiKey) {
 
   console.log(`[Generator] Initializing Gemini request for ${category} using ${modelName}`);
 
-  // Fetch recent layout history metadata to enforce 30-day design memory (Critical Rule #12)
+  // Fetch recent layout history metadata & concept blacklist to enforce zero repetition
   let recentDesignMemoryStr = '[]';
+  let recentConceptsBlacklistStr = '[]';
   try {
     const history = getHistory();
-    const recentPosts = history.slice(0, 30).map(h => h.posts || []).flat();
+    const recentPosts = history.slice(0, 45).map(h => h.posts || []).flat();
     const designMemory = recentPosts.map(p => ({
       designArchetype: p.designArchetype || '',
       layoutFamily: p.layoutFamily || '',
@@ -37,8 +38,15 @@ export async function generatePosts(category, trends, apiKey) {
       clothingStyle: p.clothingStyle || ''
     })).filter(m => m.designArchetype || m.layoutFamily || m.colorPalette);
     recentDesignMemoryStr = JSON.stringify(designMemory);
+
+    // Build blacklist of all previously used concepts, hooks, and headlines
+    const conceptBlacklist = recentPosts.map(p => {
+      const pc = p.postContent || {};
+      return `${pc.imageHeadline || ''} - ${pc.hook || ''} - ${pc.sourceArticle || ''}`.trim();
+    }).filter(s => s.length > 5);
+    recentConceptsBlacklistStr = JSON.stringify(conceptBlacklist.slice(0, 60));
   } catch (err) {
-    console.warn('[Generator] Failed to fetch layout history for design memory checks:', err.message);
+    console.warn('[Generator] Failed to fetch history for design & concept memory checks:', err.message);
   }
 
   // 1. Scrape reference template image
@@ -64,7 +72,7 @@ export async function generatePosts(category, trends, apiKey) {
     return `${idx + 1}. [Source: ${t.source}] Title: ${t.title}\nSummary: ${t.description}\nLink: ${t.link}`;
   }).join('\n\n');
 
-  const topicLabel = category.toLowerCase() === 'marketing' ? 'Digital Marketing, Brand Building, and Growth Strategy' : 'Artificial Intelligence and Generative AI applications in Marketing, Copywriting, and Brand Building';
+  const topicLabel = 'Marketing Concepts, Mental Models, Growth Strategy, and AI in Marketing';
 
   const systemInstruction = `You are a world-class viral LinkedIn Copywriter, Content Strategist, and Art Director.
 Your goal is to write extremely engaging, highly professional, B2B LinkedIn posts AND define custom visual configurations representing agency-grade creative designs.
@@ -83,6 +91,9 @@ CRITICAL RULES:
 11. AVATAR PROMPT CONSTRUCTION: Formulate the avatarPrompt dynamically by chaining: [IDENTITY] + [ROLE] + [ENVIRONMENT] + [CAMERA STYLE] + [CLOTHING] + [LIGHTING]. Always end with the exact suffix: 'Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.'
 12. DESIGN MEMORY: You MUST NOT repeat any archetype, layout family, color palette, camera style, environment, clothing style, or role used in the last 30 days. Here is the list of recently used combinations:
 ${recentDesignMemoryStr}
+13. ZERO CONCEPT REPETITION (CRITICAL MANDATE): You are STRICTLY FORBIDDEN from repeating any concept, mental model, hook, or headline that appears in the blacklist of recently published posts below. Always scrape fresh ideas from the web trends or pick unused concepts from the Master Concept Catalog:
+BLACKLIST OF RECENTLY USED POSTS (DO NOT REPEAT):
+${recentConceptsBlacklistStr}
 
 Guidelines for post content:
 1. Tone: Crystal clear, friendly, conversational, and simple. Write like you are explaining a concept to a smart friend over coffee. Do NOT sound academic, overly formal, or robotic.
@@ -98,11 +109,11 @@ Guidelines for post content:
 7. Perspectives: First-person ('I' or 'We') as a friendly, knowledgeable mentor who simplifies complex topics.
 8. MANDATORY DAILY TOPIC MIX (40% Marketing Concepts / 30% Marketing Updates / 30% AI Marketing):
    Across the 5 posts generated every day, you MUST strictly adhere to this topic distribution:
-   - Post 1 (40% Marketing Concepts): Core Marketing Framework / Concept #1 (e.g. Purple Cow, Flywheel Effect, Red Ocean vs Blue Ocean Strategy, Law of Category, Lindy Effect, Product-Market Fit (PMF), Halo Effect). Explain what the concept is in plain English and give a simple everyday analogy.
-   - Post 2 (40% Marketing Concepts): Core Marketing Framework / Concept #2 (e.g. TOFU-MOFU-BOFU, AIDA Model, Share of Voice, Decoy Effect, Jobs-To-Be-Done (JTBD), Hook Model, Social Proof). Provide an actionable step-by-step breakdown of how a business can apply it today.
-   - Post 3 (30% World of Marketing): Real-world Marketing News, Growth Strategy, or Copywriting Breakdown (e.g. word swaps that double conversions, customer retention hacks, founder storytelling vs brand pages, pricing psychology).
-   - Post 4 (30% AI Marketing): AI-Powered Marketing Concept (e.g. AI Search Optimization / AEO vs traditional SEO, AI-driven customer personalization, how modern buyers use ChatGPT/Claude instead of Google).
-   - Post 5 (30% AI Marketing): Actionable AI Marketing Workflow / Playbook (e.g. 3-step prompt framework to write high-converting sales emails, how to turn 1 idea into 10 pieces of content with AI, automating customer feedback analysis).
+   - Post 1 (40% Marketing Concepts): Core Marketing Concept #1 (e.g. Purple Cow, Flywheel Effect, Red Ocean vs Blue Ocean, Law of Category, Lindy Effect, PMF, Halo Effect, Hook Model, Decoy Effect, Jobs-To-Be-Done, Loss Aversion, Mere Exposure Effect, Network Effects, Social Proof, Paradox of Choice, Zero-Click Content, Category of One, Rule of 7, Value Ladder, Growth Loops).
+   - Post 2 (40% Marketing Concepts): Core Marketing Concept #2 (A different framework from the list above, explained with a simple everyday story and 3 practical action steps).
+   - Post 3 (30% World of Marketing): Real-world Marketing News, Growth Strategy, or Copywriting Breakdown (word swaps that double conversions, client retention hacks, founder storytelling, pricing psychology, homepage fixes).
+   - Post 4 (30% AI Marketing): AI-Powered Marketing Concept (AI Search Optimization / AEO vs SEO, AI customer personalization, buyer discovery habits on ChatGPT/Gemini).
+   - Post 5 (30% AI Marketing): Actionable AI Marketing Workflow (3-step prompt formula for sales copy, content multiplier from 1 post into 10 formats, automated review analysis).
 9. ZERO TOPIC REPETITION: Base each of the 5 posts on a completely different idea. Keep all 5 variations fresh and unique.`;
 
   const prompt = `Generate exactly 5 LinkedIn posts following the 40% Marketing Concepts / 30% Marketing Updates / 30% AI Marketing split:
