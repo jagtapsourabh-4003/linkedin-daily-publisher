@@ -96,16 +96,16 @@ Guidelines for post content:
    - Friendly Question: Close with an easy question to encourage comments, followed by 3-4 relevant hashtags.
 6. Formatting: Emojis very sparingly (no more than 2-3). Do NOT use fake bold/italic unicode characters.
 7. Perspectives: First-person ('I' or 'We') as a friendly, knowledgeable mentor who simplifies complex topics.
-8. Marketing & Business Focus: Connect every topic directly to real business benefits: getting more customers, saving time, writing better, or standing out online.
-9. Post Angles (No Repetition): Each post in the 5-post batch must use a unique angle and style:
-   - Post 1: "Breaking Trend" - What is new and what it means in plain English.
-   - Post 2: "Step-by-Step Guide" - 3 simple steps anyone can do today.
-   - Post 3: "Common Myth" - Bust a popular misconception with simple logic.
-   - Post 4: "Mistake to Avoid" - The #1 mistake people make and how to easily fix it.
-   - Post 5: "Future Outlook" - A simple, exciting glimpse at where things are going.
-10. ZERO TOPIC REPETITION: Base each of the 5 posts on a completely different idea. Keep all 5 variations fresh and unique.`;
+8. MANDATORY DAILY TOPIC MIX (40% Marketing Concepts / 30% Marketing Updates / 30% AI Marketing):
+   Across the 5 posts generated every day, you MUST strictly adhere to this topic distribution:
+   - Post 1 (40% Marketing Concepts): Core Marketing Framework / Concept #1 (e.g. Purple Cow, Flywheel Effect, Red Ocean vs Blue Ocean Strategy, Law of Category, Lindy Effect, Product-Market Fit (PMF), Halo Effect). Explain what the concept is in plain English and give a simple everyday analogy.
+   - Post 2 (40% Marketing Concepts): Core Marketing Framework / Concept #2 (e.g. TOFU-MOFU-BOFU, AIDA Model, Share of Voice, Decoy Effect, Jobs-To-Be-Done (JTBD), Hook Model, Social Proof). Provide an actionable step-by-step breakdown of how a business can apply it today.
+   - Post 3 (30% World of Marketing): Real-world Marketing News, Growth Strategy, or Copywriting Breakdown (e.g. word swaps that double conversions, customer retention hacks, founder storytelling vs brand pages, pricing psychology).
+   - Post 4 (30% AI Marketing): AI-Powered Marketing Concept (e.g. AI Search Optimization / AEO vs traditional SEO, AI-driven customer personalization, how modern buyers use ChatGPT/Claude instead of Google).
+   - Post 5 (30% AI Marketing): Actionable AI Marketing Workflow / Playbook (e.g. 3-step prompt framework to write high-converting sales emails, how to turn 1 idea into 10 pieces of content with AI, automating customer feedback analysis).
+9. ZERO TOPIC REPETITION: Base each of the 5 posts on a completely different idea. Keep all 5 variations fresh and unique.`;
 
-  const prompt = `Generate exactly 5 LinkedIn posts on the topic of: ${topicLabel}.
+  const prompt = `Generate exactly 5 LinkedIn posts following the 40% Marketing Concepts / 30% Marketing Updates / 30% AI Marketing split:
 Use the following scraped web trends as context and inspiration:
 
 ---
@@ -114,24 +114,24 @@ ${trendsContext}
 
 Your response MUST be a JSON array containing exactly 5 objects. Do not wrap the JSON output in markdown formatting block quotes (e.g. \`\`\`json). Output raw JSON.
 
-Each object in the array must follow this structure. Ensure that the "style" field for each object matches its corresponding mandated angle exactly:
-- Object 1 "style": "Breaking Trend/News"
-- Object 2 "style": "Actionable Playbook"
-- Object 3 "style": "Contrarian Debate"
-- Object 4 "style": "Mistake/Failure Study"
-- Object 5 "style": "Strategic Prediction"
+Each object in the array must follow this structure. Ensure that the "style" field for each object matches its corresponding mandated category:
+- Object 1 "style": "Marketing Concept Explained" (e.g. Purple Cow, Flywheel Effect, Blue Ocean, Law of Category, Lindy Effect)
+- Object 2 "style": "Marketing Framework Playbook" (e.g. TOFU-MOFU-BOFU, AIDA Model, Share of Voice, Decoy Effect)
+- Object 3 "style": "World of Marketing Strategy" (e.g. Copywriting, Retention, Storytelling, Growth Hacks)
+- Object 4 "style": "AI Marketing Concept" (e.g. AI Search / AEO, AI Personalization, AI-native Buying Habits)
+- Object 5 "style": "AI Marketing Workflow" (e.g. Prompt Playbook, Content Repurposing, Automated Customer Insights)
 
 {
   "designArchetype": "Forbes Cover",
   "layoutFamily": "split-left / split-right / hero-center / magazine-cover / quote-card / podcast-layout / presentation-slide / news-card / editorial-cover / phone-mockup / floating-cards / layered-depth / diagonal-layout / asymmetrical-grid / modern-minimal / glassmorphism-card / neon-border / bold-typographic / infographic-side / cinematic-wide",
   "colorPalette": "Electric Blue / Cyber Purple / Emerald Green / Crimson Red / Royal Gold / Teal White / Slate Blue / Monochrome Black / Neon Cyan / Sunset Orange / Deep Indigo / Premium Burgundy / Corporate Navy / Platinum Grey / Dark Forest / Aurora Violet / Liquid Gold / Midnight Rose / Arctic Blue / Volcanic Amber",
-  "characterRole": "AI Consultant",
-  "environment": "Innovation lab",
+  "characterRole": "Business Advisor",
+  "environment": "Creative workspace",
   "cameraStyle": "Half-body portrait",
   "clothingStyle": "Smart casual blazer",
   "avatarPrompt": "Indian male manager in his late 30s...",
   "postContent": {
-    "style": "Breaking Trend/News OR Actionable Playbook OR Contrarian Debate OR Mistake/Failure Study OR Strategic Prediction",
+    "style": "Marketing Concept Explained OR Marketing Framework Playbook OR World of Marketing Strategy OR AI Marketing Concept OR AI Marketing Workflow",
     "hook": "The first 1-2 lines of the post (attention-grabbing hook)",
     "content": "The full body of the post, including the hook, paragraphs, call to action, and hashtags. Keep line breaks intact with newlines (\\n).",
     "sourceArticle": "Title of the main article from the trends context that inspired this post, or 'General Trend' if inspired by multiple.",

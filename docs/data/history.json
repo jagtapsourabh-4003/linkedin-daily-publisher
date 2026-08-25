@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-08-25",
+    "category": "marketing",
+    "posts": [
+      {
+        "id": 1,
+        "designArchetype": "Marketing Concept Explained",
+        "layoutFamily": "news-card",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Business Advisor",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Advisor in a Technology command center, Looking at camera, Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Concept Explained",
+          "hook": "Why 100-year-old ideas beat weekly trends.",
+          "content": "Why 100-year-old ideas beat weekly trends.\n\nThe Lindy Effect is a powerful mental model:\nThe longer an idea has survived in the past, the longer it is likely to survive in the future.\n\nA book that has been read for 50 years will likely be read for another 50. A trendy social media hack from last week will be forgotten by next month.\n\nWhat this means for your marketing:\n1. Focus on timeless human psychology: People will always care about saving time, making money, feeling respected, and protecting their families.\n2. Master clear storytelling: Stories have worked for 10,000 years; algorithms change every 3 months.\n3. Build assets that age well: High-quality guides, strong relationships, and genuine trust never go out of style.\n\nStop chasing every fleeting trend. Invest in timeless principles.\n\nWhat is one timeless marketing rule you swear by?",
+          "sourceArticle": "The Lindy Effect: Why timeless marketing principles outlast temporary social media fads.",
+          "imageHeadline": "THE *LINDY EFFECT*",
+          "imageSubtext": "Why timeless ideas outlast flash-in-the-pan fads.",
+          "badgeText": "MENTAL MODEL",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 2,
+        "designArchetype": "Marketing Framework Playbook",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Business Coach",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Coach in a Executive boardroom, Presentation shot, Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "One great feature makes everything look good.",
+          "content": "One great feature makes everything look good.\n\nWhen Apple launched the iPod in 2001, something fascinating happened.\n\nSales of Apple Mac computers skyrocketed, even though Apple hadn't changed the computers at all!\n\nWhy? The Halo Effect.\n\nCustomers loved the iPod so much that they assumed ALL Apple products must be incredible. The positive glow of one product created a \"halo\" over the entire company.\n\nHow to create a Halo Effect for your business:\n1. Pick one signature strength: Be ridiculously fast, insanely polite, or offer unmatched packaging.\n2. Over-deliver on the first impression: Your onboarding experience sets the tone for everything that follows.\n3. Let your best product lead: Promote your absolute best offer as the gateway to your business.\n\nWhat is the single best \"halo\" feature of your product?",
+          "sourceArticle": "The Halo Effect in Branding: How one standout positive trait influences the overall impression of a company.",
+          "imageHeadline": "THE *HALO EFFECT*",
+          "imageSubtext": "How one great detail elevates your entire brand.",
+          "badgeText": "PSYCHOLOGY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 3,
+        "designArchetype": "World of Marketing Strategy",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Startup Founder",
+        "environment": "Luxury office",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Startup Founder in a Luxury office, Half-body portrait, Smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Stop sending boring sales emails.",
+          "content": "Stop sending boring sales emails.\n\nNobody likes opening an email that looks like a robot copied and pasted it to 1,000 strangers.\n\nHere are 3 simple rules to get real replies:\n\n1. Talk to one person: Write like you are sending a note to a colleague.\n2. Focus on their problem: Don't brag about your company. Ask how you can help them.\n3. Keep it short: If they can't read it in 30 seconds on their phone, they will delete it.\n\nGood marketing is just good conversation.\n\nWhat is the best sales email you ever received?",
+          "sourceArticle": "Simple rules to write friendly emails that people actually want to open and reply to.",
+          "imageHeadline": "BETTER *SALES EMAILS*",
+          "imageSubtext": "3 simple rules to get real replies.",
+          "badgeText": "HELPFUL TIP",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 4,
+        "designArchetype": "AI Marketing Concept",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Podcast Host",
+        "environment": "Podcast studio",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Podcast Host in a Podcast studio, Sitting at desk, Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "How to write better prompts in 10 seconds.",
+          "content": "How to write better prompts in 10 seconds.\n\nIf you give AI a vague question, it gives you a boring, robotic answer.\n\nTo get amazing marketing copy, use this simple 3-step formula:\n\n1. Who it is: \"Act as a friendly marketing coach.\"\n2. What you need: \"Write a short 3-sentence email invite for a free webinar.\"\n3. The audience: \"Make it simple for small shop owners to understand.\"\n\nThe clearer you are with AI, the better answers you get.\n\nTry this formula today and see the difference!",
+          "sourceArticle": "A simple 3-part prompt formula to get high-converting marketing copy from AI every time.",
+          "imageHeadline": "BETTER *AI PROMPTS*",
+          "imageSubtext": "A simple 3-step formula that works.",
+          "badgeText": "AI TUTORIAL",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 5,
+        "designArchetype": "AI Marketing Workflow",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Speaker in a Auditorium stage, Speaking on stage, Conference speaker outfit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Why you should never copy-paste raw AI copy.",
+          "content": "Why you should never copy-paste raw AI copy.\n\nAI tools are great at making a first draft in 5 seconds.\n\nBut if you post raw AI text without editing it, everyone can tell. It sounds generic, stiff, and robotic.\n\nHere is the smart way to use AI:\n1. Use AI to get your ideas down fast.\n2. Add your own personal stories and real experiences.\n3. Remove fancy buzzwords and make it sound like YOU.\n\nUse AI for speed, but keep your human heart in the story.\n\nDo you edit what AI writes, or post it directly?",
+          "sourceArticle": "Why adding your real experience and human tone makes AI-assisted marketing 10x more effective.",
+          "imageHeadline": "HUMAN + *AI TEAMWORK*",
+          "imageSubtext": "Why your personal voice matters.",
+          "badgeText": "AI ADVICE",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-08-24",
     "category": "marketing",
     "posts": [
