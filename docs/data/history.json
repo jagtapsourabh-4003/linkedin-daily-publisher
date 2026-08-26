@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-08-26",
+    "category": "marketing",
+    "posts": [
+      {
+        "id": 1,
+        "designArchetype": "Marketing Concept Explained",
+        "layoutFamily": "news-card",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Business Advisor",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Advisor in a Technology command center, Looking at camera, Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Concept Explained",
+          "hook": "Familiarity is the secret ingredient of trust.",
+          "content": "Familiarity is the secret ingredient of trust.\n\nPsychologist Robert Zajonc discovered the Mere Exposure Effect:\nPeople naturally prefer things simply because they are familiar with them.\n\nThe first time someone sees your post: They scroll past.\nThe 5th time: They recognize your name and face.\nThe 20th time: They feel like they know you and trust your expertise!\n\nThis is why posting consistently beats posting occasionally:\n1. You don't need every post to go viral.\n2. You just need to show up in their feed with helpful advice every weekday.\n3. When they are finally ready to buy, you are the first person they reach out to.\n\nConsistency is your unfair advantage.\n\nHow often do you show up in your audience's feed?",
+          "sourceArticle": "The Mere Exposure Effect: Why repeated positive visibility creates subconscious buyer preference.",
+          "imageHeadline": "MERE *EXPOSURE EFFECT*",
+          "imageSubtext": "Why consistent presence builds instant trust.",
+          "badgeText": "PSYCHOLOGY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 2,
+        "designArchetype": "Marketing Framework Playbook",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Business Coach",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Coach in a Executive boardroom, Presentation shot, Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Why the biggest platforms become impossible to beat.",
+          "content": "Why the biggest platforms become impossible to beat.\n\nWhy is it so hard to launch a rival to WhatsApp or LinkedIn?\n\nNetwork Effects.\n\nA telephone is completely useless if only one person owns it. But when 1 billion people own one, the network becomes indispensable.\n\nHow to create Network Effects in your brand:\n1. Build a community: Connect your clients with one another so they share wins and trade ideas.\n2. User-generated templates: Let users share their custom creations publicly.\n3. Referral loops: Reward customers for bringing their team onto your platform.\n\nWhen your customers create value for other customers, growth becomes unstoppable.\n\nDoes your business have a built-in network effect?",
+          "sourceArticle": "Network Effects (Metcalfe's Law): When every new user makes the product more valuable for everyone else.",
+          "imageHeadline": "NETWORK *EFFECTS*",
+          "imageSubtext": "How each new user multiplies product value.",
+          "badgeText": "GROWTH MODEL",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 3,
+        "designArchetype": "World of Marketing Strategy",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Startup Founder",
+        "environment": "Luxury office",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Startup Founder in a Luxury office, Half-body portrait, Smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Why your website isn't making sales.",
+          "content": "Why your website isn't making sales.\n\nWhen a customer lands on your website, you have about 3 seconds to answer one question:\n\n\"How does this help ME?\"\n\nMost websites make the mistake of listing complicated features instead of explaining the real benefit in plain English.\n\nHere is a simple example:\n- Complicated: \"We provide high-speed automated cloud sync technology.\"\n- Simple & Clear: \"Never lose a file again. Access your work from anywhere in 1 click.\"\n\nAlways sell the result, not the tool.\n\nDoes your website pass the 3-second test?",
+          "sourceArticle": "The #1 mistake businesses make on their homepage: listing complex features instead of simple benefits.",
+          "imageHeadline": "FIX YOUR *WEBSITE*",
+          "imageSubtext": "The #1 mistake most businesses make.",
+          "badgeText": "CASE STUDY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 4,
+        "designArchetype": "AI Marketing Concept",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Podcast Host",
+        "environment": "Podcast studio",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Podcast Host in a Podcast studio, Sitting at desk, Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Turn 1 piece of content into 10 with AI.",
+          "content": "Turn 1 piece of content into 10 with AI.\n\nStop trying to write 5 brand new posts from scratch every week.\n\nInstead, create ONE great piece of content and let AI help you repurpose it:\n\n1. Step 1: Record a 3-minute voice note about a client win or business lesson.\n2. Step 2: Feed the transcript into AI and ask for 3 LinkedIn posts, 1 newsletter paragraph, and 5 short tips.\n3. Step 3: Edit each piece with your personal tone before publishing.\n\nCreate once, publish everywhere.\n\nHow many pieces of content do you create each week?",
+          "sourceArticle": "How to use AI to repurpose a single podcast, client story, or blog post into a full week of social posts.",
+          "imageHeadline": "CONTENT *MULTIPLIER*",
+          "imageSubtext": "Turn 1 post into 10 with AI.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 5,
+        "designArchetype": "AI Marketing Workflow",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Speaker in a Auditorium stage, Speaking on stage, Conference speaker outfit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Most people search Google the wrong way.",
+          "content": "Most people search Google the wrong way.\n\nInstead of clicking through 10 different website links, people now just ask AI tools like ChatGPT or Gemini to give them one quick, direct answer.\n\nIf you run a business or create content, here is what to do:\n\n1. Give direct answers: Put the important answers right at the top of your page.\n2. Answer real questions: What does your product cost? How does it help?\n3. Keep it simple: Write like you are explaining it to a smart friend.\n\nThink of it like being the friendly person everyone turns to for advice.\n\nHave you started using AI to search for things instead of Google? Let me know below!",
+          "sourceArticle": "How everyday buyers are using AI tools to find quick answers online instead of clicking 10 blue links.",
+          "imageHeadline": "AI SEARCH *IS HERE*",
+          "imageSubtext": "How customers find answers today.",
+          "badgeText": "AI MARKETING",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-08-25",
     "category": "marketing",
     "posts": [
