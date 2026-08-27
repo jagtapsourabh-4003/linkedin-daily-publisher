@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-08-27",
+    "category": "marketing",
+    "posts": [
+      {
+        "id": 1,
+        "designArchetype": "Marketing Concept Explained",
+        "layoutFamily": "news-card",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Business Advisor",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Advisor in a Technology command center, Looking at camera, Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Concept Explained",
+          "hook": "Why we always check the crowded restaurant.",
+          "content": "Why we always check the crowded restaurant.\n\nWhen you are in an unfamiliar city looking for dinner, which restaurant do you pick?\nThe empty one with zero guests, or the bustling one with a line out the door?\n\nAlmost everyone picks the crowded one. That is Social Proof.\n\nWhen people are uncertain, they look to the actions of others to guide their choice.\n\n3 easy ways to showcase social proof:\n1. Screenshot real feedback: Share genuine DMs and client compliments.\n2. Highlight specific metrics: \"Helped 150+ founders launch their newsletter.\"\n3. Video case studies: 60 seconds of an authentic client talking about their before & after.\n\nProof sells better than promises.\n\nWhat is the best testimonial your business has ever received?",
+          "sourceArticle": "Social Proof by Robert Cialdini: Why customer reviews, numbers, and testimonials do the heavy lifting in sales.",
+          "imageHeadline": "*SOCIAL PROOF* POWER",
+          "imageSubtext": "Why real customer proof beats any sales pitch.",
+          "badgeText": "INFLUENCE PRINCIPLE",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 2,
+        "designArchetype": "Marketing Framework Playbook",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Business Coach",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Coach in a Executive boardroom, Presentation shot, Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Too many options kills your sales.",
+          "content": "Too many options kills your sales.\n\nIn a famous grocery store experiment:\n- Table 1 displayed 24 flavors of jam: 60% of people stopped to look, but only 3% bought.\n- Table 2 displayed only 6 flavors: 40% stopped, but 30% BOUGHT!\n\nOffering 6 choices produced 10x more sales than offering 24!\n\nWhy?\nWhen faced with too many choices, the human brain gets overwhelmed, fears making the wrong decision, and chooses nothing.\n\nHow to simplify your business:\n1. Don't offer 10 custom service packages: Offer 2 or 3 clear options.\n2. Have ONE clear Call To Action per page: \"Book a Call\" or \"Buy Now.\"\n3. Help customers decide: Clearly state \"Best for beginners\" vs \"Best for growing teams.\"\n\nMake buying effortless.\n\nAre you giving your customers too many options?",
+          "sourceArticle": "The Paradox of Choice by Barry Schwartz: Why offering fewer options dramatically increases buying conversion.",
+          "imageHeadline": "PARADOX OF *CHOICE*",
+          "imageSubtext": "Why fewer options lead to more sales.",
+          "badgeText": "CONVERSION LAW",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 3,
+        "designArchetype": "World of Marketing Strategy",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Startup Founder",
+        "environment": "Luxury office",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Startup Founder in a Luxury office, Half-body portrait, Smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "People buy from people, not logos.",
+          "content": "People buy from people, not logos.\n\nNotice how the most popular accounts on LinkedIn are real people sharing honest lessons, not boring corporate company pages?\n\nHere is how to build trust without being fake:\n\n1. Share your lessons: What went wrong this week and what did you learn from it?\n2. Show behind the scenes: People love seeing how things are actually made.\n3. Be helpful for free: Share your best advice without asking for anything back.\n\nWhen you build trust first, customers come to you naturally.\n\nDo you prefer buying from a person or a company?",
+          "sourceArticle": "Why personal stories and honest founder posts build 10x more trust than corporate brand pages.",
+          "imageHeadline": "BUILDING *REAL TRUST*",
+          "imageSubtext": "Why founder stories win every time.",
+          "badgeText": "GROWTH TIP",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 4,
+        "designArchetype": "AI Marketing Concept",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Podcast Host",
+        "environment": "Podcast studio",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Podcast Host in a Podcast studio, Sitting at desk, Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "AI is your marketing intern, not your replacement.",
+          "content": "AI is your marketing intern, not your replacement.\n\nIt is here to replace the boring, repetitive tasks you hate doing.\n\nThink of AI like having a super fast intern who works 24/7:\n\n1. Brainstorming hooks: Ask it for 10 title ideas when you are feeling stuck.\n2. Summarizing long notes: Turn a 5-page case study into 3 key bullet points in seconds.\n3. Fixing your grammar: Clean up typos and make your writing easier to read.\n\nYou are still the pilot. AI is just the co-pilot.\n\nWhat is the #1 marketing task you wish AI could do for you automatically?",
+          "sourceArticle": "How savvy marketers use AI to brainstorm 20 content ideas in 5 minutes without losing their authentic voice.",
+          "imageHeadline": "AI AS *YOUR INTERN*",
+          "imageSubtext": "How to save 5 hours every week.",
+          "badgeText": "AI PLAYBOOK",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 5,
+        "designArchetype": "AI Marketing Workflow",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Speaker in a Auditorium stage, Speaking on stage, Conference speaker outfit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "How to write better prompts in 10 seconds.",
+          "content": "How to write better prompts in 10 seconds.\n\nIf you give AI a vague question, it gives you a boring, robotic answer.\n\nTo get amazing marketing copy, use this simple 3-step formula:\n\n1. Who it is: \"Act as a friendly marketing coach.\"\n2. What you need: \"Write a short 3-sentence email invite for a free webinar.\"\n3. The audience: \"Make it simple for small shop owners to understand.\"\n\nThe clearer you are with AI, the better answers you get.\n\nTry this formula today and see the difference!",
+          "sourceArticle": "A simple 3-part prompt formula to get high-converting marketing copy from AI every time.",
+          "imageHeadline": "BETTER *AI PROMPTS*",
+          "imageSubtext": "A simple 3-step formula that works.",
+          "badgeText": "AI TUTORIAL",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-08-26",
     "category": "marketing",
     "posts": [
