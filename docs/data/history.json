@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-08-28",
+    "category": "ai",
+    "posts": [
+      {
+        "id": 1,
+        "designArchetype": "Marketing Concept Explained",
+        "layoutFamily": "news-card",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Business Advisor",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Advisor in a Technology command center, Looking at camera, Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Concept Explained",
+          "hook": "Stop forcing people to leave the platform.",
+          "content": "Stop forcing people to leave the platform.\n\nAlgorithms on LinkedIn, Twitter, and YouTube hate external links. They want users to stay on their platform.\n\nIf your post says \"Click the link in comments to read my guide,\" 95% of people will scroll past.\n\nEnter Zero-Click Content:\n- Give the full, high-value answer directly inside the post.\n- Teach the entire concept in clear, simple bullet points.\n- Leave nothing hidden behind a click.\n\nWhy this works:\n1. The platform gives you 5x to 10x more reach.\n2. Readers get instant value and remember your expertise.\n3. The people who want hands-on help will naturally visit your profile to work with you.\n\nGive away your knowledge for free; sell the implementation.\n\nHave you tried posting Zero-Click content?",
+          "sourceArticle": "Zero-Click Content: Why giving away the full answer in the feed earns 10x more reach and authority.",
+          "imageHeadline": "*ZERO-CLICK* CONTENT",
+          "imageSubtext": "Give the full value directly in the feed.",
+          "badgeText": "MODERN STRATEGY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 2,
+        "designArchetype": "Marketing Framework Playbook",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Business Coach",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Coach in a Executive boardroom, Presentation shot, Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Don't compete with rivals. Make them irrelevant.",
+          "content": "Don't compete with rivals. Make them irrelevant.\n\nIf you describe your service as \"SEO Agency\" or \"Business Coach,\" prospective buyers will immediately compare your price to 10 other agencies.\n\nTo escape the commodity trap, become a Category of One:\n\n- Instead of \"Copywriter\" -> \"The Onboarding Email Specialist for B2B SaaS\"\n- Instead of \"Accountant\" -> \"The Tax Strategist for YouTube Creators\"\n\nWhen you narrow your focus:\n1. You have zero direct competition.\n2. You can charge premium rates.\n3. Clients seek you out because you solve their exact specific problem.\n\nNiche down until you are the only option.\n\nWhat makes you a Category of One?",
+          "sourceArticle": "The Category of One: How radical positioning eliminates comparison shopping.",
+          "imageHeadline": "CATEGORY *OF ONE*",
+          "imageSubtext": "Eliminate competition with radical positioning.",
+          "badgeText": "POSITIONING",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 3,
+        "designArchetype": "World of Marketing Strategy",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Startup Founder",
+        "environment": "Luxury office",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Startup Founder in a Luxury office, Half-body portrait, Smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "The cheapest way to grow your business.",
+          "content": "The cheapest way to grow your business.\n\nMost companies spend thousands of dollars on ads trying to get new strangers to buy from them.\n\nYet they completely forget about the customers who already trust them!\n\nHere are 3 simple ways to keep customers happy:\n\n1. Check in after the sale: Send a quick message asking how everything is going.\n2. Fix issues fast: A fast apology and quick fix turns an unhappy buyer into a loyal fan.\n3. Reward loyalty: Give special perks or discounts to people who stay with you.\n\nKeeping a happy customer is 5x cheaper than finding a new one.\n\nHow do you stay in touch with your past clients?",
+          "sourceArticle": "Why taking great care of existing customers is 5x cheaper than spending money on ads.",
+          "imageHeadline": "KEEP YOUR *CUSTOMERS*",
+          "imageSubtext": "Why happy customers beat expensive ads.",
+          "badgeText": "STRATEGY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 4,
+        "designArchetype": "AI Marketing Concept",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Podcast Host",
+        "environment": "Podcast studio",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Podcast Host in a Podcast studio, Sitting at desk, Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Why you should never copy-paste raw AI copy.",
+          "content": "Why you should never copy-paste raw AI copy.\n\nAI tools are great at making a first draft in 5 seconds.\n\nBut if you post raw AI text without editing it, everyone can tell. It sounds generic, stiff, and robotic.\n\nHere is the smart way to use AI:\n1. Use AI to get your ideas down fast.\n2. Add your own personal stories and real experiences.\n3. Remove fancy buzzwords and make it sound like YOU.\n\nUse AI for speed, but keep your human heart in the story.\n\nDo you edit what AI writes, or post it directly?",
+          "sourceArticle": "Why adding your real experience and human tone makes AI-assisted marketing 10x more effective.",
+          "imageHeadline": "HUMAN + *AI TEAMWORK*",
+          "imageSubtext": "Why your personal voice matters.",
+          "badgeText": "AI ADVICE",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 5,
+        "designArchetype": "AI Marketing Workflow",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Speaker in a Auditorium stage, Speaking on stage, Conference speaker outfit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Turn 1 piece of content into 10 with AI.",
+          "content": "Turn 1 piece of content into 10 with AI.\n\nStop trying to write 5 brand new posts from scratch every week.\n\nInstead, create ONE great piece of content and let AI help you repurpose it:\n\n1. Step 1: Record a 3-minute voice note about a client win or business lesson.\n2. Step 2: Feed the transcript into AI and ask for 3 LinkedIn posts, 1 newsletter paragraph, and 5 short tips.\n3. Step 3: Edit each piece with your personal tone before publishing.\n\nCreate once, publish everywhere.\n\nHow many pieces of content do you create each week?",
+          "sourceArticle": "How to use AI to repurpose a single podcast, client story, or blog post into a full week of social posts.",
+          "imageHeadline": "CONTENT *MULTIPLIER*",
+          "imageSubtext": "Turn 1 post into 10 with AI.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-08-27",
     "category": "marketing",
     "posts": [
