@@ -712,6 +712,12 @@ async function loadHistory() {
             if (custom.avatarSize !== undefined) {
               post.avatarSize = custom.avatarSize;
             }
+            if (custom.avatarScaleX !== undefined) {
+              post.avatarScaleX = custom.avatarScaleX;
+            }
+            if (custom.avatarScaleY !== undefined) {
+              post.avatarScaleY = custom.avatarScaleY;
+            }
             if (custom.bgSensitivity !== undefined) {
               post.bgSensitivity = custom.bgSensitivity;
             }
@@ -2406,9 +2412,26 @@ function renderActiveDrafts() {
                   </select>
                 </div>
                 <div>
-                  <label for="slider-avatar-size-${post.id}" style="font-size: 0.78rem; color: #cbd5e1; display: block; margin-bottom: 4px;">Avatar Size: <strong id="val-avatar-size-${post.id}" style="color: #60a5fa;">${post.avatarSize || 340}px</strong></label>
-                  <input type="range" id="slider-avatar-size-${post.id}" min="100" max="800" step="10" value="${post.avatarSize || 340}" class="customizer-range">
+                  <label for="slider-avatar-size-${post.id}" style="font-size: 0.78rem; color: #cbd5e1; display: block; margin-bottom: 4px;">📏 Overall Size: <strong id="val-avatar-size-${post.id}" style="color: #60a5fa;">${post.avatarSize || 340}px</strong></label>
+                  <input type="range" id="slider-avatar-size-${post.id}" min="100" max="950" step="10" value="${post.avatarSize || 340}" class="customizer-range">
                 </div>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div>
+                  <label for="slider-avatar-scalex-${post.id}" style="font-size: 0.78rem; color: #cbd5e1; display: block; margin-bottom: 4px;">↔️ Sideways Width (Slim / Wide): <strong id="val-avatar-scalex-${post.id}" style="color: #38bdf8;">${post.avatarScaleX || 100}%</strong></label>
+                  <input type="range" id="slider-avatar-scalex-${post.id}" min="50" max="160" step="2" value="${post.avatarScaleX || 100}" class="customizer-range">
+                </div>
+                <div>
+                  <label for="slider-avatar-scaley-${post.id}" style="font-size: 0.78rem; color: #cbd5e1; display: block; margin-bottom: 4px;">↕️ Vertical Height (Stretch / Fit): <strong id="val-avatar-scaley-${post.id}" style="color: #a7f3d0;">${post.avatarScaleY || 100}%</strong></label>
+                  <input type="range" id="slider-avatar-scaley-${post.id}" min="50" max="160" step="2" value="${post.avatarScaleY || 100}" class="customizer-range">
+                </div>
+              </div>
+              <div style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap; background: rgba(15, 23, 42, 0.45); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(59, 130, 246, 0.2);">
+                <span style="font-size: 0.74rem; color: #94a3b8; font-weight: 600;">✨ Proportions:</span>
+                <button type="button" id="btn-prop-natural-${post.id}" class="btn btn-secondary btn-sm" style="font-size: 0.72rem; padding: 3px 8px; border-color: rgba(59,130,246,0.3); color: #93c5fd;" title="Restore 100% natural camera lens proportions">👤 100% Natural</button>
+                <button type="button" id="btn-prop-slim-${post.id}" class="btn btn-secondary btn-sm" style="font-size: 0.72rem; padding: 3px 8px; border-color: rgba(56,189,248,0.3); color: #38bdf8;" title="Slim down sideways by 8% for a lean, athletic look">✂️ Slim Fit (92%)</button>
+                <button type="button" id="btn-prop-wide-${post.id}" class="btn btn-secondary btn-sm" style="font-size: 0.72rem; padding: 3px 8px; border-color: rgba(167,243,208,0.3); color: #a7f3d0;" title="Expand width by 8% for a broader frame">🛡️ Broad Fit (108%)</button>
+                <button type="button" id="btn-prop-reset-${post.id}" class="btn btn-secondary btn-sm" style="font-size: 0.72rem; padding: 3px 8px; margin-left: auto; color: #cbd5e1;" title="Reset size and sideways scales to defaults">🔄 Reset Sizing</button>
               </div>
               <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
                 <div>
@@ -2526,6 +2549,10 @@ function renderActiveDrafts() {
       const selectAvatarPos = cardEl.querySelector(`#select-avatar-pos-${post.id}`);
       const sliderAvatarSize = cardEl.querySelector(`#slider-avatar-size-${post.id}`);
       const labelAvatarSize = cardEl.querySelector(`#val-avatar-size-${post.id}`);
+      const sliderAvatarScaleX = cardEl.querySelector(`#slider-avatar-scalex-${post.id}`);
+      const labelAvatarScaleX = cardEl.querySelector(`#val-avatar-scalex-${post.id}`);
+      const sliderAvatarScaleY = cardEl.querySelector(`#slider-avatar-scaley-${post.id}`);
+      const labelAvatarScaleY = cardEl.querySelector(`#val-avatar-scaley-${post.id}`);
       const sliderBgSensitivity = cardEl.querySelector(`#slider-bg-sensitivity-${post.id}`);
       const labelBgSensitivity = cardEl.querySelector(`#val-bg-sensitivity-${post.id}`);
       const sliderAvatarX = cardEl.querySelector(`#slider-avatar-x-${post.id}`);
@@ -2548,6 +2575,8 @@ function renderActiveDrafts() {
         if (selectAvatarPos) post.avatarPos = selectAvatarPos.value;
         post.avatarLayer = post.avatarLayer || 'front';
         if (sliderAvatarSize) post.avatarSize = parseInt(sliderAvatarSize.value);
+        if (sliderAvatarScaleX) post.avatarScaleX = parseInt(sliderAvatarScaleX.value);
+        if (sliderAvatarScaleY) post.avatarScaleY = parseInt(sliderAvatarScaleY.value);
         if (sliderBgSensitivity) post.bgSensitivity = parseInt(sliderBgSensitivity.value);
         if (sliderAvatarX) post.avatarOffsetX = parseInt(sliderAvatarX.value);
         if (sliderAvatarY) post.avatarOffsetY = parseInt(sliderAvatarY.value);
@@ -2593,6 +2622,8 @@ function renderActiveDrafts() {
             avatarPos: selectAvatarPos ? selectAvatarPos.value : (post.avatarPos || 'auto'),
             avatarLayer: post.avatarLayer || 'front',
             avatarSize: sliderAvatarSize ? parseInt(sliderAvatarSize.value) : 340,
+            avatarScaleX: sliderAvatarScaleX ? parseInt(sliderAvatarScaleX.value) : 100,
+            avatarScaleY: sliderAvatarScaleY ? parseInt(sliderAvatarScaleY.value) : 100,
             avatarOffsetX: sliderAvatarX ? parseInt(sliderAvatarX.value) : 0,
             avatarOffsetY: sliderAvatarY ? parseInt(sliderAvatarY.value) : 0,
             avatarRotation: sliderAvatarRot ? parseInt(sliderAvatarRot.value) : 0,
@@ -2608,55 +2639,114 @@ function renderActiveDrafts() {
         }
       };
 
+      // Quick Proportions Presets buttons
+      const btnPropNatural = cardEl.querySelector(`#btn-prop-natural-${post.id}`);
+      if (btnPropNatural) {
+        btnPropNatural.addEventListener('click', () => {
+          if (sliderAvatarScaleX) sliderAvatarScaleX.value = 100;
+          if (sliderAvatarScaleY) sliderAvatarScaleY.value = 100;
+          if (labelAvatarScaleX) labelAvatarScaleX.textContent = '100%';
+          if (labelAvatarScaleY) labelAvatarScaleY.textContent = '100%';
+          showToast('👤 Proportions set to 100% natural lens!', 'info');
+          triggerRedrawAndSave(false);
+        });
+      }
+      const btnPropSlim = cardEl.querySelector(`#btn-prop-slim-${post.id}`);
+      if (btnPropSlim) {
+        btnPropSlim.addEventListener('click', () => {
+          if (sliderAvatarScaleX) sliderAvatarScaleX.value = 92;
+          if (sliderAvatarScaleY) sliderAvatarScaleY.value = 100;
+          if (labelAvatarScaleX) labelAvatarScaleX.textContent = '92%';
+          if (labelAvatarScaleY) labelAvatarScaleY.textContent = '100%';
+          showToast('✨ Applied 92% slim fit!', 'success');
+          triggerRedrawAndSave(false);
+        });
+      }
+      const btnPropWide = cardEl.querySelector(`#btn-prop-wide-${post.id}`);
+      if (btnPropWide) {
+        btnPropWide.addEventListener('click', () => {
+          if (sliderAvatarScaleX) sliderAvatarScaleX.value = 108;
+          if (sliderAvatarScaleY) sliderAvatarScaleY.value = 100;
+          if (labelAvatarScaleX) labelAvatarScaleX.textContent = '108%';
+          if (labelAvatarScaleY) labelAvatarScaleY.textContent = '100%';
+          showToast('🛡️ Applied 108% broad fit!', 'info');
+          triggerRedrawAndSave(false);
+        });
+      }
+      const btnPropReset = cardEl.querySelector(`#btn-prop-reset-${post.id}`);
+      if (btnPropReset) {
+        btnPropReset.addEventListener('click', () => {
+          if (sliderAvatarSize) sliderAvatarSize.value = 340;
+          if (sliderAvatarScaleX) sliderAvatarScaleX.value = 100;
+          if (sliderAvatarScaleY) sliderAvatarScaleY.value = 100;
+          if (sliderAvatarX) sliderAvatarX.value = 0;
+          if (sliderAvatarY) sliderAvatarY.value = 0;
+          if (sliderAvatarRot) sliderAvatarRot.value = 0;
+          if (labelAvatarSize) labelAvatarSize.textContent = '340px';
+          if (labelAvatarScaleX) labelAvatarScaleX.textContent = '100%';
+          if (labelAvatarScaleY) labelAvatarScaleY.textContent = '100%';
+          if (labelAvatarX) labelAvatarX.textContent = '0px';
+          if (labelAvatarY) labelAvatarY.textContent = '0px';
+          if (labelAvatarRot) labelAvatarRot.textContent = '0°';
+          showToast('🔄 Avatar sizing & position reset to default!', 'info');
+          triggerRedrawAndSave(false);
+        });
+      }
+
+      // Event Listeners for Select Inputs
       layoutSelect.addEventListener('change', () => triggerRedrawAndSave(false));
-      
       paletteSelect.addEventListener('change', () => {
-        const val = paletteSelect.value;
-        if (val !== 'Custom') {
-          const matched = PALETTES.find(p => p.name === val) || PALETTES[0];
-          
-          // Update pickers
-          colorText.value = matched.textColor || (matched.isLight ? '#18181b' : '#ffffff');
-          colorPrimary.value = matched.primary;
-          colorSecondary.value = matched.secondary || '#cbd5e1';
-          colorBgStart.value = matched.gradStart;
-          colorBgEnd.value = matched.gradEnd;
-          
-          // Update labels
-          cardEl.querySelector(`#color-text-${post.id}`).closest('.color-picker-wrapper').querySelector('.color-hex-label').textContent = colorText.value;
-          cardEl.querySelector(`#color-primary-${post.id}`).closest('.color-picker-wrapper').querySelector('.color-hex-label').textContent = colorPrimary.value;
-          cardEl.querySelector(`#color-secondary-${post.id}`).closest('.color-picker-wrapper').querySelector('.color-hex-label').textContent = colorSecondary.value;
-          cardEl.querySelector(`#color-bg-start-${post.id}`).closest('.color-picker-wrapper').querySelector('.color-hex-label').textContent = colorBgStart.value;
-          cardEl.querySelector(`#color-bg-end-${post.id}`).closest('.color-picker-wrapper').querySelector('.color-hex-label').textContent = colorBgEnd.value;
+        if (paletteSelect.value === 'Custom') {
+          customColorsContainer.classList.remove('hidden');
+        } else {
+          customColorsContainer.classList.add('hidden');
         }
         triggerRedrawAndSave(false);
       });
-
       avatarSelect.addEventListener('change', () => triggerRedrawAndSave(false));
-      
+
+      // Event Listeners for Text Inputs (debounced for smoothness)
+      headlineInput.addEventListener('input', () => triggerRedrawAndSave(true));
+      headlineInput.addEventListener('change', () => triggerRedrawAndSave(false));
+      subtextInput.addEventListener('input', () => triggerRedrawAndSave(true));
+      subtextInput.addEventListener('change', () => triggerRedrawAndSave(false));
       badgeInput.addEventListener('input', () => triggerRedrawAndSave(true));
       badgeInput.addEventListener('change', () => triggerRedrawAndSave(false));
-      
       ctaInput.addEventListener('input', () => triggerRedrawAndSave(true));
       ctaInput.addEventListener('change', () => triggerRedrawAndSave(false));
 
-      headlineInput.addEventListener('input', () => triggerRedrawAndSave(true));
-      headlineInput.addEventListener('change', () => triggerRedrawAndSave(false));
-      
-      subtextInput.addEventListener('input', () => triggerRedrawAndSave(true));
-      subtextInput.addEventListener('change', () => triggerRedrawAndSave(false));
+      // Custom Colors Pickers
+      colorText.addEventListener('input', () => triggerRedrawAndSave(true));
+      colorText.addEventListener('change', () => triggerRedrawAndSave(false));
+      colorPrimary.addEventListener('input', () => triggerRedrawAndSave(true));
+      colorPrimary.addEventListener('change', () => triggerRedrawAndSave(false));
+      colorSecondary.addEventListener('input', () => triggerRedrawAndSave(true));
+      colorSecondary.addEventListener('change', () => triggerRedrawAndSave(false));
+      colorBgStart.addEventListener('input', () => triggerRedrawAndSave(true));
+      colorBgStart.addEventListener('change', () => triggerRedrawAndSave(false));
+      colorBgEnd.addEventListener('input', () => triggerRedrawAndSave(true));
+      colorBgEnd.addEventListener('change', () => triggerRedrawAndSave(false));
 
-      // Avatar customizer sliders & dropdowns listeners
+      // Sliders & Toggles
+      sliderHeadlineSize.addEventListener('input', () => {
+        labelHeadlineSize.textContent = `${sliderHeadlineSize.value}px`;
+        triggerRedrawAndSave(true);
+      });
+      sliderHeadlineSize.addEventListener('change', () => triggerRedrawAndSave(false));
+
+      sliderSubtextSize.addEventListener('input', () => {
+        const lbl = cardEl.querySelector(`#val-subtext-size-${post.id}`);
+        if (lbl) lbl.textContent = `${sliderSubtextSize.value}px`;
+        triggerRedrawAndSave(true);
+      });
+      sliderSubtextSize.addEventListener('change', () => triggerRedrawAndSave(false));
+
       if (checkOverlayAvatar) {
         checkOverlayAvatar.addEventListener('change', () => triggerRedrawAndSave(false));
       }
       if (checkBgRemove) {
-        checkBgRemove.addEventListener('change', (e) => {
-          if (e.target.checked) {
-            showToast('✨ Automatic background removal applied to photo cutout!', 'success');
-          } else {
-            showToast('Restored default avatar photo frame.', 'info');
-          }
+        checkBgRemove.addEventListener('change', () => {
+          showToast(checkBgRemove.checked ? '✂️ Background removal activated' : 'Background removal turned off', 'info');
           triggerRedrawAndSave(false);
         });
       }
@@ -2702,6 +2792,20 @@ function renderActiveDrafts() {
           triggerRedrawAndSave(true);
         });
         sliderAvatarSize.addEventListener('change', () => triggerRedrawAndSave(false));
+      }
+      if (sliderAvatarScaleX) {
+        sliderAvatarScaleX.addEventListener('input', () => {
+          if (labelAvatarScaleX) labelAvatarScaleX.textContent = `${sliderAvatarScaleX.value}%`;
+          triggerRedrawAndSave(true);
+        });
+        sliderAvatarScaleX.addEventListener('change', () => triggerRedrawAndSave(false));
+      }
+      if (sliderAvatarScaleY) {
+        sliderAvatarScaleY.addEventListener('input', () => {
+          if (labelAvatarScaleY) labelAvatarScaleY.textContent = `${sliderAvatarScaleY.value}%`;
+          triggerRedrawAndSave(true);
+        });
+        sliderAvatarScaleY.addEventListener('change', () => triggerRedrawAndSave(false));
       }
       if (sliderAvatarX) {
         sliderAvatarX.addEventListener('input', () => {
@@ -3646,8 +3750,12 @@ function getAvatarBoundingBox(canvas, post, w = 1080, h = 1080) {
   if (canvas && canvas._avatarBBox) {
     return canvas._avatarBBox;
   }
-  const avW = post.avatarSize || 340;
-  const avH = Math.round(avW * 1.38);
+  const baseSize = post.avatarSize || 340;
+  const scaleX = (post.avatarScaleX !== undefined ? post.avatarScaleX : 100) / 100;
+  const scaleY = (post.avatarScaleY !== undefined ? post.avatarScaleY : 100) / 100;
+
+  const avW = Math.round(baseSize * scaleX);
+  const avH = Math.round(baseSize * 1.32 * scaleY);
   const pos = post.avatarPos || 'bottom-right';
 
   let baseAvX = w - avW - 40;
@@ -3707,7 +3815,7 @@ function getAvatarBoundingBox(canvas, post, w = 1080, h = 1080) {
   return { x: avX, y: avY, w: avW, h: avH, cx: avX + avW / 2, cy: avY + avH / 2, r: avW / 2 };
 }
 
-// Draw interactive bounding box & drag handles around avatar photo when hovering/dragging
+// Draw interactive bounding box & multi-directional drag handles around avatar photo
 function drawInteractiveAvatarOverlay(canvas, post) {
   if (post.overlayAvatar === false) return;
   const ctx = canvas.getContext('2d');
@@ -3725,54 +3833,93 @@ function drawInteractiveAvatarOverlay(canvas, post) {
 
   // Draw dashed neon border outline around avatar photo
   ctx.strokeStyle = '#38bdf8';
-  ctx.lineWidth = 4;
-  ctx.setLineDash([12, 8]);
-  ctx.strokeRect(bbox.x - 6, bbox.y - 6, bbox.w + 12, bbox.h + 12);
+  ctx.lineWidth = 3;
+  ctx.setLineDash([10, 6]);
+  ctx.strokeRect(bbox.x - 4, bbox.y - 4, bbox.w + 8, bbox.h + 8);
   ctx.setLineDash([]);
 
-  // Draw corner resize handle (bottom right)
-  const handleSize = 28;
+  // 1. Draw Corner Resize Handles (Proportional Zoom)
+  const handleRadius = 12;
+  const corners = [
+    { x: bbox.x + bbox.w + 4, y: bbox.y + bbox.h + 4 }, // Bottom Right
+    { x: bbox.x - 4, y: bbox.y - 4 },                   // Top Left
+    { x: bbox.x + bbox.w + 4, y: bbox.y - 4 },          // Top Right
+    { x: bbox.x - 4, y: bbox.y + bbox.h + 4 }           // Bottom Left
+  ];
+
   ctx.fillStyle = '#38bdf8';
   ctx.strokeStyle = '#ffffff';
-  ctx.lineWidth = 3;
+  ctx.lineWidth = 2.5;
 
+  corners.forEach(c => {
+    ctx.beginPath();
+    ctx.arc(c.x, c.y, handleRadius, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+  });
+
+  // 2. Draw Sideways Width Handles (Left & Right - ↔️)
+  const sideHandleW = 10;
+  const sideHandleH = 34;
+
+  // Right Side Handle
+  ctx.fillStyle = '#60a5fa';
   ctx.beginPath();
-  ctx.arc(bbox.x + bbox.w + 6, bbox.y + bbox.h + 6, handleSize / 2, 0, Math.PI * 2);
+  ctx.roundRect(bbox.x + bbox.w + 2, bbox.y + bbox.h / 2 - sideHandleH / 2, sideHandleW, sideHandleH, 5);
   ctx.fill();
   ctx.stroke();
 
-  // Draw top-left handle
+  // Left Side Handle
   ctx.beginPath();
-  ctx.arc(bbox.x - 6, bbox.y - 6, handleSize / 3, 0, Math.PI * 2);
+  ctx.roundRect(bbox.x - 2 - sideHandleW, bbox.y + bbox.h / 2 - sideHandleH / 2, sideHandleW, sideHandleH, 5);
+  ctx.fill();
+  ctx.stroke();
+
+  // 3. Draw Vertical Height Handles (Top & Bottom - ↕️)
+  const vertHandleW = 34;
+  const vertHandleH = 10;
+
+  // Bottom Handle
+  ctx.fillStyle = '#a7f3d0';
+  ctx.beginPath();
+  ctx.roundRect(bbox.x + bbox.w / 2 - vertHandleW / 2, bbox.y + bbox.h + 2, vertHandleW, vertHandleH, 5);
+  ctx.fill();
+  ctx.stroke();
+
+  // Top Handle
+  ctx.beginPath();
+  ctx.roundRect(bbox.x + bbox.w / 2 - vertHandleW / 2, bbox.y - 2 - vertHandleH, vertHandleW, vertHandleH, 5);
   ctx.fill();
   ctx.stroke();
 
   // Drag Helper Label Badge
-  ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
+  ctx.fillStyle = 'rgba(15, 23, 42, 0.92)';
   ctx.beginPath();
-  ctx.roundRect(bbox.x, Math.max(10, bbox.y - 42), bbox.w, 34, 8);
+  ctx.roundRect(bbox.x, Math.max(10, bbox.y - 44), Math.max(bbox.w, 290), 34, 8);
   ctx.fill();
   ctx.strokeStyle = '#38bdf8';
   ctx.lineWidth = 1.5;
   ctx.stroke();
 
   ctx.fillStyle = '#38bdf8';
-  ctx.font = 'bold 15px Inter, sans-serif';
+  ctx.font = 'bold 14px Inter, sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText('✋ Click & Drag | Scroll Wheel to Resize', bbox.x + bbox.w / 2, Math.max(32, bbox.y - 20));
+  ctx.fillText('✋ Drag: Move | ↔️ Sides: Width | ⚪ Corner: Scale', bbox.x + Math.max(bbox.w, 290) / 2, Math.max(32, bbox.y - 22));
 
   ctx.restore();
 }
 
-// Attach interactive mouse drag, drop & wheel resize listeners directly to canvas element
+// Attach interactive mouse drag, drop & multi-handle resize listeners directly to canvas element
 function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
   let isDragging = false;
-  let isResizing = false;
+  let resizeMode = null; // 'corner-br', 'corner-tl', 'width-right', 'width-left', 'height-bottom', 'height-top'
   let startMouseX = 0;
   let startMouseY = 0;
   let initOffsetX = 0;
   let initOffsetY = 0;
   let initSize = 340;
+  let initScaleX = 100;
+  let initScaleY = 100;
 
   const sliderX = cardEl.querySelector(`#slider-avatar-x-${post.id}`);
   const labelX = cardEl.querySelector(`#val-avatar-x-${post.id}`);
@@ -3780,6 +3927,10 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
   const labelY = cardEl.querySelector(`#val-avatar-y-${post.id}`);
   const sliderSize = cardEl.querySelector(`#slider-avatar-size-${post.id}`);
   const labelSize = cardEl.querySelector(`#val-avatar-size-${post.id}`);
+  const sliderScaleX = cardEl.querySelector(`#slider-avatar-scalex-${post.id}`);
+  const labelScaleX = cardEl.querySelector(`#val-avatar-scalex-${post.id}`);
+  const sliderScaleY = cardEl.querySelector(`#slider-avatar-scaley-${post.id}`);
+  const labelScaleY = cardEl.querySelector(`#val-avatar-scaley-${post.id}`);
 
   const getHeadlineVal = () => {
     const el = cardEl.querySelector(`#input-headline-${post.id}`);
@@ -3800,21 +3951,34 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
     };
   };
 
+  const getHandleUnderMouse = (mx, my) => {
+    const bbox = getAvatarBoundingBox(canvas, post, canvas.width, canvas.height);
+    
+    // Check Corner Handles
+    if (Math.hypot(mx - (bbox.x + bbox.w), my - (bbox.y + bbox.h)) < 36) return 'corner-br';
+    if (Math.hypot(mx - bbox.x, my - bbox.y) < 36) return 'corner-tl';
+    if (Math.hypot(mx - (bbox.x + bbox.w), my - bbox.y) < 36) return 'corner-tr';
+    if (Math.hypot(mx - bbox.x, my - (bbox.y + bbox.h)) < 36) return 'corner-bl';
+
+    // Check Side Width Handles (↔️)
+    if (Math.hypot(mx - (bbox.x + bbox.w), my - (bbox.y + bbox.h / 2)) < 32) return 'width-right';
+    if (Math.hypot(mx - bbox.x, my - (bbox.y + bbox.h / 2)) < 32) return 'width-left';
+
+    // Check Vertical Height Handles (↕️)
+    if (Math.hypot(mx - (bbox.x + bbox.w / 2), my - (bbox.y + bbox.h)) < 32) return 'height-bottom';
+    if (Math.hypot(mx - (bbox.x + bbox.w / 2), my - bbox.y) < 32) return 'height-top';
+
+    return null;
+  };
+
   const isMouseOverAvatar = (mx, my) => {
     const bbox = getAvatarBoundingBox(canvas, post, canvas.width, canvas.height);
     return (
-      mx >= bbox.x - 30 &&
-      mx <= bbox.x + bbox.w + 30 &&
-      my >= bbox.y - 30 &&
-      my <= bbox.y + bbox.h + 30
+      mx >= bbox.x - 20 &&
+      mx <= bbox.x + bbox.w + 20 &&
+      my >= bbox.y - 20 &&
+      my <= bbox.y + bbox.h + 20
     );
-  };
-
-  const isMouseOverResizeHandle = (mx, my) => {
-    const bbox = getAvatarBoundingBox(canvas, post, canvas.width, canvas.height);
-    const handleX = bbox.x + bbox.w;
-    const handleY = bbox.y + bbox.h;
-    return Math.hypot(mx - handleX, my - handleY) < 50;
   };
 
   let animFrameId = null;
@@ -3832,9 +3996,16 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
   const onPointerMove = (clientX, clientY) => {
     const { x, y } = getCanvasCoords(clientX, clientY);
 
-    if (!isDragging && !isResizing) {
-      if (isMouseOverResizeHandle(x, y)) {
+    if (!isDragging && !resizeMode) {
+      const handle = getHandleUnderMouse(x, y);
+      if (handle === 'corner-br' || handle === 'corner-tl') {
         canvas.style.cursor = 'nwse-resize';
+      } else if (handle === 'corner-tr' || handle === 'corner-bl') {
+        canvas.style.cursor = 'nesw-resize';
+      } else if (handle === 'width-right' || handle === 'width-left') {
+        canvas.style.cursor = 'ew-resize';
+      } else if (handle === 'height-bottom' || handle === 'height-top') {
+        canvas.style.cursor = 'ns-resize';
       } else if (isMouseOverAvatar(x, y)) {
         canvas.style.cursor = 'grab';
       } else {
@@ -3857,13 +4028,45 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
       if (labelY) labelY.textContent = `${post.avatarOffsetY}px`;
 
       scheduleRedraw(true);
-    } else if (isResizing) {
-      canvas.style.cursor = 'nwse-resize';
+    } else if (resizeMode) {
       const dx = Math.round(x - startMouseX);
-      post.avatarSize = Math.max(100, Math.min(800, initSize + dx));
+      const dy = Math.round(y - startMouseY);
 
-      if (sliderSize) sliderSize.value = post.avatarSize;
-      if (labelSize) labelSize.textContent = `${post.avatarSize}px`;
+      if (resizeMode === 'corner-br' || resizeMode === 'corner-tr') {
+        canvas.style.cursor = 'nwse-resize';
+        post.avatarSize = Math.max(100, Math.min(950, initSize + dx));
+        if (sliderSize) sliderSize.value = post.avatarSize;
+        if (labelSize) labelSize.textContent = `${post.avatarSize}px`;
+      } else if (resizeMode === 'corner-tl' || resizeMode === 'corner-bl') {
+        canvas.style.cursor = 'nwse-resize';
+        post.avatarSize = Math.max(100, Math.min(950, initSize - dx));
+        if (sliderSize) sliderSize.value = post.avatarSize;
+        if (labelSize) labelSize.textContent = `${post.avatarSize}px`;
+      } else if (resizeMode === 'width-right') {
+        canvas.style.cursor = 'ew-resize';
+        const percentDelta = Math.round((dx / 3) * 2);
+        post.avatarScaleX = Math.max(50, Math.min(160, initScaleX + percentDelta));
+        if (sliderScaleX) sliderScaleX.value = post.avatarScaleX;
+        if (labelScaleX) labelScaleX.textContent = `${post.avatarScaleX}%`;
+      } else if (resizeMode === 'width-left') {
+        canvas.style.cursor = 'ew-resize';
+        const percentDelta = Math.round((-dx / 3) * 2);
+        post.avatarScaleX = Math.max(50, Math.min(160, initScaleX + percentDelta));
+        if (sliderScaleX) sliderScaleX.value = post.avatarScaleX;
+        if (labelScaleX) labelScaleX.textContent = `${post.avatarScaleX}%`;
+      } else if (resizeMode === 'height-bottom') {
+        canvas.style.cursor = 'ns-resize';
+        const percentDelta = Math.round((dy / 3) * 2);
+        post.avatarScaleY = Math.max(50, Math.min(160, initScaleY + percentDelta));
+        if (sliderScaleY) sliderScaleY.value = post.avatarScaleY;
+        if (labelScaleY) labelScaleY.textContent = `${post.avatarScaleY}%`;
+      } else if (resizeMode === 'height-top') {
+        canvas.style.cursor = 'ns-resize';
+        const percentDelta = Math.round((-dy / 3) * 2);
+        post.avatarScaleY = Math.max(50, Math.min(160, initScaleY + percentDelta));
+        if (sliderScaleY) sliderScaleY.value = post.avatarScaleY;
+        if (labelScaleY) labelScaleY.textContent = `${post.avatarScaleY}%`;
+      }
 
       scheduleRedraw(true);
     }
@@ -3871,12 +4074,15 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
 
   const onPointerDown = (clientX, clientY, e) => {
     const { x, y } = getCanvasCoords(clientX, clientY);
+    const handle = getHandleUnderMouse(x, y);
 
-    if (isMouseOverResizeHandle(x, y)) {
-      isResizing = true;
+    if (handle) {
+      resizeMode = handle;
       startMouseX = x;
       startMouseY = y;
       initSize = post.avatarSize || 340;
+      initScaleX = post.avatarScaleX !== undefined ? post.avatarScaleX : 100;
+      initScaleY = post.avatarScaleY !== undefined ? post.avatarScaleY : 100;
       if (e) e.preventDefault();
     } else if (isMouseOverAvatar(x, y)) {
       isDragging = true;
@@ -3890,19 +4096,21 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
   };
 
   const onPointerUp = () => {
-    if (isDragging || isResizing) {
+    if (isDragging || resizeMode) {
       isDragging = false;
-      isResizing = false;
+      resizeMode = null;
       canvas.style.cursor = 'grab';
 
       saveDesignEdit(activeDate, post.id, {
         avatarOffsetX: post.avatarOffsetX || 0,
         avatarOffsetY: post.avatarOffsetY || 0,
         avatarSize: post.avatarSize || 340,
+        avatarScaleX: post.avatarScaleX !== undefined ? post.avatarScaleX : 100,
+        avatarScaleY: post.avatarScaleY !== undefined ? post.avatarScaleY : 100,
         avatarRotation: post.avatarRotation || 0,
         avatarPos: post.avatarPos || 'auto'
       });
-      showToast('🎯 Photo position updated via mouse!', 'info');
+      showToast('🎯 Photo position & proportions updated!', 'info');
       // Redraw clean canvas without overlay
       scheduleRedraw(false);
     }
@@ -3923,7 +4131,7 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
   canvas.addEventListener('touchmove', (e) => {
     if (e.touches && e.touches[0]) {
       onPointerMove(e.touches[0].clientX, e.touches[0].clientY);
-      if (isDragging || isResizing) e.preventDefault();
+      if (isDragging || resizeMode) e.preventDefault();
     }
   }, { passive: false });
 
@@ -3936,7 +4144,7 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
       e.preventDefault();
       const delta = e.deltaY < 0 ? 15 : -15;
       const curSize = post.avatarSize || 340;
-      post.avatarSize = Math.max(100, Math.min(800, curSize + delta));
+      post.avatarSize = Math.max(100, Math.min(950, curSize + delta));
 
       if (sliderSize) sliderSize.value = post.avatarSize;
       if (labelSize) labelSize.textContent = `${post.avatarSize}px`;
@@ -3985,8 +4193,19 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
         if (activeAvImg && (activeAvImg.complete || activeAvImg.naturalWidth > 0)) {
           ctx.save();
 
-          const avW = (customLayout && customLayout.avatarSize) ? customLayout.avatarSize : 340;
-          const avH = Math.round(avW * 1.38);
+          const baseSize = (customLayout && customLayout.avatarSize) ? customLayout.avatarSize : 340;
+          const scaleX = (customLayout && customLayout.avatarScaleX !== undefined ? customLayout.avatarScaleX : 100) / 100;
+          const scaleY = (customLayout && customLayout.avatarScaleY !== undefined ? customLayout.avatarScaleY : 100) / 100;
+
+          let naturalRatio = 1.32;
+          if (activeAvImg && (activeAvImg.naturalWidth || activeAvImg.width) && (activeAvImg.naturalHeight || activeAvImg.height)) {
+            const nw = activeAvImg.naturalWidth || activeAvImg.width;
+            const nh = activeAvImg.naturalHeight || activeAvImg.height;
+            if (nw > 0 && nh > 0) naturalRatio = nh / nw;
+          }
+
+          const avW = Math.round(baseSize * scaleX);
+          const avH = Math.round(baseSize * naturalRatio * scaleY);
           const pos = (customLayout && customLayout.avatarPos) ? customLayout.avatarPos : 'bottom-right';
           let baseAvX = w - avW - 40;
           let baseAvY = h - avH - 20;
@@ -4009,28 +4228,26 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           const offsetY = (customLayout && customLayout.avatarOffsetY) ? customLayout.avatarOffsetY : 0;
           const rotation = (customLayout && customLayout.avatarRotation) ? customLayout.avatarRotation : 0;
 
-          const avX = baseAvX + offsetX;
-          const avY = baseAvY + offsetY;
+          const avX = baseAvX + offsetX + avW / 2;
+          const avY = baseAvY + offsetY + avH / 2;
 
           // Store exact computed bounding box on canvas for custom graphic
           canvas._avatarBBox = {
-            x: avX,
-            y: avY,
+            x: avX - avW / 2,
+            y: avY - avH / 2,
             w: avW,
             h: avH,
-            cx: avX + avW / 2,
-            cy: avY + avH / 2,
+            cx: avX,
+            cy: avY,
             r: avW / 2
           };
 
           const sensitivity = (customLayout && customLayout.bgSensitivity) ? customLayout.bgSensitivity : 55;
 
           if (rotation !== 0) {
-            const cx = avX + avW / 2;
-            const cy = avY + avH / 2;
-            ctx.translate(cx, cy);
+            ctx.translate(avX, avY);
             ctx.rotate((rotation * Math.PI) / 180);
-            ctx.translate(-cx, -cy);
+            ctx.translate(-avX, -avY);
           }
 
           ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
@@ -4041,13 +4258,13 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
           if (removeAvatarBg) {
             // Cutout transparent avatar without background
             const cutoutCanvas = createCutoutAvatarCanvas(activeAvImg, styleIdx);
-            ctx.drawImage(cutoutCanvas, avX, avY, avW, avH);
+            ctx.drawImage(cutoutCanvas, avX - avW / 2, avY - avH / 2, avW, avH);
           } else {
             // Draw clean rounded avatar frame
             ctx.beginPath();
-            ctx.roundRect(avX, avY, avW, avH, 20);
+            ctx.roundRect(avX - avW / 2, avY - avH / 2, avW, avH, 20);
             ctx.clip();
-            ctx.drawImage(activeAvImg, avX, avY, avW, avH);
+            ctx.drawImage(activeAvImg, avX - avW / 2, avY - avH / 2, avW, avH);
           }
           ctx.restore();
         }
@@ -4071,64 +4288,42 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
     styleIdx = customLayout.avatarStyleIdx;
   }
   
-  const paletteIdx = (dayIdx + postId - 1) % PALETTES.length;
-  const palette = PALETTES[paletteIdx];
-  
-  const filters = [
-    'contrast(1.1) brightness(1.02) saturate(1.1)', // Clean Natural
-    'contrast(1.15) brightness(1.05) saturate(1.15)', // Vibrant
-    'brightness(1.02) contrast(1.08) saturate(1.05)', // Soft Warm
-    'hue-rotate(350deg) saturate(95%) contrast(1.1) brightness(1.02)', // Soft Rose
-    'contrast(1.1) brightness(1.02) saturate(1.08)', // Neutral Tech
-    'contrast(1.1) brightness(1.02) saturate(1.1)', // Clean Natural
-    'contrast(1.15) brightness(1.05) saturate(1.15)', // Vibrant
-    'brightness(1.02) contrast(1.08) saturate(1.05)', // Soft Warm
-    'contrast(1.1) brightness(1.02) saturate(1.1)', // Clean Natural
-    'contrast(1.15) brightness(1.05) saturate(1.15)', // Vibrant
-    'brightness(1.02) contrast(1.08) saturate(1.05)', // Soft Warm
-    'hue-rotate(350deg) saturate(95%) contrast(1.1) brightness(1.02)', // Soft Rose
-    'contrast(1.1) brightness(1.02) saturate(1.08)', // Neutral Tech
-    'contrast(1.1) brightness(1.02) saturate(1.1)', // Clean Natural
-    'contrast(1.15) brightness(1.05) saturate(1.15)', // Vibrant
-    'brightness(1.02) contrast(1.08) saturate(1.05)', // Soft Warm
-    'hue-rotate(350deg) saturate(95%) contrast(1.1) brightness(1.02)', // Soft Rose
-    'contrast(1.1) brightness(1.02) saturate(1.08)' // Neutral Tech
-  ];
-  const filter = filters[styleIdx] || 'none';
-  
-  let activeAvImg = avatarImg;
-  if (optionAvatars[styleIdx] && (optionAvatars[styleIdx].complete || optionAvatarsLoaded[styleIdx])) {
-    activeAvImg = optionAvatars[styleIdx];
-  } else if (state.settings.rotateOutfits !== false && optionAvatarsLoaded[styleIdx % 18]) {
-    activeAvImg = optionAvatars[styleIdx % 18];
+  // Choose corresponding avatar pose matching today's post style or user preference
+  let dynamicAvImg = avatarImg;
+  if (styleIdx >= 0 && optionAvatars[styleIdx] && (optionAvatars[styleIdx].complete || optionAvatarsLoaded[styleIdx])) {
+    dynamicAvImg = optionAvatars[styleIdx];
   }
-  
-  // Dynamic design layout mapping
+
+  // Color Palette Resolution
+  let palette = PALETTES[layoutIdx % PALETTES.length];
+  let colorPaletteName = (customLayout && customLayout.colorPalette) ? customLayout.colorPalette : (palette.name);
+  if (colorPaletteName.toLowerCase() === 'custom' && customLayout && customLayout.customColors) {
+    palette = {
+      name: 'Custom',
+      textColor: customLayout.customColors.textColor || '#ffffff',
+      primary: customLayout.customColors.primary || '#38bdf8',
+      secondary: customLayout.customColors.secondary || '#cbd5e1',
+      gradStart: customLayout.customColors.gradStart || '#0f172a',
+      gradEnd: customLayout.customColors.gradEnd || '#020617',
+      badgeBg: 'rgba(255, 255, 255, 0.1)',
+      rayColor: (customLayout.customColors.primary || '#38bdf8') + '15',
+      textGlow: (customLayout.customColors.primary || '#38bdf8') + '30',
+      isLight: false
+    };
+  } else {
+    const matchedPalette = PALETTES.find(p => p.name.toLowerCase() === colorPaletteName.toLowerCase()) || 
+                          PALETTES.find(p => colorPaletteName.toLowerCase().includes(p.name.toLowerCase())) ||
+                          PALETTES[layoutIdx % PALETTES.length];
+    palette = matchedPalette;
+  }
+
   let activeLayout = null;
+  const resolvedBadge = (customLayout && (customLayout.badgeText || (customLayout.postContent && customLayout.postContent.badgeText))) || (category === 'marketing' ? 'MARKETING TREND' : 'AI TECH TREND');
+  const resolvedCta = (customLayout && (customLayout.ctaText || (customLayout.postContent && customLayout.postContent.ctaText))) || 'READ FULL POST';
+
   if (customLayout) {
-    if (customLayout.layoutFamily || customLayout.colorPalette || customLayout.postContent) {
-      const colorPaletteName = customLayout.colorPalette || 'Electric Blue';
-      let matchedPalette;
-      if (colorPaletteName.toLowerCase() === 'custom') {
-        const cc = customLayout.customColors || {};
-        matchedPalette = {
-          name: 'Custom',
-          primary: cc.primary || '#3b82f6',
-          secondary: cc.secondary || '#60a5fa',
-          gradStart: cc.gradStart || '#0b1a3e',
-          gradEnd: cc.gradEnd || '#020617',
-          rayColor: 'rgba(255, 255, 255, 0.02)',
-          textGlow: (cc.primary || '#3b82f6') + '26',
-          badgeBg: cc.primary || '#1d4ed8',
-          isLight: false
-        };
-      } else {
-        matchedPalette = PALETTES.find(p => p.name.toLowerCase() === colorPaletteName.toLowerCase()) || 
-                         PALETTES.find(p => colorPaletteName.toLowerCase().includes(p.name.toLowerCase())) ||
-                         palette;
-      }
-      const resolvedBadge = (customLayout.postContent && (customLayout.postContent.badgeText || customLayout.postContent.badge)) || customLayout.badgeText || (category === 'marketing' ? 'MARKETING TREND' : 'AI TECH TREND');
-      const resolvedCta = (customLayout.postContent && (customLayout.postContent.ctaText || customLayout.postContent.cta)) || customLayout.ctaText || 'READ FULL POST';
+    if (customLayout.layoutFamily) {
+      const matchedPalette = palette;
       activeLayout = buildLayoutFromFamily(customLayout.layoutFamily || 'split-left', matchedPalette, headline, subtext, category, postId);
       if (activeLayout.text && activeLayout.text.badge) {
         activeLayout.text.badge.text = resolvedBadge.toUpperCase();
@@ -4253,21 +4448,20 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
 
         const av = Object.assign({}, activeLayout.avatar);
 
-        let styleIdx = (postId - 1) % 18;
-        if (customLayout && customLayout.avatarStyleIdx !== undefined) styleIdx = customLayout.avatarStyleIdx;
+        // Apply custom size scaling and natural aspect ratio
+        const baseSize = (customLayout && customLayout.avatarSize) ? customLayout.avatarSize : (av.w || 340);
+        const scaleX = (customLayout && customLayout.avatarScaleX !== undefined ? customLayout.avatarScaleX : 100) / 100;
+        const scaleY = (customLayout && customLayout.avatarScaleY !== undefined ? customLayout.avatarScaleY : 100) / 100;
 
-        let dynamicAvImg = avatarImg;
-        if (styleIdx >= 0 && optionAvatars[styleIdx] && (optionAvatars[styleIdx].complete || optionAvatarsLoaded[styleIdx])) {
-          dynamicAvImg = optionAvatars[styleIdx];
+        let naturalRatio = 1.32;
+        if (dynamicAvImg && (dynamicAvImg.naturalWidth || dynamicAvImg.width) && (dynamicAvImg.naturalHeight || dynamicAvImg.height)) {
+          const nw = dynamicAvImg.naturalWidth || dynamicAvImg.width;
+          const nh = dynamicAvImg.naturalHeight || dynamicAvImg.height;
+          if (nw > 0 && nh > 0) naturalRatio = nh / nw;
         }
 
-        // Apply custom size scaling if modified
-        if (customLayout && customLayout.avatarSize) {
-          const newW = customLayout.avatarSize;
-          const ratio = newW / (av.w || 340);
-          av.w = newW;
-          av.h = Math.round((av.h || 340) * ratio);
-        }
+        av.w = Math.round(baseSize * scaleX);
+        av.h = Math.round(baseSize * naturalRatio * scaleY);
 
         // Apply position anchor override if explicitly specified (not auto/template)
         if (customLayout && customLayout.avatarPos && customLayout.avatarPos !== 'auto') {
@@ -4341,7 +4535,7 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
 
         if (effectiveShape === 'popout-circle' || effectiveShape === 'circle') {
           // 3D Pop-out circle: body clipped in circle, head pops out over the top!
-          drawAvatarPopoutCircle(ctx, av.x, av.y, av.w / 2, dynamicAvImg, palette, av.filter, removeAvatarBg, styleIdx);
+          drawAvatarPopoutCircle(ctx, av.x, av.y, av.w / 2, dynamicAvImg, palette, av.filter, removeAvatarBg, styleIdx, scaleX, scaleY);
         } else if (effectiveShape === 'card' || effectiveShape === 'rect') {
           ctx.save();
           ctx.beginPath();
@@ -5527,17 +5721,18 @@ function drawAvatarForCard(ctx, x, y, w, h, filter, styleIdx, avatarImg, removeB
     
     let targetImg = avatarImg;
     if (removeBg) {
-      targetImg = createCutoutAvatarCanvas(avatarImg, 50);
+      targetImg = createCutoutAvatarCanvas(avatarImg, styleIdx);
     }
     
-    const imgW = targetImg.width || targetImg.naturalWidth || 400;
-    const imgH = targetImg.height || targetImg.naturalHeight || 400;
+    const imgW = targetImg.naturalWidth || targetImg.width || 400;
+    const imgH = targetImg.naturalHeight || targetImg.height || 400;
     
-    // Fill the card rectangle (x, y, w, h) cover-fit
+    // Proportional cover-fit centered on face & upper body
+    const srcRatio = imgW / imgH;
     const destRatio = w / h;
     let cropW, cropH;
     
-    if (destRatio > 1) {
+    if (destRatio > srcRatio) {
       cropW = imgW;
       cropH = imgW / destRatio;
     } else {
@@ -5545,8 +5740,9 @@ function drawAvatarForCard(ctx, x, y, w, h, filter, styleIdx, avatarImg, removeB
       cropW = imgH * destRatio;
     }
     
-    const cropX = (imgW - cropW) / 2;
-    const cropY = Math.max(0, (imgH - cropH) * 0.05);
+    const cropX = Math.max(0, (imgW - cropW) / 2);
+    // Align around upper torso/face (12% from top) so head is never cut off
+    const cropY = Math.max(0, Math.min(imgH - cropH, (imgH - cropH) * 0.12));
     
     ctx.drawImage(targetImg, cropX, cropY, cropW, cropH, x, y, w, h);
   } else {
@@ -5573,7 +5769,7 @@ function drawAvatarForCircle(ctx, cx, cy, r, filter, styleIdx, avatarImg) {
 }
 
 // 3D Avatar Circle Pop-Out: Body is clipped inside circle, while Head pops out above the top ring!
-function drawAvatarPopoutCircle(ctx, cx, cy, r, avatarImg, palette, filter, removeBg, styleIdx) {
+function drawAvatarPopoutCircle(ctx, cx, cy, r, avatarImg, palette, filter, removeBg, styleIdx, scaleX = 1, scaleY = 1) {
   ctx.save();
   
   // 1. Draw Circle Base Shape & Glow
@@ -5607,9 +5803,16 @@ function drawAvatarPopoutCircle(ctx, cx, cy, r, avatarImg, palette, filter, remo
   }
 
   if (activeImg && (activeImg.complete || activeImg.naturalWidth > 0)) {
-    const size = r * 2.38;
-    const imgX = cx - size / 2;
-    const imgY = cy - size / 2 - r * 0.18; // Lifted slightly so head pops out over circle rim
+    const nw = activeImg.naturalWidth || activeImg.width || 400;
+    const nh = activeImg.naturalHeight || activeImg.height || 400;
+    const imgAspect = nw / nh;
+
+    const baseDiameter = r * 2.38;
+    const sizeW = Math.round(baseDiameter * scaleX);
+    const sizeH = Math.round((baseDiameter / imgAspect) * scaleY);
+
+    const imgX = cx - sizeW / 2;
+    const imgY = cy - sizeH / 2 - r * 0.18; // Lifted slightly so head pops out over circle rim
 
     // 2. Pass 1: Draw bottom torso clipped inside circle
     ctx.save();
@@ -5617,20 +5820,20 @@ function drawAvatarPopoutCircle(ctx, cx, cy, r, avatarImg, palette, filter, remo
     ctx.arc(cx, cy, r - 2, 0, Math.PI * 2);
     ctx.clip();
     if (filter) ctx.filter = filter;
-    ctx.drawImage(activeImg, imgX, imgY, size, size);
+    ctx.drawImage(activeImg, imgX, imgY, sizeW, sizeH);
     ctx.restore();
 
     // 3. Pass 2: Draw the head and hair popping OUT above the top rim of the circle
     ctx.save();
     ctx.beginPath();
     // Clip to the upper area above the horizontal center
-    ctx.rect(cx - size, cy - size * 1.5, size * 2, size * 0.96);
+    ctx.rect(cx - sizeW, cy - sizeH * 1.5, sizeW * 2, sizeH * 0.96);
     ctx.clip();
     if (filter) ctx.filter = filter;
     ctx.shadowColor = 'rgba(0, 0, 0, 0.45)';
     ctx.shadowBlur = 20;
     ctx.shadowOffsetY = 10;
-    ctx.drawImage(activeImg, imgX, imgY, size, size);
+    ctx.drawImage(activeImg, imgX, imgY, sizeW, sizeH);
     ctx.restore();
   }
 
