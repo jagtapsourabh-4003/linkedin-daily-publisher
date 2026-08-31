@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-08-31",
+    "category": "marketing",
+    "posts": [
+      {
+        "id": 1,
+        "designArchetype": "Marketing Concept Explained",
+        "layoutFamily": "news-card",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Business Advisor",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Advisor in a Technology command center, Looking at camera, Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Concept Explained",
+          "hook": "Business growth is not an overnight push.",
+          "content": "Business growth is not an overnight push.\n\nThink of your business like a giant, 5,000-pound metal wheel (a Flywheel).\n\nWhen you first try to turn it:\n- Push 1: The wheel barely moves an inch. You are exhausted.\n- Push 2: It moves half an inch more.\n- Push 100: It completes its first full rotation!\n\nThen something magical happens. The heavy weight of the wheel starts working FOR you. With each push, it spins faster and faster under its own momentum.\n\nHow to build your marketing flywheel:\n1. Deliver amazing results for client #1.\n2. Ask for a quick testimonial or referral.\n3. Share that success story to attract client #2 and #3.\n\nEach small win feeds the next step in the loop.\n\nWhat is the single most important step in your business flywheel?",
+          "sourceArticle": "The Flywheel Effect by Jim Collins: How small, consistent actions compound into unstoppable momentum.",
+          "imageHeadline": "THE *FLYWHEEL EFFECT*",
+          "imageSubtext": "How small wins create unstoppable momentum.",
+          "badgeText": "GROWTH MODEL",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 2,
+        "designArchetype": "Marketing Framework Playbook",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Business Coach",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Coach in a Executive boardroom, Presentation shot, Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Stop fighting in crowded, bloody waters.",
+          "content": "Stop fighting in crowded, bloody waters.\n\nIn business strategy, there are two types of oceans:\n\n1. Red Oceans: Crowded markets where rivals fight ruthlessly for the exact same customers. Prices drop, profit margins shrink, and the water turns \"red\" with cutthroat competition.\n\n2. Blue Oceans: Untapped, wide-open markets where you create something unique and have zero direct competitors.\n\nHow Cirque du Soleil created a Blue Ocean:\nInstead of competing with traditional circuses (expensive animal acts, cheap kids' tickets), they combined theater, live music, and acrobatics for adults who happily pay premium prices.\n\n3 rules to find your Blue Ocean:\n1. Don't fight on price: Compete on a totally different experience.\n2. Eliminate what customers hate: Remove the friction everyone else tolerates.\n3. Combine two separate worlds: Mix your industry with another to create a fresh category.\n\nAre you swimming in a Red Ocean or building a Blue Ocean?",
+          "sourceArticle": "Blue Ocean Strategy: How to create uncontested market space and make the competition irrelevant.",
+          "imageHeadline": "*BLUE OCEAN* STRATEGY",
+          "imageSubtext": "Create new markets instead of fighting rivals.",
+          "badgeText": "STRATEGY MODEL",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 3,
+        "designArchetype": "World of Marketing Strategy",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Startup Founder",
+        "environment": "Luxury office",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Startup Founder in a Luxury office, Half-body portrait, Smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Why your website isn't making sales.",
+          "content": "Why your website isn't making sales.\n\nWhen a customer lands on your website, you have about 3 seconds to answer one question:\n\n\"How does this help ME?\"\n\nMost websites make the mistake of listing complicated features instead of explaining the real benefit in plain English.\n\nHere is a simple example:\n- Complicated: \"We provide high-speed automated cloud sync technology.\"\n- Simple & Clear: \"Never lose a file again. Access your work from anywhere in 1 click.\"\n\nAlways sell the result, not the tool.\n\nDoes your website pass the 3-second test?",
+          "sourceArticle": "The #1 mistake businesses make on their homepage: listing complex features instead of simple benefits.",
+          "imageHeadline": "FIX YOUR *WEBSITE*",
+          "imageSubtext": "The #1 mistake most businesses make.",
+          "badgeText": "CASE STUDY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 4,
+        "designArchetype": "AI Marketing Concept",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Podcast Host",
+        "environment": "Podcast studio",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Podcast Host in a Podcast studio, Sitting at desk, Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Turn 1 piece of content into 10 with AI.",
+          "content": "Turn 1 piece of content into 10 with AI.\n\nStop trying to write 5 brand new posts from scratch every week.\n\nInstead, create ONE great piece of content and let AI help you repurpose it:\n\n1. Step 1: Record a 3-minute voice note about a client win or business lesson.\n2. Step 2: Feed the transcript into AI and ask for 3 LinkedIn posts, 1 newsletter paragraph, and 5 short tips.\n3. Step 3: Edit each piece with your personal tone before publishing.\n\nCreate once, publish everywhere.\n\nHow many pieces of content do you create each week?",
+          "sourceArticle": "How to use AI to repurpose a single podcast, client story, or blog post into a full week of social posts.",
+          "imageHeadline": "CONTENT *MULTIPLIER*",
+          "imageSubtext": "Turn 1 post into 10 with AI.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 5,
+        "designArchetype": "AI Marketing Workflow",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Speaker in a Auditorium stage, Speaking on stage, Conference speaker outfit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Most people search Google the wrong way.",
+          "content": "Most people search Google the wrong way.\n\nInstead of clicking through 10 different website links, people now just ask AI tools like ChatGPT or Gemini to give them one quick, direct answer.\n\nIf you run a business or create content, here is what to do:\n\n1. Give direct answers: Put the important answers right at the top of your page.\n2. Answer real questions: What does your product cost? How does it help?\n3. Keep it simple: Write like you are explaining it to a smart friend.\n\nThink of it like being the friendly person everyone turns to for advice.\n\nHave you started using AI to search for things instead of Google? Let me know below!",
+          "sourceArticle": "How everyday buyers are using AI tools to find quick answers online instead of clicking 10 blue links.",
+          "imageHeadline": "AI SEARCH *IS HERE*",
+          "imageSubtext": "How customers find answers today.",
+          "badgeText": "AI MARKETING",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-08-30",
     "category": "marketing",
     "posts": [
