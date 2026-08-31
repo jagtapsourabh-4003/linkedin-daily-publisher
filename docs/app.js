@@ -3820,6 +3820,7 @@ function drawInteractiveAvatarOverlay(canvas, post) {
   if (post.overlayAvatar === false) return;
   const ctx = canvas.getContext('2d');
   const bbox = getAvatarBoundingBox(canvas, post, canvas.width, canvas.height);
+  canvas._showingOverlay = true;
 
   ctx.save();
   const rotation = post.avatarRotation || 0;
@@ -3831,15 +3832,30 @@ function drawInteractiveAvatarOverlay(canvas, post) {
     ctx.translate(-cx, -cy);
   }
 
-  // Draw dashed neon border outline around avatar photo
+  // 1. Draw glowing outer halo & dashed neon border outline around avatar photo
+  ctx.shadowColor = 'rgba(56, 189, 248, 0.6)';
+  ctx.shadowBlur = 16;
   ctx.strokeStyle = '#38bdf8';
-  ctx.lineWidth = 3;
-  ctx.setLineDash([10, 6]);
+  ctx.lineWidth = 4;
+  ctx.setLineDash([14, 8]);
   ctx.strokeRect(bbox.x - 4, bbox.y - 4, bbox.w + 8, bbox.h + 8);
   ctx.setLineDash([]);
+  ctx.shadowBlur = 0;
 
-  // 1. Draw Corner Resize Handles (Proportional Zoom)
-  const handleRadius = 12;
+  // Helper for handles with crisp shadows
+  const drawHandleGrip = (x, y, w, h, isVertical = false) => {
+    ctx.save();
+    ctx.fillStyle = '#ffffff';
+    if (isVertical) {
+      ctx.fillRect(x + w / 2 - 12, y + h / 2 - 2, 24, 4);
+    } else {
+      ctx.fillRect(x + w / 2 - 2, y + h / 2 - 12, 4, 24);
+    }
+    ctx.restore();
+  };
+
+  // 2. Draw Corner Resize Handles (Proportional Zoom) - 4 Corners
+  const handleRadius = 20;
   const corners = [
     { x: bbox.x + bbox.w + 4, y: bbox.y + bbox.h + 4 }, // Bottom Right
     { x: bbox.x - 4, y: bbox.y - 4 },                   // Top Left
@@ -3847,64 +3863,124 @@ function drawInteractiveAvatarOverlay(canvas, post) {
     { x: bbox.x - 4, y: bbox.y + bbox.h + 4 }           // Bottom Left
   ];
 
-  ctx.fillStyle = '#38bdf8';
-  ctx.strokeStyle = '#ffffff';
-  ctx.lineWidth = 2.5;
-
   corners.forEach(c => {
+    ctx.save();
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
+    ctx.shadowBlur = 12;
+    ctx.shadowOffsetY = 4;
+    ctx.fillStyle = '#38bdf8';
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 4;
     ctx.beginPath();
     ctx.arc(c.x, c.y, handleRadius, 0, Math.PI * 2);
     ctx.fill();
     ctx.stroke();
+
+    // Inner bright center dot
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.arc(c.x, c.y, 6, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
   });
 
-  // 2. Draw Sideways Width Handles (Left & Right - ↔️)
-  const sideHandleW = 10;
-  const sideHandleH = 34;
+  // 3. Draw Sideways Width Handles (Left & Right - ↔️)
+  const sideHandleW = 24;
+  const sideHandleH = 68;
 
-  // Right Side Handle
-  ctx.fillStyle = '#60a5fa';
+  // Right Side Handle (↔️)
+  ctx.save();
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
+  ctx.shadowBlur = 12;
+  ctx.shadowOffsetY = 4;
+  ctx.fillStyle = '#0284c7';
+  ctx.strokeStyle = '#38bdf8';
+  ctx.lineWidth = 3.5;
+  const rHx = bbox.x + bbox.w + 4;
+  const rHy = bbox.y + bbox.h / 2 - sideHandleH / 2;
   ctx.beginPath();
-  ctx.roundRect(bbox.x + bbox.w + 2, bbox.y + bbox.h / 2 - sideHandleH / 2, sideHandleW, sideHandleH, 5);
+  ctx.roundRect(rHx, rHy, sideHandleW, sideHandleH, 12);
   ctx.fill();
   ctx.stroke();
+  drawHandleGrip(rHx, rHy, sideHandleW, sideHandleH, false);
+  ctx.restore();
 
-  // Left Side Handle
+  // Left Side Handle (↔️)
+  ctx.save();
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
+  ctx.shadowBlur = 12;
+  ctx.shadowOffsetY = 4;
+  ctx.fillStyle = '#0284c7';
+  ctx.strokeStyle = '#38bdf8';
+  ctx.lineWidth = 3.5;
+  const lHx = bbox.x - 4 - sideHandleW;
+  const lHy = bbox.y + bbox.h / 2 - sideHandleH / 2;
   ctx.beginPath();
-  ctx.roundRect(bbox.x - 2 - sideHandleW, bbox.y + bbox.h / 2 - sideHandleH / 2, sideHandleW, sideHandleH, 5);
+  ctx.roundRect(lHx, lHy, sideHandleW, sideHandleH, 12);
   ctx.fill();
   ctx.stroke();
+  drawHandleGrip(lHx, lHy, sideHandleW, sideHandleH, false);
+  ctx.restore();
 
-  // 3. Draw Vertical Height Handles (Top & Bottom - ↕️)
-  const vertHandleW = 34;
-  const vertHandleH = 10;
+  // 4. Draw Vertical Height Handles (Top & Bottom - ↕️)
+  const vertHandleW = 68;
+  const vertHandleH = 24;
 
-  // Bottom Handle
-  ctx.fillStyle = '#a7f3d0';
+  // Bottom Handle (↕️)
+  ctx.save();
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
+  ctx.shadowBlur = 12;
+  ctx.shadowOffsetY = 4;
+  ctx.fillStyle = '#059669';
+  ctx.strokeStyle = '#34d399';
+  ctx.lineWidth = 3.5;
+  const bHx = bbox.x + bbox.w / 2 - vertHandleW / 2;
+  const bHy = bbox.y + bbox.h + 4;
   ctx.beginPath();
-  ctx.roundRect(bbox.x + bbox.w / 2 - vertHandleW / 2, bbox.y + bbox.h + 2, vertHandleW, vertHandleH, 5);
+  ctx.roundRect(bHx, bHy, vertHandleW, vertHandleH, 12);
   ctx.fill();
   ctx.stroke();
+  drawHandleGrip(bHx, bHy, vertHandleW, vertHandleH, true);
+  ctx.restore();
 
-  // Top Handle
+  // Top Handle (↕️)
+  ctx.save();
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.6)';
+  ctx.shadowBlur = 12;
+  ctx.shadowOffsetY = 4;
+  ctx.fillStyle = '#059669';
+  ctx.strokeStyle = '#34d399';
+  ctx.lineWidth = 3.5;
+  const tHx = bbox.x + bbox.w / 2 - vertHandleW / 2;
+  const tHy = bbox.y - 4 - vertHandleH;
   ctx.beginPath();
-  ctx.roundRect(bbox.x + bbox.w / 2 - vertHandleW / 2, bbox.y - 2 - vertHandleH, vertHandleW, vertHandleH, 5);
+  ctx.roundRect(tHx, tHy, vertHandleW, vertHandleH, 12);
   ctx.fill();
   ctx.stroke();
+  drawHandleGrip(tHx, tHy, vertHandleW, vertHandleH, true);
+  ctx.restore();
 
-  // Drag Helper Label Badge
-  ctx.fillStyle = 'rgba(15, 23, 42, 0.92)';
+  // 5. Drag Helper Tooltip Banner
+  const badgeW = Math.max(bbox.w, 360);
+  const badgeX = bbox.x + bbox.w / 2 - badgeW / 2;
+  const badgeY = Math.max(12, bbox.y - 52);
+
+  ctx.save();
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.7)';
+  ctx.shadowBlur = 14;
+  ctx.fillStyle = 'rgba(15, 23, 42, 0.94)';
   ctx.beginPath();
-  ctx.roundRect(bbox.x, Math.max(10, bbox.y - 44), Math.max(bbox.w, 290), 34, 8);
+  ctx.roundRect(badgeX, badgeY, badgeW, 40, 10);
   ctx.fill();
   ctx.strokeStyle = '#38bdf8';
-  ctx.lineWidth = 1.5;
+  ctx.lineWidth = 2;
   ctx.stroke();
 
   ctx.fillStyle = '#38bdf8';
-  ctx.font = 'bold 14px Inter, sans-serif';
+  ctx.font = 'bold 16px Inter, sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText('✋ Drag: Move | ↔️ Sides: Width | ⚪ Corner: Scale', bbox.x + Math.max(bbox.w, 290) / 2, Math.max(32, bbox.y - 22));
+  ctx.fillText('↔️ Blue: Width | ↕️ Green: Height | ⚪ Corner: Scale', bbox.x + bbox.w / 2, badgeY + 25);
+  ctx.restore();
 
   ctx.restore();
 }
@@ -3912,7 +3988,7 @@ function drawInteractiveAvatarOverlay(canvas, post) {
 // Attach interactive mouse drag, drop & multi-handle resize listeners directly to canvas element
 function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
   let isDragging = false;
-  let resizeMode = null; // 'corner-br', 'corner-tl', 'width-right', 'width-left', 'height-bottom', 'height-top'
+  let resizeMode = null; // 'corner-br', 'corner-tl', 'corner-tr', 'corner-bl', 'width-right', 'width-left', 'height-bottom', 'height-top'
   let startMouseX = 0;
   let startMouseY = 0;
   let initOffsetX = 0;
@@ -3953,20 +4029,21 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
 
   const getHandleUnderMouse = (mx, my) => {
     const bbox = getAvatarBoundingBox(canvas, post, canvas.width, canvas.height);
+    const hitRadius = 55;
     
     // Check Corner Handles
-    if (Math.hypot(mx - (bbox.x + bbox.w), my - (bbox.y + bbox.h)) < 36) return 'corner-br';
-    if (Math.hypot(mx - bbox.x, my - bbox.y) < 36) return 'corner-tl';
-    if (Math.hypot(mx - (bbox.x + bbox.w), my - bbox.y) < 36) return 'corner-tr';
-    if (Math.hypot(mx - bbox.x, my - (bbox.y + bbox.h)) < 36) return 'corner-bl';
+    if (Math.hypot(mx - (bbox.x + bbox.w + 4), my - (bbox.y + bbox.h + 4)) < hitRadius) return 'corner-br';
+    if (Math.hypot(mx - (bbox.x - 4), my - (bbox.y - 4)) < hitRadius) return 'corner-tl';
+    if (Math.hypot(mx - (bbox.x + bbox.w + 4), my - (bbox.y - 4)) < hitRadius) return 'corner-tr';
+    if (Math.hypot(mx - (bbox.x - 4), my - (bbox.y + bbox.h + 4)) < hitRadius) return 'corner-bl';
 
     // Check Side Width Handles (↔️)
-    if (Math.hypot(mx - (bbox.x + bbox.w), my - (bbox.y + bbox.h / 2)) < 32) return 'width-right';
-    if (Math.hypot(mx - bbox.x, my - (bbox.y + bbox.h / 2)) < 32) return 'width-left';
+    if (Math.hypot(mx - (bbox.x + bbox.w + 12), my - (bbox.y + bbox.h / 2)) < hitRadius) return 'width-right';
+    if (Math.hypot(mx - (bbox.x - 12), my - (bbox.y + bbox.h / 2)) < hitRadius) return 'width-left';
 
     // Check Vertical Height Handles (↕️)
-    if (Math.hypot(mx - (bbox.x + bbox.w / 2), my - (bbox.y + bbox.h)) < 32) return 'height-bottom';
-    if (Math.hypot(mx - (bbox.x + bbox.w / 2), my - bbox.y) < 32) return 'height-top';
+    if (Math.hypot(mx - (bbox.x + bbox.w / 2), my - (bbox.y + bbox.h + 12)) < hitRadius) return 'height-bottom';
+    if (Math.hypot(mx - (bbox.x + bbox.w / 2), my - (bbox.y - 12)) < hitRadius) return 'height-top';
 
     return null;
   };
@@ -3974,10 +4051,10 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
   const isMouseOverAvatar = (mx, my) => {
     const bbox = getAvatarBoundingBox(canvas, post, canvas.width, canvas.height);
     return (
-      mx >= bbox.x - 20 &&
-      mx <= bbox.x + bbox.w + 20 &&
-      my >= bbox.y - 20 &&
-      my <= bbox.y + bbox.h + 20
+      mx >= bbox.x - 40 &&
+      mx <= bbox.x + bbox.w + 40 &&
+      my >= bbox.y - 40 &&
+      my <= bbox.y + bbox.h + 40
     );
   };
 
@@ -3989,6 +4066,8 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
       drawCreative(canvas, category, getHeadlineVal(), getSubtextVal(), post.id, activeDate, Object.assign({}, post.layout || {}, post));
       if (showOverlay) {
         drawInteractiveAvatarOverlay(canvas, post);
+      } else {
+        canvas._showingOverlay = false;
       }
     });
   };
@@ -3998,6 +4077,8 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
 
     if (!isDragging && !resizeMode) {
       const handle = getHandleUnderMouse(x, y);
+      const isNearAvatar = isMouseOverAvatar(x, y) || !!handle;
+
       if (handle === 'corner-br' || handle === 'corner-tl') {
         canvas.style.cursor = 'nwse-resize';
       } else if (handle === 'corner-tr' || handle === 'corner-bl') {
@@ -4010,6 +4091,13 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
         canvas.style.cursor = 'grab';
       } else {
         canvas.style.cursor = 'default';
+      }
+
+      // Live overlay toggle on hover
+      if (isNearAvatar && !canvas._showingOverlay) {
+        scheduleRedraw(true);
+      } else if (!isNearAvatar && canvas._showingOverlay) {
+        scheduleRedraw(false);
       }
       return;
     }
@@ -4119,6 +4207,11 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
   // Mouse event listeners
   canvas.addEventListener('mousemove', (e) => onPointerMove(e.clientX, e.clientY));
   canvas.addEventListener('mousedown', (e) => onPointerDown(e.clientX, e.clientY, e));
+  canvas.addEventListener('mouseleave', () => {
+    if (!isDragging && !resizeMode && canvas._showingOverlay) {
+      scheduleRedraw(false);
+    }
+  });
   window.addEventListener('mouseup', onPointerUp);
 
   // Touch event listeners for touchscreens & mobile
