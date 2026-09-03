@@ -1872,7 +1872,7 @@ async function postToGoogleFlow(postId, btnElement) {
 
     // Fallback public image URL if ImgBB upload is not used
     const originUrl = window.location.origin + window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
-    const fallbackPublicImageUrl = `${originUrl}/avatar_daily_${postId}.jpg`;
+    const fallbackPublicImageUrl = `${originUrl}/avatar.jpg`;
     const finalImageUrl = imageUrl || fallbackPublicImageUrl;
 
     // 3. Post text and image directly to Webhook (Make.com / Google Apps Script / Zapier)

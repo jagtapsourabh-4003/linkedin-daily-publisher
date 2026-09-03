@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Automated Daily LinkedIn Publisher
  * Reads today's generated draft and automatically triggers the Make.com Webhook.
  */
@@ -51,7 +51,7 @@ async function autoPublishToday() {
   // Pick Post 1 as default daily auto-publish post
   const post = entry.posts[0];
   const postContent = (post.postContent && post.postContent.content) ? post.postContent.content : post.content;
-  const imageUrl = `${BASE_URL}/avatar_daily_1.jpg`;
+  const imageUrl = `${BASE_URL}/avatar.jpg`;
 
   console.log(`[Auto-Publisher] Selected Post 1 for ${entry.date}: "${post.headline || (post.postContent && post.postContent.imageHeadline)}"`);
 
