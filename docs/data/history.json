@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-09-03",
+    "category": "marketing",
+    "posts": [
+      {
+        "id": 1,
+        "designArchetype": "Marketing Concept Explained",
+        "layoutFamily": "news-card",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Business Advisor",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Advisor in a Technology command center, Looking at camera, Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Concept Explained",
+          "hook": "The 4-step formula behind every great post.",
+          "content": "The 4-step formula behind every great post.\n\nEver wonder why some posts and landing pages convert effortlessly while others get ignored?\n\nThey follow the classic AIDA framework:\n\n1. Attention (Hook):\nGrab their eyes in the first 5 words. (e.g. \"Stop sending boring sales emails.\")\n\n2. Interest (Engage):\nShare a surprising fact or relatable truth that makes them want to keep reading.\n\n3. Desire (Solve):\nPaint a clear picture of how much easier their life will be with your solution.\n\n4. Action (CTA):\nTell them exactly what single step to take next (e.g. \"Click the link\", \"Leave a comment\").\n\nSave this formula for your next post or sales page!\n\nHave you tried using AIDA in your writing?",
+          "sourceArticle": "The AIDA Model (Attention, Interest, Desire, Action): The classic copywriting framework that drives conversions.",
+          "imageHeadline": "THE *AIDA MODEL*",
+          "imageSubtext": "4 simple steps to turn readers into buyers.",
+          "badgeText": "COPYWRITING MODEL",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 2,
+        "designArchetype": "Marketing Framework Playbook",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Business Coach",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Coach in a Executive boardroom, Presentation shot, Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "How to know if people really want your offer.",
+          "content": "How to know if people really want your offer.\n\nBefore Product-Market Fit (PMF), marketing feels like pushing a boulder uphill.\n\nAfter Product-Market Fit, marketing feels like steering a speedboat.\n\nMarc Andreessen defined PMF simply:\n\"Being in a good market with a product that can satisfy that market.\"\n\n3 signs you have reached PMF:\n1. Customers get upset if your product goes down.\n2. Word of mouth happens naturally without paid ads.\n3. Your main challenge is keeping up with demand, not finding buyers.\n\nIf you don't have PMF yet, spend 100% of your time talking to users, not buying ads.\n\nHow did you know when your product hit its sweet spot?",
+          "sourceArticle": "Product-Market Fit (PMF): The ultimate milestone where customer demand pulls your business forward.",
+          "imageHeadline": "PRODUCT *MARKET FIT*",
+          "imageSubtext": "When customers pull your product forward.",
+          "badgeText": "CORE CONCEPT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 3,
+        "designArchetype": "World of Marketing Strategy",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Startup Founder",
+        "environment": "Luxury office",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Startup Founder in a Luxury office, Half-body portrait, Smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "If you confuse people, you lose them.",
+          "content": "If you confuse people, you lose them.\n\nMany businesses think using big, fancy words makes them look smart and professional.\n\nIn reality, fancy buzzwords just confuse your customers and make them leave.\n\nTry these simple word swaps today:\n- Instead of \"utilize\" -> use \"use\"\n- Instead of \"facilitate\" -> use \"help\"\n- Instead of \"commence\" -> use \"start\"\n- Instead of \"synergize\" -> use \"work together\"\n\nClear writing is clear thinking.\n\nWhat is one business buzzword you wish people would stop using?",
+          "sourceArticle": "Why replacing fancy buzzwords with simple everyday words doubles your sales.",
+          "imageHeadline": "WRITE *SIMPLE WORDS*",
+          "imageSubtext": "How clear words double your sales.",
+          "badgeText": "WRITING TIP",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 4,
+        "designArchetype": "AI Marketing Concept",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Podcast Host",
+        "environment": "Podcast studio",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Podcast Host in a Podcast studio, Sitting at desk, Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Most people search Google the wrong way.",
+          "content": "Most people search Google the wrong way.\n\nInstead of clicking through 10 different website links, people now just ask AI tools like ChatGPT or Gemini to give them one quick, direct answer.\n\nIf you run a business or create content, here is what to do:\n\n1. Give direct answers: Put the important answers right at the top of your page.\n2. Answer real questions: What does your product cost? How does it help?\n3. Keep it simple: Write like you are explaining it to a smart friend.\n\nThink of it like being the friendly person everyone turns to for advice.\n\nHave you started using AI to search for things instead of Google? Let me know below!",
+          "sourceArticle": "How everyday buyers are using AI tools to find quick answers online instead of clicking 10 blue links.",
+          "imageHeadline": "AI SEARCH *IS HERE*",
+          "imageSubtext": "How customers find answers today.",
+          "badgeText": "AI MARKETING",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 5,
+        "designArchetype": "AI Marketing Workflow",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Speaker in a Auditorium stage, Speaking on stage, Conference speaker outfit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "AI is your marketing intern, not your replacement.",
+          "content": "AI is your marketing intern, not your replacement.\n\nIt is here to replace the boring, repetitive tasks you hate doing.\n\nThink of AI like having a super fast intern who works 24/7:\n\n1. Brainstorming hooks: Ask it for 10 title ideas when you are feeling stuck.\n2. Summarizing long notes: Turn a 5-page case study into 3 key bullet points in seconds.\n3. Fixing your grammar: Clean up typos and make your writing easier to read.\n\nYou are still the pilot. AI is just the co-pilot.\n\nWhat is the #1 marketing task you wish AI could do for you automatically?",
+          "sourceArticle": "How savvy marketers use AI to brainstorm 20 content ideas in 5 minutes without losing their authentic voice.",
+          "imageHeadline": "AI AS *YOUR INTERN*",
+          "imageSubtext": "How to save 5 hours every week.",
+          "badgeText": "AI PLAYBOOK",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-09-02",
     "category": "ai",
     "posts": [
