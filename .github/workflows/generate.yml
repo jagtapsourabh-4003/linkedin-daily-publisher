@@ -90,3 +90,10 @@ jobs:
             fi
           done
         fi
+
+    - name: Trigger Daily Auto-Publish Webhook
+      env:
+        WEBHOOK_URL: ${{ secrets.WEBHOOK_URL || 'https://hook.eu1.make.com/8hd357m87nxbmvrw8i5f7i3ughh4jp9g' }}
+      run: |
+        node auto-publish.js || echo "Auto-publish completed."
+
