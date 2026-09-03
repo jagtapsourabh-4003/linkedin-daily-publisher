@@ -560,7 +560,7 @@ async function loadSettings() {
     }
     
     state.settings = {
-      webhookUrl: settings.webhookUrl || 'https://hook.eu1.make.com/8hd357m87nxbmvrw8i5f7i3ughh4jp9g',
+      webhookUrl: settings.webhookUrl || 'https://hook.eu1.make.com/fqv4xdxxh3q219mqfx8ui5a3b29reg3s',
       geminiApiKey: settings.geminiApiKey || '',
       imgbbApiKey: settings.imgbbApiKey || '',
       removebgApiKey: settings.removebgApiKey || '',

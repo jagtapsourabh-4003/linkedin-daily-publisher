@@ -11,7 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const HISTORY_FILE = path.join(__dirname, 'docs', 'data', 'history.json');
-const WEBHOOK_URL = process.env.WEBHOOK_URL || 'https://hook.eu1.make.com/8hd357m87nxbmvrw8i5f7i3ughh4jp9g';
+const WEBHOOK_URL = process.env.WEBHOOK_URL || 'https://hook.eu1.make.com/fqv4xdxxh3q219mqfx8ui5a3b29reg3s';
 const BASE_URL = 'https://jagtapsourabh-4003.github.io/linkedin-daily-publisher';
 
 async function autoPublishToday() {

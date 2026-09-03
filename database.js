@@ -14,7 +14,7 @@ function initDb() {
     if (!fs.existsSync(DB_FILE)) {
       const defaultData = {
         settings: {
-          webhookUrl: process.env.WEBHOOK_URL || 'https://hook.eu1.make.com/8hd357m87nxbmvrw8i5f7i3ughh4jp9g',
+          webhookUrl: process.env.WEBHOOK_URL || 'https://hook.eu1.make.com/fqv4xdxxh3q219mqfx8ui5a3b29reg3s',
           geminiApiKey: process.env.GEMINI_API_KEY || '',
           imgbbApiKey: process.env.IMGBB_API_KEY || '',
           cronSecret: process.env.CRON_SECRET || 'linkedin_generator_secret_12345',
