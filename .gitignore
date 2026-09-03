@@ -23,5 +23,6 @@ yarn-error.log*
 Thumbs.db
 
 # Generated visual assets
-docs/avatar_daily*.jpg
+# docs/avatar_daily*.jpg is allowed for public GitHub Pages serving
 docs/creatives/
+
