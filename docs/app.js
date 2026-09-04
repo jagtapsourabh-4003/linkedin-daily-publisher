@@ -2056,7 +2056,13 @@ async function postToGoogleFlow(postId, btnElement) {
     };
     saveLocalDb(localDb);
 
-    showToast('🎉 Post and creative graphic sent successfully to your publishing flow!', 'success');
+    const tier = imageUrl.includes('imgbb') ? 'ImgBB' :
+                  imageUrl.includes('raw.githubusercontent') ? 'GitHub' :
+                  imageUrl.includes('0x0.st') ? '0x0.st' : 'avatar fallback';
+    const imageNote = imageUrl && imageUrl !== fallbackPublicImageUrl
+      ? `✅ Creative image hosted via ${tier}`
+      : `⚠️ Using avatar placeholder — add GitHub PAT or ImgBB key in Settings for full creative`;
+    showToast(`🎉 Published! ${imageNote}`, 'success');
     await loadHistory();
   } catch (err) {
     console.error('[Publish] Error:', err);
