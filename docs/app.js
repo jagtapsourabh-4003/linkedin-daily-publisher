@@ -1855,9 +1855,11 @@ async function postToGoogleFlow(postId, btnElement) {
     const onScreenCanvas = document.getElementById(`canvas-${postId}`);
     if (onScreenCanvas) {
       try {
-        imageBase64 = onScreenCanvas.toDataURL('image/png');
+        // High-quality JPEG is 25x smaller than PNG (under 200KB vs 5MB), preventing webhook payload limit errors
+        imageBase64 = onScreenCanvas.toDataURL('image/jpeg', 0.92);
       } catch (err) {
-        console.warn('[Publish] Direct canvas export failed, creating offscreen buffer:', err.message);
+        console.warn('[Publish] JPEG export failed, trying PNG:', err.message);
+        try { imageBase64 = onScreenCanvas.toDataURL('image/png'); } catch (_) {}
       }
     }
 
@@ -1871,7 +1873,11 @@ async function postToGoogleFlow(postId, btnElement) {
       if (activeEntry && post) {
         drawCreative(exportCanvas, activeEntry.category, headlineText, subtextText, post.id, activeEntry.date, Object.assign({}, post.layout || {}, post));
       }
-      imageBase64 = exportCanvas.toDataURL('image/png');
+      try {
+        imageBase64 = exportCanvas.toDataURL('image/jpeg', 0.92);
+      } catch (_) {
+        imageBase64 = exportCanvas.toDataURL('image/png');
+      }
     }
 
     // 2. Multi-Tier Automatic Cloud Hosting for the Rendered Creative Canvas
@@ -1889,7 +1895,7 @@ async function postToGoogleFlow(postId, btnElement) {
       const ab = new ArrayBuffer(byteStr.length);
       const ia = new Uint8Array(ab);
       for (let i = 0; i < byteStr.length; i++) ia[i] = byteStr.charCodeAt(i);
-      return new Blob([ab], { type: mimeType || 'image/png' });
+      return new Blob([ab], { type: mimeType || 'image/jpeg' });
     }
 
     // Tier 1: ImgBB (if user has API key) — best quality, permanent
@@ -1914,7 +1920,9 @@ async function postToGoogleFlow(postId, btnElement) {
     // Tier 2: GitHub API commit → raw.githubusercontent.com (uses GitHub PAT, always public, no CORS)
     if (!imageUrl && githubPat && imageBase64) {
       try {
-        const filePath = `docs/creative_latest.png`;
+        const isPng = imageBase64.startsWith('data:image/png');
+        const ext = isPng ? 'png' : 'jpg';
+        const filePath = `docs/creative_custom_${postId}.${ext}`;
         const rawBase64 = imageBase64.replace(/^data:image\/\w+;base64,/, '');
         const apiUrl = `https://api.github.com/repos/${githubOwner}/${githubRepo}/contents/${filePath}`;
 
@@ -1931,7 +1939,7 @@ async function postToGoogleFlow(postId, btnElement) {
         } catch (_) {}
 
         const commitBody = {
-          message: `chore: update creative image for ${date} post ${postId}`,
+          message: `chore: update custom creative for ${date} post ${postId}`,
           content: rawBase64,
           branch: 'main'
         };
@@ -1947,28 +1955,10 @@ async function postToGoogleFlow(postId, btnElement) {
           body: JSON.stringify(commitBody)
         });
         if (commitRes.ok) {
-          // Use cache-busted GitHub Pages URL (takes ~30s to deploy, use raw.githubusercontent.com for instant access)
           imageUrl = `https://raw.githubusercontent.com/${githubOwner}/${githubRepo}/main/${filePath}?t=${Date.now()}`;
           console.log(`[Publish ✅ Tier2 GitHub] ${imageUrl}`);
         }
       } catch (e) { console.warn('[Publish Tier2] GitHub commit failed:', e.message); }
-    }
-
-    // Tier 3: 0x0.st — CORS-enabled anonymous file host (no key needed, files live 30+ days)
-    if (!imageUrl && imageBase64) {
-      try {
-        const blob = base64ToBlob(imageBase64, 'image/png');
-        const fd = new FormData();
-        fd.append('file', blob, `creative_${date}_post${postId}.png`);
-        const res = await fetch('https://0x0.st', { method: 'POST', body: fd });
-        if (res.ok) {
-          const text = (await res.text()).trim();
-          if (text && text.startsWith('http')) {
-            imageUrl = text;
-            console.log(`[Publish ✅ Tier3 0x0.st] ${imageUrl}`);
-          }
-        }
-      } catch (e) { console.warn('[Publish Tier3] 0x0.st failed:', e.message); }
     }
 
     // Tier 4: High-Resolution Rendered Creative Graphic (Hosted directly on GitHub Pages)
@@ -1978,6 +1968,12 @@ async function postToGoogleFlow(postId, btnElement) {
     const finalImageUrl = imageUrl || pagesCreativeUrl || githubCreativeUrl;
 
     console.log(`[Publish] Using creative graphic image: ${finalImageUrl}`);
+
+    // If post has a custom Canva graphic or custom layout, but neither GitHub PAT nor ImgBB is configured, alert user
+    const hasCustomGraphic = !!(post && (post.customCanvaGraphic || (post.layout && post.layout.customCanvaGraphic)));
+    if (hasCustomGraphic && !imageUrl) {
+      showToast('ℹ️ Tip: To publish custom Canva graphics to LinkedIn, enter your GitHub PAT in ⚙️ Settings.', 'info');
+    }
 
     // 3. Post text and image directly to Webhook (Make.com / Google Apps Script / Zapier)
     btnElement.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Publishing to LinkedIn...`;
@@ -1998,9 +1994,7 @@ async function postToGoogleFlow(postId, btnElement) {
       image: finalImageUrl,
       photo: finalImageUrl,
       url: finalImageUrl,
-      imageBase64: imageBase64 || '',
-      image_base64: imageBase64 || '',
-      dataUri: imageBase64 || '',
+      imageBase64: (imageBase64 && imageBase64.length < 500000) ? imageBase64 : '',
       style: (post && post.postContent && post.postContent.style) || (post && post.style) || 'Thought Leadership',
       sourceArticle: (post && post.postContent && post.postContent.sourceArticle) || (post && post.sourceArticle) || '',
       headline: (post && post.postContent && post.postContent.imageHeadline) || (post && post.imageHeadline) || '',
