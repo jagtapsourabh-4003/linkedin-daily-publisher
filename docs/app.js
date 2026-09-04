@@ -1874,12 +1874,14 @@ async function postToGoogleFlow(postId, btnElement) {
       imageBase64 = exportCanvas.toDataURL('image/png');
     }
 
-    // 2. Upload image to ImgBB if key is present, otherwise include base64 payload
+    // 2. Multi-Tier Automatic Cloud Hosting for the Rendered Creative Canvas
     let imageUrl = '';
     const imgbbKey = state.settings.imgbbApiKey;
     
+    btnElement.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Hosting edited creative...`;
+
+    // Tier 1: User's custom ImgBB key
     if (imgbbKey) {
-      btnElement.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Uploading graphic...`;
       try {
         const rawBase64 = imageBase64.replace(/^data:image\/\w+;base64,/, '');
         const formData = new FormData();
@@ -1894,15 +1896,42 @@ async function postToGoogleFlow(postId, btnElement) {
           const result = await imgbbResponse.json();
           if (result && result.success && result.data && result.data.url) {
             imageUrl = result.data.url;
-            console.log(`[Browser ImgBB] Creative hosted successfully: ${imageUrl}`);
+            console.log(`[Browser ImgBB] Edited creative hosted successfully: ${imageUrl}`);
           }
         }
       } catch (uploadErr) {
-        console.warn('[Publish] ImgBB upload skipped/failed, falling back to direct base64 transmission:', uploadErr.message);
+        console.warn('[Publish] ImgBB upload skipped/failed:', uploadErr.message);
       }
     }
 
-    // Fallback public image URL if ImgBB upload is not used
+    // Tier 2: Instant Anonymous CDN Upload (Guarantees edited creative is hosted without needing an API key)
+    if (!imageUrl && imageBase64) {
+      try {
+        const byteString = atob(imageBase64.split(',')[1]);
+        const mimeString = imageBase64.split(',')[0].split(':')[1].split(';')[0] || 'image/png';
+        const ab = new ArrayBuffer(byteString.length);
+        const ia = new Uint8Array(ab);
+        for (let i = 0; i < byteString.length; i++) {
+          ia[i] = byteString.charCodeAt(i);
+        }
+        const blob = new Blob([ab], { type: mimeString });
+        const fd = new FormData();
+        fd.append('files[]', blob, `creative_${date}_post${postId}.png`);
+
+        const uguuRes = await fetch('https://uguu.se/upload.php', { method: 'POST', body: fd });
+        if (uguuRes.ok) {
+          const uguuData = await uguuRes.json();
+          if (uguuData && uguuData.files && uguuData.files[0] && uguuData.files[0].url) {
+            imageUrl = uguuData.files[0].url;
+            console.log(`[Publish] Hosted edited creative on CDN: ${imageUrl}`);
+          }
+        }
+      } catch (cdnErr) {
+        console.warn('[Publish] Instant CDN upload failed, falling back to static asset:', cdnErr.message);
+      }
+    }
+
+    // Fallback public image URL if cloud uploads were unavailable
     const originUrl = window.location.origin + window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
     const fallbackPublicImageUrl = `${originUrl}/avatar.jpg`;
     const finalImageUrl = imageUrl || fallbackPublicImageUrl;
