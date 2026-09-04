@@ -42,12 +42,12 @@
         "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Coach in a Executive boardroom, Presentation shot, Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
         "postContent": {
           "style": "Marketing Framework Playbook",
-          "hook": "People don't buy drills. They buy holes.",
-          "content": "People don't buy drills. They buy holes.\n\nHarvard Professor Clayton Christensen discovered that customers don't buy products because of demographics.\n\nThey \"hire\" a product to get a specific job done in their life.\n\nClassic example: McDonald's Milkshakes.\nWhy did people buy milkshakes at 8 AM?\nNot because they loved dessert for breakfast.\nThey hired the milkshake because it was thick, lasted their entire 30-minute boring commute, and kept one hand clean while driving!\n\nWhen writing your marketing copy:\n- Don't sell the product features.\n- Sell the progress the customer wants to make.\n\nWhat \"job\" is your customer hiring you to do?",
-          "sourceArticle": "Jobs To Be Done (JTBD) by Clayton Christensen: Why customers hire products to solve progress struggles.",
-          "imageHeadline": "JOBS TO *BE DONE*",
-          "imageSubtext": "Why customers hire your product for a job.",
-          "badgeText": "CUSTOMER INSIGHT",
+          "hook": "How adding a 3rd option makes people spend more money.",
+          "content": "How adding a 3rd option makes people spend more money.\n\nWhen The Economist offered:\n- Web Only: $59\n- Print + Web: $125\n68% chose the cheap $59 option.\n\nThen they added a \"decoy\":\n- Web Only: $59\n- Print Only: $125\n- Print + Web: $125\n\nSuddenly, 84% chose the $125 Print + Web package! Nobody bought Print Only, but its presence made Print + Web look like an absolute steal.\n\n3 ways to use the Decoy Effect:\n1. SaaS pricing: Introduce a \"Standard\" tier slightly below \"Pro\" so Pro looks like a no-brainer.\n2. Service packages: Anchor your highest-value offer next to a stripped-down package of equal price.\n3. Don't sell in isolation: Give buyers a reference point so they can easily judge value.\n\nWhat is one pricing decoy you have noticed recently?",
+          "sourceArticle": "The Decoy Effect (Asymmetric Dominance): The pricing psychology used by Apple, Starbucks, and The Economist.",
+          "imageHeadline": "THE *DECOY EFFECT*",
+          "imageSubtext": "Why the middle option controls what buyers pick.",
+          "badgeText": "PRICING PSYCHOLOGY",
           "ctaText": "READ FULL POST"
         },
         "layoutConfig": {
@@ -69,12 +69,12 @@
         "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Startup Founder in a Luxury office, Half-body portrait, Smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
         "postContent": {
           "style": "World of Marketing Strategy",
-          "hook": "Stop sending boring sales emails.",
-          "content": "Stop sending boring sales emails.\n\nNobody likes opening an email that looks like a robot copied and pasted it to 1,000 strangers.\n\nHere are 3 simple rules to get real replies:\n\n1. Talk to one person: Write like you are sending a note to a colleague.\n2. Focus on their problem: Don't brag about your company. Ask how you can help them.\n3. Keep it short: If they can't read it in 30 seconds on their phone, they will delete it.\n\nGood marketing is just good conversation.\n\nWhat is the best sales email you ever received?",
-          "sourceArticle": "Simple rules to write friendly emails that people actually want to open and reply to.",
-          "imageHeadline": "BETTER *SALES EMAILS*",
-          "imageSubtext": "3 simple rules to get real replies.",
-          "badgeText": "HELPFUL TIP",
+          "hook": "If you confuse people, you lose them.",
+          "content": "If you confuse people, you lose them.\n\nMany businesses think using big, fancy words makes them look smart and professional.\n\nIn reality, fancy buzzwords just confuse your customers and make them leave.\n\nTry these simple word swaps today:\n- Instead of \"utilize\" -> use \"use\"\n- Instead of \"facilitate\" -> use \"help\"\n- Instead of \"commence\" -> use \"start\"\n- Instead of \"synergize\" -> use \"work together\"\n\nClear writing is clear thinking.\n\nWhat is one business buzzword you wish people would stop using?",
+          "sourceArticle": "Why replacing fancy buzzwords with simple everyday words doubles your sales.",
+          "imageHeadline": "WRITE *SIMPLE WORDS*",
+          "imageSubtext": "How clear words double your sales.",
+          "badgeText": "WRITING TIP",
           "ctaText": "READ FULL POST"
         },
         "layoutConfig": {
@@ -96,12 +96,12 @@
         "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Podcast Host in a Podcast studio, Sitting at desk, Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
         "postContent": {
           "style": "AI Marketing Concept",
-          "hook": "How to write better prompts in 10 seconds.",
-          "content": "How to write better prompts in 10 seconds.\n\nIf you give AI a vague question, it gives you a boring, robotic answer.\n\nTo get amazing marketing copy, use this simple 3-step formula:\n\n1. Who it is: \"Act as a friendly marketing coach.\"\n2. What you need: \"Write a short 3-sentence email invite for a free webinar.\"\n3. The audience: \"Make it simple for small shop owners to understand.\"\n\nThe clearer you are with AI, the better answers you get.\n\nTry this formula today and see the difference!",
-          "sourceArticle": "A simple 3-part prompt formula to get high-converting marketing copy from AI every time.",
-          "imageHeadline": "BETTER *AI PROMPTS*",
-          "imageSubtext": "A simple 3-step formula that works.",
-          "badgeText": "AI TUTORIAL",
+          "hook": "Most people search Google the wrong way.",
+          "content": "Most people search Google the wrong way.\n\nInstead of clicking through 10 different website links, people now just ask AI tools like ChatGPT or Gemini to give them one quick, direct answer.\n\nIf you run a business or create content, here is what to do:\n\n1. Give direct answers: Put the important answers right at the top of your page.\n2. Answer real questions: What does your product cost? How does it help?\n3. Keep it simple: Write like you are explaining it to a smart friend.\n\nThink of it like being the friendly person everyone turns to for advice.\n\nHave you started using AI to search for things instead of Google? Let me know below!",
+          "sourceArticle": "How everyday buyers are using AI tools to find quick answers online instead of clicking 10 blue links.",
+          "imageHeadline": "AI SEARCH *IS HERE*",
+          "imageSubtext": "How customers find answers today.",
+          "badgeText": "AI MARKETING",
           "ctaText": "READ FULL POST"
         },
         "layoutConfig": {
@@ -123,12 +123,12 @@
         "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Speaker in a Auditorium stage, Speaking on stage, Conference speaker outfit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
         "postContent": {
           "style": "AI Marketing Workflow",
-          "hook": "Why you should never copy-paste raw AI copy.",
-          "content": "Why you should never copy-paste raw AI copy.\n\nAI tools are great at making a first draft in 5 seconds.\n\nBut if you post raw AI text without editing it, everyone can tell. It sounds generic, stiff, and robotic.\n\nHere is the smart way to use AI:\n1. Use AI to get your ideas down fast.\n2. Add your own personal stories and real experiences.\n3. Remove fancy buzzwords and make it sound like YOU.\n\nUse AI for speed, but keep your human heart in the story.\n\nDo you edit what AI writes, or post it directly?",
-          "sourceArticle": "Why adding your real experience and human tone makes AI-assisted marketing 10x more effective.",
-          "imageHeadline": "HUMAN + *AI TEAMWORK*",
-          "imageSubtext": "Why your personal voice matters.",
-          "badgeText": "AI ADVICE",
+          "hook": "AI is your marketing intern, not your replacement.",
+          "content": "AI is your marketing intern, not your replacement.\n\nIt is here to replace the boring, repetitive tasks you hate doing.\n\nThink of AI like having a super fast intern who works 24/7:\n\n1. Brainstorming hooks: Ask it for 10 title ideas when you are feeling stuck.\n2. Summarizing long notes: Turn a 5-page case study into 3 key bullet points in seconds.\n3. Fixing your grammar: Clean up typos and make your writing easier to read.\n\nYou are still the pilot. AI is just the co-pilot.\n\nWhat is the #1 marketing task you wish AI could do for you automatically?",
+          "sourceArticle": "How savvy marketers use AI to brainstorm 20 content ideas in 5 minutes without losing their authentic voice.",
+          "imageHeadline": "AI AS *YOUR INTERN*",
+          "imageSubtext": "How to save 5 hours every week.",
+          "badgeText": "AI PLAYBOOK",
           "ctaText": "READ FULL POST"
         },
         "layoutConfig": {

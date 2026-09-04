@@ -353,6 +353,141 @@ Visibility leads to familiarity. Familiarity leads to trust. Trust leads to sale
 What is your daily routine for staying visible?`
     },
     {
+      concept: "The Decoy Effect",
+      hook: "How adding a 3rd option makes people spend more money.",
+      topic: "The Decoy Effect (Asymmetric Dominance): The pricing psychology used by Apple, Starbucks, and The Economist.",
+      headline: "THE *DECOY EFFECT*",
+      subtext: "Why the middle option controls what buyers pick.",
+      badge: "PRICING PSYCHOLOGY",
+      content: `How adding a 3rd option makes people spend more money.
+
+When The Economist offered:
+- Web Only: $59
+- Print + Web: $125
+68% chose the cheap $59 option.
+
+Then they added a "decoy":
+- Web Only: $59
+- Print Only: $125
+- Print + Web: $125
+
+Suddenly, 84% chose the $125 Print + Web package! Nobody bought Print Only, but its presence made Print + Web look like an absolute steal.
+
+3 ways to use the Decoy Effect:
+1. SaaS pricing: Introduce a "Standard" tier slightly below "Pro" so Pro looks like a no-brainer.
+2. Service packages: Anchor your highest-value offer next to a stripped-down package of equal price.
+3. Don't sell in isolation: Give buyers a reference point so they can easily judge value.
+
+What is one pricing decoy you have noticed recently?`
+    },
+    {
+      concept: "The Hook Model",
+      hook: "Why some apps and habits become impossible to quit.",
+      topic: "The Hook Model by Nir Eyal: The 4-step loop (Trigger, Action, Variable Reward, Investment) that builds sticky customer habits.",
+      headline: "THE *HOOK MODEL*",
+      subtext: "The 4-step loop behind habit-forming products.",
+      badge: "PRODUCT STRATEGY",
+      content: `Why some apps and habits become impossible to quit.
+
+Building a sticky product is not luck. It follows Nir Eyal's 4-step Hook Model:
+
+1. Trigger (External & Internal):
+External: A notification or email.
+Internal: Boredom, curiosity, or the fear of missing out.
+
+2. Action:
+The simplest behavior in anticipation of a reward (e.g. Opening LinkedIn, scrolling down).
+
+3. Variable Reward:
+The human brain craves unpredictable rewards. (Will I get 5 likes or 500 likes today?)
+
+4. Investment:
+The user puts in data, connections, or effort (building a profile, uploading content), making it painful to leave.
+
+How to apply this in your marketing:
+- Trigger with relatable problems.
+- Make the first action frictionless.
+- Over-deliver with unexpected bonus value.
+- Invite users to save, bookmark, or customize their experience.
+
+How do you create positive daily habits with your audience?`
+    },
+    {
+      concept: "Zero-Click Content",
+      hook: "Why putting links in your post hurts your reach.",
+      topic: "Zero-Click Content by Amanda Natividad: Why delivering standalone value in the feed beats chasing outbound clicks.",
+      headline: "ZERO-CLICK *CONTENT*",
+      subtext: "Why giving away the answer wins the algorithm.",
+      badge: "CONTENT LAW",
+      content: `Why putting links in your post hurts your reach.
+
+Every social platform (LinkedIn, X, YouTube, Instagram) has one single goal:
+Keep users on their platform as long as possible.
+
+When you post "Read my full blog here: [link]", two things happen:
+1. The algorithm penalizes your post for sending people away.
+2. 98% of people keep scrolling without clicking.
+
+The solution? Zero-Click Content (coined by Amanda Natividad):
+- Give away the core insight, takeaway, and actionable framework directly in the post.
+- Leave nothing hidden behind a paywall or link gate.
+- Build pure trust and authority in the feed.
+
+When you solve problems natively, the highest-intent clients will visit your profile and reach out directly.
+
+Give away your secrets. Sell the implementation.
+
+Do you prefer reading full insights in the feed, or clicking external links?`
+    },
+    {
+      concept: "The 95-5 Rule in B2B",
+      hook: "95% of your buyers will NOT buy from you today.",
+      topic: "The 95-5 Rule from the Ehrenberg-Bass Institute: Why B2B marketing must focus on future memory and brand salience.",
+      headline: "THE *95-5 RULE*",
+      subtext: "Why 95% of your market is not ready to buy today.",
+      badge: "B2B GROWTH LAW",
+      content: `95% of your buyers will NOT buy from you today.
+
+Research from the Ehrenberg-Bass Institute revealed a massive truth:
+Only 5% of B2B buyers are in the market to buy right now.
+The other 95% are "out of market" (they don't have the budget, need, or contract renewal today).
+
+If your marketing is only "Book a Demo" or "Buy Now", you are completely ignoring 95% of your future revenue!
+
+How smart brands market to the 95%:
+1. Build Brand Recall (Mental Availability): Post consistent, memorable ideas so you are the #1 name they think of when they ARE ready to buy.
+2. Educate, don't just pitch: Teach principles that help them do their job better today.
+3. Be patient: When their contract expires next year, you will be their only phone call.
+
+Are you marketing to the 5% who need you today, or the 95% who will need you tomorrow?`
+    },
+    {
+      concept: "Anchoring Bias in Pricing",
+      hook: "The first number you show sets the entire standard.",
+      topic: "Anchoring Bias: How the initial price anchor influences customer perception of value and affordability.",
+      headline: "ANCHORING *BIAS*",
+      subtext: "How the first number changes everything.",
+      badge: "PRICING PSYCHOLOGY",
+      content: `The first number you show sets the entire standard.
+
+When Steve Jobs introduced the iPad in 2010, he put a giant "$999" on the screen behind him.
+He talked for 5 minutes about why it was easily worth $999.
+
+Then, he shattered the number and revealed the real price: **$499**.
+
+Instantly, $499 felt like the biggest bargain of the century—even though $500 was a significant amount for a brand-new device!
+
+This is Anchoring Bias:
+The human brain cannot judge value in a vacuum. It evaluates every price based on the first anchor it receives.
+
+How to use Anchoring ethically:
+1. Show the cost of the alternative first (e.g. "Hiring a full-time strategist costs $120,000/year... our system is $5,000").
+2. Present your highest-tier package first so your standard package feels easily accessible.
+3. Quantify the money lost by doing nothing.
+
+What price anchors do you set for your clients?`
+    },
+    {
       concept: "Jobs To Be Done (JTBD)",
       hook: "People don't buy drills. They buy holes.",
       topic: "Jobs To Be Done (JTBD) by Clayton Christensen: Why customers hire products to solve progress struggles.",
@@ -898,11 +1033,24 @@ How many pieces of content do you create each week?`
 
 // Standalone fallback post generator (Guarantees exactly 40% Concepts, 30% Updates, 30% AI Marketing every single day)
 function buildFallbackPosts(category, dateStr) {
-  // Deterministic seed based on date string to ensure daily variety and smooth rotation
-  const baseline = new Date('2026-01-01T00:00:00Z');
-  const current = new Date(`${dateStr}T00:00:00Z`);
-  const diffDays = Math.floor(Math.abs(current - baseline) / (1000 * 60 * 60 * 24));
+  const history = getHistory();
   
+  // Collect all historical headlines and hooks across the entire history database
+  const usedHeadlines = new Set();
+  const usedHooks = new Set();
+  
+  for (const entry of history) {
+    if (entry.date !== dateStr && entry.posts && Array.isArray(entry.posts)) {
+      for (const p of entry.posts) {
+        if (p.postContent) {
+          if (p.postContent.imageHeadline) usedHeadlines.add(p.postContent.imageHeadline.toUpperCase().trim());
+          if (p.postContent.hook) usedHooks.add(p.postContent.hook.toLowerCase().trim());
+          if (p.headline) usedHeadlines.add(p.headline.toUpperCase().trim());
+        }
+      }
+    }
+  }
+
   const archetypes = [
     { name: 'Marketing Concept Explained', layout: 'news-card', palette: 'Corporate Navy', role: 'Business Advisor', env: 'Technology command center', cam: 'Looking at camera', suit: 'Navy business suit' },
     { name: 'Marketing Framework Playbook', layout: 'presentation-slide', palette: 'Emerald Green', role: 'Business Coach', env: 'Executive boardroom', cam: 'Presentation shot', suit: 'Charcoal executive suit' },
@@ -911,25 +1059,38 @@ function buildFallbackPosts(category, dateStr) {
     { name: 'AI Marketing Workflow', layout: 'hero-center', palette: 'Crimson Red', role: 'Speaker', env: 'Auditorium stage', cam: 'Speaking on stage', suit: 'Conference speaker outfit' }
   ];
 
-  // Map 5 daily posts according to the required mix:
-  // Post 1: 40% - Core Marketing Concept #1
-  // Post 2: 40% - Core Marketing Concept #2
-  // Post 3: 30% - World of Marketing Update & Growth Strategy
-  // Post 4: 30% - AI-Related Marketing Concept
-  // Post 5: 30% - AI-Related Marketing Workflow
-  const pool1 = TOPICS_LIBRARY.marketingConcepts;
-  const pool2 = TOPICS_LIBRARY.marketingConcepts;
-  const pool3 = TOPICS_LIBRARY.marketingUpdates;
-  const pool4 = TOPICS_LIBRARY.aiMarketing;
-  const pool5 = TOPICS_LIBRARY.aiMarketing;
+  // Helper to pick the freshest unused topic from a pool
+  function pickFreshest(pool, alreadyPicked = []) {
+    // 1. First priority: Topics that have NEVER appeared in history
+    const pristine = pool.filter(t => 
+      !usedHeadlines.has(t.headline.toUpperCase().trim()) && 
+      !usedHooks.has(t.hook.toLowerCase().trim()) &&
+      !alreadyPicked.includes(t)
+    );
+    if (pristine.length > 0) return pristine[0];
 
-  const selectedTopics = [
-    pool1[(diffDays * 2 + 0) % pool1.length],
-    pool2[(diffDays * 2 + 1) % pool2.length],
-    pool3[diffDays % pool3.length],
-    pool4[(diffDays * 2 + 0) % pool4.length],
-    pool5[(diffDays * 2 + 1) % pool5.length]
-  ];
+    // 2. Second priority: Any topic from pool not picked in today's batch
+    const available = pool.filter(t => !alreadyPicked.includes(t));
+    return available[0] || pool[0];
+  }
+
+  const picked = [];
+  const post1 = pickFreshest(TOPICS_LIBRARY.marketingConcepts, picked);
+  picked.push(post1);
+  
+  const post2 = pickFreshest(TOPICS_LIBRARY.marketingConcepts, picked);
+  picked.push(post2);
+
+  const post3 = pickFreshest(TOPICS_LIBRARY.marketingUpdates, picked);
+  picked.push(post3);
+
+  const post4 = pickFreshest(TOPICS_LIBRARY.aiMarketing, picked);
+  picked.push(post4);
+
+  const post5 = pickFreshest(TOPICS_LIBRARY.aiMarketing, picked);
+  picked.push(post5);
+
+  const selectedTopics = [post1, post2, post3, post4, post5];
 
   return archetypes.map((arch, idx) => {
     const t = selectedTopics[idx];
