@@ -559,6 +559,12 @@ async function loadSettings() {
       settings = {};
     }
     
+    // Auto-migrate old dead webhook URLs in browser localStorage
+    if (!settings.webhookUrl || settings.webhookUrl.includes('8hd357m87nxbmvrw8i5f7i3ughh4jp9g')) {
+      settings.webhookUrl = 'https://hook.eu1.make.com/fqv4xdxxh3q219mqfx8ui5a3b29reg3s';
+      try { localStorage.setItem('linkedin_settings', JSON.stringify(settings)); } catch (e) {}
+    }
+    
     state.settings = {
       webhookUrl: settings.webhookUrl || 'https://hook.eu1.make.com/fqv4xdxxh3q219mqfx8ui5a3b29reg3s',
       geminiApiKey: settings.geminiApiKey || '',
