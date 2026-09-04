@@ -1849,8 +1849,6 @@ async function postToGoogleFlow(postId, btnElement) {
     const activeEntry = state.history.find(h => h.date === date);
     const post = activeEntry ? activeEntry.posts.find(p => p.id === postId) : null;
 
-    let imageBase64 = null;
-
     // 1. Adaptive Quality Ladder: Automatically keeps 1080x1080 resolution while keeping size within safe limits (200KB - 850KB)
     function getOptimizedCanvasData(canvas) {
       if (!canvas) return null;
