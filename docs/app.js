@@ -1877,64 +1877,108 @@ async function postToGoogleFlow(postId, btnElement) {
     // 2. Multi-Tier Automatic Cloud Hosting for the Rendered Creative Canvas
     let imageUrl = '';
     const imgbbKey = state.settings.imgbbApiKey;
-    
-    btnElement.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Hosting edited creative...`;
+    const githubPat = state.settings.githubPat;
+    const githubOwner = state.settings.githubOwner || 'jagtapsourabh-4003';
+    const githubRepo = state.settings.githubRepo || 'linkedin-daily-publisher';
 
-    // Tier 1: User's custom ImgBB key
-    if (imgbbKey) {
+    btnElement.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Hosting creative image...`;
+
+    // Helper: convert base64 DataURL → raw blob bytes
+    function base64ToBlob(dataUrl, mimeType) {
+      const byteStr = atob(dataUrl.split(',')[1]);
+      const ab = new ArrayBuffer(byteStr.length);
+      const ia = new Uint8Array(ab);
+      for (let i = 0; i < byteStr.length; i++) ia[i] = byteStr.charCodeAt(i);
+      return new Blob([ab], { type: mimeType || 'image/png' });
+    }
+
+    // Tier 1: ImgBB (if user has API key) — best quality, permanent
+    if (!imageUrl && imgbbKey && imageBase64) {
       try {
         const rawBase64 = imageBase64.replace(/^data:image\/\w+;base64,/, '');
         const formData = new FormData();
         formData.append('image', rawBase64);
-        
         const imgbbResponse = await fetch(`https://api.imgbb.com/1/upload?key=${imgbbKey}`, {
-          method: 'POST',
-          body: formData
+          method: 'POST', body: formData
         });
-        
         if (imgbbResponse.ok) {
           const result = await imgbbResponse.json();
           if (result && result.success && result.data && result.data.url) {
             imageUrl = result.data.url;
-            console.log(`[Browser ImgBB] Edited creative hosted successfully: ${imageUrl}`);
+            console.log(`[Publish ✅ Tier1 ImgBB] ${imageUrl}`);
           }
         }
-      } catch (uploadErr) {
-        console.warn('[Publish] ImgBB upload skipped/failed:', uploadErr.message);
-      }
+      } catch (e) { console.warn('[Publish Tier1] ImgBB failed:', e.message); }
     }
 
-    // Tier 2: Instant Anonymous CDN Upload (Guarantees edited creative is hosted without needing an API key)
+    // Tier 2: GitHub API commit → raw.githubusercontent.com (uses GitHub PAT, always public, no CORS)
+    if (!imageUrl && githubPat && imageBase64) {
+      try {
+        const filePath = `docs/creative_latest.png`;
+        const rawBase64 = imageBase64.replace(/^data:image\/\w+;base64,/, '');
+        const apiUrl = `https://api.github.com/repos/${githubOwner}/${githubRepo}/contents/${filePath}`;
+
+        // Get current SHA if file exists (needed for update)
+        let fileSha = null;
+        try {
+          const existing = await fetch(apiUrl, {
+            headers: { 'Authorization': `token ${githubPat}`, 'Accept': 'application/vnd.github+json' }
+          });
+          if (existing.ok) {
+            const data = await existing.json();
+            fileSha = data.sha;
+          }
+        } catch (_) {}
+
+        const commitBody = {
+          message: `chore: update creative image for ${date} post ${postId}`,
+          content: rawBase64,
+          branch: 'main'
+        };
+        if (fileSha) commitBody.sha = fileSha;
+
+        const commitRes = await fetch(apiUrl, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `token ${githubPat}`,
+            'Accept': 'application/vnd.github+json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(commitBody)
+        });
+        if (commitRes.ok) {
+          // Use cache-busted GitHub Pages URL (takes ~30s to deploy, use raw.githubusercontent.com for instant access)
+          imageUrl = `https://raw.githubusercontent.com/${githubOwner}/${githubRepo}/main/${filePath}?t=${Date.now()}`;
+          console.log(`[Publish ✅ Tier2 GitHub] ${imageUrl}`);
+        }
+      } catch (e) { console.warn('[Publish Tier2] GitHub commit failed:', e.message); }
+    }
+
+    // Tier 3: 0x0.st — CORS-enabled anonymous file host (no key needed, files live 30+ days)
     if (!imageUrl && imageBase64) {
       try {
-        const byteString = atob(imageBase64.split(',')[1]);
-        const mimeString = imageBase64.split(',')[0].split(':')[1].split(';')[0] || 'image/png';
-        const ab = new ArrayBuffer(byteString.length);
-        const ia = new Uint8Array(ab);
-        for (let i = 0; i < byteString.length; i++) {
-          ia[i] = byteString.charCodeAt(i);
-        }
-        const blob = new Blob([ab], { type: mimeString });
+        const blob = base64ToBlob(imageBase64, 'image/png');
         const fd = new FormData();
-        fd.append('files[]', blob, `creative_${date}_post${postId}.png`);
-
-        const uguuRes = await fetch('https://uguu.se/upload.php', { method: 'POST', body: fd });
-        if (uguuRes.ok) {
-          const uguuData = await uguuRes.json();
-          if (uguuData && uguuData.files && uguuData.files[0] && uguuData.files[0].url) {
-            imageUrl = uguuData.files[0].url;
-            console.log(`[Publish] Hosted edited creative on CDN: ${imageUrl}`);
+        fd.append('file', blob, `creative_${date}_post${postId}.png`);
+        const res = await fetch('https://0x0.st', { method: 'POST', body: fd });
+        if (res.ok) {
+          const text = (await res.text()).trim();
+          if (text && text.startsWith('http')) {
+            imageUrl = text;
+            console.log(`[Publish ✅ Tier3 0x0.st] ${imageUrl}`);
           }
         }
-      } catch (cdnErr) {
-        console.warn('[Publish] Instant CDN upload failed, falling back to static asset:', cdnErr.message);
-      }
+      } catch (e) { console.warn('[Publish Tier3] 0x0.st failed:', e.message); }
     }
 
-    // Fallback public image URL if cloud uploads were unavailable
+    // Tier 4: Fallback — use committed static avatar on GitHub Pages
     const originUrl = window.location.origin + window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
     const fallbackPublicImageUrl = `${originUrl}/avatar.jpg`;
     const finalImageUrl = imageUrl || fallbackPublicImageUrl;
+
+    if (!imageUrl) {
+      console.warn('[Publish ⚠️] All CDN tiers failed. Sending avatar.jpg. Add ImgBB API key in Settings for reliable creative publishing.');
+    }
 
     // 3. Post text and image directly to Webhook (Make.com / Google Apps Script / Zapier)
     btnElement.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Publishing to LinkedIn...`;
