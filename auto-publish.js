@@ -60,7 +60,7 @@ async function autoPublishToday() {
   const postContent = (post.postContent && post.postContent.content) ? post.postContent.content : post.content;
   
   // Use the high-resolution 1080x1080 rendered creative graphic
-  const imageUrl = `https://raw.githubusercontent.com/jagtapsourabh-4003/linkedin-daily-publisher/main/docs/creative_1.png?t=${Date.now()}`;
+  const imageUrl = `${BASE_URL}/creative_1.png`;
 
   console.log(`[Auto-Publisher] Selected Post 1 for ${entry.date}: "${post.headline || (post.postContent && post.postContent.imageHeadline)}"`);
   console.log(`[Auto-Publisher] Creative Image URL: ${imageUrl}`);

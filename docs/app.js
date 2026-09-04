@@ -1971,11 +1971,11 @@ async function postToGoogleFlow(postId, btnElement) {
       } catch (e) { console.warn('[Publish Tier3] 0x0.st failed:', e.message); }
     }
 
-    // Tier 4: High-Resolution Rendered Creative Graphic (Hosted directly on GitHub)
-    const originUrl = window.location.origin + window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
-    const githubCreativeUrl = `https://raw.githubusercontent.com/${githubOwner}/${githubRepo}/main/docs/creative_${postId}.png?t=${Date.now()}`;
+    // Tier 4: High-Resolution Rendered Creative Graphic (Hosted directly on GitHub Pages)
+    const originUrl = 'https://jagtapsourabh-4003.github.io/linkedin-daily-publisher';
     const pagesCreativeUrl = `${originUrl}/creative_${postId}.png`;
-    const finalImageUrl = imageUrl || githubCreativeUrl || pagesCreativeUrl;
+    const githubCreativeUrl = `https://raw.githubusercontent.com/${githubOwner}/${githubRepo}/main/docs/creative_${postId}.png`;
+    const finalImageUrl = imageUrl || pagesCreativeUrl || githubCreativeUrl;
 
     console.log(`[Publish] Using creative graphic image: ${finalImageUrl}`);
 
