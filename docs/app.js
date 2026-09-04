@@ -1851,15 +1851,52 @@ async function postToGoogleFlow(postId, btnElement) {
 
     let imageBase64 = null;
 
-    // 1. Capture the exact live rendered canvas from the screen that user sees
+    // 1. Adaptive Quality Ladder: Automatically keeps 1080x1080 resolution while keeping size within safe limits (200KB - 850KB)
+    function getOptimizedCanvasData(canvas) {
+      if (!canvas) return null;
+      const MAX_BYTES = 850 * 1024; // 850 KB safe ceiling: ensures crystal clear 1080x1080 without webhook overflow
+
+      // Step A: Try PNG first (lossless, pixel-perfect for clean graphic cards)
+      try {
+        const pngData = canvas.toDataURL('image/png');
+        const pngBytes = Math.round((pngData.length * 3) / 4);
+        if (pngBytes <= MAX_BYTES) {
+          console.log(`[Publish 🎨] Using lossless PNG: ${(pngBytes / 1024).toFixed(1)} KB`);
+          return { dataUrl: pngData, format: 'png', bytes: pngBytes };
+        }
+      } catch (e) {
+        console.warn('[Publish] PNG export skipped:', e.message);
+      }
+
+      // Step B: Adaptive JPEG Quality Ladder (95% -> 90% -> 85% -> 80%) for heavy photographic/Canva uploads
+      const qualitySteps = [0.95, 0.90, 0.85, 0.80];
+      for (const q of qualitySteps) {
+        try {
+          const jpgData = canvas.toDataURL('image/jpeg', q);
+          const jpgBytes = Math.round((jpgData.length * 3) / 4);
+          if (jpgBytes <= MAX_BYTES || q === qualitySteps[qualitySteps.length - 1]) {
+            console.log(`[Publish 🎨] Adaptive JPEG (${Math.round(q * 100)}% quality): ${(jpgBytes / 1024).toFixed(1)} KB (1080x1080)`);
+            return { dataUrl: jpgData, format: 'jpg', bytes: jpgBytes };
+          }
+        } catch (e) {
+          console.warn(`[Publish] JPEG @ ${q} export failed:`, e.message);
+        }
+      }
+
+      return { dataUrl: canvas.toDataURL('image/jpeg', 0.85), format: 'jpg', bytes: 200000 };
+    }
+
+    let imageBase64 = null;
+    let imageFormat = 'jpg';
+    let imageSizeBytes = 0;
+
     const onScreenCanvas = document.getElementById(`canvas-${postId}`);
     if (onScreenCanvas) {
-      try {
-        // High-quality JPEG is 25x smaller than PNG (under 200KB vs 5MB), preventing webhook payload limit errors
-        imageBase64 = onScreenCanvas.toDataURL('image/jpeg', 0.92);
-      } catch (err) {
-        console.warn('[Publish] JPEG export failed, trying PNG:', err.message);
-        try { imageBase64 = onScreenCanvas.toDataURL('image/png'); } catch (_) {}
+      const opt = getOptimizedCanvasData(onScreenCanvas);
+      if (opt) {
+        imageBase64 = opt.dataUrl;
+        imageFormat = opt.format;
+        imageSizeBytes = opt.bytes;
       }
     }
 
@@ -1873,10 +1910,11 @@ async function postToGoogleFlow(postId, btnElement) {
       if (activeEntry && post) {
         drawCreative(exportCanvas, activeEntry.category, headlineText, subtextText, post.id, activeEntry.date, Object.assign({}, post.layout || {}, post));
       }
-      try {
-        imageBase64 = exportCanvas.toDataURL('image/jpeg', 0.92);
-      } catch (_) {
-        imageBase64 = exportCanvas.toDataURL('image/png');
+      const opt = getOptimizedCanvasData(exportCanvas);
+      if (opt) {
+        imageBase64 = opt.dataUrl;
+        imageFormat = opt.format;
+        imageSizeBytes = opt.bytes;
       }
     }
 
@@ -2049,7 +2087,8 @@ async function postToGoogleFlow(postId, btnElement) {
     };
     saveLocalDb(localDb);
 
-    showToast(`🎉 Post & 1080x1080 Creative Graphic sent to publishing flow!`, 'success');
+    const sizeText = imageSizeBytes > 0 ? ` (${(imageSizeBytes / 1024).toFixed(0)} KB)` : '';
+    showToast(`🎉 Post & 1080x1080 Creative Graphic${sizeText} sent to publishing flow!`, 'success');
     await loadHistory();
   } catch (err) {
     console.error('[Publish] Error:', err);
