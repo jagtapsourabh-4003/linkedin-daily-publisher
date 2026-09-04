@@ -49,7 +49,7 @@ async function autoPublishToday() {
     process.exit(1);
   }
 
-  // ✅ DUPLICATE LOCK — Only publish ONCE per day regardless of how many cron jobs run
+  // DUPLICATE LOCK — Only publish ONCE per day regardless of how many cron jobs run
   if (entry.autoPublished === true) {
     console.log(`✅ [Auto-Publisher] Already published for ${entry.date} at ${entry.autoPublishedAt}. Skipping duplicate.`);
     process.exit(0);
@@ -58,9 +58,12 @@ async function autoPublishToday() {
   // Pick Post 1 as default daily auto-publish post
   const post = entry.posts[0];
   const postContent = (post.postContent && post.postContent.content) ? post.postContent.content : post.content;
-  const imageUrl = `${BASE_URL}/avatar.jpg`;
+  
+  // Use the high-resolution 1080x1080 rendered creative graphic
+  const imageUrl = `https://raw.githubusercontent.com/jagtapsourabh-4003/linkedin-daily-publisher/main/docs/creative_1.png?t=${Date.now()}`;
 
   console.log(`[Auto-Publisher] Selected Post 1 for ${entry.date}: "${post.headline || (post.postContent && post.postContent.imageHeadline)}"`);
+  console.log(`[Auto-Publisher] Creative Image URL: ${imageUrl}`);
 
   const payload = {
     text: postContent,
@@ -102,7 +105,6 @@ async function autoPublishToday() {
 
     if (response.ok) {
       console.log('✅ [Auto-Publisher] Daily post successfully published to Webhook!');
-      // Write lock so subsequent cron runs skip today
       entry.autoPublished = true;
       entry.autoPublishedAt = new Date().toISOString();
       fs.writeFileSync(HISTORY_FILE, JSON.stringify(history, null, 2));

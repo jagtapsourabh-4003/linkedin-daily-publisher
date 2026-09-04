@@ -1971,14 +1971,13 @@ async function postToGoogleFlow(postId, btnElement) {
       } catch (e) { console.warn('[Publish Tier3] 0x0.st failed:', e.message); }
     }
 
-    // Tier 4: Fallback — use committed static avatar on GitHub Pages
+    // Tier 4: High-Resolution Rendered Creative Graphic (Hosted directly on GitHub)
     const originUrl = window.location.origin + window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
-    const fallbackPublicImageUrl = `${originUrl}/avatar.jpg`;
-    const finalImageUrl = imageUrl || fallbackPublicImageUrl;
+    const githubCreativeUrl = `https://raw.githubusercontent.com/${githubOwner}/${githubRepo}/main/docs/creative_${postId}.png?t=${Date.now()}`;
+    const pagesCreativeUrl = `${originUrl}/creative_${postId}.png`;
+    const finalImageUrl = imageUrl || githubCreativeUrl || pagesCreativeUrl;
 
-    if (!imageUrl) {
-      console.warn('[Publish ⚠️] All CDN tiers failed. Sending avatar.jpg. Add ImgBB API key in Settings for reliable creative publishing.');
-    }
+    console.log(`[Publish] Using creative graphic image: ${finalImageUrl}`);
 
     // 3. Post text and image directly to Webhook (Make.com / Google Apps Script / Zapier)
     btnElement.innerHTML = `<span class="spinner" style="width: 12px; height: 12px; display: inline-block;"></span> Publishing to LinkedIn...`;
@@ -2056,13 +2055,7 @@ async function postToGoogleFlow(postId, btnElement) {
     };
     saveLocalDb(localDb);
 
-    const tier = imageUrl.includes('imgbb') ? 'ImgBB' :
-                  imageUrl.includes('raw.githubusercontent') ? 'GitHub' :
-                  imageUrl.includes('0x0.st') ? '0x0.st' : 'avatar fallback';
-    const imageNote = imageUrl && imageUrl !== fallbackPublicImageUrl
-      ? `✅ Creative image hosted via ${tier}`
-      : `⚠️ Using avatar placeholder — add GitHub PAT or ImgBB key in Settings for full creative`;
-    showToast(`🎉 Published! ${imageNote}`, 'success');
+    showToast(`🎉 Post & 1080x1080 Creative Graphic sent to publishing flow!`, 'success');
     await loadHistory();
   } catch (err) {
     console.error('[Publish] Error:', err);

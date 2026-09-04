@@ -63,6 +63,7 @@ jobs:
         else
           node generate-daily.js
         fi
+        node generate-creatives.cjs
 
     - name: Commit and Push Changes
       run: |
@@ -72,12 +73,12 @@ jobs:
         # Pull latest changes first to avoid push conflicts from concurrent cron runs
         git pull --rebase origin main || true
         
-        # Check specifically if history.json has changes
-        if git diff --quiet docs/data/history.json; then
+        # Check specifically if history.json or creatives have changes
+        if git diff --quiet docs/data/history.json && git diff --quiet docs/creative_*.png; then
           echo "No new drafts generated or saved. Skipping commit."
         else
-          git add docs/data/history.json docs/avatar_daily_*.jpg || git add docs/data/history.json
-          git commit -m "Automated: Daily LinkedIn drafts generated"
+          git add docs/data/history.json docs/avatar_daily_*.jpg docs/creative_*.png docs/creative.png || git add docs/data/history.json
+          git commit -m "Automated: Daily LinkedIn drafts & creative graphics generated"
           
           # Retry push up to 3 times in case of concurrent cron conflicts
           for i in 1 2 3; do
