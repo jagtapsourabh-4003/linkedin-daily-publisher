@@ -12,15 +12,18 @@ const FEEDS = {
   ai: [
     { name: 'TechCrunch AI', url: 'https://techcrunch.com/category/artificial-intelligence/feed/' },
     { name: 'VentureBeat AI', url: 'https://venturebeat.com/category/ai/feed/' },
+    { name: 'Search Engine Land AI Search', url: 'https://searchengineland.com/feed' },
     { name: 'OpenAI Blog', url: 'https://openai.com/news/rss.xml' },
-    { name: 'Google News AI Marketing', url: 'https://news.google.com/rss/search?q=(artificial+intelligence+OR+generative+AI+OR+LLMs)+AND+(marketing+OR+branding+OR+advertising+OR+copywriting+OR+SEO)&hl=en-US&gl=US&ceid=US:en' }
+    { name: 'Google News AI Marketing Case Studies', url: 'https://news.google.com/rss/search?q=(artificial+intelligence+OR+generative+AI)+AND+(marketing+case+study+OR+copywriting+OR+growth+strategy+OR+AEO)&hl=en-US&gl=US&ceid=US:en' }
   ],
   marketing: [
-    { name: 'HubSpot Marketing', url: 'https://blog.hubspot.com/marketing/rss.xml' },
+    { name: 'Seth Godin Marketing Ideation', url: 'https://seths.blog/feed/' },
+    { name: 'HubSpot Marketing & Case Studies', url: 'https://blog.hubspot.com/marketing/rss.xml' },
     { name: 'Social Media Today', url: 'https://www.socialmediatoday.com/feeds/news/' },
-    { name: 'Moz Blog', url: 'https://moz.com/feeds/blog.rss' },
-    { name: 'Google News Marketing Concepts', url: 'https://news.google.com/rss/search?q=(marketing+concept+OR+mental+model+OR+growth+framework+OR+pricing+strategy+OR+brand+positioning)&hl=en-US&gl=US&ceid=US:en' },
-    { name: 'Google News Digital Marketing', url: 'https://news.google.com/rss/search?q=digital+marketing+OR+brand+strategy+OR+copywriting+strategy&hl=en-US&gl=US&ceid=US:en' }
+    { name: 'Search Engine Land Strategy', url: 'https://searchengineland.com/feed' },
+    { name: 'Google News Marketing Case Studies', url: 'https://news.google.com/rss/search?q=(B2B+marketing+case+study+OR+growth+breakdown+OR+customer+acquisition+case+study)&hl=en-US&gl=US&ceid=US:en' },
+    { name: 'Google News Marketing Concepts & Mental Models', url: 'https://news.google.com/rss/search?q=(marketing+concept+OR+mental+model+OR+pricing+psychology+OR+brand+positioning+OR+growth+framework)&hl=en-US&gl=US&ceid=US:en' },
+    { name: 'Google News Brand Strategy Updates', url: 'https://news.google.com/rss/search?q=(digital+marketing+trend+OR+consumer+psychology+OR+copywriting+framework)&hl=en-US&gl=US&ceid=US:en' }
   ]
 };
 
