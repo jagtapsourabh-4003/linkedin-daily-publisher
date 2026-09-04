@@ -92,23 +92,26 @@ jobs:
         fi
 
 
-    - name: Auto-Publish to LinkedIn (Direct API — no Make.com needed)
+    - name: Auto-Publish to LinkedIn (Once Per Day Lock)
       env:
         LINKEDIN_TOKEN: ${{ secrets.LINKEDIN_TOKEN }}
         LINKEDIN_PERSON_ID: ${{ secrets.LINKEDIN_PERSON_ID }}
         WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
       run: |
-        # Try direct LinkedIn API first (most reliable)
+        # Try direct LinkedIn API first (most reliable, no Make.com needed)
         if [ -n "$LINKEDIN_TOKEN" ]; then
           echo "Posting directly to LinkedIn API..."
           node linkedin-post.js && echo "Direct LinkedIn post succeeded!" || echo "Direct post failed, trying webhook fallback..."
         fi
-        
-        # Also send to Make.com webhook as backup (if configured)
-        if [ -n "$WEBHOOK_URL" ]; then
-          echo "Sending to Make.com webhook as backup..."
-          node auto-publish.js || echo "Webhook fallback completed."
-        else
-          WEBHOOK_URL="https://hook.eu1.make.com/fqv4xdxxh3q219mqfx8ui5a3b29reg3s"
-          node auto-publish.js || echo "Webhook fallback completed."
+
+        # Send to Make.com webhook (with once-per-day duplicate lock built in)
+        WEBHOOK_URL="${WEBHOOK_URL:-https://hook.eu1.make.com/fqv4xdxxh3q219mqfx8ui5a3b29reg3s}"
+        node auto-publish.js || echo "Auto-publish step completed."
+
+        # Commit the lock flag back to repo so subsequent cron runs see it and skip
+        git pull --rebase origin main || true
+        if ! git diff --quiet docs/data/history.json; then
+          git add docs/data/history.json
+          git commit -m "chore: mark today as auto-published (duplicate lock)"
+          git push origin main || true
         fi

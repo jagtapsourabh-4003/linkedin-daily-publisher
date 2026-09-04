@@ -1,6 +1,7 @@
 /**
  * Automated Daily LinkedIn Publisher
  * Reads today's generated draft and automatically triggers the Make.com Webhook.
+ * LOCK: Only fires ONCE per day — subsequent cron runs are skipped automatically.
  */
 
 import fs from 'fs';
@@ -46,6 +47,12 @@ async function autoPublishToday() {
   if (!entry.posts || entry.posts.length === 0) {
     console.error('[Auto-Publisher] No posts found in entry!');
     process.exit(1);
+  }
+
+  // ✅ DUPLICATE LOCK — Only publish ONCE per day regardless of how many cron jobs run
+  if (entry.autoPublished === true) {
+    console.log(`✅ [Auto-Publisher] Already published for ${entry.date} at ${entry.autoPublishedAt}. Skipping duplicate.`);
+    process.exit(0);
   }
 
   // Pick Post 1 as default daily auto-publish post
@@ -95,6 +102,11 @@ async function autoPublishToday() {
 
     if (response.ok) {
       console.log('✅ [Auto-Publisher] Daily post successfully published to Webhook!');
+      // Write lock so subsequent cron runs skip today
+      entry.autoPublished = true;
+      entry.autoPublishedAt = new Date().toISOString();
+      fs.writeFileSync(HISTORY_FILE, JSON.stringify(history, null, 2));
+      console.log('✅ [Auto-Publisher] Lock saved — no duplicates will fire today.');
     } else {
       console.error(`❌ [Auto-Publisher] Webhook returned error HTTP ${response.status}: ${responseText}`);
       process.exit(1);
