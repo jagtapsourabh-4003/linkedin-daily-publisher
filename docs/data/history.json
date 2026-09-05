@@ -1,5 +1,149 @@
 [
   {
+    "date": "2026-09-05",
+    "category": "marketing",
+    "posts": [
+      {
+        "id": 1,
+        "designArchetype": "Marketing Concept Explained",
+        "layoutFamily": "news-card",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Business Advisor",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Advisor in a Technology command center, Looking at camera, Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Concept Explained",
+          "hook": "Why putting links in your post hurts your reach.",
+          "content": "Why putting links in your post hurts your reach.\n\nEvery social platform (LinkedIn, X, YouTube, Instagram) has one single goal:\nKeep users on their platform as long as possible.\n\nWhen you post \"Read my full blog here: [link]\", two things happen:\n1. The algorithm penalizes your post for sending people away.\n2. 98% of people keep scrolling without clicking.\n\nThe solution? Zero-Click Content (coined by Amanda Natividad):\n- Give away the core insight, takeaway, and actionable framework directly in the post.\n- Leave nothing hidden behind a paywall or link gate.\n- Build pure trust and authority in the feed.\n\nWhen you solve problems natively, the highest-intent clients will visit your profile and reach out directly.\n\nGive away your secrets. Sell the implementation.\n\nDo you prefer reading full insights in the feed, or clicking external links?",
+          "sourceArticle": "Zero-Click Content by Amanda Natividad: Why delivering standalone value in the feed beats chasing outbound clicks.",
+          "imageHeadline": "ZERO-CLICK *CONTENT*",
+          "imageSubtext": "Why giving away the answer wins the algorithm.",
+          "badgeText": "CONTENT LAW",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 2,
+        "designArchetype": "Marketing Framework Playbook",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Business Coach",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Coach in a Executive boardroom, Presentation shot, Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "95% of your buyers will NOT buy from you today.",
+          "content": "95% of your buyers will NOT buy from you today.\n\nResearch from the Ehrenberg-Bass Institute revealed a massive truth:\nOnly 5% of B2B buyers are in the market to buy right now.\nThe other 95% are \"out of market\" (they don't have the budget, need, or contract renewal today).\n\nIf your marketing is only \"Book a Demo\" or \"Buy Now\", you are completely ignoring 95% of your future revenue!\n\nHow smart brands market to the 95%:\n1. Build Brand Recall (Mental Availability): Post consistent, memorable ideas so you are the #1 name they think of when they ARE ready to buy.\n2. Educate, don't just pitch: Teach principles that help them do their job better today.\n3. Be patient: When their contract expires next year, you will be their only phone call.\n\nAre you marketing to the 5% who need you today, or the 95% who will need you tomorrow?",
+          "sourceArticle": "The 95-5 Rule from the Ehrenberg-Bass Institute: Why B2B marketing must focus on future memory and brand salience.",
+          "imageHeadline": "THE *95-5 RULE*",
+          "imageSubtext": "Why 95% of your market is not ready to buy today.",
+          "badgeText": "B2B GROWTH LAW",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 3,
+        "designArchetype": "World of Marketing Strategy",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Startup Founder",
+        "environment": "Luxury office",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Startup Founder in a Luxury office, Half-body portrait, Smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "If you confuse people, you lose them.",
+          "content": "If you confuse people, you lose them.\n\nMany businesses think using big, fancy words makes them look smart and professional.\n\nIn reality, fancy buzzwords just confuse your customers and make them leave.\n\nTry these simple word swaps today:\n- Instead of \"utilize\" -> use \"use\"\n- Instead of \"facilitate\" -> use \"help\"\n- Instead of \"commence\" -> use \"start\"\n- Instead of \"synergize\" -> use \"work together\"\n\nClear writing is clear thinking.\n\nWhat is one business buzzword you wish people would stop using?",
+          "sourceArticle": "Why replacing fancy buzzwords with simple everyday words doubles your sales.",
+          "imageHeadline": "WRITE *SIMPLE WORDS*",
+          "imageSubtext": "How clear words double your sales.",
+          "badgeText": "WRITING TIP",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 4,
+        "designArchetype": "AI Marketing Concept",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Podcast Host",
+        "environment": "Podcast studio",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Podcast Host in a Podcast studio, Sitting at desk, Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Most people search Google the wrong way.",
+          "content": "Most people search Google the wrong way.\n\nInstead of clicking through 10 different website links, people now just ask AI tools like ChatGPT or Gemini to give them one quick, direct answer.\n\nIf you run a business or create content, here is what to do:\n\n1. Give direct answers: Put the important answers right at the top of your page.\n2. Answer real questions: What does your product cost? How does it help?\n3. Keep it simple: Write like you are explaining it to a smart friend.\n\nThink of it like being the friendly person everyone turns to for advice.\n\nHave you started using AI to search for things instead of Google? Let me know below!",
+          "sourceArticle": "How everyday buyers are using AI tools to find quick answers online instead of clicking 10 blue links.",
+          "imageHeadline": "AI SEARCH *IS HERE*",
+          "imageSubtext": "How customers find answers today.",
+          "badgeText": "AI MARKETING",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 5,
+        "designArchetype": "AI Marketing Workflow",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Speaker in a Auditorium stage, Speaking on stage, Conference speaker outfit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "AI is your marketing intern, not your replacement.",
+          "content": "AI is your marketing intern, not your replacement.\n\nIt is here to replace the boring, repetitive tasks you hate doing.\n\nThink of AI like having a super fast intern who works 24/7:\n\n1. Brainstorming hooks: Ask it for 10 title ideas when you are feeling stuck.\n2. Summarizing long notes: Turn a 5-page case study into 3 key bullet points in seconds.\n3. Fixing your grammar: Clean up typos and make your writing easier to read.\n\nYou are still the pilot. AI is just the co-pilot.\n\nWhat is the #1 marketing task you wish AI could do for you automatically?",
+          "sourceArticle": "How savvy marketers use AI to brainstorm 20 content ideas in 5 minutes without losing their authentic voice.",
+          "imageHeadline": "AI AS *YOUR INTERN*",
+          "imageSubtext": "How to save 5 hours every week.",
+          "badgeText": "AI PLAYBOOK",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-09-04",
     "category": "marketing",
     "posts": [
