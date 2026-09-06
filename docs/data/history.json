@@ -141,7 +141,9 @@
     ],
     "selectedPostId": null,
     "postedAt": null,
-    "status": "draft"
+    "status": "draft",
+    "autoPublished": true,
+    "autoPublishedAt": "2026-09-06T05:04:28.888Z"
   },
   {
     "date": "2026-09-05",
