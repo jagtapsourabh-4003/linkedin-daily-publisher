@@ -16,7 +16,8 @@ const WEBHOOK_URL = process.env.WEBHOOK_URL || 'https://hook.eu1.make.com/fqv4xd
 const BASE_URL = 'https://jagtapsourabh-4003.github.io/linkedin-daily-publisher';
 
 async function autoPublishToday() {
-  console.log('[Auto-Publisher] Starting daily automated publishing workflow...');
+  console.log('[Auto-Publisher] Automated background publishing is DISABLED per user policy. Posts must be published manually from the dashboard.');
+  process.exit(0);
   
   if (!fs.existsSync(HISTORY_FILE)) {
     console.error('[Auto-Publisher] history.json not found!');

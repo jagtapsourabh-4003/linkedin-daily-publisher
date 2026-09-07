@@ -35,11 +35,8 @@ function httpsReq(options, body) {
 }
 
 async function main() {
-  if (!LINKEDIN_TOKEN) {
-    console.error("ERROR: LINKEDIN_TOKEN env var not set!");
-    console.error("Get your token from: https://www.linkedin.com/developers/");
-    process.exit(1);
-  }
+  console.log("[LinkedIn Direct] Direct background publishing is DISABLED per user policy. Posts must be published manually from the dashboard.");
+  process.exit(0);
 
   const today = getISTDate();
   console.log("[LinkedIn Direct] Date:", today);
