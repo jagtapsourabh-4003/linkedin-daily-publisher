@@ -2471,6 +2471,10 @@ function renderActiveDrafts() {
                 <label for="input-cta-${post.id}">Bottom Button / CTA Text</label>
                 <input type="text" id="input-cta-${post.id}" class="customizer-input" value="${ctaText}" placeholder="e.g. TRY WEB APP, READ FULL POST">
               </div>
+              <div class="customizer-field">
+                <label for="input-source-${post.id}">Source of Update (Material Source)</label>
+                <input type="text" id="input-source-${post.id}" class="customizer-input" value="${sourceName}" placeholder="e.g. Marketing Week, TechCrunch AI">
+              </div>
             </div>
             <div class="customizer-row">
               <div class="customizer-field full-width">
@@ -2663,6 +2667,7 @@ function renderActiveDrafts() {
       const avatarSelect = cardEl.querySelector(`#select-avatar-${post.id}`);
       const badgeInput = cardEl.querySelector(`#input-badge-${post.id}`);
       const ctaInput = cardEl.querySelector(`#input-cta-${post.id}`);
+      const sourceInput = cardEl.querySelector(`#input-source-${post.id}`);
       const headlineInput = cardEl.querySelector(`#input-headline-${post.id}`);
       const subtextInput = cardEl.querySelector(`#input-subtext-${post.id}`);
       const customColorsContainer = cardEl.querySelector(`#custom-colors-container-${post.id}`);
@@ -2721,6 +2726,10 @@ function renderActiveDrafts() {
         post.postContent.ctaText = ctaInput.value;
         post.badgeText = badgeInput.value;
         post.ctaText = ctaInput.value;
+        if (sourceInput) {
+          post.sourceName = sourceInput.value;
+          post.postContent.sourceName = sourceInput.value;
+        }
 
         // Custom colors mapping
         if (paletteSelect.value === 'Custom') {
@@ -2746,6 +2755,7 @@ function renderActiveDrafts() {
             imageSubtext: subtextInput.value,
             badgeText: badgeInput.value,
             ctaText: ctaInput.value,
+            sourceName: sourceInput ? sourceInput.value : '',
             headlineFontSize: parseInt(sliderHeadlineSize.value),
             subtextFontSize: parseInt(sliderSubtextSize.value),
             overlayAvatar: checkOverlayAvatar ? checkOverlayAvatar.checked : true,
@@ -2846,6 +2856,10 @@ function renderActiveDrafts() {
       badgeInput.addEventListener('change', () => triggerRedrawAndSave(false));
       ctaInput.addEventListener('input', () => triggerRedrawAndSave(true));
       ctaInput.addEventListener('change', () => triggerRedrawAndSave(false));
+      if (sourceInput) {
+        sourceInput.addEventListener('input', () => triggerRedrawAndSave(true));
+        sourceInput.addEventListener('change', () => triggerRedrawAndSave(false));
+      }
 
       // Custom Colors Pickers
       colorText.addEventListener('input', () => triggerRedrawAndSave(true));
@@ -2982,7 +2996,7 @@ function renderActiveDrafts() {
       });
     }
 
-    // Open in Canva Button Listener (Minimalist Export + Photo URL)
+    // Open in Canva Button Listener (Export Text + Photo URL + Material Source)
     const canvaBtn = cardEl.querySelector(`#btn-canva-${post.id}`);
     if (canvaBtn) {
       canvaBtn.addEventListener('click', () => {
@@ -2990,19 +3004,26 @@ function renderActiveDrafts() {
         const subtextVal = (document.getElementById(`input-subtext-${post.id}`) || {}).value || subtextText;
         const badgeVal = (document.getElementById(`input-badge-${post.id}`) || {}).value || badgeText;
         const ctaVal = (document.getElementById(`input-cta-${post.id}`) || {}).value || ctaText;
+        const sourceVal = (document.getElementById(`input-source-${post.id}`) || {}).value || post.sourceName || (post.postContent && post.postContent.sourceName) || sourceName || (activeEntry.category === 'marketing' ? 'Marketing Week' : 'TechCrunch AI');
+        const sourceArtVal = (post.postContent && post.postContent.sourceArticle && post.postContent.sourceArticle !== 'General Trend') ? post.postContent.sourceArticle : (sourceArticle !== 'General Trend' ? sourceArticle : '');
+        const sourceUrlVal = (post.postContent && post.postContent.sourceUrl) ? post.postContent.sourceUrl : '';
         
         // Construct selected photo / avatar URL for Canva template
         const originUrl = window.location.origin + window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
         const photoUrl = state.settings.customAvatar ? state.settings.customAvatar : `${originUrl}/avatar_daily_${post.id}.jpg`;
 
-        // Minimalist payload
-        const payloadText = `[HEADLINE]\n${headlineVal}\n\n[SUBTEXT]\n${subtextVal}\n\n[TOP TAG]\n${badgeVal}\n\n[CTA BUTTON]\n${ctaVal}\n\n[SELECTED PHOTO LINK]\n${photoUrl}`;
+        // Comprehensive payload including material source and full matter
+        let sourceBlock = `[MATERIAL SOURCE / SOURCE OF UPDATE]\n${sourceVal}`;
+        if (sourceArtVal) sourceBlock += ` - "${sourceArtVal}"`;
+        if (sourceUrlVal) sourceBlock += `\n${sourceUrlVal}`;
+
+        const payloadText = `[HEADLINE]\n${headlineVal}\n\n[SUBTEXT]\n${subtextVal}\n\n[TOP TAG / BADGE]\n${badgeVal}\n\n[CTA BUTTON]\n${ctaVal}\n\n${sourceBlock}\n\n[SELECTED PHOTO LINK]\n${photoUrl}\n\n[POST MATTER / CAPTION]\n${textarea.value}`;
         
         navigator.clipboard.writeText(payloadText);
         if (!state.settings.canvaTemplateUrl) {
-          showToast('Copied text & photo URL to clipboard! Opening Canva...', 'info');
+          showToast('📋 Copied headline, material source, matter & photo URL! Opening Canva...', 'info');
         } else {
-          showToast('Copied text & photo URL! Opening your custom Canva template...', 'success');
+          showToast('📋 Copied headline, material source, matter & photo URL! Opening your Canva template...', 'success');
         }
         
         const canvaTargetUrl = state.settings.canvaTemplateUrl || 'https://www.canva.com/';
