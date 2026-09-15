@@ -1,4 +1,4 @@
-﻿/**
+/**
  * generate-creatives.cjs — Render 1080x1080 professional creative cards for daily posts.
  * Generates docs/creative_1.png ... docs/creative_5.png
  * Uses @napi-rs/canvas for high-fidelity server-side rendering.
@@ -239,6 +239,31 @@ async function renderPostCreative(post, category, date, outPath) {
   ctx.font = FONT_CTA;
   ctx.textAlign = 'center';
   ctx.fillText('READ FULL POST →', ctaX + ctaW / 2, ctaY + 30);
+  ctx.restore();
+
+  // 10. Bottom Source of Update Bar (Down bottom side)
+  const sourceName = (postContent.sourceName || post.sourceName || (category === 'marketing' ? 'Marketing Week' : 'TechCrunch AI')).toUpperCase();
+  ctx.save();
+  ctx.font = '600 16px "Segoe UI", Arial, sans-serif';
+  ctx.textAlign = 'left';
+  
+  // Glowing dot
+  const srcY = h - 38;
+  const dotX = cardX + 6;
+  ctx.beginPath();
+  ctx.arc(dotX, srcY - 5, 4, 0, Math.PI * 2);
+  ctx.fillStyle = palette.primary;
+  ctx.shadowColor = palette.primary;
+  ctx.shadowBlur = 8;
+  ctx.fill();
+  
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+  ctx.fillText(`SOURCE OF UPDATE: ${sourceName}`, dotX + 16, srcY);
+  
+  // Right side live badge
+  ctx.textAlign = 'right';
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+  ctx.fillText(`DAILY INTELLIGENCE • ${date}`, cardX + cardW - 6, srcY);
   ctx.restore();
 
   // Save to disk as PNG

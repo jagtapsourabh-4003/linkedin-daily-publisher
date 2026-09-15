@@ -4,6 +4,16 @@ import path from 'path';
 import { scrapeReferenceCreative } from './scraper.js';
 import { getHistory } from './database.js';
 
+function getHistoryData() {
+  const historyFile = path.resolve('docs', 'data', 'history.json');
+  if (fs.existsSync(historyFile)) {
+    try {
+      return JSON.parse(fs.readFileSync(historyFile, 'utf8'));
+    } catch (_) {}
+  }
+  return getHistory();
+}
+
 /**
  * Generates 5 LinkedIn post variations based on scraped trends and category.
  * @param {string} category - 'ai' or 'marketing'
@@ -22,11 +32,11 @@ export async function generatePosts(category, trends, apiKey) {
 
   console.log(`[Generator] Initializing Gemini request for ${category} using ${modelName}`);
 
-  // Fetch recent layout history metadata & concept blacklist to enforce zero repetition
+  // Fetch recent layout history metadata & concept blacklist from real history.json to enforce zero repetition
   let recentDesignMemoryStr = '[]';
   let recentConceptsBlacklistStr = '[]';
   try {
-    const history = getHistory();
+    const history = getHistoryData();
     const recentPosts = history.slice(0, 45).map(h => h.posts || []).flat();
     const designMemory = recentPosts.map(p => ({
       designArchetype: p.designArchetype || '',
@@ -39,12 +49,15 @@ export async function generatePosts(category, trends, apiKey) {
     })).filter(m => m.designArchetype || m.layoutFamily || m.colorPalette);
     recentDesignMemoryStr = JSON.stringify(designMemory);
 
-    // Build blacklist of all previously used concepts, hooks, and headlines
-    const conceptBlacklist = recentPosts.map(p => {
+    // Build blacklist of all previously used concepts, hooks, headlines, and articles
+    const conceptBlacklist = [];
+    for (const p of recentPosts) {
       const pc = p.postContent || {};
-      return `${pc.imageHeadline || ''} - ${pc.hook || ''} - ${pc.sourceArticle || ''}`.trim();
-    }).filter(s => s.length > 5);
-    recentConceptsBlacklistStr = JSON.stringify(conceptBlacklist.slice(0, 60));
+      if (pc.imageHeadline) conceptBlacklist.push(`Headline: ${pc.imageHeadline}`);
+      if (pc.hook) conceptBlacklist.push(`Hook: ${pc.hook}`);
+      if (pc.sourceArticle && pc.sourceArticle !== 'General Trend') conceptBlacklist.push(`Article: ${pc.sourceArticle}`);
+    }
+    recentConceptsBlacklistStr = JSON.stringify(conceptBlacklist.slice(0, 100));
   } catch (err) {
     console.warn('[Generator] Failed to fetch history for design & concept memory checks:', err.message);
   }
@@ -91,7 +104,7 @@ CRITICAL RULES:
 11. AVATAR PROMPT CONSTRUCTION: Formulate the avatarPrompt dynamically by chaining: [IDENTITY] + [ROLE] + [ENVIRONMENT] + [CAMERA STYLE] + [CLOTHING] + [LIGHTING]. Always end with the exact suffix: 'Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.'
 12. DESIGN MEMORY: You MUST NOT repeat any archetype, layout family, color palette, camera style, environment, clothing style, or role used in the last 30 days. Here is the list of recently used combinations:
 ${recentDesignMemoryStr}
-13. ZERO CONCEPT REPETITION (CRITICAL MANDATE): You are STRICTLY FORBIDDEN from repeating any concept, mental model, hook, or headline that appears in the blacklist of recently published posts below. Always scrape fresh ideas from the web trends or pick unused concepts from the Master Concept Catalog:
+13. ZERO CONCEPT OR TOPIC REPETITION (CRITICAL MANDATE): You are STRICTLY FORBIDDEN from repeating any concept, mental model, hook, or headline that appears in the blacklist of recently published posts below. Every post MUST be derived from a DIFFERENT real article in today's scraped web trends (e.g. from Marketing Week, Digiday, TechCrunch AI, The Verge, etc.). Do NOT repeat past angles:
 BLACKLIST OF RECENTLY USED POSTS (DO NOT REPEAT):
 ${recentConceptsBlacklistStr}
 
@@ -104,17 +117,21 @@ Guidelines for post content:
    - Line 1: An attention-grabbing, simple hook (under 6-8 words).
    - Problem / Reality: Explain what is happening in simple everyday terms.
    - 3 Simple Takeaways / Steps: Bullet points with numbers (1, 2, 3) that give concrete, easy advice.
-   - Friendly Question: Close with an easy question to encourage comments, followed by 3-4 relevant hashtags.
+   - Friendly Question: Close with an easy question to encourage comments.
+   - SOURCE ATTRIBUTION (MANDATORY AT THE BOTTOM):
+     Right before the hashtags, you MUST add a dedicated source line:
+     📌 Source: [Publication Name] ("[Article Title]")
+   - Hashtags: 3-4 relevant hashtags on the final line.
 6. Formatting: Emojis very sparingly (no more than 2-3). Do NOT use fake bold/italic unicode characters.
 7. Perspectives: First-person ('I' or 'We') as a friendly, knowledgeable mentor who simplifies complex topics.
 8. MANDATORY DAILY TOPIC MIX (40% Marketing Concepts / 30% Marketing Updates / 30% AI Marketing):
    Across the 5 posts generated every day, you MUST strictly adhere to this topic distribution:
-   - Post 1 (40% Marketing Concepts): Core Marketing Concept #1 (e.g. Purple Cow, Flywheel Effect, Red Ocean vs Blue Ocean, Law of Category, Lindy Effect, PMF, Halo Effect, Hook Model, Decoy Effect, Jobs-To-Be-Done, Loss Aversion, Mere Exposure Effect, Network Effects, Social Proof, Paradox of Choice, Zero-Click Content, Category of One, Rule of 7, Value Ladder, Growth Loops).
-   - Post 2 (40% Marketing Concepts): Core Marketing Concept #2 (A different framework from the list above, explained with a simple everyday story and 3 practical action steps).
-   - Post 3 (30% World of Marketing): Real-world Marketing News, Growth Strategy, or Copywriting Breakdown (word swaps that double conversions, client retention hacks, founder storytelling, pricing psychology, homepage fixes).
-   - Post 4 (30% AI Marketing): AI-Powered Marketing Concept (AI Search Optimization / AEO vs SEO, AI customer personalization, buyer discovery habits on ChatGPT/Gemini).
-   - Post 5 (30% AI Marketing): Actionable AI Marketing Workflow (3-step prompt formula for sales copy, content multiplier from 1 post into 10 formats, automated review analysis).
-9. ZERO TOPIC REPETITION: Base each of the 5 posts on a completely different idea. Keep all 5 variations fresh and unique.`;
+   - Post 1 (Marketing Strategy / Concept): Derived from today's marketing news (e.g. Marketing Week / Digiday / Adweek). Connect the real-world story to a powerful, actionable takeaway.
+   - Post 2 (Marketing Framework Playbook): A practical business growth playbook or conversion framework inspired by current marketing trends.
+   - Post 3 (World of Marketing Strategy): Breakdown of a real brand campaign, consumer psychology shift, or copywriting insight from today's trends.
+   - Post 4 (AI Marketing Concept): AI-Powered Marketing Concept inspired by today's AI news (TechCrunch AI, MIT Technology Review, Marketing AI Institute).
+   - Post 5 (AI Marketing Workflow): Actionable AI Marketing Workflow, prompt formula, or tool efficiency guide based on recent AI breakthroughs.
+9. ZERO TOPIC REPETITION: Base each of the 5 posts on a completely different story or article. Keep all 5 variations fresh and unique.`;
 
   const prompt = `Generate exactly 5 LinkedIn posts following the 40% Marketing Concepts / 30% Marketing Updates / 30% AI Marketing split:
 Use the following scraped web trends as context and inspiration:
@@ -126,11 +143,11 @@ ${trendsContext}
 Your response MUST be a JSON array containing exactly 5 objects. Do not wrap the JSON output in markdown formatting block quotes (e.g. \`\`\`json). Output raw JSON.
 
 Each object in the array must follow this structure. Ensure that the "style" field for each object matches its corresponding mandated category:
-- Object 1 "style": "Marketing Concept Explained" (e.g. Purple Cow, Flywheel Effect, Blue Ocean, Law of Category, Lindy Effect)
-- Object 2 "style": "Marketing Framework Playbook" (e.g. TOFU-MOFU-BOFU, AIDA Model, Share of Voice, Decoy Effect)
-- Object 3 "style": "World of Marketing Strategy" (e.g. Copywriting, Retention, Storytelling, Growth Hacks)
-- Object 4 "style": "AI Marketing Concept" (e.g. AI Search / AEO, AI Personalization, AI-native Buying Habits)
-- Object 5 "style": "AI Marketing Workflow" (e.g. Prompt Playbook, Content Repurposing, Automated Customer Insights)
+- Object 1 "style": "Marketing Strategy & News" (Inspired by Marketing Week, Digiday, or Adweek)
+- Object 2 "style": "Marketing Framework Playbook" (Practical growth or conversion playbook)
+- Object 3 "style": "World of Marketing Strategy" (Campaign analysis or consumer psychology)
+- Object 4 "style": "AI Marketing Concept" (Inspired by TechCrunch AI, MIT Tech Review, or The Verge)
+- Object 5 "style": "AI Marketing Workflow" (Actionable AI tool workflow or prompt strategy)
 
 {
   "designArchetype": "Forbes Cover",
@@ -142,13 +159,15 @@ Each object in the array must follow this structure. Ensure that the "style" fie
   "clothingStyle": "Smart casual blazer",
   "avatarPrompt": "Indian male manager in his late 30s...",
   "postContent": {
-    "style": "Marketing Concept Explained OR Marketing Framework Playbook OR World of Marketing Strategy OR AI Marketing Concept OR AI Marketing Workflow",
+    "style": "Marketing Strategy & News OR Marketing Framework Playbook OR World of Marketing Strategy OR AI Marketing Concept OR AI Marketing Workflow",
     "hook": "The first 1-2 lines of the post (attention-grabbing hook)",
-    "content": "The full body of the post, including the hook, paragraphs, call to action, and hashtags. Keep line breaks intact with newlines (\\n).",
-    "sourceArticle": "Title of the main article from the trends context that inspired this post, or 'General Trend' if inspired by multiple.",
+    "content": "The full body of the post, including the hook, paragraphs, call to action, source attribution (📌 Source: [Name] - [Title]), and hashtags. Keep line breaks intact with newlines (\\n).",
+    "sourceName": "Publication name e.g. Marketing Week, TechCrunch AI, Digiday",
+    "sourceArticle": "Title of the main article from the trends context that inspired this post",
+    "sourceUrl": "URL of the article if available",
     "imageHeadline": "A short, ultra-punchy graphic title in ALL CAPS (exactly 2-4 words). Wrap the most important 1-2 words in asterisks for neon highlight styling (e.g. '*99% FAILED*', 'STOP *CODING* NOW', 'THE *$0 STACK*', 'AI IS *DEAD*?').",
     "imageSubtext": "A highly compelling graphic subtitle (exactly 5-9 words) explaining the metric or strategy.",
-    "badgeText": "AI TREND / MARKETING INSIGHT",
+    "badgeText": "MARKETING WEEK / AI UPDATE / BRAND STRATEGY",
     "ctaText": "TRY WEB APP / READ FULL POST / GET REPORT"
   },
   "layoutConfig": {
@@ -159,7 +178,7 @@ Each object in the array must follow this structure. Ensure that the "style" fie
   }
 }`;
 
-  const models = ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.5-pro'];
+  const models = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-1.5-flash'];
   let modelIdx = 0;
   let activeModel = models[modelIdx];
   let posts = null;
@@ -185,13 +204,15 @@ Each object in the array must follow this structure. Ensure that the "style" fie
             style: { type: 'STRING' },
             hook: { type: 'STRING' },
             content: { type: 'STRING' },
+            sourceName: { type: 'STRING' },
             sourceArticle: { type: 'STRING' },
+            sourceUrl: { type: 'STRING' },
             imageHeadline: { type: 'STRING' },
             imageSubtext: { type: 'STRING' },
             badgeText: { type: 'STRING' },
             ctaText: { type: 'STRING' }
           },
-          required: ['style', 'hook', 'content', 'sourceArticle', 'imageHeadline', 'imageSubtext', 'badgeText', 'ctaText']
+          required: ['style', 'hook', 'content', 'sourceName', 'sourceArticle', 'imageHeadline', 'imageSubtext', 'badgeText', 'ctaText']
         },
         layoutConfig: {
           type: 'OBJECT',
@@ -259,6 +280,28 @@ Each object in the array must follow this structure. Ensure that the "style" fie
       }
       posts.forEach((p, idx) => {
         if (!p.id) p.id = idx + 1;
+        if (p.postContent) {
+          const pc = p.postContent;
+          const srcName = pc.sourceName || (category === 'marketing' ? 'Marketing Week' : 'TechCrunch AI');
+          const srcArt = pc.sourceArticle || '';
+          const srcUrl = pc.sourceUrl || '';
+
+          // Ensure bottom source attribution exists in content
+          if (!pc.content.includes('📌 Source:')) {
+            let citation = `\n\n📌 Source: ${srcName}`;
+            if (srcArt && srcArt !== 'General Trend') citation += ` ("${srcArt}")`;
+            if (srcUrl && srcUrl.startsWith('http')) citation += `\n🔗 ${srcUrl}`;
+
+            const hashtagMatch = pc.content.match(/(\n+(?:#[a-zA-Z0-9_]+\s*)+)$/);
+            if (hashtagMatch) {
+              const endHashtags = hashtagMatch[0];
+              const bodyBefore = pc.content.slice(0, pc.content.length - endHashtags.length).trim();
+              pc.content = `${bodyBefore}${citation}\n${endHashtags}`;
+            } else {
+              pc.content = `${pc.content.trim()}${citation}\n\n#Marketing #Leadership #Innovation`;
+            }
+          }
+        }
       });
       break; // break retry loop if successful
     } catch (error) {

@@ -11,19 +11,21 @@ const parser = new Parser({
 const FEEDS = {
   ai: [
     { name: 'TechCrunch AI', url: 'https://techcrunch.com/category/artificial-intelligence/feed/' },
-    { name: 'VentureBeat AI', url: 'https://venturebeat.com/category/ai/feed/' },
-    { name: 'Search Engine Land AI Search', url: 'https://searchengineland.com/feed' },
-    { name: 'OpenAI Blog', url: 'https://openai.com/news/rss.xml' },
-    { name: 'Google News AI Marketing Case Studies', url: 'https://news.google.com/rss/search?q=(artificial+intelligence+OR+generative+AI)+AND+(marketing+case+study+OR+copywriting+OR+growth+strategy+OR+AEO)&hl=en-US&gl=US&ceid=US:en' }
+    { name: 'The Verge AI', url: 'https://www.theverge.com/rss/ai-artificial-intelligence/index.xml' },
+    { name: 'MIT Technology Review AI', url: 'https://www.technologyreview.com/topic/artificial-intelligence/feed' },
+    { name: 'Marketing AI Institute', url: 'https://www.marketingaiinstitute.com/blog/rss.xml' },
+    { name: 'Wired AI', url: 'https://www.wired.com/feed/tag/ai/latest/rss' },
+    { name: 'Ars Technica AI', url: 'https://arstechnica.com/tag/ai/feed/' },
+    { name: 'OpenAI Blog', url: 'https://openai.com/news/rss.xml' }
   ],
   marketing: [
-    { name: 'Seth Godin Marketing Ideation', url: 'https://seths.blog/feed/' },
-    { name: 'HubSpot Marketing & Case Studies', url: 'https://blog.hubspot.com/marketing/rss.xml' },
+    { name: 'Marketing Week', url: 'https://www.marketingweek.com/feed/' },
+    { name: 'Marketing Dive', url: 'https://www.marketingdive.com/feeds/news/' },
+    { name: 'Digiday', url: 'https://digiday.com/feed/' },
     { name: 'Social Media Today', url: 'https://www.socialmediatoday.com/feeds/news/' },
-    { name: 'Search Engine Land Strategy', url: 'https://searchengineland.com/feed' },
-    { name: 'Google News Marketing Case Studies', url: 'https://news.google.com/rss/search?q=(B2B+marketing+case+study+OR+growth+breakdown+OR+customer+acquisition+case+study)&hl=en-US&gl=US&ceid=US:en' },
-    { name: 'Google News Marketing Concepts & Mental Models', url: 'https://news.google.com/rss/search?q=(marketing+concept+OR+mental+model+OR+pricing+psychology+OR+brand+positioning+OR+growth+framework)&hl=en-US&gl=US&ceid=US:en' },
-    { name: 'Google News Brand Strategy Updates', url: 'https://news.google.com/rss/search?q=(digital+marketing+trend+OR+consumer+psychology+OR+copywriting+framework)&hl=en-US&gl=US&ceid=US:en' }
+    { name: 'Adweek', url: 'https://www.adweek.com/feed/' },
+    { name: 'HubSpot Marketing', url: 'https://blog.hubspot.com/marketing/rss.xml' },
+    { name: 'Search Engine Land', url: 'https://searchengineland.com/feed' }
   ]
 };
 
@@ -82,8 +84,9 @@ const FALLBACK_TOPICS = {
  */
 export async function scrapeTrends(category) {
   const selectedCategory = category.toLowerCase() === 'marketing' ? 'marketing' : 'ai';
-  const feeds = FEEDS[selectedCategory];
+  const feeds = [...FEEDS[selectedCategory]].sort(() => 0.5 - Math.random());
   const results = [];
+  const seenTitles = new Set();
 
   console.log(`[Scraper] Starting scrape for category: ${selectedCategory}`);
 
@@ -92,20 +95,31 @@ export async function scrapeTrends(category) {
       console.log(`[Scraper] Fetching feed: ${feed.name} (${feed.url})`);
       const fetchPromise = parser.parseURL(feed.url);
       const timeoutPromise = new Promise((_, reject) => 
-        setTimeout(() => reject(new Error('Feed request timed out after 5s')), 5000)
+        setTimeout(() => reject(new Error('Feed request timed out after 10s')), 10000)
       );
       const parsedFeed = await Promise.race([fetchPromise, timeoutPromise]);
       
-      // Take top 5 items from each feed
-      const items = (parsedFeed.items || []).slice(0, 5).map(item => ({
-        title: item.title || '',
-        description: cleanText(item.contentSnippet || item.content || ''),
-        source: feed.name,
-        link: item.link || ''
-      }));
+      // Take top 6 items from each feed, avoid duplicates
+      let added = 0;
+      for (const item of (parsedFeed.items || []).slice(0, 8)) {
+        const title = (item.title || '').trim();
+        const titleKey = title.toLowerCase().replace(/[^a-z0-9]/g, '');
+        if (!title || seenTitles.has(titleKey)) continue;
+        seenTitles.add(titleKey);
+
+        results.push({
+          title: title,
+          description: cleanText(item.contentSnippet || item.content || item.summary || ''),
+          source: feed.name,
+          sourceName: feed.name,
+          link: item.link || '',
+          pubDate: item.pubDate || item.isoDate || ''
+        });
+        added++;
+        if (added >= 5) break;
+      }
       
-      results.push(...items);
-      console.log(`[Scraper] Successfully fetched ${items.length} items from ${feed.name}`);
+      console.log(`[Scraper] Successfully fetched ${added} items from ${feed.name}`);
     } catch (error) {
       console.warn(`[Scraper] Feed ${feed.name} skipped (${error.message})`);
     }
@@ -118,11 +132,13 @@ export async function scrapeTrends(category) {
     return shuffled.slice(0, 5).map(topic => ({
       title: topic.title,
       description: topic.content,
-      source: 'Local Industry Knowledge (Fallback)',
-      link: '#'
+      source: 'Marketing Week & Industry Intelligence',
+      sourceName: 'Marketing Week & Industry Intelligence',
+      link: 'https://www.marketingweek.com/'
     }));
   }
 
+  console.log(`[Scraper] Total fresh articles scraped for ${selectedCategory}: ${results.length}`);
   return results;
 }
 

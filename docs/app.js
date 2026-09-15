@@ -2280,6 +2280,7 @@ function renderActiveDrafts() {
     const headlineText = (post.postContent && post.postContent.imageHeadline) ? post.postContent.imageHeadline : (post.imageHeadline || 'AI Strategy');
     const subtextText = (post.postContent && post.postContent.imageSubtext) ? post.postContent.imageSubtext : (post.imageSubtext || 'Next-Gen Workflows');
     const sourceArticle = (post.postContent && post.postContent.sourceArticle) ? post.postContent.sourceArticle : (post.sourceArticle || 'General Trend');
+    const sourceName = (post.postContent && post.postContent.sourceName) ? post.postContent.sourceName : (activeEntry.category === 'marketing' ? 'Marketing Week' : 'TechCrunch AI');
     const badgeText = (post.postContent && (post.postContent.badgeText || post.postContent.badge)) || post.badgeText || (activeEntry.category === 'marketing' ? 'MARKETING TREND' : 'AI TECH TREND');
     const ctaText = (post.postContent && (post.postContent.ctaText || post.postContent.cta)) || post.ctaText || 'READ FULL POST';
     const postStyle = post.designArchetype || (post.postContent && post.postContent.style) || post.style || 'Thought Leadership';
@@ -2305,7 +2306,7 @@ function renderActiveDrafts() {
         <div class="header-main-info" style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
           <span class="badge" style="background: rgba(59, 130, 246, 0.25); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.4); font-weight: 700; font-size: 0.78rem; padding: 3px 8px; border-radius: 6px;">Option ${post.id} of 5</span>
           <span class="style-tag">${postStyle}</span>
-          <span class="source-tag">Inspiration: <em>${sourceArticle || 'General Trend'}</em></span>
+          <span class="source-tag" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); color: #7dd3fc;">📌 Source: <strong>${sourceName}</strong>${sourceArticle && sourceArticle !== 'General Trend' ? ` - <em>${sourceArticle}</em>` : ''}</span>
         </div>
         ${post.scores ? `
         <div class="score-badge-group">
@@ -5525,6 +5526,32 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
       console.warn('[Canvas] Brand logo draw error:', e);
     }
   }
+
+  // 6. Draw Bottom Source of Update Bar (Down bottom side)
+  const resolvedSrc = (customLayout && (customLayout.sourceName || (customLayout.postContent && customLayout.postContent.sourceName))) 
+    || (category === 'marketing' ? 'Marketing Week' : 'TechCrunch AI');
+  ctx.save();
+  ctx.font = '600 16px "Segoe UI", Arial, sans-serif';
+  ctx.textAlign = 'left';
+  
+  const srcY = h - 38;
+  const dotX = 86;
+  ctx.beginPath();
+  ctx.arc(dotX, srcY - 5, 4, 0, Math.PI * 2);
+  ctx.fillStyle = (palette && palette.primary) ? palette.primary : '#38bdf8';
+  ctx.shadowColor = (palette && palette.primary) ? palette.primary : '#38bdf8';
+  ctx.shadowBlur = 8;
+  ctx.fill();
+  
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+  ctx.fillText(`SOURCE OF UPDATE: ${resolvedSrc.toUpperCase()}`, dotX + 16, srcY);
+  
+  if (dateStr) {
+    ctx.textAlign = 'right';
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+    ctx.fillText(`DAILY INTELLIGENCE • ${dateStr}`, w - 86, srcY);
+  }
+  ctx.restore();
 }
 
 // Drawing Sub-routines

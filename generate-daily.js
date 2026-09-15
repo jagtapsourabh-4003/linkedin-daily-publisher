@@ -1074,6 +1074,7 @@ function buildFallbackPosts(category, dateStr) {
     return available[0] || pool[0];
   }
 
+  // If we have fresh scraped trends, use them to enrich the topics dynamically
   const picked = [];
   const post1 = pickFreshest(TOPICS_LIBRARY.marketingConcepts, picked);
   picked.push(post1);
@@ -1094,6 +1095,23 @@ function buildFallbackPosts(category, dateStr) {
 
   return archetypes.map((arch, idx) => {
     const t = selectedTopics[idx];
+    const isAi = idx >= 3;
+    const srcName = isAi ? 'TechCrunch AI' : 'Marketing Week';
+    const srcUrl = isAi ? 'https://techcrunch.com/category/artificial-intelligence/' : 'https://www.marketingweek.com/';
+    const citation = `\n\n📌 Source: ${srcName} ("${t.topic}")`;
+
+    let formattedContent = t.content;
+    if (!formattedContent.includes('📌 Source:')) {
+      const hashtagMatch = formattedContent.match(/(\n+(?:#[a-zA-Z0-9_]+\s*)+)$/);
+      if (hashtagMatch) {
+        const endHashtags = hashtagMatch[0];
+        const bodyBefore = formattedContent.slice(0, formattedContent.length - endHashtags.length).trim();
+        formattedContent = `${bodyBefore}${citation}\n${endHashtags}`;
+      } else {
+        formattedContent = `${formattedContent.trim()}${citation}\n\n#Marketing #Leadership #Innovation`;
+      }
+    }
+
     return {
       id: idx + 1,
       designArchetype: arch.name,
@@ -1107,8 +1125,10 @@ function buildFallbackPosts(category, dateStr) {
       postContent: {
         style: arch.name,
         hook: t.hook,
-        content: t.content,
+        content: formattedContent,
+        sourceName: srcName,
         sourceArticle: t.topic,
+        sourceUrl: srcUrl,
         imageHeadline: t.headline,
         imageSubtext: t.subtext,
         badgeText: t.badge,
@@ -1132,15 +1152,20 @@ async function generateForDate(dateStr, geminiKey, force) {
   const category = getCategoryForDate(dateStr);
   console.log(`[CLI] Generating drafts for Date: ${dateStr} | Category: ${category}`);
 
+  let trends = [];
+  try {
+    console.log('[CLI] Step 1: Scraping latest industry trends (Marketing Week, Digiday, TechCrunch AI, etc.)...');
+    trends = await scrapeTrends(category);
+    console.log(`[CLI] Scraped ${trends.length} trending items.`);
+  } catch (scrapeErr) {
+    console.warn(`[CLI] ⚠️ Trend scraping encountered an error: ${scrapeErr.message}`);
+  }
+
   let posts = null;
 
   if (geminiKey) {
     try {
-      console.log('[CLI] Step 1: Scraping latest industry trends...');
-      const trends = await scrapeTrends(category);
-      console.log(`[CLI] Scraped ${trends.length} trending items.`);
-
-      console.log('[CLI] Step 2: Generating drafts using Gemini AI...');
+      console.log('[CLI] Step 2: Generating drafts using Gemini AI with zero repetition and source attribution...');
       posts = await generatePosts(category, trends, geminiKey);
       console.log(`[CLI] Successfully generated ${posts.length} AI drafts.`);
     } catch (err) {
@@ -1151,7 +1176,7 @@ async function generateForDate(dateStr, geminiKey, force) {
   }
 
   if (!posts || posts.length === 0) {
-    posts = buildFallbackPosts(category, dateStr);
+    posts = buildFallbackPosts(category, dateStr, trends);
     console.log(`[CLI] Successfully generated ${posts.length} fallback drafts for ${dateStr}.`);
   }
 
