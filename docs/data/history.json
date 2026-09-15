@@ -4,25 +4,23 @@
     "category": "marketing",
     "posts": [
       {
-        "id": 1,
-        "designArchetype": "Marketing Concept Explained",
-        "layoutFamily": "news-card",
-        "colorPalette": "Corporate Navy",
-        "characterRole": "Business Advisor",
-        "environment": "Technology command center",
-        "cameraStyle": "Looking at camera",
-        "clothingStyle": "Navy business suit",
-        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Advisor in a Technology command center, Looking at camera, Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "designArchetype": "Investor Pitch",
+        "layoutFamily": "split-left",
+        "colorPalette": "Teal White",
+        "characterRole": "Investor",
+        "environment": "City skyline office",
+        "cameraStyle": "Walking shot",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, as an Investor. In a City skyline office, with an out-of-focus presentation clicker in the foreground, himself in the midground, and the city skyline in the background. Walking shot, wearing a Premium polo shirt. Professional lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
         "postContent": {
-          "style": "Marketing Concept Explained",
-          "hook": "Why being very good is no longer enough.",
-          "content": "Why being very good is no longer enough.\n\nImagine driving down a country road and seeing a field of brown cows. You admire them for 2 minutes, then you get bored and look away.\n\nNow imagine seeing a PURPLE COW.\n\nYou would immediately stop your car, take a photo, and tell all your friends.\n\nIn marketing, this is the Purple Cow concept (made famous by Seth Godin):\n- \"Good\" is normal, boring, and invisible.\n- \"Remarkable\" is worth talking about.\n\n3 ways to become a Purple Cow:\n1. Do something unexpected: Add a surprise gift or handwritten note with every order.\n2. Specialize deeply: Don't be an \"agency.\" Be the only agency for dental clinics.\n3. Fix an annoying industry problem: If everyone charges hidden fees, make yours 100% transparent.\n\nStop trying to be slightly better. Start being remarkable.\n\nWhat is one brand you think is a true Purple Cow?\n\n📌 Source: Marketing Week (\"The Purple Cow concept by Seth Godin: Why remarkable products win without spending a fortune on ads.\")\n\n#Marketing #Leadership #Innovation",
-          "sourceName": "Marketing Week",
-          "sourceArticle": "The Purple Cow concept by Seth Godin: Why remarkable products win without spending a fortune on ads.",
-          "sourceUrl": "https://www.marketingweek.com/",
-          "imageHeadline": "THE *PURPLE COW*",
-          "imageSubtext": "Why being remarkable beats being good.",
-          "badgeText": "MARKETING CONCEPT",
+          "style": "Marketing Strategy & News",
+          "hook": "Kroger's ad business is soaring.",
+          "content": "Retail media is no longer a side hustle.\nIt's a profit engine for brands like Kroger.\n\nThey're proving that leveraging first-party data is gold.\n\nWhat does this mean for your brand?\n\n1.  **Own Your Data:** Collect and use customer data ethically.\n2.  **Personalize Offers:** Tailor ads to individual shopper habits.\n3.  **Drive Sales:** Connect ad spend directly to purchases.\n\nIt's about making every ad dollar count.\n\nAre you tapping into your first-party data potential?\n\n📌 Source: Digiday (\"Kroger’s ad business sees most profit growth since 2021\")\n#RetailMedia #Kroger #MarketingStrategy",
+          "sourceName": "Digiday",
+          "sourceArticle": "Kroger’s ad business sees most profit growth since 2021",
+          "imageHeadline": "RETAIL MEDIA *BOOM*",
+          "imageSubtext": "Kroger's ad profit up 24% - a new marketing frontier.",
+          "badgeText": "MARKETING STRATEGY",
           "ctaText": "READ FULL POST"
         },
         "layoutConfig": {
@@ -30,57 +28,55 @@
             "width": 1080,
             "height": 1080
           }
-        }
+        },
+        "id": 1
       },
       {
-        "id": 2,
-        "designArchetype": "Marketing Framework Playbook",
-        "layoutFamily": "presentation-slide",
-        "colorPalette": "Emerald Green",
-        "characterRole": "Business Coach",
-        "environment": "Executive boardroom",
-        "cameraStyle": "Presentation shot",
-        "clothingStyle": "Charcoal executive suit",
-        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Coach in a Executive boardroom, Presentation shot, Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "designArchetype": "Documentary Interview",
+        "layoutFamily": "split-right",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Researcher",
+        "environment": "Conference venue",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, as a Researcher. In a Conference venue, with an out-of-focus microphone in the foreground, himself in the midground, and the conference hall in the background. Full-body standing shot, wearing a White shirt with rolled sleeves. Professional lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
         "postContent": {
           "style": "Marketing Framework Playbook",
-          "hook": "Business growth is not an overnight push.",
-          "content": "Business growth is not an overnight push.\n\nThink of your business like a giant, 5,000-pound metal wheel (a Flywheel).\n\nWhen you first try to turn it:\n- Push 1: The wheel barely moves an inch. You are exhausted.\n- Push 2: It moves half an inch more.\n- Push 100: It completes its first full rotation!\n\nThen something magical happens. The heavy weight of the wheel starts working FOR you. With each push, it spins faster and faster under its own momentum.\n\nHow to build your marketing flywheel:\n1. Deliver amazing results for client #1.\n2. Ask for a quick testimonial or referral.\n3. Share that success story to attract client #2 and #3.\n\nEach small win feeds the next step in the loop.\n\nWhat is the single most important step in your business flywheel?\n\n📌 Source: Marketing Week (\"The Flywheel Effect by Jim Collins: How small, consistent actions compound into unstoppable momentum.\")\n\n#Marketing #Leadership #Innovation",
-          "sourceName": "Marketing Week",
-          "sourceArticle": "The Flywheel Effect by Jim Collins: How small, consistent actions compound into unstoppable momentum.",
-          "sourceUrl": "https://www.marketingweek.com/",
-          "imageHeadline": "THE *FLYWHEEL EFFECT*",
-          "imageSubtext": "How small wins create unstoppable momentum.",
-          "badgeText": "GROWTH MODEL",
-          "ctaText": "READ FULL POST"
+          "hook": "Stories need to live everywhere.",
+          "content": "The New York Jets are redefining out-of-home (OOH) marketing.\nThey're not just putting up billboards.\n\nThey're creating integrated experiences.\nThis turns passive viewing into active engagement.\n\nHow to build an 'IRL media' framework:\n\n1.  **Identify Key Touchpoints:** Where can your audience interact?\n2.  **Craft Experiential Layers:** Add sensory elements to OOH.\n3.  **Bridge Digital & Physical:** Drive online action from offline impact.\n\nIt's about crafting a deeper connection.\n\nHow do you extend your campaign's reach beyond the screen?\n\n📌 Source: Marketing Dive (\"How the New York Jets extends OOH marketing for better storytelling\")\n#OOHMarketing #Experiential #BrandStorytelling",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "How the New York Jets extends OOH marketing for better storytelling",
+          "imageHeadline": "OOH *REINVENTED*",
+          "imageSubtext": "New York Jets turn billboards into interactive experiences.",
+          "badgeText": "MARKETING PLAYBOOK",
+          "ctaText": "GET REPORT"
         },
         "layoutConfig": {
           "dimensions": {
             "width": 1080,
             "height": 1080
           }
-        }
+        },
+        "id": 2
       },
       {
-        "id": 3,
-        "designArchetype": "World of Marketing Strategy",
-        "layoutFamily": "magazine-cover",
-        "colorPalette": "Electric Blue",
-        "characterRole": "Startup Founder",
-        "environment": "Luxury office",
-        "cameraStyle": "Half-body portrait",
-        "clothingStyle": "Smart casual blazer",
-        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Startup Founder in a Luxury office, Half-body portrait, Smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "designArchetype": "Magazine Editorial",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "Keynote Speaker",
+        "environment": "Creative workspace",
+        "cameraStyle": "Looking away",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, as a Keynote Speaker. In a Creative workspace, with an out-of-focus desk lamp in the foreground, himself in the midground, and creative mood board in the background. Looking away shot, wearing Luxury business casual. Professional lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
         "postContent": {
           "style": "World of Marketing Strategy",
-          "hook": "If you confuse people, you lose them.",
-          "content": "If you confuse people, you lose them.\n\nMany businesses think using big, fancy words makes them look smart and professional.\n\nIn reality, fancy buzzwords just confuse your customers and make them leave.\n\nTry these simple word swaps today:\n- Instead of \"utilize\" -> use \"use\"\n- Instead of \"facilitate\" -> use \"help\"\n- Instead of \"commence\" -> use \"start\"\n- Instead of \"synergize\" -> use \"work together\"\n\nClear writing is clear thinking.\n\nWhat is one business buzzword you wish people would stop using?\n\n📌 Source: Marketing Week (\"Why replacing fancy buzzwords with simple everyday words doubles your sales.\")\n\n#Marketing #Leadership #Innovation",
-          "sourceName": "Marketing Week",
-          "sourceArticle": "Why replacing fancy buzzwords with simple everyday words doubles your sales.",
-          "sourceUrl": "https://www.marketingweek.com/",
-          "imageHeadline": "WRITE *SIMPLE WORDS*",
-          "imageSubtext": "How clear words double your sales.",
-          "badgeText": "WRITING TIP",
+          "hook": "IHOP's sweet success story.",
+          "content": "IHOP brought back stuffed French toast.\nIt wasn't a random decision.\n\nIt was fueled by keen social listening.\nThey noticed the 'little treat' trend online.\n\nThis shows the power of understanding your audience.\n\nHere’s how to tap into consumer psychology:\n\n1.  **Listen Actively:** Monitor social trends and conversations.\n2.  **Find Micro-Trends:** Spot emerging consumer desires (like 'little treats').\n3.  **Align with Brand:** Adapt your offerings to meet these new needs.\n\nIt’s about serving what people crave.\n\nWhat 'little treat' trend could your brand explore?\n\n📌 Source: Marketing Dive (\"IHOP bites into little treat trend with Katseye-soundtracked campaign\")\n#ConsumerPsychology #SocialListening #IHOP",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "IHOP bites into little treat trend with Katseye-soundtracked campaign",
+          "imageHeadline": "THE *LITTLE TREAT*",
+          "imageSubtext": "IHOP campaign shows social listening drives big wins.",
+          "badgeText": "BRAND STRATEGY",
           "ctaText": "READ FULL POST"
         },
         "layoutConfig": {
@@ -88,27 +84,26 @@
             "width": 1080,
             "height": 1080
           }
-        }
+        },
+        "id": 3
       },
       {
-        "id": 4,
-        "designArchetype": "AI Marketing Concept",
-        "layoutFamily": "podcast-layout",
-        "colorPalette": "Cyber Purple",
-        "characterRole": "Podcast Host",
-        "environment": "Podcast studio",
-        "cameraStyle": "Sitting at desk",
-        "clothingStyle": "Turtleneck with blazer",
-        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Podcast Host in a Podcast studio, Sitting at desk, Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "designArchetype": "Conference Speaker",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "Innovation Leader",
+        "environment": "Innovation lab",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, as an Innovation Leader. In an Innovation lab, with an out-of-focus lectern in the foreground, himself in the midground, and futuristic tech displays in the background. Over-the-shoulder shot, wearing Formal university attire. Professional lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
         "postContent": {
           "style": "AI Marketing Concept",
-          "hook": "Most people search Google the wrong way.",
-          "content": "Most people search Google the wrong way.\n\nInstead of clicking through 10 different website links, people now just ask AI tools like ChatGPT or Gemini to give them one quick, direct answer.\n\nIf you run a business or create content, here is what to do:\n\n1. Give direct answers: Put the important answers right at the top of your page.\n2. Answer real questions: What does your product cost? How does it help?\n3. Keep it simple: Write like you are explaining it to a smart friend.\n\nThink of it like being the friendly person everyone turns to for advice.\n\nHave you started using AI to search for things instead of Google? Let me know below!\n\n📌 Source: TechCrunch AI (\"How everyday buyers are using AI tools to find quick answers online instead of clicking 10 blue links.\")\n\n#Marketing #Leadership #Innovation",
-          "sourceName": "TechCrunch AI",
-          "sourceArticle": "How everyday buyers are using AI tools to find quick answers online instead of clicking 10 blue links.",
-          "sourceUrl": "https://techcrunch.com/category/artificial-intelligence/",
-          "imageHeadline": "AI SEARCH *IS HERE*",
-          "imageSubtext": "How customers find answers today.",
+          "hook": "AI search changed everything.",
+          "content": "The old SEO playbook is outdated.\nAI doesn't just rank websites, it *cites* them.\n\nThis means a brand's visibility depends on being highly cited.\nIt's a whole new game for marketers.\n\nHow to be a high-citation brand in AI search:\n\n1.  **Be the Source:** Create authoritative content AI wants to quote.\n2.  **Build Trust:** Ensure your information is verifiable and accurate.\n3.  **Focus on Answers:** Provide direct, comprehensive solutions to user queries.\n\nIt's about becoming an AI's trusted reference.\n\nAre you adapting your strategy for the 'Answer Economy'?\n\n📌 Source: HubSpot Marketing (\"What high-citation brands do differently in AI search: The 2026 AEO playbook\")\n#AEMarketing #AISearch #DigitalStrategy",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "What high-citation brands do differently in AI search: The 2026 AEO playbook",
+          "imageHeadline": "AEO *PLAYBOOK*",
+          "imageSubtext": "Dominate AI search by becoming a high-citation brand.",
           "badgeText": "AI MARKETING",
           "ctaText": "READ FULL POST"
         },
@@ -117,36 +112,36 @@
             "width": 1080,
             "height": 1080
           }
-        }
+        },
+        "id": 4
       },
       {
-        "id": 5,
-        "designArchetype": "AI Marketing Workflow",
-        "layoutFamily": "hero-center",
-        "colorPalette": "Crimson Red",
-        "characterRole": "Speaker",
-        "environment": "Auditorium stage",
-        "cameraStyle": "Speaking on stage",
+        "designArchetype": "Podcast Host",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Platinum Grey",
+        "characterRole": "Technology Evangelist",
+        "environment": "Luxury office",
+        "cameraStyle": "Interview setup",
         "clothingStyle": "Conference speaker outfit",
-        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Speaker in a Auditorium stage, Speaking on stage, Conference speaker outfit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, as a Technology Evangelist. In a Luxury office, with an out-of-focus coffee cup in the foreground, himself in the midground, and a modern desk setup in the background. Interview setup shot, wearing a Conference speaker outfit. Professional lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
         "postContent": {
           "style": "AI Marketing Workflow",
-          "hook": "AI is your marketing intern, not your replacement.",
-          "content": "AI is your marketing intern, not your replacement.\n\nIt is here to replace the boring, repetitive tasks you hate doing.\n\nThink of AI like having a super fast intern who works 24/7:\n\n1. Brainstorming hooks: Ask it for 10 title ideas when you are feeling stuck.\n2. Summarizing long notes: Turn a 5-page case study into 3 key bullet points in seconds.\n3. Fixing your grammar: Clean up typos and make your writing easier to read.\n\nYou are still the pilot. AI is just the co-pilot.\n\nWhat is the #1 marketing task you wish AI could do for you automatically?\n\n📌 Source: TechCrunch AI (\"How savvy marketers use AI to brainstorm 20 content ideas in 5 minutes without losing their authentic voice.\")\n\n#Marketing #Leadership #Innovation",
-          "sourceName": "TechCrunch AI",
-          "sourceArticle": "How savvy marketers use AI to brainstorm 20 content ideas in 5 minutes without losing their authentic voice.",
-          "sourceUrl": "https://techcrunch.com/category/artificial-intelligence/",
-          "imageHeadline": "AI AS *YOUR INTERN*",
-          "imageSubtext": "How to save 5 hours every week.",
-          "badgeText": "AI PLAYBOOK",
-          "ctaText": "READ FULL POST"
+          "hook": "AI creates content fast. Too fast.",
+          "content": "We're facing an 'AI content tsunami'.\nGenerating text is easy now.\n\nThe real challenge? Reviewing and managing it all.\nCompanies are drowning in content they can't vet.\n\nHere’s a workflow to manage AI content:\n\n1.  **Define Quality Gates:** Set clear standards before AI output goes live.\n2.  **Implement Human-in-Loop:** Integrate human editors for critical review.\n3.  **Automate Compliance:** Use AI tools for preliminary checks (tone, facts).\n\nContent creation is just the first step.\n\nHow do you ensure AI-generated content maintains quality?\n\n📌 Source: Marketing Dive (\"The AI content tsunami: Creation is the easy part\")\n#AIConsulting #ContentMarketing #AIWorkflow",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "The AI content tsunami: Creation is the easy part",
+          "imageHeadline": "AI *TSUNAMI*",
+          "imageSubtext": "Creating content is easy, managing it is the real challenge.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "GET REPORT"
         },
         "layoutConfig": {
           "dimensions": {
             "width": 1080,
             "height": 1080
           }
-        }
+        },
+        "id": 5
       }
     ],
     "selectedPostId": null,
