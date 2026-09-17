@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-09-17",
+    "category": "ai",
+    "posts": [
+      {
+        "designArchetype": "Investor Pitch",
+        "layoutFamily": "split-left",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "University Chancellor",
+        "environment": "Modern university campus",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. University Chancellor in a modern university campus, foreground out-of-focus students walking, midground subject, background blurred campus buildings. Half-body portrait, Smart casual blazer, natural daylight. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "AI is reshaping advertising.",
+          "content": "OpenAI recently shared new ways AI is changing ads.\n\nIt's not just about better targeting anymore.\nWe're talking about new creative tools and integrations.\n\n1.  **AI-Powered Ads:** Imagine ads that adapt in real-time to user behavior.\n2.  **Marketing Tools:** AI helps create content and campaigns much faster.\n3.  **Smart Integrations:** Connects with platforms like HubSpot and Shopify easily.\n\nAre you ready for AI to write your next campaign?\n\n📌 Source: OpenAI Blog (\"Reimagining advertising with AI\")\n#AIMarketing #Advertising #FutureOfAds",
+          "sourceName": "OpenAI Blog",
+          "sourceArticle": "Reimagining advertising with AI",
+          "imageHeadline": "AI *ADS* HERE",
+          "imageSubtext": "New ways AI is changing how we advertise.",
+          "badgeText": "MARKETING NEWS",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Documentary Interview",
+        "layoutFamily": "split-right",
+        "colorPalette": "Emerald Green",
+        "characterRole": "TED Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. TED Speaker on an auditorium stage, foreground out-of-focus spotlight, midground subject, background blurred audience rows. Full-body standing, Premium polo shirt, warm stage lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Measure AI's true business value.",
+          "content": "Many teams adopt AI, but struggle to show its real impact.\n\nOpenAI's latest insights help bridge this gap.\nIt’s about tracking usage, identifying needs, and linking AI to results.\n\n1.  **Track Usage:** Monitor how teams actually use AI tools.\n2.  **Identify Gaps:** Pinpoint where more training or better tools are needed.\n3.  **Link to Outcomes:** Connect AI adoption directly to business improvements.\n\nHow do you currently measure AI success?\n\n📌 Source: OpenAI Blog (\"How to connect AI usage to business value\")\n#AIBusiness #BusinessGrowth #Analytics",
+          "sourceName": "OpenAI Blog",
+          "sourceArticle": "How to connect AI usage to business value",
+          "imageHeadline": "AI *VALUE* LOOP",
+          "imageSubtext": "Understand how AI creates real business impact.",
+          "badgeText": "FRAMEWORK PLAYBOOK",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Magazine Editorial",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Teal White",
+        "characterRole": "Author",
+        "environment": "Innovation lab",
+        "cameraStyle": "Walking shot",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Author in an innovation lab, foreground out-of-focus lab equipment, midground subject, background blurred whiteboards with ideas. Walking shot, Turtleneck with blazer, soft ambient lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "AI skills are for everyone.",
+          "content": "OpenAI and AARP are making AI accessible to older adults.\nThey're hosting free ChatGPT workshops in 10 US cities.\n\nThis shows a huge shift in consumer psychology.\nAI is no longer just for tech-savvy youngsters.\n\n1.  **Demystifying AI:** Making complex tools easy to understand.\n2.  **Bridging Gaps:** Helping diverse groups gain new digital skills.\n3.  **Everyday Use:** Showing practical applications for daily life.\n\nWho else should be learning AI?\n\n📌 Source: OpenAI Blog (\"Helping older adults use AI in everyday life\")\n#AISkills #ConsumerTrends #Inclusion",
+          "sourceName": "OpenAI Blog",
+          "sourceArticle": "Helping older adults use AI in everyday life",
+          "imageHeadline": "AI FOR *ALL*",
+          "imageSubtext": "Older adults are embracing AI with new workshops.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "LEARN MORE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Conference Speaker",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Slate Blue",
+        "characterRole": "Investor",
+        "environment": "Podcast studio",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Investor in a podcast studio, foreground out-of-focus microphone, midground subject, background blurred soundproofing panels. Over-the-shoulder, White shirt with rolled sleeves, studio lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Is AI development too fast?",
+          "content": "Leaders in the AI industry are hitting the brakes.\nThey're worried about the rapid pace of development.\n\nSome call it a 'doomer turn,' focusing on potential risks.\nThis highlights a growing need for thoughtful AI strategy.\n\n1.  **Safety First:** Prioritizing ethical AI development.\n2.  **Measured Pace:** Advocating for slower, more controlled growth.\n3.  **Risk Management:** Openly discussing potential downsides.\n\nDo you think AI development should slow down?\n\n📌 Source: MIT Technology Review AI (\"The AI industry has taken a doomer turn. What now?\")\n#AIethics #TechTrends #FutureOfAI",
+          "sourceName": "MIT Technology Review AI",
+          "sourceArticle": "The AI industry has taken a doomer turn. What now?",
+          "imageHeadline": "AI *BRAKES* ON",
+          "imageSubtext": "Why AI leaders are slowing down development.",
+          "badgeText": "AI UPDATE",
+          "ctaText": "READ FULL ARTICLE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Podcast Host",
+        "layoutFamily": "diagonal-layout",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "AI Consultant",
+        "environment": "Creative workspace",
+        "cameraStyle": "Looking away",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant in a creative workspace, foreground out-of-focus sketchpad, midground subject, background blurred collaboration tools. Looking away, Conference speaker outfit, bright diffused lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Analyze comments in minutes.",
+          "content": "Sorting through hundreds of LinkedIn comments is tough.\nBut AI can now do it for you, using your web browser.\n\nThe Marketing AI Institute showed how.\nIt's a workflow that saves hours of manual work.\n\n1.  **Browser Access:** AI reads comments directly from your browser.\n2.  **Quick Analysis:** Summarizes sentiment and key themes fast.\n3.  **Actionable Insights:** Helps you respond strategically and efficiently.\n\nHow do you currently handle social media comments?\n\n📌 Source: Marketing AI Institute (\"How AI Used Our Web Browser to Analyze Hundreds of LinkedIn Comments in Minutes\")\n#AIworkflow #SocialMedia #MarketingAutomation",
+          "sourceName": "Marketing AI Institute",
+          "sourceArticle": "How AI Used Our Web Browser to Analyze Hundreds of LinkedIn Comments in Minutes",
+          "imageHeadline": "ANALYZE *COMMENTS*",
+          "imageSubtext": "AI browser tool sorts social insights in minutes.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "TRY WEB APP"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-09-16",
     "category": "marketing",
     "posts": [
