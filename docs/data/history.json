@@ -1,5 +1,159 @@
 [
   {
+    "date": "2026-09-18",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Magazine Editorial",
+        "layoutFamily": "split-left",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "Innovation Leader",
+        "environment": "Coffee shop workspace",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader in a coffee shop workspace. Close-up portrait. Wearing a luxury business casual outfit. Foreground out-of-focus coffee cup, midground Innovation Leader, background blurred cafe ambiance. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "A spicy success story.",
+          "content": "Mike's Hot Honey didn't just sell a product. They created a *new category*.\nThey turned a niche condiment into a cultural force.\nThis wasn't about massive ad spend. It was about smart strategy and word-of-mouth.\nHere’s what you can learn:\n1.  **Define Your Niche:** Don't just enter a market. Create your own.\n2.  **Cultivate Advocates:** Let your product speak for itself, then empower fans to share.\n3.  **Innovate Categories:** Sometimes the best market isn't found, it's made.\nHow are you creating a unique space for your brand?\n📌 Source: Adweek (\"How Mike’s Hot Honey Found Sweet Success, Unlocking a Spicy New Category\")\n#MarketingStrategy #BrandBuilding #CategoryCreation",
+          "sourceName": "Adweek",
+          "sourceArticle": "How Mike’s Hot Honey Found Sweet Success, Unlocking a Spicy New Category",
+          "imageHeadline": "UNLOCK *NEW* MARKETS",
+          "imageSubtext": "How Mike's Hot Honey ignited a new spicy category.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://www.adweek.com/brand-marketing/how-mikes-hot-honey-found-sweet-success-new-category/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Investor Pitch",
+        "layoutFamily": "split-right",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Business Coach",
+        "environment": "Luxury office",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach in a luxury office. Half-body portrait. Wearing a smart casual blazer. Foreground out-of-focus executive desk corner, midground Business Coach, background blurred city view through window. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Athletes are building their brands.",
+          "content": "Women athletes are crushing it online. They use content creation to build their personal brands.\nThis helps them grow their sport's fan base. It even helps close salary gaps.\nIt's a powerful playbook for any personal brand:\n1.  **Own Your Narrative:** Share your unique journey, not just your results.\n2.  **Engage Your Audience:** Create content they want to see and interact with.\n3.  **Monetize Your Influence:** Turn engagement into real opportunities.\nWhat’s your creator playbook for growth?\n📌 Source: Digiday (\"How women athletes are betting on the creator playbook\")\n#CreatorEconomy #PersonalBranding #MarketingPlaybook",
+          "sourceName": "Digiday",
+          "sourceArticle": "How women athletes are betting on the creator playbook",
+          "imageHeadline": "ATHLETE *BRAND* POWER",
+          "imageSubtext": "The creator playbook women athletes use to win.",
+          "badgeText": "MARKETING PLAYBOOK",
+          "ctaText": "GET REPORT",
+          "sourceUrl": "https://digiday.com/media/how-women-athletes-are-betting-on-the-creator-playbook/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Documentary Interview",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Monochrome Black",
+        "characterRole": "Investor",
+        "environment": "Technology command center",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Investor in a technology command center. Full-body standing. Wearing a premium polo shirt. Foreground out-of-focus server racks, midground Investor, background large data screens. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "B2B marketing can be funny.",
+          "content": "Zoom brought in SNL stars like Colin Jost. Their goal? To add humor to enterprise tech.\nThis shows B2B doesn't have to be dry. Brands can connect on a human level.\nWhat this means for your content:\n1.  **Break the Mold:** Don't fear being different in a serious industry.\n2.  **Find the Human Angle:** Even complex solutions solve human problems.\n3.  **Embrace Authenticity:** Humor, when done right, feels real and relatable.\nAre you injecting personality into your B2B marketing?\n📌 Source: Adweek (\"Zoom and Colin Jost Make the Case for B2B Comedy\")\n#B2BMarketing #ContentStrategy #BrandVoice",
+          "sourceName": "Adweek",
+          "sourceArticle": "Zoom and Colin Jost Make the Case for B2B Comedy",
+          "imageHeadline": "COMEDY *SELLS* B2B",
+          "imageSubtext": "Zoom's fresh take on making enterprise tech engaging.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://www.adweek.com/media/zoom-colin-jost-b2b-comedy/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "University Chancellor",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Slate Blue",
+        "characterRole": "Researcher",
+        "environment": "Modern university campus",
+        "cameraStyle": "Walking shot",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Researcher on a modern university campus. Walking shot. Wearing a white shirt with rolled sleeves. Foreground out-of-focus campus greenery, midground Researcher, background university buildings with soft lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Walmart's AI just got smarter.",
+          "content": "Walmart is boosting its Scintilla platform. They're adding more marketplace data and deeper AI.\nThis helps sellers get better insights. It's about smarter decision-making.\nThis shows the future of retail insights:\n1.  **Data-Driven Decisions:** AI processes vast data for clear actions.\n2.  **Predictive Power:** Anticipate trends and optimize inventory.\n3.  **Personalized Experiences:** Use insights to tailor offers to shoppers.\nHow are you using AI to sharpen your market insights?\n📌 Source: Digiday (\"Walmart adds marketplace data, deeper AI features to Scintilla insights platform\")\n#AIMarketing #RetailTech #DataAnalytics",
+          "sourceName": "Digiday",
+          "sourceArticle": "Walmart adds marketplace data, deeper AI features to Scintilla insights platform",
+          "imageHeadline": "WALMART'S *SMART* AI",
+          "imageSubtext": "Scintilla platform now delivers deeper AI marketplace insights.",
+          "badgeText": "AI UPDATE",
+          "ctaText": "GET REPORT",
+          "sourceUrl": "https://digiday.com/media/walmart-adds-marketplace-data-deeper-ai-features-to-scintilla-insights-platform/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Conference Speaker",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Teal White",
+        "characterRole": "Keynote Speaker",
+        "environment": "Media studio",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Keynote Speaker in a media studio. Over-the-shoulder shot. Wearing a conference speaker outfit. Foreground out-of-focus studio light, midground Keynote Speaker, background blurred studio backdrop with logo. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Pinterest makes design easy.",
+          "content": "Pinterest launched an AI \"restyle\" feature. It helps users redecorate spaces visually.\nThis is huge for interior design and home decor brands. It's a new way to explore products.\nThink about this AI workflow:\n1.  **Visual Inspiration:** Users upload a room, AI suggests styles.\n2.  **Product Discovery:** AI links directly to shoppable items for the new style.\n3.  **Simplified Planning:** From idea to purchase, the AI streamlines the journey.\nHow can visual AI tools enhance your customer's journey?\n📌 Source: Social Media Today (\"Pinterest announces visual search ads and an AI restyle feature\")\n#AIWorkflow #VisualSearch #PinterestMarketing",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "Pinterest announces visual search ads and an AI restyle feature",
+          "imageHeadline": "PINTEREST *AI* DESIGN",
+          "imageSubtext": "Explore AI restyle features for instant decor ideas.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "TRY WEB APP",
+          "sourceUrl": "https://www.socialmediatoday.com/news/pinterest-announces-visual-search-ads-and-an-ai-restyle-feature/830737/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-09-17",
     "category": "ai",
     "posts": [
