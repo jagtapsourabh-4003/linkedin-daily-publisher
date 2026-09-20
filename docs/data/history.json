@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-09-20",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Creative Director",
+        "layoutFamily": "split-left",
+        "colorPalette": "Neon Cyan",
+        "characterRole": "Innovation Leader",
+        "environment": "City skyline office",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader in a City skyline office, Full-body standing, Formal university attire, cinematic lighting. Out-of-focus city lights in foreground, innovation leader in midground, modern office skyline in background, shallow depth of field or blur to create cinematic depth. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "NIL deals are changing everything.",
+          "content": "College athletes are now building their personal brands.\nBrands like Wonderful Pistachios are noticing. They’re signing NIL rosters, just like Nike. It's a smart move.\n1. Authenticity Wins: Fans connect with real people, not just logos.\n2. New Influence: Athletes become powerful spokespeople.\n3. Market Expansion: Reach new audiences through sports fandom.\nHow are you finding new voices for your brand?\n\n📌 Source: Marketing Dive (\"Wonderful Pistachios spotlights first NIL roster in social campaign\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Wonderful Pistachios spotlights first NIL roster in social campaign",
+          "imageHeadline": "*NIL* DEALS",
+          "imageSubtext": "How brands are tapping into college athlete power.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Investor Pitch",
+        "layoutFamily": "floating-cards",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "Investor",
+        "environment": "Conference venue",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Investor in a Conference venue, Interview setup, White shirt with rolled sleeves, professional lighting. Out-of-focus glass panel in foreground, investor in midground, bustling conference hall in background, shallow depth of field or blur to create cinematic depth. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Grow revenue with new streams.",
+          "content": "Axios hit its revenue goals. Now they're building new feeds for AI models. It's about diversifying. Don't rely on one income stream. Build a \"Revenue Flow Playbook\".\n1. Identify New Channels: Look for untapped markets.\n2. Adapt Your Product: Tailor offerings for new platforms (like AI).\n3. Measure & Optimize: See what works, then do more of it.\nWhat new revenue streams are you exploring?\n\n📌 Source: Digiday (\"Axios preps new Axios Direct feeds for AI models, agents as revenue tops 2026 goal\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Digiday",
+          "sourceArticle": "Axios preps new Axios Direct feeds for AI models, agents as revenue tops 2026 goal",
+          "imageHeadline": "*REVENUE* FLOW",
+          "imageSubtext": "Building multiple income streams for growth.",
+          "badgeText": "GROWTH PLAYBOOK",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Documentary Interview",
+        "layoutFamily": "layered-depth",
+        "colorPalette": "Dark Forest",
+        "characterRole": "Researcher",
+        "environment": "Creative workspace",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Researcher in a Creative workspace, Side profile, Luxury business casual, soft lighting. Out-of-focus sketchpad in foreground, researcher in midground, inspiring mood board in background, shallow depth of field or blur to create cinematic depth. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Cheese wins hearts (and wallets).",
+          "content": "Applebee's found a hit burger. Why? They leaned into \"O-M-Cheese.\" It shows how focusing on one unique selling point works. When something resonates, double down. People love what they love.\n1. Find Your Niche: What makes you unique?\n2. Emphasize Key Appeal: Highlight what customers love most.\n3. Build on Success: Don't be afraid to go all-in.\nWhat's your brand's \"O-M-Cheese\" moment?\n\n📌 Source: Marketing Dive (\"How a popular burger drove Applebee’s to double down on cheese\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "How a popular burger drove Applebee’s to double down on cheese",
+          "imageHeadline": "THE *CHEESE* FACTOR",
+          "imageSubtext": "Why leaning into a unique appeal works.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "READ CASE STUDY"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Magazine Editorial",
+        "layoutFamily": "diagonal-layout",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Corporate Executive",
+        "environment": "Technology command center",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive in a Technology command center, Over-the-shoulder, Charcoal executive suit, sharp lighting. Out-of-focus holographic display in foreground, corporate executive in midground, multi-screen data dashboard in background, shallow depth of field or blur to create cinematic depth. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "AI + nostalgia = marketing gold.",
+          "content": "Instacart used Shrek and Scooby-Doo to market their AI assistant. Why? Nostalgia sells. It makes new tech feel friendly and familiar. AI doesn't have to be cold.\n1. Connect Emotionally: Use known characters.\n2. Simplify New Tech: Make AI relatable.\n3. Drive Engagement: Familiar faces grab attention.\nHow can AI feel more human to your audience?\n\n📌 Source: Marketing Dive (\"Instacart enlists icons like Shrek, Scooby-Doo to market AI assistant\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Instacart enlists icons like Shrek, Scooby-Doo to market AI assistant",
+          "imageHeadline": "AI *NOSTALGIA*",
+          "imageSubtext": "Making AI friendly with classic characters.",
+          "badgeText": "AI UPDATE",
+          "ctaText": "SEE CAMPAIGN"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Business Strategist",
+        "layoutFamily": "phone-mockup",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "Strategy Consultant",
+        "environment": "Startup hub",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant in a Startup hub, Looking at camera, Navy business suit, bright ambient lighting. Out-of-focus coffee cup in foreground, strategy consultant in midground, collaborative startup whiteboard in background, shallow depth of field or blur to create cinematic depth. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Master AI for holiday sales.",
+          "content": "Meta just released holiday planning guides. They include an AI overview for marketers. This means AI isn't just for big tech. It's for everyday sales. Use AI to streamline your holiday campaigns.\n1. AI for Gift Research: Understand what customers want.\n2. Content Generation: Quickly create engaging posts.\n3. Ad Optimization: Target buyers more effectively.\nHow will AI change your holiday marketing plans?\n\n📌 Source: Social Media Today (\"Meta shares holiday 2026 planning guides\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "Meta shares holiday 2026 planning guides",
+          "imageHeadline": "AI *HOLIDAY* FLOW",
+          "imageSubtext": "Smart strategies for festive season marketing.",
+          "badgeText": "AI MARKETING",
+          "ctaText": "GET THE GUIDE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-09-19",
     "category": "marketing",
     "posts": [
