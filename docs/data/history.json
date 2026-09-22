@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-09-22",
+    "category": "ai",
+    "posts": [
+      {
+        "designArchetype": "Apple Keynote",
+        "layoutFamily": "asymmetrical-grid",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Keynote Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Keynote Speaker in an Auditorium stage, speaking on stage, wearing a conference speaker outfit, with an out-of-focus microphone in the foreground, the speaker in the midground, and a blurred auditorium background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "AI still needs the human touch.",
+          "content": "Even with AI everywhere, human connection matters more than ever.\n\nRon Johnson, the genius behind Apple's retail success, doesn't believe AI shopping will fully replace the in-person experience.\n\nHe argues that the magic of Apple stores was always about people helping people. That lesson is timeless.\n\n1. Prioritize real interactions. Technology should enhance, not replace, human connection.\n2. Understand customer psychology. What truly drives buying decisions goes beyond algorithms.\n3. Build authentic relationships. Brands thrive on trust, not just efficiency.\n\nHow do you balance AI efficiency with human connection in your strategy?\n\n📌 Source: TechCrunch AI (\"The man who built Apple’s stores doesn’t buy Silicon Valley’s bet on AI shopping\")",
+          "sourceName": "TechCrunch AI",
+          "sourceArticle": "The man who built Apple’s stores doesn’t buy Silicon Valley’s bet on AI shopping",
+          "imageHeadline": "HUMAN *TOUCH* WINS",
+          "imageSubtext": "Why AI won't replace connection in retail.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "University Chancellor",
+        "layoutFamily": "split-right",
+        "colorPalette": "Teal White",
+        "characterRole": "Innovation Leader",
+        "environment": "Innovation lab",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader in an Innovation lab, over-the-shoulder, wearing a smart casual blazer, with blurred lab equipment in the foreground, the leader in the midground, and a dynamic, modern lab background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "AI changes *everything* for agencies.",
+          "content": "Agencies are not just adding AI to existing services.\n\nThe smartest ones are totally rethinking their business model.\n\nIt's about reimagining what an agency can be, not just faster drafts.\n\nHere's how forward-thinking agencies are doing it:\n\n1. Rebuild workflows from scratch. Don't just patch AI onto old processes.\n2. Develop new AI-native services. Offer solutions only possible with AI.\n3. Train staff on AI strategy. Shift focus from tasks to intelligent oversight.\n\nIs your agency adapting or just adopting AI tools?\n\n📌 Source: Marketing AI Institute (\"Eight Agencies Take a New Approach to AI-Powered Marketing\")",
+          "sourceName": "Marketing AI Institute",
+          "sourceArticle": "Eight Agencies Take a New Approach to AI-Powered Marketing",
+          "imageHeadline": "AGENCY *REBOOT*",
+          "imageSubtext": "How AI is changing the marketing agency model.",
+          "badgeText": "AGENCY STRATEGY",
+          "ctaText": "GET FRAMEWORK"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "phone-mockup",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Startup Founder",
+        "environment": "Startup hub",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Startup Founder in a Startup hub, half-body portrait, wearing a premium polo shirt, with a blurred coffee cup in the foreground, the founder in the midground, and a vibrant, collaborative workspace background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Meta's AI agent is *booming*.",
+          "content": "Meta's new AI agent, Muse, is racking up users faster than ChatGPT did initially.\n\nWhy does this matter for your marketing strategy?\n\nIt shows that user demand for intuitive, integrated AI tools is growing rapidly.\n\nHere's what this means for market trends:\n\n1. Simplicity wins. Easy-to-use interfaces drive rapid adoption.\n2. Platform integration is key. Users want AI where they already are.\n3. Brand trust matters. Meta's existing user base helps new products grow.\n\nWhat makes you try a new AI tool or agent?\n\n📌 Source: TechCrunch AI (\"Meta’s Muse is outpacing ChatGPT’s early mobile launch\")",
+          "sourceName": "TechCrunch AI",
+          "sourceArticle": "Meta’s Muse is outpacing ChatGPT’s early mobile launch",
+          "imageHeadline": "AI *AGENT* RACE",
+          "imageSubtext": "Meta Muse adoption outpaces early ChatGPT growth.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "EXPLORE TRENDS"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Investor Pitch",
+        "layoutFamily": "floating-cards",
+        "colorPalette": "Monochrome Black",
+        "characterRole": "Investor",
+        "environment": "Conference venue",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Investor in a Conference venue, full-body standing, wearing a white shirt with rolled sleeves, with out-of-focus presentation slides in the foreground, the investor in the midground, and a bustling conference hall background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "AI agents face *new* roadblocks.",
+          "content": "Meta's AI agent, Muse, just got blocked from shopping on Amazon.\n\nThis isn't just about two tech giants; it's about the future of AI in commerce.\n\nAI agents need access to function, but platforms want control.\n\nWhat this means for marketers using AI:\n\n1. API access is crucial. Understand where your AI can and can't go.\n2. Competition is fierce. Big tech will protect its own AI tools.\n3. User consent is paramount. Agents must respect platform rules.\n\nHow do you see AI agents fitting into future e-commerce?\n\n📌 Source: TechCrunch AI (\"Meta’s AI agent has been blocked from using Amazon.com\")",
+          "sourceName": "TechCrunch AI",
+          "sourceArticle": "Meta’s AI agent has been blocked from using Amazon.com",
+          "imageHeadline": "AI *AGENT* BLOCKED",
+          "imageSubtext": "Amazon limits Meta's Muse from online shopping.",
+          "badgeText": "AI UPDATE",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Creative Director",
+        "layoutFamily": "layered-depth",
+        "colorPalette": "Dark Forest",
+        "characterRole": "Researcher",
+        "environment": "Creative workspace",
+        "cameraStyle": "Looking away",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Researcher in a Creative workspace, looking away, wearing luxury business casual, with a blurred sketchbook in the foreground, the researcher in the midground, and a light-filled, modern studio background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Give your AI *real* memory.",
+          "content": "Imagine an AI that remembers everything about your company.\n\nV7 uses advanced AI to turn scattered files into an intelligent 'institutional memory'.\n\nThis means your AI agents can understand context and perform complex tasks, linked to your actual data.\n\nHere’s a simple workflow:\n\n1. Centralize company data: Gather all documents, presentations, and internal wikis.\n2. Use an AI knowledge base: Feed this data into a system like V7 for context.\n3. Deploy smart agents: Have AI agents perform tasks using this rich memory.\n\nHow could 'institutional memory' AI help your team?\n\n📌 Source: OpenAI Blog (\"How V7 gives AI agents institutional memory\")",
+          "sourceName": "OpenAI Blog",
+          "sourceArticle": "How V7 gives AI agents institutional memory",
+          "imageHeadline": "AI *MEMORY* WORKFLOW",
+          "imageSubtext": "Turn company files into smart AI context.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "LEARN MORE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-09-21",
     "category": "marketing",
     "posts": [
