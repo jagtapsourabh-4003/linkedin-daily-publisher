@@ -1032,21 +1032,24 @@ How many pieces of content do you create each week?`
 };
 
 // Standalone fallback post generator (Guarantees exactly 40% Concepts, 30% Updates, 30% AI Marketing every single day)
-function buildFallbackPosts(category, dateStr) {
+function buildFallbackPosts(category, dateStr, trends = []) {
   const history = getHistory();
   
-  // Collect all historical headlines and hooks across the entire history database
+  // Collect all historical headlines, hooks, titles, and URLs across history
   const usedHeadlines = new Set();
   const usedHooks = new Set();
+  const usedUrls = new Set();
   
   for (const entry of history) {
     if (entry.date !== dateStr && entry.posts && Array.isArray(entry.posts)) {
       for (const p of entry.posts) {
-        if (p.postContent) {
-          if (p.postContent.imageHeadline) usedHeadlines.add(p.postContent.imageHeadline.toUpperCase().trim());
-          if (p.postContent.hook) usedHooks.add(p.postContent.hook.toLowerCase().trim());
-          if (p.headline) usedHeadlines.add(p.headline.toUpperCase().trim());
-        }
+        const pc = p.postContent || {};
+        if (pc.imageHeadline) usedHeadlines.add(pc.imageHeadline.toUpperCase().trim());
+        if (pc.hook) usedHooks.add(pc.hook.toLowerCase().trim());
+        if (p.headline) usedHeadlines.add(p.headline.toUpperCase().trim());
+        if (pc.sourceUrl) usedUrls.add(pc.sourceUrl.trim());
+        if (p.sourceUrl) usedUrls.add(p.sourceUrl.trim());
+        if (pc.sourceArticle) usedHooks.add(pc.sourceArticle.toLowerCase().trim());
       }
     }
   }
@@ -1059,36 +1062,123 @@ function buildFallbackPosts(category, dateStr) {
     { name: 'AI Marketing Workflow', layout: 'hero-center', palette: 'Crimson Red', role: 'Speaker', env: 'Auditorium stage', cam: 'Speaking on stage', suit: 'Conference speaker outfit' }
   ];
 
-  // Helper to pick the freshest unused topic from a pool
-  function pickFreshest(pool, alreadyPicked = []) {
-    // 1. First priority: Topics that have NEVER appeared in history
-    const pristine = pool.filter(t => 
-      !usedHeadlines.has(t.headline.toUpperCase().trim()) && 
-      !usedHooks.has(t.hook.toLowerCase().trim()) &&
-      !alreadyPicked.includes(t)
-    );
-    if (pristine.length > 0) return pristine[0];
+  // Helper to convert a scraped trend into a clean topic object
+  function trendToTopic(trend, defaultBadge) {
+    const cleanTitle = (trend.title || '').replace(/[\r\n]+/g, ' ').trim();
+    const words = cleanTitle.replace(/[^a-zA-Z0-9\s]/g, '').split(/\s+/).filter(w => w.length > 2);
+    let headlineWords = words.slice(0, 3);
+    if (headlineWords.length < 2) headlineWords = ['MARKETING', 'INSIGHT'];
+    const headline = headlineWords.length >= 2 
+      ? `${headlineWords[0].toUpperCase()} *${headlineWords[1].toUpperCase()}* ${headlineWords.slice(2).join(' ').toUpperCase()}`.trim()
+      : `*${headlineWords[0].toUpperCase()}*`;
 
-    // 2. Second priority: Any topic from pool not picked in today's batch
-    const available = pool.filter(t => !alreadyPicked.includes(t));
-    return available[0] || pool[0];
+    const shortSource = (trend.sourceName || trend.source || 'Industry Intelligence').replace(/\s+(AI|Feed|RSS|Blog)$/i, '').trim();
+    const hook = cleanTitle.length > 75 ? cleanTitle.slice(0, 72) + '...' : cleanTitle;
+    const subtext = (trend.description && trend.description.length > 15)
+      ? trend.description.slice(0, 60).replace(/[.,;:!?]+$/, '') + '.'
+      : 'Key industry insight and strategy breakdown.';
+
+    const content = `${hook}\n\n${trend.description || 'Here is what leaders need to know about this development.'}\n\n3 key takeaways for your brand:\n1. Pay attention to early shifts before they become mainstream.\n2. Adapt your core strategy to protect your reach and conversion rates.\n3. Test and iterate on real data instead of assumptions.\n\nHow is your team responding to this shift?\n\n📌 Source: ${shortSource} ("${cleanTitle}")\n\n#Marketing #Strategy #Growth #Leadership`;
+
+    return {
+      hook: hook,
+      topic: cleanTitle,
+      headline: headline,
+      subtext: subtext,
+      badge: defaultBadge || (shortSource.toUpperCase() + ' UPDATE').slice(0, 20),
+      content: content,
+      sourceName: shortSource,
+      sourceUrl: trend.link || '',
+      isDynamic: true
+    };
   }
 
-  // If we have fresh scraped trends, use them to enrich the topics dynamically
+  // Helper to score topic age based on history entries (least recently used)
+  function getTopicAge(topic) {
+    const headNorm = (topic.headline || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+    const hookNorm = (topic.hook || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    for (let i = 0; i < history.length; i++) {
+      const entry = history[i];
+      if (entry.date === dateStr) continue;
+      for (const p of (entry.posts || [])) {
+        const pc = p.postContent || {};
+        const hNorm = (pc.imageHeadline || p.headline || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+        const hkNorm = (pc.hook || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+        if ((headNorm && hNorm && (headNorm === hNorm || hNorm.includes(headNorm) || headNorm.includes(hNorm))) ||
+            (hookNorm && hkNorm && (hookNorm === hkNorm || hkNorm.includes(hookNorm) || hookNorm.includes(hkNorm)))) {
+          return i;
+        }
+      }
+    }
+    return 999999; // Never seen in history
+  }
+
+  // Least-recently-used topic picker for static library
+  function pickLeastRecentlyUsed(pool, alreadyPicked = []) {
+    const available = pool.filter(t => 
+      !alreadyPicked.some(p => p.topic === t.topic || p.headline === t.headline)
+    );
+    if (available.length === 0) return pool[0];
+
+    const scored = available.map(t => ({ topic: t, age: getTopicAge(t) }));
+    scored.sort((a, b) => {
+      if (b.age !== a.age) return b.age - a.age; // Oldest / never seen first
+      return 0.5 - Math.random(); // Randomize among equal age (e.g. never seen)
+    });
+    return scored[0].topic;
+  }
+
+  // Partition fresh scraped trends into AI vs Marketing
+  const freshTrends = Array.isArray(trends) ? trends.filter(t => {
+    const titleKey = (t.title || '').toLowerCase().trim();
+    const urlKey = (t.link || '').trim();
+    return !usedHooks.has(titleKey) && (!urlKey || !usedUrls.has(urlKey));
+  }) : [];
+
+  const freshAiTrends = freshTrends.filter(t => {
+    const text = `${t.source || ''} ${t.title || ''} ${t.description || ''}`.toLowerCase();
+    return text.includes('ai') || text.includes('techcrunch') || text.includes('verge') || text.includes('openai') || text.includes('technology review');
+  });
+
+  const freshMarketingTrends = freshTrends.filter(t => !freshAiTrends.includes(t));
+
   const picked = [];
-  const post1 = pickFreshest(TOPICS_LIBRARY.marketingConcepts, picked);
+
+  // Post 1: Marketing Concept (from library, LRU)
+  const post1 = pickLeastRecentlyUsed(TOPICS_LIBRARY.marketingConcepts, picked);
   picked.push(post1);
-  
-  const post2 = pickFreshest(TOPICS_LIBRARY.marketingConcepts, picked);
+
+  // Post 2: Marketing Framework (from library, LRU)
+  const post2 = pickLeastRecentlyUsed(TOPICS_LIBRARY.marketingConcepts, picked);
   picked.push(post2);
 
-  const post3 = pickFreshest(TOPICS_LIBRARY.marketingUpdates, picked);
+  // Post 3: World of Marketing Strategy (Derived from fresh marketing trend if available, else LRU)
+  let post3;
+  if (freshMarketingTrends.length > 0) {
+    post3 = trendToTopic(freshMarketingTrends.shift(), 'MARKETING UPDATE');
+  } else {
+    post3 = pickLeastRecentlyUsed(TOPICS_LIBRARY.marketingUpdates, picked);
+  }
   picked.push(post3);
 
-  const post4 = pickFreshest(TOPICS_LIBRARY.aiMarketing, picked);
+  // Post 4: AI Marketing Concept (Derived from fresh AI trend if available, else LRU)
+  let post4;
+  if (freshAiTrends.length > 0) {
+    post4 = trendToTopic(freshAiTrends.shift(), 'AI CONCEPT');
+  } else {
+    post4 = pickLeastRecentlyUsed(TOPICS_LIBRARY.aiMarketing, picked);
+  }
   picked.push(post4);
 
-  const post5 = pickFreshest(TOPICS_LIBRARY.aiMarketing, picked);
+  // Post 5: AI Marketing Workflow (Derived from fresh AI trend if available, else LRU)
+  let post5;
+  if (freshAiTrends.length > 0) {
+    post5 = trendToTopic(freshAiTrends.shift(), 'AI WORKFLOW');
+  } else if (freshMarketingTrends.length > 0) {
+    post5 = trendToTopic(freshMarketingTrends.shift(), 'AI WORKFLOW');
+  } else {
+    post5 = pickLeastRecentlyUsed(TOPICS_LIBRARY.aiMarketing, picked);
+  }
   picked.push(post5);
 
   const selectedTopics = [post1, post2, post3, post4, post5];
@@ -1096,8 +1186,8 @@ function buildFallbackPosts(category, dateStr) {
   return archetypes.map((arch, idx) => {
     const t = selectedTopics[idx];
     const isAi = idx >= 3;
-    const srcName = isAi ? 'TechCrunch AI' : 'Marketing Week';
-    const srcUrl = isAi ? 'https://techcrunch.com/category/artificial-intelligence/' : 'https://www.marketingweek.com/';
+    const srcName = t.sourceName || (isAi ? 'TechCrunch' : 'Marketing Week');
+    const srcUrl = t.sourceUrl || (isAi ? 'https://techcrunch.com/category/artificial-intelligence/' : 'https://www.marketingweek.com/');
     const citation = `\n\n📌 Source: ${srcName} ("${t.topic}")`;
 
     let formattedContent = t.content;

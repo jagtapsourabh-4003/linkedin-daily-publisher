@@ -1,4 +1,6 @@
 import Parser from 'rss-parser';
+import fs from 'fs';
+import path from 'path';
 
 const parser = new Parser({
   headers: {
@@ -7,6 +9,45 @@ const parser = new Parser({
   },
   timeout: 10000 // 10s timeout
 });
+
+/**
+ * Extracts all previously used article URLs and titles from history.json
+ * to ensure 100% zero repetition of scraped articles.
+ */
+function getHistoricalSeen() {
+  const historyFile = path.resolve('docs', 'data', 'history.json');
+  const seenUrls = new Set();
+  const seenTitles = new Set();
+  if (fs.existsSync(historyFile)) {
+    try {
+      const history = JSON.parse(fs.readFileSync(historyFile, 'utf8'));
+      for (const entry of history) {
+        if (entry.posts && Array.isArray(entry.posts)) {
+          for (const p of entry.posts) {
+            const pc = p.postContent || {};
+            if (pc.sourceUrl) seenUrls.add(pc.sourceUrl.trim());
+            if (p.sourceUrl) seenUrls.add(p.sourceUrl.trim());
+            if (pc.sourceArticle) {
+              const k = pc.sourceArticle.toLowerCase().replace(/[^a-z0-9]/g, '');
+              if (k) seenTitles.add(k);
+            }
+            if (pc.hook) {
+              const k = pc.hook.toLowerCase().replace(/[^a-z0-9]/g, '');
+              if (k) seenTitles.add(k);
+            }
+            if (pc.imageHeadline) {
+              const k = pc.imageHeadline.toLowerCase().replace(/[^a-z0-9]/g, '');
+              if (k) seenTitles.add(k);
+            }
+          }
+        }
+      }
+    } catch (e) {
+      console.warn('[Scraper] Could not read history for dedup:', e.message);
+    }
+  }
+  return { seenUrls, seenTitles };
+}
 
 const FEEDS = {
   ai: [
@@ -86,9 +127,9 @@ export async function scrapeTrends(category) {
   const selectedCategory = category.toLowerCase() === 'marketing' ? 'marketing' : 'ai';
   const feeds = [...FEEDS[selectedCategory]].sort(() => 0.5 - Math.random());
   const results = [];
-  const seenTitles = new Set();
+  const { seenUrls, seenTitles } = getHistoricalSeen();
 
-  console.log(`[Scraper] Starting scrape for category: ${selectedCategory}`);
+  console.log(`[Scraper] Starting scrape for category: ${selectedCategory} (History memory: ${seenTitles.size} titles, ${seenUrls.size} URLs)`);
 
   for (const feed of feeds) {
     try {
@@ -99,19 +140,29 @@ export async function scrapeTrends(category) {
       );
       const parsedFeed = await Promise.race([fetchPromise, timeoutPromise]);
       
-      // Take top 6 items from each feed, avoid duplicates
+      const shortSource = feed.name
+        .replace(/\s+(AI|Feed|RSS|Official Blog|Blog|Technology Review|Daily)$/i, '')
+        .trim() || feed.name;
+
+      // Take fresh items from each feed, strictly avoiding historical duplicates
       let added = 0;
-      for (const item of (parsedFeed.items || []).slice(0, 8)) {
+      for (const item of (parsedFeed.items || []).slice(0, 10)) {
         const title = (item.title || '').trim();
         const titleKey = title.toLowerCase().replace(/[^a-z0-9]/g, '');
-        if (!title || seenTitles.has(titleKey)) continue;
+        const linkKey = (item.link || '').trim();
+
+        if (!title || seenTitles.has(titleKey) || (linkKey && seenUrls.has(linkKey))) {
+          continue; // Strictly skip anything seen before
+        }
+
         seenTitles.add(titleKey);
+        if (linkKey) seenUrls.add(linkKey);
 
         results.push({
           title: title,
           description: cleanText(item.contentSnippet || item.content || item.summary || ''),
-          source: feed.name,
-          sourceName: feed.name,
+          source: shortSource,
+          sourceName: shortSource,
           link: item.link || '',
           pubDate: item.pubDate || item.isoDate || ''
         });
@@ -119,22 +170,28 @@ export async function scrapeTrends(category) {
         if (added >= 5) break;
       }
       
-      console.log(`[Scraper] Successfully fetched ${added} items from ${feed.name}`);
+      console.log(`[Scraper] Successfully fetched ${added} fresh items from ${feed.name}`);
     } catch (error) {
       console.warn(`[Scraper] Feed ${feed.name} skipped (${error.message})`);
     }
   }
 
-  // If we couldn't scrape anything, return a randomized selection of fallbacks
+  // If we couldn't scrape anything, return a non-repeating selection of fallbacks
   if (results.length === 0) {
-    console.warn(`[Scraper] Web scraping returned 0 items. Utilizing local fallback topics.`);
-    const shuffled = [...FALLBACK_TOPICS[selectedCategory]].sort(() => 0.5 - Math.random());
+    console.warn(`[Scraper] Web scraping returned 0 items. Utilizing fresh local fallback topics.`);
+    const freshFallbacks = FALLBACK_TOPICS[selectedCategory].filter(topic => {
+      const k = topic.title.toLowerCase().replace(/[^a-z0-9]/g, '');
+      return !seenTitles.has(k);
+    });
+    const pool = freshFallbacks.length > 0 ? freshFallbacks : FALLBACK_TOPICS[selectedCategory];
+    const shuffled = [...pool].sort(() => 0.5 - Math.random());
+    const fallbackSrc = selectedCategory === 'marketing' ? 'Marketing Week' : 'TechCrunch';
     return shuffled.slice(0, 5).map(topic => ({
       title: topic.title,
       description: topic.content,
-      source: 'Marketing Week & Industry Intelligence',
-      sourceName: 'Marketing Week & Industry Intelligence',
-      link: 'https://www.marketingweek.com/'
+      source: fallbackSrc,
+      sourceName: fallbackSrc,
+      link: selectedCategory === 'marketing' ? 'https://www.marketingweek.com/' : 'https://techcrunch.com/'
     }));
   }
 

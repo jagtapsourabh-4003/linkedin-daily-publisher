@@ -2996,7 +2996,7 @@ function renderActiveDrafts() {
       });
     }
 
-    // Open in Canva Button Listener (Export Text + Photo URL + Material Source)
+    // Open in Canva Button Listener (Export strictly 5 creative fields for Canva AI)
     const canvaBtn = cardEl.querySelector(`#btn-canva-${post.id}`);
     if (canvaBtn) {
       canvaBtn.addEventListener('click', () => {
@@ -3004,27 +3004,17 @@ function renderActiveDrafts() {
         const subtextVal = (document.getElementById(`input-subtext-${post.id}`) || {}).value || subtextText;
         const badgeVal = (document.getElementById(`input-badge-${post.id}`) || {}).value || badgeText;
         const ctaVal = (document.getElementById(`input-cta-${post.id}`) || {}).value || ctaText;
-        const sourceVal = (document.getElementById(`input-source-${post.id}`) || {}).value || post.sourceName || (post.postContent && post.postContent.sourceName) || sourceName || (activeEntry.category === 'marketing' ? 'Marketing Week' : 'TechCrunch AI');
-        const sourceArtVal = (post.postContent && post.postContent.sourceArticle && post.postContent.sourceArticle !== 'General Trend') ? post.postContent.sourceArticle : (sourceArticle !== 'General Trend' ? sourceArticle : '');
-        const sourceUrlVal = (post.postContent && post.postContent.sourceUrl) ? post.postContent.sourceUrl : '';
-        
-        // Construct selected photo / avatar URL for Canva template
-        const originUrl = window.location.origin + window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
-        const photoUrl = state.settings.customAvatar ? state.settings.customAvatar : `${originUrl}/avatar_daily_${post.id}.jpg`;
 
-        // Comprehensive payload including material source and full matter
-        let sourceBlock = `[MATERIAL SOURCE / SOURCE OF UPDATE]\n${sourceVal}`;
-        if (sourceArtVal) sourceBlock += ` - "${sourceArtVal}"`;
-        if (sourceUrlVal) sourceBlock += `\n${sourceUrlVal}`;
+        // Clean and shorten material source to just the publication / source name
+        let rawSource = (document.getElementById(`input-source-${post.id}`) || {}).value || post.sourceName || (post.postContent && post.postContent.sourceName) || sourceName || (activeEntry.category === 'marketing' ? 'Marketing Week' : 'TechCrunch AI');
+        let shortSource = rawSource.split(' - ')[0].split(' (')[0].split(' "')[0].replace(/^📌\s*Source:\s*/i, '').replace(/https?:\/\/[^\s]+/g, '').trim();
+        if (!shortSource) shortSource = (activeEntry.category === 'marketing' ? 'Marketing Week' : 'TechCrunch AI');
 
-        const payloadText = `[HEADLINE]\n${headlineVal}\n\n[SUBTEXT]\n${subtextVal}\n\n[TOP TAG / BADGE]\n${badgeVal}\n\n[CTA BUTTON]\n${ctaVal}\n\n${sourceBlock}\n\n[SELECTED PHOTO LINK]\n${photoUrl}\n\n[POST MATTER / CAPTION]\n${textarea.value}`;
+        // Strictly the 5 fields requested for Canva AI creative editing
+        const payloadText = `[HEADLINE]\n${headlineVal}\n\n[SUBTEXT]\n${subtextVal}\n\n[TOP TAG / BADGE]\n${badgeVal}\n\n[CTA BUTTON]\n${ctaVal}\n\n[MATERIAL SOURCE / SOURCE OF UPDATE]\n${shortSource}`;
         
         navigator.clipboard.writeText(payloadText);
-        if (!state.settings.canvaTemplateUrl) {
-          showToast('📋 Copied headline, material source, matter & photo URL! Opening Canva...', 'info');
-        } else {
-          showToast('📋 Copied headline, material source, matter & photo URL! Opening your Canva template...', 'success');
-        }
+        showToast('📋 Copied Canva AI fields ([HEADLINE], [SUBTEXT], [TOP TAG / BADGE], [CTA BUTTON], [MATERIAL SOURCE])! Opening Canva...', 'success');
         
         const canvaTargetUrl = state.settings.canvaTemplateUrl || 'https://www.canva.com/';
         window.open(canvaTargetUrl, '_blank');
