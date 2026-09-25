@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-09-25",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Investor Pitch",
+        "layoutFamily": "split-left",
+        "colorPalette": "Monochrome Black",
+        "characterRole": "Investor",
+        "environment": "City skyline office",
+        "cameraStyle": "Walking shot",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Investor in a City skyline office, walking shot. Wearing a Premium polo shirt. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Instacart cuts costs for users.",
+          "content": "Instacart is changing how they grow. They are reducing item markups to attract more online grocery shoppers.\n\nThis simple move can make a huge difference. Lower prices mean more loyal customers.\n\n1.  **Understand Buyer Needs:** People want value and savings more than anything else.\n2.  **Adjust Pricing Strategy:** Even small changes can drive big growth in competitive markets.\n3.  **Build Loyalty:** Combine lower prices with perks for long-term customer relationships.\n\nAre you prioritizing value for your customers?\n\n📌 Source: Digiday (\"Why Instacart is focused on reducing item markups to grow its delivery platform\")\n#MarketingStrategy #Instacart #GrowthHacks",
+          "sourceName": "Digiday",
+          "sourceArticle": "Why Instacart is focused on reducing item markups to grow its delivery platform",
+          "imageHeadline": "INSTACART *DELIVERS* MORE",
+          "imageSubtext": "Lower markups mean bigger growth for delivery.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Business Strategist",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Premium Burgundy",
+        "characterRole": "Business Coach",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach in an Executive boardroom, presentation shot. Wearing a Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "McDonald's builds its own media.",
+          "content": "McDonald's is launching a unified mobile platform. This is a game-changer for their marketing.\n\nThey're creating their own media network. It lets them connect directly with customers, bypassing traditional channels.\n\n1.  **Own Your Audience:** Build platforms that give you direct access to customers.\n2.  **Personalize Experiences:** Use data from your platform to offer tailored content and deals.\n3.  **Expand Reach:** Pilot new ideas in one market, then scale globally for maximum impact.\n\nHow can your brand create its own media ecosystem?\n\n📌 Source: Marketing Dive (\"Inside McDonald’s new marketing model as it enters media network fray\")\n#MarketingPlaybook #McDonalds #DirectMarketing",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Inside McDonald’s new marketing model as it enters media network fray",
+          "imageHeadline": "MCDONALD'S *MEDIA* PLAYBOOK",
+          "imageSubtext": "Unified mobile platform drives new customer connection.",
+          "badgeText": "MARKETING FRAMEWORK",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Magazine Editorial",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Teal White",
+        "characterRole": "Innovation Leader",
+        "environment": "Creative workspace",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader in a Creative workspace, half-body portrait. Wearing a Smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Target's design-first strategy wins.",
+          "content": "Target is putting its design legacy at the heart of its new marketing campaign. This isn't just about selling products.\n\nIt's about reminding people what makes Target unique. Good design impacts everything, from products to store experience.\n\n1.  **Highlight Core Strengths:** Identify what truly sets your brand apart and build campaigns around it.\n2.  **Integrate Design Everywhere:** Ensure your brand's aesthetic is consistent across all touchpoints.\n3.  **Tell a Story:** Use creators and experiences to bring your brand's unique history to life.\n\nWhat's your brand's most compelling legacy?\n\n📌 Source: Marketing Dive (\"Target’s new campaign puts design legacy at center of marketing\")\n#BrandStrategy #Target #ConsumerPsychology",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Target’s new campaign puts design legacy at center of marketing",
+          "imageHeadline": "TARGET'S *DESIGN* LEGACY",
+          "imageSubtext": "How curated style creates deep customer loyalty.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Conference Speaker",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Slate Blue",
+        "characterRole": "Keynote Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Keynote Speaker on an Auditorium stage, speaking on stage. Wearing a Conference speaker outfit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "The future CMO needs AI.",
+          "content": "DMexco 2026 highlighted a critical trend: CMOs must scale AI operations.\n\nIt's not enough to dabble in AI. Future leaders need to integrate it deeply into their marketing strategies and foster a 'bold' approach.\n\n1.  **Embrace AI at Scale:** Move beyond pilot projects to company-wide AI adoption.\n2.  **Train New Leaders:** Equip marketing teams with AI literacy and strategic thinking.\n3.  **Stay Bold:** Be ready to challenge old methods and innovate with AI-powered insights.\n\nAre you preparing for the AI-driven CMO era?\n\n📌 Source: Digiday (\"DMexco ’26 Briefing: From scaling AI operations to teaching the next generation of ‘bold’ CMOs\")\n#AIMarketing #CMO #FutureOfMarketing",
+          "sourceName": "Digiday",
+          "sourceArticle": "DMexco ’26 Briefing: From scaling AI operations to teaching the next generation of ‘bold’ CMOs",
+          "imageHeadline": "THE *BOLD* CMO",
+          "imageSubtext": "Next-gen leaders master AI at scale and strategy.",
+          "badgeText": "AI UPDATE",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Innovation Lab Researcher",
+        "layoutFamily": "floating-cards",
+        "colorPalette": "Platinum Grey",
+        "characterRole": "Researcher",
+        "environment": "Innovation lab",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Researcher in an Innovation lab, interview setup. Wearing a White shirt with rolled sleeves. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "YouTube boosts creators with AI.",
+          "content": "YouTube just announced new AI features for creators. This is huge for content production.\n\nThey're bringing AI agents, live gamification, and advanced editing tools. All designed to keep creators on the platform and make their work easier.\n\n1.  **AI-Powered Ideas:** Use AI agents to brainstorm content ideas or script assistance.\n2.  **Engage Live:** Leverage gamification tools to boost audience interaction during streams.\n3.  **Streamline Editing:** Utilize AI editing features to save time and polish videos faster.\n\nHow will AI change your content creation process?\n\n📌 Source: Digiday (\"YouTube invests in AI agents, live ‘gamification,’ and editing tools to keep creators close\")\n#AIMarketing #YouTubeCreators #ContentCreation",
+          "sourceName": "Digiday",
+          "sourceArticle": "YouTube invests in AI agents, live ‘gamification,’ and editing tools to keep creators close",
+          "imageHeadline": "YOUTUBE *AI* CREATOR",
+          "imageSubtext": "New tools to supercharge content and engagement.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-09-24",
     "category": "marketing",
     "posts": [
