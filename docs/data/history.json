@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-09-26",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Documentary Interview",
+        "layoutFamily": "split-right",
+        "colorPalette": "Teal White",
+        "characterRole": "Investor",
+        "environment": "City skyline office",
+        "cameraStyle": "Walking shot",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Investor in a city skyline office, foreground out-of-focus modern glass panel, midground Indian male investor, background blur of city skyline. Walking shot, Premium polo shirt. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Creators aren't just for awareness anymore.",
+          "content": "Many brands still see creators as a top-of-funnel tactic. \nBut they miss the bigger picture of their true power.\n\nI believe creator content should be treated differently. \nIt’s a powerful asset for every stage of your customer journey.\n\nHere’s why I see them as a core media play:\n\n1.  **Treat them as paid media:** Integrate creator assets directly into your ad strategy. \n2.  **Full-funnel impact:** Use their content from discovery to conversion. Don't limit their role. \n3.  **Measure ROI:** Track sales, not just likes. Focus on bottom-line business results.\n\nHow do you measure creator ROI in your campaigns?\n\n📌 Source: Adweek (\"Creators That Convert: 4 Business Leaders on Driving Full-Funnel Marketing Results\")\n#CreatorEconomy #MarketingStrategy #PaidMedia",
+          "sourceName": "Adweek",
+          "sourceArticle": "Creators That Convert: 4 Business Leaders on Driving Full-Funnel Marketing Results",
+          "imageHeadline": "CREATOR *POWER* UP",
+          "imageSubtext": "Unlock full-funnel marketing results with strategic creator assets.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Creative Director",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Premium Burgundy",
+        "characterRole": "Innovation Leader",
+        "environment": "Creative workspace",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader in a creative workspace, foreground out-of-focus design sketches, midground Indian male Innovation Leader, background blur of vibrant art supplies. Full-body standing, White shirt with rolled sleeves. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Brands are becoming the new rockstars.",
+          "content": "Cultural moments like the VMAs are huge stages. \nBrands used to be just sponsors, but now they’re taking center stage.\n\nI see a shift. Brands are creating their *own* unforgettable moments.\nThey're not just attaching to culture; they're becoming part of it.\n\nHere’s a playbook for high-impact cultural integration:\n\n1.  **Co-create, don't just sponsor:** Build experiences unique to your brand. \n2.  **Align authentically:** Choose events that resonate with your brand's true values. \n3.  **Craft unique activations:** Make it so good, people can't stop talking about it.\n\nWhat's your favorite brand activation you've seen recently?\n\n📌 Source: Adweek (\"Move Over, Taylor Swift. The Brands Are About to Spice Up the VMAs\")\n#BrandActivation #CulturalMarketing #VMAs",
+          "sourceName": "Adweek",
+          "sourceArticle": "Move Over, Taylor Swift. The Brands Are About to Spice Up the VMAs",
+          "imageHeadline": "BRAND *SPOTLIGHT*",
+          "imageSubtext": "How brands are taking center stage at major cultural events.",
+          "badgeText": "MARKETING NEWS",
+          "ctaText": "GET INSIGHTS"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Business Strategist",
+        "layoutFamily": "diagonal-layout",
+        "colorPalette": "Monochrome Black",
+        "characterRole": "Business Coach",
+        "environment": "Coffee shop workspace",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach in a coffee shop workspace, foreground out-of-focus latte art, midground Indian male Business Coach, background blur of bustling cafe patrons. Side profile, Luxury business casual. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Jeep is redefining its American story.",
+          "content": "For a long time, Jeep focused on its rugged American heritage. \nBut today's market is much more fragmented.\n\nI've observed that heritage alone isn't enough anymore. \nBrands need dynamic stories to connect with everyone.\n\nHere’s how brands can chart a new course while honoring roots:\n\n1.  **Fresh heritage:** Celebrate your core story, but show it in new ways. \n2.  **Tailored messaging:** Speak to diverse audiences with relevant campaigns. \n3.  **Modern connection:** Link brand values to today's consumer needs and lifestyles.\n\nHow do brands stay relevant globally while keeping their identity?\n\n📌 Source: Marketing Dive (\"How Jeep is charting a new course for its marketing\")\n#BrandStrategy #MarketingTrends #Jeep",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "How Jeep is charting a new course for its marketing",
+          "imageHeadline": "JEEP'S *NEW ROAD*",
+          "imageSubtext": "Charting a marketing course that balances heritage with multicultural reach.",
+          "badgeText": "BRAND ANALYSIS",
+          "ctaText": "DISCOVER STRATEGY"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Podcast Host",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Podcast Host",
+        "environment": "Podcast studio",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Podcast Host in a podcast studio, foreground out-of-focus microphone, midground Indian male Podcast Host, background blur of soundproofing panels. Sitting at desk, Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Can AI truly create prime-time ads?",
+          "content": "For years, there’s been skepticism about AI's creative capabilities. \nIs it just a tool for efficiency, or can it truly innovate?\n\nI've seen some impressive advancements recently. \nAI is moving past simple automation to actual creative generation.\n\nHere’s what I’m learning about AI and creative:\n\n1.  **Evolving quality:** AI tools are getting much better at creative output. \n2.  **Test early:** Don't wait. Experiment with AI-generated concepts to see what works. \n3.  **Co-creator mindset:** View AI as a partner that enhances, not replaces, human creativity.\n\nWould you trust AI to create your next ad campaign?\n\n📌 Source: Adweek (\"Are AI Ads Ready for Prime Time?\")\n#AIMarketing #CreativeAI #Advertising",
+          "sourceName": "Adweek",
+          "sourceArticle": "Are AI Ads Ready for Prime Time?",
+          "imageHeadline": "AI ADS *NOW*",
+          "imageSubtext": "Testing AI's creative capabilities for high-impact advertising campaigns.",
+          "badgeText": "AI UPDATE",
+          "ctaText": "LEARN MORE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Innovation Lab Researcher",
+        "layoutFamily": "floating-cards",
+        "colorPalette": "Dark Forest",
+        "characterRole": "Researcher",
+        "environment": "Innovation lab",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Researcher in an innovation lab, foreground out-of-focus transparent screen with data, midground Indian male Researcher, background blur of scientific equipment. Interview setup, Modern startup hoodie. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Why AI *shows* its thought process.",
+          "content": "Remember when AI search just gave you an answer? \nNow, major AI tools like Claude and ChatGPT show their 'thinking'.\n\nI find this change fascinating and powerful. \nIt’s a subtle update with big implications for user trust.\n\nHere's why this AI transparency matters:\n\n1.  **Builds trust:** Showing the steps increases confidence in the AI's answer. \n2.  **User understanding:** People want to know *how* the AI reached its conclusion. \n3.  **Key UI trend:** Visualizing the AI's process is becoming a standard for user experience.\n\nDoes seeing AI's process help you trust it more?\n\n📌 Source: HubSpot Marketing (\"The psychology behind why AI shows it's working\")\n#AIWorkflow #UserExperience #AITrust",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "The psychology behind why AI shows it's working",
+          "imageHeadline": "AI'S *THINKING*",
+          "imageSubtext": "The psychology behind why showing AI's process boosts user trust.",
+          "badgeText": "AI MARKETING",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-09-25",
     "category": "marketing",
     "posts": [
