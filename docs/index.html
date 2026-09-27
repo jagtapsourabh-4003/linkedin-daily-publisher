@@ -326,6 +326,18 @@
               <div class="form-group">
                 <label for="modal-select-avatar-pose">Avatar Pose / Outfit</label>
                 <select id="modal-select-avatar-pose" class="customizer-select"></select>
+                <div style="display: flex; gap: 8px; margin-top: 8px; align-items: center; flex-wrap: wrap;">
+                  <label for="modal-input-upload-avatar" class="btn btn-secondary btn-sm" style="font-size: 0.76rem; padding: 4px 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; margin-bottom: 0;">
+                    <span>➕ Upload Photo</span>
+                    <input type="file" id="modal-input-upload-avatar" accept="image/*" style="display: none;">
+                  </label>
+                  <button type="button" class="btn btn-secondary btn-sm" id="btn-modal-open-avatar-gen" style="font-size: 0.76rem; padding: 4px 8px; color: #c084fc; border-color: rgba(168, 85, 247, 0.35); background: rgba(168, 85, 247, 0.1);">
+                    <span>✨ AI Generator</span>
+                  </button>
+                  <button type="button" class="btn btn-secondary btn-sm" id="btn-modal-clean-avatar" style="font-size: 0.76rem; padding: 4px 8px; color: #94a3b8;">
+                    <span>🚫 Clean (No Avatar)</span>
+                  </button>
+                </div>
               </div>
               <div class="form-group">
                 <label for="modal-select-avatar-pos">Position Anchor</label>
@@ -411,6 +423,79 @@
       <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center;">
         <span style="font-size: 0.8rem; color: #94a3b8;">Edits auto-save immediately to your browser</span>
         <button type="button" class="btn btn-primary" id="btn-done-ai-studio">Done &amp; Close Studio</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Avatar Studio & Generator Modal -->
+  <div class="modal-overlay hidden" id="ai-avatar-modal" role="dialog" aria-modal="true" aria-labelledby="avatar-gen-modal-title">
+    <div class="modal-content" style="max-width: 680px; width: 92%;">
+      <div class="modal-header">
+        <div>
+          <h3 id="avatar-gen-modal-title" style="display: flex; align-items: center; gap: 8px; margin: 0; font-size: 1.15rem; color: #f8fafc;">
+            <span>✨ AI Avatar Generator &amp; Pose Studio</span>
+            <span class="badge" style="background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); font-size: 0.72rem;">Flux Photoreal Engine</span>
+          </h3>
+          <p style="margin: 4px 0 0 0; font-size: 0.82rem; color: #94a3b8;">Generate high-resolution executive portraits, keynote poses &amp; founder personas</p>
+        </div>
+        <button type="button" class="btn-close-modal" id="btn-close-avatar-modal" aria-label="Close modal">&times;</button>
+      </div>
+      
+      <div class="modal-body" style="padding: 18px 20px; display: flex; flex-direction: column; gap: 14px;">
+        <div class="form-group">
+          <label for="input-avatar-prompt" style="font-weight: 600; font-size: 0.85rem; color: #cbd5e1; display: block; margin-bottom: 6px;">
+            Persona / Pose Description:
+          </label>
+          <textarea id="input-avatar-prompt" class="customizer-textarea" rows="3" placeholder="e.g. Professional Indian executive man in tailored charcoal blazer speaking at keynote conference, warm smile, studio lighting, hyperrealistic 8k portrait..."></textarea>
+        </div>
+
+        <!-- Quick Preset Chips -->
+        <div>
+          <span style="font-size: 0.75rem; color: #94a3b8; font-weight: 600; display: block; margin-bottom: 6px;">⚡ Quick Persona Presets:</span>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <button type="button" class="ai-chip avatar-preset-chip" data-prompt="Charismatic keynote speaker presenting on stage at tech summit with dynamic hand gesture, charcoal blazer, crisp cinematic stage lighting, 8k photorealistic portrait">🎤 Keynote Speaker</button>
+            <button type="button" class="ai-chip avatar-preset-chip" data-prompt="Confident executive leader in tailored navy suit in front of city skyline glass boardroom, warm trustworthy smile, crisp corporate portrait">💼 Boardroom Executive</button>
+            <button type="button" class="ai-chip avatar-preset-chip" data-prompt="Tech startup founder in black crewneck sweater working at wooden desk in modern creative studio, friendly gaze, shallow depth of field, natural window lighting">💻 Modern Founder</button>
+            <button type="button" class="ai-chip avatar-preset-chip" data-prompt="Professional host in high-end podcast studio with broadcast Shure microphone, soft atmospheric studio glow, smart casual style, sharp detail">🎙️ Podcast Host</button>
+            <button type="button" class="ai-chip avatar-preset-chip" data-prompt="Forward-thinking marketing strategist in smart casual blazer at vibrant sunlit modern cafe, relaxed professional posture, warm atmospheric lighting">☕ Cafe Strategist</button>
+            <button type="button" class="ai-chip avatar-preset-chip" data-prompt="Inspiring business leader in mountain valley with pine trees in backdrop, golden hour light, energetic inspirational executive look">🏔️ Outdoor Summit</button>
+          </div>
+        </div>
+
+        <!-- Action Row -->
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <button type="button" class="btn btn-primary" id="btn-trigger-avatar-gen" style="flex: 1; padding: 10px 16px; font-weight: 600;">
+            <span>⚡ Generate AI Avatar</span>
+          </button>
+        </div>
+
+        <!-- Generation Status & Preview Box -->
+        <div id="avatar-gen-preview-container" class="hidden" style="margin-top: 6px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 14px; display: flex; gap: 16px; align-items: center;">
+          <div style="position: relative; width: 140px; height: 160px; flex-shrink: 0; border-radius: 10px; overflow: hidden; background: #000; border: 1px solid rgba(168, 85, 247, 0.4);">
+            <img id="avatar-gen-preview-img" src="" alt="AI Generated Avatar" style="width: 100%; height: 100%; object-fit: cover;" />
+            <div id="avatar-gen-spinner" class="hidden" style="position: absolute; inset: 0; background: rgba(15, 23, 42, 0.85); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: #c084fc; font-size: 0.75rem;">
+              <div class="spinner"></div>
+              <span>Generating...</span>
+            </div>
+          </div>
+          <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+            <div style="font-weight: 700; color: #f8fafc; font-size: 0.92rem;">Preview Generated Portrait</div>
+            <p style="margin: 0; font-size: 0.78rem; color: #94a3b8;">High-resolution portrait generated successfully. Save this to your avatar library to use in your daily LinkedIn creatives.</p>
+            <div style="display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap;">
+              <button type="button" class="btn btn-primary btn-sm" id="btn-save-generated-avatar" style="font-size: 0.8rem; padding: 6px 12px;">
+                <span>✅ Save &amp; Use on Current Post</span>
+              </button>
+              <button type="button" class="btn btn-secondary btn-sm" id="btn-regen-avatar-variation" style="font-size: 0.8rem; padding: 6px 12px;">
+                <span>🔄 Another Variation</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-size: 0.8rem; color: #94a3b8;">Avatars are saved to your browser library</span>
+        <button type="button" class="btn btn-secondary btn-sm" id="btn-cancel-avatar-modal">Close</button>
       </div>
     </div>
   </div>

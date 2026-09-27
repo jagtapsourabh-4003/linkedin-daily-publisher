@@ -524,6 +524,9 @@ function setupEventListeners() {
 
   // Initialize AI Studio Modal Events
   initAiStudioEvents();
+
+  // Initialize AI Avatar Generator Modal Events
+  initAiAvatarEvents();
 }
 
 // ================= API CALLS & DATA FETCHING (SERVERLESS REFACTOR) =================
@@ -2160,6 +2163,109 @@ function renderDateList() {
   });
 }
 
+// ================= CUSTOM AVATAR REPOSITORY & AI GENERATOR =================
+
+const customAvatarImageCache = new Map(); // id -> HTMLImageElement
+
+function getCustomAvatars() {
+  const db = getLocalDb();
+  return Array.isArray(db.customAvatars) ? db.customAvatars : [];
+}
+
+function saveCustomAvatar(name, dataUrl) {
+  const db = getLocalDb();
+  db.customAvatars = Array.isArray(db.customAvatars) ? db.customAvatars : [];
+  const id = 'custom-' + Date.now();
+  db.customAvatars.push({
+    id,
+    name: name || `Custom Avatar ${db.customAvatars.length + 1}`,
+    dataUrl,
+    createdAt: new Date().toISOString()
+  });
+  saveLocalDb(db);
+  return id;
+}
+
+function deleteCustomAvatar(id) {
+  const db = getLocalDb();
+  if (Array.isArray(db.customAvatars)) {
+    db.customAvatars = db.customAvatars.filter(a => a.id !== id);
+    saveLocalDb(db);
+  }
+  customAvatarImageCache.delete(id);
+}
+
+function getCustomAvatarImage(id) {
+  if (customAvatarImageCache.has(id)) {
+    return customAvatarImageCache.get(id);
+  }
+  const list = getCustomAvatars();
+  const found = list.find(a => a.id === id);
+  if (found && found.dataUrl) {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.src = found.dataUrl;
+    customAvatarImageCache.set(id, img);
+    return img;
+  }
+  return null;
+}
+
+/**
+ * Universal Avatar Dropdown Options Renderer
+ * Supports:
+ * - '-2': 🚫 No Avatar (Clean & Minimal Post)
+ * - '-1': 👤 My Personal Uploaded Photo (Settings)
+ * - 'custom-...': 🌟 Custom Avatar (Uploaded or AI-Generated)
+ * - 0..17: 👔 18 Stock Outfits
+ */
+function renderAvatarDropdownOptions(selectedVal, overlayAvatar) {
+  const customList = getCustomAvatars();
+  const isNoAvatar = (overlayAvatar === false || String(selectedVal) === '-2');
+  const effectiveVal = isNoAvatar ? '-2' : String(selectedVal !== undefined ? selectedVal : '0');
+
+  const options = [
+    { val: '-2', text: '🚫 No Avatar (Clean & Minimal Post)' },
+    { val: '-1', text: '👤 My Personal Uploaded Photo (Settings)' }
+  ];
+
+  // Custom user uploaded or AI generated avatars
+  customList.forEach((cav, idx) => {
+    options.push({ val: cav.id, text: `🌟 Custom ${idx + 1}: ${cav.name}` });
+  });
+
+  // 18 Stock Outfits
+  const stockOutfits = [
+    '👔 Outfit 1 (Stage/Thumbs-up)',
+    '🌲 Outfit 2 (Mountains Trail)',
+    '🥂 Outfit 3 (Social Event)',
+    '🎤 Outfit 4 (Podium Speech)',
+    '☕ Outfit 5 (Cafe Workspace)',
+    '🏙️ Outfit 6 (City Street Suit)',
+    '🏔️ Outfit 7 (Mountains Pullover)',
+    '🏫 Outfit 8 (University Campus)',
+    '🎓 Outfit 9 (University Light Blue Blazer)',
+    '💼 Outfit 10 (Boardroom Clasped Hands)',
+    '🎙️ Outfit 11 (TEDx Speaker Stage)',
+    '💻 Outfit 12 (Office Desk Workspace)',
+    '☕ Outfit 13 (Cafe Neon Coffee Shop)',
+    '⛳ Outfit 14 (Polo Shirt Valley)',
+    '🖤 Outfit 15 (Black Hoodie Chalkboard)',
+    '🎙️ Outfit 16 (Podcast Desk & Mic)',
+    '👔 Outfit 17 (Corporate Window City Suit)',
+    '🎓 Outfit 18 (Leadership Summit Speaker)'
+  ];
+
+  stockOutfits.forEach((txt, idx) => {
+    options.push({ val: String(idx), text: txt });
+  });
+
+  return options.map(opt => {
+    const isSelected = (effectiveVal === opt.val);
+    return `<option value="${opt.val}" ${isSelected ? 'selected' : ''}>${opt.text}</option>`;
+  }).join('');
+}
+
 // ================= AI INSTRUCTION EDITOR & STUDIO ENGINE =================
 
 let modalStudioActivePostId = null;
@@ -2228,11 +2334,14 @@ function parseAiInstructionLocally(post, text) {
   if (lower.includes('keep background') || lower.includes('with background')) {
     updates.removeAvatarBg = false;
   }
-  if (lower.includes('hide avatar') || lower.includes('remove avatar') || lower.includes('no avatar') || lower.includes('without avatar')) {
+  if (lower.includes('no avatar') || lower.includes('clean post') || lower.includes('clean graphic') ||
+      lower.includes('without avatar') || lower.includes('remove avatar') || lower.includes('hide avatar') ||
+      lower.includes('minimal post') || lower.includes('no photo') || lower.includes('clean design') || lower.includes('clean layout')) {
     updates.overlayAvatar = false;
-  }
-  if (lower.includes('show avatar') || lower.includes('with avatar') || lower.includes('overlay avatar')) {
+    updates.avatarStyleIdx = -2;
+  } else if (lower.includes('show avatar') || lower.includes('with avatar') || lower.includes('add avatar') || lower.includes('overlay avatar')) {
     updates.overlayAvatar = true;
+    if (post.avatarStyleIdx === -2 || post.avatarStyleIdx === '-2') updates.avatarStyleIdx = 0;
   }
   if (lower.includes('bigger') || lower.includes('larger') || lower.includes('scale up') || lower.includes('increase size') || lower.includes('zoom in')) {
     updates.avatarSize = Math.min(650, (post.avatarSize || 340) + 60);
@@ -2629,29 +2738,7 @@ function updateStudioInputs(post) {
   // Avatar inputs
   const selectAvatarPose = document.getElementById('modal-select-avatar-pose');
   if (selectAvatarPose) {
-    const poses = [
-      { val: -1, text: '👤 My Personal Uploaded Photo (Settings)' },
-      { val: 0, text: '👔 Outfit 1 (Stage/Thumbs-up)' },
-      { val: 1, text: '🌲 Outfit 2 (Mountains Trail)' },
-      { val: 2, text: '🥂 Outfit 3 (Social Event)' },
-      { val: 3, text: '🎤 Outfit 4 (Podium Speech)' },
-      { val: 4, text: '☕ Outfit 5 (Cafe Workspace)' },
-      { val: 5, text: '🏙️ Outfit 6 (City Street Suit)' },
-      { val: 6, text: '🏔️ Outfit 7 (Mountains Pullover)' },
-      { val: 7, text: '🏫 Outfit 8 (University Campus)' },
-      { val: 8, text: '🎓 Outfit 9 (University Light Blue Blazer)' },
-      { val: 9, text: '💼 Outfit 10 (Boardroom Clasped Hands)' },
-      { val: 10, text: '🎙️ Outfit 11 (TEDx Speaker Stage)' },
-      { val: 11, text: '💻 Outfit 12 (Office Desk Workspace)' },
-      { val: 12, text: '☕ Outfit 13 (Cafe Neon Coffee Shop)' },
-      { val: 13, text: '⛳ Outfit 14 (Polo Shirt Valley)' },
-      { val: 14, text: '🖤 Outfit 15 (Black Hoodie Chalkboard)' },
-      { val: 15, text: '🎙️ Outfit 16 (Podcast Desk & Mic)' },
-      { val: 16, text: '👔 Outfit 17 (Corporate Window City Suit)' },
-      { val: 17, text: '🎓 Outfit 18 (Leadership Summit Speaker)' }
-    ];
-    const curPose = post.avatarStyleIdx !== undefined ? post.avatarStyleIdx : ((post.id - 1) % 18);
-    selectAvatarPose.innerHTML = poses.map(o => `<option value="${o.val}" ${curPose === o.val ? 'selected' : ''}>${o.text}</option>`).join('');
+    selectAvatarPose.innerHTML = renderAvatarDropdownOptions(post.avatarStyleIdx, post.overlayAvatar);
   }
 
   const selectAvatarPos = document.getElementById('modal-select-avatar-pos');
@@ -2854,11 +2941,30 @@ function initAiStudioEvents() {
     if (selectPalette) post.colorPalette = selectPalette.value;
     if (sliderHeadlineSize) post.headlineFontSize = parseInt(sliderHeadlineSize.value);
     if (sliderSubtextSize) post.subtextFontSize = parseInt(sliderSubtextSize.value);
-    if (selectAvatarPose) post.avatarStyleIdx = parseInt(selectAvatarPose.value);
+    if (selectAvatarPose) {
+      const pVal = selectAvatarPose.value;
+      if (pVal === '-2') {
+        post.overlayAvatar = false;
+        post.avatarStyleIdx = -2;
+        if (checkOverlay) checkOverlay.checked = false;
+      } else {
+        post.overlayAvatar = (checkOverlay ? checkOverlay.checked : true);
+        post.avatarStyleIdx = (typeof pVal === 'string' && pVal.startsWith('custom-')) ? pVal : parseInt(pVal);
+      }
+    }
     if (selectAvatarPos) post.avatarPos = selectAvatarPos.value;
     if (selectAvatarShape) post.avatarShape = selectAvatarShape.value;
     if (sliderAvatarSize) post.avatarSize = parseInt(sliderAvatarSize.value);
-    if (checkOverlay) post.overlayAvatar = checkOverlay.checked;
+    if (checkOverlay) {
+      post.overlayAvatar = checkOverlay.checked;
+      if (!checkOverlay.checked) {
+        post.avatarStyleIdx = -2;
+        if (selectAvatarPose) selectAvatarPose.value = '-2';
+      } else if (post.avatarStyleIdx === -2 || post.avatarStyleIdx === '-2') {
+        post.avatarStyleIdx = 0;
+        if (selectAvatarPose) selectAvatarPose.value = '0';
+      }
+    }
     if (checkBgRemove) post.removeAvatarBg = checkBgRemove.checked;
     if (sliderBright) post.brightness = parseInt(sliderBright.value);
     if (sliderContrast) post.contrast = parseInt(sliderContrast.value);
@@ -2882,6 +2988,7 @@ function initAiStudioEvents() {
         removeAvatarBg: post.removeAvatarBg,
         avatarShape: post.avatarShape,
         avatarPos: post.avatarPos,
+        avatarLayer: post.avatarLayer,
         avatarSize: post.avatarSize,
         brightness: post.brightness,
         contrast: post.contrast,
@@ -2894,6 +3001,60 @@ function initAiStudioEvents() {
       }
     }
   };
+
+  // Avatar Quick Actions inside AI Studio
+  const modalAvatarUpload = document.getElementById('modal-input-upload-avatar');
+  if (modalAvatarUpload) {
+    modalAvatarUpload.addEventListener('change', async (e) => {
+      if (e.target.files && e.target.files[0]) {
+        showToast('Uploading custom avatar photo...', 'info');
+        const file = e.target.files[0];
+        const base64 = await convertFileToBase64(file);
+        const count = getCustomAvatars().length + 1;
+        const newId = saveCustomAvatar(`Custom Photo ${count}`, base64);
+        
+        if (modalStudioActivePostId) {
+          const activeEntry = state.history.find(item => item.date === state.activeDate);
+          const post = activeEntry?.posts.find(p => p.id === modalStudioActivePostId);
+          if (post) {
+            post.avatarStyleIdx = newId;
+            post.overlayAvatar = true;
+            saveDesignEdit(state.activeDate, post.id, { avatarStyleIdx: newId, overlayAvatar: true });
+            updateStudioInputs(post);
+            redrawStudioCanvas();
+            renderActiveDrafts();
+            showToast('🌟 Custom avatar added to library and applied!', 'success');
+          }
+        }
+      }
+    });
+  }
+
+  const btnModalAvatarGen = document.getElementById('btn-modal-open-avatar-gen');
+  if (btnModalAvatarGen) {
+    btnModalAvatarGen.addEventListener('click', () => {
+      openAiAvatarModal(modalStudioActivePostId);
+    });
+  }
+
+  const btnModalClean = document.getElementById('btn-modal-clean-avatar');
+  if (btnModalClean) {
+    btnModalClean.addEventListener('click', () => {
+      if (modalStudioActivePostId) {
+        const activeEntry = state.history.find(item => item.date === state.activeDate);
+        const post = activeEntry?.posts.find(p => p.id === modalStudioActivePostId);
+        if (post) {
+          post.overlayAvatar = false;
+          post.avatarStyleIdx = -2;
+          saveDesignEdit(state.activeDate, post.id, { avatarStyleIdx: -2, overlayAvatar: false });
+          updateStudioInputs(post);
+          redrawStudioCanvas();
+          renderActiveDrafts();
+          showToast('🚫 Avatar removed! Graphic is now clean & minimal.', 'info');
+        }
+      }
+    });
+  }
 
   ['modal-input-headline', 'modal-input-subtext', 'modal-input-badge', 'modal-input-cta', 'modal-input-source', 'modal-input-caption'].forEach(id => {
     const inp = document.getElementById(id);
@@ -3074,6 +3235,170 @@ function initAiStudioEvents() {
         showToast('⬇️ Creative graphic downloaded!', 'success');
       }
     });
+  }
+}
+
+// ================= AI AVATAR GENERATOR & POSE STUDIO =================
+
+let avatarGenActivePostId = null;
+let currentGeneratedAvatarDataUrl = null;
+
+function openAiAvatarModal(postId = null) {
+  avatarGenActivePostId = postId;
+  currentGeneratedAvatarDataUrl = null;
+  const modal = document.getElementById('ai-avatar-modal');
+  if (!modal) return;
+
+  const previewContainer = document.getElementById('avatar-gen-preview-container');
+  if (previewContainer) previewContainer.classList.add('hidden');
+
+  const promptInput = document.getElementById('input-avatar-prompt');
+  if (promptInput && !promptInput.value.trim()) {
+    promptInput.value = 'Confident executive leader in tailored navy suit in front of city skyline glass boardroom, warm trustworthy smile, crisp corporate portrait';
+  }
+
+  modal.classList.remove('hidden');
+}
+
+function closeAiAvatarModal() {
+  const modal = document.getElementById('ai-avatar-modal');
+  if (modal) modal.classList.add('hidden');
+  avatarGenActivePostId = null;
+}
+
+async function generateAiAvatar() {
+  const promptInput = document.getElementById('input-avatar-prompt');
+  const promptText = promptInput ? promptInput.value.trim() : '';
+  if (!promptText) {
+    showToast('Please enter a description for the avatar persona.', 'info');
+    return;
+  }
+
+  const btnGen = document.getElementById('btn-trigger-avatar-gen');
+  const previewContainer = document.getElementById('avatar-gen-preview-container');
+  const previewImg = document.getElementById('avatar-gen-preview-img');
+  const spinner = document.getElementById('avatar-gen-spinner');
+
+  if (btnGen) {
+    btnGen.disabled = true;
+    btnGen.innerHTML = '<span>⏳ Generating Portrait...</span>';
+  }
+  if (previewContainer) previewContainer.classList.remove('hidden');
+  if (spinner) spinner.classList.remove('hidden');
+
+  try {
+    showToast('🎨 Synthesizing photorealistic portrait...', 'info');
+    const randomSeed = Math.floor(Math.random() * 10000000);
+    const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(promptText)}?width=800&height=1000&nologo=true&seed=${randomSeed}&model=flux`;
+
+    // Fetch and convert image to blob / base64 dataUrl
+    const resp = await fetch(imageUrl);
+    if (!resp.ok) throw new Error(`Image API returned status ${resp.status}`);
+    const blob = await resp.blob();
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      currentGeneratedAvatarDataUrl = reader.result;
+      if (previewImg) previewImg.src = currentGeneratedAvatarDataUrl;
+      if (spinner) spinner.classList.add('hidden');
+      if (btnGen) {
+        btnGen.disabled = false;
+        btnGen.innerHTML = '<span>⚡ Generate AI Avatar</span>';
+      }
+      showToast('✨ Portrait generated! Click "Save & Use on Current Post" to apply.', 'success');
+    };
+    reader.readAsDataURL(blob);
+  } catch (err) {
+    console.error('Avatar generation error:', err);
+    if (spinner) spinner.classList.add('hidden');
+    if (btnGen) {
+      btnGen.disabled = false;
+      btnGen.innerHTML = '<span>⚡ Generate AI Avatar</span>';
+    }
+    showToast(`Generation failed: ${err.message}. Please retry.`, 'error');
+  }
+}
+
+function saveAndApplyGeneratedAvatar() {
+  if (!currentGeneratedAvatarDataUrl) {
+    showToast('Please generate an avatar first.', 'info');
+    return;
+  }
+  const promptInput = document.getElementById('input-avatar-prompt');
+  const promptText = promptInput ? promptInput.value.trim() : 'AI Persona';
+  const shortName = promptText.split(',')[0].split('.')[0].trim().substring(0, 24) || 'AI Avatar';
+
+  const newId = saveCustomAvatar(shortName, currentGeneratedAvatarDataUrl);
+  showToast(`✅ Saved "${shortName}" to your avatar library!`, 'success');
+
+  // If a post is active, apply it!
+  const targetPostId = avatarGenActivePostId || modalStudioActivePostId || (state.history[0]?.posts[0]?.id);
+  if (targetPostId) {
+    const activeEntry = state.history.find(item => item.date === state.activeDate);
+    if (activeEntry && activeEntry.posts) {
+      const post = activeEntry.posts.find(p => p.id === targetPostId);
+      if (post) {
+        post.avatarStyleIdx = newId;
+        post.overlayAvatar = true;
+        saveDesignEdit(state.activeDate, post.id, {
+          avatarStyleIdx: newId,
+          overlayAvatar: true
+        });
+      }
+    }
+  }
+
+  closeAiAvatarModal();
+  renderActiveDrafts();
+
+  if (modalStudioActivePostId && targetPostId === modalStudioActivePostId) {
+    const activeEntry = state.history.find(item => item.date === state.activeDate);
+    const post = activeEntry?.posts.find(p => p.id === modalStudioActivePostId);
+    if (post) {
+      updateStudioInputs(post);
+      redrawStudioCanvas();
+    }
+  }
+}
+
+function initAiAvatarEvents() {
+  const modal = document.getElementById('ai-avatar-modal');
+  if (!modal) return;
+
+  const btnClose = document.getElementById('btn-close-avatar-modal');
+  const btnCancel = document.getElementById('btn-cancel-avatar-modal');
+  if (btnClose) btnClose.addEventListener('click', closeAiAvatarModal);
+  if (btnCancel) btnCancel.addEventListener('click', closeAiAvatarModal);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeAiAvatarModal();
+  });
+
+  // Preset chips click handler
+  const presetChips = modal.querySelectorAll('.avatar-preset-chip');
+  const promptInput = document.getElementById('input-avatar-prompt');
+  presetChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const prompt = chip.getAttribute('data-prompt');
+      if (promptInput) promptInput.value = prompt;
+    });
+  });
+
+  // Trigger generation
+  const btnGen = document.getElementById('btn-trigger-avatar-gen');
+  if (btnGen) {
+    btnGen.addEventListener('click', () => generateAiAvatar());
+  }
+
+  const btnRegen = document.getElementById('btn-regen-avatar-variation');
+  if (btnRegen) {
+    btnRegen.addEventListener('click', () => generateAiAvatar());
+  }
+
+  // Save generated avatar
+  const btnSave = document.getElementById('btn-save-generated-avatar');
+  if (btnSave) {
+    btnSave.addEventListener('click', () => saveAndApplyGeneratedAvatar());
   }
 }
 
@@ -3362,31 +3687,20 @@ function renderActiveDrafts() {
               <div class="customizer-field">
                 <label for="select-avatar-${post.id}">Avatar Pose / Outfit</label>
                 <select id="select-avatar-${post.id}" class="customizer-select">
-                  ${[
-                    { val: -1, text: '👤 My Personal Uploaded Photo (Settings)' },
-                    { val: 0, text: '👔 Outfit 1 (Stage/Thumbs-up)' },
-                    { val: 1, text: '🌲 Outfit 2 (Mountains Trail)' },
-                    { val: 2, text: '🥂 Outfit 3 (Social Event)' },
-                    { val: 3, text: '🎤 Outfit 4 (Podium Speech)' },
-                    { val: 4, text: '☕ Outfit 5 (Cafe Workspace)' },
-                    { val: 5, text: '🏙️ Outfit 6 (City Street Suit)' },
-                    { val: 6, text: '🏔️ Outfit 7 (Mountains Pullover)' },
-                    { val: 7, text: '🏫 Outfit 8 (University Campus)' },
-                    { val: 8, text: '🎓 Outfit 9 (University Light Blue Blazer)' },
-                    { val: 9, text: '💼 Outfit 10 (Boardroom Clasped Hands)' },
-                    { val: 10, text: '🎙️ Outfit 11 (TEDx Speaker Stage)' },
-                    { val: 11, text: '💻 Outfit 12 (Office Desk Workspace)' },
-                    { val: 12, text: '☕ Outfit 13 (Cafe Neon Coffee Shop)' },
-                    { val: 13, text: '⛳ Outfit 14 (Polo Shirt Valley)' },
-                    { val: 14, text: '🖤 Outfit 15 (Black Hoodie Chalkboard)' },
-                    { val: 15, text: '🎙️ Outfit 16 (Podcast Desk & Mic)' },
-                    { val: 16, text: '👔 Outfit 17 (Corporate Window City Suit)' },
-                    { val: 17, text: '🎓 Outfit 18 (Leadership Summit Speaker)' }
-                  ].map(opt => {
-                    const selectedAvIdx = post.avatarStyleIdx !== undefined ? post.avatarStyleIdx : ((post.id - 1) % 18);
-                    return `<option value="${opt.val}" ${selectedAvIdx === opt.val ? 'selected' : ''}>${opt.text}</option>`;
-                  }).join('')}
+                  ${renderAvatarDropdownOptions(post.avatarStyleIdx, post.overlayAvatar)}
                 </select>
+                <div class="avatar-quick-actions" style="display: flex; gap: 6px; margin-top: 6px; align-items: center; flex-wrap: wrap;">
+                  <label for="input-upload-avatar-${post.id}" class="btn btn-secondary btn-sm" style="font-size: 0.74rem; padding: 3px 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; margin-bottom: 0;" title="Upload your own photo as an avatar pose">
+                    <span>➕ Upload Photo</span>
+                    <input type="file" id="input-upload-avatar-${post.id}" accept="image/*" style="display: none;">
+                  </label>
+                  <button type="button" class="btn btn-secondary btn-sm btn-open-avatar-gen" data-post-id="${post.id}" style="font-size: 0.74rem; padding: 3px 8px; color: #c084fc; border-color: rgba(168, 85, 247, 0.35); background: rgba(168, 85, 247, 0.1);" title="Generate a new custom avatar with AI">
+                    <span>✨ AI Generator</span>
+                  </button>
+                  <button type="button" class="btn btn-secondary btn-sm btn-clean-avatar" data-post-id="${post.id}" style="font-size: 0.74rem; padding: 3px 8px; color: #94a3b8;" title="Clear avatar for clean minimal graphic">
+                    <span>🚫 Clean Post</span>
+                  </button>
+                </div>
               </div>
             </div>
             
@@ -3880,7 +4194,58 @@ function renderActiveDrafts() {
         }
         triggerRedrawAndSave(false);
       });
-      avatarSelect.addEventListener('change', () => triggerRedrawAndSave(false));
+      avatarSelect.addEventListener('change', () => {
+        const avVal = avatarSelect.value;
+        if (avVal === '-2' || avVal === -2) {
+          post.overlayAvatar = false;
+          post.avatarStyleIdx = -2;
+          if (checkOverlayAvatar) checkOverlayAvatar.checked = false;
+        } else {
+          post.overlayAvatar = true;
+          post.avatarStyleIdx = (typeof avVal === 'string' && avVal.startsWith('custom-')) ? avVal : parseInt(avVal);
+          if (checkOverlayAvatar) checkOverlayAvatar.checked = true;
+        }
+        triggerRedrawAndSave(false);
+      });
+
+      // Quick Avatar Actions on Card
+      const uploadAvInput = cardEl.querySelector(`#input-upload-avatar-${post.id}`);
+      if (uploadAvInput) {
+        uploadAvInput.addEventListener('change', async (e) => {
+          if (e.target.files && e.target.files[0]) {
+            showToast('Uploading custom avatar photo...', 'info');
+            const file = e.target.files[0];
+            const base64 = await convertFileToBase64(file);
+            const count = getCustomAvatars().length + 1;
+            const newId = saveCustomAvatar(`Custom Photo ${count}`, base64);
+            post.avatarStyleIdx = newId;
+            post.overlayAvatar = true;
+            saveDesignEdit(state.activeDate, post.id, { avatarStyleIdx: newId, overlayAvatar: true });
+            showToast('🌟 Custom avatar added to library and applied!', 'success');
+            renderActiveDrafts();
+          }
+        });
+      }
+
+      const openAvGenBtns = cardEl.querySelectorAll(`.btn-open-avatar-gen[data-post-id="${post.id}"]`);
+      openAvGenBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          openAiAvatarModal(post.id);
+        });
+      });
+
+      const cleanAvBtn = cardEl.querySelector(`.btn-clean-avatar[data-post-id="${post.id}"]`);
+      if (cleanAvBtn) {
+        cleanAvBtn.addEventListener('click', () => {
+          post.overlayAvatar = false;
+          post.avatarStyleIdx = -2;
+          if (avatarSelect) avatarSelect.value = '-2';
+          if (checkOverlayAvatar) checkOverlayAvatar.checked = false;
+          saveDesignEdit(state.activeDate, post.id, { avatarStyleIdx: -2, overlayAvatar: false });
+          triggerRedrawAndSave(false);
+          showToast('🚫 Avatar removed! Graphic is now clean & minimal.', 'info');
+        });
+      }
 
       // Event Listeners for Text Inputs (debounced for smoothness)
       headlineInput.addEventListener('input', () => triggerRedrawAndSave(true));
@@ -3923,7 +4288,20 @@ function renderActiveDrafts() {
       sliderSubtextSize.addEventListener('change', () => triggerRedrawAndSave(false));
 
       if (checkOverlayAvatar) {
-        checkOverlayAvatar.addEventListener('change', () => triggerRedrawAndSave(false));
+        checkOverlayAvatar.addEventListener('change', () => {
+          if (!checkOverlayAvatar.checked) {
+            post.overlayAvatar = false;
+            post.avatarStyleIdx = -2;
+            avatarSelect.value = '-2';
+          } else {
+            post.overlayAvatar = true;
+            if (post.avatarStyleIdx === -2 || post.avatarStyleIdx === '-2') {
+              post.avatarStyleIdx = 0;
+              avatarSelect.value = '0';
+            }
+          }
+          triggerRedrawAndSave(false);
+        });
       }
       if (checkBgRemove) {
         checkBgRemove.addEventListener('change', () => {
@@ -4060,12 +4438,40 @@ function renderActiveDrafts() {
     const photoBtn = cardEl.querySelector(`#btn-photo-${post.id}`);
     if (photoBtn) {
       photoBtn.addEventListener('click', () => {
+        if (post.overlayAvatar === false || String(post.avatarStyleIdx) === '-2') {
+          showToast('🚫 This post is set to No Avatar (Clean & Minimal).', 'info');
+          return;
+        }
+
         let photoSrc = '';
-        if (state.settings.customAvatar) {
-          photoSrc = state.settings.customAvatar;
-        } else {
-          const originUrl = window.location.origin + window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
-          photoSrc = `${originUrl}/avatar_daily_${post.id}.jpg`;
+        if (typeof post.avatarStyleIdx === 'string' && post.avatarStyleIdx.startsWith('custom-')) {
+          const customList = getCustomAvatars();
+          const found = customList.find(a => a.id === post.avatarStyleIdx);
+          if (found && found.dataUrl) {
+            photoSrc = found.dataUrl;
+          }
+        } else if (String(post.avatarStyleIdx) === '-1') {
+          if (state.settings.customAvatar) {
+            photoSrc = state.settings.customAvatar;
+          } else {
+            photoSrc = 'avatar.jpg';
+          }
+        } else if (post.avatarStyleIdx !== undefined && !isNaN(parseInt(post.avatarStyleIdx, 10)) && parseInt(post.avatarStyleIdx, 10) >= 0) {
+          const idx = parseInt(post.avatarStyleIdx, 10);
+          if (optionAvatars[idx] && optionAvatars[idx].src) {
+            photoSrc = optionAvatars[idx].src;
+          } else {
+            photoSrc = `avatar_daily_${idx + 1}.jpg`;
+          }
+        }
+
+        if (!photoSrc) {
+          if (state.settings.customAvatar) {
+            photoSrc = state.settings.customAvatar;
+          } else {
+            const originUrl = window.location.origin + window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
+            photoSrc = `${originUrl}/avatar_daily_${post.id}.jpg`;
+          }
         }
         
         const win = window.open();
@@ -4995,7 +5401,10 @@ function getAvatarBoundingBox(canvas, post, w = 1080, h = 1080) {
 
 // Draw interactive bounding box & multi-directional drag handles around avatar photo
 function drawInteractiveAvatarOverlay(canvas, post) {
-  if (post.overlayAvatar === false) return;
+  if (post.overlayAvatar === false || post.avatarStyleIdx === -2 || post.avatarStyleIdx === '-2') {
+    canvas._showingOverlay = false;
+    return;
+  }
   const ctx = canvas.getContext('2d');
   const bbox = getAvatarBoundingBox(canvas, post, canvas.width, canvas.height);
   canvas._showingOverlay = true;
@@ -5460,14 +5869,16 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
       ctx.restore();
 
       // Draw Avatar Photo Overlay on top of custom uploaded graphic if enabled!
-      if (overlayAvatar) {
-        let styleIdx = (postId - 1) % 18;
-        if (customLayout && customLayout.avatarStyleIdx !== undefined) styleIdx = customLayout.avatarStyleIdx;
-        
+      let styleIdx = (postId - 1) % 18;
+      if (customLayout && customLayout.avatarStyleIdx !== undefined) styleIdx = customLayout.avatarStyleIdx;
+      const isNoAvatar = (styleIdx === -2 || styleIdx === '-2' || !overlayAvatar);
+
+      if (!isNoAvatar) {
         let activeAvImg = avatarImg;
-        // If user selected a specific stock avatar pose (0..17), use that option avatar!
-        // If user selected -1 (Personal Profile Photo), use avatarImg!
-        if (styleIdx >= 0 && optionAvatars[styleIdx] && (optionAvatars[styleIdx].complete || optionAvatarsLoaded[styleIdx])) {
+        if (typeof styleIdx === 'string' && styleIdx.startsWith('custom-')) {
+          const cImg = getCustomAvatarImage(styleIdx);
+          if (cImg) activeAvImg = cImg;
+        } else if (styleIdx >= 0 && optionAvatars[styleIdx] && (optionAvatars[styleIdx].complete || optionAvatarsLoaded[styleIdx])) {
           activeAvImg = optionAvatars[styleIdx];
         }
 
@@ -5571,7 +5982,10 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
   
   // Choose corresponding avatar pose matching today's post style or user preference
   let dynamicAvImg = avatarImg;
-  if (styleIdx >= 0 && optionAvatars[styleIdx] && (optionAvatars[styleIdx].complete || optionAvatarsLoaded[styleIdx])) {
+  if (typeof styleIdx === 'string' && styleIdx.startsWith('custom-')) {
+    const cImg = getCustomAvatarImage(styleIdx);
+    if (cImg) dynamicAvImg = cImg;
+  } else if (styleIdx >= 0 && optionAvatars[styleIdx] && (optionAvatars[styleIdx].complete || optionAvatarsLoaded[styleIdx])) {
     dynamicAvImg = optionAvatars[styleIdx];
   }
 
@@ -5725,7 +6139,11 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
       // Helper function to render avatar
       const renderAvatar = () => {
         const overlayAvatar = customLayout ? (customLayout.overlayAvatar !== false) : true;
-        if (!activeLayout.avatar || !overlayAvatar) return;
+        const isNoAvatar = (styleIdx === -2 || styleIdx === '-2' || !overlayAvatar);
+        if (!activeLayout.avatar || isNoAvatar) {
+          canvas._avatarBBox = null;
+          return;
+        }
 
         const av = Object.assign({}, activeLayout.avatar);
 
