@@ -15,10 +15,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Ambient background glows -->
-  <div class="bg-glow bg-glow-1" id="glow-1"></div>
-  <div class="bg-glow bg-glow-2" id="glow-2"></div>
-
+  <!-- Main Shell Container -->
   <div class="app-container">
     <header class="app-header">
       <div class="brand">
@@ -223,8 +220,9 @@
             <div id="modal-canva-badge" class="modal-canva-badge hidden">✨ Canva Graphic Active</div>
           </div>
           <div class="ai-studio-preview-actions">
+            <button type="button" class="btn btn-outline btn-sm" id="btn-modal-toggle-avatar" title="1-Click toggle between clean minimal graphic and photo overlay">🚫 Clean (No Avatar)</button>
             <button type="button" class="btn btn-secondary btn-sm" id="btn-modal-copy-text">📋 Copy Text</button>
-            <button type="button" class="btn btn-secondary btn-sm" id="btn-modal-open-canva" style="color: #c084fc; border-color: rgba(168, 85, 247, 0.35);">🎨 Open in Canva</button>
+            <button type="button" class="btn btn-secondary btn-sm" id="btn-modal-open-canva">🎨 Open in Canva</button>
             <button type="button" class="btn btn-secondary btn-sm" id="btn-modal-download-img">⬇️ Download Image</button>
           </div>
         </div>
@@ -503,6 +501,6 @@
   <!-- Toast Notification System -->
   <div class="toast-container" id="toast-container"></div>
 
-  <script src="app.js?v=10.9.1&t=1788900000000"></script>
+  <script src="app.js?v=11.0.0-shadcn&t=1788950000000"></script>
 </body>
 </html>

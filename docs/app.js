@@ -2757,6 +2757,13 @@ function updateStudioInputs(post) {
   const checkOverlay = document.getElementById('modal-check-overlay-avatar');
   if (checkOverlay) checkOverlay.checked = (post.overlayAvatar !== false);
 
+  const btnToggleModalAv = document.getElementById('btn-modal-toggle-avatar');
+  if (btnToggleModalAv) {
+    const isClean = (post.overlayAvatar === false || String(post.avatarStyleIdx) === '-2');
+    btnToggleModalAv.textContent = isClean ? '👤 Enable Avatar' : '🚫 Clean (No Avatar)';
+    btnToggleModalAv.className = isClean ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-outline';
+  }
+
   const checkBgRemove = document.getElementById('modal-check-bg-remove');
   if (checkBgRemove) checkBgRemove.checked = !!post.removeAvatarBg;
 
@@ -3034,6 +3041,33 @@ function initAiStudioEvents() {
   if (btnModalAvatarGen) {
     btnModalAvatarGen.addEventListener('click', () => {
       openAiAvatarModal(modalStudioActivePostId);
+    });
+  }
+
+  const btnModalToggleAv = document.getElementById('btn-modal-toggle-avatar');
+  if (btnModalToggleAv) {
+    btnModalToggleAv.addEventListener('click', () => {
+      if (modalStudioActivePostId) {
+        const activeEntry = state.history.find(item => item.date === state.activeDate);
+        const post = activeEntry?.posts.find(p => p.id === modalStudioActivePostId);
+        if (post) {
+          const currentlyClean = (post.overlayAvatar === false || String(post.avatarStyleIdx) === '-2');
+          if (currentlyClean) {
+            post.overlayAvatar = true;
+            post.avatarStyleIdx = 0;
+            saveDesignEdit(state.activeDate, post.id, { avatarStyleIdx: 0, overlayAvatar: true });
+            showToast('👤 Avatar enabled on creative!', 'success');
+          } else {
+            post.overlayAvatar = false;
+            post.avatarStyleIdx = -2;
+            saveDesignEdit(state.activeDate, post.id, { avatarStyleIdx: -2, overlayAvatar: false });
+            showToast('🚫 Avatar removed! Graphic is now clean & minimal.', 'info');
+          }
+          updateStudioInputs(post);
+          redrawStudioCanvas();
+          renderActiveDrafts();
+        }
+      }
     });
   }
 
@@ -3456,35 +3490,27 @@ function renderActiveDrafts() {
 
     const tabContainer = document.createElement('div');
     tabContainer.className = 'options-tab-container';
-    tabContainer.style.cssText = 'display: flex; gap: 8px; flex-wrap: wrap; align-items: center; background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.1); padding: 8px 12px; border-radius: 12px; margin-bottom: 20px;';
 
-    const tabTitle = document.createElement('span');
-    tabTitle.style.cssText = 'font-size: 0.85rem; font-weight: 700; color: #60a5fa; margin-right: 4px;';
-    tabTitle.textContent = '📑 5 Post Options:';
-    tabContainer.appendChild(tabTitle);
-
-    // "View All 5" button
+    // "View All" button
     const allBtn = document.createElement('button');
     allBtn.type = 'button';
     const isAllActive = (state.activeTabPostId === 'all');
-    allBtn.className = `btn btn-sm ${isAllActive ? 'btn-primary' : 'btn-secondary'}`;
-    allBtn.style.cssText = `font-size: 0.8rem; padding: 6px 12px; font-weight: 600; ${isAllActive ? 'box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);' : ''}`;
-    allBtn.textContent = '👁️ View All (5)';
+    allBtn.className = `options-tab-btn ${isAllActive ? 'active' : ''}`;
+    allBtn.innerHTML = `<span>All Drafts (${activeEntry.posts.length})</span>`;
     allBtn.addEventListener('click', () => {
       state.activeTabPostId = 'all';
       renderActiveDrafts();
     });
     tabContainer.appendChild(allBtn);
 
-    // Add individual tab buttons for each of the 5 posts
+    // Individual tab buttons
     activeEntry.posts.forEach(p => {
       const tabBtn = document.createElement('button');
       tabBtn.type = 'button';
       const isTabActive = (state.activeTabPostId === p.id);
-      tabBtn.className = `btn btn-sm ${isTabActive ? 'btn-primary' : 'btn-secondary'}`;
-      tabBtn.style.cssText = `font-size: 0.8rem; padding: 6px 12px; font-weight: 600; ${isTabActive ? 'box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);' : ''}`;
+      tabBtn.className = `options-tab-btn ${isTabActive ? 'active' : ''}`;
       const pStyle = p.designArchetype || (p.postContent && p.postContent.style) || `Option ${p.id}`;
-      tabBtn.textContent = `Option ${p.id}: ${pStyle}`;
+      tabBtn.innerHTML = `<span>Opt ${p.id}</span> <span style="opacity:0.6;font-size:0.75rem;">(${pStyle})</span>`;
       tabBtn.addEventListener('click', () => {
         state.activeTabPostId = p.id;
         renderActiveDrafts();
@@ -3495,9 +3521,9 @@ function renderActiveDrafts() {
     if (isDayPosted) {
       const resetDayBtn = document.createElement('button');
       resetDayBtn.type = 'button';
-      resetDayBtn.className = 'btn btn-secondary btn-sm';
-      resetDayBtn.style.cssText = 'font-size: 0.8rem; padding: 6px 12px; font-weight: 600; margin-left: auto; background: rgba(59, 130, 246, 0.15); border-color: rgba(59, 130, 246, 0.3); color: #93c5fd;';
-      resetDayBtn.innerHTML = '🔄 Unlock &amp; Reset to Draft';
+      resetDayBtn.className = 'btn btn-outline btn-xs';
+      resetDayBtn.style.marginLeft = 'auto';
+      resetDayBtn.innerHTML = '🔄 Unlock &amp; Reset Day';
       resetDayBtn.addEventListener('click', () => {
         const localDb = getLocalDb();
         if (localDb.posted) {
@@ -3524,13 +3550,11 @@ function renderActiveDrafts() {
   finalPosts.forEach(post => {
     const isThisPostSelected = isDayPosted && selectedPostId === post.id;
     const cardEl = document.createElement('article');
-    // Only apply posted-item highlight to the selected card; others remain fully interactive
     cardEl.className = `draft-card ${isThisPostSelected ? 'posted-item' : ''}`;
     cardEl.id = `draft-card-${post.id}`;
 
     // Gracefully resolve properties from both new structured model schema and legacy fallback schema
     const content = (post.postContent && post.postContent.content) ? post.postContent.content : (post.content || '');
-    const hook = (post.postContent && post.postContent.hook) ? post.postContent.hook : (post.hook || '');
     const headlineText = (post.postContent && post.postContent.imageHeadline) ? post.postContent.imageHeadline : (post.imageHeadline || 'AI Strategy');
     const subtextText = (post.postContent && post.postContent.imageSubtext) ? post.postContent.imageSubtext : (post.imageSubtext || 'Next-Gen Workflows');
     const sourceArticle = (post.postContent && post.postContent.sourceArticle) ? post.postContent.sourceArticle : (post.sourceArticle || 'General Trend');
@@ -3539,896 +3563,203 @@ function renderActiveDrafts() {
     const ctaText = (post.postContent && (post.postContent.ctaText || post.postContent.cta)) || post.ctaText || 'READ FULL POST';
     const postStyle = post.designArchetype || (post.postContent && post.postContent.style) || post.style || 'Thought Leadership';
 
-    // Calculate details for metadata row
     const charCount = content.length;
     const hashtagCount = (content.match(/#/g) || []).length;
-
-    // Resolve current active colors to populate picker inputs in real-time
-    const activePaletteName = post.colorPalette || 'Electric Blue';
-    const activePalette = PALETTES.find(p => p.name.toLowerCase() === activePaletteName.toLowerCase()) || 
-                          PALETTES.find(p => activePaletteName.toLowerCase().includes(p.name.toLowerCase())) ||
-                          PALETTES[0];
-
-    const curPrimary = (activePaletteName === 'Custom' && post.customColors) ? post.customColors.primary : activePalette.primary;
-    const curSecondary = (activePaletteName === 'Custom' && post.customColors) ? post.customColors.secondary : (activePalette.secondary || '#cbd5e1');
-    const curBgStart = (activePaletteName === 'Custom' && post.customColors) ? post.customColors.gradStart : activePalette.gradStart;
-    const curBgEnd = (activePaletteName === 'Custom' && post.customColors) ? post.customColors.gradEnd : activePalette.gradEnd;
-    const curText = (activePaletteName === 'Custom' && post.customColors) ? post.customColors.textColor : (activePalette.textColor || (activePalette.isLight ? '#18181b' : '#ffffff'));
+    const isNoAvatar = (post.overlayAvatar === false || String(post.avatarStyleIdx) === '-2');
 
     cardEl.innerHTML = `
+      <!-- Card Header -->
       <div class="draft-card-header">
-        <div class="header-main-info" style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
-          <span class="badge" style="background: rgba(59, 130, 246, 0.25); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.4); font-weight: 700; font-size: 0.78rem; padding: 3px 8px; border-radius: 6px;">Option ${post.id} of 5</span>
-          <span class="style-tag">${postStyle}</span>
-          <span class="source-tag" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); color: #7dd3fc;">📌 Source: <strong>${sourceName}</strong>${sourceArticle && sourceArticle !== 'General Trend' ? ` - <em>${sourceArticle}</em>` : ''}</span>
+        <div class="card-header-left">
+          <span class="badge badge-default">Option ${post.id} of 5</span>
+          <span class="badge badge-secondary">${postStyle}</span>
+          <span class="badge badge-outline" title="${sourceArticle}">📌 ${sourceName}</span>
         </div>
-        ${post.scores ? `
-        <div class="score-badge-group">
-          <div class="score-pill total-score" title="Overall AI Quality Score">
-            <span class="score-label">AI Score:</span>
-            <span class="score-val">${post.scores.total || 0}</span>
-          </div>
-        </div>
-        ` : ''}
-      </div>
-
-      ${(post.designArchetype || post.layoutFamily || post.colorPalette) ? `
-      <div class="design-metadata-row">
-        <span class="meta-badge archetype-badge" title="Design Archetype">🏛️ ${post.designArchetype || 'Custom'}</span>
-        <span class="meta-badge layout-badge" title="Layout Family">📐 ${post.layoutFamily || 'Dynamic'}</span>
-        <span class="meta-badge palette-badge" title="Color Palette">🎨 ${post.colorPalette || 'Standard'}</span>
-        <span class="meta-badge role-badge" title="Character Persona">💼 ${post.characterRole || 'B2B Manager'}</span>
-        <span class="meta-badge wardrobe-badge" title="Clothing Style">👔 ${post.clothingStyle || 'Executive'}</span>
-        <span class="meta-badge env-badge" title="Environment">📍 ${post.environment || 'Workspace'}</span>
-        <span class="meta-badge camera-badge" title="Camera Style">📷 ${post.cameraStyle || 'Portrait'}</span>
-      </div>
-      ` : ''}
-
-      <div class="post-editor-wrapper">
-        <textarea 
-          class="post-textarea" 
-          id="textarea-${post.id}"
-          placeholder="Loading post content..."
-          aria-label="Edit Post Content"
-        >${content}</textarea>
-      </div>
-      <div class="post-meta-row">
-        <div>
-          <span id="char-count-${post.id}">${charCount} chars</span> | 
-          <span id="hashtag-count-${post.id}">${hashtagCount} hashtags</span>
-        </div>
-        ${post.scores ? `
-        <div class="sub-scores-row">
-          <span class="sub-score-badge" title="Design Layout Score">Design: <strong>${post.scores.design}</strong></span>
-          <span class="sub-score-badge" title="Content Alignment Score">Content: <strong>${post.scores.content}</strong></span>
-          <span class="sub-score-badge" title="Personal Branding & Avatar Integration">Branding: <strong>${post.scores.branding}</strong></span>
-        </div>
-        ` : ''}
-      </div>
-      
-      <!-- AI Natural Language Prompt Assistant -->
-      <div class="card-ai-bar">
-        <div class="ai-bar-title">
-          <span>✨ Instruct AI to Edit Creative &amp; Copy</span>
-          <span class="ai-bar-tag">Instant Natural Language</span>
-        </div>
-        <div class="ai-bar-input-row">
-          <input type="text" id="card-ai-input-${post.id}" class="card-ai-input" placeholder="e.g. 'Make headline punchier: 10X MARKETING LEVER', 'Change to Cyber Purple', 'Brighten Canva image'..." />
-          <button type="button" id="btn-card-ai-apply-${post.id}" class="btn btn-primary btn-ai-apply">
-            <span>⚡ Apply</span>
+        <div class="card-header-right">
+          ${post.scores ? `<span class="badge badge-outline" title="Viral Quality Score">⚡ Viral ${post.scores.total || 94}/100</span>` : ''}
+          <button class="btn btn-ghost btn-xs" id="btn-copy-${post.id}" title="Copy post content to clipboard">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Text
           </button>
         </div>
-        <div class="ai-bar-chips">
-          <button type="button" class="ai-chip" data-post-id="${post.id}" data-prompt="Make headline punchier and sharper">⚡ Punchy Headline</button>
-          <button type="button" class="ai-chip" data-post-id="${post.id}" data-prompt="Switch to Cyber Purple palette">🎨 Cyber Purple</button>
-          <button type="button" class="ai-chip" data-post-id="${post.id}" data-prompt="Switch to Emerald Green palette">💚 Emerald Green</button>
-          <button type="button" class="ai-chip" data-post-id="${post.id}" data-prompt="Remove avatar background cutout">✂️ Avatar Cutout</button>
-          <button type="button" class="ai-chip" data-post-id="${post.id}" data-prompt="Brighten Canva graphic by 20%">☀️ Brighten Graphic</button>
-          <button type="button" class="ai-chip" data-post-id="${post.id}" data-prompt="Shorten copy with punchy bullet points">📝 Punchy Copy</button>
-        </div>
       </div>
 
-      <!-- Visual Graphic Preview -->
-      <div class="creative-container">
-        <div class="creative-toggle-header active" id="toggle-creative-${post.id}">
-          <span>🖼 View &amp; Customize Social Graphic Card</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      <!-- Card Body: 2-Column Responsive Layout -->
+      <div class="draft-card-body">
+        <!-- Left: Post Content -->
+        <div class="card-copy-col">
+          <textarea 
+            class="post-textarea" 
+            id="textarea-${post.id}"
+            placeholder="Loading post content..."
+            aria-label="Edit Post Content"
+          >${content}</textarea>
+          <div class="post-meta-row">
+            <div>
+              <span id="char-count-${post.id}">${charCount} chars</span> • 
+              <span id="hashtag-count-${post.id}">${hashtagCount} hashtags</span>
+            </div>
+            <button type="button" class="btn btn-ghost btn-xs" id="btn-linkedin-direct-${post.id}" title="1-Click post to LinkedIn web composer" style="color: #60a5fa;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+              1-Click Post
+            </button>
+          </div>
         </div>
-        <div class="creative-content-body" id="creative-body-${post.id}">
-          <canvas id="canvas-${post.id}" width="1080" height="1080" class="creative-canvas"></canvas>
-          
-          <!-- Canva Graphic & AI Studio Bar -->
-          <div class="canva-import-card">
-            <div class="canva-import-header">
-              <div class="canva-import-title">
-                <span>🎨 Canva Graphic &amp; AI Studio</span>
-                ${post.customCanvaGraphic ? `<span class="badge" style="background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); font-size: 0.72rem;">✨ Canva Graphic Attached</span>` : ''}
-              </div>
-              <button type="button" class="btn btn-sm btn-studio-launch" id="btn-open-studio-${post.id}" title="Open dedicated AI Creative Studio for advanced natural language adjustments &amp; lighting">
-                <span>✨ Open AI Studio</span>
+
+        <!-- Right: Social Creative Graphic Preview -->
+        <div class="card-creative-col">
+          <div class="creative-frame" id="frame-canvas-${post.id}" title="Click to open AI Creative Studio">
+            <canvas id="canvas-${post.id}" width="1080" height="1080" class="creative-canvas"></canvas>
+            ${post.customCanvaGraphic ? `<span class="canva-active-badge">✨ Canva Active</span>` : ''}
+          </div>
+
+          <!-- Prominent Avatar Quick Status & 1-Click Action Bar -->
+          <div class="avatar-quick-bar">
+            <span class="avatar-status-pill ${isNoAvatar ? 'clean' : ''}" id="avatar-status-${post.id}">
+              ${isNoAvatar ? '🚫 Clean (No Avatar)' : '👤 Avatar Active'}
+            </span>
+            <div class="avatar-quick-actions">
+              <button type="button" class="btn btn-outline btn-xs" id="btn-toggle-no-avatar-${post.id}" title="${isNoAvatar ? 'Enable photo avatar on this creative' : 'Remove avatar for a clean, minimal graphic'}">
+                ${isNoAvatar ? '➕ Add Avatar' : '🚫 Clean Post'}
+              </button>
+              <button type="button" class="btn btn-outline btn-xs btn-open-avatar-gen" data-post-id="${post.id}" title="Generate new custom avatar with AI">
+                ✨ AI Gen
               </button>
             </div>
-            <div class="canva-import-body">
-              <div style="display: flex; gap: 8px; align-items: center; width: 100%;">
-                <input type="file" id="input-canva-graphic-${post.id}" accept="image/*" class="customizer-input" style="font-size: 0.8rem; padding: 6px 10px; flex: 1;">
-                ${post.customCanvaGraphic ? `<button class="btn btn-sm" id="btn-remove-canva-${post.id}" type="button" style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; white-space: nowrap; font-size: 0.78rem;">🗑 Remove</button>` : ''}
-              </div>
-              <small style="color: #94a3b8; font-size: 0.75rem; display: block; margin-top: 4px;">Attach exported Canva graphic (PNG/JPG). It overrides the preview and publishes with your post.</small>
-            </div>
-          </div>
-
-          <!-- Collapsible Advanced Sliders Section -->
-          <div class="advanced-sliders-toggle" id="toggle-advanced-${post.id}">
-            <span class="advanced-toggle-text">⚙️ Advanced Manual Sliders &amp; Color Overrides</span>
-            <span class="advanced-toggle-icon">▼</span>
-          </div>
-          <div id="advanced-sliders-body-${post.id}" class="advanced-sliders-body hidden">
-            <!-- Design Customizer Panel -->
-            <div class="design-customizer-panel">
-              <h4 class="customizer-title">🎨 Fine-tune Graphic Design Sliders</h4>
-              <div class="customizer-row">
-                <div class="customizer-field">
-                  <label for="select-layout-${post.id}">Layout Template</label>
-                <select id="select-layout-${post.id}" class="customizer-select">
-                  ${LAYOUT_FAMILIES.map(family => 
-                    `<option value="${family}" ${post.layoutFamily === family ? 'selected' : ''}>${family}</option>`
-                  ).join('')}
-                </select>
-              </div>
-              <div class="customizer-field">
-                <label for="select-palette-${post.id}">Color Palette</label>
-                <select id="select-palette-${post.id}" class="customizer-select">
-                  ${PALETTES.map(p => 
-                    `<option value="${p.name}" ${(post.colorPalette && post.colorPalette.toLowerCase() === p.name.toLowerCase()) ? 'selected' : ''}>${p.name}</option>`
-                  ).join('')}
-                  <option value="Custom" ${post.colorPalette === 'Custom' ? 'selected' : ''}>✨ Custom Colors</option>
-                </select>
-              </div>
-              <div class="customizer-field">
-                <label for="select-avatar-${post.id}">Avatar Pose / Outfit</label>
-                <select id="select-avatar-${post.id}" class="customizer-select">
-                  ${renderAvatarDropdownOptions(post.avatarStyleIdx, post.overlayAvatar)}
-                </select>
-                <div class="avatar-quick-actions" style="display: flex; gap: 6px; margin-top: 6px; align-items: center; flex-wrap: wrap;">
-                  <label for="input-upload-avatar-${post.id}" class="btn btn-secondary btn-sm" style="font-size: 0.74rem; padding: 3px 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; margin-bottom: 0;" title="Upload your own photo as an avatar pose">
-                    <span>➕ Upload Photo</span>
-                    <input type="file" id="input-upload-avatar-${post.id}" accept="image/*" style="display: none;">
-                  </label>
-                  <button type="button" class="btn btn-secondary btn-sm btn-open-avatar-gen" data-post-id="${post.id}" style="font-size: 0.74rem; padding: 3px 8px; color: #c084fc; border-color: rgba(168, 85, 247, 0.35); background: rgba(168, 85, 247, 0.1);" title="Generate a new custom avatar with AI">
-                    <span>✨ AI Generator</span>
-                  </button>
-                  <button type="button" class="btn btn-secondary btn-sm btn-clean-avatar" data-post-id="${post.id}" style="font-size: 0.74rem; padding: 3px 8px; color: #94a3b8;" title="Clear avatar for clean minimal graphic">
-                    <span>🚫 Clean Post</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Custom Colors Sub-panel -->
-            <div id="custom-colors-container-${post.id}" class="custom-colors-row">
-              <div class="customizer-field">
-                <label for="color-text-${post.id}">Headline Font Color</label>
-                <div class="color-picker-wrapper">
-                  <input type="color" id="color-text-${post.id}" class="color-picker-input" value="${curText}">
-                  <span class="color-hex-label">${curText}</span>
-                </div>
-              </div>
-              <div class="customizer-field">
-                <label for="color-primary-${post.id}">Accents / Highlights</label>
-                <div class="color-picker-wrapper">
-                  <input type="color" id="color-primary-${post.id}" class="color-picker-input" value="${curPrimary}">
-                  <span class="color-hex-label">${curPrimary}</span>
-                </div>
-              </div>
-              <div class="customizer-field">
-                <label for="color-secondary-${post.id}">Subtext / Secondary</label>
-                <div class="color-picker-wrapper">
-                  <input type="color" id="color-secondary-${post.id}" class="color-picker-input" value="${curSecondary}">
-                  <span class="color-hex-label">${curSecondary}</span>
-                </div>
-              </div>
-              <div class="customizer-field">
-                <label for="color-bg-start-${post.id}">Gradient Start</label>
-                <div class="color-picker-wrapper">
-                  <input type="color" id="color-bg-start-${post.id}" class="color-picker-input" value="${curBgStart}">
-                  <span class="color-hex-label">${curBgStart}</span>
-                </div>
-              </div>
-              <div class="customizer-field">
-                <label for="color-bg-end-${post.id}">Gradient End</label>
-                <div class="color-picker-wrapper">
-                  <input type="color" id="color-bg-end-${post.id}" class="color-picker-input" value="${curBgEnd}">
-                  <span class="color-hex-label">${curBgEnd}</span>
-                </div>
-              </div>
-            </div>
-            <!-- Font Size Overrides Row -->
-            <div class="customizer-row" style="margin-top: 10px;">
-              <div class="customizer-field">
-                <label for="slider-headline-size-${post.id}">Headline Font Size: <span id="val-headline-size-${post.id}">${post.headlineFontSize || 40}px</span></label>
-                <input type="range" id="slider-headline-size-${post.id}" min="20" max="80" value="${post.headlineFontSize || 40}" class="customizer-range">
-              </div>
-              <div class="customizer-field">
-                <label for="slider-subtext-size-${post.id}">Subtext Font Size: <span id="val-subtext-size-${post.id}">${post.subtextFontSize || 22}px</span></label>
-                <input type="range" id="slider-subtext-size-${post.id}" min="12" max="40" value="${post.subtextFontSize || 22}" class="customizer-range">
-              </div>
-            </div>
-            <div class="customizer-row" style="margin-top: 10px;">
-              <div class="customizer-field">
-                <label for="input-badge-${post.id}">Top Tag / Badge Text</label>
-                <input type="text" id="input-badge-${post.id}" class="customizer-input" value="${badgeText}" placeholder="e.g. AI TREND / MARKETING INSIGHT">
-              </div>
-              <div class="customizer-field">
-                <label for="input-cta-${post.id}">Bottom Button / CTA Text</label>
-                <input type="text" id="input-cta-${post.id}" class="customizer-input" value="${ctaText}" placeholder="e.g. TRY WEB APP, READ FULL POST">
-              </div>
-              <div class="customizer-field">
-                <label for="input-source-${post.id}">Source of Update (Material Source)</label>
-                <input type="text" id="input-source-${post.id}" class="customizer-input" value="${sourceName}" placeholder="e.g. Marketing Week, TechCrunch AI">
-              </div>
-            </div>
-            <div class="customizer-row">
-              <div class="customizer-field full-width">
-                <label for="input-headline-${post.id}">Creative Headline (supports Enter for new lines)</label>
-                <textarea id="input-headline-${post.id}" class="customizer-textarea" rows="2" placeholder="Enter bold headline text...">${headlineText}</textarea>
-              </div>
-            </div>
-            <div class="customizer-row">
-              <div class="customizer-field full-width">
-                <label for="input-subtext-${post.id}">Creative Subtext (supports Enter for new lines)</label>
-                <textarea id="input-subtext-${post.id}" class="customizer-textarea" rows="2" placeholder="Enter subtext info...">${subtextText}</textarea>
-              </div>
-            </div>
-            <!-- Avatar Overlay, Position, Offset X/Y, Size, Rotation & Background Removal Controls -->
-            <div class="customizer-row" style="margin-top: 12px; background: rgba(59, 130, 246, 0.06); padding: 14px 16px; border-radius: 12px; border: 1px solid rgba(59, 130, 246, 0.25); display: flex; flex-direction: column; gap: 12px;">
-              <div style="font-weight: 700; font-size: 0.88rem; color: #93c5fd; display: flex; align-items: center; justify-content: space-between;">
-                <span>👤 Avatar &amp; Photo Overlay Controls</span>
-                <span style="font-size: 0.75rem; color: #94a3b8; font-weight: 400;">Move, Scale, Rotate &amp; Cutout Photo</span>
-              </div>
-              <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
-                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.85rem; color: #e2e8f0;">
-                  <input type="checkbox" id="check-overlay-avatar-${post.id}" ${post.overlayAvatar !== false ? 'checked' : ''} style="width: 16px; height: 16px; cursor: pointer;">
-                  📷 Overlay Photo
-                </label>
-                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.85rem; color: #f472b6;">
-                  <input type="checkbox" id="check-bg-remove-${post.id}" ${post.removeAvatarBg ? 'checked' : ''} style="width: 16px; height: 16px; cursor: pointer;">
-                  ✨ Remove Background (Cutout)
-                </label>
-                <div style="margin-left: auto; display: flex; gap: 4px; align-items: center; background: rgba(15, 23, 42, 0.7); padding: 4px 6px; border-radius: 8px; border: 1px solid rgba(59, 130, 246, 0.35);">
-                  <button type="button" id="btn-layer-front-${post.id}" class="btn btn-sm ${(!post.avatarLayer || post.avatarLayer === 'front') ? 'btn-primary' : 'btn-secondary'}" style="font-size: 0.75rem; padding: 4px 10px; line-height: 1.2;">
-                    ⬆️ In Front
-                  </button>
-                  <button type="button" id="btn-layer-back-${post.id}" class="btn btn-sm ${post.avatarLayer === 'back' ? 'btn-primary' : 'btn-secondary'}" style="font-size: 0.75rem; padding: 4px 10px; line-height: 1.2; ${post.avatarLayer === 'back' ? 'background: #ec4899; border-color: #db2777;' : ''}">
-                    ⬇️ Send to Background
-                  </button>
-                </div>
-              </div>
-              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
-                <div>
-                  <label for="select-avatar-shape-${post.id}" style="font-size: 0.78rem; color: #cbd5e1; display: block; margin-bottom: 4px;">Photo Framing (Shape)</label>
-                  <select id="select-avatar-shape-${post.id}" class="customizer-select" style="font-size: 0.8rem; padding: 5px 8px;">
-                    <option value="popout-circle" ${(!post.avatarShape || post.avatarShape === 'popout-circle') ? 'selected' : ''}>🔘 3D Circle Pop-Out</option>
-                    <option value="card" ${post.avatarShape === 'card' ? 'selected' : ''}>🔲 Rounded Card Frame</option>
-                    <option value="cutout" ${post.avatarShape === 'cutout' ? 'selected' : ''}>👤 Free Silhouette</option>
-                    <option value="phone" ${post.avatarShape === 'phone' ? 'selected' : ''}>📱 3D Phone Mockup</option>
-                  </select>
-                </div>
-                <div>
-                  <label for="select-avatar-pos-${post.id}" style="font-size: 0.78rem; color: #cbd5e1; display: block; margin-bottom: 4px;">Position Anchor</label>
-                  <select id="select-avatar-pos-${post.id}" class="customizer-select" style="font-size: 0.8rem; padding: 5px 8px;">
-                    <option value="auto" ${(!post.avatarPos || post.avatarPos === 'auto') ? 'selected' : ''}>📍 Auto (Match Post Layout)</option>
-                    <option value="bottom-right" ${post.avatarPos === 'bottom-right' ? 'selected' : ''}>Bottom Right</option>
-                    <option value="bottom-left" ${post.avatarPos === 'bottom-left' ? 'selected' : ''}>Bottom Left</option>
-                    <option value="top-right" ${post.avatarPos === 'top-right' ? 'selected' : ''}>Top Right</option>
-                    <option value="top-left" ${post.avatarPos === 'top-left' ? 'selected' : ''}>Top Left</option>
-                    <option value="center" ${post.avatarPos === 'center' ? 'selected' : ''}>Center</option>
-                  </select>
-                </div>
-                <div>
-                  <label for="slider-avatar-size-${post.id}" style="font-size: 0.78rem; color: #cbd5e1; display: block; margin-bottom: 4px;">📏 Overall Size: <strong id="val-avatar-size-${post.id}" style="color: #60a5fa;">${post.avatarSize || 340}px</strong></label>
-                  <input type="range" id="slider-avatar-size-${post.id}" min="100" max="950" step="10" value="${post.avatarSize || 340}" class="customizer-range">
-                </div>
-              </div>
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                <div>
-                  <label for="slider-avatar-scalex-${post.id}" style="font-size: 0.78rem; color: #cbd5e1; display: block; margin-bottom: 4px;">↔️ Sideways Width (Slim / Wide): <strong id="val-avatar-scalex-${post.id}" style="color: #38bdf8;">${post.avatarScaleX || 100}%</strong></label>
-                  <input type="range" id="slider-avatar-scalex-${post.id}" min="50" max="160" step="2" value="${post.avatarScaleX || 100}" class="customizer-range">
-                </div>
-                <div>
-                  <label for="slider-avatar-scaley-${post.id}" style="font-size: 0.78rem; color: #cbd5e1; display: block; margin-bottom: 4px;">↕️ Vertical Height (Stretch / Fit): <strong id="val-avatar-scaley-${post.id}" style="color: #a7f3d0;">${post.avatarScaleY || 100}%</strong></label>
-                  <input type="range" id="slider-avatar-scaley-${post.id}" min="50" max="160" step="2" value="${post.avatarScaleY || 100}" class="customizer-range">
-                </div>
-              </div>
-              <div style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap; background: rgba(15, 23, 42, 0.45); padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(59, 130, 246, 0.2);">
-                <span style="font-size: 0.74rem; color: #94a3b8; font-weight: 600;">✨ Proportions:</span>
-                <button type="button" id="btn-prop-natural-${post.id}" class="btn btn-secondary btn-sm" style="font-size: 0.72rem; padding: 3px 8px; border-color: rgba(59,130,246,0.3); color: #93c5fd;" title="Restore 100% natural camera lens proportions">👤 100% Natural</button>
-                <button type="button" id="btn-prop-slim-${post.id}" class="btn btn-secondary btn-sm" style="font-size: 0.72rem; padding: 3px 8px; border-color: rgba(56,189,248,0.3); color: #38bdf8;" title="Slim down sideways by 8% for a lean, athletic look">✂️ Slim Fit (92%)</button>
-                <button type="button" id="btn-prop-wide-${post.id}" class="btn btn-secondary btn-sm" style="font-size: 0.72rem; padding: 3px 8px; border-color: rgba(167,243,208,0.3); color: #a7f3d0;" title="Expand width by 8% for a broader frame">🛡️ Broad Fit (108%)</button>
-                <button type="button" id="btn-prop-reset-${post.id}" class="btn btn-secondary btn-sm" style="font-size: 0.72rem; padding: 3px 8px; margin-left: auto; color: #cbd5e1;" title="Reset size and sideways scales to defaults">🔄 Reset Sizing</button>
-              </div>
-              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
-                <div>
-                  <label for="slider-avatar-x-${post.id}" style="font-size: 0.75rem; color: #cbd5e1; display: block; margin-bottom: 4px;">Position X: <strong id="val-avatar-x-${post.id}" style="color: #38bdf8;">${post.avatarOffsetX || 0}px</strong></label>
-                  <input type="range" id="slider-avatar-x-${post.id}" min="-450" max="450" step="5" value="${post.avatarOffsetX || 0}" class="customizer-range">
-                </div>
-                <div>
-                  <label for="slider-avatar-y-${post.id}" style="font-size: 0.75rem; color: #cbd5e1; display: block; margin-bottom: 4px;">Position Y: <strong id="val-avatar-y-${post.id}" style="color: #38bdf8;">${post.avatarOffsetY || 0}px</strong></label>
-                  <input type="range" id="slider-avatar-y-${post.id}" min="-450" max="450" step="5" value="${post.avatarOffsetY || 0}" class="customizer-range">
-                </div>
-                <div>
-                  <label for="slider-avatar-rot-${post.id}" style="font-size: 0.75rem; color: #cbd5e1; display: block; margin-bottom: 4px;">Tilt Angle: <strong id="val-avatar-rot-${post.id}" style="color: #a7f3d0;">${post.avatarRotation || 0}°</strong></label>
-                  <input type="range" id="slider-avatar-rot-${post.id}" min="-45" max="45" step="1" value="${post.avatarRotation || 0}" class="customizer-range">
-                </div>
-              </div>
-              <div>
-                <label for="slider-bg-sensitivity-${post.id}" style="font-size: 0.78rem; color: #cbd5e1; display: block; margin-bottom: 4px;">Cutout Sensitivity (Background Remover): <strong id="val-bg-sensitivity-${post.id}" style="color: #f472b6;">${post.bgSensitivity || 55}</strong></label>
-                <input type="range" id="slider-bg-sensitivity-${post.id}" min="15" max="130" step="5" value="${post.bgSensitivity || 55}" class="customizer-range">
-              </div>
-            </div>
           </div>
         </div>
       </div>
-    </div>
 
-      <div class="draft-card-actions" style="margin-top: 14px;">
-        <button class="btn btn-secondary btn-sm" id="btn-card-studio-${post.id}" title="Open full AI Creative Studio" style="background: rgba(236, 72, 153, 0.12); border-color: rgba(236, 72, 153, 0.3); color: #f472b6; font-weight: 600;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-          ✨ AI Studio
-        </button>
-        <button class="btn btn-secondary btn-sm" id="btn-copy-${post.id}">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          Copy Content
-        </button>
-        <button class="btn btn-secondary btn-sm" id="btn-linkedin-direct-${post.id}" title="Download creative image, copy text & open LinkedIn to post directly in 1 click" style="background: rgba(10, 102, 194, 0.15); border-color: rgba(10, 102, 194, 0.4); color: #60a5fa; font-weight: 600;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
-          1-Click Post (Web)
-        </button>
-        <button class="btn btn-secondary btn-sm" id="btn-canva-${post.id}" title="Copy headline & open Canva editor/template" style="background: rgba(168, 85, 247, 0.12); border-color: rgba(168, 85, 247, 0.3); color: #c084fc;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-          Open in Canva
-        </button>
-        <button class="btn btn-secondary btn-sm" id="btn-photo-${post.id}" title="Open selected photo in new tab to drag directly into Canva" style="background: rgba(59, 130, 246, 0.12); border-color: rgba(59, 130, 246, 0.3); color: #60a5fa;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          Open Photo
-        </button>
-        ${
-          isThisPostSelected
-            ? `<div class="posted-status-btn" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-                <span class="badge" style="background:rgba(34,197,94,0.15); color:#4ade80; border:1px solid rgba(34,197,94,0.3); padding:6px 12px; border-radius:6px; font-size:0.78rem; font-weight:700; display:inline-flex; align-items:center; gap:5px;">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Published
-                </span>
-                <button class="btn btn-primary btn-sm ${activeEntry.category === 'marketing' ? 'marketing-theme' : ''}" id="btn-post-${post.id}" title="Trigger Make.com / Google Webhook with your latest edits">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38"/></svg>
-                  ⚡ Webhook Publish
-                </button>
-                <button class="btn btn-secondary btn-sm" id="btn-reset-draft-${post.id}" title="Reset to Draft so you can start fresh" style="font-size:0.78rem;">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
-                  Reset to Draft
-                </button>
-               </div>`
-            : `<button class="btn btn-primary btn-sm ${activeEntry.category === 'marketing' ? 'marketing-theme' : ''}" id="btn-post-${post.id}" title="Send post and graphic directly to your publishing flow">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-                ⚡ Publish via Webhook
-               </button>`
-        }
+      <!-- Card Footer: Streamlined Action Toolbar -->
+      <div class="draft-card-actions">
+        <div class="card-actions-left">
+          <button type="button" class="btn btn-outline btn-sm btn-studio-launch" id="btn-open-studio-${post.id}" title="Open AI Creative Studio to fine-tune copy, design layout, palette, lighting & Canva graphics">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            ✨ AI Creative Studio
+          </button>
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-canva-${post.id}" title="Copy headline & open Canva editor">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            Canva
+          </button>
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-photo-${post.id}" title="View or drag selected photo">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            Photo
+          </button>
+        </div>
+
+        <div class="card-actions-right">
+          ${
+            isThisPostSelected
+              ? `<span class="badge badge-success">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Published
+                 </span>
+                 <button class="btn btn-secondary btn-sm" id="btn-reset-draft-${post.id}">
+                  Reset Draft
+                 </button>
+                 <button class="btn btn-primary btn-sm" id="btn-post-${post.id}">
+                  Re-Publish Webhook
+                 </button>`
+              : `<button class="btn btn-primary btn-sm" id="btn-post-${post.id}">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                  Publish via Webhook
+                 </button>`
+          }
+        </div>
       </div>
     `;
 
     el.draftsContainer.appendChild(cardEl);
 
-    // Card AI Instruction Bar Listener
-    const cardAiInput = cardEl.querySelector(`#card-ai-input-${post.id}`);
-    const cardAiBtn = cardEl.querySelector(`#btn-card-ai-apply-${post.id}`);
-    if (cardAiBtn && cardAiInput) {
-      cardAiBtn.addEventListener('click', async () => {
-        const text = cardAiInput.value.trim();
-        if (!text) {
-          showToast('Please type an instruction for the AI editor.', 'info');
-          return;
-        }
-        cardAiBtn.disabled = true;
-        cardAiBtn.innerHTML = '<span>⏳ Editing...</span>';
-        try {
-          await applyAiInstruction(post.id, text);
-        } finally {
-          cardAiBtn.disabled = false;
-          cardAiBtn.innerHTML = '<span>⚡ Apply</span>';
-        }
-      });
+    // Initial Render of Graphic Canvas
+    const canvas = cardEl.querySelector(`#canvas-${post.id}`);
+    if (canvas) {
+      drawCreative(canvas, activeEntry.category, headlineText, subtextText, post.id, activeEntry.date, Object.assign({}, post.layout || {}, post));
+      makeCanvasInteractive(canvas, post, cardEl, activeEntry.category, state.activeDate);
+    }
 
-      cardAiInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          cardAiBtn.click();
+    // Canvas click opens AI Studio for convenient editing
+    const frame = cardEl.querySelector(`#frame-canvas-${post.id}`);
+    if (frame) {
+      frame.addEventListener('click', (e) => {
+        if (!canvas || !canvas._isDraggingAvatar) {
+          openAiStudio(post.id);
         }
       });
     }
 
-    // Card AI Quick Prompt Chips
-    const aiChips = cardEl.querySelectorAll(`.ai-chip[data-post-id="${post.id}"]`);
-    aiChips.forEach(chip => {
-      chip.addEventListener('click', async () => {
-        const prompt = chip.getAttribute('data-prompt');
-        if (cardAiInput) cardAiInput.value = prompt;
-        chip.disabled = true;
-        chip.style.opacity = '0.6';
-        try {
-          await applyAiInstruction(post.id, prompt);
-        } finally {
-          chip.disabled = false;
-          chip.style.opacity = '1';
+    // Textarea input and auto-save
+    const textarea = cardEl.querySelector(`#textarea-${post.id}`);
+    if (textarea) {
+      textarea.addEventListener('input', (e) => {
+        const val = e.target.value;
+        const charEl = document.getElementById(`char-count-${post.id}`);
+        if (charEl) charEl.textContent = `${val.length} chars`;
+        const hashEl = document.getElementById(`hashtag-count-${post.id}`);
+        if (hashEl) hashEl.textContent = `${(val.match(/#/g) || []).length} hashtags`;
+      });
+      textarea.addEventListener('change', (e) => {
+        saveDraftEdit(state.activeDate, post.id, e.target.value);
+      });
+    }
+
+    // Copy Content Button Listener
+    const copyBtn = cardEl.querySelector(`#btn-copy-${post.id}`);
+    if (copyBtn && textarea) {
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(textarea.value);
+        showToast('📋 Copied post text to clipboard!', 'success');
+      });
+    }
+
+    // 1-Click No Avatar / Avatar Toggle Button Listener
+    const toggleNoAvBtn = cardEl.querySelector(`#btn-toggle-no-avatar-${post.id}`);
+    if (toggleNoAvBtn) {
+      toggleNoAvBtn.addEventListener('click', () => {
+        const currentlyNoAvatar = (post.overlayAvatar === false || String(post.avatarStyleIdx) === '-2');
+        if (currentlyNoAvatar) {
+          post.overlayAvatar = true;
+          post.avatarStyleIdx = 0;
+          saveDesignEdit(state.activeDate, post.id, { avatarStyleIdx: 0, overlayAvatar: true });
+          showToast('👤 Avatar enabled on creative!', 'success');
+        } else {
+          post.overlayAvatar = false;
+          post.avatarStyleIdx = -2;
+          saveDesignEdit(state.activeDate, post.id, { avatarStyleIdx: -2, overlayAvatar: false });
+          showToast('🚫 Avatar removed! Graphic is now clean & minimal.', 'info');
         }
+        renderActiveDrafts();
+      });
+    }
+
+    // AI Avatar Generator studio modal launcher
+    const openAvGenBtns = cardEl.querySelectorAll(`.btn-open-avatar-gen[data-post-id="${post.id}"]`);
+    openAvGenBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        openAiAvatarModal(post.id);
       });
     });
 
-    // Toggle Advanced Sliders Drawer
-    const toggleAdvanced = cardEl.querySelector(`#toggle-advanced-${post.id}`);
-    const advancedBody = cardEl.querySelector(`#advanced-sliders-body-${post.id}`);
-    if (toggleAdvanced && advancedBody) {
-      toggleAdvanced.addEventListener('click', () => {
-        const isHidden = advancedBody.classList.toggle('hidden');
-        toggleAdvanced.classList.toggle('active', !isHidden);
-        const icon = toggleAdvanced.querySelector('.advanced-toggle-icon');
-        if (icon) icon.textContent = isHidden ? '▼' : '▲';
-      });
-    }
-
-    // AI Studio Launch Buttons
+    // AI Studio Open Button Listener
     const openStudioBtn = cardEl.querySelector(`#btn-open-studio-${post.id}`);
     if (openStudioBtn) {
       openStudioBtn.addEventListener('click', () => openAiStudio(post.id));
     }
-    const cardStudioBtn = cardEl.querySelector(`#btn-card-studio-${post.id}`);
-    if (cardStudioBtn) {
-      cardStudioBtn.addEventListener('click', () => openAiStudio(post.id));
-    }
 
-    // Toggle graphic card menu
-    const toggleHeader = cardEl.querySelector(`#toggle-creative-${post.id}`);
-    const contentBody = cardEl.querySelector(`#creative-body-${post.id}`);
-    toggleHeader.addEventListener('click', () => {
-      contentBody.classList.toggle('hidden');
-      toggleHeader.classList.toggle('active');
-    });
-
-    // Render Canvas
-    const canvas = cardEl.querySelector(`#canvas-${post.id}`);
-    if (canvas) {
-      drawCreative(canvas, activeEntry.category, headlineText, subtextText, post.id, activeEntry.date, Object.assign({}, post.layout || {}, post));
-    }
-
-    // Textarea auto-save and length counters listener
-    const textarea = cardEl.querySelector(`#textarea-${post.id}`);
-    textarea.addEventListener('input', (e) => {
-      const val = e.target.value;
-      document.getElementById(`char-count-${post.id}`).textContent = `${val.length} characters`;
-      document.getElementById(`hashtag-count-${post.id}`).textContent = `${(val.match(/#/g) || []).length} hashtags`;
-    });
-
-    // Save changes when user clicks out or finishes editing
-    textarea.addEventListener('change', (e) => {
-      saveDraftEdit(state.activeDate, post.id, e.target.value);
-    });
-
-    // Design Customizer Event Listeners (Always active for infinite editing!)
-    const layoutSelect = cardEl.querySelector(`#select-layout-${post.id}`);
-      const paletteSelect = cardEl.querySelector(`#select-palette-${post.id}`);
-      const avatarSelect = cardEl.querySelector(`#select-avatar-${post.id}`);
-      const badgeInput = cardEl.querySelector(`#input-badge-${post.id}`);
-      const ctaInput = cardEl.querySelector(`#input-cta-${post.id}`);
-      const sourceInput = cardEl.querySelector(`#input-source-${post.id}`);
-      const headlineInput = cardEl.querySelector(`#input-headline-${post.id}`);
-      const subtextInput = cardEl.querySelector(`#input-subtext-${post.id}`);
-      const customColorsContainer = cardEl.querySelector(`#custom-colors-container-${post.id}`);
-      const colorText = cardEl.querySelector(`#color-text-${post.id}`);
-      const colorPrimary = cardEl.querySelector(`#color-primary-${post.id}`);
-      const colorSecondary = cardEl.querySelector(`#color-secondary-${post.id}`);
-      const colorBgStart = cardEl.querySelector(`#color-bg-start-${post.id}`);
-      const colorBgEnd = cardEl.querySelector(`#color-bg-end-${post.id}`);
-      
-      const sliderHeadlineSize = cardEl.querySelector(`#slider-headline-size-${post.id}`);
-      const sliderSubtextSize = cardEl.querySelector(`#slider-subtext-size-${post.id}`);
-      const labelHeadlineSize = cardEl.querySelector(`#val-headline-size-${post.id}`);
-      const checkOverlayAvatar = cardEl.querySelector(`#check-overlay-avatar-${post.id}`);
-      const checkBgRemove = cardEl.querySelector(`#check-bg-remove-${post.id}`);
-      const selectAvatarShape = cardEl.querySelector(`#select-avatar-shape-${post.id}`);
-      const selectAvatarPos = cardEl.querySelector(`#select-avatar-pos-${post.id}`);
-      const sliderAvatarSize = cardEl.querySelector(`#slider-avatar-size-${post.id}`);
-      const labelAvatarSize = cardEl.querySelector(`#val-avatar-size-${post.id}`);
-      const sliderAvatarScaleX = cardEl.querySelector(`#slider-avatar-scalex-${post.id}`);
-      const labelAvatarScaleX = cardEl.querySelector(`#val-avatar-scalex-${post.id}`);
-      const sliderAvatarScaleY = cardEl.querySelector(`#slider-avatar-scaley-${post.id}`);
-      const labelAvatarScaleY = cardEl.querySelector(`#val-avatar-scaley-${post.id}`);
-      const sliderBgSensitivity = cardEl.querySelector(`#slider-bg-sensitivity-${post.id}`);
-      const labelBgSensitivity = cardEl.querySelector(`#val-bg-sensitivity-${post.id}`);
-      const sliderAvatarX = cardEl.querySelector(`#slider-avatar-x-${post.id}`);
-      const labelAvatarX = cardEl.querySelector(`#val-avatar-x-${post.id}`);
-      const sliderAvatarY = cardEl.querySelector(`#slider-avatar-y-${post.id}`);
-      const labelAvatarY = cardEl.querySelector(`#val-avatar-y-${post.id}`);
-      const sliderAvatarRot = cardEl.querySelector(`#slider-avatar-rot-${post.id}`);
-      const labelAvatarRot = cardEl.querySelector(`#val-avatar-rot-${post.id}`);
-
-      const triggerRedrawAndSave = (isKeystroke = false) => {
-        // Update local object memory
-        post.layoutFamily = layoutSelect.value;
-        post.colorPalette = paletteSelect.value;
-        post.avatarStyleIdx = parseInt(avatarSelect.value);
-        post.headlineFontSize = parseInt(sliderHeadlineSize.value);
-        post.subtextFontSize = parseInt(sliderSubtextSize.value);
-        if (checkOverlayAvatar) post.overlayAvatar = checkOverlayAvatar.checked;
-        if (checkBgRemove) post.removeAvatarBg = checkBgRemove.checked;
-        if (selectAvatarShape) post.avatarShape = selectAvatarShape.value;
-        if (selectAvatarPos) post.avatarPos = selectAvatarPos.value;
-        post.avatarLayer = post.avatarLayer || 'front';
-        if (sliderAvatarSize) post.avatarSize = parseInt(sliderAvatarSize.value);
-        if (sliderAvatarScaleX) post.avatarScaleX = parseInt(sliderAvatarScaleX.value);
-        if (sliderAvatarScaleY) post.avatarScaleY = parseInt(sliderAvatarScaleY.value);
-        if (sliderBgSensitivity) post.bgSensitivity = parseInt(sliderBgSensitivity.value);
-        if (sliderAvatarX) post.avatarOffsetX = parseInt(sliderAvatarX.value);
-        if (sliderAvatarY) post.avatarOffsetY = parseInt(sliderAvatarY.value);
-        if (sliderAvatarRot) post.avatarRotation = parseInt(sliderAvatarRot.value);
-
-        if (!post.postContent) post.postContent = {};
-        post.postContent.imageHeadline = headlineInput.value;
-        post.postContent.imageSubtext = subtextInput.value;
-        post.postContent.badgeText = badgeInput.value;
-        post.postContent.ctaText = ctaInput.value;
-        post.badgeText = badgeInput.value;
-        post.ctaText = ctaInput.value;
-        if (sourceInput) {
-          post.sourceName = sourceInput.value;
-          post.postContent.sourceName = sourceInput.value;
-        }
-
-        // Custom colors mapping
-        if (paletteSelect.value === 'Custom') {
-          post.customColors = {
-            textColor: colorText.value,
-            primary: colorPrimary.value,
-            secondary: colorSecondary.value,
-            gradStart: colorBgStart.value,
-            gradEnd: colorBgEnd.value
-          };
-        }
-
-        // Re-draw canvas
-        drawCreative(canvas, activeEntry.category, headlineInput.value, subtextInput.value, post.id, activeEntry.date, Object.assign({}, post.layout || {}, post));
-
-        // Save layout modifications to server/localStorage (only on select change or text input blur)
-        if (!isKeystroke) {
-          saveDesignEdit(state.activeDate, post.id, {
-            layoutFamily: layoutSelect.value,
-            colorPalette: paletteSelect.value,
-            avatarStyleIdx: parseInt(avatarSelect.value),
-            imageHeadline: headlineInput.value,
-            imageSubtext: subtextInput.value,
-            badgeText: badgeInput.value,
-            ctaText: ctaInput.value,
-            sourceName: sourceInput ? sourceInput.value : '',
-            headlineFontSize: parseInt(sliderHeadlineSize.value),
-            subtextFontSize: parseInt(sliderSubtextSize.value),
-            overlayAvatar: checkOverlayAvatar ? checkOverlayAvatar.checked : true,
-            removeAvatarBg: checkBgRemove ? checkBgRemove.checked : false,
-            avatarShape: selectAvatarShape ? selectAvatarShape.value : (post.avatarShape || 'popout-circle'),
-            avatarPos: selectAvatarPos ? selectAvatarPos.value : (post.avatarPos || 'auto'),
-            avatarLayer: post.avatarLayer || 'front',
-            avatarSize: sliderAvatarSize ? parseInt(sliderAvatarSize.value) : 340,
-            avatarScaleX: sliderAvatarScaleX ? parseInt(sliderAvatarScaleX.value) : 100,
-            avatarScaleY: sliderAvatarScaleY ? parseInt(sliderAvatarScaleY.value) : 100,
-            avatarOffsetX: sliderAvatarX ? parseInt(sliderAvatarX.value) : 0,
-            avatarOffsetY: sliderAvatarY ? parseInt(sliderAvatarY.value) : 0,
-            avatarRotation: sliderAvatarRot ? parseInt(sliderAvatarRot.value) : 0,
-            bgSensitivity: sliderBgSensitivity ? parseInt(sliderBgSensitivity.value) : 55,
-            customColors: paletteSelect.value === 'Custom' ? {
-              textColor: colorText.value,
-              primary: colorPrimary.value,
-              secondary: colorSecondary.value,
-              gradStart: colorBgStart.value,
-              gradEnd: colorBgEnd.value
-            } : undefined
-          });
-        }
-      };
-
-      // Quick Proportions Presets buttons
-      const btnPropNatural = cardEl.querySelector(`#btn-prop-natural-${post.id}`);
-      if (btnPropNatural) {
-        btnPropNatural.addEventListener('click', () => {
-          if (sliderAvatarScaleX) sliderAvatarScaleX.value = 100;
-          if (sliderAvatarScaleY) sliderAvatarScaleY.value = 100;
-          if (labelAvatarScaleX) labelAvatarScaleX.textContent = '100%';
-          if (labelAvatarScaleY) labelAvatarScaleY.textContent = '100%';
-          showToast('👤 Proportions set to 100% natural lens!', 'info');
-          triggerRedrawAndSave(false);
-        });
-      }
-      const btnPropSlim = cardEl.querySelector(`#btn-prop-slim-${post.id}`);
-      if (btnPropSlim) {
-        btnPropSlim.addEventListener('click', () => {
-          if (sliderAvatarScaleX) sliderAvatarScaleX.value = 92;
-          if (sliderAvatarScaleY) sliderAvatarScaleY.value = 100;
-          if (labelAvatarScaleX) labelAvatarScaleX.textContent = '92%';
-          if (labelAvatarScaleY) labelAvatarScaleY.textContent = '100%';
-          showToast('✨ Applied 92% slim fit!', 'success');
-          triggerRedrawAndSave(false);
-        });
-      }
-      const btnPropWide = cardEl.querySelector(`#btn-prop-wide-${post.id}`);
-      if (btnPropWide) {
-        btnPropWide.addEventListener('click', () => {
-          if (sliderAvatarScaleX) sliderAvatarScaleX.value = 108;
-          if (sliderAvatarScaleY) sliderAvatarScaleY.value = 100;
-          if (labelAvatarScaleX) labelAvatarScaleX.textContent = '108%';
-          if (labelAvatarScaleY) labelAvatarScaleY.textContent = '100%';
-          showToast('🛡️ Applied 108% broad fit!', 'info');
-          triggerRedrawAndSave(false);
-        });
-      }
-      const btnPropReset = cardEl.querySelector(`#btn-prop-reset-${post.id}`);
-      if (btnPropReset) {
-        btnPropReset.addEventListener('click', () => {
-          if (sliderAvatarSize) sliderAvatarSize.value = 340;
-          if (sliderAvatarScaleX) sliderAvatarScaleX.value = 100;
-          if (sliderAvatarScaleY) sliderAvatarScaleY.value = 100;
-          if (sliderAvatarX) sliderAvatarX.value = 0;
-          if (sliderAvatarY) sliderAvatarY.value = 0;
-          if (sliderAvatarRot) sliderAvatarRot.value = 0;
-          if (labelAvatarSize) labelAvatarSize.textContent = '340px';
-          if (labelAvatarScaleX) labelAvatarScaleX.textContent = '100%';
-          if (labelAvatarScaleY) labelAvatarScaleY.textContent = '100%';
-          if (labelAvatarX) labelAvatarX.textContent = '0px';
-          if (labelAvatarY) labelAvatarY.textContent = '0px';
-          if (labelAvatarRot) labelAvatarRot.textContent = '0°';
-          showToast('🔄 Avatar sizing & position reset to default!', 'info');
-          triggerRedrawAndSave(false);
-        });
-      }
-
-      // Event Listeners for Select Inputs
-      layoutSelect.addEventListener('change', () => triggerRedrawAndSave(false));
-      paletteSelect.addEventListener('change', () => {
-        if (paletteSelect.value === 'Custom') {
-          customColorsContainer.classList.remove('hidden');
-        } else {
-          customColorsContainer.classList.add('hidden');
-        }
-        triggerRedrawAndSave(false);
-      });
-      avatarSelect.addEventListener('change', () => {
-        const avVal = avatarSelect.value;
-        if (avVal === '-2' || avVal === -2) {
-          post.overlayAvatar = false;
-          post.avatarStyleIdx = -2;
-          if (checkOverlayAvatar) checkOverlayAvatar.checked = false;
-        } else {
-          post.overlayAvatar = true;
-          post.avatarStyleIdx = (typeof avVal === 'string' && avVal.startsWith('custom-')) ? avVal : parseInt(avVal);
-          if (checkOverlayAvatar) checkOverlayAvatar.checked = true;
-        }
-        triggerRedrawAndSave(false);
-      });
-
-      // Quick Avatar Actions on Card
-      const uploadAvInput = cardEl.querySelector(`#input-upload-avatar-${post.id}`);
-      if (uploadAvInput) {
-        uploadAvInput.addEventListener('change', async (e) => {
-          if (e.target.files && e.target.files[0]) {
-            showToast('Uploading custom avatar photo...', 'info');
-            const file = e.target.files[0];
-            const base64 = await convertFileToBase64(file);
-            const count = getCustomAvatars().length + 1;
-            const newId = saveCustomAvatar(`Custom Photo ${count}`, base64);
-            post.avatarStyleIdx = newId;
-            post.overlayAvatar = true;
-            saveDesignEdit(state.activeDate, post.id, { avatarStyleIdx: newId, overlayAvatar: true });
-            showToast('🌟 Custom avatar added to library and applied!', 'success');
-            renderActiveDrafts();
-          }
-        });
-      }
-
-      const openAvGenBtns = cardEl.querySelectorAll(`.btn-open-avatar-gen[data-post-id="${post.id}"]`);
-      openAvGenBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          openAiAvatarModal(post.id);
-        });
-      });
-
-      const cleanAvBtn = cardEl.querySelector(`.btn-clean-avatar[data-post-id="${post.id}"]`);
-      if (cleanAvBtn) {
-        cleanAvBtn.addEventListener('click', () => {
-          post.overlayAvatar = false;
-          post.avatarStyleIdx = -2;
-          if (avatarSelect) avatarSelect.value = '-2';
-          if (checkOverlayAvatar) checkOverlayAvatar.checked = false;
-          saveDesignEdit(state.activeDate, post.id, { avatarStyleIdx: -2, overlayAvatar: false });
-          triggerRedrawAndSave(false);
-          showToast('🚫 Avatar removed! Graphic is now clean & minimal.', 'info');
-        });
-      }
-
-      // Event Listeners for Text Inputs (debounced for smoothness)
-      headlineInput.addEventListener('input', () => triggerRedrawAndSave(true));
-      headlineInput.addEventListener('change', () => triggerRedrawAndSave(false));
-      subtextInput.addEventListener('input', () => triggerRedrawAndSave(true));
-      subtextInput.addEventListener('change', () => triggerRedrawAndSave(false));
-      badgeInput.addEventListener('input', () => triggerRedrawAndSave(true));
-      badgeInput.addEventListener('change', () => triggerRedrawAndSave(false));
-      ctaInput.addEventListener('input', () => triggerRedrawAndSave(true));
-      ctaInput.addEventListener('change', () => triggerRedrawAndSave(false));
-      if (sourceInput) {
-        sourceInput.addEventListener('input', () => triggerRedrawAndSave(true));
-        sourceInput.addEventListener('change', () => triggerRedrawAndSave(false));
-      }
-
-      // Custom Colors Pickers
-      colorText.addEventListener('input', () => triggerRedrawAndSave(true));
-      colorText.addEventListener('change', () => triggerRedrawAndSave(false));
-      colorPrimary.addEventListener('input', () => triggerRedrawAndSave(true));
-      colorPrimary.addEventListener('change', () => triggerRedrawAndSave(false));
-      colorSecondary.addEventListener('input', () => triggerRedrawAndSave(true));
-      colorSecondary.addEventListener('change', () => triggerRedrawAndSave(false));
-      colorBgStart.addEventListener('input', () => triggerRedrawAndSave(true));
-      colorBgStart.addEventListener('change', () => triggerRedrawAndSave(false));
-      colorBgEnd.addEventListener('input', () => triggerRedrawAndSave(true));
-      colorBgEnd.addEventListener('change', () => triggerRedrawAndSave(false));
-
-      // Sliders & Toggles
-      sliderHeadlineSize.addEventListener('input', () => {
-        labelHeadlineSize.textContent = `${sliderHeadlineSize.value}px`;
-        triggerRedrawAndSave(true);
-      });
-      sliderHeadlineSize.addEventListener('change', () => triggerRedrawAndSave(false));
-
-      sliderSubtextSize.addEventListener('input', () => {
-        const lbl = cardEl.querySelector(`#val-subtext-size-${post.id}`);
-        if (lbl) lbl.textContent = `${sliderSubtextSize.value}px`;
-        triggerRedrawAndSave(true);
-      });
-      sliderSubtextSize.addEventListener('change', () => triggerRedrawAndSave(false));
-
-      if (checkOverlayAvatar) {
-        checkOverlayAvatar.addEventListener('change', () => {
-          if (!checkOverlayAvatar.checked) {
-            post.overlayAvatar = false;
-            post.avatarStyleIdx = -2;
-            avatarSelect.value = '-2';
-          } else {
-            post.overlayAvatar = true;
-            if (post.avatarStyleIdx === -2 || post.avatarStyleIdx === '-2') {
-              post.avatarStyleIdx = 0;
-              avatarSelect.value = '0';
-            }
-          }
-          triggerRedrawAndSave(false);
-        });
-      }
-      if (checkBgRemove) {
-        checkBgRemove.addEventListener('change', () => {
-          showToast(checkBgRemove.checked ? '✂️ Background removal activated' : 'Background removal turned off', 'info');
-          triggerRedrawAndSave(false);
-        });
-      }
-      if (selectAvatarShape) {
-        selectAvatarShape.addEventListener('change', () => triggerRedrawAndSave(false));
-      }
-      if (selectAvatarPos) {
-        selectAvatarPos.addEventListener('change', () => triggerRedrawAndSave(false));
-      }
-      const btnLayerFront = cardEl.querySelector(`#btn-layer-front-${post.id}`);
-      const btnLayerBack = cardEl.querySelector(`#btn-layer-back-${post.id}`);
-      if (btnLayerFront) {
-        btnLayerFront.addEventListener('click', () => {
-          post.avatarLayer = 'front';
-          btnLayerFront.className = 'btn btn-sm btn-primary';
-          btnLayerFront.style.background = '';
-          btnLayerFront.style.borderColor = '';
-          if (btnLayerBack) {
-            btnLayerBack.className = 'btn btn-sm btn-secondary';
-            btnLayerBack.style.background = '';
-            btnLayerBack.style.borderColor = '';
-          }
-          showToast('⬆️ Avatar moved to front of card!', 'info');
-          triggerRedrawAndSave(false);
-        });
-      }
-      if (btnLayerBack) {
-        btnLayerBack.addEventListener('click', () => {
-          post.avatarLayer = 'back';
-          btnLayerBack.className = 'btn btn-sm btn-primary';
-          btnLayerBack.style.background = '#ec4899';
-          btnLayerBack.style.borderColor = '#db2777';
-          if (btnLayerFront) {
-            btnLayerFront.className = 'btn btn-sm btn-secondary';
-          }
-          showToast('⬇️ Avatar moved to background of post!', 'success');
-          triggerRedrawAndSave(false);
-        });
-      }
-      if (sliderAvatarSize) {
-        sliderAvatarSize.addEventListener('input', () => {
-          if (labelAvatarSize) labelAvatarSize.textContent = `${sliderAvatarSize.value}px`;
-          triggerRedrawAndSave(true);
-        });
-        sliderAvatarSize.addEventListener('change', () => triggerRedrawAndSave(false));
-      }
-      if (sliderAvatarScaleX) {
-        sliderAvatarScaleX.addEventListener('input', () => {
-          if (labelAvatarScaleX) labelAvatarScaleX.textContent = `${sliderAvatarScaleX.value}%`;
-          triggerRedrawAndSave(true);
-        });
-        sliderAvatarScaleX.addEventListener('change', () => triggerRedrawAndSave(false));
-      }
-      if (sliderAvatarScaleY) {
-        sliderAvatarScaleY.addEventListener('input', () => {
-          if (labelAvatarScaleY) labelAvatarScaleY.textContent = `${sliderAvatarScaleY.value}%`;
-          triggerRedrawAndSave(true);
-        });
-        sliderAvatarScaleY.addEventListener('change', () => triggerRedrawAndSave(false));
-      }
-      if (sliderAvatarX) {
-        sliderAvatarX.addEventListener('input', () => {
-          if (labelAvatarX) labelAvatarX.textContent = `${sliderAvatarX.value}px`;
-          triggerRedrawAndSave(true);
-        });
-        sliderAvatarX.addEventListener('change', () => triggerRedrawAndSave(false));
-      }
-      if (sliderAvatarY) {
-        sliderAvatarY.addEventListener('input', () => {
-          if (labelAvatarY) labelAvatarY.textContent = `${sliderAvatarY.value}px`;
-          triggerRedrawAndSave(true);
-        });
-        sliderAvatarY.addEventListener('change', () => triggerRedrawAndSave(false));
-      }
-      if (sliderAvatarRot) {
-        sliderAvatarRot.addEventListener('input', () => {
-          if (labelAvatarRot) labelAvatarRot.textContent = `${sliderAvatarRot.value}°`;
-          triggerRedrawAndSave(true);
-        });
-        sliderAvatarRot.addEventListener('change', () => triggerRedrawAndSave(false));
-      }
-      if (sliderBgSensitivity) {
-        sliderBgSensitivity.addEventListener('input', () => {
-          if (labelBgSensitivity) labelBgSensitivity.textContent = sliderBgSensitivity.value;
-          triggerRedrawAndSave(true);
-        });
-        sliderBgSensitivity.addEventListener('change', () => triggerRedrawAndSave(false));
-      }
-
-      // Attach Interactive Mouse Drag, Drop & Scroll-Resize to Canvas
-      if (canvas) {
-        makeCanvasInteractive(canvas, post, cardEl, activeEntry.category, state.activeDate);
-      }
-
-    // Copy Content Button Listener
-    const copyBtn = cardEl.querySelector(`#btn-copy-${post.id}`);
-    if (copyBtn) {
-      copyBtn.addEventListener('click', () => {
-        navigator.clipboard.writeText(textarea.value);
-        showToast('Copied content to clipboard!', 'success');
-      });
-    }
-
-    // Open in Canva Button Listener (Export strictly 5 creative fields for Canva AI)
+    // Open in Canva Button Listener
     const canvaBtn = cardEl.querySelector(`#btn-canva-${post.id}`);
     if (canvaBtn) {
       canvaBtn.addEventListener('click', () => {
-        const headlineVal = (document.getElementById(`input-headline-${post.id}`) || {}).value || headlineText;
-        const subtextVal = (document.getElementById(`input-subtext-${post.id}`) || {}).value || subtextText;
-        const badgeVal = (document.getElementById(`input-badge-${post.id}`) || {}).value || badgeText;
-        const ctaVal = (document.getElementById(`input-cta-${post.id}`) || {}).value || ctaText;
-
-        // Clean and shorten material source to just the publication / source name
-        let rawSource = (document.getElementById(`input-source-${post.id}`) || {}).value || post.sourceName || (post.postContent && post.postContent.sourceName) || sourceName || (activeEntry.category === 'marketing' ? 'Marketing Week' : 'TechCrunch AI');
+        const headlineVal = (post.postContent && post.postContent.imageHeadline) || post.imageHeadline || headlineText;
+        const subtextVal = (post.postContent && post.postContent.imageSubtext) || post.imageSubtext || subtextText;
+        const badgeVal = (post.postContent && post.postContent.badgeText) || post.badgeText || badgeText;
+        const ctaVal = (post.postContent && post.postContent.ctaText) || post.ctaText || ctaText;
+        let rawSource = (post.postContent && post.postContent.sourceName) || post.sourceName || sourceName || (activeEntry.category === 'marketing' ? 'Marketing Week' : 'TechCrunch AI');
         let shortSource = rawSource.split(' - ')[0].split(' (')[0].split(' "')[0].replace(/^📌\s*Source:\s*/i, '').replace(/https?:\/\/[^\s]+/g, '').trim();
         if (!shortSource) shortSource = (activeEntry.category === 'marketing' ? 'Marketing Week' : 'TechCrunch AI');
 
-        // Strictly the 5 fields requested for Canva AI creative editing
         const payloadText = `[HEADLINE]\n${headlineVal}\n\n[SUBTEXT]\n${subtextVal}\n\n[TOP TAG / BADGE]\n${badgeVal}\n\n[CTA BUTTON]\n${ctaVal}\n\n[MATERIAL SOURCE / SOURCE OF UPDATE]\n${shortSource}`;
-        
         navigator.clipboard.writeText(payloadText);
-        showToast('📋 Copied Canva AI fields ([HEADLINE], [SUBTEXT], [TOP TAG / BADGE], [CTA BUTTON], [MATERIAL SOURCE])! Opening Canva...', 'success');
-        
+        showToast('📋 Copied Canva AI fields! Opening Canva...', 'success');
         const canvaTargetUrl = state.settings.canvaTemplateUrl || 'https://www.canva.com/';
         window.open(canvaTargetUrl, '_blank');
       });
@@ -4447,90 +3778,36 @@ function renderActiveDrafts() {
         if (typeof post.avatarStyleIdx === 'string' && post.avatarStyleIdx.startsWith('custom-')) {
           const customList = getCustomAvatars();
           const found = customList.find(a => a.id === post.avatarStyleIdx);
-          if (found && found.dataUrl) {
-            photoSrc = found.dataUrl;
-          }
+          if (found && found.dataUrl) photoSrc = found.dataUrl;
         } else if (String(post.avatarStyleIdx) === '-1') {
-          if (state.settings.customAvatar) {
-            photoSrc = state.settings.customAvatar;
-          } else {
-            photoSrc = 'avatar.jpg';
-          }
+          photoSrc = state.settings.customAvatar || 'avatar.jpg';
         } else if (post.avatarStyleIdx !== undefined && !isNaN(parseInt(post.avatarStyleIdx, 10)) && parseInt(post.avatarStyleIdx, 10) >= 0) {
           const idx = parseInt(post.avatarStyleIdx, 10);
-          if (optionAvatars[idx] && optionAvatars[idx].src) {
-            photoSrc = optionAvatars[idx].src;
-          } else {
-            photoSrc = `avatar_daily_${idx + 1}.jpg`;
-          }
+          photoSrc = (optionAvatars[idx] && optionAvatars[idx].src) ? optionAvatars[idx].src : `avatar_daily_${idx + 1}.jpg`;
         }
 
         if (!photoSrc) {
-          if (state.settings.customAvatar) {
-            photoSrc = state.settings.customAvatar;
-          } else {
-            const originUrl = window.location.origin + window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
-            photoSrc = `${originUrl}/avatar_daily_${post.id}.jpg`;
-          }
+          photoSrc = state.settings.customAvatar || `${window.location.origin}/avatar_daily_${post.id}.jpg`;
         }
-        
+
         const win = window.open();
         if (win) {
-          win.document.write(`<html><head><title>Selected Photo - Post ${post.id}</title></head><body style="background:#0f172a; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; margin:0; font-family:sans-serif; color:#fff;">
-            <h3 style="margin-bottom:12px;">📷 Your Selected Photo (Drag & Drop into Canva)</h3>
-            <img src="${photoSrc}" style="max-width:80vw; max-height:75vh; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.5);" />
-            <p style="margin-top:16px; opacity:0.85; font-size:0.9rem;">Drag this image directly into your open Canva tab or right-click to copy image!</p>
+          win.document.write(`<html><head><title>Selected Photo - Post ${post.id}</title></head><body style="background:#09090b; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; margin:0; font-family:sans-serif; color:#fafafa;">
+            <h3 style="margin-bottom:12px;">📷 Selected Photo for Post ${post.id}</h3>
+            <img src="${photoSrc}" style="max-width:80vw; max-height:75vh; border-radius:12px; border:1px solid #27272a; box-shadow:0 10px 30px rgba(0,0,0,0.5);" />
+            <p style="margin-top:16px; opacity:0.8; font-size:0.85rem;">Drag into Canva or right-click to copy image</p>
           </body></html>`);
-          showToast('Opened selected photo in a new tab! Drag & drop it directly into Canva.', 'success');
+          showToast('Opened selected photo in a new tab!', 'success');
         }
-      });
-    }
-
-    // Canva Graphic File Uploader Listener
-    const canvaFileInput = cardEl.querySelector(`#input-canva-graphic-${post.id}`);
-    if (canvaFileInput) {
-      canvaFileInput.addEventListener('change', async (e) => {
-        if (e.target.files && e.target.files[0]) {
-          showToast('Attaching custom Canva graphic to this card...', 'info');
-          const base64Data = await convertFileToBase64(e.target.files[0]);
-          
-          const localDb = getLocalDb();
-          localDb.designs = localDb.designs || {};
-          localDb.designs[`${state.activeDate}-post-${post.id}`] = localDb.designs[`${state.activeDate}-post-${post.id}`] || {};
-          localDb.designs[`${state.activeDate}-post-${post.id}`].customCanvaGraphic = base64Data;
-          saveLocalDb(localDb);
-          
-          post.customCanvaGraphic = base64Data;
-          showToast('✨ Custom Canva graphic attached! It will publish with this post.', 'success');
-          renderActiveDrafts();
-        }
-      });
-    }
-
-    // Remove Canva Graphic Listener
-    const removeCanvaBtn = cardEl.querySelector(`#btn-remove-canva-${post.id}`);
-    if (removeCanvaBtn) {
-      removeCanvaBtn.addEventListener('click', () => {
-        const localDb = getLocalDb();
-        if (localDb.designs && localDb.designs[`${state.activeDate}-post-${post.id}`]) {
-          delete localDb.designs[`${state.activeDate}-post-${post.id}`].customCanvaGraphic;
-          saveLocalDb(localDb);
-        }
-        delete post.customCanvaGraphic;
-        showToast('Removed custom Canva graphic. Reverted to default canvas preview.', 'info');
-        renderActiveDrafts();
       });
     }
 
     // 1-Click Post (Web) Button Listener
     const linkedinDirectBtn = cardEl.querySelector(`#btn-linkedin-direct-${post.id}`);
-    if (linkedinDirectBtn) {
+    if (linkedinDirectBtn && textarea) {
       linkedinDirectBtn.addEventListener('click', async () => {
         try {
-          // 1. Copy text to clipboard
           await navigator.clipboard.writeText(textarea.value);
-
-          // 2. Download the rendered canvas graphic as PNG
           const currentCanvas = cardEl.querySelector(`#canvas-${post.id}`);
           if (currentCanvas) {
             const link = document.createElement('a');
@@ -4539,7 +3816,6 @@ function renderActiveDrafts() {
             link.click();
           }
 
-          // 3. Mark as posted in local DB
           const localDb = getLocalDb();
           localDb.posted = localDb.posted || {};
           localDb.posted[state.activeDate] = {
@@ -4549,10 +3825,8 @@ function renderActiveDrafts() {
           };
           saveLocalDb(localDb);
 
-          // 4. Open LinkedIn share dialog in new tab
           window.open('https://www.linkedin.com/feed/?shareActive=true', '_blank');
-
-          showToast('✅ Post text copied & graphic downloaded! Paste (Ctrl+V) & attach image in LinkedIn.', 'success');
+          showToast('✅ Post text copied & graphic downloaded! Opening LinkedIn...', 'success');
           renderActiveDrafts();
         } catch (err) {
           showToast(`Direct post helper: ${err.message}`, 'error');
@@ -4560,7 +3834,7 @@ function renderActiveDrafts() {
       });
     }
 
-    // Post / Re-publish to Google Flow button listener (Always active!)
+    // Post / Publish via Webhook button listener
     const postBtn = cardEl.querySelector(`#btn-post-${post.id}`);
     if (postBtn) {
       postBtn.addEventListener('click', (e) => {
@@ -4579,7 +3853,7 @@ function renderActiveDrafts() {
         }
         activeEntry.status = 'draft';
         activeEntry.selectedPostId = null;
-        showToast('🔄 Reset to draft! You can now edit and re-publish whenever you wish.', 'info');
+        showToast('🔄 Reset to draft! You can now edit and re-publish.', 'info');
         renderActiveDrafts();
       });
     }
