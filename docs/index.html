@@ -204,6 +204,217 @@
 
 
 
+  <!-- AI Creative Studio Modal Dialog -->
+  <div class="modal-backdrop hidden" id="ai-studio-modal">
+    <div class="modal-content glassmorphism ai-studio-modal-content">
+      <div class="modal-header">
+        <div>
+          <h2>✨ AI Creative Studio &amp; Editor</h2>
+          <p class="modal-subtitle" id="ai-studio-subtitle">Instruct changes in plain English or fine-tune copy &amp; graphics</p>
+        </div>
+        <button class="btn-close" id="btn-close-ai-studio" aria-label="Close AI Studio">&times;</button>
+      </div>
+      
+      <div class="ai-studio-body">
+        <!-- Left: Live Canvas Preview -->
+        <div class="ai-studio-preview-col">
+          <div class="ai-studio-canvas-wrapper">
+            <canvas id="modal-studio-canvas" width="1080" height="1080"></canvas>
+            <div id="modal-canva-badge" class="modal-canva-badge hidden">✨ Canva Graphic Active</div>
+          </div>
+          <div class="ai-studio-preview-actions">
+            <button type="button" class="btn btn-secondary btn-sm" id="btn-modal-copy-text">📋 Copy Text</button>
+            <button type="button" class="btn btn-secondary btn-sm" id="btn-modal-open-canva" style="color: #c084fc; border-color: rgba(168, 85, 247, 0.35);">🎨 Open in Canva</button>
+            <button type="button" class="btn btn-secondary btn-sm" id="btn-modal-download-img">⬇️ Download Image</button>
+          </div>
+        </div>
+
+        <!-- Right: AI Instruction & Tabbed Controls -->
+        <div class="ai-studio-controls-col">
+          <!-- AI Prompt Bar -->
+          <div class="ai-prompt-box">
+            <div class="ai-prompt-header">
+              <span class="ai-sparkle-icon">✨</span>
+              <strong>AI Instruction Assistant</strong>
+              <span class="ai-status-indicator" id="ai-modal-status">Ready</span>
+            </div>
+            <div class="ai-prompt-input-row">
+              <textarea id="modal-ai-instruction-input" rows="2" placeholder="Tell AI what to adjust... (e.g. 'Make headline punchier: 10X MARKETING LEVER', 'Switch to Cyber Purple theme', 'Make caption conversational with 3 tips', 'Move avatar to bottom-left')"></textarea>
+              <button type="button" class="btn btn-primary" id="btn-modal-ai-submit">
+                <span class="btn-text">Apply AI Edit</span>
+                <span class="spinner-small hidden" id="modal-ai-spinner"></span>
+              </button>
+            </div>
+            <!-- Quick Chips -->
+            <div class="ai-quick-chips">
+              <span class="chip-label">Quick Prompts:</span>
+              <button type="button" class="ai-chip" data-prompt="Make the headline short, ultra-punchy, and high-contrast in ALL CAPS">🪄 Punchier Headline</button>
+              <button type="button" class="ai-chip" data-prompt="Shorten the post caption to under 120 words for easy mobile reading with 3 clean bullet points">✂️ Shorten Caption</button>
+              <button type="button" class="ai-chip" data-prompt="Switch theme to Cyber Purple with high-tech glowing accents">🎨 Cyber Purple</button>
+              <button type="button" class="ai-chip" data-prompt="Switch theme to Corporate Navy with elegant executive styling">💎 Corporate Navy</button>
+              <button type="button" class="ai-chip" data-prompt="Switch theme to Emerald Green with clean modern aesthetics">🌲 Emerald Green</button>
+              <button type="button" class="ai-chip" data-prompt="Change CTA button to 'READ FULL REPORT' and badge to 'GROWTH PLAYBOOK'">🚀 Actionable CTA</button>
+              <button type="button" class="ai-chip" data-prompt="Move avatar to bottom-left with background cutout removed">👤 Avatar Bottom-Left</button>
+            </div>
+          </div>
+
+          <!-- Studio Tabs -->
+          <div class="studio-tabs">
+            <button type="button" class="studio-tab-btn active" data-tab="tab-text">📝 Copy &amp; Text</button>
+            <button type="button" class="studio-tab-btn" data-tab="tab-theme">🎨 Theme &amp; Layout</button>
+            <button type="button" class="studio-tab-btn" data-tab="tab-avatar">👤 Photo &amp; Avatar</button>
+            <button type="button" class="studio-tab-btn" data-tab="tab-canva">🖼️ Canva Graphic</button>
+          </div>
+
+          <!-- Tab Content: Copy & Text -->
+          <div class="studio-tab-pane active" id="tab-text">
+            <div class="form-group">
+              <label for="modal-input-headline">Creative Headline (Graphic)</label>
+              <textarea id="modal-input-headline" rows="2" class="customizer-textarea" placeholder="Headline text..."></textarea>
+            </div>
+            <div class="form-group">
+              <label for="modal-input-subtext">Creative Subtext (Graphic)</label>
+              <textarea id="modal-input-subtext" rows="2" class="customizer-textarea" placeholder="Subtext info..."></textarea>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div class="form-group">
+                <label for="modal-input-badge">Top Tag / Badge</label>
+                <input type="text" id="modal-input-badge" class="customizer-input" placeholder="e.g. MARKETING INSIGHT">
+              </div>
+              <div class="form-group">
+                <label for="modal-input-cta">CTA Button Text</label>
+                <input type="text" id="modal-input-cta" class="customizer-input" placeholder="e.g. READ FULL POST">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="modal-input-source">Material Source</label>
+              <input type="text" id="modal-input-source" class="customizer-input" placeholder="e.g. Marketing Week, TechCrunch AI">
+            </div>
+            <div class="form-group">
+              <label for="modal-input-caption">Full LinkedIn Post Matter / Caption</label>
+              <textarea id="modal-input-caption" rows="6" class="customizer-textarea" placeholder="Full post body..."></textarea>
+            </div>
+          </div>
+
+          <!-- Tab Content: Theme & Layout -->
+          <div class="studio-tab-pane hidden" id="tab-theme">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div class="form-group">
+                <label for="modal-select-layout">Layout Template</label>
+                <select id="modal-select-layout" class="customizer-select"></select>
+              </div>
+              <div class="form-group">
+                <label for="modal-select-palette">Color Palette</label>
+                <select id="modal-select-palette" class="customizer-select"></select>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px;">
+              <div class="form-group">
+                <label for="modal-slider-headline-size">Headline Font Size: <span id="modal-val-headline-size">40px</span></label>
+                <input type="range" id="modal-slider-headline-size" min="20" max="80" value="40" class="customizer-range">
+              </div>
+              <div class="form-group">
+                <label for="modal-slider-subtext-size">Subtext Font Size: <span id="modal-val-subtext-size">22px</span></label>
+                <input type="range" id="modal-slider-subtext-size" min="12" max="40" value="22" class="customizer-range">
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Content: Photo & Avatar -->
+          <div class="studio-tab-pane hidden" id="tab-avatar">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div class="form-group">
+                <label for="modal-select-avatar-pose">Avatar Pose / Outfit</label>
+                <select id="modal-select-avatar-pose" class="customizer-select"></select>
+              </div>
+              <div class="form-group">
+                <label for="modal-select-avatar-pos">Position Anchor</label>
+                <select id="modal-select-avatar-pos" class="customizer-select">
+                  <option value="auto">📍 Auto (Match Post Layout)</option>
+                  <option value="bottom-right">Bottom Right</option>
+                  <option value="bottom-left">Bottom Left</option>
+                  <option value="top-right">Top Right</option>
+                  <option value="top-left">Top Left</option>
+                  <option value="center">Center</option>
+                </select>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px;">
+              <div class="form-group">
+                <label for="modal-select-avatar-shape">Framing Shape</label>
+                <select id="modal-select-avatar-shape" class="customizer-select">
+                  <option value="popout-circle">🔘 3D Circle Pop-Out</option>
+                  <option value="card">🔲 Rounded Card Frame</option>
+                  <option value="cutout">👤 Free Silhouette</option>
+                  <option value="phone">📱 3D Phone Mockup</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="modal-slider-avatar-size">Avatar Size: <span id="modal-val-avatar-size">340px</span></label>
+                <input type="range" id="modal-slider-avatar-size" min="100" max="950" step="10" value="340" class="customizer-range">
+              </div>
+            </div>
+            <div style="display: flex; gap: 14px; align-items: center; margin-top: 12px;">
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.88rem; color: #e2e8f0;">
+                <input type="checkbox" id="modal-check-overlay-avatar" checked style="width: 16px; height: 16px;">
+                📷 Overlay Photo on Graphic
+              </label>
+              <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.88rem; color: #f472b6;">
+                <input type="checkbox" id="modal-check-bg-remove" style="width: 16px; height: 16px;">
+                ✨ Remove Background (Cutout)
+              </label>
+            </div>
+          </div>
+
+          <!-- Tab Content: Canva Graphic -->
+          <div class="studio-tab-pane hidden" id="tab-canva">
+            <div class="canva-studio-box">
+              <label style="color: #c084fc; font-weight: 700; font-size: 0.95rem; display: block; margin-bottom: 8px;">
+                📥 Import / Replace Canva Graphic Image
+              </label>
+              <p style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 12px;">
+                Upload your creative exported from Canva. It will appear on this card and automatically publish when you click "Publish via Webhook".
+              </p>
+              <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                <input type="file" id="modal-input-canva-file" accept="image/*" class="customizer-input" style="flex: 1;">
+                <button type="button" class="btn btn-secondary btn-sm" id="btn-modal-remove-canva" style="color: #f87171; border-color: rgba(239, 68, 68, 0.3);">🗑 Remove Canva Graphic</button>
+              </div>
+            </div>
+
+            <!-- Canva Graphic Filter Adjustments -->
+            <div class="canva-filters-box" style="margin-top: 16px;">
+              <h5 style="color: #93c5fd; font-size: 0.85rem; margin-bottom: 10px;">✨ Image Adjustments &amp; Lighting</h5>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <div class="form-group">
+                  <label for="modal-slider-brightness">Brightness: <span id="modal-val-brightness">100%</span></label>
+                  <input type="range" id="modal-slider-brightness" min="60" max="150" value="100" class="customizer-range">
+                </div>
+                <div class="form-group">
+                  <label for="modal-slider-contrast">Contrast: <span id="modal-val-contrast">100%</span></label>
+                  <input type="range" id="modal-slider-contrast" min="60" max="160" value="100" class="customizer-range">
+                </div>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px;">
+                <div class="form-group">
+                  <label for="modal-slider-saturation">Saturation: <span id="modal-val-saturation">100%</span></label>
+                  <input type="range" id="modal-slider-saturation" min="50" max="180" value="100" class="customizer-range">
+                </div>
+                <div class="form-group" style="display: flex; align-items: flex-end;">
+                  <button type="button" class="btn btn-secondary btn-sm" id="btn-modal-reset-filters" style="width: 100%;">🔄 Reset Adjustments</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-size: 0.8rem; color: #94a3b8;">Edits auto-save immediately to your browser</span>
+        <button type="button" class="btn btn-primary" id="btn-done-ai-studio">Done &amp; Close Studio</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Toast Notification System -->
   <div class="toast-container" id="toast-container"></div>
 

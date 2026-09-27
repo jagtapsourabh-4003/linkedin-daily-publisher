@@ -521,6 +521,9 @@ function setupEventListeners() {
       }
     });
   }
+
+  // Initialize AI Studio Modal Events
+  initAiStudioEvents();
 }
 
 // ================= API CALLS & DATA FETCHING (SERVERLESS REFACTOR) =================
@@ -761,6 +764,15 @@ async function loadHistory() {
             }
             if (custom.avatarRotation !== undefined) {
               post.avatarRotation = custom.avatarRotation;
+            }
+            if (custom.brightness !== undefined) {
+              post.brightness = custom.brightness;
+            }
+            if (custom.contrast !== undefined) {
+              post.contrast = custom.contrast;
+            }
+            if (custom.saturation !== undefined) {
+              post.saturation = custom.saturation;
             }
           }
         });
@@ -2148,6 +2160,923 @@ function renderDateList() {
   });
 }
 
+// ================= AI INSTRUCTION EDITOR & STUDIO ENGINE =================
+
+let modalStudioActivePostId = null;
+
+/**
+ * Intelligent local intent and regex parser to handle instructions even without an API key
+ */
+function parseAiInstructionLocally(post, text) {
+  const updates = {};
+  const lower = text.toLowerCase();
+
+  // 1. Color Palette matching
+  if (lower.includes('cyber purple') || lower.includes('purple')) {
+    updates.colorPalette = 'Cyber Purple';
+  } else if (lower.includes('emerald') || lower.includes('green')) {
+    updates.colorPalette = 'Emerald Green';
+  } else if (lower.includes('corporate navy') || lower.includes('navy')) {
+    updates.colorPalette = 'Corporate Navy';
+  } else if (lower.includes('royal gold') || lower.includes('gold')) {
+    updates.colorPalette = 'Royal Gold';
+  } else if (lower.includes('crimson') || lower.includes('red')) {
+    updates.colorPalette = 'Crimson Red';
+  } else if (lower.includes('sunset') || lower.includes('orange')) {
+    updates.colorPalette = 'Sunset Orange';
+  } else if (lower.includes('monochrome') || lower.includes('black')) {
+    updates.colorPalette = 'Monochrome Black';
+  } else if (lower.includes('electric blue') || lower.includes('blue')) {
+    updates.colorPalette = 'Electric Blue';
+  }
+
+  // 2. Layout Family matching
+  if (lower.includes('hero center') || lower.includes('hero')) {
+    updates.layoutFamily = 'hero-center';
+  } else if (lower.includes('split left') || lower.includes('split-left')) {
+    updates.layoutFamily = 'split-left';
+  } else if (lower.includes('split right') || lower.includes('split-right')) {
+    updates.layoutFamily = 'split-right';
+  } else if (lower.includes('magazine')) {
+    updates.layoutFamily = 'magazine-cover';
+  } else if (lower.includes('podcast')) {
+    updates.layoutFamily = 'podcast-layout';
+  } else if (lower.includes('quote')) {
+    updates.layoutFamily = 'quote-card';
+  } else if (lower.includes('news')) {
+    updates.layoutFamily = 'news-card';
+  } else if (lower.includes('phone') || lower.includes('mockup')) {
+    updates.layoutFamily = 'phone-mockup';
+  }
+
+  // 3. Avatar positioning, framing, sizing, and offsets
+  if (lower.includes('bottom left') || lower.includes('bottom-left')) {
+    updates.avatarPos = 'bottom-left';
+  } else if (lower.includes('bottom right') || lower.includes('bottom-right')) {
+    updates.avatarPos = 'bottom-right';
+  } else if (lower.includes('top left') || lower.includes('top-left')) {
+    updates.avatarPos = 'top-left';
+  } else if (lower.includes('top right') || lower.includes('top-right')) {
+    updates.avatarPos = 'top-right';
+  } else if (lower.includes('center avatar') || lower.includes('avatar in center')) {
+    updates.avatarPos = 'center';
+  }
+
+  if (lower.includes('cutout') || lower.includes('remove background') || lower.includes('remove bg') || lower.includes('no background')) {
+    updates.removeAvatarBg = true;
+  }
+  if (lower.includes('keep background') || lower.includes('with background')) {
+    updates.removeAvatarBg = false;
+  }
+  if (lower.includes('hide avatar') || lower.includes('remove avatar') || lower.includes('no avatar') || lower.includes('without avatar')) {
+    updates.overlayAvatar = false;
+  }
+  if (lower.includes('show avatar') || lower.includes('with avatar') || lower.includes('overlay avatar')) {
+    updates.overlayAvatar = true;
+  }
+  if (lower.includes('bigger') || lower.includes('larger') || lower.includes('scale up') || lower.includes('increase size') || lower.includes('zoom in')) {
+    updates.avatarSize = Math.min(650, (post.avatarSize || 340) + 60);
+  } else if (lower.includes('smaller') || lower.includes('scale down') || lower.includes('decrease size') || lower.includes('shrink') || lower.includes('zoom out')) {
+    updates.avatarSize = Math.max(160, (post.avatarSize || 340) - 60);
+  }
+
+  if (lower.includes('move right') || lower.includes('shift right')) {
+    updates.avatarOffsetX = (post.avatarOffsetX || 0) + 40;
+  } else if (lower.includes('move left') || lower.includes('shift left')) {
+    updates.avatarOffsetX = (post.avatarOffsetX || 0) - 40;
+  }
+  if (lower.includes('move up') || lower.includes('shift up')) {
+    updates.avatarOffsetY = (post.avatarOffsetY || 0) - 40;
+  } else if (lower.includes('move down') || lower.includes('shift down')) {
+    updates.avatarOffsetY = (post.avatarOffsetY || 0) + 40;
+  }
+
+  // 4. Headline Extraction
+  const headlineMatch = text.match(/(?:headline|title)(?:[a-zA-Z\s]*?)(?::|to|is)\s*["'“]([^"'”]+)["'”]/i) ||
+                        text.match(/(?:headline|title)(?:[a-zA-Z\s]*?)(?::|to|is)\s+([^,;\n]+)/i) ||
+                        text.match(/(?:headline|title)\s*:\s*([^,;\n]+)/i);
+  if (headlineMatch) {
+    let hl = headlineMatch[1].trim();
+    if (!hl.includes('*')) {
+      const words = hl.split(/\s+/);
+      if (words.length >= 2) {
+        hl = `${words[0].toUpperCase()} *${words[1].toUpperCase()}* ${words.slice(2).join(' ').toUpperCase()}`.trim();
+      } else {
+        hl = `*${hl.toUpperCase()}*`;
+      }
+    }
+    updates.imageHeadline = hl;
+  } else if (lower.includes('punchier headline') || lower.includes('punchy headline')) {
+    const curHl = (post.postContent && post.postContent.imageHeadline) || post.imageHeadline || 'AI MARKETING STRATEGY';
+    const words = curHl.replace(/[*_]/g, '').split(/\s+/).filter(Boolean);
+    if (words.length >= 2) {
+      updates.imageHeadline = `${words[0].toUpperCase()} *${words[1].toUpperCase()}*`;
+    } else {
+      updates.imageHeadline = `THE *${(words[0] || 'GROWTH LEVER').toUpperCase()}*`;
+    }
+  }
+
+  // 5. Subtext Extraction
+  const subtextMatch = text.match(/subtext(?:[a-zA-Z\s]*?)(?::|to|is)\s*["'“]([^"'”]+)["'”]/i) ||
+                       text.match(/subtext(?:[a-zA-Z\s]*?)(?::|to|is)\s+([^,;\n]+)/i) ||
+                       text.match(/subtext\s*:\s*([^,;\n]+)/i);
+  if (subtextMatch) {
+    updates.imageSubtext = subtextMatch[1].trim();
+  }
+
+  // 6. Badge & CTA Extraction
+  const badgeMatch = text.match(/badge(?:[a-zA-Z\s]*?)(?::|to|is)\s*["'“]([^"'”]+)["'”]/i) ||
+                     text.match(/badge(?:[a-zA-Z\s]*?)(?::|to|is)\s+([^,;\n]+)/i) ||
+                     text.match(/badge\s*:\s*([^,;\n]+)/i);
+  if (badgeMatch) {
+    updates.badgeText = badgeMatch[1].trim().toUpperCase();
+  }
+
+  const ctaMatch = text.match(/cta(?:[a-zA-Z\s]*?)(?::|to|is)\s*["'“]([^"'”]+)["'”]/i) ||
+                   text.match(/cta(?:[a-zA-Z\s]*?)(?::|to|is)\s+([^,;\n]+)/i) ||
+                   text.match(/cta\s*:\s*([^,;\n]+)/i);
+  if (ctaMatch) {
+    updates.ctaText = ctaMatch[1].trim().toUpperCase();
+  }
+
+  // 7. Caption / Matter adjustments
+  const curContent = (post.postContent && post.postContent.content) || post.content || '';
+  if (lower.includes('shorten') || lower.includes('shorter') || lower.includes('concise')) {
+    const lines = curContent.split('\n').map(l => l.trim()).filter(Boolean);
+    const hookLine = lines[0] || 'Here is an important strategic insight.';
+    const sourceLine = lines.find(l => l.includes('📌 Source:')) || `📌 Source: ${post.postContent?.sourceName || 'Industry Update'}`;
+    const hashtags = lines.find(l => l.startsWith('#')) || '#Marketing #Strategy #Growth';
+    
+    updates.content = `${hookLine}\n\n3 key takeaways for your team:\n1. Focus on high-intent communication.\n2. Cut unnecessary complexity from your process.\n3. Measure real business outcomes, not vanity metrics.\n\nWhat is your team testing this week?\n\n${sourceLine}\n\n${hashtags}`;
+  }
+
+  // 8. Canva Graphic Image Filters
+  if (lower.includes('bright') || lower.includes('lighter') || lower.includes('lighten')) {
+    if (lower.includes('dark') || lower.includes('dim') || lower.includes('decrease brightness') || lower.includes('reduce brightness')) {
+      updates.brightness = Math.max(60, (post.brightness || 100) - 20);
+    } else {
+      updates.brightness = Math.min(150, (post.brightness || 100) + 20);
+    }
+  } else if (lower.includes('dark') || lower.includes('dim')) {
+    updates.brightness = Math.max(60, (post.brightness || 100) - 20);
+  }
+
+  if (lower.includes('contrast')) {
+    if (lower.includes('lower contrast') || lower.includes('less contrast') || lower.includes('decrease contrast')) {
+      updates.contrast = Math.max(60, (post.contrast || 100) - 20);
+    } else {
+      updates.contrast = Math.min(160, (post.contrast || 100) + 20);
+    }
+  }
+
+  if (lower.includes('vibrant') || lower.includes('saturat') || lower.includes('color boost')) {
+    if (lower.includes('desaturat') || lower.includes('grayscale') || lower.includes('less saturated') || lower.includes('muted')) {
+      updates.saturation = Math.max(40, (post.saturation || 100) - 30);
+    } else {
+      updates.saturation = Math.min(180, (post.saturation || 100) + 30);
+    }
+  }
+
+  return updates;
+}
+
+/**
+ * Apply AI Instruction to a Post: calls Gemini API or uses local intent parser
+ */
+async function applyAiInstruction(postId, instructionText, onProgress) {
+  if (!instructionText || !instructionText.trim()) return;
+  const activeEntry = state.history.find(item => item.date === state.activeDate);
+  if (!activeEntry || !activeEntry.posts) return;
+  const post = activeEntry.posts.find(p => p.id === postId);
+  if (!post) return;
+
+  const currentContent = (post.postContent && post.postContent.content) || post.content || '';
+  const currentHeadline = (post.postContent && post.postContent.imageHeadline) || post.imageHeadline || '';
+  const currentSubtext = (post.postContent && post.postContent.imageSubtext) || post.imageSubtext || '';
+  const currentBadge = (post.postContent && post.postContent.badgeText) || post.badgeText || '';
+  const currentCta = (post.postContent && post.postContent.ctaText) || post.ctaText || '';
+  const currentSource = (post.postContent && post.postContent.sourceName) || post.sourceName || '';
+
+  if (onProgress) onProgress(true, 'AI is processing your instructions...');
+
+  let aiUpdates = null;
+
+  // 1. If Gemini API key is configured, query Gemini Flash
+  if (state.settings && state.settings.geminiApiKey) {
+    try {
+      const apiKey = state.settings.geminiApiKey.trim();
+      const prompt = `You are an elite LinkedIn copywriter and visual creative art director assistant.
+The user wants to adjust an existing LinkedIn post and its visual card graphic based on their instruction.
+
+CURRENT POST:
+- Headline: ${currentHeadline}
+- Subtext: ${currentSubtext}
+- Top Badge: ${currentBadge}
+- CTA: ${currentCta}
+- Source: ${currentSource}
+- Post Caption/Matter:
+${currentContent}
+- Layout Family: ${post.layoutFamily || 'split-left'}
+- Color Palette: ${post.colorPalette || 'Electric Blue'}
+- Avatar Position: ${post.avatarPos || 'bottom-right'}
+
+USER INSTRUCTION:
+"${instructionText}"
+
+YOUR TASK:
+Interpret the user's instruction and return ONLY a valid JSON object with the requested changes.
+Only include fields that need to be changed:
+- "imageHeadline": string (Short 2-4 punchy words in ALL CAPS, wrap 1-2 words in asterisks for neon glow, e.g. "THE *10X LEVER*")
+- "imageSubtext": string (5-9 word graphic subtitle)
+- "badgeText": string (2-3 words top badge)
+- "ctaText": string (2-3 words CTA button)
+- "sourceName": string (short publication name e.g. "Marketing Week")
+- "content": string (full updated LinkedIn post caption/body, retaining professional conversational formatting, 3 takeaways, friendly question, and hashtags)
+- "layoutFamily": string (one of: split-left, split-right, hero-center, magazine-cover, quote-card, podcast-layout, presentation-slide, news-card, phone-mockup)
+- "colorPalette": string (one of: Electric Blue, Cyber Purple, Emerald Green, Crimson Red, Royal Gold, Teal White, Slate Blue, Monochrome Black, Neon Cyan, Sunset Orange, Deep Indigo, Premium Burgundy, Corporate Navy)
+- "avatarPos": string ("bottom-right", "bottom-left", "top-right", "top-left", "center")
+- "removeAvatarBg": boolean
+- "overlayAvatar": boolean
+- "avatarSize": number (between 150 and 600)
+- "brightness": number (60 to 150)
+- "contrast": number (60 to 160)
+- "saturation": number (50 to 180)
+
+Return RAW JSON only. Do not wrap in markdown or backticks.`;
+
+      const models = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-1.5-flash'];
+      for (const m of models) {
+        try {
+          const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${apiKey}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              contents: [{ parts: [{ text: prompt }] }],
+              generationConfig: {
+                temperature: 0.7,
+                responseMimeType: 'application/json'
+              }
+            })
+          });
+          if (res.ok) {
+            const data = await res.json();
+            const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+            if (text) {
+              const cleaned = text.replace(/```(?:json)?/g, '').replace(/```/g, '').trim();
+              aiUpdates = JSON.parse(cleaned);
+              console.log('[AI Editor] Gemini responded with updates:', aiUpdates);
+              break;
+            }
+          }
+        } catch (mErr) {
+          console.warn(`[AI Editor] Model ${m} error:`, mErr.message);
+        }
+      }
+    } catch (apiErr) {
+      console.warn('[AI Editor] Gemini API call failed:', apiErr.message);
+    }
+  }
+
+  // 2. If Gemini didn't return or was unavailable, use smart local rule-based intent parser
+  if (!aiUpdates || Object.keys(aiUpdates).length === 0) {
+    aiUpdates = parseAiInstructionLocally(post, instructionText);
+  }
+
+  // 3. Apply updates to post object and local storage
+  if (aiUpdates && Object.keys(aiUpdates).length > 0) {
+    if (!post.postContent) post.postContent = {};
+
+    if (aiUpdates.imageHeadline !== undefined) {
+      post.postContent.imageHeadline = aiUpdates.imageHeadline;
+      post.imageHeadline = aiUpdates.imageHeadline;
+    }
+    if (aiUpdates.imageSubtext !== undefined) {
+      post.postContent.imageSubtext = aiUpdates.imageSubtext;
+      post.imageSubtext = aiUpdates.imageSubtext;
+    }
+    if (aiUpdates.badgeText !== undefined) {
+      post.postContent.badgeText = aiUpdates.badgeText;
+      post.badgeText = aiUpdates.badgeText;
+    }
+    if (aiUpdates.ctaText !== undefined) {
+      post.postContent.ctaText = aiUpdates.ctaText;
+      post.ctaText = aiUpdates.ctaText;
+    }
+    if (aiUpdates.sourceName !== undefined) {
+      post.postContent.sourceName = aiUpdates.sourceName;
+      post.sourceName = aiUpdates.sourceName;
+    }
+    if (aiUpdates.content !== undefined) {
+      post.postContent.content = aiUpdates.content;
+      post.content = aiUpdates.content;
+      
+      const localDb = getLocalDb();
+      localDb.edits = localDb.edits || {};
+      localDb.edits[`${state.activeDate}-post-${post.id}`] = aiUpdates.content;
+      saveLocalDb(localDb);
+    }
+    if (aiUpdates.layoutFamily !== undefined) post.layoutFamily = aiUpdates.layoutFamily;
+    if (aiUpdates.colorPalette !== undefined) post.colorPalette = aiUpdates.colorPalette;
+    if (aiUpdates.avatarPos !== undefined) post.avatarPos = aiUpdates.avatarPos;
+    if (aiUpdates.removeAvatarBg !== undefined) post.removeAvatarBg = aiUpdates.removeAvatarBg;
+    if (aiUpdates.overlayAvatar !== undefined) post.overlayAvatar = aiUpdates.overlayAvatar;
+    if (aiUpdates.avatarSize !== undefined) post.avatarSize = aiUpdates.avatarSize;
+    if (aiUpdates.brightness !== undefined) post.brightness = aiUpdates.brightness;
+    if (aiUpdates.contrast !== undefined) post.contrast = aiUpdates.contrast;
+    if (aiUpdates.saturation !== undefined) post.saturation = aiUpdates.saturation;
+
+    saveDesignEdit(state.activeDate, post.id, {
+      layoutFamily: post.layoutFamily,
+      colorPalette: post.colorPalette,
+      avatarStyleIdx: post.avatarStyleIdx,
+      imageHeadline: post.postContent.imageHeadline,
+      imageSubtext: post.postContent.imageSubtext,
+      badgeText: post.postContent.badgeText,
+      ctaText: post.postContent.ctaText,
+      sourceName: post.postContent.sourceName,
+      overlayAvatar: post.overlayAvatar,
+      removeAvatarBg: post.removeAvatarBg,
+      avatarPos: post.avatarPos,
+      avatarSize: post.avatarSize,
+      brightness: post.brightness,
+      contrast: post.contrast,
+      saturation: post.saturation
+    });
+
+    renderActiveDrafts();
+
+    if (modalStudioActivePostId === post.id) {
+      updateStudioInputs(post);
+      redrawStudioCanvas();
+    }
+
+    if (onProgress) onProgress(false, 'Ready');
+    const changedFields = Object.keys(aiUpdates).join(', ');
+    showToast(`✨ AI applied edits: updated ${changedFields}!`, 'success');
+  } else {
+    if (onProgress) onProgress(false, 'Ready');
+    showToast('Could not determine changes from instruction. Please try a different wording.', 'info');
+  }
+}
+
+/**
+ * Open AI Creative Studio Modal for a specific post
+ */
+function openAiStudio(postId) {
+  const activeEntry = state.history.find(item => item.date === state.activeDate);
+  if (!activeEntry || !activeEntry.posts) return;
+  const post = activeEntry.posts.find(p => p.id === postId);
+  if (!post) return;
+
+  modalStudioActivePostId = postId;
+  const modal = document.getElementById('ai-studio-modal');
+  if (!modal) return;
+
+  const subtitle = document.getElementById('ai-studio-subtitle');
+  if (subtitle) {
+    subtitle.textContent = `Option ${post.id} • ${post.designArchetype || post.style || 'Draft'} (${formatDateHuman(state.activeDate)})`;
+  }
+
+  updateStudioInputs(post);
+  redrawStudioCanvas();
+  modal.classList.remove('hidden');
+}
+
+/**
+ * Close AI Creative Studio Modal
+ */
+function closeAiStudio() {
+  const modal = document.getElementById('ai-studio-modal');
+  if (modal) modal.classList.add('hidden');
+  modalStudioActivePostId = null;
+}
+
+/**
+ * Redraw the Live Studio Canvas inside the Modal
+ */
+function redrawStudioCanvas() {
+  if (!modalStudioActivePostId) return;
+  const activeEntry = state.history.find(item => item.date === state.activeDate);
+  if (!activeEntry || !activeEntry.posts) return;
+  const post = activeEntry.posts.find(p => p.id === modalStudioActivePostId);
+  if (!post) return;
+
+  const canvas = document.getElementById('modal-studio-canvas');
+  if (!canvas) return;
+
+  const headline = (post.postContent && post.postContent.imageHeadline) || post.imageHeadline || '';
+  const subtext = (post.postContent && post.postContent.imageSubtext) || post.imageSubtext || '';
+
+  drawCreative(canvas, activeEntry.category, headline, subtext, post.id, state.activeDate, Object.assign({}, post.layout || {}, post));
+
+  const canvaBadge = document.getElementById('modal-canva-badge');
+  if (canvaBadge) {
+    if (post.customCanvaGraphic) {
+      canvaBadge.classList.remove('hidden');
+    } else {
+      canvaBadge.classList.add('hidden');
+    }
+  }
+}
+
+/**
+ * Update and sync all inputs inside the AI Studio Modal
+ */
+function updateStudioInputs(post) {
+  const headlineInput = document.getElementById('modal-input-headline');
+  const subtextInput = document.getElementById('modal-input-subtext');
+  const badgeInput = document.getElementById('modal-input-badge');
+  const ctaInput = document.getElementById('modal-input-cta');
+  const sourceInput = document.getElementById('modal-input-source');
+  const captionInput = document.getElementById('modal-input-caption');
+
+  if (headlineInput) headlineInput.value = (post.postContent && post.postContent.imageHeadline) || post.imageHeadline || '';
+  if (subtextInput) subtextInput.value = (post.postContent && post.postContent.imageSubtext) || post.imageSubtext || '';
+  if (badgeInput) badgeInput.value = (post.postContent && post.postContent.badgeText) || post.badgeText || '';
+  if (ctaInput) ctaInput.value = (post.postContent && post.postContent.ctaText) || post.ctaText || '';
+  if (sourceInput) sourceInput.value = (post.postContent && post.postContent.sourceName) || post.sourceName || '';
+  if (captionInput) captionInput.value = (post.postContent && post.postContent.content) || post.content || '';
+
+  // Theme & Layout
+  const selectLayout = document.getElementById('modal-select-layout');
+  if (selectLayout) {
+    selectLayout.innerHTML = LAYOUT_FAMILIES.map(family => 
+      `<option value="${family}" ${post.layoutFamily === family ? 'selected' : ''}>${family}</option>`
+    ).join('');
+  }
+
+  const selectPalette = document.getElementById('modal-select-palette');
+  if (selectPalette) {
+    selectPalette.innerHTML = PALETTES.map(p => 
+      `<option value="${p.name}" ${(post.colorPalette && post.colorPalette.toLowerCase() === p.name.toLowerCase()) ? 'selected' : ''}>${p.name}</option>`
+    ).join('');
+  }
+
+  const sliderHeadlineSize = document.getElementById('modal-slider-headline-size');
+  const valHeadlineSize = document.getElementById('modal-val-headline-size');
+  if (sliderHeadlineSize) {
+    sliderHeadlineSize.value = post.headlineFontSize || 40;
+    if (valHeadlineSize) valHeadlineSize.textContent = `${post.headlineFontSize || 40}px`;
+  }
+
+  const sliderSubtextSize = document.getElementById('modal-slider-subtext-size');
+  const valSubtextSize = document.getElementById('modal-val-subtext-size');
+  if (sliderSubtextSize) {
+    sliderSubtextSize.value = post.subtextFontSize || 22;
+    if (valSubtextSize) valSubtextSize.textContent = `${post.subtextFontSize || 22}px`;
+  }
+
+  // Avatar inputs
+  const selectAvatarPose = document.getElementById('modal-select-avatar-pose');
+  if (selectAvatarPose) {
+    const poses = [
+      { val: -1, text: '👤 My Personal Uploaded Photo (Settings)' },
+      { val: 0, text: '👔 Outfit 1 (Stage/Thumbs-up)' },
+      { val: 1, text: '🌲 Outfit 2 (Mountains Trail)' },
+      { val: 2, text: '🥂 Outfit 3 (Social Event)' },
+      { val: 3, text: '🎤 Outfit 4 (Podium Speech)' },
+      { val: 4, text: '☕ Outfit 5 (Cafe Workspace)' },
+      { val: 5, text: '🏙️ Outfit 6 (City Street Suit)' },
+      { val: 6, text: '🏔️ Outfit 7 (Mountains Pullover)' },
+      { val: 7, text: '🏫 Outfit 8 (University Campus)' },
+      { val: 8, text: '🎓 Outfit 9 (University Light Blue Blazer)' },
+      { val: 9, text: '💼 Outfit 10 (Boardroom Clasped Hands)' },
+      { val: 10, text: '🎙️ Outfit 11 (TEDx Speaker Stage)' },
+      { val: 11, text: '💻 Outfit 12 (Office Desk Workspace)' },
+      { val: 12, text: '☕ Outfit 13 (Cafe Neon Coffee Shop)' },
+      { val: 13, text: '⛳ Outfit 14 (Polo Shirt Valley)' },
+      { val: 14, text: '🖤 Outfit 15 (Black Hoodie Chalkboard)' },
+      { val: 15, text: '🎙️ Outfit 16 (Podcast Desk & Mic)' },
+      { val: 16, text: '👔 Outfit 17 (Corporate Window City Suit)' },
+      { val: 17, text: '🎓 Outfit 18 (Leadership Summit Speaker)' }
+    ];
+    const curPose = post.avatarStyleIdx !== undefined ? post.avatarStyleIdx : ((post.id - 1) % 18);
+    selectAvatarPose.innerHTML = poses.map(o => `<option value="${o.val}" ${curPose === o.val ? 'selected' : ''}>${o.text}</option>`).join('');
+  }
+
+  const selectAvatarPos = document.getElementById('modal-select-avatar-pos');
+  if (selectAvatarPos) selectAvatarPos.value = post.avatarPos || 'auto';
+
+  const selectAvatarShape = document.getElementById('modal-select-avatar-shape');
+  if (selectAvatarShape) selectAvatarShape.value = post.avatarShape || 'popout-circle';
+
+  const sliderAvatarSize = document.getElementById('modal-slider-avatar-size');
+  const valAvatarSize = document.getElementById('modal-val-avatar-size');
+  if (sliderAvatarSize) {
+    sliderAvatarSize.value = post.avatarSize || 340;
+    if (valAvatarSize) valAvatarSize.textContent = `${post.avatarSize || 340}px`;
+  }
+
+  const checkOverlay = document.getElementById('modal-check-overlay-avatar');
+  if (checkOverlay) checkOverlay.checked = (post.overlayAvatar !== false);
+
+  const checkBgRemove = document.getElementById('modal-check-bg-remove');
+  if (checkBgRemove) checkBgRemove.checked = !!post.removeAvatarBg;
+
+  // Canva filters
+  const sliderBright = document.getElementById('modal-slider-brightness');
+  const valBright = document.getElementById('modal-val-brightness');
+  if (sliderBright) {
+    sliderBright.value = post.brightness || 100;
+    if (valBright) valBright.textContent = `${post.brightness || 100}%`;
+  }
+
+  const sliderContrast = document.getElementById('modal-slider-contrast');
+  const valContrast = document.getElementById('modal-val-contrast');
+  if (sliderContrast) {
+    sliderContrast.value = post.contrast || 100;
+    if (valContrast) valContrast.textContent = `${post.contrast || 100}%`;
+  }
+
+  const sliderSat = document.getElementById('modal-slider-saturation');
+  const valSat = document.getElementById('modal-val-saturation');
+  if (sliderSat) {
+    sliderSat.value = post.saturation || 100;
+    if (valSat) valSat.textContent = `${post.saturation || 100}%`;
+  }
+}
+
+/**
+ * Setup All Event Listeners for the AI Studio Modal
+ */
+function initAiStudioEvents() {
+  const modal = document.getElementById('ai-studio-modal');
+  if (!modal) return;
+
+  const btnClose = document.getElementById('btn-close-ai-studio');
+  const btnDone = document.getElementById('btn-done-ai-studio');
+  if (btnClose) btnClose.addEventListener('click', closeAiStudio);
+  if (btnDone) btnDone.addEventListener('click', closeAiStudio);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeAiStudio();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+      closeAiStudio();
+    }
+  });
+
+  // Tab switching
+  const tabBtns = modal.querySelectorAll('.studio-tab-btn');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const targetTabId = btn.getAttribute('data-tab');
+      modal.querySelectorAll('.studio-tab-pane').forEach(pane => {
+        if (pane.id === targetTabId) {
+          pane.classList.remove('hidden');
+        } else {
+          pane.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // AI Prompt submission inside modal
+  const promptInput = document.getElementById('modal-ai-instruction-input');
+  const btnSubmit = document.getElementById('btn-modal-ai-submit');
+  const statusIndicator = document.getElementById('ai-modal-status');
+  const spinner = document.getElementById('modal-ai-spinner');
+
+  const handleModalAiSubmit = async () => {
+    if (!modalStudioActivePostId || !promptInput || !promptInput.value.trim()) return;
+    const txt = promptInput.value.trim();
+    if (btnSubmit) btnSubmit.disabled = true;
+    if (spinner) spinner.classList.remove('hidden');
+    if (statusIndicator) {
+      statusIndicator.textContent = 'Thinking...';
+      statusIndicator.style.color = '#f59e0b';
+    }
+
+    try {
+      await applyAiInstruction(modalStudioActivePostId, txt, (busy, status) => {
+        if (statusIndicator) {
+          statusIndicator.textContent = status;
+          statusIndicator.style.color = busy ? '#f59e0b' : '#4ade80';
+        }
+      });
+      promptInput.value = '';
+    } catch (err) {
+      showToast(`AI instruction error: ${err.message}`, 'error');
+    } finally {
+      if (btnSubmit) btnSubmit.disabled = false;
+      if (spinner) spinner.classList.add('hidden');
+      if (statusIndicator) {
+        statusIndicator.textContent = 'Ready';
+        statusIndicator.style.color = '#4ade80';
+      }
+    }
+  };
+
+  if (btnSubmit) btnSubmit.addEventListener('click', handleModalAiSubmit);
+  if (promptInput) {
+    promptInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
+        handleModalAiSubmit();
+      }
+    });
+  }
+
+  // Quick Chips inside modal
+  modal.querySelectorAll('.ai-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const prompt = chip.getAttribute('data-prompt');
+      if (prompt && modalStudioActivePostId) {
+        if (promptInput) promptInput.value = prompt;
+        handleModalAiSubmit();
+      }
+    });
+  });
+
+  // Helper to trigger save from modal inputs
+  const triggerModalSave = (isKeystroke = false) => {
+    if (!modalStudioActivePostId) return;
+    const activeEntry = state.history.find(item => item.date === state.activeDate);
+    if (!activeEntry || !activeEntry.posts) return;
+    const post = activeEntry.posts.find(p => p.id === modalStudioActivePostId);
+    if (!post) return;
+
+    const headlineInput = document.getElementById('modal-input-headline');
+    const subtextInput = document.getElementById('modal-input-subtext');
+    const badgeInput = document.getElementById('modal-input-badge');
+    const ctaInput = document.getElementById('modal-input-cta');
+    const sourceInput = document.getElementById('modal-input-source');
+    const captionInput = document.getElementById('modal-input-caption');
+    const selectLayout = document.getElementById('modal-select-layout');
+    const selectPalette = document.getElementById('modal-select-palette');
+    const sliderHeadlineSize = document.getElementById('modal-slider-headline-size');
+    const sliderSubtextSize = document.getElementById('modal-slider-subtext-size');
+    const selectAvatarPose = document.getElementById('modal-select-avatar-pose');
+    const selectAvatarPos = document.getElementById('modal-select-avatar-pos');
+    const selectAvatarShape = document.getElementById('modal-select-avatar-shape');
+    const sliderAvatarSize = document.getElementById('modal-slider-avatar-size');
+    const checkOverlay = document.getElementById('modal-check-overlay-avatar');
+    const checkBgRemove = document.getElementById('modal-check-bg-remove');
+    const sliderBright = document.getElementById('modal-slider-brightness');
+    const sliderContrast = document.getElementById('modal-slider-contrast');
+    const sliderSat = document.getElementById('modal-slider-saturation');
+
+    if (!post.postContent) post.postContent = {};
+    if (headlineInput) {
+      post.postContent.imageHeadline = headlineInput.value;
+      post.imageHeadline = headlineInput.value;
+    }
+    if (subtextInput) {
+      post.postContent.imageSubtext = subtextInput.value;
+      post.imageSubtext = subtextInput.value;
+    }
+    if (badgeInput) {
+      post.postContent.badgeText = badgeInput.value;
+      post.badgeText = badgeInput.value;
+    }
+    if (ctaInput) {
+      post.postContent.ctaText = ctaInput.value;
+      post.ctaText = ctaInput.value;
+    }
+    if (sourceInput) {
+      post.postContent.sourceName = sourceInput.value;
+      post.sourceName = sourceInput.value;
+    }
+    if (captionInput) {
+      post.postContent.content = captionInput.value;
+      post.content = captionInput.value;
+      const localDb = getLocalDb();
+      localDb.edits = localDb.edits || {};
+      localDb.edits[`${state.activeDate}-post-${post.id}`] = captionInput.value;
+      saveLocalDb(localDb);
+    }
+
+    if (selectLayout) post.layoutFamily = selectLayout.value;
+    if (selectPalette) post.colorPalette = selectPalette.value;
+    if (sliderHeadlineSize) post.headlineFontSize = parseInt(sliderHeadlineSize.value);
+    if (sliderSubtextSize) post.subtextFontSize = parseInt(sliderSubtextSize.value);
+    if (selectAvatarPose) post.avatarStyleIdx = parseInt(selectAvatarPose.value);
+    if (selectAvatarPos) post.avatarPos = selectAvatarPos.value;
+    if (selectAvatarShape) post.avatarShape = selectAvatarShape.value;
+    if (sliderAvatarSize) post.avatarSize = parseInt(sliderAvatarSize.value);
+    if (checkOverlay) post.overlayAvatar = checkOverlay.checked;
+    if (checkBgRemove) post.removeAvatarBg = checkBgRemove.checked;
+    if (sliderBright) post.brightness = parseInt(sliderBright.value);
+    if (sliderContrast) post.contrast = parseInt(sliderContrast.value);
+    if (sliderSat) post.saturation = parseInt(sliderSat.value);
+
+    redrawStudioCanvas();
+
+    if (!isKeystroke) {
+      saveDesignEdit(state.activeDate, post.id, {
+        layoutFamily: post.layoutFamily,
+        colorPalette: post.colorPalette,
+        avatarStyleIdx: post.avatarStyleIdx,
+        imageHeadline: post.postContent.imageHeadline,
+        imageSubtext: post.postContent.imageSubtext,
+        badgeText: post.postContent.badgeText,
+        ctaText: post.postContent.ctaText,
+        sourceName: post.postContent.sourceName,
+        headlineFontSize: post.headlineFontSize,
+        subtextFontSize: post.subtextFontSize,
+        overlayAvatar: post.overlayAvatar,
+        removeAvatarBg: post.removeAvatarBg,
+        avatarShape: post.avatarShape,
+        avatarPos: post.avatarPos,
+        avatarSize: post.avatarSize,
+        brightness: post.brightness,
+        contrast: post.contrast,
+        saturation: post.saturation
+      });
+
+      const mainCardCanvas = document.getElementById(`canvas-${post.id}`);
+      if (mainCardCanvas) {
+        drawCreative(mainCardCanvas, activeEntry.category, post.imageHeadline, post.imageSubtext, post.id, state.activeDate, Object.assign({}, post.layout || {}, post));
+      }
+    }
+  };
+
+  ['modal-input-headline', 'modal-input-subtext', 'modal-input-badge', 'modal-input-cta', 'modal-input-source', 'modal-input-caption'].forEach(id => {
+    const inp = document.getElementById(id);
+    if (inp) {
+      inp.addEventListener('input', () => triggerModalSave(true));
+      inp.addEventListener('change', () => triggerModalSave(false));
+    }
+  });
+
+  ['modal-select-layout', 'modal-select-palette', 'modal-select-avatar-pose', 'modal-select-avatar-pos', 'modal-select-avatar-shape', 'modal-check-overlay-avatar', 'modal-check-bg-remove'].forEach(id => {
+    const elInp = document.getElementById(id);
+    if (elInp) elInp.addEventListener('change', () => triggerModalSave(false));
+  });
+
+  const hSizeSlider = document.getElementById('modal-slider-headline-size');
+  if (hSizeSlider) {
+    hSizeSlider.addEventListener('input', () => {
+      const lbl = document.getElementById('modal-val-headline-size');
+      if (lbl) lbl.textContent = `${hSizeSlider.value}px`;
+      triggerModalSave(true);
+    });
+    hSizeSlider.addEventListener('change', () => triggerModalSave(false));
+  }
+
+  const sSizeSlider = document.getElementById('modal-slider-subtext-size');
+  if (sSizeSlider) {
+    sSizeSlider.addEventListener('input', () => {
+      const lbl = document.getElementById('modal-val-subtext-size');
+      if (lbl) lbl.textContent = `${sSizeSlider.value}px`;
+      triggerModalSave(true);
+    });
+    sSizeSlider.addEventListener('change', () => triggerModalSave(false));
+  }
+
+  const avSizeSlider = document.getElementById('modal-slider-avatar-size');
+  if (avSizeSlider) {
+    avSizeSlider.addEventListener('input', () => {
+      const lbl = document.getElementById('modal-val-avatar-size');
+      if (lbl) lbl.textContent = `${avSizeSlider.value}px`;
+      triggerModalSave(true);
+    });
+    avSizeSlider.addEventListener('change', () => triggerModalSave(false));
+  }
+
+  const bSlider = document.getElementById('modal-slider-brightness');
+  if (bSlider) {
+    bSlider.addEventListener('input', () => {
+      const lbl = document.getElementById('modal-val-brightness');
+      if (lbl) lbl.textContent = `${bSlider.value}%`;
+      triggerModalSave(true);
+    });
+    bSlider.addEventListener('change', () => triggerModalSave(false));
+  }
+
+  const cSlider = document.getElementById('modal-slider-contrast');
+  if (cSlider) {
+    cSlider.addEventListener('input', () => {
+      const lbl = document.getElementById('modal-val-contrast');
+      if (lbl) lbl.textContent = `${cSlider.value}%`;
+      triggerModalSave(true);
+    });
+    cSlider.addEventListener('change', () => triggerModalSave(false));
+  }
+
+  const satSlider = document.getElementById('modal-slider-saturation');
+  if (satSlider) {
+    satSlider.addEventListener('input', () => {
+      const lbl = document.getElementById('modal-val-saturation');
+      if (lbl) lbl.textContent = `${satSlider.value}%`;
+      triggerModalSave(true);
+    });
+    satSlider.addEventListener('change', () => triggerModalSave(false));
+  }
+
+  const resetFiltersBtn = document.getElementById('btn-modal-reset-filters');
+  if (resetFiltersBtn) {
+    resetFiltersBtn.addEventListener('click', () => {
+      if (bSlider) { bSlider.value = 100; document.getElementById('modal-val-brightness').textContent = '100%'; }
+      if (cSlider) { cSlider.value = 100; document.getElementById('modal-val-contrast').textContent = '100%'; }
+      if (satSlider) { satSlider.value = 100; document.getElementById('modal-val-saturation').textContent = '100%'; }
+      triggerModalSave(false);
+      showToast('🔄 Reset Canva filters to standard 100%', 'info');
+    });
+  }
+
+  // Canva File Input inside Modal
+  const canvaFileInput = document.getElementById('modal-input-canva-file');
+  if (canvaFileInput) {
+    canvaFileInput.addEventListener('change', async (e) => {
+      if (!modalStudioActivePostId || !e.target.files || !e.target.files[0]) return;
+      showToast('Attaching Canva graphic...', 'info');
+      const base64Data = await convertFileToBase64(e.target.files[0]);
+
+      const activeEntry = state.history.find(item => item.date === state.activeDate);
+      if (!activeEntry || !activeEntry.posts) return;
+      const post = activeEntry.posts.find(p => p.id === modalStudioActivePostId);
+      if (!post) return;
+
+      post.customCanvaGraphic = base64Data;
+      const localDb = getLocalDb();
+      localDb.designs = localDb.designs || {};
+      localDb.designs[`${state.activeDate}-post-${post.id}`] = localDb.designs[`${state.activeDate}-post-${post.id}`] || {};
+      localDb.designs[`${state.activeDate}-post-${post.id}`].customCanvaGraphic = base64Data;
+      saveLocalDb(localDb);
+
+      redrawStudioCanvas();
+      renderActiveDrafts();
+      showToast('✨ Custom Canva graphic attached!', 'success');
+    });
+  }
+
+  const removeCanvaBtn = document.getElementById('btn-modal-remove-canva');
+  if (removeCanvaBtn) {
+    removeCanvaBtn.addEventListener('click', () => {
+      if (!modalStudioActivePostId) return;
+      const activeEntry = state.history.find(item => item.date === state.activeDate);
+      if (!activeEntry || !activeEntry.posts) return;
+      const post = activeEntry.posts.find(p => p.id === modalStudioActivePostId);
+      if (!post) return;
+
+      delete post.customCanvaGraphic;
+      const localDb = getLocalDb();
+      if (localDb.designs && localDb.designs[`${state.activeDate}-post-${post.id}`]) {
+        delete localDb.designs[`${state.activeDate}-post-${post.id}`].customCanvaGraphic;
+        saveLocalDb(localDb);
+      }
+
+      redrawStudioCanvas();
+      renderActiveDrafts();
+      showToast('Removed custom Canva graphic. Reverted to canvas template.', 'info');
+    });
+  }
+
+  // Action Buttons inside Modal
+  const btnCopyText = document.getElementById('btn-modal-copy-text');
+  if (btnCopyText) {
+    btnCopyText.addEventListener('click', () => {
+      const cap = document.getElementById('modal-input-caption');
+      if (cap) {
+        navigator.clipboard.writeText(cap.value);
+        showToast('📋 Copied full post text to clipboard!', 'success');
+      }
+    });
+  }
+
+  const btnOpenCanva = document.getElementById('btn-modal-open-canva');
+  if (btnOpenCanva) {
+    btnOpenCanva.addEventListener('click', () => {
+      if (!modalStudioActivePostId) return;
+      const activeEntry = state.history.find(item => item.date === state.activeDate);
+      if (!activeEntry || !activeEntry.posts) return;
+      const post = activeEntry.posts.find(p => p.id === modalStudioActivePostId);
+      if (!post) return;
+
+      const hl = document.getElementById('modal-input-headline')?.value || post.imageHeadline || '';
+      const sub = document.getElementById('modal-input-subtext')?.value || post.imageSubtext || '';
+      const bg = document.getElementById('modal-input-badge')?.value || post.badgeText || '';
+      const cta = document.getElementById('modal-input-cta')?.value || post.ctaText || '';
+      let rawSrc = document.getElementById('modal-input-source')?.value || post.sourceName || 'Marketing Week';
+      let shortSrc = rawSrc.split(' - ')[0].split(' (')[0].split(' "')[0].replace(/^📌\s*Source:\s*/i, '').replace(/https?:\/\/[^\s]+/g, '').trim();
+
+      const payload = `[HEADLINE]\n${hl}\n\n[SUBTEXT]\n${sub}\n\n[TOP TAG / BADGE]\n${bg}\n\n[CTA BUTTON]\n${cta}\n\n[MATERIAL SOURCE / SOURCE OF UPDATE]\n${shortSrc}`;
+      navigator.clipboard.writeText(payload);
+      showToast('📋 Copied 5 Canva fields! Opening Canva...', 'success');
+      window.open(state.settings.canvaTemplateUrl || 'https://www.canva.com/', '_blank');
+    });
+  }
+
+  const btnDownloadImg = document.getElementById('btn-modal-download-img');
+  if (btnDownloadImg) {
+    btnDownloadImg.addEventListener('click', () => {
+      const canvas = document.getElementById('modal-studio-canvas');
+      if (canvas && modalStudioActivePostId) {
+        const link = document.createElement('a');
+        link.download = `linkedin_creative_${state.activeDate}_option_${modalStudioActivePostId}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        showToast('⬇️ Creative graphic downloaded!', 'success');
+      }
+    });
+  }
+}
+
 // Render Active Day's Drafts in Workspace
 function renderActiveDrafts() {
   const activeEntry = state.history.find(item => item.date === state.activeDate);
@@ -2352,21 +3281,69 @@ function renderActiveDrafts() {
         ` : ''}
       </div>
       
+      <!-- AI Natural Language Prompt Assistant -->
+      <div class="card-ai-bar">
+        <div class="ai-bar-title">
+          <span>✨ Instruct AI to Edit Creative &amp; Copy</span>
+          <span class="ai-bar-tag">Instant Natural Language</span>
+        </div>
+        <div class="ai-bar-input-row">
+          <input type="text" id="card-ai-input-${post.id}" class="card-ai-input" placeholder="e.g. 'Make headline punchier: 10X MARKETING LEVER', 'Change to Cyber Purple', 'Brighten Canva image'..." />
+          <button type="button" id="btn-card-ai-apply-${post.id}" class="btn btn-primary btn-ai-apply">
+            <span>⚡ Apply</span>
+          </button>
+        </div>
+        <div class="ai-bar-chips">
+          <button type="button" class="ai-chip" data-post-id="${post.id}" data-prompt="Make headline punchier and sharper">⚡ Punchy Headline</button>
+          <button type="button" class="ai-chip" data-post-id="${post.id}" data-prompt="Switch to Cyber Purple palette">🎨 Cyber Purple</button>
+          <button type="button" class="ai-chip" data-post-id="${post.id}" data-prompt="Switch to Emerald Green palette">💚 Emerald Green</button>
+          <button type="button" class="ai-chip" data-post-id="${post.id}" data-prompt="Remove avatar background cutout">✂️ Avatar Cutout</button>
+          <button type="button" class="ai-chip" data-post-id="${post.id}" data-prompt="Brighten Canva graphic by 20%">☀️ Brighten Graphic</button>
+          <button type="button" class="ai-chip" data-post-id="${post.id}" data-prompt="Shorten copy with punchy bullet points">📝 Punchy Copy</button>
+        </div>
+      </div>
+
       <!-- Visual Graphic Preview -->
       <div class="creative-container">
         <div class="creative-toggle-header active" id="toggle-creative-${post.id}">
-          <span>🖼 View & Customize Social Graphic Card</span>
+          <span>🖼 View &amp; Customize Social Graphic Card</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
         </div>
         <div class="creative-content-body" id="creative-body-${post.id}">
           <canvas id="canvas-${post.id}" width="1080" height="1080" class="creative-canvas"></canvas>
           
-          <!-- Design Customizer Panel -->
-          <div class="design-customizer-panel">
-            <h4 class="customizer-title">🎨 Customize Graphic Design</h4>
-            <div class="customizer-row">
-              <div class="customizer-field">
-                <label for="select-layout-${post.id}">Layout Template</label>
+          <!-- Canva Graphic & AI Studio Bar -->
+          <div class="canva-import-card">
+            <div class="canva-import-header">
+              <div class="canva-import-title">
+                <span>🎨 Canva Graphic &amp; AI Studio</span>
+                ${post.customCanvaGraphic ? `<span class="badge" style="background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); font-size: 0.72rem;">✨ Canva Graphic Attached</span>` : ''}
+              </div>
+              <button type="button" class="btn btn-sm btn-studio-launch" id="btn-open-studio-${post.id}" title="Open dedicated AI Creative Studio for advanced natural language adjustments &amp; lighting">
+                <span>✨ Open AI Studio</span>
+              </button>
+            </div>
+            <div class="canva-import-body">
+              <div style="display: flex; gap: 8px; align-items: center; width: 100%;">
+                <input type="file" id="input-canva-graphic-${post.id}" accept="image/*" class="customizer-input" style="font-size: 0.8rem; padding: 6px 10px; flex: 1;">
+                ${post.customCanvaGraphic ? `<button class="btn btn-sm" id="btn-remove-canva-${post.id}" type="button" style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; white-space: nowrap; font-size: 0.78rem;">🗑 Remove</button>` : ''}
+              </div>
+              <small style="color: #94a3b8; font-size: 0.75rem; display: block; margin-top: 4px;">Attach exported Canva graphic (PNG/JPG). It overrides the preview and publishes with your post.</small>
+            </div>
+          </div>
+
+          <!-- Collapsible Advanced Sliders Section -->
+          <div class="advanced-sliders-toggle" id="toggle-advanced-${post.id}">
+            <span class="advanced-toggle-text">⚙️ Advanced Manual Sliders &amp; Color Overrides</span>
+            <span class="advanced-toggle-icon">▼</span>
+          </div>
+          <div id="advanced-sliders-body-${post.id}" class="advanced-sliders-body hidden">
+            <!-- Design Customizer Panel -->
+            <div class="design-customizer-panel">
+              <h4 class="customizer-title">🎨 Fine-tune Graphic Design Sliders</h4>
+              <div class="customizer-row">
+                <div class="customizer-field">
+                  <label for="select-layout-${post.id}">Layout Template</label>
                 <select id="select-layout-${post.id}" class="customizer-select">
                   ${LAYOUT_FAMILIES.map(family => 
                     `<option value="${family}" ${post.layoutFamily === family ? 'selected' : ''}>${family}</option>`
@@ -2488,20 +3465,6 @@ function renderActiveDrafts() {
                 <textarea id="input-subtext-${post.id}" class="customizer-textarea" rows="2" placeholder="Enter subtext info...">${subtextText}</textarea>
               </div>
             </div>
-            <!-- Import Canva Graphic Image Section -->
-            <div class="customizer-row" style="margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--border-light);">
-              <div class="customizer-field full-width">
-                <label for="input-canva-graphic-${post.id}" style="color: #c084fc; font-weight: 600; display: flex; align-items: center; justify-content: space-between;">
-                  <span>📥 Import Final Canva Graphic Image (PNG / JPG)</span>
-                  ${post.customCanvaGraphic ? `<span class="badge" style="background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); font-size: 0.72rem;">✨ Canva Graphic Attached</span>` : ''}
-                </label>
-                <div style="display: flex; gap: 8px; align-items: center;">
-                  <input type="file" id="input-canva-graphic-${post.id}" accept="image/*" class="customizer-input" style="font-size: 0.8rem; padding: 6px 10px;">
-                  ${post.customCanvaGraphic ? `<button class="btn btn-sm" id="btn-remove-canva-${post.id}" type="button" style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; white-space: nowrap; font-size: 0.78rem;">🗑 Remove</button>` : ''}
-                </div>
-                <small style="color: #94a3b8; font-size: 0.75rem; display: block; margin-top: 4px;">Upload your finished graphic exported from Canva. It will replace the preview card and automatically publish to LinkedIn when you click "Select &amp; Publish".</small>
-              </div>
-            </div>
             <!-- Avatar Overlay, Position, Offset X/Y, Size, Rotation & Background Removal Controls -->
             <div class="customizer-row" style="margin-top: 12px; background: rgba(59, 130, 246, 0.06); padding: 14px 16px; border-radius: 12px; border: 1px solid rgba(59, 130, 246, 0.25); display: flex; flex-direction: column; gap: 12px;">
               <div style="font-weight: 700; font-size: 0.88rem; color: #93c5fd; display: flex; align-items: center; justify-content: space-between;">
@@ -2591,8 +3554,13 @@ function renderActiveDrafts() {
           </div>
         </div>
       </div>
+    </div>
 
       <div class="draft-card-actions" style="margin-top: 14px;">
+        <button class="btn btn-secondary btn-sm" id="btn-card-studio-${post.id}" title="Open full AI Creative Studio" style="background: rgba(236, 72, 153, 0.12); border-color: rgba(236, 72, 153, 0.3); color: #f472b6; font-weight: 600;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          ✨ AI Studio
+        </button>
         <button class="btn btn-secondary btn-sm" id="btn-copy-${post.id}">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
           Copy Content
@@ -2633,6 +3601,73 @@ function renderActiveDrafts() {
     `;
 
     el.draftsContainer.appendChild(cardEl);
+
+    // Card AI Instruction Bar Listener
+    const cardAiInput = cardEl.querySelector(`#card-ai-input-${post.id}`);
+    const cardAiBtn = cardEl.querySelector(`#btn-card-ai-apply-${post.id}`);
+    if (cardAiBtn && cardAiInput) {
+      cardAiBtn.addEventListener('click', async () => {
+        const text = cardAiInput.value.trim();
+        if (!text) {
+          showToast('Please type an instruction for the AI editor.', 'info');
+          return;
+        }
+        cardAiBtn.disabled = true;
+        cardAiBtn.innerHTML = '<span>⏳ Editing...</span>';
+        try {
+          await applyAiInstruction(post.id, text);
+        } finally {
+          cardAiBtn.disabled = false;
+          cardAiBtn.innerHTML = '<span>⚡ Apply</span>';
+        }
+      });
+
+      cardAiInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          cardAiBtn.click();
+        }
+      });
+    }
+
+    // Card AI Quick Prompt Chips
+    const aiChips = cardEl.querySelectorAll(`.ai-chip[data-post-id="${post.id}"]`);
+    aiChips.forEach(chip => {
+      chip.addEventListener('click', async () => {
+        const prompt = chip.getAttribute('data-prompt');
+        if (cardAiInput) cardAiInput.value = prompt;
+        chip.disabled = true;
+        chip.style.opacity = '0.6';
+        try {
+          await applyAiInstruction(post.id, prompt);
+        } finally {
+          chip.disabled = false;
+          chip.style.opacity = '1';
+        }
+      });
+    });
+
+    // Toggle Advanced Sliders Drawer
+    const toggleAdvanced = cardEl.querySelector(`#toggle-advanced-${post.id}`);
+    const advancedBody = cardEl.querySelector(`#advanced-sliders-body-${post.id}`);
+    if (toggleAdvanced && advancedBody) {
+      toggleAdvanced.addEventListener('click', () => {
+        const isHidden = advancedBody.classList.toggle('hidden');
+        toggleAdvanced.classList.toggle('active', !isHidden);
+        const icon = toggleAdvanced.querySelector('.advanced-toggle-icon');
+        if (icon) icon.textContent = isHidden ? '▼' : '▲';
+      });
+    }
+
+    // AI Studio Launch Buttons
+    const openStudioBtn = cardEl.querySelector(`#btn-open-studio-${post.id}`);
+    if (openStudioBtn) {
+      openStudioBtn.addEventListener('click', () => openAiStudio(post.id));
+    }
+    const cardStudioBtn = cardEl.querySelector(`#btn-card-studio-${post.id}`);
+    if (cardStudioBtn) {
+      cardStudioBtn.addEventListener('click', () => openAiStudio(post.id));
+    }
 
     // Toggle graphic card menu
     const toggleHeader = cardEl.querySelector(`#toggle-creative-${post.id}`);
@@ -4412,7 +5447,17 @@ function drawCreative(canvas, category, headline, subtext, postId = 1, dateStr =
   if (customGraphic) {
     const renderCustomWithAvatar = (cImg) => {
       ctx.clearRect(0, 0, w, h);
+
+      const bright = (customLayout && customLayout.brightness !== undefined) ? customLayout.brightness : 100;
+      const cont = (customLayout && customLayout.contrast !== undefined) ? customLayout.contrast : 100;
+      const sat = (customLayout && customLayout.saturation !== undefined) ? customLayout.saturation : 100;
+
+      ctx.save();
+      if (bright !== 100 || cont !== 100 || sat !== 100) {
+        ctx.filter = `brightness(${bright}%) contrast(${cont}%) saturate(${sat}%)`;
+      }
       ctx.drawImage(cImg, 0, 0, w, h);
+      ctx.restore();
 
       // Draw Avatar Photo Overlay on top of custom uploaded graphic if enabled!
       if (overlayAvatar) {
