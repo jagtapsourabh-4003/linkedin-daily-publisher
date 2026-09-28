@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-09-28",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "news-card",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Business Coach",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach, Executive boardroom, Looking at camera, Charcoal executive suit. Foreground: sleek glass desk with a pen, Midground: the manager, Background: blurred modern boardroom with city view. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Celebrities + in-house = smarter marketing.",
+          "content": "Brands often hire agencies for big celebrity campaigns. But Brooklinen, a bedding brand, did it differently. They brought their first celebrity-led campaign in-house. This gives them more control and a deeper understanding of their brand story. It’s about owning your narrative.\n\n1.  **Direct Control:** Keep creative direction tight, ensuring authenticity.\n2.  **Cost Efficiency:** Potentially save agency fees on production.\n3.  **Brand Alignment:** Build stronger, more genuine partnerships.\n\nWhat do you think about in-house creative for big campaigns?\n📌 Source: Marketing Dive (\"Campaign Trail: Brooklinen goes in-house for first celebrity-led effort\")\n#MarketingStrategy #BrandBuilding #InHouseMarketing",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Campaign Trail: Brooklinen goes in-house for first celebrity-led effort",
+          "imageHeadline": "*OWN* YOUR NARRATIVE",
+          "imageSubtext": "Brooklinen's smart move for celebrity campaigns.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "split-left",
+        "colorPalette": "Slate Blue",
+        "characterRole": "Strategy Consultant",
+        "environment": "Conference venue",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant, Conference venue, Presentation shot, Navy business suit. Foreground: a blurred podium microphone, Midground: the manager presenting, Background: soft-focus conference audience. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Chili's listens, then conquers.",
+          "content": "Chili's saw people complaining about high fast-food costs on social media. Instead of ignoring it, they adapted their marketing. They used this chatter to highlight their value and target new customer groups, like Mexican QSR diners. It’s a playbook for agile brand response.\n\n1.  **Listen Actively:** Monitor social media for consumer sentiment.\n2.  **Adapt Messaging:** Shift campaigns to address real-time concerns.\n3.  **Expand Reach:** Identify new target audiences based on insights.\n\nHow do you make your marketing truly reactive?\n📌 Source: Marketing Dive (\"How Chili’s marketing works — and why Mexican QSRs are its next target\")\n#MarketingPlaybook #AgileMarketing #ConsumerInsights",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "How Chili’s marketing works — and why Mexican QSRs are its next target",
+          "imageHeadline": "*LISTEN* & ADAPT",
+          "imageSubtext": "Chili's playbook for fast-food market gains.",
+          "badgeText": "GROWTH PLAYBOOK",
+          "ctaText": "GET THE FRAMEWORK"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Creative Director",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "Innovation Leader",
+        "environment": "Creative workspace",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader, Creative workspace, Full-body standing, White shirt with rolled sleeves. Foreground: a blurred whiteboard with design sketches, Midground: the manager standing confidently, Background: art supplies and vibrant mood board. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Gap's new \"Fashiontainment\" strategy.",
+          "content": "Gap just teamed up with a boy band for a huge \"Fashiontainment\" initiative. This isn't just a one-off ad. It's about creating deep experiences, special clothing, and social content. They're blending fashion with entertainment to connect with a new generation. It’s a smart way to stay relevant.\n\n1.  **Co-Create Experiences:** Go beyond ads with immersive events.\n2.  **Integrate Product:** Design specific merch for collaborations.\n3.  **Amplify Socially:** Build buzz through organic fan content.\n\nWhat's your favorite brand collaboration that nailed \"Fashiontainment\"?\n📌 Source: Marketing Dive (\"Gap rolls out Fashiontainment strategy with boy band collaboration\")\n#BrandStrategy #FashionMarketing #ContentInnovation",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Gap rolls out Fashiontainment strategy with boy band collaboration",
+          "imageHeadline": "*FASHION* + ENTERTAINMENT",
+          "imageSubtext": "Gap's bold move to capture Gen Z attention.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "DISCOVER MORE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Book Author",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Dark Forest",
+        "characterRole": "Author",
+        "environment": "Library",
+        "cameraStyle": "Looking away",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Author, Library, Looking away, Turtleneck with blazer. Foreground: stack of classic books, Midground: the manager looking thoughtfully, Background: blurred bookshelves. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "AI is changing entry-level jobs.",
+          "content": "Many entry-level marketing roles are changing, or even disappearing, because of AI. New grads face a challenge: what skills do they need? The industry needs to find solutions to bridge this gap. It's about adapting quickly to new tools and focusing on unique human skills.\n\n1.  **Focus on AI Skills:** Learn how to use AI tools effectively.\n2.  **Develop Soft Skills:** Emphasize creativity, strategy, and empathy.\n3.  **Seek Mentorship:** Connect with leaders navigating this shift.\n\nHow can we best prepare new talent for an AI-driven workforce?\n📌 Source: Digiday (\"‘Not hiring’ entry-level talent: Industry acknowledges runaway crisis brought on by introducing AI to the workforce\")\n#AIMarketing #FutureOfWork #CareerDevelopment",
+          "sourceName": "Digiday",
+          "sourceArticle": "‘Not hiring’ entry-level talent: Industry acknowledges runaway crisis brought on by introducing AI to the workforce",
+          "imageHeadline": "AI & *NEW* TALENT",
+          "imageSubtext": "The workforce shift for entry-level marketers.",
+          "badgeText": "AI INSIGHTS",
+          "ctaText": "EXPLORE TRENDS"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Innovation Lab Researcher",
+        "layoutFamily": "floating-cards",
+        "colorPalette": "Neon Cyan",
+        "characterRole": "Researcher",
+        "environment": "Innovation lab",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Researcher, Innovation lab, Interview setup, Luxury business casual. Foreground: an out-of-focus futuristic tablet screen, Midground: the manager in an interview setting, Background: glowing servers and research equipment. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Edit videos faster with AI.",
+          "content": "YouTube is making video editing simpler with its new \"Conversational Editing\" tool. Creators can now use plain language to guide edits. Imagine telling AI to \"cut this awkward pause\" or \"add a dynamic zoom here.\" It streamlines the creative workflow immensely.\n\n1.  **Natural Language Commands:** Speak your edits, no complex software.\n2.  **Faster Iteration:** Quickly refine projects with AI assistance.\n3.  **Focus on Story:** Spend more time on creative vision, less on clicks.\n\nWhat's one AI editing feature you wish you had right now?\n📌 Source: Social Media Today (\"YouTube previews AI-powered Conversational Editing\")\n#AIMarketing #VideoEditing #CreatorTools",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "YouTube previews AI-powered Conversational Editing",
+          "imageHeadline": "YOUTUBE'S *AI* EDITING",
+          "imageSubtext": "Simple words, powerful video creation workflows.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "SEE IT IN ACTION"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-09-27",
     "category": "ai",
     "posts": [
