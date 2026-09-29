@@ -2686,6 +2686,29 @@ function redrawStudioCanvas() {
       canvaBadge.classList.add('hidden');
     }
   }
+
+  const quickRemoveBtn = document.getElementById('btn-modal-quick-remove-canva');
+  if (quickRemoveBtn) {
+    if (post.customCanvaGraphic) {
+      quickRemoveBtn.classList.remove('hidden');
+    } else {
+      quickRemoveBtn.classList.add('hidden');
+    }
+  }
+
+  const tabRemoveBtn = document.getElementById('btn-modal-remove-canva');
+  if (tabRemoveBtn) {
+    if (post.customCanvaGraphic) {
+      tabRemoveBtn.classList.remove('hidden');
+    } else {
+      tabRemoveBtn.classList.add('hidden');
+    }
+  }
+
+  const canvaFileName = document.getElementById('modal-canva-file-name');
+  if (canvaFileName) {
+    canvaFileName.textContent = post.customCanvaGraphic ? '✅ Custom graphic active' : 'No file chosen';
+  }
 }
 
 /**
@@ -2787,6 +2810,28 @@ function updateStudioInputs(post) {
   if (sliderSat) {
     sliderSat.value = post.saturation || 100;
     if (valSat) valSat.textContent = `${post.saturation || 100}%`;
+  }
+
+  // Update Canva & direct file uploader states
+  const quickRemoveBtn = document.getElementById('btn-modal-quick-remove-canva');
+  if (quickRemoveBtn) {
+    if (post.customCanvaGraphic) {
+      quickRemoveBtn.classList.remove('hidden');
+    } else {
+      quickRemoveBtn.classList.add('hidden');
+    }
+  }
+  const tabRemoveBtn = document.getElementById('btn-modal-remove-canva');
+  if (tabRemoveBtn) {
+    if (post.customCanvaGraphic) {
+      tabRemoveBtn.classList.remove('hidden');
+    } else {
+      tabRemoveBtn.classList.add('hidden');
+    }
+  }
+  const canvaFileName = document.getElementById('modal-canva-file-name');
+  if (canvaFileName) {
+    canvaFileName.textContent = post.customCanvaGraphic ? '✅ Custom graphic active' : 'No file chosen';
   }
 }
 
@@ -3174,13 +3219,14 @@ function initAiStudioEvents() {
     });
   }
 
-  // Canva File Input inside Modal
-  const canvaFileInput = document.getElementById('modal-input-canva-file');
-  if (canvaFileInput) {
-    canvaFileInput.addEventListener('change', async (e) => {
+  // Direct "Choose from file" button below Live Studio Canvas
+  const directFileInput = document.getElementById('modal-input-direct-file');
+  if (directFileInput) {
+    directFileInput.addEventListener('change', async (e) => {
       if (!modalStudioActivePostId || !e.target.files || !e.target.files[0]) return;
-      showToast('Attaching Canva graphic...', 'info');
-      const base64Data = await convertFileToBase64(e.target.files[0]);
+      const file = e.target.files[0];
+      showToast(`Loading ${file.name}...`, 'info');
+      const base64Data = await convertFileToBase64(file);
 
       const activeEntry = state.history.find(item => item.date === state.activeDate);
       if (!activeEntry || !activeEntry.posts) return;
@@ -3195,8 +3241,63 @@ function initAiStudioEvents() {
       saveLocalDb(localDb);
 
       redrawStudioCanvas();
+      updateStudioInputs(post);
       renderActiveDrafts();
-      showToast('✨ Custom Canva graphic attached!', 'success');
+      showToast('📁 Custom graphic attached to post!', 'success');
+      directFileInput.value = '';
+    });
+  }
+
+  // Quick Revert button below Live Studio Canvas
+  const quickRemoveBtn = document.getElementById('btn-modal-quick-remove-canva');
+  if (quickRemoveBtn) {
+    quickRemoveBtn.addEventListener('click', () => {
+      if (!modalStudioActivePostId) return;
+      const activeEntry = state.history.find(item => item.date === state.activeDate);
+      if (!activeEntry || !activeEntry.posts) return;
+      const post = activeEntry.posts.find(p => p.id === modalStudioActivePostId);
+      if (!post) return;
+
+      delete post.customCanvaGraphic;
+      const localDb = getLocalDb();
+      if (localDb.designs && localDb.designs[`${state.activeDate}-post-${post.id}`]) {
+        delete localDb.designs[`${state.activeDate}-post-${post.id}`].customCanvaGraphic;
+        saveLocalDb(localDb);
+      }
+
+      redrawStudioCanvas();
+      updateStudioInputs(post);
+      renderActiveDrafts();
+      showToast('Custom graphic removed. Reverted to template.', 'info');
+    });
+  }
+
+  // Custom File / Canva File Input inside Tab 4
+  const canvaFileInput = document.getElementById('modal-input-canva-file');
+  if (canvaFileInput) {
+    canvaFileInput.addEventListener('change', async (e) => {
+      if (!modalStudioActivePostId || !e.target.files || !e.target.files[0]) return;
+      const file = e.target.files[0];
+      showToast(`Loading ${file.name}...`, 'info');
+      const base64Data = await convertFileToBase64(file);
+
+      const activeEntry = state.history.find(item => item.date === state.activeDate);
+      if (!activeEntry || !activeEntry.posts) return;
+      const post = activeEntry.posts.find(p => p.id === modalStudioActivePostId);
+      if (!post) return;
+
+      post.customCanvaGraphic = base64Data;
+      const localDb = getLocalDb();
+      localDb.designs = localDb.designs || {};
+      localDb.designs[`${state.activeDate}-post-${post.id}`] = localDb.designs[`${state.activeDate}-post-${post.id}`] || {};
+      localDb.designs[`${state.activeDate}-post-${post.id}`].customCanvaGraphic = base64Data;
+      saveLocalDb(localDb);
+
+      redrawStudioCanvas();
+      updateStudioInputs(post);
+      renderActiveDrafts();
+      showToast('📁 Custom graphic attached to post!', 'success');
+      canvaFileInput.value = '';
     });
   }
 
@@ -3217,8 +3318,9 @@ function initAiStudioEvents() {
       }
 
       redrawStudioCanvas();
+      updateStudioInputs(post);
       renderActiveDrafts();
-      showToast('Removed custom Canva graphic. Reverted to canvas template.', 'info');
+      showToast('Custom graphic removed. Reverted to template.', 'info');
     });
   }
 
@@ -3637,6 +3739,12 @@ function renderActiveDrafts() {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
             ✨ AI Creative Studio
           </button>
+          <label for="input-card-file-${post.id}" class="btn btn-secondary btn-sm" title="Upload custom graphic or Canva image directly" style="cursor: pointer; margin-bottom: 0;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            📁 File
+            <input type="file" id="input-card-file-${post.id}" accept="image/*" style="display: none;">
+          </label>
+          ${post.customCanvaGraphic ? `<button type="button" class="btn btn-destructive btn-sm" id="btn-card-remove-file-${post.id}" title="Remove custom file and revert to template">🗑 Revert</button>` : ''}
           <button type="button" class="btn btn-secondary btn-sm" id="btn-canva-${post.id}" title="Copy headline & open Canva editor">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
             Canva
@@ -3743,6 +3851,40 @@ function renderActiveDrafts() {
     const openStudioBtn = cardEl.querySelector(`#btn-open-studio-${post.id}`);
     if (openStudioBtn) {
       openStudioBtn.addEventListener('click', () => openAiStudio(post.id));
+    }
+
+    // Direct File upload from draft card
+    const cardFileInput = cardEl.querySelector(`#input-card-file-${post.id}`);
+    if (cardFileInput) {
+      cardFileInput.addEventListener('change', async (e) => {
+        if (!e.target.files || !e.target.files[0]) return;
+        const file = e.target.files[0];
+        showToast(`Loading ${file.name}...`, 'info');
+        const base64Data = await convertFileToBase64(file);
+        post.customCanvaGraphic = base64Data;
+        const localDb = getLocalDb();
+        localDb.designs = localDb.designs || {};
+        localDb.designs[`${state.activeDate}-post-${post.id}`] = localDb.designs[`${state.activeDate}-post-${post.id}`] || {};
+        localDb.designs[`${state.activeDate}-post-${post.id}`].customCanvaGraphic = base64Data;
+        saveLocalDb(localDb);
+        renderActiveDrafts();
+        showToast('📁 Custom graphic attached!', 'success');
+      });
+    }
+
+    // Revert custom file from draft card
+    const cardRemoveFileBtn = cardEl.querySelector(`#btn-card-remove-file-${post.id}`);
+    if (cardRemoveFileBtn) {
+      cardRemoveFileBtn.addEventListener('click', () => {
+        delete post.customCanvaGraphic;
+        const localDb = getLocalDb();
+        if (localDb.designs && localDb.designs[`${state.activeDate}-post-${post.id}`]) {
+          delete localDb.designs[`${state.activeDate}-post-${post.id}`].customCanvaGraphic;
+          saveLocalDb(localDb);
+        }
+        renderActiveDrafts();
+        showToast('Custom graphic removed. Reverted to template.', 'info');
+      });
     }
 
     // Open in Canva Button Listener
@@ -3918,16 +4060,18 @@ function updateHeaderBadge() {
 
 // Change background glow sizes and colors dynamically depending on the active post topic
 function applyTopicTheme(category) {
-  if (category === 'marketing') {
-    el.glow1.style.background = 'var(--grad-marketing)';
-    el.glow1.style.opacity = '0.12';
-    el.glow2.style.background = 'var(--grad-ai)';
-    el.glow2.style.opacity = '0.05';
-  } else {
-    el.glow1.style.background = 'var(--grad-ai)';
-    el.glow1.style.opacity = '0.12';
-    el.glow2.style.background = 'var(--grad-marketing)';
-    el.glow2.style.opacity = '0.05';
+  if (el.glow1 && el.glow1.style && el.glow2 && el.glow2.style) {
+    if (category === 'marketing') {
+      el.glow1.style.background = 'var(--grad-marketing)';
+      el.glow1.style.opacity = '0.12';
+      el.glow2.style.background = 'var(--grad-ai)';
+      el.glow2.style.opacity = '0.05';
+    } else {
+      el.glow1.style.background = 'var(--grad-ai)';
+      el.glow1.style.opacity = '0.12';
+      el.glow2.style.background = 'var(--grad-marketing)';
+      el.glow2.style.opacity = '0.05';
+    }
   }
 }
 

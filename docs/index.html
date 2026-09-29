@@ -15,6 +15,10 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Ambient background glow elements -->
+  <div id="glow-1" style="display:none;"></div>
+  <div id="glow-2" style="display:none;"></div>
+
   <!-- Main Shell Container -->
   <div class="app-container">
     <header class="app-header">
@@ -217,9 +221,15 @@
         <div class="ai-studio-preview-col">
           <div class="ai-studio-canvas-wrapper">
             <canvas id="modal-studio-canvas" width="1080" height="1080"></canvas>
-            <div id="modal-canva-badge" class="modal-canva-badge hidden">✨ Canva Graphic Active</div>
+            <div id="modal-canva-badge" class="modal-canva-badge hidden">✨ Custom Graphic Active</div>
           </div>
           <div class="ai-studio-preview-actions">
+            <label for="modal-input-direct-file" class="btn btn-primary btn-sm" id="btn-modal-choose-file-label" style="cursor: pointer; margin-bottom: 0;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span>📁 Choose from file</span>
+              <input type="file" id="modal-input-direct-file" accept="image/*" style="display: none;">
+            </label>
+            <button type="button" class="btn btn-destructive btn-sm hidden" id="btn-modal-quick-remove-canva" title="Remove custom graphic and revert to template">🗑 Revert</button>
             <button type="button" class="btn btn-outline btn-sm" id="btn-modal-toggle-avatar" title="1-Click toggle between clean minimal graphic and photo overlay">🚫 Clean (No Avatar)</button>
             <button type="button" class="btn btn-secondary btn-sm" id="btn-modal-copy-text">📋 Copy Text</button>
             <button type="button" class="btn btn-secondary btn-sm" id="btn-modal-open-canva">🎨 Open in Canva</button>
@@ -261,7 +271,7 @@
             <button type="button" class="studio-tab-btn active" data-tab="tab-text">📝 Copy &amp; Text</button>
             <button type="button" class="studio-tab-btn" data-tab="tab-theme">🎨 Theme &amp; Layout</button>
             <button type="button" class="studio-tab-btn" data-tab="tab-avatar">👤 Photo &amp; Avatar</button>
-            <button type="button" class="studio-tab-btn" data-tab="tab-canva">🖼️ Canva Graphic</button>
+            <button type="button" class="studio-tab-btn" data-tab="tab-canva">📁 Custom File / Canva</button>
           </div>
 
           <!-- Tab Content: Copy & Text -->
@@ -379,15 +389,19 @@
           <!-- Tab Content: Canva Graphic -->
           <div class="studio-tab-pane hidden" id="tab-canva">
             <div class="canva-studio-box">
-              <label style="color: #c084fc; font-weight: 700; font-size: 0.95rem; display: block; margin-bottom: 8px;">
-                📥 Import / Replace Canva Graphic Image
+              <label style="color: #60a5fa; font-weight: 700; font-size: 0.95rem; display: block; margin-bottom: 8px;">
+                📁 Choose File (Computer / Canva Export)
               </label>
               <p style="font-size: 0.82rem; color: #94a3b8; margin-bottom: 12px;">
-                Upload your creative exported from Canva. It will appear on this card and automatically publish when you click "Publish via Webhook".
+                Upload your graphic or design from your computer or exported from Canva. It will immediately replace the template graphic and be published via webhook.
               </p>
               <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-                <input type="file" id="modal-input-canva-file" accept="image/*" class="customizer-input" style="flex: 1;">
-                <button type="button" class="btn btn-secondary btn-sm" id="btn-modal-remove-canva" style="color: #f87171; border-color: rgba(239, 68, 68, 0.3);">🗑 Remove Canva Graphic</button>
+                <label for="modal-input-canva-file" class="btn btn-primary btn-sm" style="cursor: pointer; margin-bottom: 0;">
+                  <span>📁 Choose from file</span>
+                  <input type="file" id="modal-input-canva-file" accept="image/*" style="display: none;">
+                </label>
+                <span id="modal-canva-file-name" style="font-size: 0.82rem; color: #94a3b8;">No file chosen</span>
+                <button type="button" class="btn btn-destructive btn-sm hidden" id="btn-modal-remove-canva">🗑 Revert to Template</button>
               </div>
             </div>
 
