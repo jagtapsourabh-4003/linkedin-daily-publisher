@@ -1,5 +1,159 @@
 [
   {
+    "date": "2026-09-29",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Apple Keynote",
+        "layoutFamily": "phone-mockup",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Innovation Leader",
+        "environment": "Innovation lab",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader in an innovation lab. Close-up portrait. Smart casual blazer. Out-of-focus glass screen in foreground, innovation lab equipment in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "DoorDash picks WPP, again.",
+          "content": "Building strong agency relationships is key.\n\nDoorDash just named WPP its global media partner. This shows a deep trust in long-term collaboration.\n\nIt’s not just about one-off campaigns. It's about consistent messaging and global alignment.\n\n1.  **Trust Matters:** Find partners who understand your vision.\n2.  **Global Reach:** Ensure consistency across all markets.\n3.  **Long-Term Vision:** Invest in relationships, not just projects.\n\nAre you building long-term agency partnerships?\n\n📌 Source: Marketing Dive (\"DoorDash doubles down on WPP, naming agency global media partner\")\n🔗 https://www.marketingdive.com/news/doordash-doubles-down-on-wpp-naming-agency-global-media-partner/831473/\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "DoorDash doubles down on WPP, naming agency global media partner",
+          "imageHeadline": "*AGENCY* POWER PLAYS",
+          "imageSubtext": "Why DoorDash is investing in its global media partner.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://www.marketingdive.com/news/doordash-doubles-down-on-wpp-naming-agency-global-media-partner/831473/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "University Chancellor",
+        "layoutFamily": "asymmetrical-grid",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Author",
+        "environment": "Modern university campus",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Author on a Modern university campus. Full-body standing. Premium polo shirt. Out-of-focus campus plants in foreground, university buildings in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Master enterprise email marketing.",
+          "content": "Basic email tactics won't cut it for big teams.\n\nEnterprise email marketing needs advanced features to avoid shortfalls. Think beyond subject lines and clean lists.\n\nIt's about scale, automation, and deep personalization at every step.\n\n1.  **Hyper-Segmentation:** Target micro-audiences, not just broad groups.\n2.  **Journey Automation:** Build complex, trigger-based email flows.\n3.  **Predictive Content:** Use AI to suggest relevant content automatically.\n\nWhat's your biggest email marketing challenge at scale?\n\n📌 Source: HubSpot Marketing (\"Enterprise email marketing shortfalls and the upmarket features to avoid them\")\n🔗 https://blog.hubspot.com/marketing/advanced-email-marketing-challenges\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "Enterprise email marketing shortfalls and the upmarket features to avoid them",
+          "imageHeadline": "*EMAIL* MASTERY GUIDE",
+          "imageSubtext": "Upgrade your email strategy for enterprise-level success.",
+          "badgeText": "PLAYBOOK",
+          "ctaText": "GET REPORT",
+          "sourceUrl": "https://blog.hubspot.com/marketing/advanced-email-marketing-challenges"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Investor Pitch",
+        "layoutFamily": "split-left",
+        "colorPalette": "Teal White",
+        "characterRole": "Keynote Speaker",
+        "environment": "City skyline office",
+        "cameraStyle": "Walking shot",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Keynote Speaker in a City skyline office. Walking shot. White shirt with rolled sleeves. Out-of-focus modern desk in foreground, city skyline in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Hoka's brilliant marathon play.",
+          "content": "Hoka isn't just selling shoes; they're building a community.\n\nBy focusing on NYC Marathon runners, they create deep connections. This fosters real brand evangelists, not just buyers.\n\nIt's about authenticity and direct engagement with a passionate niche.\n\n1.  **Find Your Tribe:** Identify your most passionate users.\n2.  **Engage Deeply:** Support their journey, don't just sell to them.\n3.  **Create Evangelists:** Turn users into brand advocates naturally.\n\nHow do you build true brand loyalty?\n\n📌 Source: Digiday (\"Behind Hoka’s bid to own the NYC marathon’s run-up period\")\n🔗 https://digiday.com/marketing/behind-hokas-bid-to-own-the-nyc-marathons-run-up-period/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Digiday",
+          "sourceArticle": "Behind Hoka’s bid to own the NYC marathon’s run-up period",
+          "imageHeadline": "*MARATHON* BRANDING WIN",
+          "imageSubtext": "How Hoka creates shoe evangelists through community events.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://digiday.com/marketing/behind-hokas-bid-to-own-the-nyc-marathons-run-up-period/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Documentary Interview",
+        "layoutFamily": "diagonal-layout",
+        "colorPalette": "Slate Blue",
+        "characterRole": "Investor",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Investor on an Auditorium stage. Over-the-shoulder. Conference speaker outfit. Out-of-focus microphone in foreground, empty seats in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Creators now embrace AI.",
+          "content": "The creator economy quickly adopted AI.\n\nWhat was once met with suspicion is now a core strategy. Creators see AI not as a threat, but as a necessary tool.\n\nIt's about enhancing creativity and efficiency, not replacing the human touch.\n\n1.  **AI for Ideation:** Spark new ideas and content angles.\n2.  **Efficiency Gains:** Automate routine tasks to save time.\n3.  **Strategic Integration:** Use AI to grow, not just to assist.\n\nHow are creators in your niche using AI today?\n\n📌 Source: HubSpot Marketing (\"Inside the creator economy’s AI reckoning\")\n🔗 https://blog.hubspot.com/marketing/creator-economy-ai-reckoning\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "Inside the creator economy’s AI reckoning",
+          "imageHeadline": "*CREATORS* + AI NOW",
+          "imageSubtext": "How creators are strategically embracing AI to thrive.",
+          "badgeText": "AI CONCEPT",
+          "ctaText": "READ ARTICLE",
+          "sourceUrl": "https://blog.hubspot.com/marketing/creator-economy-ai-reckoning"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Magazine Editorial",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Monochrome Black",
+        "characterRole": "AI Consultant",
+        "environment": "Creative workspace",
+        "cameraStyle": "Looking away",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant in a Creative workspace. Looking away. Luxury business casual. Out-of-focus plants in foreground, modern art in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Win with AI search optimization.",
+          "content": "People now ask AI for direct answers, skipping blue links.\n\nOptimizing your website for AI search is a must-have skill. Monthly AI search visitors grew over 40% last year alone.\n\nIt's about being the direct answer, not just a search result.\n\n1.  **Clear Answers:** Provide concise, direct answers to questions.\n2.  **Structured Data:** Help AI understand your content context.\n3.  **Semantic SEO:** Optimize for topics and intent, not just keywords.\n\nIs your website ready for the AI search revolution?\n\n📌 Source: HubSpot Marketing (\"How to optimize your website for AI search\")\n🔗 https://blog.hubspot.com/marketing/optimize-website-ai-search\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "How to optimize your website for AI search",
+          "imageHeadline": "*AEO* WEBSITE BOOST",
+          "imageSubtext": "Practical steps to optimize for AI Answer Engines.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "GET THE GUIDE",
+          "sourceUrl": "https://blog.hubspot.com/marketing/optimize-website-ai-search"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-09-28",
     "category": "marketing",
     "posts": [
