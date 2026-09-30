@@ -1,5 +1,159 @@
 [
   {
+    "date": "2026-09-30",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "University Chancellor",
+        "layoutFamily": "asymmetrical-grid",
+        "colorPalette": "Teal White",
+        "characterRole": "Innovation Leader",
+        "environment": "Modern university campus",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, as an Innovation Leader, standing full-body in a modern university campus, wearing formal university attire. Foreground out-of-focus university crest on a podium, midground subject, background blurred modern university buildings under bright, natural lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Agency pricing is evolving fast.",
+          "content": "The old FTE-based model is outdated. It doesn't value outcomes. Smart clients demand value-based pricing. It's about results, not hours.\n\nHere’s why it matters now:\n1. Focus on value, not just effort.\n2. Align incentives with client success.\n3. Challenge old billing structures.\n\nWhat's your take on agency pricing? Is it time for a shift?\n\n📌 Source: Adweek (\"Horizon’s Bob Lord Takes Aim at Holdcos’ FTE Pricing Models: ‘It’s the Old System’\")\n#MarketingStrategy #AgencyLife #ValuePricing",
+          "sourceName": "Adweek",
+          "sourceArticle": "Horizon’s Bob Lord Takes Aim at Holdcos’ FTE Pricing Models: ‘It’s the Old System’",
+          "imageHeadline": "*VALUE* OVER HOURS",
+          "imageSubtext": "New agency pricing models for 2024.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "READ THE REPORT",
+          "sourceUrl": "https://www.adweek.com/agencies/horizons-bob-lord-takes-aim-at-holdcos-fte-pricing-models-its-the-old-system/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Documentary Interview",
+        "layoutFamily": "phone-mockup",
+        "colorPalette": "Slate Blue",
+        "characterRole": "Author",
+        "environment": "City skyline office",
+        "cameraStyle": "Walking shot",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, as an Author, walking through a city skyline office, wearing a white shirt with rolled sleeves. Foreground out-of-focus glass office partition, midground subject, background blurred city views under soft, professional lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Holidays end, self-care begins.",
+          "content": "After gifting season, people shift focus. They look for personal treats. Brands should adapt content quickly. Pinterest shows this trend clearly.\n\nHere’s how to pivot your campaigns:\n1. Anticipate consumer mood shifts.\n2. Promote 'treat yourself' products.\n3. Update ad creatives post-holidays.\n\nHow do you adjust your campaigns post-holiday?\n\n📌 Source: Social Media Today (\"Pinterest offers post-holiday marketing tips\")\n#MarketingTips #ConsumerBehavior #PostHoliday",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "Pinterest offers post-holiday marketing tips",
+          "imageHeadline": "*POST-HOLIDAY* REFRESH",
+          "imageSubtext": "Pivot your marketing from gifting to self-care.",
+          "badgeText": "MARKETING PLAYBOOK",
+          "ctaText": "GET INSIGHTS",
+          "sourceUrl": "https://www.socialmediatoday.com/news/pinterest-offers-post-holiday-marketing-tips/831715/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Investor Pitch",
+        "layoutFamily": "split-left",
+        "colorPalette": "Monochrome Black",
+        "characterRole": "Investor",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, as an Investor, captured over-the-shoulder on an auditorium stage, wearing a conference speaker outfit. Foreground out-of-focus microphone, midground subject, background blurred audience seating under focused stage lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Campari wins with culture.",
+          "content": "Iconic brands stay relevant. They tap into cultural moments. Campari blends heritage with new trends. This keeps them fresh and exciting.\n\nTo build a culturally resonant brand:\n1. Know your brand's core story.\n2. Connect to current cultural trends.\n3. Evolve without losing identity.\n\nWhat brands inspire you culturally?\n\n📌 Source: Adweek (\"From Heritage to Happy Hour: How Campari Keeps Iconic Brands Moving With Culture\")\n#BrandStrategy #CulturalMarketing #Campari",
+          "sourceName": "Adweek",
+          "sourceArticle": "From Heritage to Happy Hour: How Campari Keeps Iconic Brands Moving With Culture",
+          "imageHeadline": "*BRAND* CULTURAL SHIFT",
+          "imageSubtext": "How iconic brands stay relevant and fresh.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "EXPLORE CAMPAIGN",
+          "sourceUrl": "https://www.adweek.com/brand-marketing/from-heritage-to-happy-hour-how-campari-keeps-iconic-brands-moving-with-culture/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Creative Director",
+        "layoutFamily": "floating-cards",
+        "colorPalette": "Neon Cyan",
+        "characterRole": "Technology Evangelist",
+        "environment": "Creative workspace",
+        "cameraStyle": "Looking away",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, as a Technology Evangelist, looking away in a creative workspace, wearing luxury business casual attire. Foreground out-of-focus design sketches, midground subject, background blurred vibrant collaborative space under bright, artistic lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "AI bridges offline, online.",
+          "content": "Companies like Kroger use smart AI. These AI tools connect physical stores to apps. They help customers seamlessly shop. It makes life easier for everyone.\n\nHow agentic AI can help your business:\n1. Use AI for smooth customer journeys.\n2. Connect in-store and online data.\n3. Simplify complex ordering processes.\n\nHow does AI help your daily shopping experience?\n\n📌 Source: Digiday (\"How Kroger, Giant Eagle and DoorDash are building their agentic AI assistants\")\n#AIMarketing #AgenticAI #CustomerExperience",
+          "sourceName": "Digiday",
+          "sourceArticle": "How Kroger, Giant Eagle and DoorDash are building their agentic AI assistants",
+          "imageHeadline": "*AGENTIC* AI ASSISTANTS",
+          "imageSubtext": "Connecting physical and digital shopping experiences.",
+          "badgeText": "AI MARKETING",
+          "ctaText": "LEARN MORE",
+          "sourceUrl": "https://digiday.com/marketing/how-kroger-giant-eagle-and-doordash-are-building-their-agentic-ai-assistants/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Business Strategist",
+        "layoutFamily": "layered-depth",
+        "colorPalette": "Premium Burgundy",
+        "characterRole": "Researcher",
+        "environment": "Innovation lab",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, as a Researcher, in an interview setup in an innovation lab, wearing a modern startup hoodie. Foreground out-of-focus research equipment, midground subject, background blurred futuristic tech displays under cool, analytical lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Meta's new AI for SMBs.",
+          "content": "Small businesses need smart tools. Meta Muse AI helps them work better. It streamlines tasks and links with other apps. This boosts productivity for small teams.\n\nSimplify your workflow with AI:\n1. Automate routine tasks with AI.\n2. Integrate AI with existing workflows.\n3. Improve small business efficiency.\n\nWhat AI tool boosts your daily workflow?\n\n📌 Source: Social Media Today (\"Meta launches Muse AI for SMBs\")\n#AIWorkflow #SMBTools #MetaAI",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "Meta launches Muse AI for SMBs",
+          "imageHeadline": "*SMB* AI WORKFLOW",
+          "imageSubtext": "Meta's Muse AI simplifies small business tasks.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "GET STARTED",
+          "sourceUrl": "https://www.socialmediatoday.com/news/meta-launches-muse-ai-for-smbs/831714/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-09-29",
     "category": "marketing",
     "posts": [
