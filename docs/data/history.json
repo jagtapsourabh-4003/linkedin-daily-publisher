@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-10-02",
+    "category": "ai",
+    "posts": [
+      {
+        "designArchetype": "University Chancellor",
+        "layoutFamily": "phone-mockup",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "Author",
+        "environment": "Modern university campus",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Author, Modern university campus, Close-up portrait, Formal university attire, foreground element out-of-focus book or pen, midground subject the author, background element modern university building, shallow depth of field or blur to create cinematic depth. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "AI cost vs. value.",
+          "content": "We all know AI can be powerful. But is it just another expense?\nMany companies are moving past experiments.\nThey want AI to be a true asset, not just a line item.\n\nHere’s how to make AI pay off:\n1.  **Focus on specific problems:** Don't just implement AI. Solve a clear business need.\n2.  **Measure impact:** Track how AI reduces costs or boosts revenue directly.\n3.  **Optimize usage:** Don't always go for the most powerful (and expensive) models. Use what fits.\n\nAre you seeing a return on your AI investments yet?\n\n📌 Source: MIT Technology Review (\"Making AI an asset, not an expense\")\n#AIMarketing #BusinessStrategy #ROITips",
+          "sourceName": "MIT Technology Review",
+          "sourceArticle": "Making AI an asset, not an expense",
+          "imageHeadline": "*AI* ROI CHALLENGE",
+          "imageSubtext": "How to make AI a profit center, not a cost.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Book Author",
+        "layoutFamily": "asymmetrical-grid",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "University Chancellor",
+        "environment": "Library",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. University Chancellor, Library, Half-body portrait, White shirt with rolled sleeves, foreground element out-of-focus ancient globe, midground subject the university chancellor, background element blurred bookshelves, shallow depth of field or blur to create cinematic depth. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "New roles for humans with AI.",
+          "content": "AI isn't taking jobs. It's changing them.\nWe need to rethink human roles in an AI-powered world.\nIt's about working *with* AI, not against it.\n\nHere are the new human roles emerging:\n1.  **The Architect:** Designs the AI system and strategy. Sets goals.\n2.  **The Orchestrator:** Manages multiple AI agents. Ensures they work together.\n3.  **The Apprentice:** Learns from AI, then refines and improves it.\n\nWhich role fits your team best right now?\n\n📌 Source: Marketing AI Institute (\"Rethinking Work in the Age of AI and Agents\")\n#AITransformation #FutureOfWork #MarketingOps",
+          "sourceName": "Marketing AI Institute",
+          "sourceArticle": "Rethinking Work in the Age of AI and Agents",
+          "imageHeadline": "YOUR *AI* TEAM ROLES",
+          "imageSubtext": "Human skills for AI-powered marketing.",
+          "badgeText": "AI FRAMEWORK",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Apple Keynote",
+        "layoutFamily": "split-left",
+        "colorPalette": "Neon Cyan",
+        "characterRole": "Investor",
+        "environment": "Conference venue",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Investor, Conference venue, Full-body standing, Smart casual blazer, foreground element out-of-focus glass podium, midground subject the investor, background element blurred conference hall, shallow depth of field or blur to create cinematic depth. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Try on clothes virtually.",
+          "content": "Ever wished you could try on clothes before buying online?\nChatGPT just made it easier.\nNo more guessing sizes or imagining fits.\n\nThis changes online shopping forever:\n1.  **Upload a photo:** Use your own image for a personalized try-on.\n2.  **See the fit:** Virtually view how clothes and accessories look on you.\n3.  **Save favorites:** Keep track of items you like for later purchase.\n\nImagine the impact on returns and customer satisfaction!\n\n📌 Source: TechCrunch (\"ChatGPT can now virtually try on clothes for you\")\n#Ecommerce #AIFashion #ChatGPT",
+          "sourceName": "TechCrunch",
+          "sourceArticle": "ChatGPT can now virtually try on clothes for you",
+          "imageHeadline": "VIRTUAL *FASHION* FITTING",
+          "imageSubtext": "ChatGPT transforms online shopping experience.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "TRY NEW FEATURE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Investor Pitch",
+        "layoutFamily": "split-right",
+        "colorPalette": "Monochrome Black",
+        "characterRole": "Professor",
+        "environment": "Startup hub",
+        "cameraStyle": "Walking shot",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor, Startup hub, Walking shot, Premium polo shirt, foreground element out-of-focus coffee cup, midground subject the professor, background element vibrant startup office, shallow depth of field or blur to create cinematic depth. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Who pays for AI mistakes?",
+          "content": "AI agents are powerful, but what if they go rogue?\nRecent cyberattacks show the risks are real.\nThe question of liability becomes critical when autonomous AI acts.\n\nHere’s what we need to consider:\n1.  **Developer responsibility:** Are the creators of the AI liable for its actions?\n2.  **User accountability:** Does the company deploying the AI hold responsibility?\n3.  **Policy & regulation:** Clear laws are needed to define fault and ensure recourse.\n\nHow do you think we should handle AI liability?\n\n📌 Source: MIT Technology Review (\"Who’s liable when AI agents go rogue?\")\n#AILiability #AIEthics #LegalTech",
+          "sourceName": "MIT Technology Review",
+          "sourceArticle": "Who’s liable when AI agents go rogue?",
+          "imageHeadline": "AI *LIABILITY* DEBATE",
+          "imageSubtext": "The legal challenge of autonomous AI agents.",
+          "badgeText": "AI ETHICS",
+          "ctaText": "LEARN MORE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Documentary Interview",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Corporate Executive",
+        "environment": "City skyline office",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive, City skyline office, Presentation shot, Charcoal executive suit, foreground element out-of-focus modern glass desk, midground subject the corporate executive, background element blurred city view, shallow depth of field or blur to create cinematic depth. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "AI reads for you.",
+          "content": "Google's new Guided Vision in Gemini Live is a game-changer.\nPoint your phone camera, and AI gives you real-time audio descriptions.\nThis helps read fine print, navigate new places, and understand surroundings.\n\nHere's how this AI workflow helps:\n1.  **Instant verbal cues:** Get audio details for anything your camera sees.\n2.  **Accessibility boost:** Makes text and visuals accessible to more people.\n3.  **Real-world utility:** Perfect for reading labels, instructions, or menus.\n\nHow would this AI feature enhance your daily tasks?\n\n📌 Source: The Verge (\"Google’s new Guided Vision feature can help you read the fine print\")\n#AIAccessibility #GoogleGemini #AITools",
+          "sourceName": "The Verge",
+          "sourceArticle": "Google’s new Guided Vision feature can help you read the fine print",
+          "imageHeadline": "AI *GUIDED* VISION",
+          "imageSubtext": "Gemini Live’s real-time visual assistance.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "DISCOVER FEATURE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-10-01",
     "category": "marketing",
     "posts": [
