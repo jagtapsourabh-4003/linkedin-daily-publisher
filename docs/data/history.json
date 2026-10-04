@@ -1,5 +1,159 @@
 [
   {
+    "date": "2026-10-04",
+    "category": "marketing",
+    "posts": [
+      {
+        "id": 1,
+        "designArchetype": "Marketing Concept Explained",
+        "layoutFamily": "news-card",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Business Advisor",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Advisor in a Technology command center, Looking at camera, Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Concept Explained",
+          "hook": "Don't compete with rivals. Make them irrelevant.",
+          "content": "Don't compete with rivals. Make them irrelevant.\n\nIf you describe your service as \"SEO Agency\" or \"Business Coach,\" prospective buyers will immediately compare your price to 10 other agencies.\n\nTo escape the commodity trap, become a Category of One:\n\n- Instead of \"Copywriter\" -> \"The Onboarding Email Specialist for B2B SaaS\"\n- Instead of \"Accountant\" -> \"The Tax Strategist for YouTube Creators\"\n\nWhen you narrow your focus:\n1. You have zero direct competition.\n2. You can charge premium rates.\n3. Clients seek you out because you solve their exact specific problem.\n\nNiche down until you are the only option.\n\nWhat makes you a Category of One?\n\n📌 Source: Marketing Week (\"The Category of One: How radical positioning eliminates comparison shopping.\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Week",
+          "sourceArticle": "The Category of One: How radical positioning eliminates comparison shopping.",
+          "sourceUrl": "https://www.marketingweek.com/",
+          "imageHeadline": "CATEGORY *OF ONE*",
+          "imageSubtext": "Eliminate competition with radical positioning.",
+          "badgeText": "POSITIONING",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 2,
+        "designArchetype": "Marketing Framework Playbook",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Business Coach",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Coach in a Executive boardroom, Presentation shot, Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "How to turn a $0 reader into a $5,000 client.",
+          "content": "How to turn a $0 reader into a $5,000 client.\n\nYou cannot expect a stranger on the internet to immediately buy your $5,000 premium consulting package.\n\nYou need a Value Ladder:\n\n1. Rung 1 (Free Value): LinkedIn posts, free guides, or checklists (Builds awareness).\n2. Rung 2 (Low-Ticket Entry): A $20 book or $50 mini-course (Converts readers into buyers).\n3. Rung 3 (Core Offer): A $500 implementation program (Solves their main problem).\n4. Rung 4 (Premium Tier): High-touch 1-on-1 coaching or done-for-you service ($5,000+).\n\nAs trust increases, the value and price increase together.\n\nWhat does your current Value Ladder look like?\n\n📌 Source: Marketing Week (\"The Value Ladder Framework: Structuring offers with increasing value and price at each stage.\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Week",
+          "sourceArticle": "The Value Ladder Framework: Structuring offers with increasing value and price at each stage.",
+          "sourceUrl": "https://www.marketingweek.com/",
+          "imageHeadline": "THE *VALUE LADDER*",
+          "imageSubtext": "Ascend customers from free value to premium tiers.",
+          "badgeText": "OFFER ARCHITECTURE",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 3,
+        "designArchetype": "World of Marketing Strategy",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Startup Founder",
+        "environment": "Luxury office",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Startup Founder in a Luxury office, Half-body portrait, Smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Meta’s Muse app surpasses 5M downloads and 3M weekly users",
+          "content": "Meta’s Muse app surpasses 5M downloads and 3M weekly users\n\nOnly 23 apps have historically been able to report that level of uptake, according to Yahoo Finance and data from Sensor Tower.\n\n3 key takeaways for your brand:\n1. Pay attention to early shifts before they become mainstream.\n2. Adapt your core strategy to protect your reach and conversion rates.\n3. Test and iterate on real data instead of assumptions.\n\nHow is your team responding to this shift?\n\n📌 Source: Social Media Today (\"Meta’s Muse app surpasses 5M downloads and 3M weekly users\")\n\n#Marketing #Strategy #Growth #Leadership",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "Meta’s Muse app surpasses 5M downloads and 3M weekly users",
+          "sourceUrl": "https://www.socialmediatoday.com/news/metas-muse-app-surpasses-5m-downloads-and-3m-weekly-users/831979/",
+          "imageHeadline": "METAS *MUSE* APP",
+          "imageSubtext": "Only 23 apps have historically been able to report that leve.",
+          "badgeText": "MARKETING UPDATE",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 4,
+        "designArchetype": "AI Marketing Concept",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Podcast Host",
+        "environment": "Podcast studio",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Podcast Host in a Podcast studio, Sitting at desk, Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Ads of the Week: 10 Campaigns That Caught Our Eye, From On to KFC",
+          "content": "Ads of the Week: 10 Campaigns That Caught Our Eye, From On to KFC\n\nOn, KFC, Reebok, Chili’s, the Washington Post, and more are behind the week’s most notable ads.\n\n3 key takeaways for your brand:\n1. Pay attention to early shifts before they become mainstream.\n2. Adapt your core strategy to protect your reach and conversion rates.\n3. Test and iterate on real data instead of assumptions.\n\nHow is your team responding to this shift?\n\n📌 Source: Adweek (\"Ads of the Week: 10 Campaigns That Caught Our Eye, From On to KFC\")\n\n#Marketing #Strategy #Growth #Leadership",
+          "sourceName": "Adweek",
+          "sourceArticle": "Ads of the Week: 10 Campaigns That Caught Our Eye, From On to KFC",
+          "sourceUrl": "https://www.adweek.com/creativity/ads-of-the-week-10-campaigns-that-caught-our-eye-from-on-to-kfc/",
+          "imageHeadline": "ADS *THE* WEEK",
+          "imageSubtext": "On, KFC, Reebok, Chili’s, the Washington Post, and more are .",
+          "badgeText": "AI CONCEPT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 5,
+        "designArchetype": "AI Marketing Workflow",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Speaker in a Auditorium stage, Speaking on stage, Conference speaker outfit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "How AI is changing the value of media",
+          "content": "How AI is changing the value of media\n\nBharat Sharma, co-founder and COO, Affinity Global AI is no longer a novelty in media planning. Everyone knows about it, and most organizations are already using it in some form. What’s more interesting is what AI is beginning to expose about the advertising industry itself. The industry has moved p\n\n3 key takeaways for your brand:\n1. Pay attention to early shifts before they become mainstream.\n2. Adapt your core strategy to protect your reach and conversion rates.\n3. Test and iterate on real data instead of assumptions.\n\nHow is your team responding to this shift?\n\n📌 Source: Digiday (\"How AI is changing the value of media\")\n\n#Marketing #Strategy #Growth #Leadership",
+          "sourceName": "Digiday",
+          "sourceArticle": "How AI is changing the value of media",
+          "sourceUrl": "https://digiday.com/sponsored/how-ai-is-changing-the-value-of-media/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss",
+          "imageHeadline": "HOW *CHANGING* THE",
+          "imageSubtext": "Bharat Sharma, co-founder and COO, Affinity Global AI is no .",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-10-03",
     "category": "marketing",
     "posts": [
