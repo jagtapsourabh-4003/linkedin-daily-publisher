@@ -1,5 +1,159 @@
 [
   {
+    "date": "2026-10-05",
+    "category": "marketing",
+    "posts": [
+      {
+        "id": 1,
+        "designArchetype": "Marketing Concept Explained",
+        "layoutFamily": "news-card",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Business Advisor",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Advisor in a Technology command center, Looking at camera, Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Concept Explained",
+          "hook": "Why one marketing message is never enough.",
+          "content": "Why one marketing message is never enough.\n\nOne of the oldest rules in advertising is the Rule of 7:\nA prospective buyer needs to hear your message at least 7 times before they take action.\n\nWhy?\n- Touch 1-2: They don't notice.\n- Touch 3-4: They notice, but have no urgent need.\n- Touch 5-6: They remember your brand when a problem arises.\n- Touch 7: They finally trust you enough to reach out and buy!\n\nIf you only mention your offer once a month, you will never build momentum.\n\nShow up consistently across posts, emails, comments, and case studies.\n\nRepetition builds conviction.\n\nHow many touchpoints does your average customer have before buying?\n\n📌 Source: Marketing Week (\"The Rule of 7: Why prospects need an average of 7 touchpoints before making a buying decision.\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Week",
+          "sourceArticle": "The Rule of 7: Why prospects need an average of 7 touchpoints before making a buying decision.",
+          "sourceUrl": "https://www.marketingweek.com/",
+          "imageHeadline": "THE *RULE OF 7*",
+          "imageSubtext": "Why repetition is the secret to conversion.",
+          "badgeText": "MARKETING LAW",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 2,
+        "designArchetype": "Marketing Framework Playbook",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Business Coach",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Coach in a Executive boardroom, Presentation shot, Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Funnels lose steam. Growth loops feed themselves.",
+          "content": "Funnels lose steam. Growth loops feed themselves.\n\nTraditional funnels are linear:\nYou pour money into top of funnel ads -> a few people buy -> the process stops. You have to keep pouring more money to get more sales.\n\nA Growth Loop is circular:\nNew User joins -> Uses the product -> Creates an asset (like a shared document or public review) -> Attracts the next New User!\n\nClassic examples:\n- Typeform: \"Powered by Typeform\" at the bottom of every survey.\n- Calendly: Every time someone sends an invite, the recipient discovers Calendly.\n\nDesign moments in your service where existing clients naturally expose your brand to new prospects.\n\nCan you turn your customer experience into a self-feeding growth loop?\n\n📌 Source: Marketing Week (\"Growth Loops (Reforge): Designing product loops where the output of one user becomes the input for the next.\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Week",
+          "sourceArticle": "Growth Loops (Reforge): Designing product loops where the output of one user becomes the input for the next.",
+          "sourceUrl": "https://www.marketingweek.com/",
+          "imageHeadline": "GROWTH *LOOPS*",
+          "imageSubtext": "Build self-reinforcing acquisition engines.",
+          "badgeText": "MODERN GROWTH",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 3,
+        "designArchetype": "World of Marketing Strategy",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Startup Founder",
+        "environment": "Luxury office",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Startup Founder in a Luxury office, Half-body portrait, Smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "GTM tech stack: What it is and how to build one",
+          "content": "GTM tech stack: What it is and how to build one\n\nA GTM tech stack is the set of tools a company uses to run go-to-market activities across the customer lifecycle. These platforms can make it easier to connect marketing, sales, and customer teams. But, if the pieces aren’t compatible, a business’ GTM tech stack is just another layer of disconnected\n\n3 key takeaways for your brand:\n1. Pay attention to early shifts before they become mainstream.\n2. Adapt your core strategy to protect your reach and conversion rates.\n3. Test and iterate on real data instead of assumptions.\n\nHow is your team responding to this shift?\n\n📌 Source: HubSpot Marketing (\"GTM tech stack: What it is and how to build one\")\n\n#Marketing #Strategy #Growth #Leadership",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "GTM tech stack: What it is and how to build one",
+          "sourceUrl": "https://blog.hubspot.com/marketing/gtm-tech-stack",
+          "imageHeadline": "GTM *TECH* STACK",
+          "imageSubtext": "A GTM tech stack is the set of tools a company uses to run g.",
+          "badgeText": "MARKETING UPDATE",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 4,
+        "designArchetype": "AI Marketing Concept",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Podcast Host",
+        "environment": "Podcast studio",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Podcast Host in a Podcast studio, Sitting at desk, Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Diagnosing AEO gaps: A content audit guide",
+          "content": "Diagnosing AEO gaps: A content audit guide\n\nIf you’ve been asked to diagnose and fix AEO gaps, the first step is to conduct an audit. For most brands, an AEO gap is any reason an AI answer engine can’t (or won’t) use its page as a source.\n\n3 key takeaways for your brand:\n1. Pay attention to early shifts before they become mainstream.\n2. Adapt your core strategy to protect your reach and conversion rates.\n3. Test and iterate on real data instead of assumptions.\n\nHow is your team responding to this shift?\n\n📌 Source: HubSpot Marketing (\"Diagnosing AEO gaps: A content audit guide\")\n\n#Marketing #Strategy #Growth #Leadership",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "Diagnosing AEO gaps: A content audit guide",
+          "sourceUrl": "https://blog.hubspot.com/marketing/fix-aeo-gaps",
+          "imageHeadline": "DIAGNOSING *AEO* GAPS",
+          "imageSubtext": "If you’ve been asked to diagnose and fix AEO gaps, the first.",
+          "badgeText": "AI CONCEPT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 5,
+        "designArchetype": "AI Marketing Workflow",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Speaker in a Auditorium stage, Speaking on stage, Conference speaker outfit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "How to use vector embeddings in AEO",
+          "content": "How to use vector embeddings in AEO\n\nA vector embedding is a numerical representation created by an embedding model. The model converts text into a list of numbers that can be compared with other vectors, helping a retrieval system find passages with similar meaning even when they use different words. Semantic retrieval is one tool AI \n\n3 key takeaways for your brand:\n1. Pay attention to early shifts before they become mainstream.\n2. Adapt your core strategy to protect your reach and conversion rates.\n3. Test and iterate on real data instead of assumptions.\n\nHow is your team responding to this shift?\n\n📌 Source: HubSpot Marketing (\"How to use vector embeddings in AEO\")\n\n#Marketing #Strategy #Growth #Leadership",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "How to use vector embeddings in AEO",
+          "sourceUrl": "https://blog.hubspot.com/marketing/vector-embeddings-aeo",
+          "imageHeadline": "HOW *USE* VECTOR",
+          "imageSubtext": "A vector embedding is a numerical representation created by .",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-10-04",
     "category": "marketing",
     "posts": [
