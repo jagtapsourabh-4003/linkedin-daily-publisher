@@ -3825,6 +3825,9 @@ function initAiAvatarEvents() {
   }
 }
 
+// Set of open card editing drawer post IDs (preserves open state across card redraws)
+const openCardDrawers = new Set();
+
 // Render Active Day's Drafts in Workspace
 function renderActiveDrafts() {
   const activeEntry = state.history.find(item => item.date === state.activeDate);
@@ -3997,7 +4000,7 @@ function renderActiveDrafts() {
 
         <!-- Right: Social Creative Graphic Preview -->
         <div class="card-creative-col">
-          <div class="creative-frame" id="frame-canvas-${post.id}" title="Click to open AI Creative Studio">
+          <div class="creative-frame" id="frame-canvas-${post.id}" title="Interactive Canvas: Drag photo to move, handles to resize, wheel to zoom">
             <canvas id="canvas-${post.id}" width="1080" height="1080" class="creative-canvas"></canvas>
             ${post.customCanvaGraphic ? `<span class="canva-active-badge">✨ Canva Active</span>` : ''}
           </div>
@@ -4011,10 +4014,136 @@ function renderActiveDrafts() {
               <button type="button" class="btn btn-outline btn-xs" id="btn-toggle-no-avatar-${post.id}" title="${isNoAvatar ? 'Enable photo avatar on this creative' : 'Remove avatar for a clean, minimal graphic'}">
                 ${isNoAvatar ? '➕ Add Avatar' : '🚫 Clean Post'}
               </button>
+              <button type="button" class="btn ${openCardDrawers.has(post.id) ? 'btn-primary' : 'btn-outline'} btn-xs" id="btn-card-toggle-edit-${post.id}" title="Adjust avatar position, size, shape and custom file placing directly on this card">
+                ⚙️ Adjust Photo
+              </button>
               <button type="button" class="btn btn-outline btn-xs btn-open-avatar-gen" data-post-id="${post.id}" title="Generate new custom avatar with AI">
                 ✨ AI Gen
               </button>
             </div>
+          </div>
+
+          <!-- Inline Avatar & Image Placing Drawer directly on this card -->
+          <div class="card-avatar-edit-drawer ${openCardDrawers.has(post.id) ? '' : 'hidden'}" id="card-avatar-edit-drawer-${post.id}" style="margin-top: 8px; padding: 10px; background: rgba(15, 23, 42, 0.78); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; font-size: 0.8rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <strong style="color: #38bdf8; font-size: 0.78rem;">🎯 Adjust Photo &amp; Placement</strong>
+              <button type="button" class="btn btn-secondary btn-xs" id="btn-card-reset-pos-${post.id}" style="font-size: 0.7rem; padding: 2px 7px;">🔄 Reset Position</button>
+            </div>
+
+            <!-- Shape & Position Anchor -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+              <div>
+                <label style="color: #94a3b8; font-size: 0.72rem; display: block; margin-bottom: 2px;">Anchor</label>
+                <select id="select-avatar-pos-${post.id}" class="customizer-select" style="font-size: 0.74rem; padding: 3px 6px;">
+                  <option value="auto" ${(!post.avatarPos || post.avatarPos === 'auto') ? 'selected' : ''}>Auto</option>
+                  <option value="bottom-right" ${post.avatarPos === 'bottom-right' ? 'selected' : ''}>Bottom Right</option>
+                  <option value="bottom-left" ${post.avatarPos === 'bottom-left' ? 'selected' : ''}>Bottom Left</option>
+                  <option value="top-right" ${post.avatarPos === 'top-right' ? 'selected' : ''}>Top Right</option>
+                  <option value="top-left" ${post.avatarPos === 'top-left' ? 'selected' : ''}>Top Left</option>
+                  <option value="center" ${post.avatarPos === 'center' ? 'selected' : ''}>Center</option>
+                </select>
+              </div>
+              <div>
+                <label style="color: #94a3b8; font-size: 0.72rem; display: block; margin-bottom: 2px;">Frame Shape</label>
+                <select id="select-avatar-shape-${post.id}" class="customizer-select" style="font-size: 0.74rem; padding: 3px 6px;">
+                  <option value="popout-circle" ${(!post.avatarShape || post.avatarShape === 'popout-circle') ? 'selected' : ''}>🔘 Pop-Out Circle</option>
+                  <option value="card" ${post.avatarShape === 'card' ? 'selected' : ''}>🔲 Card Frame</option>
+                  <option value="cutout" ${post.avatarShape === 'cutout' ? 'selected' : ''}>👤 Silhouette Cutout</option>
+                  <option value="phone" ${post.avatarShape === 'phone' ? 'selected' : ''}>📱 3D Phone</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Size Slider -->
+            <div style="margin-bottom: 8px;">
+              <div style="display: flex; justify-content: space-between; color: #cbd5e1; font-size: 0.73rem;">
+                <span>Photo Size</span>
+                <span id="val-avatar-size-${post.id}">${post.avatarSize || 340}px</span>
+              </div>
+              <input type="range" id="slider-avatar-size-${post.id}" min="100" max="950" step="10" value="${post.avatarSize || 340}" class="customizer-range">
+            </div>
+
+            <!-- Move X and Y Sliders -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+              <div>
+                <div style="display: flex; justify-content: space-between; color: #cbd5e1; font-size: 0.72rem;">
+                  <span>Nudge X</span>
+                  <span id="val-avatar-x-${post.id}">${post.avatarOffsetX || 0}px</span>
+                </div>
+                <input type="range" id="slider-avatar-x-${post.id}" min="-600" max="600" step="5" value="${post.avatarOffsetX || 0}" class="customizer-range">
+              </div>
+              <div>
+                <div style="display: flex; justify-content: space-between; color: #cbd5e1; font-size: 0.72rem;">
+                  <span>Nudge Y</span>
+                  <span id="val-avatar-y-${post.id}">${post.avatarOffsetY || 0}px</span>
+                </div>
+                <input type="range" id="slider-avatar-y-${post.id}" min="-600" max="600" step="5" value="${post.avatarOffsetY || 0}" class="customizer-range">
+              </div>
+            </div>
+
+            <!-- Rotation & Proportions -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <div>
+                <div style="display: flex; justify-content: space-between; color: #cbd5e1; font-size: 0.72rem;">
+                  <span>Tilt Rotation</span>
+                  <span id="val-avatar-rot-${post.id}">${post.avatarRotation || 0}°</span>
+                </div>
+                <input type="range" id="slider-avatar-rot-${post.id}" min="-180" max="180" step="2" value="${post.avatarRotation || 0}" class="customizer-range">
+              </div>
+              <div>
+                <div style="display: flex; justify-content: space-between; color: #cbd5e1; font-size: 0.72rem;">
+                  <span>Width %</span>
+                  <span id="val-avatar-scalex-${post.id}">${post.avatarScaleX !== undefined ? post.avatarScaleX : 100}%</span>
+                </div>
+                <input type="range" id="slider-avatar-scalex-${post.id}" min="50" max="160" step="2" value="${post.avatarScaleX !== undefined ? post.avatarScaleX : 100}" class="customizer-range">
+              </div>
+            </div>
+
+            ${post.customCanvaGraphic ? `
+            <!-- Custom Image Placing Controls (when computer file is attached) -->
+            <div style="margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span style="color: #60a5fa; font-size: 0.74rem; font-weight: 700;">📁 Background Image Placing</span>
+                <button type="button" class="btn btn-secondary btn-xs" id="btn-card-reset-placing-${post.id}" style="font-size: 0.68rem; padding: 1px 5px;">🔄 Reset</button>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 6px;">
+                <div>
+                  <label style="color: #94a3b8; font-size: 0.7rem; display: block; margin-bottom: 2px;">Fit Mode</label>
+                  <select id="select-card-fit-${post.id}" class="customizer-select" style="font-size: 0.72rem; padding: 2px 4px;">
+                    <option value="cover" ${(!post.customFileFit || post.customFileFit === 'cover') ? 'selected' : ''}>Cover (Square)</option>
+                    <option value="contain" ${post.customFileFit === 'contain' ? 'selected' : ''}>Contain (Full)</option>
+                    <option value="stretch" ${post.customFileFit === 'stretch' ? 'selected' : ''}>Stretch</option>
+                  </select>
+                </div>
+                <div>
+                  <div style="display: flex; justify-content: space-between; color: #cbd5e1; font-size: 0.7rem;">
+                    <span>Zoom</span>
+                    <span id="val-card-zoom-${post.id}">${post.customFileZoom !== undefined ? post.customFileZoom : 100}%</span>
+                  </div>
+                  <input type="range" id="slider-card-zoom-${post.id}" min="50" max="250" step="5" value="${post.customFileZoom !== undefined ? post.customFileZoom : 100}" class="customizer-range">
+                </div>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                <div>
+                  <div style="display: flex; justify-content: space-between; color: #cbd5e1; font-size: 0.7rem;">
+                    <span>Pan X</span>
+                    <span id="val-card-panx-${post.id}">${post.customFilePanX || 0}px</span>
+                  </div>
+                  <input type="range" id="slider-card-panx-${post.id}" min="-600" max="600" step="5" value="${post.customFilePanX || 0}" class="customizer-range">
+                </div>
+                <div>
+                  <div style="display: flex; justify-content: space-between; color: #cbd5e1; font-size: 0.7rem;">
+                    <span>Pan Y</span>
+                    <span id="val-card-pany-${post.id}">${post.customFilePanY || 0}px</span>
+                  </div>
+                  <input type="range" id="slider-card-pany-${post.id}" min="-600" max="600" step="5" value="${post.customFilePanY || 0}" class="customizer-range">
+                </div>
+              </div>
+            </div>` : ''}
+
+            <p style="font-size: 0.7rem; color: #64748b; margin: 8px 0 0 0; text-align: center;">
+              💡 <em>Drag photo directly on canvas to reposition, drag handles to resize!</em>
+            </p>
           </div>
         </div>
       </div>
@@ -4072,13 +4201,217 @@ function renderActiveDrafts() {
       makeCanvasInteractive(canvas, post, cardEl, activeEntry.category, state.activeDate);
     }
 
-    // Canvas click opens AI Studio for convenient editing
-    const frame = cardEl.querySelector(`#frame-canvas-${post.id}`);
-    if (frame) {
-      frame.addEventListener('click', (e) => {
-        if (!canvas || !canvas._isDraggingAvatar) {
-          openAiStudio(post.id);
+    // Stop click events on canvas from bubbling or triggering any navigation
+    if (canvas) {
+      canvas.addEventListener('click', (e) => e.stopPropagation());
+    }
+
+    // Helper to redraw this specific card canvas
+    const redrawThisCard = () => {
+      drawCreative(canvas, activeEntry.category, headlineText, subtextText, post.id, activeEntry.date, Object.assign({}, post.layout || {}, post));
+    };
+
+    // Toggle inline avatar & placement drawer on this card
+    const toggleDrawerBtn = cardEl.querySelector(`#btn-card-toggle-edit-${post.id}`);
+    const drawerEl = cardEl.querySelector(`#card-avatar-edit-drawer-${post.id}`);
+    if (toggleDrawerBtn && drawerEl) {
+      toggleDrawerBtn.addEventListener('click', () => {
+        const isHidden = drawerEl.classList.toggle('hidden');
+        if (!isHidden) {
+          openCardDrawers.add(post.id);
+          toggleDrawerBtn.classList.remove('btn-outline');
+          toggleDrawerBtn.classList.add('btn-primary');
+        } else {
+          openCardDrawers.delete(post.id);
+          toggleDrawerBtn.classList.remove('btn-primary');
+          toggleDrawerBtn.classList.add('btn-outline');
         }
+      });
+    }
+
+    // Card Drawer Controls
+    const selPos = cardEl.querySelector(`#select-avatar-pos-${post.id}`);
+    if (selPos) {
+      selPos.addEventListener('change', (e) => {
+        post.avatarPos = e.target.value;
+        redrawThisCard();
+        saveDesignEdit(state.activeDate, post.id, { avatarPos: post.avatarPos });
+      });
+    }
+
+    const selShape = cardEl.querySelector(`#select-avatar-shape-${post.id}`);
+    if (selShape) {
+      selShape.addEventListener('change', (e) => {
+        post.avatarShape = e.target.value;
+        redrawThisCard();
+        saveDesignEdit(state.activeDate, post.id, { avatarShape: post.avatarShape });
+      });
+    }
+
+    const sldSize = cardEl.querySelector(`#slider-avatar-size-${post.id}`);
+    const lblSize = cardEl.querySelector(`#val-avatar-size-${post.id}`);
+    if (sldSize) {
+      sldSize.addEventListener('input', (e) => {
+        post.avatarSize = parseInt(e.target.value, 10);
+        if (lblSize) lblSize.textContent = `${post.avatarSize}px`;
+        redrawThisCard();
+      });
+      sldSize.addEventListener('change', () => {
+        saveDesignEdit(state.activeDate, post.id, { avatarSize: post.avatarSize });
+      });
+    }
+
+    const sldX = cardEl.querySelector(`#slider-avatar-x-${post.id}`);
+    const lblX = cardEl.querySelector(`#val-avatar-x-${post.id}`);
+    if (sldX) {
+      sldX.addEventListener('input', (e) => {
+        post.avatarOffsetX = parseInt(e.target.value, 10);
+        if (lblX) lblX.textContent = `${post.avatarOffsetX}px`;
+        redrawThisCard();
+      });
+      sldX.addEventListener('change', () => {
+        saveDesignEdit(state.activeDate, post.id, { avatarOffsetX: post.avatarOffsetX });
+      });
+    }
+
+    const sldY = cardEl.querySelector(`#slider-avatar-y-${post.id}`);
+    const lblY = cardEl.querySelector(`#val-avatar-y-${post.id}`);
+    if (sldY) {
+      sldY.addEventListener('input', (e) => {
+        post.avatarOffsetY = parseInt(e.target.value, 10);
+        if (lblY) lblY.textContent = `${post.avatarOffsetY}px`;
+        redrawThisCard();
+      });
+      sldY.addEventListener('change', () => {
+        saveDesignEdit(state.activeDate, post.id, { avatarOffsetY: post.avatarOffsetY });
+      });
+    }
+
+    const sldRot = cardEl.querySelector(`#slider-avatar-rot-${post.id}`);
+    const lblRot = cardEl.querySelector(`#val-avatar-rot-${post.id}`);
+    if (sldRot) {
+      sldRot.addEventListener('input', (e) => {
+        post.avatarRotation = parseInt(e.target.value, 10);
+        if (lblRot) lblRot.textContent = `${post.avatarRotation}°`;
+        redrawThisCard();
+      });
+      sldRot.addEventListener('change', () => {
+        saveDesignEdit(state.activeDate, post.id, { avatarRotation: post.avatarRotation });
+      });
+    }
+
+    const sldScaleX = cardEl.querySelector(`#slider-avatar-scalex-${post.id}`);
+    const lblScaleX = cardEl.querySelector(`#val-avatar-scalex-${post.id}`);
+    if (sldScaleX) {
+      sldScaleX.addEventListener('input', (e) => {
+        post.avatarScaleX = parseInt(e.target.value, 10);
+        if (lblScaleX) lblScaleX.textContent = `${post.avatarScaleX}%`;
+        redrawThisCard();
+      });
+      sldScaleX.addEventListener('change', () => {
+        saveDesignEdit(state.activeDate, post.id, { avatarScaleX: post.avatarScaleX });
+      });
+    }
+
+    const btnResetPos = cardEl.querySelector(`#btn-card-reset-pos-${post.id}`);
+    if (btnResetPos) {
+      btnResetPos.addEventListener('click', () => {
+        post.avatarOffsetX = 0;
+        post.avatarOffsetY = 0;
+        post.avatarRotation = 0;
+        post.avatarScaleX = 100;
+        post.avatarScaleY = 100;
+        post.avatarPos = 'auto';
+
+        if (selPos) selPos.value = 'auto';
+        if (sldX) { sldX.value = 0; if (lblX) lblX.textContent = '0px'; }
+        if (sldY) { sldY.value = 0; if (lblY) lblY.textContent = '0px'; }
+        if (sldRot) { sldRot.value = 0; if (lblRot) lblRot.textContent = '0°'; }
+        if (sldScaleX) { sldScaleX.value = 100; if (lblScaleX) lblScaleX.textContent = '100%'; }
+
+        redrawThisCard();
+        saveDesignEdit(state.activeDate, post.id, {
+          avatarOffsetX: 0,
+          avatarOffsetY: 0,
+          avatarRotation: 0,
+          avatarScaleX: 100,
+          avatarScaleY: 100,
+          avatarPos: 'auto'
+        });
+        showToast('🎯 Photo position & rotation reset!', 'info');
+      });
+    }
+
+    // Custom File Placing Controls on Card
+    const selCardFit = cardEl.querySelector(`#select-card-fit-${post.id}`);
+    if (selCardFit) {
+      selCardFit.addEventListener('change', (e) => {
+        post.customFileFit = e.target.value;
+        redrawThisCard();
+        saveDesignEdit(state.activeDate, post.id, { customFileFit: post.customFileFit });
+      });
+    }
+
+    const sldCardZoom = cardEl.querySelector(`#slider-card-zoom-${post.id}`);
+    const lblCardZoom = cardEl.querySelector(`#val-card-zoom-${post.id}`);
+    if (sldCardZoom) {
+      sldCardZoom.addEventListener('input', (e) => {
+        post.customFileZoom = parseInt(e.target.value, 10);
+        if (lblCardZoom) lblCardZoom.textContent = `${post.customFileZoom}%`;
+        redrawThisCard();
+      });
+      sldCardZoom.addEventListener('change', () => {
+        saveDesignEdit(state.activeDate, post.id, { customFileZoom: post.customFileZoom });
+      });
+    }
+
+    const sldCardPanX = cardEl.querySelector(`#slider-card-panx-${post.id}`);
+    const lblCardPanX = cardEl.querySelector(`#val-card-panx-${post.id}`);
+    if (sldCardPanX) {
+      sldCardPanX.addEventListener('input', (e) => {
+        post.customFilePanX = parseInt(e.target.value, 10);
+        if (lblCardPanX) lblCardPanX.textContent = `${post.customFilePanX}px`;
+        redrawThisCard();
+      });
+      sldCardPanX.addEventListener('change', () => {
+        saveDesignEdit(state.activeDate, post.id, { customFilePanX: post.customFilePanX });
+      });
+    }
+
+    const sldCardPanY = cardEl.querySelector(`#slider-card-pany-${post.id}`);
+    const lblCardPanY = cardEl.querySelector(`#val-card-pany-${post.id}`);
+    if (sldCardPanY) {
+      sldCardPanY.addEventListener('input', (e) => {
+        post.customFilePanY = parseInt(e.target.value, 10);
+        if (lblCardPanY) lblCardPanY.textContent = `${post.customFilePanY}px`;
+        redrawThisCard();
+      });
+      sldCardPanY.addEventListener('change', () => {
+        saveDesignEdit(state.activeDate, post.id, { customFilePanY: post.customFilePanY });
+      });
+    }
+
+    const btnResetPlacing = cardEl.querySelector(`#btn-card-reset-placing-${post.id}`);
+    if (btnResetPlacing) {
+      btnResetPlacing.addEventListener('click', () => {
+        post.customFileFit = 'cover';
+        post.customFileZoom = 100;
+        post.customFilePanX = 0;
+        post.customFilePanY = 0;
+
+        if (selCardFit) selCardFit.value = 'cover';
+        if (sldCardZoom) { sldCardZoom.value = 100; if (lblCardZoom) lblCardZoom.textContent = '100%'; }
+        if (sldCardPanX) { sldCardPanX.value = 0; if (lblCardPanX) lblCardPanX.textContent = '0px'; }
+        if (sldCardPanY) { sldCardPanY.value = 0; if (lblCardPanY) lblCardPanY.textContent = '0px'; }
+
+        redrawThisCard();
+        saveDesignEdit(state.activeDate, post.id, {
+          customFileFit: 'cover',
+          customFileZoom: 100,
+          customFilePanX: 0,
+          customFilePanY: 0
+        });
+        showToast('🔄 Reset graphic placement to centered cover!', 'info');
       });
     }
 
@@ -5325,6 +5658,8 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
   const labelScaleX = cardEl.querySelector(`#val-avatar-scalex-${post.id}`);
   const sliderScaleY = cardEl.querySelector(`#slider-avatar-scaley-${post.id}`);
   const labelScaleY = cardEl.querySelector(`#val-avatar-scaley-${post.id}`);
+  const sliderRot = cardEl.querySelector(`#slider-avatar-rot-${post.id}`);
+  const labelRot = cardEl.querySelector(`#val-avatar-rot-${post.id}`);
 
   const getHeadlineVal = () => {
     const el = cardEl.querySelector(`#input-headline-${post.id}`);
@@ -5473,6 +5808,9 @@ function makeCanvasInteractive(canvas, post, cardEl, category, activeDate) {
         if (sliderScaleY) sliderScaleY.value = post.avatarScaleY;
         if (labelScaleY) labelScaleY.textContent = `${post.avatarScaleY}%`;
       }
+
+      if (sliderRot) sliderRot.value = post.avatarRotation || 0;
+      if (labelRot) labelRot.textContent = `${post.avatarRotation || 0}°`;
 
       scheduleRedraw(true);
     }
