@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-10-06",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "LinkedIn Thought Leader",
+        "layoutFamily": "split-left",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Strategy Consultant",
+        "environment": "Creative workspace",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant in a creative workspace, close-up portrait, wearing luxury business casual. Out-of-focus plants in foreground, subject in midground, creative workspace background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Don't just chase data. Chase culture.",
+          "content": "Many brands get stuck optimizing for every single click. Poppi, the popular soda brand, shows us another way: focus on cultural intuition. Their Head of Culture, Sophia Sesto, emphasizes gut instinct over pure data for partnerships. It’s about being real where people are.\nHere’s why it works:\n1. Authenticity First: True cultural fit resonates deeper than perfectly targeted ads.\n2. Speed to Trend: Gut instinct lets you jump on trends before data even registers them.\n3. Memorable Impact: Unexpected partnerships create buzz people remember and share.\nAre you trusting your brand's intuition enough?\n📌 Source: Marketing Dive (\"How Poppi keeps its cultural marketing fizz without over-relying on data\")\n#MarketingStrategy #BrandBuilding #CulturalMarketing",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "How Poppi keeps its cultural marketing fizz without over-relying on data",
+          "imageHeadline": "CULTURE *DRIVEN* BRAND",
+          "imageSubtext": "Poppi's secret to staying relevant and cool.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Corporate Executive",
+        "layoutFamily": "split-right",
+        "colorPalette": "Teal White",
+        "characterRole": "Corporate Executive",
+        "environment": "City skyline office",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive in a city skyline office, full-body standing, wearing a modern startup hoodie. Blurred office frame in foreground, subject in midground, city skyline office background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Gaming is your new storefront.",
+          "content": "Panda Express just made a big move: an \"always-on\" gaming strategy, including a permanent Roblox world. This isn't just a marketing stunt. It's a playbook for constant customer engagement.\nThink beyond campaigns. Think presence.\n1. Persistent Engagement: Be where your audience plays, all the time.\n2. Community Building: Gamified experiences foster real connections.\n3. Future-Proofing: Digital spaces are the new town squares for younger consumers.\nHow can your brand live where your audience plays?\n📌 Source: Marketing Dive (\"Why Panda Express is embracing an ‘always-on’ gaming strategy\")\n#GamingMarketing #BrandEngagement #DigitalStrategy",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Why Panda Express is embracing an ‘always-on’ gaming strategy",
+          "imageHeadline": "ALWAYS-ON *GAMING*",
+          "imageSubtext": "Panda Express's strategy for constant customer presence.",
+          "badgeText": "MARKETING PLAYBOOK",
+          "ctaText": "GET THE GUIDE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Book Author",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Slate Blue",
+        "characterRole": "Author",
+        "environment": "Library",
+        "cameraStyle": "Looking away",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Author in a library, looking away, wearing a turtleneck with blazer. Out-of-focus old book in foreground, subject in midground, library background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "People are tired of bad ads.",
+          "content": "Omnicom Media is diving deep into why consumers skip ads. It's a critical question. We all feel it: the ad fatigue is real. But understanding *why* people tune out gives us the power to create ads they *want* to see.\nHow to make ads people like:\n1. Add Value: Give them something useful, entertaining, or inspiring.\n2. Be Relevant: Show them things they genuinely care about.\n3. Respect Their Time: Get to the point quickly and creatively.\nWhat makes an ad truly skip-proof for you?\n📌 Source: Digiday (\"Omnicom Media digs into the reasons people avoid ads — and offers solutions for clients\")\n#AdStrategy #ConsumerPsychology #CreativeMarketing",
+          "sourceName": "Digiday",
+          "sourceArticle": "Omnicom Media digs into the reasons people avoid ads — and offers solutions for clients",
+          "imageHeadline": "ADS *PEOPLE* HATE",
+          "imageSubtext": "Why consumers skip ads, and how to fix it.",
+          "badgeText": "INSIGHT REPORT",
+          "ctaText": "READ THE REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Innovation Lab Researcher",
+        "layoutFamily": "phone-mockup",
+        "colorPalette": "Neon Cyan",
+        "characterRole": "Innovation Leader",
+        "environment": "Innovation lab",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader in an innovation lab, over-the-shoulder shot, wearing a premium polo shirt. Glass screen with data in foreground, subject in midground, innovation lab background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Are you building your AI or renting it?",
+          "content": "A new divide is forming in business: AI \"Architects\" versus AI \"Renters.\" Architects are building custom AI solutions, tailoring it to their unique needs. Renters are using off-the-shelf tools. Both have a place, but understanding the difference is key to long-term resilience.\nChoose your AI path wisely:\n1. Rent (SaaS): Quick to deploy, lower initial cost, but less control.\n2. Build (Custom): More control, unique competitive edge, higher investment.\n3. Hybrid Approach: Use off-the-shelf for common tasks, build for core differentiation.\nWhich side of the AI divide are you on?\n📌 Source: Marketing Dive (\"The architects and the renters: A leader’s guide to building a resilient AI foundation\")\n#AIMarketing #AIStrategy #Innovation",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "The architects and the renters: A leader’s guide to building a resilient AI foundation",
+          "imageHeadline": "AI *ARCHITECTS* VS RENTERS",
+          "imageSubtext": "The fundamental chasm in building resilient AI foundations.",
+          "badgeText": "AI STRATEGY",
+          "ctaText": "EXPLORE OPTIONS"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Business Strategist",
+        "layoutFamily": "floating-cards",
+        "colorPalette": "Dark Forest",
+        "characterRole": "AI Consultant",
+        "environment": "Conference venue",
+        "cameraStyle": "Walking shot",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant in a conference venue, walking shot, wearing a white shirt with rolled sleeves. Microphone stand in foreground, subject in midground, conference venue background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Unsupervised AI, new workflow.",
+          "content": "S4 Capital's digital agency, Monks, is pioneering something incredible: AI agents that work autonomously for days. Imagine assigning a complex task and having AI manage the workflow, making decisions, and progressing without constant human input. This changes everything.\nHow this changes your workflow:\n1. Delegation Redefined: Assign projects, not just single tasks, to AI.\n2. Enhanced Efficiency: AI handles repetitive steps, freeing up human creativity.\n3. Faster Iteration: Autonomous agents can test and learn at super-human speed.\nWhat tasks would you hand over to an autonomous AI agent?\n📌 Source: Digiday (\"At S4 Capital’s Monks, agents can run autonomously, unsupervised for days\")\n#AIWorkflow #AgenticAI #FutureOfWork",
+          "sourceName": "Digiday",
+          "sourceArticle": "At S4 Capital’s Monks, agents can run autonomously, unsupervised for days",
+          "imageHeadline": "AI *WORKFLOW* EVOLVED",
+          "imageSubtext": "Monks' autonomous agents reshape agency efficiency.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "LEARN MORE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-10-05",
     "category": "marketing",
     "posts": [
