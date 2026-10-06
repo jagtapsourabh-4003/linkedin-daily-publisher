@@ -384,6 +384,41 @@
                 ✨ Remove Background (Cutout)
               </label>
             </div>
+
+            <!-- Avatar Fine-tune Positioning, Rotation & Scale -->
+            <div style="margin-top: 14px; padding: 12px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 0.82rem; font-weight: 700; color: #38bdf8;">🎯 Precision Avatar Positioning &amp; Scale</span>
+                <button type="button" class="btn btn-secondary btn-sm" id="btn-modal-reset-avatar-pos" style="font-size: 0.75rem; padding: 3px 8px;">🔄 Reset Position</button>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div class="form-group">
+                  <label for="modal-slider-avatar-x">Horizontal Offset: <span id="modal-val-avatar-x">0px</span></label>
+                  <input type="range" id="modal-slider-avatar-x" min="-600" max="600" step="5" value="0" class="customizer-range">
+                </div>
+                <div class="form-group">
+                  <label for="modal-slider-avatar-y">Vertical Offset: <span id="modal-val-avatar-y">0px</span></label>
+                  <input type="range" id="modal-slider-avatar-y" min="-600" max="600" step="5" value="0" class="customizer-range">
+                </div>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 8px;">
+                <div class="form-group">
+                  <label for="modal-slider-avatar-rotation">Rotation: <span id="modal-val-avatar-rotation">0°</span></label>
+                  <input type="range" id="modal-slider-avatar-rotation" min="-180" max="180" step="1" value="0" class="customizer-range">
+                </div>
+                <div class="form-group">
+                  <label for="modal-slider-avatar-scalex">Width: <span id="modal-val-avatar-scalex">100%</span></label>
+                  <input type="range" id="modal-slider-avatar-scalex" min="50" max="160" step="2" value="100" class="customizer-range">
+                </div>
+                <div class="form-group">
+                  <label for="modal-slider-avatar-scaley">Height: <span id="modal-val-avatar-scaley">100%</span></label>
+                  <input type="range" id="modal-slider-avatar-scaley" min="50" max="160" step="2" value="100" class="customizer-range">
+                </div>
+              </div>
+              <p style="font-size: 0.74rem; color: #64748b; margin: 8px 0 0 0;">
+                💡 <em>Tip: You can also drag the avatar directly on the live preview canvas, or use corner/side handles to resize!</em>
+              </p>
+            </div>
           </div>
 
           <!-- Tab Content: Canva Graphic -->
@@ -402,6 +437,38 @@
                 </label>
                 <span id="modal-canva-file-name" style="font-size: 0.82rem; color: #94a3b8;">No file chosen</span>
                 <button type="button" class="btn btn-destructive btn-sm hidden" id="btn-modal-remove-canva">🗑 Revert to Template</button>
+              </div>
+            </div>
+
+            <!-- Custom Graphic Placing & Sizing Box -->
+            <div class="canva-filters-box" style="margin-top: 14px; padding: 12px; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <h5 style="color: #60a5fa; font-size: 0.85rem; margin: 0; font-weight: 700;">📐 Image Placement &amp; Canvas Framing</h5>
+                <button type="button" class="btn btn-secondary btn-sm" id="btn-modal-reset-canva-placing" style="font-size: 0.75rem; padding: 3px 8px;">🔄 Reset Placing</button>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <div class="form-group">
+                  <label for="modal-select-canva-fit">Fit Framing Mode</label>
+                  <select id="modal-select-canva-fit" class="customizer-select">
+                    <option value="cover">Fill Square (Cover - Auto Center)</option>
+                    <option value="contain">Fit Full Image (Contain - No Crop)</option>
+                    <option value="stretch">Stretch to Fill (1080x1080)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="modal-slider-canva-zoom">Zoom / Scale: <span id="modal-val-canva-zoom">100%</span></label>
+                  <input type="range" id="modal-slider-canva-zoom" min="50" max="250" step="5" value="100" class="customizer-range">
+                </div>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px;">
+                <div class="form-group">
+                  <label for="modal-slider-canva-panx">Horizontal Pan: <span id="modal-val-canva-panx">0px</span></label>
+                  <input type="range" id="modal-slider-canva-panx" min="-600" max="600" step="5" value="0" class="customizer-range">
+                </div>
+                <div class="form-group">
+                  <label for="modal-slider-canva-pany">Vertical Pan: <span id="modal-val-canva-pany">0px</span></label>
+                  <input type="range" id="modal-slider-canva-pany" min="-600" max="600" step="5" value="0" class="customizer-range">
+                </div>
               </div>
             </div>
 
