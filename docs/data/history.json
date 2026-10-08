@@ -1,5 +1,159 @@
 [
   {
+    "date": "2026-10-08",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Harvard Professor",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Royal Gold",
+        "characterRole": "University Chancellor",
+        "environment": "Modern university campus",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. University Chancellor, Modern university campus, Side profile, Formal university attire, Soft natural lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "CMOs have more power.",
+          "content": "CMOs have more power.\n\nThat's the word from Advertising Week. Marketing leaders are getting a bigger seat at the executive table.\n\nWhy? Because growth is now everyone's mandate. But this internal power boost comes with a catch.\n\nExternal brand trust might be suffering. It's a delicate balance.\n\nHere's how to navigate it:\n\n1.  **Align Internally:** Ensure your growth strategy resonates with every department.\n2.  **Build External Trust:** Focus on transparent communication and genuine value.\n3.  **Measure Both:** Track internal influence AND external brand perception.\n\nAre you seeing this power shift in your organization?\n\n📌 Source: Marketing Dive (\"CMOs see their internal influence rising. Has it come at a cost?\")\n#CMO #MarketingStrategy #BrandTrust",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "CMOs see their internal influence rising. Has it come at a cost?",
+          "imageHeadline": "CMO *POWER* SHIFT",
+          "imageSubtext": "How internal influence is rising, but external trust declines.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "READ THE INSIGHTS",
+          "sourceUrl": "https://www.marketingdive.com/news/cmos-see-their-internal-influence-rising-has-it-come-at-a-cost/832335/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "asymmetrical-grid",
+        "colorPalette": "Teal White",
+        "characterRole": "Professor",
+        "environment": "Startup hub",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor, Startup hub, Interview setup, Luxury business casual, Bright studio lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Master B2B campaigns.",
+          "content": "Master B2B campaigns.\n\nLinkedIn just dropped a new checklist for B2B marketers. It's all about how buyers discover things today.\n\nTraditional approaches might not work anymore. You need to align your campaigns with current behaviors.\n\nIt’s about understanding the new buyer journey.\n\nHere’s a simple playbook:\n\n1.  **Map New Journeys:** Understand how your audience discovers solutions now.\n2.  **Align Content:** Create content for each stage of this modern journey.\n3.  **Optimize Discovery:** Use LinkedIn's insights to boost campaign visibility.\n\nWhat's your top B2B campaign challenge right now?\n\n📌 Source: Social Media Today (\"LinkedIn shares checklist for B2B marketing campaigns\")\n#B2BMarketing #LinkedInTips #CampaignStrategy",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "LinkedIn shares checklist for B2B marketing campaigns",
+          "imageHeadline": "B2B *PLAYBOOK* 2027",
+          "imageSubtext": "LinkedIn's guide to aligning campaigns with new discovery behaviors.",
+          "badgeText": "B2B MARKETING",
+          "ctaText": "DOWNLOAD CHECKLIST",
+          "sourceUrl": "https://www.socialmediatoday.com/news/linkedin-shares-checklist-for-b2b-marketing-campaigns/832449/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Apple Keynote",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "Investor",
+        "environment": "Library",
+        "cameraStyle": "Looking away",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Investor, Library, Looking away, Modern startup hoodie, Soft ambient lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Revlon's new old trick.",
+          "content": "Revlon's new old trick.\n\nHeritage brands often struggle to stay relevant. But Revlon shows us how to do it right.\n\nThey're updating their image by looking to their past. It's not about erasing history, but embracing it.\n\nTheir new campaign, \"Revlon Be Unforgettable,\" features Teyana Taylor and Megan Moroney.\n\nIt’s a smart move. Here’s why:\n\n1.  **Honor Heritage:** Acknowledge your roots, don't run from them.\n2.  **Modern Faces:** Connect with new audiences through relevant personalities.\n3.  **Timeless Appeal:** Remind people what made your brand special initially.\n\nHow do you balance tradition with innovation?\n\n📌 Source: Digiday (\"‘There’s nothing wrong with being a heritage brand’: How Revlon is updating its image by looking to the past\")\n#BrandStrategy #Revlon #MarketingInsights",
+          "sourceName": "Digiday",
+          "sourceArticle": "‘There’s nothing wrong with being a heritage brand’: How Revlon is updating its image by looking to the past",
+          "imageHeadline": "HERITAGE *BRAND* REBOOT",
+          "imageSubtext": "How Revlon uses its past to update its modern image.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "DISCOVER MORE",
+          "sourceUrl": "https://digiday.com/marketing/theres-nothing-wrong-with-being-a-heritage-brand-how-revlon-is-updating-its-image-by-looking-to-the-past/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Investor Pitch",
+        "layoutFamily": "layered-depth",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "AI Consultant",
+        "environment": "Conference venue",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant, Conference venue, Over-the-shoulder, White shirt with rolled sleeves, Dynamic stage lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "AI brings ads offline.",
+          "content": "AI brings ads offline.\n\nThat sounds backward, right? But here's the reality: AI is eroding trust online. It's making digital traffic unpredictable.\n\nMarketers are now rediscovering Out-of-Home (OOH) advertising. Billboards, street ads, transit ads – they're back.\n\nWhy? Because OOH builds real-world connection and trust.\n\nHere’s how AI drives this shift:\n\n1.  **Digital Fatigue:** Consumers are tired of online noise and deepfakes.\n2.  **Trust Gap:** AI-generated content can make consumers question online authenticity.\n3.  **Physical Presence:** OOH offers an undeniable, tangible brand presence.\n\nAre you rethinking your advertising channels?\n\n📌 Source: Adweek (\"AI Is Pushing Advertising Back Into the Physical World\")\n#AIMarketing #OOHAdvertising #DigitalTrust",
+          "sourceName": "Adweek",
+          "sourceArticle": "AI Is Pushing Advertising Back Into the Physical World",
+          "imageHeadline": "AI'S *OOH* REVOLUTION",
+          "imageSubtext": "Why AI is driving advertising back to physical spaces.",
+          "badgeText": "AI MARKETING",
+          "ctaText": "GET THE REPORT",
+          "sourceUrl": "https://www.adweek.com/media/ai-advertising-physical-world/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Documentary Interview",
+        "layoutFamily": "diagonal-layout",
+        "colorPalette": "Platinum Grey",
+        "characterRole": "Innovation Leader",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader, Futuristic workspace, Full-body standing, Premium polo shirt, Soft ambient lighting with glowing elements. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "AI makes campaigns faster.",
+          "content": "AI makes campaigns faster.\n\nAgency OK Future ran an \"AI pressure cooker\" experiment. They cut a campaign from six weeks to just four days.\n\nThis isn't about cutting corners. It's about optimizing workflow with AI.\n\nThe results? Huge time savings. But also, a lesson on potential burnout if not managed well.\n\nHere’s the AI workflow secret:\n\n1.  **Automate Drafting:** Use AI for initial content and copy generation.\n2.  **Streamline Iteration:** Rapidly test and refine concepts with AI-powered tools.\n3.  **Focus on Strategy:** Free up human talent for high-level creative direction.\n\nCould AI speed up your marketing workflow?\n\n📌 Source: Digiday (\"Inside agency OK Future’s AI ‘pressure cooker’ experiment with Goodwipes\")\n#AIWorkflow #MarketingAutomation #AgencyLife",
+          "sourceName": "Digiday",
+          "sourceArticle": "Inside agency OK Future’s AI ‘pressure cooker’ experiment with Goodwipes",
+          "imageHeadline": "AI *FAST-TRACK* WORKFLOW",
+          "imageSubtext": "Cutting campaign production from weeks to days with AI.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "EXPLORE CASE STUDY",
+          "sourceUrl": "https://digiday.com/marketing/inside-agency-ok-futures-ai-pressure-cooker-experiment-with-goodwipes/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-10-07",
     "category": "ai",
     "posts": [
