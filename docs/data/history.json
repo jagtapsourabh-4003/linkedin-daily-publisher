@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-10-09",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "split-left",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Innovation Leader",
+        "environment": "Startup hub",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader in a Startup hub. Close-up portrait. Modern startup hoodie. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Gen Z hates marketing bull.",
+          "content": "Building trust with younger audiences is critical.\nThey see through fluff and crave authenticity.\nOmaha Steaks' 'No Bull' campaign shows us how to connect.\n\nHere's how to capture Gen Z's attention:\n1. Be truly authentic: Share your brand's real story, not just a polished version.\n2. Emphasize credibility: Back up claims with genuine actions and transparency.\n3. Meet them where they are: Engage on platforms like TikTok and through relevant influencers.\n\nAre you ready to drop the marketing bull for real connection?\n\n📌 Source: Marketing Dive (\"Inside Omaha Steaks’ efforts to ditch marketing bull and attract Gen Z\")\n#GenZMarketing #Authenticity #BrandStrategy",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Inside Omaha Steaks’ efforts to ditch marketing bull and attract Gen Z",
+          "imageHeadline": "GEN Z *NO BULL*",
+          "imageSubtext": "Build trust with authentic marketing campaigns.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "READ INSIGHTS"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Business Strategist",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Teal White",
+        "characterRole": "Strategy Consultant",
+        "environment": "Coffee shop workspace",
+        "cameraStyle": "Looking away",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant in a Coffee shop workspace. Looking away. Luxury business casual. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Attention isn't enough.",
+          "content": "We're great at measuring clicks and views.\nBut knowing what that attention *means* is harder.\nIt's not just about getting eyes on your brand.\nIt's about meaningful engagement.\n\nHere's how to understand attention better:\n1. Look beyond vanity metrics: Focus on dwell time and interaction rates, not just impressions.\n2. Connect to context: Understand *why* people are paying attention and their intent.\n3. Analyze sentiment: What are they feeling? How does your brand fit into their world?\n\nHow do you measure meaningful attention for your brand?\n\n📌 Source: Marketing Dive (\"Your brand can do almost anything — and that’s the problem\")\n#MarketingMetrics #EngagementStrategy #BrandInsights",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Your brand can do almost anything — and that’s the problem",
+          "imageHeadline": "ATTENTION *TRAP*",
+          "imageSubtext": "Move beyond metrics to meaningful engagement.",
+          "badgeText": "STRATEGY PLAYBOOK",
+          "ctaText": "LEARN MORE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Creative Director",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Slate Blue",
+        "characterRole": "Technology Evangelist",
+        "environment": "Media studio",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist in a Media studio. Full-body standing. White shirt with rolled sleeves. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Creators in Hollywood: Beware.",
+          "content": "The line between digital creators and traditional entertainment is blurring.\nMany creators are moving into Hollywood.\nBut this exciting shift comes with big risks for their intellectual property (IP).\n\nHere are key takeaways for creators:\n1. Read contracts carefully: Understand deal terms regarding ownership and usage rights.\n2. Seek legal advice: Always have an expert review complex entertainment agreements.\n3. Protect your IP: Ensure your original content is safeguarded in any partnership.\n\nWhat's your biggest concern for creators entering traditional media?\n\n📌 Source: Digiday (\"As creators increasingly move into Hollywood, deal terms can put their IP at risk\")\n#CreatorEconomy #IntellectualProperty #MediaDeals",
+          "sourceName": "Digiday",
+          "sourceArticle": "As creators increasingly move into Hollywood, deal terms can put their IP at risk",
+          "imageHeadline": "CREATOR *IP RISK*",
+          "imageSubtext": "Safeguard your content in Hollywood deals.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "GET INSIGHTS"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "floating-cards",
+        "colorPalette": "Neon Cyan",
+        "characterRole": "Professor",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor in a Futuristic workspace. Side profile. Premium polo shirt. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Meta's AI just leveled up.",
+          "content": "Meta is constantly pushing the boundaries of AI for advertisers.\nThey just rolled out new tools at Advertising Week.\nThese features promise to make ad creation and insights much smarter.\n\nWhat these new Meta AI tools bring:\n1. Creative import features: Easily bring your existing content into AI-powered tools.\n2. Deeper creative insights: Get smart suggestions on what visuals and copy perform best.\n3. Improved conversational guidance: AI helps you craft more effective ad messages.\n\nHow will Meta's AI boost impact your ad campaigns?\n\n📌 Source: Marketing Dive (\"Sociable: Meta introduces new AI-powered tools at Advertising Week\")\n#AIMarketing #MetaAds #AdvertisingAI",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Sociable: Meta introduces new AI-powered tools at Advertising Week",
+          "imageHeadline": "META *AI BOOST*",
+          "imageSubtext": "New tools for smarter ad campaigns.",
+          "badgeText": "AI UPDATE",
+          "ctaText": "EXPLORE AI"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Harvard Professor",
+        "layoutFamily": "diagonal-layout",
+        "colorPalette": "Platinum Grey",
+        "characterRole": "Researcher",
+        "environment": "Innovation lab",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Researcher in an Innovation lab. Interview setup. Formal university attire. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "AI strategy needs more.",
+          "content": "Many companies focus solely on AI interoperability.\nThey want their AI tools to work together seamlessly.\nBut this alone isn't a complete AI strategy.\n\nTo build a robust AI approach:\n1. Define your goals: What specific business problems is AI solving?\n2. Integrate broadly: Connect AI not just within marketing, but across operations.\n3. Focus on outcomes: Measure real impact, not just tool connectivity.\n\nHow are you building your comprehensive AI strategy?\n\n📌 Source: Digiday (\"Interoperability may be the future, but it cannot be an entire AI strategy\")\n#AIStrategy #MarketingAI #BusinessGrowth",
+          "sourceName": "Digiday",
+          "sourceArticle": "Interoperability may be the future, but it cannot be an entire AI strategy",
+          "imageHeadline": "BEYOND *AI INTEROP*",
+          "imageSubtext": "Build a holistic AI marketing strategy.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "VIEW GUIDE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-10-08",
     "category": "marketing",
     "posts": [
