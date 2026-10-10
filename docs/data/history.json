@@ -1,5 +1,159 @@
 [
   {
+    "date": "2026-10-10",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "LinkedIn Thought Leader",
+        "layoutFamily": "split-left",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Innovation Leader",
+        "environment": "Creative workspace",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader in a Creative workspace (foreground: out-of-focus plants, midground: manager, background: creative workspace, shallow depth of field), Close-up portrait, wearing a Premium polo shirt. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Mission and money can coexist.",
+          "content": "Mission and money can coexist.\nToo often, brands see purpose and profit as separate goals. But the Golden State Valkyries show us they're two sides of the same coin.\nWhen pitching sponsors, it's not just about reach. It's about shared values.\n1. Find partners with aligned visions.\n2. Clearly articulate your brand's purpose.\n3. Show how their capital fuels that mission.\nThis builds deeper connections than just audience numbers.\nHow do you balance mission with commercial goals?\n📌 Source: Digiday (\"‘Mission and capital can coexist’: Golden State Valkyries’ Jess Smith on pitch to sponsors\")\n#MarketingStrategy #BrandPartnerships #Sponsorships",
+          "sourceName": "Digiday",
+          "sourceArticle": "‘Mission and capital can coexist’: Golden State Valkyries’ Jess Smith on pitch to sponsors",
+          "imageHeadline": "BRAND *MISSION* BALANCE",
+          "imageSubtext": "Align purpose and profits for powerful partnerships.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://digiday.com/marketing/mission-and-capital-can-coexist-golden-state-valkyries-jess-smith-on-pitch-to-sponsors/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Harvard Professor",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Teal White",
+        "characterRole": "Professor",
+        "environment": "Library",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor in a Library (foreground: out-of-focus stack of books, midground: manager, background: shelves of books, shallow depth of field), Full-body standing, wearing a Modern startup hoodie. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Beat surge pricing.",
+          "content": "Beat surge pricing.\nNobody likes unexpected costs. Espolòn Tequila tackled this head-on with their 'Fare Share' program. They offered ride-hailing refunds during peak times.\nThis isn't just a discount; it's a value-add strategy that earns goodwill.\n1. Identify customer pain points.\n2. Create a unique program to solve them.\n3. Promote it during relevant moments (like Halloween).\nThink beyond traditional promotions. How can you genuinely add value?\n📌 Source: Marketing Dive (\"Espolòn Tequila combats surge pricing with ride-hailing refund program\")\n#CustomerLoyalty #MarketingPlaybook #ValueProposition",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Espolòn Tequila combats surge pricing with ride-hailing refund program",
+          "imageHeadline": "*VALUE* STRATEGY",
+          "imageSubtext": "Innovative refunds build loyalty and combat rising costs.",
+          "badgeText": "PLAYBOOK",
+          "ctaText": "GET REPORT",
+          "sourceUrl": "https://www.marketingdive.com/news/espolon-tequila-combats-surge-pricing-with-ride-hailing-refund-program/832452/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Apple Keynote",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Slate Blue",
+        "characterRole": "Investor",
+        "environment": "City skyline office",
+        "cameraStyle": "Walking shot",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Investor in a City skyline office (foreground: out-of-focus modern desk lamp, midground: manager, background: panoramic city skyline, shallow depth of field), Walking shot, wearing a White shirt with rolled sleeves. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Co-create for authenticity.",
+          "content": "Co-create for authenticity.\nIn celebrity partnerships, brands often want full control. But Free People showed us a different path.\nBy giving musician Willow creative freedom, they built a more genuine, culturally resonant campaign. It felt less like an ad and more like shared art.\n1. Choose partners who truly embody your brand.\n2. Trust their creative vision.\n3. Be open to ceding some control for authenticity.\nThis isn't about selling out. It's about genuine collaboration.\nWhere have you seen powerful co-authorship work in marketing?\n📌 Source: Marketing Dive (\"Why Free People prioritizes cultural co-authorship in celeb tie-ups\")\n#BrandMarketing #InfluencerMarketing #Authenticity",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Why Free People prioritizes cultural co-authorship in celeb tie-ups",
+          "imageHeadline": "*CELEB* CO-AUTHORSHIP",
+          "imageSubtext": "Ceding control builds real cultural connections.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://www.marketingdive.com/news/why-free-people-prioritizes-cultural-co-authorship-in-celebs-tie-ups/832568/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "phone-mockup",
+        "colorPalette": "Monochrome Black",
+        "characterRole": "Technology Evangelist",
+        "environment": "Innovation lab",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist in an Innovation lab (foreground: out-of-focus holographic display, midground: manager, background: sleek lab equipment, shallow depth of field), Side profile, wearing Formal university attire. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "AI changes Digital PR.",
+          "content": "AI changes Digital PR.\nEarned media has always been about getting noticed. Now, 'getting noticed' means showing up in AI results.\nAnswer Engine Optimization (AEO) is crucial. It's about creating content AI can easily understand and cite.\n1. Understand how AI summarizes information.\n2. Structure your content for clarity and direct answers.\n3. Build authority so AI trusts your sources.\nThis ensures your brand is visible where buyers now get answers.\nHow are you preparing your PR for AI?\n📌 Source: HubSpot Marketing (\"AEO for digital PR: How to build earned media presence that shows up in AI results\")\n#AEO #DigitalPR #AIMarketing",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "AEO for digital PR: How to build earned media presence that shows up in AI results",
+          "imageHeadline": "*AEO* FOR PR",
+          "imageSubtext": "Optimizing content to appear in AI search results.",
+          "badgeText": "AI MARKETING",
+          "ctaText": "LEARN MORE",
+          "sourceUrl": "https://blog.hubspot.com/marketing/aeo-guide-for-digital-pr"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Innovation Lab Researcher",
+        "layoutFamily": "layered-depth",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "Researcher",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Researcher in a Futuristic workspace (foreground: out-of-focus transparent screen with data, midground: manager, background: glowing futuristic architecture, shallow depth of field), Over-the-shoulder, wearing Luxury business casual. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Grok bots find trends.",
+          "content": "Grok bots find trends.\nX (formerly Twitter) is rolling out new analytic search for Grok bots. This is a game-changer for marketers.\nImagine asking an AI to summarize sentiment around your brand. Or to identify emerging topics in your niche.\n1. Formulate clear, conversational queries for Grok.\n2. Ask for summaries of brand mentions or specific topics.\n3. Use insights to quickly adapt your content strategy.\nThis allows for rapid, data-driven decision making.\nWhat trends would you ask Grok to analyze first?\n📌 Source: Social Media Today (\"X’s Grok bots get analytic search capabilities\")\n#AItools #SocialMediaMarketing #TrendAnalysis",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "X’s Grok bots get analytic search capabilities",
+          "imageHeadline": "*GROK* ANALYTICS",
+          "imageSubtext": "Use AI bots for real-time social trend insights.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "TRY THE TOOL",
+          "sourceUrl": "https://www.socialmediatoday.com/news/xs-grok-bots-get-analytic-search-capabilities/832565/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-10-09",
     "category": "marketing",
     "posts": [
