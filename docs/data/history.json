@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-10-13",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "University Chancellor",
+        "layoutFamily": "split-left",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Professor",
+        "environment": "Modern university campus",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor, in a modern university campus, close-up portrait, formal university attire, ambient natural light from large windows. Out-of-focus academic books in foreground, professor in midground, blurred university quad in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Fewer Agencies, *More Conflicts*?",
+          "content": "Agency consolidation is a big topic.\nSome leaders argue it can actually *reduce* client conflicts.\n\nHow?\n\n1.  **Clear Communication**: Upfront discussions with clients about potential overlaps.\n2.  **Robust Firewalls**: Strict internal separation between teams working with competing brands.\n3.  **Deep Trust**: Building strong relationships based on transparency and proven expertise.\n\nIt's about smart management, not just size.\n\nHow do you see consolidation impacting client relationships?\n\n📌 Source: Adweek (\"With Fewer Big Holdcos, Arthur Sadoun Says Client Conflict Is No Longer a Dealbreaker\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Adweek",
+          "sourceArticle": "With Fewer Big Holdcos, Arthur Sadoun Says Client Conflict Is No Longer a Dealbreaker",
+          "imageHeadline": "*AGENCY* CONSOLIDATION",
+          "imageSubtext": "Navigating brand conflicts in a shrinking agency landscape.",
+          "badgeText": "AGENCY STRATEGY",
+          "ctaText": "READ ADWEEK REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Teal White",
+        "characterRole": "Innovation Leader",
+        "environment": "Startup hub",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader, in a bustling startup hub, full-body standing, modern startup hoodie, bright, energetic overhead lighting. A blurred whiteboard with tech diagrams in foreground, leader in midground, vibrant startup activity in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Crack *New Customer* Growth.",
+          "content": "Today's customer journey is fragmented. People jump channels constantly.\nThis makes new customer acquisition tricky. We need a new playbook.\n\nTry this framework:\n\n1.  **Map All Touchpoints**: Understand every place customers interact with your brand.\n2.  **Personalize Content**: Deliver relevant messages for each stage and channel.\n3.  **Measure End-to-End**: Track impact from first touch to final conversion.\n\nIt helps you adapt and win.\n\nWhat's your biggest challenge in customer acquisition?\n\n📌 Source: Adweek (\"Breaking Down the New Customer Acquisition Playbook\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Adweek",
+          "sourceArticle": "Breaking Down the New Customer Acquisition Playbook",
+          "imageHeadline": "*NEW CUSTOMER* PLAYBOOK",
+          "imageSubtext": "Master acquisition in today's fragmented buyer journeys.",
+          "badgeText": "GROWTH PLAYBOOK",
+          "ctaText": "GET THE PLAYBOOK"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Magazine Editorial",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Slate Blue",
+        "characterRole": "Corporate Executive",
+        "environment": "City skyline office",
+        "cameraStyle": "Walking shot",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive, in a sleek city skyline office, walking shot, white shirt with rolled sleeves, soft, modern office lighting. Out-of-focus glass partition in foreground, executive in midground, panoramic city view in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Gen Z *Culture* Code.",
+          "content": "Gen Z is changing consumer behavior. They're opting out of old norms.\nBrands like Smirnoff and Hinge are winning by understanding their culture.\n\nHow to connect with Gen Z:\n\n1.  **Be Authentic**: Skip the corporate speak. Be real and relatable.\n2.  **Engage Where They Are**: Meet them on their preferred platforms, with their content styles.\n3.  **Show, Don't Tell**: Demonstrate values and brand purpose, don't just state them.\n\nIt's about being part of their world.\n\nWhat brands do you see nailing Gen Z engagement?\n\n📌 Source: Marketing Dive (\"‘Don’t be boring’: How Smirnoff, Hinge cozy up to Gen Z through culture\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "‘Don’t be boring’: How Smirnoff, Hinge cozy up to Gen Z through culture",
+          "imageHeadline": "*GEN Z* ENGAGEMENT",
+          "imageSubtext": "Brands winning over young consumers through cultural relevance.",
+          "badgeText": "CONSUMER PSYCHOLOGY",
+          "ctaText": "EXPLORE BRAND STRATEGY"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "phone-mockup",
+        "colorPalette": "Monochrome Black",
+        "characterRole": "AI Consultant",
+        "environment": "Innovation lab",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant, in a futuristic innovation lab, side profile, smart casual blazer, cool, neon-accented lighting. Out-of-focus holographic interface in foreground, consultant in midground, complex server racks in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "AI Visibility *Wins*.",
+          "content": "AEO (AI Engine Optimization) is now critical for marketing.\nBuyers are increasingly asking AI for recommendations. Your brand needs to appear accurately.\n\nAgencies can help clients with AEO by:\n\n1.  **Optimizing Content**: Structuring information so AI easily understands and cites it.\n2.  **Ensuring Accuracy**: Verifying brand positioning is correctly interpreted by AI models.\n3.  **Measuring AI Presence**: Tracking how and where clients show up in AI results.\n\nIt's about owning your narrative in the AI era.\n\nAre your clients asking about AEO yet?\n\n📌 Source: HubSpot Marketing (\"AEO for marketing agencies: How to deliver measurable AI visibility results for every client\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "AEO for marketing agencies: How to deliver measurable AI visibility results for every client",
+          "imageHeadline": "*AEO* FOR AGENCIES",
+          "imageSubtext": "Deliver measurable AI visibility results for your clients.",
+          "badgeText": "AI MARKETING INSIGHTS",
+          "ctaText": "LEARN ABOUT AEO"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Innovation Lab Researcher",
+        "layoutFamily": "layered-depth",
+        "colorPalette": "Neon Cyan",
+        "characterRole": "Researcher",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Researcher, in a sleek, futuristic workspace, over-the-shoulder, luxury business casual, soft, diffused daylight. Out-of-focus digital tablet with data in foreground, researcher in midground, minimalist white office with subtle glowing accents in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "*Lean Agency* with AI.",
+          "content": "Imagine an agency thriving with just two people, powered by AI.\nIt's happening. The secret isn't just AI, it's human expertise guiding AI.\n\nThis workflow means:\n\n1.  **AI for Ideation**: AI generates ideas, saving hours of brainstorming.\n2.  **Human Curation**: Experienced pros refine and select the best concepts.\n3.  **Automated Execution**: AI handles repetitive tasks, freeing up creative time.\n\nSmall teams can deliver big impact.\n\nHow is AI changing your team's daily workflow?\n\n📌 Source: Digiday (\"How many people does it take to run an agency? According to Bad Mktg, just two if you’re using AI\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Digiday",
+          "sourceArticle": "How many people does it take to run an agency? According to Bad Mktg, just two if you’re using AI",
+          "imageHeadline": "*AI-POWERED* AGENCIES",
+          "imageSubtext": "Small teams achieving big results with smart AI workflows.",
+          "badgeText": "AI WORKFLOW GUIDE",
+          "ctaText": "DISCOVER AI EFFICIENCY"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-10-12",
     "category": "ai",
     "posts": [
