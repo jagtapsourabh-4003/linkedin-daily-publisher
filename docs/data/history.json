@@ -1,5 +1,159 @@
 [
   {
+    "date": "2026-10-15",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "TED Speaker",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "TED Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. TED Speaker in an Auditorium stage, speaking on stage. Wearing a Conference speaker outfit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Your brand's next discovery hub?",
+          "content": "Snap Map is more than just a novelty; it’s a powerful tool.\n\nBusinesses often miss out on tapping into location-based social insights.\nSnap Map offers unique data for engaging local audiences and understanding user behavior in real-time. It’s a goldmine for targeted marketing.\n\nHere’s why it matters:\n1.  **Audience Insights:** See where your users spend time and what spots they frequent. This helps you tailor local campaigns.\n2.  **Engagement Driver:** Use location-aware content to draw people to physical stores or events. Think geo-filters and local promotions.\n3.  **Competitive Edge:** While many flock to Google Maps for navigation, Snap Map offers a social layer. Don't underestimate that social discovery.\n\nAre you tapping into location data for your marketing?\n\n📌 Source: Social Media Today (\"Snap reports on Snap Map data for brands\")",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "Snap reports on Snap Map data for brands",
+          "imageHeadline": "*SNAP MAP* STRATEGY",
+          "imageSubtext": "Unlock hyper-local user behavior for brand growth.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "READ FULL REPORT",
+          "sourceUrl": "https://www.socialmediatoday.com/news/snap-reports-on-snap-map-data-for-brands/833065/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Harvard Professor",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Professor",
+        "environment": "Library",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor in a Library, sitting at desk. Wearing Formal university attire. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Connect with the next generation.",
+          "content": "Gen Alpha is coming. They are digital natives with unique habits.\n\nThey're growing up with AI, creators, and co-viewing as standard. This means traditional marketing won't cut it.\n\nTo make a lasting impact, we need new strategies. It's about meeting them where they are.\n\nHere's the Gen Alpha playbook:\n1.  **Embrace AI:** They interact with AI naturally. Brands must integrate AI experiences into their touchpoints.\n2.  **Creator Power:** Authenticity wins. Partner with relevant creators who resonate with their values and interests.\n3.  **Co-viewing Culture:** Design content for shared experiences, whether on CTV or social platforms. Think family-friendly and interactive.\n\nHow are you preparing for Gen Alpha?\n\n📌 Source: Marketing Dive (\"5 ways marketers can make a lasting impact with Gen Alpha\")",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "5 ways marketers can make a lasting impact with Gen Alpha",
+          "imageHeadline": "*GEN ALPHA* PLAYBOOK",
+          "imageSubtext": "Master 5 engagement strategies for the next consumer wave.",
+          "badgeText": "GROWTH PLAYBOOK",
+          "ctaText": "GET THE GUIDE",
+          "sourceUrl": "https://www.marketingdive.com/news/5-ways-marketers-can-make-a-lasting-impact-with-gen-alpha/832805/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "news-card",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Corporate Executive",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive in an Executive boardroom, half-body portrait. Wearing a Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Stand out in crowded markets.",
+          "content": "Today's consumers are value-obsessed. Differentiation is tougher than ever.\n\nSimply having a good product isn't enough. You need to connect on a deeper level. This is true for any industry, especially casual dining.\n\nApplebee's CMO Michelle Chin shares how they navigate this challenge. It's a lesson in strategic marketing.\n\nHere’s how to differentiate in a value market:\n1.  **Know Your Audience:** Understand their evolving needs beyond just price. What do they truly value?\n2.  **Craft Unique Experiences:** Don't just sell. Create moments and feelings that your competitors can't easily copy.\n3.  **Strategic Partnerships:** Collaborate with agencies or brands that bring fresh perspectives and innovative approaches.\n\nWhat makes your brand truly different?\n\n📌 Source: Marketing Dive (\"Applebee’s CMO on differentiating marketing in a value-obsessed industry\")",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Applebee’s CMO on differentiating marketing in a value-obsessed industry",
+          "imageHeadline": "*VALUE* MARKETING DIFFERENTIATOR",
+          "imageSubtext": "CMO insights on standing out in crowded, value-driven sectors.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "READ CMO INSIGHTS",
+          "sourceUrl": "https://www.marketingdive.com/news/applebees-cmo-on-differentiating-marketing-in-a-value-obsessed-industry/832838/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "asymmetrical-grid",
+        "colorPalette": "Electric Blue",
+        "characterRole": "AI Consultant",
+        "environment": "Innovation lab",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant in an Innovation lab, close-up portrait. Wearing a Smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Search is changing fast.",
+          "content": "AI Overviews are reshaping how buyers discover brands.\n\nForget clicking through endless results. AI answers questions directly. This means brands are either cited instantly or completely missed.\n\nThis shift impacts your brand visibility and the customer journey. We need to adapt quickly.\n\nKey takeaways for brands:\n1.  **Citation is King:** Get your brand cited in AI Overviews. This means optimizing your content for direct, concise answers.\n2.  **Beyond Keywords:** Focus on comprehensive, expert content that AI can trust and synthesize. Think topical authority, not just keywords.\n3.  **Measure Differently:** Traditional metrics won't tell the whole story. Track AI citation rates and how it influences top-of-funnel awareness.\n\nHow are you tracking your AI Overview presence?\n\n📌 Source: HubSpot Marketing (\"Tracking AI Overviews: What the data actually shows\")",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "Tracking AI Overviews: What the data actually shows",
+          "imageHeadline": "*AI OVERVIEWS* SHIFT",
+          "imageSubtext": "New data shows how AI reshapes brand discovery and search.",
+          "badgeText": "AI UPDATE",
+          "ctaText": "READ THE DATA",
+          "sourceUrl": "https://blog.hubspot.com/marketing/tracking-ai-overviews"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Strategy Consultant",
+        "environment": "Conference venue",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant in a Conference venue, presentation shot. Wearing a Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Master Claude's powerful tools.",
+          "content": "Claude AI offers incredible features, but knowing how to use them is key.\n\nBetween 'Skills', 'Plugins', and 'MCP Connectors', it can get confusing. Each has a specific purpose for different tasks.\n\nUnderstanding these distinctions helps you build powerful, efficient AI workflows.\n\nHere’s a simple guide to Claude’s tools:\n1.  **Skills:** Think of these as Claude's built-in abilities. They let it perform complex reasoning or generate creative content directly.\n2.  **Plugins:** These extend Claude's capabilities by integrating with external apps. They allow it to fetch real-time data or perform actions outside its core knowledge.\n3.  **MCP Connectors:** These are for specific enterprise integrations. They link Claude to your custom data sources or internal systems, enabling bespoke operations.\n\nAre you getting the most out of your AI tools?\n\n📌 Source: HubSpot Marketing (\"Claude skills vs. plugins vs. MCP connectors: A simple guide\")",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "Claude skills vs. plugins vs. MCP connectors: A simple guide",
+          "imageHeadline": "*CLAUDE AI* WORKFLOW",
+          "imageSubtext": "Unlock full potential with Skills, Plugins, and Connectors.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "LEARN CLAUDE AI",
+          "sourceUrl": "https://blog.hubspot.com/marketing/claude-skills-plugins-mcp"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-10-14",
     "category": "marketing",
     "posts": [
