@@ -1,5 +1,159 @@
 [
   {
+    "date": "2026-10-17",
+    "category": "ai",
+    "posts": [
+      {
+        "designArchetype": "Forbes Cover",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Platinum Grey",
+        "characterRole": "Business Coach",
+        "environment": "Creative workspace",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach in a Creative workspace, Interview setup, Luxury business casual clothing. Foreground: out-of-focus microphone, Midground: the manager, Background: blurred creative workspace elements. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Tech backlash hits the big screen.",
+          "content": "I've noticed a new trend. Movies are now showing a critical side of tech. Silicon Valley founders are often portrayed as villains.\n\nThis isn't just entertainment. It reflects growing public sentiment. Brands need to understand this shift. Your audience is watching.\n\n1.  **Monitor Culture:** See how tech is framed in popular media.\n2.  **Address Concerns:** Be honest about your impact. Transparency builds trust.\n3.  **Show Value:** Highlight how your tech genuinely helps people.\n\nHow do you think pop culture influences brand perception?\n📌 Source: The Verge (\"The tech backlash is now in theaters\")\n#TechTrends #BrandPerception #MarketingStrategy",
+          "sourceName": "The Verge",
+          "sourceArticle": "The tech backlash is now in theaters",
+          "imageHeadline": "TECH *BACKLASH*",
+          "imageSubtext": "How cultural shifts impact your brand's narrative.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "READ THE ANALYSIS",
+          "sourceUrl": "https://www.theverge.com/entertainment/1012438/hollywood-tech-backlash-you-can-see-everything-musk-the-social-reckoning-artificial"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Corporate Executive",
+        "layoutFamily": "layered-depth",
+        "colorPalette": "Premium Burgundy",
+        "characterRole": "Corporate Executive",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive in an Executive boardroom, Sitting at desk, Charcoal executive suit. Foreground: out-of-focus glass screen with data, Midground: the manager, Background: blurred boardroom with modern art. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "A game launch just went sideways.",
+          "content": "Sega pulled a game remaster from sale. Why? Bugs and bad AI upscaling. This shows what happens when product quality fails.\n\nA disastrous launch can harm your brand for years. It's not just about getting to market fast. It's about getting it right.\n\n1.  **Test Rigorously:** Don't rush quality checks.\n2.  **Listen to Feedback:** User reviews are gold. Respond fast.\n3.  **Be Transparent:** If issues arise, communicate openly.\n\nWhat's your framework for avoiding product launch disasters?\n📌 Source: The Verge (\"Sega pulls Total War: Shogun 2 remaster from sale following disastrous launch\")\n#ProductLaunch #MarketingPlaybook #BrandReputation",
+          "sourceName": "The Verge",
+          "sourceArticle": "Sega pulls Total War: Shogun 2 remaster from sale following disastrous launch",
+          "imageHeadline": "*LAUNCH* FAIL",
+          "imageSubtext": "Avoid disaster with critical product quality checks.",
+          "badgeText": "MARKETING PLAYBOOK",
+          "ctaText": "LEARN THE FRAMEWORK",
+          "sourceUrl": "https://www.theverge.com/games/1012512/sega-total-war-shogun-2-remaster-pulled"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "diagonal-layout",
+        "colorPalette": "Dark Forest",
+        "characterRole": "Strategy Consultant",
+        "environment": "Conference venue",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant in a Conference venue, Presentation shot, Navy business suit. Foreground: out-of-focus podium mic, Midground: the manager gesturing towards a screen, Background: blurred conference audience. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Meta wants news data for AI.",
+          "content": "Meta's new terms could let them scrape news sites. For free. This is a big deal for content creators and publishers.\n\nIt raises questions about content ownership. And how platforms use your valuable data. Understanding these terms is vital.\n\n1.  **Review Platform Policies:** Stay updated on how your content is used.\n2.  **Protect Your IP:** Understand data rights for your business.\n3.  **Diversify Distribution:** Don't rely solely on one platform.\n\nHow do you feel about platforms training AI on your content?\n📌 Source: The Verge (\"Meta’s new terms may allow it to train AI on news sites for free\")\n#ContentStrategy #AIData #PublisherRights",
+          "sourceName": "The Verge",
+          "sourceArticle": "Meta’s new terms may allow it to train AI on news sites for free",
+          "imageHeadline": "META *SCRAPES* NEWS",
+          "imageSubtext": "New terms allow AI training on your content.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "UNDERSTAND THE IMPACT",
+          "sourceUrl": "https://www.theverge.com/tech/1012846/meta-business-terms-scrape-news-publishers"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "asymmetrical-grid",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Business Coach",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach in a Technology command center, Looking at camera, Premium polo shirt. Foreground: out-of-focus digital interface elements, Midground: the manager, Background: blurred server racks and glow. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "AI is designing new proteins.",
+          "content": "Scientists are using AI to create new proteins. These aren't just any proteins. They can break down stable bonds.\n\nThis isn't directly marketing, but it shows AI's power. It highlights how AI can accelerate complex design tasks. Think about that for your next campaign.\n\n1.  **Think Beyond Obvious AI:** Explore AI for complex design.\n2.  **Simplify Complex Data:** AI can make tough problems easier.\n3.  **Find Hidden Patterns:** AI spots connections we miss.\n\nHow could AI for \"designing the invisible\" change your industry?\n📌 Source: Ars Technica (\"Researchers use AI to design proteins that cut up other proteins\")\n#AIMarketing #AIInnovation #FutureTech",
+          "sourceName": "Ars Technica",
+          "sourceArticle": "Researchers use AI to design proteins that cut up other proteins",
+          "imageHeadline": "AI *DESIGNS* PROTEINS",
+          "imageSubtext": "Breakthrough in bio-engineering with AI's design power.",
+          "badgeText": "AI MARKETING CONCEPT",
+          "ctaText": "EXPLORE AI RESEARCH",
+          "sourceUrl": "https://arstechnica.com/science/2026/10/researchers-use-ai-to-design-proteins-that-cut-up-other-proteins/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Harvard Professor",
+        "layoutFamily": "floating-cards",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Professor",
+        "environment": "Library",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor in a Library, Interview setup, Formal university attire. Foreground: out-of-focus open book or tablet, Midground: the manager, Background: blurred elegant bookshelves. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Build presentations with GPT-6 Astra.",
+          "content": "OpenAI's GPT-6 Astra can now help build slide decks. Forget generic tools. This is about smarter, faster content creation.\n\nIt means less time formatting. More time focusing on your message. It streamlines a core business task.\n\n1.  **Outline First:** Give Astra a clear structure.\n2.  **Provide Key Points:** Feed it your main arguments.\n3.  **Refine & Polish:** Use AI for the first draft, then humanize it.\n\nWhat other tasks do you wish AI could streamline for you?\n📌 Source: Marketing AI Institute (\"How OpenAI’s GPT-6 Astra Can Help You Build Presentations\")\n#AITools #WorkflowEfficiency #GPT6Astra",
+          "sourceName": "Marketing AI Institute",
+          "sourceArticle": "How OpenAI’s GPT-6 Astra Can Help You Build Presentations",
+          "imageHeadline": "GPT-6 *PRESENTATIONS*",
+          "imageSubtext": "Streamline your slide deck creation with advanced AI.",
+          "badgeText": "AI MARKETING WORKFLOW",
+          "ctaText": "GENERATE YOUR DECK",
+          "sourceUrl": "https://www.marketingaiinstitute.com/blog/gpt-6-astra-builds-presentations"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-10-16",
     "category": "marketing",
     "posts": [
