@@ -1,5 +1,159 @@
 [
   {
+    "date": "2026-10-18",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Forbes Cover",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Platinum Grey",
+        "characterRole": "Business Coach",
+        "environment": "Creative workspace",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach in a Creative workspace. Interview setup. Luxury business casual. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Is your automation failing?",
+          "content": "Secondary markets often present unique challenges.\nStandard marketing automation might fall flat.\nWe need targeted strategies for real growth.\n\nHere’s how to boost your lead generation:\n1.  **Understand Local Nuances:** Research local culture and buying habits deeply.\n2.  **Customize Content:** Generic messages won't resonate. Personalize everything.\n3.  **Optimize Funnel:** Review every step, from awareness to conversion, for friction points.\n\nWhat’s your biggest automation hurdle?\n📌 Source: HubSpot Marketing (\"The marketing automation model that drove 9x qualified lead growth in a secondary market\")\n#MarketingAutomation #LeadGeneration #MarketStrategy",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "The marketing automation model that drove 9x qualified lead growth in a secondary market",
+          "imageHeadline": "*AUTOMATION* FIX",
+          "imageSubtext": "Boost qualified leads 9x in tough markets.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://blog.hubspot.com/marketing/marketing-automation-secondary-market-playbook"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Corporate Executive",
+        "layoutFamily": "layered-depth",
+        "colorPalette": "Premium Burgundy",
+        "characterRole": "Corporate Executive",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive in an Executive boardroom. Sitting at desk. Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "AEO is your new funnel.",
+          "content": "Buyers are asking AI for recommendations.\nThey compare vendors and gather answers there.\nYour brand needs to show up accurately.\n\nHere’s how to connect AEO to revenue:\n1.  **Map Buyer Questions:** Understand what prospects ask AI about your category.\n2.  **Optimize for Answers:** Ensure your content directly addresses these AI-driven queries.\n3.  **Track AI Influence:** Measure how AI interactions lead to qualified pipeline.\n\nHow are you preparing for AI search?\n📌 Source: HubSpot Marketing (\"AEO for marketing operations: How to build scalable processes that connect AEO to revenue\")\n#AEO #MarketingOperations #RevenueGrowth",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "AEO for marketing operations: How to build scalable processes that connect AEO to revenue",
+          "imageHeadline": "AEO *REVENUE* MAP",
+          "imageSubtext": "Connect AI search to your sales pipeline.",
+          "badgeText": "MARKETING FRAMEWORK",
+          "ctaText": "GET REPORT",
+          "sourceUrl": "https://blog.hubspot.com/marketing/aeo-guide-for-marketing-operations"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "diagonal-layout",
+        "colorPalette": "Dark Forest",
+        "characterRole": "Strategy Consultant",
+        "environment": "Conference venue",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant in a Conference venue. Presentation shot. Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "LinkedIn just leveled up.",
+          "content": "Creators are finding new income streams.\nLinkedIn is empowering them further.\nThis expands opportunities for professionals.\n\nNew monetization options include:\n1.  **Expanded Sponsorships:** More ways for brands to partner with creators.\n2.  **Updated Insights:** Better data to understand audience and performance.\n3.  **One-on-One Consultations:** Host direct paid sessions within the app.\n\nWill you use these new features?\n📌 Source: Social Media Today (\"LinkedIn adds new creator monetization options\")\n#LinkedInCreators #Monetization #ContentStrategy",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "LinkedIn adds new creator monetization options",
+          "imageHeadline": "CREATOR *INCOME* BOOST",
+          "imageSubtext": "New ways to monetize expertise on LinkedIn.",
+          "badgeText": "PLATFORM UPDATE",
+          "ctaText": "TRY WEB APP",
+          "sourceUrl": "https://www.socialmediatoday.com/news/linkedin-adds-new-creator-monetization-options/833179/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "asymmetrical-grid",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Professor",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor in a Technology command center. Looking at camera. Formal university attire. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Your content needs AI vision.",
+          "content": "AI is changing how people search for info.\nBrands like Fender are adapting fast.\nThey're using content series to win in AI search.\n\nThis means a shift in content strategy:\n1.  **Informative Series:** Create in-depth content that answers common AI queries.\n2.  **Expert Authority:** Position your brand as the go-to source for specific topics.\n3.  **Diversify Formats:** Think beyond text – videos, audio, and interactive guides.\n\nHow are you optimizing for AI search?\n📌 Source: Digiday (\"Brands turn to content series and Jimi Hendrix to improve AI search performance\")\n#AIMarketing #ContentStrategy #AISearch",
+          "sourceName": "Digiday",
+          "sourceArticle": "Brands turn to content series and Jimi Hendrix to improve AI search performance",
+          "imageHeadline": "AI *SEARCH* VISIBILITY",
+          "imageSubtext": "How brands win with smart content series.",
+          "badgeText": "AI MARKETING",
+          "ctaText": "GET REPORT",
+          "sourceUrl": "https://digiday.com/marketing/brands-turn-to-content-series-and-jimi-hendrix-to-improve-ai-search-performance/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Harvard Professor",
+        "layoutFamily": "floating-cards",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Technology Evangelist",
+        "environment": "Library",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist in a Library. Full-body standing. Premium polo shirt. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Websites that think for themselves.",
+          "content": "The 'agentic web' is gaining traction.\nAI is tailoring website experiences.\nThis moves beyond basic personalization.\n\nHere’s how an AI-tailored workflow works:\n1.  **AI Visitor Analysis:** AI identifies individual user needs and intent.\n2.  **Dynamic Content Delivery:** Website elements adapt in real-time.\n3.  **Proactive Assistance:** AI anticipates questions and offers solutions instantly.\n\nAre you building an agentic web experience?\n📌 Source: Adweek (\"Katzenberg-Backed Netomi Expands Leadership as It Bets on AI-Tailored Websites\")\n#AIWorkflow #AgenticWeb #Personalization",
+          "sourceName": "Adweek",
+          "sourceArticle": "Katzenberg-Backed Netomi Expands Leadership as It Bets on AI-Tailored Websites",
+          "imageHeadline": "AGENTIC *WEB* WORKFLOW",
+          "imageSubtext": "Build smart, AI-driven customer experiences.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://www.adweek.com/brand-marketing/jeffrey-katzenberg-netomi-agentic-web/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-10-17",
     "category": "ai",
     "posts": [
