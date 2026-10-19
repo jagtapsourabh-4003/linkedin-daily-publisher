@@ -1,5 +1,159 @@
 [
   {
+    "date": "2026-10-19",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Forbes Cover",
+        "layoutFamily": "news-card",
+        "colorPalette": "Slate Blue",
+        "characterRole": "Keynote Speaker",
+        "environment": "Startup hub",
+        "cameraStyle": "Walking shot",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Keynote Speaker in a Startup hub, Walking shot, Premium polo shirt. Foreground: out-of-focus event banner, Midground: the manager, Background: blurred startup hub with energetic activity. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Boosting ad ROI for Black Friday?",
+          "content": "The numbers show a clear path to better results.\nMany brands ramp up spending but forget one key thing: fresh creative.\n\nHere’s what makes a difference:\n1.  **Weekly Creative:** Advertisers updating visuals weekly saw a 23% higher return.\n2.  **Stay Relevant:** Black Friday shoppers expect timely, engaging visuals. Don't just re-run old ads.\n3.  **Test & Learn:** Use new creatives to quickly identify what resonates most with holiday buyers.\n\nAre you refreshing your ad creative often enough for peak seasons?\n\n📌 Source: Marketing Dive (\"Optimizing ad spend ahead of Black Friday: What the numbers say\")\n#AdSpend #BlackFriday #MarketingStrategy",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Optimizing ad spend ahead of Black Friday: What the numbers say",
+          "imageHeadline": "*AD CREATIVE* REFRESH",
+          "imageSubtext": "Unlock 23% higher ROI with fresh weekly ads.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://www.marketingdive.com/news/optimizing-ad-spend-ahead-of-black-friday-what-the-numbers-say/833154/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Corporate Executive",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Monochrome Black",
+        "characterRole": "Strategy Consultant",
+        "environment": "Coffee shop workspace",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant in a Coffee shop workspace, Over-the-shoulder, White shirt with rolled sleeves. Foreground: out-of-focus laptop screen showing a strategy deck, Midground: the manager, Background: blurred coffee shop patrons and cozy lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Target's new retail playbook.",
+          "content": "Big box stores are revamping categories by partnering with social-first brands.\nIt's a smart move to capture new consumer segments.\n\nHere's how this strategy works:\n1.  **Identify Trends:** Look for buzzy brands making waves on platforms like TikTok.\n2.  **Strategic Partnerships:** Integrate these brands into your core offerings, like Target did with Mellow Sleep.\n3.  **Attract New Audiences:** Leverage the partner brand's existing following to bring fresh faces to your store.\n\nCould this hybrid approach revitalize your product categories?\n\n📌 Source: Digiday (\"Target bets on buzzy TikTok brands like Mellow Sleep to revamp its home category\")\n#RetailStrategy #TikTokMarketing #BrandPartnerships",
+          "sourceName": "Digiday",
+          "sourceArticle": "Target bets on buzzy TikTok brands like Mellow Sleep to revamp its home category",
+          "imageHeadline": "*TIKTOK* BRAND BOOST",
+          "imageSubtext": "Target’s playbook to revamp home categories.",
+          "badgeText": "MARKETING PLAYBOOK",
+          "ctaText": "GET REPORT",
+          "sourceUrl": "https://digiday.com/marketing/target-bets-on-buzzy-tiktok-brands-like-mellow-sleep-to-revamp-its-home-category/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "layered-depth",
+        "colorPalette": "Neon Cyan",
+        "characterRole": "Corporate Executive",
+        "environment": "Media studio",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive in a Media studio, Interview setup, Luxury business casual. Foreground: out-of-focus studio light, Midground: the manager, Background: blurred soundproofing panels and camera equipment. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Victoria's Secret changed its show.",
+          "content": "The iconic fashion show is no longer about exclusive supermodels.\nIt's now a fan-driven, communal event.\n\nThis is a major shift in brand strategy:\n1.  **From Aspiration to Inclusion:** Moving from an unattainable ideal to a broader, more relatable community.\n2.  **Fan-Centric Experience:** Involving the audience creates deeper engagement and loyalty.\n3.  **Modern Relevancy:** Adapting to current consumer values makes the brand feel fresh and authentic.\n\nWhat brands do you see successfully building a 'fan movement'?\n\n📌 Source: Adweek (\"Amid Turnaround, Victoria’s Secret Turns Its Fashion Show Into a Fan Movement\")\n#BrandStrategy #ConsumerPsychology #MarketingInnovation",
+          "sourceName": "Adweek",
+          "sourceArticle": "Amid Turnaround, Victoria’s Secret Turns Its Fashion Show Into a Fan Movement",
+          "imageHeadline": "*BRAND* FAN MOVEMENT",
+          "imageSubtext": "Victoria's Secret shifts from exclusive to inclusive.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "READ INSIGHTS",
+          "sourceUrl": "https://www.adweek.com/creativity/amid-turnaround-victorias-secret-turns-its-fashion-show-into-a-fan-movement/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "asymmetrical-grid",
+        "colorPalette": "Dark Forest",
+        "characterRole": "Professor",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Looking away",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor in a Futuristic workspace, Looking away, Modern startup hoodie. Foreground: glowing holographic interface, Midground: the manager, Background: blurred abstract digital displays and sleek modern furniture. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "AI avatars in your app?",
+          "content": "Wendy's is using AI-generated avatars for fan experiences in the Bravo app.\nThis opens up new ways to engage audiences.\n\nConsider these AI avatar benefits:\n1.  **Personalized Engagement:** Avatars like Andy Cohen's can offer tailored content and interactions.\n2.  **Brand Immersion:** Create unique, interactive brand experiences directly within apps.\n3.  **Novelty & Buzz:** Stand out by deploying cutting-edge AI for memorable user journeys.\n\nHow could an AI avatar enhance your brand's app experience?\n\n📌 Source: Marketing Dive (\"Wendy’s signs on as first sponsor for in-app Bravo fan experience\")\n#AIMarketing #AIInnovation #FanEngagement",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Wendy’s signs on as first sponsor for in-app Bravo fan experience",
+          "imageHeadline": "*AI AVATAR* ENGAGEMENT",
+          "imageSubtext": "Wendy's uses AI to sponsor in-app fan experiences.",
+          "badgeText": "AI MARKETING",
+          "ctaText": "EXPLORE CASE STUDY",
+          "sourceUrl": "https://www.marketingdive.com/news/wendys-signs-on-as-first-sponsor-for-in-app-bravo-fan-experience/833067/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Harvard Professor",
+        "layoutFamily": "phone-mockup",
+        "colorPalette": "Premium Burgundy",
+        "characterRole": "University Chancellor",
+        "environment": "Modern university campus",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. University Chancellor on a Modern university campus, Full-body standing, Formal university attire. Foreground: out-of-focus ornate university gate, Midground: the manager, Background: blurred historic university buildings and students walking. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "YouTube's AI search is changing.",
+          "content": "Imagine searching on YouTube and getting AI-generated answers directly.\nThis test changes how users find content.\n\nWhat this means for your content strategy:\n1.  **Direct Answers:** AI might summarize videos or provide immediate info, reducing clicks.\n2.  **SEO Impact:** Focus on clarity and directness in your video titles and descriptions for AI to pick up.\n3.  **Content Discovery:** Think about how your content answers specific questions AI might interpret.\n\nAre you ready for AI-powered video search?\n\n📌 Source: Social Media Today (\"YouTube tests AI replies in searches\")\n#AISearch #YouTubeMarketing #ContentStrategy",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "YouTube tests AI replies in searches",
+          "imageHeadline": "*YOUTUBE* AI ANSWERS",
+          "imageSubtext": "AI replies are changing video search queries.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "LEARN MORE",
+          "sourceUrl": "https://www.socialmediatoday.com/news/youtube-tests-ai-replies-in-searches/833307/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-10-18",
     "category": "marketing",
     "posts": [
