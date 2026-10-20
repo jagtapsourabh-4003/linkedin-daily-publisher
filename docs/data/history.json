@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-10-20",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Creative Director",
+        "layoutFamily": "split-left",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Technology Evangelist",
+        "environment": "Creative workspace",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist in a Creative workspace, Close-up portrait, Premium polo shirt, warm studio lighting. Out-of-focus microphone in foreground, manager in midground, blurred creative workspace background with tech gadgets. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Brands are now getting *really* creative.",
+          "content": "A torched suitcase became a golden opportunity. John Summit's viral mishap with a Rimowa led to a partnership with Away luggage.\n\nThis shows us something important:\n1. Spot the trend: Look for organic conversations and viral moments that align with your brand's values.\n2. Act fast: Speed is critical. Capitalize on the buzz while it's hot.\n3. Be authentic: The best partnerships feel natural, not forced.\n\nHow do you find your next unexpected brand collaboration?\n\n📌 Source: Adweek (\"After Torching a Rimowa, John Summit Becomes Away’s Chief Destruction Officer\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Adweek",
+          "sourceArticle": "After Torching a Rimowa, John Summit Becomes Away’s Chief Destruction Officer",
+          "imageHeadline": "*VIRAL* PARTNERSHIPS",
+          "imageSubtext": "Turn unexpected moments into brand wins.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Business Strategist",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "Strategy Consultant",
+        "environment": "City skyline office",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant in a City skyline office, Full-body standing, White shirt with rolled sleeves, professional office lighting. Glass desk in foreground, manager in midground, blurred city skyline background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Want to scale your creator business?",
+          "content": "One fashion creator turned audience demand into a 500+ client styling business. Here's a simple playbook for growth:\n\n1. Listen to your audience: What problems do they have? What do they ask for?\n2. Diversify your offerings: Don't just rely on one income stream. Add services or products.\n3. Build a system: Move from one-off projects to repeatable processes for clients.\n\nHow do you plan to scale your audience engagement?\n\n📌 Source: Digiday (\"How a fashion creator turned audience demand into a 500+ client styling business\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Digiday",
+          "sourceArticle": "How a fashion creator turned audience demand into a 500+ client styling business",
+          "imageHeadline": "*CREATOR* GROWTH MODEL",
+          "imageSubtext": "Build a loyal client base from your audience.",
+          "badgeText": "MARKETING PLAYBOOK",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Corporate Executive",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "Innovation Leader",
+        "environment": "Coffee shop workspace",
+        "cameraStyle": "Walking shot",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader in a Coffee shop workspace, Walking shot, Luxury business casual, soft natural lighting. Out-of-focus coffee cup on table in foreground, manager in midground, blurred modern coffee shop background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Debunking food myths is smart marketing.",
+          "content": "Amy’s Kitchen is tackling 'ultra-processed food' myths head-on. They're using a national campaign to educate and reassure consumers.\n\nThis shows a powerful brand strategy:\n1. Address concerns directly: Don't ignore consumer worries, face them.\n2. Educate your audience: Provide clear, simple facts to build trust.\n3. Use multiple channels: Reach people where they are, from ads to in-store.\n\nWhat myth could your brand tackle next?\n\n📌 Source: Marketing Dive (\"Amy’s Kitchen tackles ultra-processed food myths in national campaign\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Amy’s Kitchen tackles ultra-processed food myths in national campaign",
+          "imageHeadline": "*BRAND* TRUTH CAMPAIGN",
+          "imageSubtext": "Engage consumers by addressing common concerns.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "phone-mockup",
+        "colorPalette": "Platinum Grey",
+        "characterRole": "AI Consultant",
+        "environment": "Innovation lab",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant in an Innovation lab, Side profile, Modern startup hoodie, cool blue lighting. Out-of-focus holographic display in foreground, manager in midground, blurred lab equipment background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "AI is your new design assistant.",
+          "content": "Pinterest just added 'Barbie pink' to its AI Restyle tool. Users can now reimagine their homes as Barbie DreamHouses.\n\nThis is a simple look at AI's impact:\n1. Personalization at scale: AI customizes experiences for millions.\n2. Creative exploration: Users can experiment without real-world limits.\n3. Brand integration: AI tools become new playgrounds for brand campaigns.\n\nHow will AI change your design process?\n\n📌 Source: Social Media Today (\"Pinterest adds Barbie pink to Restyle\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "Pinterest adds Barbie pink to Restyle",
+          "imageHeadline": "*AI* DESIGN POWER",
+          "imageSubtext": "Transform user creativity with intelligent tools.",
+          "badgeText": "AI MARKETING",
+          "ctaText": "TRY WEB APP"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Harvard Professor",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Dark Forest",
+        "characterRole": "Author",
+        "environment": "Library",
+        "cameraStyle": "Looking away",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Author in a Library, Looking away, Formal university attire, soft ambient lighting. Out-of-focus open book in foreground, manager in midground, blurred grand library shelves background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "AI can supercharge your content team.",
+          "content": "HubSpot shared how their blog went 'AI-first'. It wasn't just about faster writing, but fixing process inefficiencies.\n\nHere’s a simple AI workflow change:\n1. AI for outlines: Use AI to draft initial post structures, saving research time.\n2. AI for drafts: Get a first draft quickly, then humans refine and add depth.\n3. AI for optimization: Use AI to check for SEO or clarity before publishing.\n\nAre you integrating AI into your content creation?\n\n📌 Source: HubSpot Marketing (\"What actually happened when our blog went AI-first: A manager's account\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "What actually happened when our blog went AI-first: A manager's account",
+          "imageHeadline": "*AI* CONTENT PIPELINE",
+          "imageSubtext": "Streamline blog production with smart AI integration.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-10-19",
     "category": "marketing",
     "posts": [
