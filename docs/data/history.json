@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-10-21",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "University Chancellor",
+        "layoutFamily": "split-left",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Professor",
+        "environment": "Modern university campus",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, as a Professor, in a Modern university campus, Close-up portrait, wearing Formal university attire. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Brands meet *real* culture.",
+          "content": "Old brands can feel fresh again. It's not about big ads.\nIt's about connecting with real human experiences.\n\nCourvoisier, a cognac brand, just launched its first global campaign in years. Instead of stuffy, formal settings, they embraced house party culture. It's a simple idea: find where your audience lives and thrives.\n\n1.  **Know Your Audience:** Understand their daily lives, not just demographics.\n2.  **Go Where They Are:** Meet them in their natural environment.\n3.  **Embrace Authenticity:** Reflect their culture, don't just mimic it.\n\nHow do you see traditional brands staying relevant today?\n\n📌 Source: Marketing Dive (\"Courvoisier’s first global campaign in years embraces house party culture\")\n#BrandStrategy #MarketingTrends #CulturalMarketing",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Courvoisier’s first global campaign in years embraces house party culture",
+          "imageHeadline": "CULTURE *REMIX*.",
+          "imageSubtext": "How old brands find new relevance in modern scenes.",
+          "badgeText": "MARKETING NEWS",
+          "ctaText": "READ INSIGHTS"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Harvard Professor",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Strategy Consultant",
+        "environment": "Conference venue",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, as a Strategy Consultant, in a Conference venue, Presentation shot, wearing a Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Small team, *big* search.",
+          "content": "Answer Engine Optimization (AEO) isn't just for big players anymore.\nEven small teams can make a huge impact.\n\nMany businesses rely on search to get leads. With AI Overviews changing everything, AEO is now a must-do. You don't need a huge budget.\n\n1.  **Focus on Specific Questions:** Target exact queries your audience asks.\n2.  **Create Direct Answers:** Provide clear, concise answers that AI can easily pull.\n3.  **Use Structured Data:** Help search engines understand your content better.\n\nWhat's your biggest challenge with AEO right now?\n\n📌 Source: HubSpot Marketing (\"What options exist for running AEO without a large team?\")\n#AEO #SearchEngineOptimization #MarketingTips",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "What options exist for running AEO without a large team?",
+          "imageHeadline": "AEO *SMALL* TEAMS.",
+          "imageSubtext": "Boost your search visibility without a massive department.",
+          "badgeText": "PLAYBOOK",
+          "ctaText": "GET FRAMEWORK"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "asymmetrical-grid",
+        "colorPalette": "Teal White",
+        "characterRole": "Corporate Executive",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, as a Corporate Executive, in an Executive boardroom, Looking at camera, wearing a Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Ad data *shake-up*.",
+          "content": "The world of advertising data is getting complicated.\nBig tech players and agencies are in a tug-of-war.\n\nPublicis, a major ad agency, recently made a deal with the FTC to keep LiveRamp's data platform 'neutral.' This means smaller competitors should still have access. But some are already pulling back.\n\n1.  **Data Access is Key:** Who controls the data shapes the ad landscape.\n2.  **Trust is Fragile:** Promises of neutrality can be hard to maintain.\n3.  **Competition Matters:** Fair access helps smaller players innovate.\n\nHow do you navigate data sharing in your marketing efforts?\n\n📌 Source: Marketing Dive (\"Publicis agrees to preserve LiveRamp’s neutrality. Will it matter?\")\n#AdTech #DataPrivacy #MarketingStrategy",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Publicis agrees to preserve LiveRamp’s neutrality. Will it matter?",
+          "imageHeadline": "DATA *WARS*.",
+          "imageSubtext": "The battle for fair access in ad tech platforms.",
+          "badgeText": "STRATEGY",
+          "ctaText": "LEARN MORE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "diagonal-layout",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "AI Consultant",
+        "environment": "Innovation lab",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, as an AI Consultant, in an Innovation lab, Side profile, wearing a Modern startup hoodie. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "AI for *brand* trust.",
+          "content": "Brands are using AI in unexpected ways.\nIt's about more than just efficiency.\n\nDollar Shave Club is marketing its razors as 'perfectly good,' using AI to tie all its ad efforts together. They're building trust by focusing on value and consistent messaging.\n\n1.  **Consistent Messaging:** AI helps keep your brand story unified.\n2.  **Personalized Value:** Use AI to highlight what matters most to each customer.\n3.  **Build Trust:** Authentic communication beats flashy promises.\n\nWhat role does AI play in your brand's messaging?\n\n📌 Source: Marketing Dive (\"Dollar Shave Club markets ‘perfectly good’ razors as AI push continues\")\n#AIMarketing #BrandBuilding #CustomerTrust",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Dollar Shave Club markets ‘perfectly good’ razors as AI push continues",
+          "imageHeadline": "AI *BRAND* LIFT.",
+          "imageSubtext": "How AI tools are driving authentic brand connections.",
+          "badgeText": "AI CONCEPTS",
+          "ctaText": "EXPLORE AI"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "phone-mockup",
+        "colorPalette": "Neon Cyan",
+        "characterRole": "Startup Founder",
+        "environment": "Startup hub",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, as a Startup Founder, in a Startup hub, Over-the-shoulder, wearing a Modern startup hoodie. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Meta Ads *made easy*.",
+          "content": "Creating effective Meta Ads just got a serious upgrade.\nAI is now turning everyday visuals into powerful ad creative.\n\nAn Australian startup called Cuttable raised $20M to automate ad creation. They take your photos and videos and transform them for Meta Ads instantly. This saves huge time and effort.\n\n1.  **AI for Creative:** Let AI adapt your visuals for different ad formats.\n2.  **Speed to Market:** Launch campaigns faster with automated creative.\n3.  **Optimize Ad Spend:** Focus your budget on testing, not manual design.\n\nHow do you currently handle creative for your Meta Ads?\n\n📌 Source: Adweek (\"Pitch Deck: Cuttable Raises $20M to Turn Brands’ Photos and Videos Into Meta Ads\")\n#AIWorkflow #MetaAds #CreativeAutomation",
+          "sourceName": "Adweek",
+          "sourceArticle": "Pitch Deck: Cuttable Raises $20M to Turn Brands’ Photos and Videos Into Meta Ads",
+          "imageHeadline": "AI *AD* MAGIC.",
+          "imageSubtext": "Automate ad creative for Meta with new AI tools.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "CHECK IT OUT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-10-20",
     "category": "marketing",
     "posts": [
