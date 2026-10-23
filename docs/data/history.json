@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-10-23",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Investor Pitch",
+        "layoutFamily": "split-left",
+        "colorPalette": "Teal White",
+        "characterRole": "Investor",
+        "environment": "City skyline office",
+        "cameraStyle": "Walking shot",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Investor in a City skyline office, Walking shot, Premium polo shirt. Out-of-focus city lights in foreground, manager in midground, modern high-rise buildings in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Big brands are shifting partners.",
+          "content": "Coca-Cola just made a huge move. They picked Omnicom for their North America media. \n\nThis shows us that even global giants constantly rethink their agency relationships.\n\nWhat does this mean for your brand?\n\n1.  **Stay Nimble:** Agency relationships aren't forever. Be ready to evaluate and adapt.\n2.  **Define Needs:** Know exactly what you need. Coke had two separate pitches for global vs. regional.\n3.  **Look for Synergy:** Seek partners who truly understand your specific market challenges.\n\nHow do you approach agency partnerships?\n\n📌 Source: Adweek (\"Omnicom Nabs Coca-Cola’s North America Media Account While WPP Retains Globally\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Adweek",
+          "sourceArticle": "Omnicom Nabs Coca-Cola’s North America Media Account While WPP Retains Globally",
+          "imageHeadline": "AGENCY *SHIFT*",
+          "imageSubtext": "Why big brands are rethinking media accounts now.",
+          "badgeText": "MARKETING NEWS",
+          "ctaText": "READ FULL STORY"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Innovation Lab Researcher",
+        "layoutFamily": "layered-depth",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Researcher",
+        "environment": "Innovation lab",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Researcher in an Innovation lab, Interview setup, Modern startup hoodie. Out-of-focus lab equipment in foreground, manager in midground, blurred futuristic screens in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "CPG challengers are winning.",
+          "content": "How do smaller brands take on giants? They don't just copy. They innovate where it counts.\n\nThey're proving that smart marketing can beat big budgets.\n\nHere’s their playbook:\n\n1.  **Unique Packaging:** Graza uses distinct designs that stand out on crowded shelves.\n2.  **Bold Voice:** Liquid Death uses humor and AI in their marketing to grab attention.\n3.  **Niche Focus:** They often start by serving a specific, underserved audience with dedication.\n\nWhat's one challenger brand you admire?\n\n📌 Source: Marketing Dive (\"How CPG challenger brands are setting category marketing trends\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "How CPG challenger brands are setting category marketing trends",
+          "imageHeadline": "CHALLENGER *PLAYBOOK*",
+          "imageSubtext": "The 3 tactics smaller brands use to disrupt markets.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Magazine Editorial",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "Keynote Speaker",
+        "environment": "Creative workspace",
+        "cameraStyle": "Looking away",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Keynote Speaker in a Creative workspace, Looking away, Luxury business casual. Out-of-focus sketchbook in foreground, manager in midground, vibrant art installations in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Banana Republic meets TikTok.",
+          "content": "Trying to connect with younger shoppers? Banana Republic just launched a TikTok content series.\n\nThey're showing different styles and embracing entertainment marketing. It's a smart way to stay relevant.\n\nThis strategy works because:\n\n1.  **Authenticity:** TikTok thrives on real, engaging content, not just polished ads.\n2.  **Trend Adoption:** Brands must go where the audience is, and that's often short-form video.\n3.  **Discovery:** New generations discover brands through organic social content.\n\nWhat content resonates most with you on TikTok?\n\n📌 Source: Marketing Dive (\"Banana Republic debuts TikTok content series in bid for younger shoppers\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Banana Republic debuts TikTok content series in bid for younger shoppers",
+          "imageHeadline": "TIKTOK *REFRESH*",
+          "imageSubtext": "How Banana Republic connects with younger audiences.",
+          "badgeText": "BRAND CAMPAIGN",
+          "ctaText": "EXPLORE CAMPAIGN"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Conference Speaker",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "Innovation Leader",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader on an Auditorium stage, Over-the-shoulder, Formal university attire. Out-of-focus presentation slide in foreground, manager in midground, large audience blurred in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "AI boosts discovery, but reviews close deals.",
+          "content": "AI is amazing for finding new products. Many shoppers start their search on platforms like ChatGPT.\n\nBut here’s the kicker: very few actually buy there. Why?\n\nBecause human reviews are still king.\n\nRemember these points:\n\n1.  **AI for Exploration:** Use AI tools to help customers discover your offerings.\n2.  **Reviews for Trust:** Make sure customer testimonials are front and center for conversion.\n3.  **Balance Both:** AI guides, but real human experience convinces.\n\nWhere do you usually start your product searches?\n\n📌 Source: Digiday (\"AI boosts discovery but reviews still seal the deal, new research shows\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Digiday",
+          "sourceArticle": "AI boosts discovery but reviews still seal the deal, new research shows",
+          "imageHeadline": "AI *DISCOVERY* POWER",
+          "imageSubtext": "Why reviews still matter more than AI for purchases.",
+          "badgeText": "AI INSIGHTS",
+          "ctaText": "LEARN MORE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Podcast Host",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Platinum Grey",
+        "characterRole": "Podcast Host",
+        "environment": "Luxury office",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Podcast Host in a Luxury office, Sitting at desk, Conference speaker outfit. Out-of-focus microphone in foreground, manager in midground, elegant bookshelf in background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Boost your team's AI skills.",
+          "content": "Claude AI offers incredible 'skills' for marketing and sales teams. These are like reusable recipes.\n\nInstead of starting from scratch, you define instructions once.\n\nHere’s how to use them:\n\n1.  **Define a Task:** Identify recurring work, like drafting proposals or campaign planning.\n2.  **Create a Skill:** Write clear, step-by-step instructions for Claude to follow.\n3.  **Reuse & Refine:** Apply the skill to new projects, saving time and ensuring consistent output.\n\nWhat repetitive task could AI help you with?\n\n📌 Source: HubSpot Marketing (\"Best Claude skills for marketing and sales teams\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "Best Claude skills for marketing and sales teams",
+          "imageHeadline": "CLAUDE *SKILLS* WORKFLOW",
+          "imageSubtext": "How to create reusable AI instructions for your team.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "GET THE GUIDE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-10-22",
     "category": "ai",
     "posts": [
