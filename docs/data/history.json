@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-10-24",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Corporate Executive",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Premium Burgundy",
+        "characterRole": "Corporate Executive",
+        "environment": "City skyline office",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive in a modern city skyline office, full-body standing shot. Wearing a white shirt with rolled sleeves. Foreground: out-of-focus glass partition. Midground: the corporate executive. Background: city skyline. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Experience over ads.",
+          "content": "AB InBev changed how they approach marketing. They're not just selling beer. They are creating unforgettable experiences.\nThis shift makes marketing stronger. It builds loyalty and drives growth. We can all learn from this.\n1. Focus on value: Offer more than just a product.\n2. Create memories: Design interactions that engage.\n3. Build a culture: Make creative effectiveness a team goal.\nWhat experiences can your brand create?\n📌 Source: Adweek (\"How AB InBev built a culture of creative effectiveness that drives growth\")\n#MarketingStrategy #BrandBuilding #CustomerExperience",
+          "sourceName": "Adweek",
+          "sourceArticle": "How AB InBev built a culture of creative effectiveness that drives growth",
+          "imageHeadline": "*EXPERIENCE* DRIVES GROWTH",
+          "imageSubtext": "How brands win by building meaningful connections.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "READ THE CASE STUDY"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Harvard Professor",
+        "layoutFamily": "split-left",
+        "colorPalette": "Platinum Grey",
+        "characterRole": "Professor",
+        "environment": "Library",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor in a classic library environment, close-up portrait shot. Wearing formal university attire. Foreground: stack of out-of-focus books. Midground: the professor. Background: blurred library shelves. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Prove your ads work.",
+          "content": "Walmart Connect is showing brands hard data. They use \"lift studies\" to measure ad impact. This is smart, especially for holiday sales.\nKnowing your ad's real effect is key. It helps you spend wisely.\n1. Measure impact: Use data to see ad results.\n2. Show the value: Prove ROI to stakeholders.\n3. Optimize spend: Invest in what truly works.\nAre you tracking your ad lift this holiday season?\n📌 Source: Digiday (\"Walmart Connect pitches brands directly as it pushes lift studies ahead of holiday ad deals\")\n#AdPerformance #MarketingAnalytics #HolidayMarketing",
+          "sourceName": "Digiday",
+          "sourceArticle": "Walmart Connect pitches brands directly as it pushes lift studies ahead of holiday ad deals",
+          "imageHeadline": "AD *PERFORMANCE* PROOF",
+          "imageSubtext": "Boost holiday sales with data-driven lift studies.",
+          "badgeText": "MARKETING PLAYBOOK",
+          "ctaText": "GET THE FRAMEWORK"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "TED Speaker",
+        "layoutFamily": "diagonal-layout",
+        "colorPalette": "Dark Forest",
+        "characterRole": "Keynote Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Keynote Speaker on an auditorium stage, looking at camera shot. Wearing luxury business casual attire. Foreground: blurred microphone stand. Midground: the keynote speaker. Background: illuminated stage backdrop. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Nostalgia wins Gen Z.",
+          "content": "E.l.f. Beauty tapped into Y2K nostalgia. They created a campaign for Gen Z. It's a smart move.\nYoung audiences love old trends. This creates buzz and engagement. It shows understanding your audience is crucial.\n1. Know your audience: What past trends do they love?\n2. Inject authenticity: Make nostalgia feel real.\n3. Create buzz: Connect old and new for virality.\nWhat cultural trends can your brand tap into next?\n📌 Source: Marketing Dive (\"Campaign Trail: E.l.f. casts spell to deliver Y2K nostalgia to Gen Z\")\n#BrandStrategy #GenZMarketing #NostalgiaMarketing",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Campaign Trail: E.l.f. casts spell to deliver Y2K nostalgia to Gen Z",
+          "imageHeadline": "Y2K *GEN Z* MAGIC",
+          "imageSubtext": "E.l.f. uses nostalgia to captivate young consumers.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "EXPLORE CAMPAIGN"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Innovation Lab Researcher",
+        "layoutFamily": "floating-cards",
+        "colorPalette": "Neon Cyan",
+        "characterRole": "Researcher",
+        "environment": "Innovation lab",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Researcher in an innovation lab, side profile shot. Wearing a modern startup hoodie. Foreground: out-of-focus clear data screen. Midground: the researcher. Background: blurred lab equipment. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Gemini helps your brand.",
+          "content": "Google's Gemini now has new brand management tools. This makes AI even more useful for marketers. You can manage your brand presence.\nIt helps with consistent messaging. AI is quickly becoming a core brand asset.\n1. Monitor brand mentions: Keep track of your name.\n2. Ensure consistency: Maintain your brand voice.\n3. Generate images: Create on-brand visuals faster.\nHow are you using AI for brand management today?\n📌 Source: Social Media Today (\"Google adds brand management tools to Gemini\")\n#AIMarketing #BrandManagement #GoogleGemini",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "Google adds brand management tools to Gemini",
+          "imageHeadline": "AI *BRAND* ASSISTANT",
+          "imageSubtext": "Google Gemini's new tools for effortless brand control.",
+          "badgeText": "AI UPDATE",
+          "ctaText": "DISCOVER GEMINI"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "University Chancellor",
+        "layoutFamily": "layered-depth",
+        "colorPalette": "Royal Gold",
+        "characterRole": "University Chancellor",
+        "environment": "Modern university campus",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. University Chancellor on a modern university campus, over-the-shoulder shot. Wearing a premium polo shirt. Foreground: out-of-focus university crest. Midground: the chancellor. Background: blurred modern campus buildings. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Track AI prompts smart.",
+          "content": "Not every AI prompt needs tracking. A smart strategy focuses on key areas. Track branded, unbranded, and competitor prompts.\nThis gives you meaningful insights. It prevents information overload.\n1. Target key prompts: Focus on branded searches.\n2. Include competitors: See where you stand.\n3. Cover buyer stages: Understand full journey impact.\nWhat's your AI prompt tracking strategy?\n📌 Source: HubSpot Marketing (\"Which AI prompts should you track? A practical guide\")\n#AITracking #PromptEngineering #MarketingWorkflow",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "Which AI prompts should you track? A practical guide",
+          "imageHeadline": "AI *PROMPT* STRATEGY",
+          "imageSubtext": "How to track only the essential AI prompts for insights.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "OPTIMIZE TRACKING"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-10-23",
     "category": "marketing",
     "posts": [
