@@ -1,5 +1,159 @@
 [
   {
+    "date": "2026-10-25",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Technology Evangelist",
+        "environment": "Luxury office",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist in a Luxury office. Sitting at desk. Wearing a Turtleneck with blazer. Out-of-focus smart speaker in foreground, midground subject is the manager, background is a blurred city view. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Netflix hit an ad hurdle.",
+          "content": "We saw Netflix adjust its ad revenue outlook. They lowered the forecast by 10%. This shows even giants face challenges in the evolving ad landscape. Streaming ads are complex.\n1.  **Audience First:** Understand viewer fatigue. Ads need to be relevant, not disruptive.\n2.  **Tech Stack:** Invest in better ad tech. Personalized delivery improves engagement.\n3.  **Data Insights:** Use data to optimize placements. This helps advertisers see real value.\nWhat's your biggest challenge with streaming ads?\n📌 Source: Marketing Dive (\"Netflix lowers ad revenue forecast by 10%, continues to beef up ad suite\")\n#StreamingAds #NetflixMarketing #AdStrategy",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Netflix lowers ad revenue forecast by 10%, continues to beef up ad suite",
+          "imageHeadline": "*STREAMING* SHIFT",
+          "imageSubtext": "Netflix adapts to changing ad revenue expectations.",
+          "badgeText": "MARKETING NEWS",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://www.marketingdive.com/news/netflix-lowers-ad-revenue-forecast-by-10-continues-to-beef-up-ad-suite/833571/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Creative Director",
+        "layoutFamily": "asymmetrical-grid",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Innovation Leader",
+        "environment": "Startup hub",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader in a Startup hub. Presentation shot. Wearing a Smart casual blazer. Out-of-focus interactive screen in foreground, midground subject is the manager, background is a blurred open-plan office. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Track LinkedIn conversions better.",
+          "content": "Driving B2B leads on LinkedIn? You need to track conversions precisely. A new guide shares clear steps. This helps you see what's truly working.\n1.  **Set Goals:** Define your key conversion events first. What do you want users to do?\n2.  **Use Insight Tag:** Install the LinkedIn Insight Tag. It collects valuable website visitor data.\n3.  **Match Data:** Connect your CRM data to LinkedIn. This shows you the full customer journey.\nAre you maximizing your LinkedIn ad spend?\n📌 Source: Social Media Today (\"LinkedIn publishes new guide to B2B conversion tracking\")\n#B2BMarketing #LinkedInAds #ConversionTracking",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "LinkedIn publishes new guide to B2B conversion tracking",
+          "imageHeadline": "B2B *TRACKING*",
+          "imageSubtext": "Master LinkedIn conversions for better ROI.",
+          "badgeText": "MARKETING PLAYBOOK",
+          "ctaText": "GET REPORT",
+          "sourceUrl": "https://www.socialmediatoday.com/news/linkedin-publishes-new-guide-to-b2b-conversion-tracking/833776/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Podcast Host",
+        "layoutFamily": "split-left",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Keynote Speaker",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Keynote Speaker in an Executive boardroom. Full-body standing. Wearing a Navy business suit. Out-of-focus presentation clicker in foreground, midground subject is the manager, background is a blurred modern conference table. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Roblox for film marketing?",
+          "content": "Warner Bros. is bringing 'The Cat in the Hat' to Roblox. This is smart marketing for a film release. It's about reaching young audiences where they play.\n1.  **Engage Early:** Connect with fans before launch. Build anticipation in their digital worlds.\n2.  **Interactive Play:** Offer exclusive experiences. Let them interact with characters and stories.\n3.  **Drive Hype:** Unlock limited avatar items. This creates buzz and encourages sharing.\nWhat platforms are you using to connect with Gen Z?\n📌 Source: Marketing Dive (\"Warner Bros. stirs up ‘The Cat in the Hat’ mayhem on Roblox ahead of film\")\n#RobloxMarketing #FilmPromotion #GenZ",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Warner Bros. stirs up ‘The Cat in the Hat’ mayhem on Roblox ahead of film",
+          "imageHeadline": "*ROBLOX* HYPE",
+          "imageSubtext": "Warner Bros. takes 'Cat in the Hat' to the metaverse.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://www.marketingdive.com/news/warner-bros-stirs-up-the-cat-in-the-hat-mayhem-on-roblox-ahead-of-film/833689/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Crimson Red",
+        "characterRole": "AI Consultant",
+        "environment": "Conference venue",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant in a Conference venue. Close-up portrait. Wearing a Charcoal executive suit. Out-of-focus mic in foreground, midground subject is the manager, background is a blurred large screen with a data visualization. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "AI users trade privacy for power.",
+          "content": "Snapchat's study found something interesting. Many AI users are okay with sharing data. They do it for better, more useful AI tools. This changes how we think about AI adoption.\n1.  **Utility Wins:** Focus on clear AI benefits. Show users how it makes their lives easier.\n2.  **Transparency Matters:** Be open about data use. Build trust with clear policies.\n3.  **Balance Design:** Offer privacy controls. Let users choose their comfort level.\nHow do you balance AI utility and user privacy?\n📌 Source: Social Media Today (\"Snapchat says some AI users are willing to trade privacy for utility\")\n#AIMarketing #Privacy #UserExperience",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "Snapchat says some AI users are willing to trade privacy for utility",
+          "imageHeadline": "AI *PRIVACY* SHIFT",
+          "imageSubtext": "Users accept data sharing for better AI features.",
+          "badgeText": "AI UPDATE",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://www.socialmediatoday.com/news/snapchat-says-some-ai-users-are-willing-to-trade-privacy-for-utility/833803/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Business Strategist",
+        "layoutFamily": "layered-depth",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Business Coach",
+        "environment": "Modern university campus",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach in a Modern university campus. Over-the-shoulder. Wearing a Premium polo shirt. Out-of-focus student in foreground, midground subject is the manager, background is a blurred campus building. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Fix your AI content gaps.",
+          "content": "Your brand needs to show up in AI answers. But how do you find missing content opportunities? It's about thinking beyond traditional SEO.\n1.  **AI Query Analysis:** Look at common questions AI answers. See where your brand isn't cited.\n2.  **Competitor AEO:** Check what competitors are saying. Find unique angles you can own.\n3.  **Value-Add Content:** Create new content that specifically fills gaps. Make it useful for AI models.\nAre you optimizing for answer engines yet?\n📌 Source: HubSpot Marketing (\"How to identify content gaps for AI visibility\")\n#AEO #AIMarketing #ContentStrategy",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "How to identify content gaps for AI visibility",
+          "imageHeadline": "*AEO* GAPS",
+          "imageSubtext": "Find content opportunities for AI visibility.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "TRY TOOL NOW",
+          "sourceUrl": "https://blog.hubspot.com/marketing/ai-content-gaps"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-10-24",
     "category": "marketing",
     "posts": [
