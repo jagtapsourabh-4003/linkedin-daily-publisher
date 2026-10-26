@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-10-26",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "phone-mockup",
+        "colorPalette": "Electric Blue",
+        "characterRole": "University Chancellor",
+        "environment": "Modern university campus",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. University Chancellor, Modern university campus, Close-up portrait, Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Big marketing deal.",
+          "content": "Salesforce bought Braze for billions. This changes a lot for marketers. It promises super-fast, connected marketing. But it also raises questions. Will you get locked into one vendor? How do brands stand out when AI runs everything?\n\n1.  **Connected Tools:** Look for systems that talk to each other.\n2.  **Vendor Choice:** Don't put all your eggs in one basket.\n3.  **Human Touch:** Find ways to make your brand unique.\n\nWhat are your thoughts on big mergers like this?\n\n📌 Source: Digiday (\"Salesforce’s $5.7 billion Braze deal puts marketers at an ecosystem crossroads\")\n#MarketingStrategy #B2BMarketing #Salesforce",
+          "sourceName": "Digiday",
+          "sourceArticle": "Salesforce’s $5.7 billion Braze deal puts marketers at an ecosystem crossroads",
+          "imageHeadline": "*ECOSYSTEM* SHIFT",
+          "imageSubtext": "Understand the impact of big tech mergers.",
+          "badgeText": "MARKETING UPDATE",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Book Author",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Author",
+        "environment": "Library",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Author, Library, Sitting at desk, Modern startup hoodie. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "AI answers are changing search.",
+          "content": "More people get answers directly from AI or search results. They don't click links. This means your brand needs to be *seen* in these \"answer engines.\" You need tools to track this.\n\n1.  **Track Mentions:** See where AI mentions your brand.\n2.  **Citation Power:** Make sure AI links back to you.\n3.  **Share of Voice:** Know how you compare to rivals.\n\nAre you ready for the zero-click future?\n\n📌 Source: HubSpot Marketing (\"8 LLM visibility tools to track your brand across answer engines\")\n#AEO #AISearch #MarketingPlaybook",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "8 LLM visibility tools to track your brand across answer engines",
+          "imageHeadline": "*ANSWER* ENGINE",
+          "imageSubtext": "How to dominate AI search results.",
+          "badgeText": "MARKETING FRAMEWORK",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Apple Keynote",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Technology Evangelist",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist, Auditorium stage, Speaking on stage, Luxury business casual. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Target's holiday ad magic!",
+          "content": "Target is launching a fun holiday campaign. Actor D'Arcy Carden plays a \"Chief Giftologist.\" It's all about making gift-giving special. They're also pushing big with creators on YouTube and TikTok. This shows how brands are making advertising more entertaining.\n\n1.  **Storytelling Wins:** Create memorable characters.\n2.  **Creator Power:** Partner with influencers for reach.\n3.  **Entertainment First:** Make ads people actually *want* to watch.\n\nWhat's your favorite holiday ad campaign this year?\n\n📌 Source: Marketing Dive (\"Target unwraps high-concept holiday ads focused on gift-giving academy\")\n#BrandCampaigns #HolidayMarketing #ConsumerPsychology",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Target unwraps high-concept holiday ads focused on gift-giving academy",
+          "imageHeadline": "*GIFT* ACADEMY",
+          "imageSubtext": "Target’s strategy for holiday ad engagement.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "WATCH CAMPAIGN"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "University Chancellor",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Corporate Executive",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive, Executive boardroom, Looking at camera, Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Meta's AI costs are soaring.",
+          "content": "Meta is growing fast. Users and revenue are up! But here's the catch: AI development is *expensive*. Their expenses jumped 68% in one quarter, mainly for AI. This shows the huge investment needed for future AI tech.\n\n1.  **AI Investment:** It takes big bucks to build advanced AI.\n2.  **Growth vs. Cost:** Balancing expansion with rising expenses.\n3.  **Future Focus:** AI is a long-term play for tech giants.\n\nAre high AI costs a barrier for smaller businesses?\n\n📌 Source: Marketing Dive (\"Meta adds users and revenue as AI costs climb\")\n#AIMarketing #TechTrends #BusinessFinance",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Meta adds users and revenue as AI costs climb",
+          "imageHeadline": "*META* AI COSTS",
+          "imageSubtext": "Revenue up, but AI expenses are soaring.",
+          "badgeText": "AI UPDATE",
+          "ctaText": "READ THE REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "LinkedIn Thought Leader",
+        "layoutFamily": "news-card",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Professor",
+        "environment": "Luxury office",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor, Luxury office, Half-body portrait, Premium polo shirt. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Build your own AI agent!",
+          "content": "Building an AI agent sounds complex, but it's getting easier. Think of it as creating a smart helper for specific tasks. You need to tell it what to do, give it approved data, and set clear boundaries. Marketers can use these for many jobs.\n\n1.  **Define Task:** What specific problem will it solve?\n2.  **Connect Data:** Feed it reliable, approved information.\n3.  **Set Limits:** Give it rules to stay on track.\n\nWhat's the first AI agent you'd build for your team?\n\n📌 Source: HubSpot Marketing (\"How to build an AI agent: from goal to live deployment\")\n#AITools #WorkflowAutomation #MarketingTech",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "How to build an AI agent: from goal to live deployment",
+          "imageHeadline": "*AI* AGENT BUILD",
+          "imageSubtext": "Step-by-step guide to deploying your own AI.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "LEARN HOW"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-10-25",
     "category": "marketing",
     "posts": [
