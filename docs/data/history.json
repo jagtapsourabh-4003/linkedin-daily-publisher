@@ -1,5 +1,159 @@
 [
   {
+    "date": "2026-10-29",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "University Chancellor",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Emerald Green",
+        "characterRole": "University Chancellor",
+        "environment": "Modern university campus",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, University Chancellor, foreground element like out-of-focus university crest, midground subject as the manager, background of a modern university campus, Full-body standing, Formal university attire. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Win *campus* culture.",
+          "content": "Urban Outfitters shows how. They use 'Game Day' tours. It's their secret for connecting with college students. This builds real brand loyalty. They meet students where they are. Think music, sports, and campus events.\n\nHere are 3 takeaways:\n1. Go beyond digital ads.\n2. Create real-world experiences.\n3. Match your brand to local culture.\n\nHow can your brand connect with new audiences offline?\n\n📌 Source: Marketing Dive (\"How Urban Outfitters finds the right campus fit with college marketing\")\n🔗 https://www.marketingdive.com/news/how-urban-outfitters-finds-the-right-campus-fit-with-college-marketing/873007/\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "How Urban Outfitters finds the right campus fit with college marketing",
+          "imageHeadline": "*CAMPUS* CULTURE WINS",
+          "imageSubtext": "Urban Outfitters mastered college marketing.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://www.marketingdive.com/news/how-urban-outfitters-finds-the-right-campus-fit-with-college-marketing/873007/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "LinkedIn Thought Leader",
+        "layoutFamily": "split-right",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "Business Coach",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Coach, foreground element like a sleek glass table, midground subject as the manager, background of an Executive boardroom, Presentation shot, Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Influencer *fatigue* is real.",
+          "content": "Over 80% of marketers plan to spend more on influencers. But consumers are getting tired. They see too much content. Authenticity is crucial now. People want genuine connections. It’s a challenge to stand out. Brands need a new approach.\n\nHere are 3 ways to stay fresh:\n1. Prioritize authentic voices.\n2. Focus on niche communities.\n3. Measure real engagement, not just reach.\n\nWhat are you doing to keep influencer content fresh?\n\n📌 Source: Marketing Dive (\"What influencer fatigue says about creator-driven marketing’s next phase\")\n🔗 https://www.marketingdive.com/news/what-influencer-fatigue-says-about-creator-driven-marketings-next-phase/833864/\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "What influencer fatigue says about creator-driven marketing’s next phase",
+          "imageHeadline": "INFLUENCER *BURNOUT*?",
+          "imageSubtext": "Consumers tire of creator content.",
+          "badgeText": "MARKETING PLAYBOOK",
+          "ctaText": "GET REPORT",
+          "sourceUrl": "https://www.marketingdive.com/news/what-influencer-fatigue-says-about-creator-driven-marketings-next-phase/833864/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Corporate Executive",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Corporate Executive",
+        "environment": "City skyline office",
+        "cameraStyle": "Walking shot",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Corporate Executive, foreground element like an out-of-focus desk lamp, midground subject as the manager, background of a City skyline office, Walking shot, Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "P.F. Chang's *comeback* story.",
+          "content": "This restaurant chain was struggling. Their CMO, Tana Lee, changed everything. They are now third in sales growth. They focused on their original magic. Good food, strong experience. Simple changes made a huge difference. Sometimes, going back to basics wins.\n\nHere are 3 strategy lessons:\n1. Rediscover your core strengths.\n2. Focus on customer experience.\n3. Small strategic changes yield big results.\n\nWhat core brand magic can you bring back?\n\n📌 Source: Marketing Dive (\"P.F. Chang’s CMO is cooking up a plan to recapture chain’s old magic\")\n🔗 https://www.marketingdive.com/news/pf-changs-cmo-is-cooking-up-a-plan-to-recapture-chains-old-magic/872879/\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "P.F. Chang’s CMO is cooking up a plan to recapture chain’s old magic",
+          "imageHeadline": "*RECAPTURE* MAGIC",
+          "imageSubtext": "P.F. Chang's CMO delivers growth.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://www.marketingdive.com/news/pf-changs-cmo-is-cooking-up-a-plan-to-recapture-chains-old-magic/872879/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "asymmetrical-grid",
+        "colorPalette": "Electric Blue",
+        "characterRole": "AI Consultant",
+        "environment": "Technology command center",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, AI Consultant, foreground element like a glowing data screen, midground subject as the manager, background of a Technology command center, Side profile, Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Meta AI *powers* ad results.",
+          "content": "Meta says its AI improvements are working. They have expanded processing capacity. This is driving more clicks and conversions. AI helps target ads better. It understands user intent. This means more effective ad spend. It's a game changer for advertisers.\n\nHere are 3 AI ad benefits:\n1. AI enhances ad targeting.\n2. Improved processing means better results.\n3. Leverage platforms' AI for higher ROI.\n\nHow are you using AI to boost your ad performance?\n\n📌 Source: Social Media Today (\"Meta says its expanded processing capacity is driving ad results\")\n🔗 https://www.socialmediatoday.com/news/meta-says-its-expanded-processing-capacity-is-driving-ad-results/873133/\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "Meta says its expanded processing capacity is driving ad results",
+          "imageHeadline": "META AI *ADS* BOOST",
+          "imageSubtext": "Expanded processing drives clicks and conversions.",
+          "badgeText": "AI UPDATE",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://www.socialmediatoday.com/news/meta-says-its-expanded-processing-capacity-is-driving-ad-results/873133/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Strategy Consultant",
+        "environment": "Conference venue",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Strategy Consultant, foreground element like an out-of-focus microphone stand, midground subject as the manager, background of a Conference venue, Speaking on stage, White shirt with rolled sleeves. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "AEO analysis *works*.",
+          "content": "People now ask AI tools for answers. ChatGPT, Gemini, Perplexity are key. Marketers need to know if their brand appears. AEO (Answer Engine Optimization) tools help. They track your brand's visibility. This shows what works in the new search landscape.\n\nHere are 3 steps for AEO:\n1. Understand AI's impact on search.\n2. Use AEO tools to track brand visibility.\n3. Adapt content for direct AI answers.\n\nAre you tracking your brand's presence in AI answers?\n\n📌 Source: HubSpot Marketing (\"AEO analysis tools reviewed: What actually works in 2026\")\n🔗 https://blog.hubspot.com/marketing/aeo-analysis-tools\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "AEO analysis tools reviewed: What actually works in 2026",
+          "imageHeadline": "*AEO* TOOLKIT GUIDE",
+          "imageSubtext": "Track your brand's AI search visibility.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "TRY WEB APP",
+          "sourceUrl": "https://blog.hubspot.com/marketing/aeo-analysis-tools"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-10-28",
     "category": "marketing",
     "posts": [
