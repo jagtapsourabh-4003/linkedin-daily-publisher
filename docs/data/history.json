@@ -1,5 +1,159 @@
 [
   {
+    "date": "2026-10-30",
+    "category": "marketing",
+    "posts": [
+      {
+        "id": 1,
+        "designArchetype": "Marketing Concept Explained",
+        "layoutFamily": "news-card",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Business Advisor",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Advisor in a Technology command center, Looking at camera, Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Concept Explained",
+          "hook": "How to know if people really want your offer.",
+          "content": "How to know if people really want your offer.\n\nBefore Product-Market Fit (PMF), marketing feels like pushing a boulder uphill.\n\nAfter Product-Market Fit, marketing feels like steering a speedboat.\n\nMarc Andreessen defined PMF simply:\n\"Being in a good market with a product that can satisfy that market.\"\n\n3 signs you have reached PMF:\n1. Customers get upset if your product goes down.\n2. Word of mouth happens naturally without paid ads.\n3. Your main challenge is keeping up with demand, not finding buyers.\n\nIf you don't have PMF yet, spend 100% of your time talking to users, not buying ads.\n\nHow did you know when your product hit its sweet spot?\n\n📌 Source: Marketing Week (\"Product-Market Fit (PMF): The ultimate milestone where customer demand pulls your business forward.\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Week",
+          "sourceArticle": "Product-Market Fit (PMF): The ultimate milestone where customer demand pulls your business forward.",
+          "sourceUrl": "https://www.marketingweek.com/",
+          "imageHeadline": "PRODUCT *MARKET FIT*",
+          "imageSubtext": "When customers pull your product forward.",
+          "badgeText": "CORE CONCEPT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 2,
+        "designArchetype": "Marketing Framework Playbook",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Business Coach",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Coach in a Executive boardroom, Presentation shot, Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "The brand that speaks most consistently wins.",
+          "content": "The brand that speaks most consistently wins.\n\nShare of Voice (SOV) measures how much of the conversation in your industry is about YOUR brand compared to competitors.\n\nDecades of research show a clear rule:\nIf your Share of Voice is higher than your market share, your business will grow to match it over time.\n\nHow to increase your Share of Voice on a budget:\n1. Post consistently on LinkedIn: 5 days a week of high-value insights puts you in the top 1%.\n2. Engage on others' posts: Leave smart, thoughtful comments on key industry accounts.\n3. Be known for ONE topic: When people think of your niche, make sure your name comes to mind first.\n\nVisibility leads to familiarity. Familiarity leads to trust. Trust leads to sales.\n\nWhat is your daily routine for staying visible?\n\n📌 Source: Marketing Week (\"Share of Voice (SOV) vs Share of Market: Why staying visible is the ultimate long-term growth lever.\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Week",
+          "sourceArticle": "Share of Voice (SOV) vs Share of Market: Why staying visible is the ultimate long-term growth lever.",
+          "sourceUrl": "https://www.marketingweek.com/",
+          "imageHeadline": "SHARE OF *VOICE*",
+          "imageSubtext": "Why owning the conversation owns the market.",
+          "badgeText": "GROWTH LAW",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 3,
+        "designArchetype": "World of Marketing Strategy",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Startup Founder",
+        "environment": "Luxury office",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Startup Founder in a Luxury office, Half-body portrait, Smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Warner Bros. chases ‘Cat in the Hat’ across Amazon’s ad ecosystem",
+          "content": "Warner Bros. chases ‘Cat in the Hat’ across Amazon’s ad ecosystem\n\n“Open to Fun” features a mobile minigame, an Alexa integration and placement across Twitch, Prime Video and IMDb.\n\n3 key takeaways for your brand:\n1. Pay attention to early shifts before they become mainstream.\n2. Adapt your core strategy to protect your reach and conversion rates.\n3. Test and iterate on real data instead of assumptions.\n\nHow is your team responding to this shift?\n\n📌 Source: Marketing Dive (\"Warner Bros. chases ‘Cat in the Hat’ across Amazon’s ad ecosystem\")\n\n#Marketing #Strategy #Growth #Leadership",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Warner Bros. chases ‘Cat in the Hat’ across Amazon’s ad ecosystem",
+          "sourceUrl": "https://www.marketingdive.com/news/warner-bros-chases-cat-in-the-hat-across-amazons-ad-ecosystem/873092/",
+          "imageHeadline": "WARNER *BROS* CHASES",
+          "imageSubtext": "“Open to Fun” features a mobile minigame, an Alexa integrati.",
+          "badgeText": "MARKETING UPDATE",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 4,
+        "designArchetype": "AI Marketing Concept",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Podcast Host",
+        "environment": "Podcast studio",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Podcast Host in a Podcast studio, Sitting at desk, Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Google’s AI overhaul of search hits snags as ad revenue growth cools",
+          "content": "Google’s AI overhaul of search hits snags as ad revenue growth cools\n\nThe rate of ad revenue growth decelerated in Q3 for Google’s core business despite a jump in query volume driven by AI features.\n\n3 key takeaways for your brand:\n1. Pay attention to early shifts before they become mainstream.\n2. Adapt your core strategy to protect your reach and conversion rates.\n3. Test and iterate on real data instead of assumptions.\n\nHow is your team responding to this shift?\n\n📌 Source: Marketing Dive (\"Google’s AI overhaul of search hits snags as ad revenue growth cools\")\n\n#Marketing #Strategy #Growth #Leadership",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Google’s AI overhaul of search hits snags as ad revenue growth cools",
+          "sourceUrl": "https://www.marketingdive.com/news/googles-ai-overhaul-of-search-hits-snags-as-ad-revenue-growth-cools/873150/",
+          "imageHeadline": "GOOGLES *OVERHAUL* SEARCH",
+          "imageSubtext": "The rate of ad revenue growth decelerated in Q3 for Google’s.",
+          "badgeText": "AI CONCEPT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 5,
+        "designArchetype": "AI Marketing Workflow",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Speaker in a Auditorium stage, Speaking on stage, Conference speaker outfit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "What marketers should know about the legal risks of algorithmic pricing",
+          "content": "What marketers should know about the legal risks of algorithmic pricing\n\nEmerging state and federal laws are raising fresh concerns around the strategy, writes Simpson Thacher & Bartlett LLP partner Laura Brett.\n\n3 key takeaways for your brand:\n1. Pay attention to early shifts before they become mainstream.\n2. Adapt your core strategy to protect your reach and conversion rates.\n3. Test and iterate on real data instead of assumptions.\n\nHow is your team responding to this shift?\n\n📌 Source: Marketing Dive (\"What marketers should know about the legal risks of algorithmic pricing\")\n\n#Marketing #Strategy #Growth #Leadership",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "What marketers should know about the legal risks of algorithmic pricing",
+          "sourceUrl": "https://www.marketingdive.com/news/what-marketers-should-know-about-the-legal-risks-of-algorithmic-pricing/832963/",
+          "imageHeadline": "WHAT *MARKETERS* SHOULD",
+          "imageSubtext": "Emerging state and federal laws are raising fresh concerns a.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-10-29",
     "category": "marketing",
     "posts": [
