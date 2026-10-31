@@ -1,5 +1,159 @@
 [
   {
+    "date": "2026-10-31",
+    "category": "marketing",
+    "posts": [
+      {
+        "id": 1,
+        "designArchetype": "Marketing Concept Explained",
+        "layoutFamily": "news-card",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Business Advisor",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Advisor in a Technology command center, Looking at camera, Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Concept Explained",
+          "hook": "Why the medium popcorn always sells.",
+          "content": "Why the medium popcorn always sells.\n\nAt the movie theater:\n- Small Popcorn: $3.00\n- Large Popcorn: $7.00\nMost people choose Small because $7 feels expensive.\n\nNow add a \"Decoy\":\n- Small: $3.00\n- Medium: $6.50\n- Large: $7.00\n\nSuddenly, almost everyone buys the Large! For just 50 cents more than Medium, Large feels like an irresistible bargain.\n\nHow to use the Decoy Effect in your business:\n1. Offer 3 packages: Basic, Standard, and Premium.\n2. Price the Standard package close to the Premium package.\n3. The Premium tier will naturally look like the best value for money.\n\nPricing is psychology, not just math.\n\nHave you tested a 3-tier pricing structure for your offers?\n\n📌 Source: Marketing Week (\"The Decoy Effect in Pricing: How adding an intentional third choice guides buyer decisions.\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Week",
+          "sourceArticle": "The Decoy Effect in Pricing: How adding an intentional third choice guides buyer decisions.",
+          "sourceUrl": "https://www.marketingweek.com/",
+          "imageHeadline": "THE *DECOY EFFECT*",
+          "imageSubtext": "How pricing options guide customer choice.",
+          "badgeText": "PRICING PSYCHOLOGY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 2,
+        "designArchetype": "Marketing Framework Playbook",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Business Coach",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Coach in a Executive boardroom, Presentation shot, Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Why putting links in your post hurts your reach.",
+          "content": "Why putting links in your post hurts your reach.\n\nEvery social platform (LinkedIn, X, YouTube, Instagram) has one single goal:\nKeep users on their platform as long as possible.\n\nWhen you post \"Read my full blog here: [link]\", two things happen:\n1. The algorithm penalizes your post for sending people away.\n2. 98% of people keep scrolling without clicking.\n\nThe solution? Zero-Click Content (coined by Amanda Natividad):\n- Give away the core insight, takeaway, and actionable framework directly in the post.\n- Leave nothing hidden behind a paywall or link gate.\n- Build pure trust and authority in the feed.\n\nWhen you solve problems natively, the highest-intent clients will visit your profile and reach out directly.\n\nGive away your secrets. Sell the implementation.\n\nDo you prefer reading full insights in the feed, or clicking external links?\n\n📌 Source: Marketing Week (\"Zero-Click Content by Amanda Natividad: Why delivering standalone value in the feed beats chasing outbound clicks.\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Week",
+          "sourceArticle": "Zero-Click Content by Amanda Natividad: Why delivering standalone value in the feed beats chasing outbound clicks.",
+          "sourceUrl": "https://www.marketingweek.com/",
+          "imageHeadline": "ZERO-CLICK *CONTENT*",
+          "imageSubtext": "Why giving away the answer wins the algorithm.",
+          "badgeText": "CONTENT LAW",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 3,
+        "designArchetype": "World of Marketing Strategy",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Startup Founder",
+        "environment": "Luxury office",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Startup Founder in a Luxury office, Half-body portrait, Smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Ticker: Paula Reid Joins MS NOW as Chief White House Reporter",
+          "content": "Ticker: Paula Reid Joins MS NOW as Chief White House Reporter\n\nThe fight for White House access continues with CNN, MS NOW, and Politico amending their initial lawsuit.\n\n3 key takeaways for your brand:\n1. Pay attention to early shifts before they become mainstream.\n2. Adapt your core strategy to protect your reach and conversion rates.\n3. Test and iterate on real data instead of assumptions.\n\nHow is your team responding to this shift?\n\n📌 Source: Adweek (\"Ticker: Paula Reid Joins MS NOW as Chief White House Reporter\")\n\n#Marketing #Strategy #Growth #Leadership",
+          "sourceName": "Adweek",
+          "sourceArticle": "Ticker: Paula Reid Joins MS NOW as Chief White House Reporter",
+          "sourceUrl": "https://www.adweek.com/tvnewser/ticker-paula-reid-joins-ms-now-as-chief-white-house-reporter/",
+          "imageHeadline": "TICKER *PAULA* REID",
+          "imageSubtext": "The fight for White House access continues with CNN, MS NOW.",
+          "badgeText": "MARKETING UPDATE",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 4,
+        "designArchetype": "AI Marketing Concept",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Podcast Host",
+        "environment": "Podcast studio",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Podcast Host in a Podcast studio, Sitting at desk, Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Amid growing tension over workplace AI, agencies have a window to reimag...",
+          "content": "Amid growing tension over workplace AI, agencies have a window to reimag...\n\nAI agents are becoming common among agencies, but most companies haven't grasped their potential to reshape teams.\n\n3 key takeaways for your brand:\n1. Pay attention to early shifts before they become mainstream.\n2. Adapt your core strategy to protect your reach and conversion rates.\n3. Test and iterate on real data instead of assumptions.\n\nHow is your team responding to this shift?\n\n📌 Source: Digiday (\"Amid growing tension over workplace AI, agencies have a window to reimagine staffing\")\n\n#Marketing #Strategy #Growth #Leadership",
+          "sourceName": "Digiday",
+          "sourceArticle": "Amid growing tension over workplace AI, agencies have a window to reimagine staffing",
+          "sourceUrl": "https://digiday.com/marketing/amid-growing-tension-over-workplace-ai-agencies-have-a-window-to-reimagine-staffing/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss",
+          "imageHeadline": "AMID *GROWING* TENSION",
+          "imageSubtext": "AI agents are becoming common among agencies, but most compa.",
+          "badgeText": "AI CONCEPT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 5,
+        "designArchetype": "AI Marketing Workflow",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Speaker in a Auditorium stage, Speaking on stage, Conference speaker outfit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "From Celsius to Maybelline, more brands are lining up for the NYC Marath...",
+          "content": "From Celsius to Maybelline, more brands are lining up for the NYC Marath...\n\nThe brands showing up at the annual race represent a more diverse cross-section of retail than ever before.\n\n3 key takeaways for your brand:\n1. Pay attention to early shifts before they become mainstream.\n2. Adapt your core strategy to protect your reach and conversion rates.\n3. Test and iterate on real data instead of assumptions.\n\nHow is your team responding to this shift?\n\n📌 Source: Digiday (\"From Celsius to Maybelline, more brands are lining up for the NYC Marathon’s 50th anniversary\")\n\n#Marketing #Strategy #Growth #Leadership",
+          "sourceName": "Digiday",
+          "sourceArticle": "From Celsius to Maybelline, more brands are lining up for the NYC Marathon’s 50th anniversary",
+          "sourceUrl": "https://digiday.com/marketing/from-celsius-to-maybelline-more-brands-are-lining-up-for-the-nyc-marathons-50th-anniversary/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss",
+          "imageHeadline": "FROM *CELSIUS* MAYBELLINE",
+          "imageSubtext": "The brands showing up at the annual race represent a more di.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-10-30",
     "category": "marketing",
     "posts": [
