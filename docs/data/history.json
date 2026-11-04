@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-11-04",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Forbes Cover",
+        "layoutFamily": "floating-cards",
+        "colorPalette": "Slate Blue",
+        "characterRole": "TED Speaker",
+        "environment": "Startup hub",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. TED Speaker in a Startup hub, Side profile, Smart casual blazer. Foreground: blurry creative artwork, Midground: the manager, Background: blurred bustling startup hub activity. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Marketing isn't just ads.",
+          "content": "Modern marketing has grown far beyond traditional campaigns. It now deeply integrates with product, finance, and technology teams.\n\nThis cross-functional approach is key to sustained business growth.\n\n1.  **Product Alignment**: Understand what customers truly need. Help build products people love.\n2.  **Financial Savvy**: Connect marketing efforts to ROI. Speak the language of revenue and profit.\n3.  **Tech Integration**: Use data and tools effectively. Drive efficiency across all operations.\n\nAre you seeing marketing's role expand in your organization?\n\n📌 Source: Adweek (\"Why Marketing Belongs in Product, Finance, and Tech with Petzey’s Ameetess Dira\")\n#MarketingStrategy #BusinessGrowth #IntegratedMarketing",
+          "sourceName": "Adweek",
+          "sourceArticle": "Why Marketing Belongs in Product, Finance, and Tech with Petzey’s Ameetess Dira",
+          "imageHeadline": "INTEGRATED *MARKETING*",
+          "imageSubtext": "How modern marketing spans product, finance, and tech for growth.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "READ ARTICLE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "LinkedIn Thought Leader",
+        "layoutFamily": "layered-depth",
+        "colorPalette": "Monochrome Black",
+        "characterRole": "Professor",
+        "environment": "Library",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor in a Library, Close-up portrait, Modern startup hoodie. Foreground: out-of-focus book spines, Midground: the manager, Background: blurred shelves of academic books. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Stop chasing just ROAS.",
+          "content": "Return on Ad Spend (ROAS) is a common metric. But it doesn't always tell the full story of your marketing success.\n\nTrue performance marketing focuses on 'real results' beyond just ad revenue. It's about overall business impact.\n\n1.  **Customer LTV**: Focus on long-term customer value, not just initial sales. Retain and grow your best customers.\n2.  **Churn Reduction**: Actively work to keep existing customers. This boosts profits more than constantly finding new ones.\n3.  **Cross-Channel View**: Optimize spending across all retail channels. See the bigger picture of customer interaction.\n\nWhat 'real results' are you prioritizing today?\n\n📌 Source: Adweek (\"From ROAS to Real Results: Benoit Vatere and Bryan Leach on the Future of Performance Marketing\")\n#PerformanceMarketing #BusinessMetrics #MarketingFramework",
+          "sourceName": "Adweek",
+          "sourceArticle": "From ROAS to Real Results: Benoit Vatere and Bryan Leach on the Future of Performance Marketing",
+          "imageHeadline": "BEYOND *ROAS*",
+          "imageSubtext": "Unlock real business results from your performance marketing spend.",
+          "badgeText": "PLAYBOOK GUIDE",
+          "ctaText": "LEARN MORE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "diagonal-layout",
+        "colorPalette": "Neon Cyan",
+        "characterRole": "University Chancellor",
+        "environment": "Media studio",
+        "cameraStyle": "Walking shot",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. University Chancellor in a Media studio, Walking shot, Navy business suit. Foreground: out-of-focus camera lens, Midground: the manager, Background: blurred studio lights and sound equipment. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Ads can be entertaining!",
+          "content": "Remember when ads were just something you skipped? Not anymore. Brands are now creating 'entertainment-first' ads.\n\nThe goal is simple: make content people *want* to watch, not just tolerate. SharkNinja's holiday campaign is a great example.\n\n1.  **Engage, Don't Interrupt**: Integrate your message within valuable content. Capture attention naturally.\n2.  **Storytelling Wins**: Build narratives that resonate emotionally. Connect with your audience on a deeper level.\n3.  **High Production Value**: Invest in quality visuals and sound. Make your ads feel like premium entertainment.\n\nWhat's the most entertaining ad you've seen recently?\n\n📌 Source: Digiday (\"Good ads have a new name, ‘entertainment-first’ and SharkNinja is using it for its holiday campaign\")\n#BrandStrategy #Advertising #EntertainmentMarketing",
+          "sourceName": "Digiday",
+          "sourceArticle": "Good ads have a new name, ‘entertainment-first’ and SharkNinja is using it for its holiday campaign",
+          "imageHeadline": "ENTERTAINMENT *ADS*",
+          "imageSubtext": "Why brands are making ads people actually *want* to watch.",
+          "badgeText": "BRAND CAMPAIGN",
+          "ctaText": "SEE CAMPAIGN"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Harvard Professor",
+        "layoutFamily": "asymmetrical-grid",
+        "colorPalette": "Dark Forest",
+        "characterRole": "AI Consultant",
+        "environment": "Coffee shop workspace",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant in a Coffee shop workspace, Sitting at desk, Charcoal executive suit. Foreground: out-of-focus latte art, Midground: the manager, Background: blurred cafe ambiance and laptops. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "AI changing strategy roles?",
+          "content": "Many agency strategists worry about AI taking their jobs. But new research shows a different story: opportunity.\n\nAI is not here to replace human strategists. It's here to augment them, making their work smarter and more impactful.\n\n1.  **Data Analysis**: Let AI crunch numbers faster. Focus your time on insights, not just raw data.\n2.  **Creative Ideation**: Use AI as a brainstorming partner. Explore more angles and generate diverse concepts.\n3.  **Personalized Campaigns**: Deploy AI for hyper-targeted messaging. Deliver truly relevant experiences.\n\nHow do you see AI enhancing your strategy work?\n\n📌 Source: Marketing Dive (\"Where agency strategists see opportunity as AI challenges their worth\")\n#AIMarketing #AIStrategy #FutureOfWork",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Where agency strategists see opportunity as AI challenges their worth",
+          "imageHeadline": "AI *STRATEGIST* SHIFT",
+          "imageSubtext": "How AI is transforming agency strategy roles and creating new opportunities.",
+          "badgeText": "AI INSIGHTS",
+          "ctaText": "EXPLORE AI"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Book Author",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Premium Burgundy",
+        "characterRole": "Author",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Author in a Futuristic workspace, Presentation shot, Turtleneck with blazer. Foreground: glowing data visualizations, Midground: the manager, Background: blurred sleek, minimalist workspace with holographic displays. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Automate Claude with skills!",
+          "content": "Tired of pasting long prompts into Claude every time? You can create 'Claude skills' to save repeatable workflows.\n\nThis means Claude applies your instructions automatically, freeing up your time for more complex tasks.\n\n1.  **Define Workflow**: Break down a repetitive task into clear steps. What does Claude need to do?\n2.  **Write Instructions**: Translate these steps into a concise 'skill' prompt. Be specific and clear.\n3.  **Apply & Refine**: Use your new skill in Claude. Test it out and make adjustments for better results.\n\nWhat marketing workflow would you automate with Claude skills?\n\n📌 Source: HubSpot Marketing (\"How to create Claude skills: What your team actually needs\")\n#ClaudeAI #AIWorkflow #MarketingAutomation",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "How to create Claude skills: What your team actually needs",
+          "imageHeadline": "CLAUDE *AI SKILLS*",
+          "imageSubtext": "Save time by teaching Claude your repeatable marketing workflows.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "GET STARTED"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-11-03",
     "category": "marketing",
     "posts": [
