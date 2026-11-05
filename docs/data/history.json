@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-11-05",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Business Strategist",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "Business Coach",
+        "environment": "Luxury office",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach, Luxury office, Half-body portrait, Smart casual blazer. Foreground: blurred modern art sculpture, Midground: the manager, Background: sleek office interior with city view. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Publishers are adapting!",
+          "content": "Many publishers are seeing revenue growth.\nThis is despite lower website traffic for some.\nThey're finding new ways to make money.\n\nBut tougher times are ahead. We need to prepare for harder comparisons and market changes.\n\nHere's how to stay ahead:\n1. Diversify income sources: Think beyond traditional ads. Explore subscriptions, events, or commerce.\n2. Focus on quality content: Build strong loyalty. Give readers real value so they keep coming back.\n3. Partner smartly: Collaborate with other brands or tech companies to reach new audiences.\n\nAre you seeing similar shifts in your industry?\n\n📌 Source: Digiday (\"Media Briefing: Publishers’ revenue growth defies traffic declines, but tougher comparisons loom\")\n#Publishing #RevenueGrowth #DigitalStrategy",
+          "sourceName": "Digiday",
+          "sourceArticle": "Media Briefing: Publishers’ revenue growth defies traffic declines, but tougher comparisons loom",
+          "imageHeadline": "PUBLISHER *REVENUE* SHIFT",
+          "imageSubtext": "Growth defies traffic declines, but challenges ahead.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "READ INSIGHTS"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Teal White",
+        "characterRole": "Technology Evangelist",
+        "environment": "Technology command center",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist, Technology command center, Full-body standing, Conference speaker outfit. Foreground: transparent holographic screen with data, Midground: the manager, Background: complex server racks. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Boost your CTV ads!",
+          "content": "Ever wonder why some ads just hit differently?\nIt's called scene-level targeting for Connected TV (CTV).\nThis smart approach aligns your ads with what's actually happening on screen.\n\nImagine a cooking ad appearing exactly when a food scene plays.\nIt makes your message way more relevant and engaging.\n\nHere’s how to implement it:\n1. Analyze content context: Understand the themes and moments in the shows.\n2. Create relevant ads: Develop visuals and messages that match specific scenes.\n3. Track scene-specific metrics: See which scene placements drive the best results.\n\nCould this make your campaigns more effective?\n\n📌 Source: Digiday (\"WTF is scene-level targeting for CTV?\")\n#CTV #AdTech #MarketingTips",
+          "sourceName": "Digiday",
+          "sourceArticle": "WTF is scene-level targeting for CTV?",
+          "imageHeadline": "CTV *SCENE* TARGETING",
+          "imageSubtext": "Align ads with content for maximum impact.",
+          "badgeText": "MARKETING PLAYBOOK",
+          "ctaText": "GET THE GUIDE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Magazine Editorial",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Innovation Leader",
+        "environment": "Creative workspace",
+        "cameraStyle": "Looking away",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader, Creative workspace, Looking away, Luxury business casual. Foreground: out-of-focus sketchpad with design ideas, Midground: the manager, Background: vibrant collaborative space with art. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "RadioShack is BACK!",
+          "content": "Remember RadioShack? They're making a surprising comeback.\nInstead of chasing trends, they leaned into their roots.\nThey found success selling old-school speakers and radios.\n\nIt's a powerful lesson in brand revival and nostalgia marketing.\nSometimes, going 'retro' is the smartest move.\n\nHere are 3 lessons from their return:\n1. Embrace your heritage: What unique history does your brand have?\n2. Find unique niches: Don't try to be everything to everyone. Focus on what you do best.\n3. Connect emotionally: Nostalgia builds a strong bond with customers.\n\nWhat other 'retro' brands deserve a comeback?\n\n📌 Source: Adweek (\"RadioShack Makes a Retro-Centric Comeback\")\n#BrandStrategy #NostalgiaMarketing #RadioShack",
+          "sourceName": "Adweek",
+          "sourceArticle": "RadioShack Makes a Retro-Centric Comeback",
+          "imageHeadline": "RETRO *BRAND* REVIVAL",
+          "imageSubtext": "RadioShack's comeback shows power of niche and nostalgia.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "LEARN MORE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Innovation Lab Researcher",
+        "layoutFamily": "floating-cards",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Researcher",
+        "environment": "Innovation lab",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Researcher, Innovation lab, Interview setup, Modern startup hoodie. Foreground: blurred lab equipment, Midground: the manager, Background: futuristic display screens with code. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "AI can cause \"brief bloat\".",
+          "content": "Agencies are noticing a new problem with AI.\nIt's called \"brief bloat\" in creative and media planning.\nUsing AI tools too much can lead to generic, overly long briefs.\n\nThis wastes time and dilutes the core strategy.\nAI is a tool, not a replacement for human insight.\n\nHere's how to avoid it:\n1. Maintain human oversight: Always review AI-generated content critically.\n2. Craft clear AI prompts: Be specific with what you ask AI to do.\n3. Focus on strategic thinking: Use AI for efficiency, but let humans lead strategy.\n\nHave you experienced \"brief bloat\" with AI yet?\n\n📌 Source: Digiday (\"Agencies find AI overuse is leading to brief bloat\")\n#AIMarketing #AIStrategy #AgencyLife",
+          "sourceName": "Digiday",
+          "sourceArticle": "Agencies find AI overuse is leading to brief bloat",
+          "imageHeadline": "AI *BRIEF* BLOAT",
+          "imageSubtext": "Overusing AI leads to generic, ineffective creative briefs.",
+          "badgeText": "AI INSIGHTS",
+          "ctaText": "LEARN MORE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "split-left",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Strategy Consultant",
+        "environment": "Conference venue",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant, Conference venue, Presentation shot, Navy business suit. Foreground: blurred podium microphone, Midground: the manager, Background: large conference screen displaying a graph. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Find your AEO keyword gaps.",
+          "content": "In the world of AI answer engines, visibility is king.\nBut are you missing key opportunities?\nAn AEO (Answer Engine Optimization) keyword gap analysis can tell you.\n\nIt's like SEO keyword gaps, but broader. It looks at what questions AI answers for your competitors, but not for you.\n\nHere’s how to fix them:\n1. Identify core questions: What questions are your target audience asking AI?\n2. Use AEO tools: Leverage specialized tools to find your gaps against competitors.\n3. Refine content for AI answers: Optimize your content to directly answer these missed questions.\n\nReady to get your content seen by AI?\n\n📌 Source: HubSpot Marketing (\"How to find and fix your AEO keywords gap\")\n#AEO #AISearch #KeywordResearch",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "How to find and fix your AEO keywords gap",
+          "imageHeadline": "FIX *AEO* GAPS",
+          "imageSubtext": "Improve AI answer engine visibility by finding missing terms.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "GET THE GUIDE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-11-04",
     "category": "marketing",
     "posts": [
