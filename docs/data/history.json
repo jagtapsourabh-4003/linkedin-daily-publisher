@@ -1,5 +1,159 @@
 [
   {
+    "date": "2026-11-07",
+    "category": "marketing",
+    "posts": [
+      {
+        "id": 1,
+        "designArchetype": "Marketing Concept Explained",
+        "layoutFamily": "news-card",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Business Advisor",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Advisor in a Technology command center, Looking at camera, Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Concept Explained",
+          "hook": "The first number you show sets the entire standard.",
+          "content": "The first number you show sets the entire standard.\n\nWhen Steve Jobs introduced the iPad in 2010, he put a giant \"$999\" on the screen behind him.\nHe talked for 5 minutes about why it was easily worth $999.\n\nThen, he shattered the number and revealed the real price: **$499**.\n\nInstantly, $499 felt like the biggest bargain of the century—even though $500 was a significant amount for a brand-new device!\n\nThis is Anchoring Bias:\nThe human brain cannot judge value in a vacuum. It evaluates every price based on the first anchor it receives.\n\nHow to use Anchoring ethically:\n1. Show the cost of the alternative first (e.g. \"Hiring a full-time strategist costs $120,000/year... our system is $5,000\").\n2. Present your highest-tier package first so your standard package feels easily accessible.\n3. Quantify the money lost by doing nothing.\n\nWhat price anchors do you set for your clients?\n\n📌 Source: Marketing Week (\"Anchoring Bias: How the initial price anchor influences customer perception of value and affordability.\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Week",
+          "sourceArticle": "Anchoring Bias: How the initial price anchor influences customer perception of value and affordability.",
+          "sourceUrl": "https://www.marketingweek.com/",
+          "imageHeadline": "ANCHORING *BIAS*",
+          "imageSubtext": "How the first number changes everything.",
+          "badgeText": "PRICING PSYCHOLOGY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 2,
+        "designArchetype": "Marketing Framework Playbook",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Business Coach",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Coach in a Executive boardroom, Presentation shot, Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Why being very good is no longer enough.",
+          "content": "Why being very good is no longer enough.\n\nImagine driving down a country road and seeing a field of brown cows. You admire them for 2 minutes, then you get bored and look away.\n\nNow imagine seeing a PURPLE COW.\n\nYou would immediately stop your car, take a photo, and tell all your friends.\n\nIn marketing, this is the Purple Cow concept (made famous by Seth Godin):\n- \"Good\" is normal, boring, and invisible.\n- \"Remarkable\" is worth talking about.\n\n3 ways to become a Purple Cow:\n1. Do something unexpected: Add a surprise gift or handwritten note with every order.\n2. Specialize deeply: Don't be an \"agency.\" Be the only agency for dental clinics.\n3. Fix an annoying industry problem: If everyone charges hidden fees, make yours 100% transparent.\n\nStop trying to be slightly better. Start being remarkable.\n\nWhat is one brand you think is a true Purple Cow?\n\n📌 Source: Marketing Week (\"The Purple Cow concept by Seth Godin: Why remarkable products win without spending a fortune on ads.\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Week",
+          "sourceArticle": "The Purple Cow concept by Seth Godin: Why remarkable products win without spending a fortune on ads.",
+          "sourceUrl": "https://www.marketingweek.com/",
+          "imageHeadline": "THE *PURPLE COW*",
+          "imageSubtext": "Why being remarkable beats being good.",
+          "badgeText": "MARKETING CONCEPT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 3,
+        "designArchetype": "World of Marketing Strategy",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Startup Founder",
+        "environment": "Luxury office",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Startup Founder in a Luxury office, Half-body portrait, Smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Meta makes Muse agents speak",
+          "content": "Meta makes Muse agents speak\n\nThe artificial intelligence-powered tool will be able to recognize conversation queries and respond in a voice selected by the user.\n\n3 key takeaways for your brand:\n1. Pay attention to early shifts before they become mainstream.\n2. Adapt your core strategy to protect your reach and conversion rates.\n3. Test and iterate on real data instead of assumptions.\n\nHow is your team responding to this shift?\n\n📌 Source: Social Media Today (\"Meta makes Muse agents speak\")\n\n#Marketing #Strategy #Growth #Leadership",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "Meta makes Muse agents speak",
+          "sourceUrl": "https://www.socialmediatoday.com/news/meta-makes-muse-agents-speak/873959/",
+          "imageHeadline": "META *MAKES* MUSE",
+          "imageSubtext": "The artificial intelligence-powered tool will be able to rec.",
+          "badgeText": "MARKETING UPDATE",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 4,
+        "designArchetype": "AI Marketing Concept",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Podcast Host",
+        "environment": "Podcast studio",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Podcast Host in a Podcast studio, Sitting at desk, Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "TikTok launches standalone shopping app",
+          "content": "TikTok launches standalone shopping app\n\nThe new platform is focused on product discovery and purchasing but is currently only available to a handful of countries in Asia.\n\n3 key takeaways for your brand:\n1. Pay attention to early shifts before they become mainstream.\n2. Adapt your core strategy to protect your reach and conversion rates.\n3. Test and iterate on real data instead of assumptions.\n\nHow is your team responding to this shift?\n\n📌 Source: Social Media Today (\"TikTok launches standalone shopping app\")\n\n#Marketing #Strategy #Growth #Leadership",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "TikTok launches standalone shopping app",
+          "sourceUrl": "https://www.socialmediatoday.com/news/tiktok-launches-standalone-shopping-app/873952/",
+          "imageHeadline": "TIKTOK *LAUNCHES* STANDALONE",
+          "imageSubtext": "The new platform is focused on product discovery and purchas.",
+          "badgeText": "AI CONCEPT",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      },
+      {
+        "id": 5,
+        "designArchetype": "AI Marketing Workflow",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Speaker in a Auditorium stage, Speaking on stage, Conference speaker outfit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "How Lands’ End’s holiday pop-up feeds an always-on marketing strategy",
+          "content": "How Lands’ End’s holiday pop-up feeds an always-on marketing strategy\n\nSarah Sylvester, who joined the retailer as CMO in March, digs into how a Holiday Tree Farm experience helps meet other imperatives.\n\n3 key takeaways for your brand:\n1. Pay attention to early shifts before they become mainstream.\n2. Adapt your core strategy to protect your reach and conversion rates.\n3. Test and iterate on real data instead of assumptions.\n\nHow is your team responding to this shift?\n\n📌 Source: Marketing Dive (\"How Lands’ End’s holiday pop-up feeds an always-on marketing strategy\")\n\n#Marketing #Strategy #Growth #Leadership",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "How Lands’ End’s holiday pop-up feeds an always-on marketing strategy",
+          "sourceUrl": "https://www.marketingdive.com/news/how-lands-ends-holiday-pop-up-feeds-an-always-on-marketing-strategy/873792/",
+          "imageHeadline": "HOW *LANDS* ENDS",
+          "imageSubtext": "Sarah Sylvester, who joined the retailer as CMO in March, di.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        }
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-11-06",
     "category": "ai",
     "posts": [
