@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-11-08",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Magazine Editorial",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Innovation Leader",
+        "environment": "City skyline office",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader in a City skyline office, Close-up portrait, Charcoal executive suit, with an out-of-focus glass screen in the foreground and a blurred city background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Are creators enough for the holidays?",
+          "content": "It's a hot debate: brands loving creators all year, then switching to celebrities for holiday campaigns.\n\nWhy the shift?\n\nIt seems marketers still lean on established stars for that big holiday push. It's about perceived trust and broad appeal.\n\n1. Creator strength: Creators drive engagement and authentic connections daily.\n2. Celebrity power: Celebrities offer mass appeal and quick trust for seasonal pushes.\n3. Brand strategy: Balance both for year-round impact and peak season conversions.\n\nWhat's your take? Should brands trust creators all the way through the holidays?\n\n📌 Source: Digiday (\"Future of Marketing Briefing: Creators had a big year. Christmas still went to the celebrities\")\n#MarketingStrategy #CreatorEconomy #HolidayMarketing",
+          "sourceName": "Digiday",
+          "sourceArticle": "Future of Marketing Briefing: Creators had a big year. Christmas still went to the celebrities",
+          "imageHeadline": "CELEBS *WIN* XMAS",
+          "imageSubtext": "Why holiday campaigns still favor big names.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Business Coach",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach in an Executive boardroom, Presentation shot, Navy business suit, with an out-of-focus conference table in the foreground and a blurred modern office setting background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Automation has hidden problems.",
+          "content": "Many teams use AI in marketing automation. But measuring success is still a big problem.\n\nMost automation issues aren't about the tech itself. They're about strategy and measurement. Without clear ROI, it's hard to improve.\n\n1. Define goals: Know exactly what success looks like for each automation.\n2. Track everything: Implement clear metrics to measure every step of your workflow.\n3. Adjust often: Use your data to refine and optimize automation constantly.\n\nWhat's your biggest automation ROI challenge?\n\n📌 Source: HubSpot Marketing (\"Obstacles in marketing automation and how to fix them [2026]\")\n#MarketingAutomation #BusinessGrowth #ROI",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "Obstacles in marketing automation and how to fix them [2026]",
+          "imageHeadline": "AUTOMATION *OBSTACLES*",
+          "imageSubtext": "Fix common automation problems for better ROI.",
+          "badgeText": "MARKETING PLAYBOOK",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "LinkedIn Thought Leader",
+        "layoutFamily": "split-right",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Technology Evangelist",
+        "environment": "Creative workspace",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist in a Creative workspace, Full-body standing, Smart casual blazer, with out-of-focus design tools in the foreground and a blurred open-plan office background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Instagram wants long-form video.",
+          "content": "Instagram is pushing long videos to compete with YouTube. Creators are interested, but they wonder if visibility is enough.\n\nMore long-form content means new opportunities. But without proper exposure, the effort might not pay off.\n\n1. Test formats: Experiment with Reels, Stories, and long-form posts to see what resonates.\n2. Engage viewers: Create compelling content that keeps people watching longer.\n3. Track performance: Monitor views and engagement to understand content effectiveness.\n\nDo you think Instagram can truly rival YouTube for long-form content?\n\n📌 Source: Digiday (\"Creators see promise in Instagram’s long-form push, but question whether exposure is enough\")\n#SocialMediaStrategy #ContentCreation #InstagramMarketing",
+          "sourceName": "Digiday",
+          "sourceArticle": "Creators see promise in Instagram’s long-form push, but question whether exposure is enough",
+          "imageHeadline": "INSTAGRAM *LONG-FORM*",
+          "imageSubtext": "The platform's new push for video creators.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "READ ARTICLE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "AI Consultant",
+        "environment": "Innovation lab",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant in an Innovation lab, Side profile, Turtleneck with blazer, with out-of-focus screens displaying data in the foreground and blurred high-tech equipment background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "What is RAG in AI?",
+          "content": "RAG stands for Retrieval-Augmented Generation. It helps AI give better, more relevant answers.\n\nInstead of just generating text, RAG-powered AI pulls information from external sources. This means more accurate and up-to-date responses.\n\n1. Better answers: AI uses specific, reliable data to form responses.\n2. Brand visibility: Your brand can appear in AI answers if sources are optimized.\n3. Informed decisions: Customers get better info when asking AI about your products.\n\nHow do you see RAG changing search and brand discovery?\n\n📌 Source: HubSpot Marketing (\"What is RAG in AI? A plain-English guide for marketers\")\n#AIMarketing #RAG #AITechnology",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "What is RAG in AI? A plain-English guide for marketers",
+          "imageHeadline": "WHAT IS *RAG* IN AI?",
+          "imageSubtext": "A simple guide to Retrieval-Augmented Generation.",
+          "badgeText": "AI MARKETING",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Podcast Host",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Keynote Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Keynote Speaker on an Auditorium stage, Speaking on stage, Conference speaker outfit, with an out-of-focus microphone in the foreground and a blurred audience background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Supercharge Claude with plugins!",
+          "content": "Claude integrations are essential for seamless AI workflows. Switching apps breaks focus and kills efficiency.\n\nPlugins extend Claude's capabilities directly into your daily tools. This streamlines tasks from content creation to reporting.\n\n1. Boost content: Use Claude plugins for faster, smarter content generation.\n2. Plan campaigns: Integrate for seamless campaign strategy and execution.\n3. Automate reporting: Connect Claude to your data tools for insightful analysis.\n\nWhich Claude plugin would transform your workflow most?\n\n📌 Source: HubSpot Marketing (\"Claude marketing plugins worth adding to your stack in 2026\")\n#AIChatbot #ClaudeAI #WorkflowAutomation",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "Claude marketing plugins worth adding to your stack in 2026",
+          "imageHeadline": "CLAUDE *PLUGINS*",
+          "imageSubtext": "Extend Claude's power across your marketing stack.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "TRY WEB APP"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-11-07",
     "category": "marketing",
     "posts": [
