@@ -1,5 +1,159 @@
 [
   {
+    "date": "2026-11-09",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "TED Speaker",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Platinum Grey",
+        "characterRole": "TED Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. TED Speaker, Auditorium stage, Speaking on stage, Conference speaker outfit. Foreground: out-of-focus microphone, Midground: the manager, Background: blurred audience. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Launching a new brand? Here’s a smart move.",
+          "content": "Poppi's founders, after a huge $2 billion exit, are back.\nTheir new hydration drink, Jetty, targets the 'normal human.'\n\nThis is brilliant marketing.\n\n1. Find your niche: Don't chase everyone. Serve a specific, overlooked group.\n2. Differentiate clearly: Be the first 'for them.' It creates instant connection.\n3. Build on success: Leverage past wins but start fresh with a new angle.\n\nAre you clear on your brand's core target audience?\n\n📌 Source: Adweek (\"After a $2 Billion Exit, Poppi’s Founders Take Aim at Hydration Drinks\")\n🔗 https://www.adweek.com/brand-marketing/after-a-2-billion-exit-poppis-founders-take-aim-at-hydration-drinks/\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Adweek",
+          "sourceArticle": "After a $2 Billion Exit, Poppi’s Founders Take Aim at Hydration Drinks",
+          "imageHeadline": "*POPPI* FOUNDERS NEXT MOVE",
+          "imageSubtext": "How a $2B exit shapes a new brand launch.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://www.adweek.com/brand-marketing/after-a-2-billion-exit-poppis-founders-take-aim-at-hydration-drinks/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Premium Burgundy",
+        "characterRole": "Author",
+        "environment": "Library",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Author, Library, Sitting at desk, Modern startup hoodie. Foreground: stacks of books out-of-focus, Midground: the manager, Background: blurred library shelves. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Boost your holiday sales on TikTok!",
+          "content": "TikTok just released new guides for end-of-year promos.\nThis period, right after Christmas, is prime time for self-gifting.\n\nHere’s your mini-playbook:\n\n1. Target the 'treat yourself' mindset: Focus messaging on personal rewards.\n2. Use engaging formats: TikTok shines with short, creative video ads.\n3. Offer exclusive deals: Create urgency and value for immediate buys.\n\nHow do you plan your end-of-year promotions?\n\n📌 Source: Social Media Today (\"TikTok shares gaming and app promotional guides for end-of-year period\")\n🔗 https://www.socialmediatoday.com/news/tiktok-shares-gaming-and-app-promotional-guides-for-end-of-year-period/874069/\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "TikTok shares gaming and app promotional guides for end-of-year period",
+          "imageHeadline": "*HOLIDAY* TIKTOK STRATEGY",
+          "imageSubtext": "Capture post-Christmas self-gifting sales with these tips.",
+          "badgeText": "MARKETING PLAYBOOK",
+          "ctaText": "GET THE GUIDE",
+          "sourceUrl": "https://www.socialmediatoday.com/news/tiktok-shares-gaming-and-app-promotional-guides-for-end-of-year-period/874069/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Creative Director",
+        "layoutFamily": "floating-cards",
+        "colorPalette": "Monochrome Black",
+        "characterRole": "Innovation Leader",
+        "environment": "Creative workspace",
+        "cameraStyle": "Looking away",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader, Creative workspace, Looking away, White shirt with rolled sleeves. Foreground: blurred design sketches on a table, Midground: the manager, Background: a modern open-plan creative studio. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Wendy's is playing dirty (and smart!).",
+          "content": "They just launched 'WendyQuest,' a video game.\nPlayers defeat rivals like 'Golden Archers' for rewards.\n\nThis is a masterclass in engaging brand rivalry:\n\n1. Gamify the competition: Make it fun for customers to choose you.\n2. Leverage existing rivalry: Use known competitors to create buzz.\n3. Offer real rewards: Give tangible reasons for participation and loyalty.\n\nWhat other brands use rivalry to their advantage?\n\n📌 Source: Marketing Dive (\"Wendy’s takes a shot at McDonald’s with rewards-based video game\")\n🔗 https://www.marketingdive.com/news/wendys-takes-a-shot-at-mcdonalds-with-rewards-based-video-game/873785/\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Wendy’s takes a shot at McDonald’s with rewards-based video game",
+          "imageHeadline": "WENDY'S *GAME* ON",
+          "imageSubtext": "How Wendy's uses gamification to challenge competitors.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "SEE CAMPAIGN",
+          "sourceUrl": "https://www.marketingdive.com/news/wendys-takes-a-shot-at-mcdonalds-with-rewards-based-video-game/873785/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Innovation Lab Researcher",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Slate Blue",
+        "characterRole": "Researcher",
+        "environment": "Innovation lab",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Researcher, Innovation lab, Interview setup, Luxury business casual. Foreground: a blurry glass screen with data, Midground: the manager, Background: futuristic lab equipment out-of-focus. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "AI is changing how creators get paid.",
+          "content": "Advertisers now demand real performance metrics from creators.\nNo more just follower counts. It's about leads and conversions.\n\nThis is a huge shift, driven by AI analytics:\n\n1. Focus on outcomes: Prioritize concrete results over vanity metrics.\n2. Track deeper data: Use AI tools to measure actual business impact.\n3. Rethink creator partnerships: Align incentives with conversion goals.\n\nAre your creator metrics ready for this change?\n\n📌 Source: Digiday (\"How performance metrics are rewriting creator rate cards\")\n🔗 https://digiday.com/marketing/how-performance-metrics-are-rewriting-creator-rate-cards/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Digiday",
+          "sourceArticle": "How performance metrics are rewriting creator rate cards",
+          "imageHeadline": "AI *REWRITES* CREATOR PAY",
+          "imageSubtext": "Performance metrics now define creator value, not followers.",
+          "badgeText": "AI MARKETING",
+          "ctaText": "READ INSIGHTS",
+          "sourceUrl": "https://digiday.com/marketing/how-performance-metrics-are-rewriting-creator-rate-cards/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Investor Pitch",
+        "layoutFamily": "diagonal-layout",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "Professor",
+        "environment": "Startup hub",
+        "cameraStyle": "Walking shot",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor, Startup hub, Walking shot, Smart casual blazer. Foreground: a sleek office frame, Midground: the manager, Background: blurred bustling startup environment. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Meta's AI can now build mini-apps!",
+          "content": "Muse, Meta’s AI agent, has a new trick.\nYou can now create mini-apps for task trackers and custom interfaces.\n\nHere’s how to use this new AI workflow:\n\n1. Define your task: What repeatable process needs a simpler interface?\n2. Prompt Muse clearly: Tell it what data to track and how to display it.\n3. Integrate into workflow: Use these mini-apps for internal task management or client reporting.\n\nCould this simplify your daily operations?\n\n📌 Source: Social Media Today (\"Meta adds mini app creation option to Muse\")\n🔗 https://www.socialmediatoday.com/news/meta-adds-mini-app-creation-option-to-muse/874070/\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "Meta adds mini app creation option to Muse",
+          "imageHeadline": "META MUSE *MINI* APPS",
+          "imageSubtext": "Create custom task trackers with Meta's AI agent.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "EXPLORE FEATURES",
+          "sourceUrl": "https://www.socialmediatoday.com/news/meta-adds-mini-app-creation-option-to-muse/874070/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-11-08",
     "category": "marketing",
     "posts": [
