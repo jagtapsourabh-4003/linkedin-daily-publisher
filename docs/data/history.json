@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-11-10",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "University Chancellor",
+        "layoutFamily": "asymmetrical-grid",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Technology Evangelist",
+        "environment": "Modern university campus",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Technology Evangelist, standing in a modern university campus, Full-body standing shot, wearing a Premium polo shirt. Foreground element: out-of-focus glass railing. Midground subject: the Technology Evangelist. Background element: blurred campus buildings. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "LinkedIn just got smarter.",
+          "content": "Your feed is about to get even more relevant.\nLinkedIn is rolling out an updated content recommendation system.\nIt uses advanced AI, specifically LLM-generated embeddings.\n\nThis means you'll see more posts from relevant people you don't even follow.\nIt's a huge step to broaden your network and insights.\n\n1.  **Discover More:** New, valuable voices will appear on your feed.\n2.  **Stay Current:** Get diverse perspectives on industry trends.\n3.  **Expand Network:** Find new connections based on mutual interests.\n\nHow will this change your daily LinkedIn scroll?\n\n📌 Source: Social Media Today (\"LinkedIn explains its improved content recommendation system\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "LinkedIn explains its improved content recommendation system",
+          "imageHeadline": "LINKEDIN'S *NEW* EDGE",
+          "imageSubtext": "AI now powers your feed, showing more relevant content.",
+          "badgeText": "PLATFORM UPDATE",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Business Strategist",
+        "layoutFamily": "split-right",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "Business Coach",
+        "environment": "Coffee shop workspace",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Coach, in a vibrant coffee shop workspace, Side profile shot, wearing luxury business casual attire. Foreground element: out-of-focus coffee cup on table. Midground subject: the Business Coach. Background element: blurred coffee shop patrons. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Decode your social data.",
+          "content": "Your social media data holds hidden gold.\nIt's not just about likes; it's about cultural signals.\nBrands that understand these shifts gain a massive edge.\n\nHere’s how to turn social signals into actionable strategy:\n\n1.  **Listen Beyond Keywords:** Look for emerging slang, visual trends, and new behaviors.\n2.  **Analyze Sentiment Nuances:** Understand not just what's said, but *how* it's felt.\n3.  **Identify Micro-Communities:** Discover niche groups forming around specific interests.\n\nWhat social signal are you tracking for your next move?\n\n📌 Source: Marketing Dive (\"5 social signals brands should act on now\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "5 social signals brands should act on now",
+          "imageHeadline": "5 *SOCIAL* SIGNALS",
+          "imageSubtext": "Turn cultural shifts into strategy with this playbook.",
+          "badgeText": "STRATEGY PLAYBOOK",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Corporate Executive",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Monochrome Black",
+        "characterRole": "Corporate Executive",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Corporate Executive, sitting at a desk in an executive boardroom, Sitting at desk shot, wearing a Charcoal executive suit. Foreground element: out-of-focus laptop screen. Midground subject: the Corporate Executive. Background element: blurred city view from window. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Pepsi's holiday game.",
+          "content": "The holidays are a battleground for brands.\nPepsi is stepping up its seasonal strategy this year.\nThey're focusing on two key areas for maximum impact.\n\nIncreased retail presence means more visibility where shoppers are.\nAnd linking to football season taps into massive viewership.\n\n1.  **Retail Dominance:** Be everywhere consumers shop for gifts and meals.\n2.  **Cultural Alignment:** Connect your brand to major seasonal events like football.\n3.  **Platform Integration:** Extend brand message across different consumer touchpoints.\n\nWhich holiday campaign has impressed you most this year?\n\n📌 Source: Marketing Dive (\"Pepsi’s holiday push includes bigger retail presence, soda for Santa\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Pepsi’s holiday push includes bigger retail presence, soda for Santa",
+          "imageHeadline": "PEPSI'S *BIG* PLAY",
+          "imageSubtext": "How holiday retail and football drive brand impact.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Creative Director",
+        "layoutFamily": "layered-depth",
+        "colorPalette": "Premium Burgundy",
+        "characterRole": "Innovation Leader",
+        "environment": "Creative workspace",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Innovation Leader, Full-body standing in a vibrant creative workspace, wearing a White shirt with rolled sleeves. Foreground element: out-of-focus design sketches on a transparent board. Midground subject: the Innovation Leader. Background element: blurred collaborative team working. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "AI for better brand shoots.",
+          "content": "Ogilvy is changing the game for brand talent shoots.\nThey're using AI to scale content creation.\nThis means more visuals, faster, without compromising quality.\n\nCrucially, AI also helps protect talent rights.\nIt ensures ethical use of digital assets, building consumer trust.\n\n1.  **Scale Production:** Generate more content variations efficiently.\n2.  **Protect Talent:** Use AI for rights management and ethical usage.\n3.  **Build Trust:** Maintain consumer confidence with transparent AI use.\n\nCould AI make your content creation process smoother?\n\n📌 Source: Marketing Dive (\"How Ogilvy uses AI to unlock scale, protect rights for brand talent shoots\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "How Ogilvy uses AI to unlock scale, protect rights for brand talent shoots",
+          "imageHeadline": "OGILVY'S *AI* SHIFT",
+          "imageSubtext": "Scaling talent shoots and protecting rights with new tech.",
+          "badgeText": "AI IN MARKETING",
+          "ctaText": "LEARN MORE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Dark Forest",
+        "characterRole": "AI Consultant",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, AI Consultant, Side profile in a sleek, futuristic workspace, wearing a Turtleneck with blazer. Foreground element: out-of-focus holographic display. Midground subject: the AI Consultant. Background element: blurred neon-lit data streams. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "AI search queries revealed.",
+          "content": "Are you tracking your AI search performance?\nIt’s time to differentiate between query types.\n'Branded' queries mention your brand directly.\n\n'Unbranded' queries are general, like 'best running shoes.'\nTracking both helps you optimize your Answer Engine Optimization (AEO).\n\n1.  **Categorize Queries:** Tag inputs as branded or unbranded.\n2.  **Measure AI Visibility:** See how often your brand appears for both types.\n3.  **Adjust Content:** Create tailored content for each query style.\n\nHow are you currently optimizing for AI search?\n\n📌 Source: HubSpot Marketing (\"Branded vs. unbranded queries in AI search — and how to track them\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "Branded vs. unbranded queries in AI search — and how to track them",
+          "imageHeadline": "*MASTER* AI SEARCH",
+          "imageSubtext": "Track branded vs. unbranded queries for AEO success.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "GET THE GUIDE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-11-09",
     "category": "marketing",
     "posts": [
