@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-11-11",
+    "category": "ai",
+    "posts": [
+      {
+        "designArchetype": "University Chancellor",
+        "layoutFamily": "asymmetrical-grid",
+        "colorPalette": "Dark Forest",
+        "characterRole": "Author",
+        "environment": "Library",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Author, in a Library, Presentation shot, wearing a Turtleneck with blazer. Out-of-focus microphone in foreground, manager in midground, bookshelves in background with shallow depth of field. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "ChatGPT for your business!",
+          "content": "OpenAI just launched 'Businesses in ChatGPT.'\nThink of them as verified AI agents for brands.\n\nNow, companies can directly manage their presence.\nThey can understand how they appear in AI chats.\nPlus, turn casual interest into real action.\n\nThis means a new way for customers to engage.\nIt's like having an AI assistant for every brand.\n\n1. Enhanced Trust: Verified agents build confidence.\n2. Direct Engagement: Customers get instant, accurate info.\n3. Conversion Boost: AI guides users from query to action.\n\nCould this become your next lead generation channel?\n\n📌 Source: OpenAI (\"Introducing Businesses in ChatGPT\")\n#AIMarketing #ChatGPT #BusinessAI",
+          "sourceName": "OpenAI",
+          "sourceArticle": "Introducing Businesses in ChatGPT",
+          "imageHeadline": "CHATGPT *BUSINESS* AGENTS",
+          "imageSubtext": "Turn interest into action with verified AI.",
+          "badgeText": "MARKETING NEWS",
+          "ctaText": "LEARN MORE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Business Strategist",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "University Chancellor",
+        "environment": "Conference venue",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. University Chancellor, in a Conference venue, Side profile, wearing a Smart casual blazer. Glass screen in foreground, manager in midground, blurred conference attendees in background with shallow depth of field. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Secure your digital assets.",
+          "content": "A recent report showed a massive UK government data leak.\nSensitive information was exposed due to simple flaws.\nThis isn't just a government issue; it affects every business.\n\nYour brand's reputation and customer trust depend on security.\nIgnoring vulnerabilities is a ticking time bomb.\n\nProtecting your digital presence is critical.\n\n1. Regular Audits: Scan your websites and systems often.\n2. Strong Protocols: Implement robust encryption and access controls.\n3. Staff Training: Educate your team on cybersecurity best practices.\n\nAre you confident in your online security measures?\n\n📌 Source: Wired (\"Security Flaws Across UK Government Sites Exposed ‘God-Tier’ Information\")\n#Cybersecurity #DataSecurity #BrandProtection",
+          "sourceName": "Wired",
+          "sourceArticle": "Security Flaws Across UK Government Sites Exposed ‘God-Tier’ Information",
+          "imageHeadline": "UK *DATA* BREACH",
+          "imageSubtext": "Government sites exposed private 'god-tier' info.",
+          "badgeText": "SECURITY PLAYBOOK",
+          "ctaText": "GET CHECKLIST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Creative Director",
+        "layoutFamily": "news-card",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "Professor",
+        "environment": "Startup hub",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor, in a Startup hub, Over-the-shoulder shot, wearing a Charcoal executive suit. Office frame in foreground, manager in midground, bustling startup environment in background with shallow depth of field. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Real AI risks, explained.",
+          "content": "Everyone talks about AI safety, but what are the *real* concerns?\nExperts say it's not Skynet coming to life.\nInstead, it's about geopolitical power and critical infrastructure.\n\nThe focus should be on practical risks, not sci-fi scenarios.\nThis directly impacts how businesses prepare for AI's future.\n\nUnderstanding true risks helps you plan smarter.\n\n1. Geopolitical Impact: AI's role in global competition.\n2. Infrastructure Vulnerability: Potential for AI to disrupt systems.\n3. Human Oversight: Ensuring ethical and controlled AI development.\n\nWhat AI risks concern you most for business?\n\n📌 Source: Wired (\"The AI Safety Debate Has Lost the Plot. We Asked 10 Experts What the Real Nightmares Are\")\n#AISafety #TechStrategy #FutureOfWork",
+          "sourceName": "Wired",
+          "sourceArticle": "The AI Safety Debate Has Lost the Plot. We Asked 10 Experts What the Real Nightmares Are",
+          "imageHeadline": "AI *SAFETY* DEBATE",
+          "imageSubtext": "Experts share real nightmares, not Skynet.",
+          "badgeText": "STRATEGY INSIGHTS",
+          "ctaText": "READ EXPERT VIEWS"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Royal Gold",
+        "characterRole": "AI Consultant",
+        "environment": "Innovation lab",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant, in an Innovation lab, Looking at camera, wearing a Navy business suit. Glass screen with data overlay in foreground, manager in midground, high-tech lab equipment in background with shallow depth of field. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Linux for AI power users!",
+          "content": "Say hello to Kora: a new operating system built for AI.\nIt's a Linux-based alternative to Windows and macOS.\nDesigned specifically for power users running local AI models.\n\nThis means faster, more efficient AI development and deployment.\nImagine processing complex AI tasks directly on your machine.\nNo more waiting for cloud services or dealing with latency.\n\nThis changes the game for AI marketers and developers.\n\n1. Local Processing: Run AI models without cloud dependency.\n2. Enhanced Speed: Faster iterations for AI experiments.\n3. Customization: Tailor your OS for specific AI workflows.\n\nCould a specialized AI OS boost your marketing efficiency?\n\n📌 Source: Wired (\"This New Linux-Based Desktop Operating System Is Built for AI Nerds\")\n#AIComputing #LinuxAI #TechInnovation",
+          "sourceName": "Wired",
+          "sourceArticle": "This New Linux-Based Desktop Operating System Is Built for AI Nerds",
+          "imageHeadline": "KORA *AI* OS",
+          "imageSubtext": "Next-gen desktop for local AI models.",
+          "badgeText": "AI CONCEPT",
+          "ctaText": "EXPLORE KORA"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Harvard Professor",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Technology Evangelist",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist, in an Executive boardroom, Sitting at desk, wearing a Conference speaker outfit. Laptop screen in foreground, manager in midground, polished boardroom table in background with shallow depth of field. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Google AI verifies Signal.",
+          "content": "Google DeepMind just used a new AI tool.\nIt formally verified the Signal Protocol's security.\nThis means AI confirmed that Signal's encryption works perfectly.\n\nTheir big goal? To verify 'all the software of the world.'\nImagine the implications for digital trust and security.\n\nThis is a huge step for AI in validating critical systems.\n\n1. Boost Trust: AI-verified security enhances user confidence.\n2. Automate Audits: AI can quickly check complex protocols.\n3. Global Impact: Aims to secure all software, a massive undertaking.\n\nHow can AI verification improve your product's credibility?\n\n📌 Source: Wired (\"A New AI Tool From Google DeepMind Proved the Signal Protocol Is Secure\")\n#AIVerification #Cybersecurity #DeepMindAI",
+          "sourceName": "Wired",
+          "sourceArticle": "A New AI Tool From Google DeepMind Proved the Signal Protocol Is Secure",
+          "imageHeadline": "DEEPMIND *SECURITY*",
+          "imageSubtext": "AI proves Signal Protocol is truly secure.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "READ RESEARCH"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-11-10",
     "category": "marketing",
     "posts": [
