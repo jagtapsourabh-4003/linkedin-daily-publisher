@@ -1,5 +1,159 @@
 [
   {
+    "date": "2026-11-12",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Forbes Cover",
+        "layoutFamily": "split-right",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Business Coach",
+        "environment": "Coffee shop workspace",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach, Coffee shop workspace, Half-body portrait, Smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Thought leadership still wins.",
+          "content": "For B2B buyers, expertise isn't just a bonus. It's the deal-breaker.\nA new report shows that professional insights are highly valued.\nYour content needs to be more than just marketing. It needs to be genuinely insightful.\nThis builds trust. It positions you as an authority. And it moves buyers forward.\n\n1. Share Real Value: Don't just promote. Educate and inform with deep insights.\n2. Be Consistent: Regular, high-quality content keeps you top-of-mind.\n3. Show, Don't Just Tell: Back your claims with experience and results.\n\nWhat's your go-to source for thought leadership?\n📌 Source: Social Media Today (\"Thought leadership remains highly valuable for B2B buyers\")\n#B2BMarketing #ThoughtLeadership #ContentStrategy #Sales",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "Thought leadership remains highly valuable for B2B buyers",
+          "imageHeadline": "*B2B BUYERS* VALUE",
+          "imageSubtext": "Professional insights drive buying decisions.",
+          "badgeText": "MARKETING INSIGHTS",
+          "ctaText": "READ REPORT NOW",
+          "sourceUrl": "https://www.socialmediatoday.com/news/thought-leadership-remains-highly-valuable-for-b2b-buyers/874464/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "TED Speaker",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Podcast Host",
+        "environment": "Podcast studio",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Podcast Host, Podcast studio, Sitting at desk, Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Boost your AI search visibility.",
+          "content": "AI search is changing everything. How do you know if your brand is even showing up? AEO benchmarking is your answer.\nIt measures your brand's visibility against competitors. This helps you understand if changes come from the market or your own efforts.\nProve your performance to leaders. Adjust your tactics with confidence.\n\n1. Track Your Visibility: Regularly monitor where your brand appears in AI search results.\n2. Analyze Competitors: See how your rivals are performing and learn from their strategies.\n3. Adapt Quickly: Use market insights to fine-tune your AEO strategy for better results.\n\nHow are you measuring AI search success?\n📌 Source: HubSpot Marketing (\"AEO benchmarking: What market data reveals about AI search\")\n#AISearch #MarketingStrategy #AEO #Benchmarking",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "AEO benchmarking: What market data reveals about AI search",
+          "imageHeadline": "*AI SEARCH* BENCHMARK",
+          "imageSubtext": "Compare your brand's AI visibility now.",
+          "badgeText": "MARKETING FRAMEWORK",
+          "ctaText": "GET BENCHMARK GUIDE",
+          "sourceUrl": "https://blog.hubspot.com/marketing/aeo-benchmarking"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Corporate Executive",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "Innovation Leader",
+        "environment": "Creative workspace",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader, Creative workspace, Full-body standing, White shirt with rolled sleeves. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Brands are making shows!",
+          "content": "Brands like Anthropologie are shifting their creator strategy. Instead of single posts, they're funding entire shows.\nThis isn't just about more content. It's about deeper engagement. Longer narratives build stronger connections with audiences.\nIt's a smart way to stand out in a noisy feed.\n\n1. Build Deeper Stories: Longer formats allow for richer storytelling.\n2. Foster Loyalty: Engaging shows create dedicated fanbases, not just fleeting views.\n3. Stand Out: Break away from short-form content fatigue with unique programming.\n\nWould you watch a brand-created show?\n📌 Source: Digiday (\"Why brands like Anthropologie are commissioning creator-created shows instead of posts\")\n#BrandStrategy #CreatorEconomy #ContentMarketing #Anthropologie",
+          "sourceName": "Digiday",
+          "sourceArticle": "Why brands like Anthropologie are commissioning creator-created shows instead of posts",
+          "imageHeadline": "*BRANDED SHOWS* ARE HERE",
+          "imageSubtext": "Brands fund creator-led series, not just posts.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "LEARN MORE NOW",
+          "sourceUrl": "https://digiday.com/marketing/why-brands-like-anthropologie-are-commissioning-creator-created-shows-instead-of-posts/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Business Strategist",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Platinum Grey",
+        "characterRole": "AI Consultant",
+        "environment": "Innovation lab",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant, Innovation lab, Side profile, Luxury business casual. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "AI will change grocery runs.",
+          "content": "Mars is preparing for a future where AI handles most grocery shopping. This means impulse buys are at risk!\nThey're focusing on being visible to large language models (LLMs) and creating immersive store experiences.\nIt's about making sure your brand is seen, even when a machine is doing the buying. Future-proof your sales now.\n\n1. Optimize for LLMs: Ensure your products are discoverable by AI shopping agents.\n2. Enhance In-Store Experience: Create engaging physical spaces to capture impulse buys.\n3. Understand AI Behavior: Anticipate how AI will influence purchasing decisions.\n\nHow will AI impact your industry's impulse buys?\n📌 Source: Digiday (\"Mars wants to future proof impulse buys as AI is poised to take over more grocery runs\")\n#AIMarketing #FutureofRetail #ImpulseBuys #AIStrategy",
+          "sourceName": "Digiday",
+          "sourceArticle": "Mars wants to future proof impulse buys as AI is poised to take over more grocery runs",
+          "imageHeadline": "*AI GROCERY* COMING",
+          "imageSubtext": "Mars prepares for AI to handle shopping.",
+          "badgeText": "AI MARKETING",
+          "ctaText": "PREDICT THE FUTURE",
+          "sourceUrl": "https://digiday.com/marketing/mars-wants-to-future-proof-impulse-buys-as-ai-poised-to-take-over-more-grocery-runs/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Harvard Professor",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Author",
+        "environment": "Library",
+        "cameraStyle": "Looking away",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Author, Library, Looking away, Formal university attire. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Write better blogs with AI.",
+          "content": "AI is a tool, not a magic wand. You can use it to write amazing blog posts, but only if you know how.\nAvoid the 'AI slop' that floods the internet. Skillful prompting and editing are key.\nThink of AI as your assistant. You still need to be the expert. Guide it to greatness.\n\n1. Start with a Strong Outline: Provide AI with a clear structure and key points.\n2. Inject Your Voice: Edit AI-generated content to match your brand's unique tone.\n3. Fact-Check Everything: Always verify information to maintain credibility.\n\nWhat's your secret to using AI for content?\n📌 Source: HubSpot Marketing (\"How to use AI to write a blog post (that isn’t slop)\")\n#AITools #ContentCreation #BlogWriting #AIWorkflow",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "How to use AI to write a blog post (that isn’t slop)",
+          "imageHeadline": "*AI BLOGS* DONE RIGHT",
+          "imageSubtext": "Use AI to write powerful, human-like content.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "MASTER AI WRITING",
+          "sourceUrl": "https://blog.hubspot.com/marketing/how-to-use-ai-to-write-a-blog-post"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-11-11",
     "category": "ai",
     "posts": [
