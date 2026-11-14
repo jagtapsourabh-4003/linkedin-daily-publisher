@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-11-14",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Magazine Editorial",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Business Coach",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach in an Executive boardroom, Sitting at desk, Charcoal executive suit. Foreground: out-of-focus laptop screen, Midground: the manager, Background: blurred modern art on wall. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Twitch just got a major upgrade.",
+          "content": "Short-form video is huge right now.\nTwitch is embracing this by adding new features for creators.\nThis means more ways for audiences to discover content.\n\n1.  **New Discovery**: Creators can now leverage short clips for wider reach.\n2.  **Audience Engagement**: Viewers can easily share highlights.\n3.  **Monetization Potential**: More eyeballs mean more opportunities for brands.\n\nWhat do you think of this move for Twitch?\n\n📌 Source: Digiday (\"‘We’re not trying to be TwitchTok’: Twitch adds new short-form video feature\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Digiday",
+          "sourceArticle": "‘We’re not trying to be TwitchTok’: Twitch adds new short-form video feature",
+          "imageHeadline": "TWITCH *GOES* SHORT",
+          "imageSubtext": "New video features boost creator discovery and engagement.",
+          "badgeText": "MARKETING NEWS",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "AI Consultant",
+        "environment": "Innovation lab",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant in an Innovation lab, Side profile, Smart casual blazer. Foreground: blurred futuristic holographic display, Midground: the manager, Background: out-of-focus tech equipment racks. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Holiday sales look bright!",
+          "content": "Despite economic worries, marketers are optimistic for the 2026 holiday season.\nMany expect revenue to grow significantly.\nThis means focusing on strategies that deliver real value.\n\n1.  **Early Planning**: Start holiday campaigns well in advance.\n2.  **Value-Driven Offers**: Emphasize benefits, not just discounts.\n3.  **Cross-Channel Presence**: Be everywhere your customers are.\n\nHow are you preparing for next year's holiday push?\n\n📌 Source: Digiday (\"D+ Research: Marketers express revenue optimism for 2026 holiday season despite economic pressures\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Digiday",
+          "sourceArticle": "D+ Research: Marketers express revenue optimism for 2026 holiday season despite economic pressures",
+          "imageHeadline": "HOLIDAY *REVENUE* UP",
+          "imageSubtext": "Marketers forecast significant growth despite economic pressures.",
+          "badgeText": "MARKETING PLAYBOOK",
+          "ctaText": "GET THE INSIGHTS"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "diagonal-layout",
+        "colorPalette": "Dark Forest",
+        "characterRole": "Strategy Consultant",
+        "environment": "Conference venue",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant in a Conference venue, Presentation shot, Navy business suit. Foreground: blurry edge of a podium, Midground: the manager, Background: packed audience in soft focus. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Barbie and Hot Wheels hit TikTok!",
+          "content": "Mattel is jumping on the social commerce trend.\nThey're launching official stores on TikTok Shop for major brands like Barbie and Hot Wheels.\nThis shows how important direct sales on social platforms are becoming.\n\n1.  **Direct Sales Channel**: Sell products right where users are browsing.\n2.  **Engage Gen Z**: Connect with younger audiences on their preferred platform.\n3.  **New Revenue Streams**: Diversify sales beyond traditional retail.\n\nAre you exploring social commerce for your brand?\n\n📌 Source: Digiday (\"Mattel brings Barbie, Hot Wheels to TikTok Shop\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Digiday",
+          "sourceArticle": "Mattel brings Barbie, Hot Wheels to TikTok Shop",
+          "imageHeadline": "MATTEL *ON* TIKTOK",
+          "imageSubtext": "Iconic brands launch direct stores on the booming platform.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "EXPLORE NEW TRENDS"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Book Author",
+        "layoutFamily": "split-right",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Corporate Executive",
+        "environment": "Media studio",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive in a Media studio, Half-body portrait, Turtleneck with blazer. Foreground: a blurry microphone, Midground: the manager, Background: soft-lit studio backdrop. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "AI insights can be risky.",
+          "content": "A new report reveals that many leaders face negative results from AI-derived audience insights.\nOver 80% reported issues due to inaccurate AI outputs.\nThis highlights the need for careful validation.\n\n1.  **Validate Data**: Don't blindly trust AI outputs; cross-reference.\n2.  **Human Oversight**: Keep human experts in the loop for critical decisions.\n3.  **Iterate & Refine**: Continuously improve AI models with feedback.\n\nHow do you ensure your AI insights are accurate?\n\n📌 Source: Marketing Dive (\"AI-derived audience insights hurt results: What the numbers say\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "AI-derived audience insights hurt results: What the numbers say",
+          "imageHeadline": "AI *INSIGHTS* FAIL",
+          "imageSubtext": "Inaccurate AI outputs lead to negative business outcomes.",
+          "badgeText": "AI MARKETING",
+          "ctaText": "GET THE REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Professor",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor in a Technology command center, Looking at camera, Premium polo shirt. Foreground: faint data visualization on a transparent screen, Midground: the manager, Background: out-of-focus server racks and blinking lights. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Supercharge Claude with integrations!",
+          "content": "Constantly switching between AI tools and your CRM breaks focus.\nClaude integrations fix this, embedding AI where you work.\nThis streamlines your workflow and boosts productivity.\n\n1.  **Centralize Tools**: Integrate Claude directly into your existing platforms.\n2.  **Seamless Experience**: Reduce context-switching, stay in flow.\n3.  **Boost Productivity**: Leverage AI's power without interruption.\n\nWhich AI integrations save you the most time?\n\n📌 Source: HubSpot Marketing (\"Claude integrations worth adding to your GTM stack\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "Claude integrations worth adding to your GTM stack",
+          "imageHeadline": "CLAUDE *INTEGRATE* NOW",
+          "imageSubtext": "Streamline your AI workflow by connecting Claude with your stack.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "EXPLORE PLUGINS"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-11-13",
     "category": "marketing",
     "posts": [
