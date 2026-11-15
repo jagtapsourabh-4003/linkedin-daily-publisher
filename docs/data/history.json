@@ -1,5 +1,159 @@
 [
   {
+    "date": "2026-11-15",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Forbes Cover",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Innovation Leader",
+        "environment": "Creative workspace",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader. Creative workspace. Close-up portrait. Premium polo shirt. Foreground: out-of-focus sleek modern desk with a tablet, Midground: the Innovation Leader, Background: blurred modern art on a wall. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Twitch just got a serious upgrade.",
+          "content": "Twitch is rolling out new ad features. They're making ads shoppable and skippable. This helps brands connect better with viewers. It's a smart move for full-funnel marketing. Viewers get more control. Brands get clearer results.\n\nHere's how it helps:\n1.  **More Control**: Viewers can skip ads they don't like.\n2.  **Direct Sales**: Shoppable ads mean buying is easier than ever.\n3.  **Better Data**: Brands learn what works, improving future campaigns.\n\nWhat do you think of ads that you can actually skip?\n📌 Source: Marketing Dive (\"Twitch debuts shoppable, skippable ads as TwitchCon feels growing pains\")\n#TwitchMarketing #DigitalAds #StreamingFuture #AdTech",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Twitch debuts shoppable, skippable ads as TwitchCon feels growing pains",
+          "imageHeadline": "TWITCH *ADS* REFRESH",
+          "imageSubtext": "Shoppable and skippable ads change the game.",
+          "badgeText": "MARKETING NEWS",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://www.marketingdive.com/news/twitch-debuts-shoppable-skippable-ads-as-twitchcon-feels-growing-pains/874614/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "TED Speaker",
+        "layoutFamily": "phone-mockup",
+        "colorPalette": "Teal White",
+        "characterRole": "Professor",
+        "environment": "Coffee shop workspace",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor. Coffee shop workspace. Looking at camera. Navy business suit. Foreground: a steaming coffee cup, Midground: the Professor, Background: blurred bustling coffee shop interior. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "User experience *defines* ad success.",
+          "content": "Mobile users have short attention spans. They scroll fast, stream in bursts. Ads need to grab them quickly. A user-first approach wins attention. It builds stronger app businesses over time. Ads should feel like part of the experience. Not an interruption.\n\nTo build user-first ads:\n1.  **Be Relevant**: Show ads that truly match user interests.\n2.  **Be Seamless**: Integrate ads smoothly into content flow.\n3.  **Offer Value**: Make ads helpful, not just promotional.\n\nHow do you create user-first ad experiences?\n📌 Source: Digiday (\"Why user-first ad experiences build the strongest app businesses\")\n#MobileMarketing #AppGrowth #UserFirst #AdExperience",
+          "sourceName": "Digiday",
+          "sourceArticle": "Why user-first ad experiences build the strongest app businesses",
+          "imageHeadline": "USER-FIRST *ADS* WIN",
+          "imageSubtext": "Building stronger app businesses with better experiences.",
+          "badgeText": "MARKETING PLAYBOOK",
+          "ctaText": "GET REPORT",
+          "sourceUrl": "https://digiday.com/sponsored/why-user-first-ad-experiences-build-the-strongest-app-businesses/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Startup Founder",
+        "layoutFamily": "layered-depth",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Author",
+        "environment": "Startup hub",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Author. Startup hub. Presentation shot. Turtleneck with blazer. Foreground: a slightly blurred laptop screen showing a presentation slide, Midground: the Author gesturing, Background: out-of-focus modern startup office with whiteboards. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Gen Z's holiday nostalgia is here!",
+          "content": "Welch's is tapping into Y2K nostalgia for its holiday campaign. They're targeting Gen Z, who are now becoming parents. It's a \"microdrama\" on social media. This shows how brands adapt to new consumer trends. Connecting with emotions wins sales. Especially during holidays.\n\nLessons from Welch's strategy:\n1.  **Know Your Audience**: Understand generational shifts and their triggers.\n2.  **Embrace Trends**: Use cultural nostalgia effectively and authentically.\n3.  **Go Social**: Create short, engaging content for platforms like Instacart.\n\nWhat's your favorite nostalgic holiday memory?\n📌 Source: Marketing Dive (\"Welch’s holiday microdrama embraces Y2K nostalgia as Gen Z become parents\")\n#BrandStrategy #GenZMarketing #HolidayCampaigns #ConsumerPsychology",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Welch’s holiday microdrama embraces Y2K nostalgia as Gen Z become parents",
+          "imageHeadline": "Y2K *HOLIDAY* DRAMA",
+          "imageSubtext": "Welch's taps Gen Z nostalgia for sales boost.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "LEARN MORE",
+          "sourceUrl": "https://www.marketingdive.com/news/welchs-holiday-microdrama-embraces-y2k-nostalgia-as-gen-z-become-parents/874453/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "LinkedIn Thought Leader",
+        "layoutFamily": "diagonal-layout",
+        "colorPalette": "Crimson Red",
+        "characterRole": "AI Consultant",
+        "environment": "Media studio",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant. Media studio. Speaking on stage. Charcoal executive suit. Foreground: out-of-focus microphone, Midground: the AI Consultant speaking passionately, Background: blurred modern media studio backdrop. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "AI influencers are rising fast.",
+          "content": "Ever seen an influencer that isn't real? AI-powered influencers are everywhere now. Brands are using them for campaigns. But how do consumers feel? Data shows mixed reactions. Authenticity is still key. Even with digital faces.\n\nWhat brands need to know:\n1.  **Sentiment Matters**: Monitor how audiences react to AI influencers.\n2.  **Transparency Wins**: Be clear if an influencer is AI-generated.\n3.  **Find the Fit**: Not every brand or campaign suits an AI influencer.\n\nWould you trust an AI influencer's product recommendation?\n📌 Source: HubSpot Marketing (\"AI influencers: What consumer sentiment data tells brands\")\n#AIMarketing #AIInfluencers #BrandTrust #DigitalTrends",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "AI influencers: What consumer sentiment data tells brands",
+          "imageHeadline": "THE *AI* INFLUENCER",
+          "imageSubtext": "Consumer sentiment on digital brand ambassadors.",
+          "badgeText": "AI MARKETING",
+          "ctaText": "VIEW REPORT",
+          "sourceUrl": "https://blog.hubspot.com/marketing/ai-influencers"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "asymmetrical-grid",
+        "colorPalette": "Dark Forest",
+        "characterRole": "Researcher",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Researcher. Futuristic workspace. Sitting at desk. Formal university attire. Foreground: a holographic display, Midground: the Researcher focused on a screen, Background: blurred advanced tech lab equipment. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "AI automates ad tech. Now what?",
+          "content": "AI is changing ad tech workflows. It handles many tasks automatically. The real battle is shifting. It's about who makes the smart decisions. The \"brain behind the buy.\" Human strategy still leads. AI empowers better choices.\n\nYour AI ad tech workflow:\n1.  **Automate Tasks**: Let AI handle bidding, targeting, and optimization.\n2.  **Focus on Strategy**: Use your human brain for creative angles and insights.\n3.  **Analyze & Adapt**: Review AI outputs, then refine your strategy.\n\nHow are you using AI to boost your ad campaigns?\n📌 Source: Digiday (\"AI is turning ad tech into a fight for the brain behind the buy\")\n#AdTechAI #AIMarketing #WorkflowEfficiency #StrategyFirst",
+          "sourceName": "Digiday",
+          "sourceArticle": "AI is turning ad tech into a fight for the brain behind the buy",
+          "imageHeadline": "AI *AD TECH* SHIFT",
+          "imageSubtext": "Strategy remains key as AI automates workflows.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "EXPLORE NOW",
+          "sourceUrl": "https://digiday.com/media-buying/ai-is-turning-ad-tech-into-a-fight-for-the-brain-behind-the-buy/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-11-14",
     "category": "marketing",
     "posts": [
