@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-11-18",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Documentary Interview",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Electric Blue",
+        "characterRole": "University Chancellor",
+        "environment": "Modern university campus",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. University Chancellor in a Modern university campus, Close-up portrait, wearing a Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Sports sponsorships are changing.",
+          "content": "Brands need more than just logos on a jersey.\nQualcomm's Snapdragon team showed us how, partnering with F1 star Kimi Antonelli.\n\nHere's what I learned:\n1. Find *authentic* alignment: Kimi's tech-savvy image fits Snapdragon perfectly.\n2. Go beyond the track: Connect with the growing F1 audience off-race, too.\n3. Measure real ROI: It's not just exposure; it's about deeper engagement.\n\nWho are you partnering with next?\n\n📌 Source: Marketing Dive (\"Why Qualcomm teamed with F1’s new star in race for sports marketing ROI\")",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Why Qualcomm teamed with F1’s new star in race for sports marketing ROI",
+          "imageHeadline": "F1 *MARKETING* ROI",
+          "imageSubtext": "How smart sports sponsorships drive real brand value.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Investor Pitch",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "TED Speaker",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. TED Speaker in an Executive boardroom, Half-body portrait, wearing a Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Retail media meets streaming.",
+          "content": "It's a powerful combination for ad buyers right now.\nThink of it as a new playbook for reaching engaged audiences.\n\nHere's how to stack your strategy:\n1. Integrate data: Combine shopping insights with streaming viewer habits.\n2. Personalize ads: Deliver relevant products where eyes are already glued.\n3. Measure directly: See how streaming ads lead to actual sales.\n\nAre you leveraging this new opportunity?\n\n📌 Source: Adweek (\"Ad Buyers Embrace Retail Media’s Honeymoon With Streaming\")",
+          "sourceName": "Adweek",
+          "sourceArticle": "Ad Buyers Embrace Retail Media’s Honeymoon With Streaming",
+          "imageHeadline": "RETAIL *MEDIA* STACK",
+          "imageSubtext": "Unlocking sales by combining shopping data with streaming TV.",
+          "badgeText": "ADVERTISING PLAYBOOK",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Podcast Host",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Startup Founder",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Startup Founder on an Auditorium stage, Full-body standing, wearing a Smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Remember Keyboard Cat?",
+          "content": "Meow Mix brought iconic cat memes back to life.\nThey reimagined internet classics for a new multichannel campaign.\n\nWhy this works:\n1. Instant nostalgia: Taps into fond internet memories for older audiences.\n2. Shareable content: Memes are built for viral spread across platforms.\n3. Brand relevance: Connects a classic brand with modern culture.\n\nWhat meme would you bring back?\n\n📌 Source: Marketing Dive (\"Meow Mix reimagines iconic cat memes for multichannel campaign\")",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Meow Mix reimagines iconic cat memes for multichannel campaign",
+          "imageHeadline": "MEME *CAMPAIGN* GOLD",
+          "imageSubtext": "Reimagining internet classics builds brand and boosts engagement.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "DISCOVER MORE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Conference Speaker",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Author",
+        "environment": "Innovation lab",
+        "cameraStyle": "Walking shot",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Author in an Innovation lab, Walking shot, wearing a Premium polo shirt. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Holiday marketing is changing.",
+          "content": "AI is becoming a key player, but it’s a balancing act.\nConsumers want innovation, but also tried-and-true tactics.\n\nHere’s how AI fits in:\n1. Personalized offers: AI can tailor holiday deals for each customer.\n2. Trend prediction: Use AI to spot what gifts will be popular.\n3. Efficient campaigns: Automate ad placements for maximum impact.\n\nAre you ready for AI-powered holidays?\n\n📌 Source: Marketing Dive (\"Holiday marketing hits inflection point in 2026: What brands need to know\")",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Holiday marketing hits inflection point in 2026: What brands need to know",
+          "imageHeadline": "HOLIDAY *AI* STRATEGY",
+          "imageSubtext": "Balancing new AI tactics with classic holiday marketing approaches.",
+          "badgeText": "AI UPDATE",
+          "ctaText": "LEARN MORE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Business Strategist",
+        "layoutFamily": "news-card",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Professor",
+        "environment": "Podcast studio",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor in a Podcast studio, Presentation shot, wearing a Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Claude AI streamlines tasks.",
+          "content": "Many marketing teams are using it as their go-to assistant.\nIt's not just a chatbot; it's a workflow accelerator.\n\nBoost your marketing with Claude:\n1. Content generation: Draft blog posts, emails, or social captions fast.\n2. Idea brainstorming: Get fresh angles for campaigns and promotions.\n3. Data analysis: Summarize reports and extract key insights quickly.\n\nHow do you use AI in your daily work?\n\n📌 Source: HubSpot Marketing (\"Claude AI for marketing: How teams use it with HubSpot\")",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "Claude AI for marketing: How teams use it with HubSpot",
+          "imageHeadline": "CLAUDE *MARKETING* FLOW",
+          "imageSubtext": "How marketing teams leverage Claude AI for daily efficiency.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "TRY CLAUDE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-11-17",
     "category": "marketing",
     "posts": [
