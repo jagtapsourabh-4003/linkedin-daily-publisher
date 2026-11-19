@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-11-19",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Documentary Interview",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Business Coach",
+        "environment": "Creative workspace",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach in a Creative workspace, Over-the-shoulder shot, wearing a White shirt with rolled sleeves, with an out-of-focus microphone in the foreground and blurred creative tools in the background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Music marketing changed.",
+          "content": "It's true! TikTok isn't just for viral dances anymore.\nIt's a powerful launchpad for music.\n\nA new report shows nearly all major chart hits started there.\nThis means if your brand uses music, TikTok is non-negotiable.\n\nHere’s what this means for your strategy:\n1.  **Spot Trends Early:** Pay attention to sounds gaining traction. They are future hits.\n2.  **License Smart:** Consider artists who are blowing up on TikTok. Their reach is massive.\n3.  **Engage Authentically:** Use trending sounds in your content to connect with a wider audience.\n\nAre you already using TikTok for music discovery?\n📌 Source: Social Media Today (\"TikTok releases its 2026 Music Impact Report\")\n#TikTokMarketing #MusicStrategy #DigitalTrends #BrandBuilding",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "TikTok releases its 2026 Music Impact Report",
+          "imageHeadline": "*TIKTOK* MUSIC POWER",
+          "imageSubtext": "94% of Billboard hits started on TikTok.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Investor Pitch",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Investor",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Investor in an Executive boardroom, Half-body portrait shot, wearing a Charcoal executive suit, with an out-of-focus glass screen in the foreground and blurred city skyline in the background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Paid media boosts creators.",
+          "content": "Gone are the days when 'organic' was king for creator content.\nNow, brands are putting serious cash behind creator partnerships.\n\nA recent report shows paid media drives nearly half of all brand-funded creator growth.\nThis isn't just about paying creators, it's about amplifying their work.\n\nHere's your playbook for impact:\n1.  **Amplify Top Performers:** Identify creator content that resonates most and boost it with paid ads.\n2.  **Target Precisely:** Use paid media's targeting to reach specific audiences with creator messages.\n3.  **Measure ROI:** Track how paid amplification impacts reach, engagement, and conversions.\n\nHow do you currently leverage paid media for your creator collaborations?\n📌 Source: Marketing Dive (\"Paid media now plays largest role in brand-funded creator growth: report\")\n#CreatorEconomy #PaidMedia #MarketingPlaybook #BrandPartnerships",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Paid media now plays largest role in brand-funded creator growth: report",
+          "imageHeadline": "*PAID MEDIA* POWER",
+          "imageSubtext": "Nearly half of creator growth is from paid media.",
+          "badgeText": "MARKETING FRAMEWORK",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Podcast Host",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Startup Founder",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Startup Founder on an Auditorium stage, Full-body standing shot, wearing a Smart casual blazer, with an out-of-focus microphone in the foreground and blurred audience seating in the background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Nike builds brands with creators.",
+          "content": "Nike is redefining athlete partnerships.\nIt's more than just endorsements.\n\nThey want creators and athletes to build culture, not just sell products.\nThis is a smart shift from 'influencer' to 'brand builder.'\n\nWhat we can learn from Nike's approach:\n1.  **Empower Co-creation:** Involve creators in developing brand stories and experiences.\n2.  **Foster Authenticity:** Support creators in sharing genuinely personal connections to your brand.\n3.  **Long-Term Vision:** Invest in relationships that go beyond a single campaign, building lasting advocacy.\n\nHow can your brand empower creators to build culture?\n📌 Source: Digiday (\"Inside Nike’s plan to turn creators into brand builders\")\n#BrandStrategy #NikeMarketing #CreatorMarketing #CultureBuilding",
+          "sourceName": "Digiday",
+          "sourceArticle": "Inside Nike’s plan to turn creators into brand builders",
+          "imageHeadline": "*NIKE* CREATOR SHIFT",
+          "imageSubtext": "Athletes are becoming brand builders, not just sellers.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Conference Speaker",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Author",
+        "environment": "Innovation lab",
+        "cameraStyle": "Walking shot",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Author in an Innovation lab, Walking shot, wearing a Premium polo shirt, with an out-of-focus glass screen in the foreground and blurred tech equipment in the background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "AI builds Snapchat Lenses.",
+          "content": "Snapchat just made augmented reality easier for everyone.\nYou can now create Lenses using AI chatbots!\n\nThis new 'Easy Lens' feature lets you describe what you want.\nThen, your favorite AI tool helps bring it to life.\n\nThis opens up new creative possibilities:\n1.  **Rapid Prototyping:** Quickly test AR ideas without deep design skills.\n2.  **Democratized Creation:** More users can build engaging AR experiences for their audience.\n3.  **Enhanced Personalization:** Create highly specific Lenses tailored to niche interests.\n\nWhat kind of AI-powered Lens would you create first?\n📌 Source: Social Media Today (\"Snapchat enables Lens creation via third-party AI tools\")\n#AIMarketing #ARInnovation #Snapchat #AItools",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "Snapchat enables Lens creation via third-party AI tools",
+          "imageHeadline": "*SNAPCHAT* AI LENSES",
+          "imageSubtext": "Create AR Lenses with third-party AI chatbots easily.",
+          "badgeText": "AI MARKETING",
+          "ctaText": "TRY WEB APP"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Business Strategist",
+        "layoutFamily": "news-card",
+        "colorPalette": "Royal Gold",
+        "characterRole": "Professor",
+        "environment": "Podcast studio",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor in a Podcast studio, Presentation shot, wearing a Turtleneck with blazer, with an out-of-focus microphone in the foreground and blurred sound panels in the background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "AI agents for holiday shopping.",
+          "content": "Imagine AI shopping assistants helping you buy holiday gifts.\nThis 'agentic commerce' is the next big thing.\n\nOpenAI, Google, Amazon are all investing in AI agents for shopping.\nThese agents can handle more complex tasks, not just simple searches.\n\nHow this changes your workflow:\n1.  **Smart Product Discovery:** AI can suggest products based on complex needs, not just keywords.\n2.  **Automated Personalization:** Agents can tailor recommendations for each customer, saving time.\n3.  **Optimized Campaigns:** Use AI insights to predict shopping trends and adjust ads in real-time.\n\nAre you ready for AI agents to shape holiday sales?\n📌 Source: Digiday (\"In Graphic Detail: Welcome to the agentic commerce quarter\")\n#AIWorkflow #CommerceAI #RetailTech #HolidayShopping",
+          "sourceName": "Digiday",
+          "sourceArticle": "In Graphic Detail: Welcome to the agentic commerce quarter",
+          "imageHeadline": "*AGENTIC* COMMERCE AI",
+          "imageSubtext": "OpenAI, Google, Amazon bet on AI for holiday shopping.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-11-18",
     "category": "marketing",
     "posts": [
