@@ -1,5 +1,159 @@
 [
   {
+    "date": "2026-11-20",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Documentary Interview",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Teal White",
+        "characterRole": "Keynote Speaker",
+        "environment": "Luxury office",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Keynote Speaker, Luxury office, Half-body portrait, Smart casual blazer, foreground element (out-of-focus glass desk), midground subject (the manager), background element (blurred modern art), Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "AI ads can go wrong.",
+          "content": "Coca-Cola learned this the hard way.\nTheir holiday AI-generated ads faced backlash.\nPeople prefer real human connection.\n\nHere's what this means for your brand:\n1. Authenticity Wins: Real stories resonate more.\n2. Test Everything: Get feedback *before* launch.\n3. Balance AI: Use it for efficiency, not core messaging.\n\nHow do you balance AI and human touch in your campaigns?\n\n📌 Source: Marketing Dive (\"Coca-Cola pivots from divisive AI-generated ads for holiday campaign\")\n#MarketingStrategy #AIethics #BrandBuilding #Authenticity",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Coca-Cola pivots from divisive AI-generated ads for holiday campaign",
+          "imageHeadline": "*AI ADS* FLOPPED?",
+          "imageSubtext": "Why human connection still beats generative AI.",
+          "badgeText": "MARKETING NEWS",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://www.marketingdive.com/news/coca-cola-pivots-from-divisive-ai-generated-ads-for-holiday-campaign/875215/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Podcast Host",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Neon Cyan",
+        "characterRole": "Professor",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Professor, Technology command center, Looking at camera, Navy business suit, foreground element (out-of-focus data screens), midground subject (the manager), background element (blurred server racks), Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "AI agents are changing shopping.",
+          "content": "Walmart sees new consumer behaviors.\nAI helps people find products differently.\nYour ads must adapt to this shift.\n\nHere’s a playbook for agentic commerce:\n1. Optimize for Discovery: Ensure products are visible to AI.\n2. Provide Rich Data: AI needs full product info.\n3. Focus on Value: What makes your offer unique?\n\nHow are you preparing for AI-driven shopping?\n\n📌 Source: Marketing Dive (\"Walmart mulls role advertising will play in an agentic shopping world\")\n#AgenticCommerce #MarketingPlaybook #RetailMedia #AIDiscovery",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Walmart mulls role advertising will play in an agentic shopping world",
+          "imageHeadline": "*AGENTIC* SHOPPING",
+          "imageSubtext": "How AI agents reshape consumer ad journeys.",
+          "badgeText": "STRATEGY PLAYBOOK",
+          "ctaText": "GET FRAMEWORK",
+          "sourceUrl": "https://www.marketingdive.com/news/walmart-mulls-role-advertising-will-play-in-an-agentic-shopping-world/875185/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Magazine Editorial",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "Business Coach",
+        "environment": "Coffee shop workspace",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Coach, Coffee shop workspace, Presentation shot, Formal university attire, foreground element (out-of-focus laptop screen), midground subject (the manager), background element (blurred coffee bar and patrons), Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Gen Z loves authenticity.",
+          "content": "Bumble teamed up with Alix Earle.\nThis social-forward campaign targets Gen Z.\nIt's about connecting with real influencers.\n\nHere's why this strategy works:\n1. Peer Trust: Gen Z trusts influencers more than ads.\n2. Relatable Content: Real-life stories attract.\n3. Platform Native: Ads fit the social environment.\n\nWho are your brand's authentic voices?\n\n📌 Source: Marketing Dive (\"Bumble cozies up to Alix Earle in attempt to convert Gen Zers\")\n#GenZMarketing #InfluencerStrategy #BrandCampaign #SocialMedia",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Bumble cozies up to Alix Earle in attempt to convert Gen Zers",
+          "imageHeadline": "*GEN Z* CONNECTION",
+          "imageSubtext": "How Bumble engages younger audiences with real voices.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "LEARN MORE",
+          "sourceUrl": "https://www.marketingdive.com/news/bumble-cozies-up-to-alix-earle-in-attempt-to-convert-gen-zers/875123/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "asymmetrical-grid",
+        "colorPalette": "Monochrome Black",
+        "characterRole": "AI Consultant",
+        "environment": "Innovation lab",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, AI Consultant, Innovation lab, Side profile, Turtleneck with blazer, foreground element (out-of-focus digital tablet), midground subject (the manager), background element (blurred high-tech equipment and screens), Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "AI changed search forever.",
+          "content": "Your brand's visibility is shifting.\nAI search answers appear first now.\nTraditional SEO needs a new approach.\n\nHere’s how to adapt for AI search:\n1. Optimize Content: Write for direct answers, not just keywords.\n2. Ensure Accuracy: AI uses factual, verified info.\n3. Track AI Visibility: Monitor how AI presents your brand.\n\nAre you tracking your brand in AI search results?\n\n📌 Source: HubSpot Marketing (\"How to track your brand's visibility in AI search [2026]\")\n#AISearch #SEOStrategy #BrandVisibility #AIMarketing",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "How to track your brand's visibility in AI search [2026]",
+          "imageHeadline": "*AI SEARCH* RULES",
+          "imageSubtext": "Your brand needs new visibility strategies now.",
+          "badgeText": "AI CONCEPT",
+          "ctaText": "GET REPORT",
+          "sourceUrl": "https://blog.hubspot.com/marketing/brand-visibility-ai-search"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Innovation Lab Researcher",
+        "layoutFamily": "layered-depth",
+        "colorPalette": "Dark Forest",
+        "characterRole": "Researcher",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Researcher, Futuristic workspace, Over-the-shoulder, Modern startup hoodie, foreground element (out-of-focus holographic display), midground subject (the manager), background element (blurred futuristic control panel), Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Claude Cowork has new skills.",
+          "content": "This AI mode handles desktop tasks.\n'Skills' are specific workflow instructions.\nCombine them for a huge productivity boost.\n\nHere’s a simple AI workflow:\n1. Define Task:\n\n📌 Source: HubSpot Marketing (\"Claude Cowork skills: How they work and what to build\")\n🔗 https://blog.hubspot.com/marketing/claude-cowork-skills\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "Claude Cowork skills: How they work and what to build",
+          "imageHeadline": "*CLAUDE* WORKFLOWS",
+          "imageSubtext": "Boost your productivity with new AI agent skills.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "TRY CLAUDE AI",
+          "sourceUrl": "https://blog.hubspot.com/marketing/claude-cowork-skills"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-11-19",
     "category": "marketing",
     "posts": [
