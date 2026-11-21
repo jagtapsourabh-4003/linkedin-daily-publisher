@@ -1,5 +1,159 @@
 [
   {
+    "date": "2026-11-21",
+    "category": "ai",
+    "posts": [
+      {
+        "designArchetype": "LinkedIn Thought Leader",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Slate Blue",
+        "characterRole": "Business Coach",
+        "environment": "Creative workspace",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Business Coach, in a Creative workspace, Looking at camera, wearing Luxury business casual. A foreground element like an out-of-focus sketchpad or design tools, midground subject (the manager), and background element (the creative workspace with blurred art supplies) create cinematic depth. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Data leaks are a real threat.",
+          "content": "AI is incredible, but it comes with a hidden cost: privacy risks.\n\nRecent research found millions of data 'canaries' leaked through the AI supply chain. This means confidential user data isn't staying private.\n\nHere’s why this matters for your brand:\n1. Trust Erosion: Customers won't use tools if their data isn't safe.\n2. Compliance Headaches: Data breaches mean big fines and legal issues.\n3. Brand Damage: A single leak can ruin years of reputation building.\n\nWe need to demand better privacy from our AI tools. Who is responsible for data security in your AI stack?\n\n📌 Source: Ars Technica (\"Researcher plants 2m canaries into the AI supply chain. A privacy disaster surfaced.\")\n#AIDataPrivacy #MarketingStrategy #DataSecurity",
+          "sourceName": "Ars Technica",
+          "sourceArticle": "Researcher plants 2m canaries into the AI supply chain. A privacy disaster surfaced.",
+          "imageHeadline": "AI *PRIVACY* RISK",
+          "imageSubtext": "Why your customer data might be leaking.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://arstechnica.com/security/2026/11/a-leaky-ai-supply-chain-is-exposing-secret-user-data-at-an-alarming-rate/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Strategy Consultant",
+        "environment": "Conference venue",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Strategy Consultant, in a Conference venue, Speaking on stage, wearing White shirt with rolled sleeves. A foreground element like an out-of-focus podium microphone, midground subject (the manager), and background element (a blurred large screen showing a presentation slide) create cinematic depth. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Stop repeating yourself to AI.",
+          "content": "Are you constantly giving AI the same instructions? There's a smarter way.\n\nBuilding 'reusable AI skills' can save you hours. Think of them as custom commands your AI already understands.\n\nHere's how to build your AI skills playbook:\n1. Define Tasks: Break down repetitive jobs (e.g., summary, draft email, social post).\n2. Create Templates: Craft precise prompts for each task.\n3. Save & Reuse: Store these prompts as 'skills' in your AI tool.\n\nThis makes AI a true coworker, not just a one-off helper. What repetitive tasks could you automate with AI skills?\n\n📌 Source: Marketing AI Institute (\"How to Build Reusable AI Skills and Stop Explaining Your Instructions Every Time\")\n#AIMarketing #AIskills #WorkflowAutomation",
+          "sourceName": "Marketing AI Institute",
+          "sourceArticle": "How to Build Reusable AI Skills and Stop Explaining Your Instructions Every Time",
+          "imageHeadline": "BUILD *AI SKILLS* NOW",
+          "imageSubtext": "Automate repetitive tasks with custom AI commands.",
+          "badgeText": "AI PLAYBOOK",
+          "ctaText": "GET REPORT",
+          "sourceUrl": "https://www.marketingaiinstitute.com/blog/building-reusable-ai-skills"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Corporate Executive",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Platinum Grey",
+        "characterRole": "Innovation Leader",
+        "environment": "Luxury office",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Innovation Leader, in a Luxury office, Full-body standing, wearing Charcoal executive suit. A foreground element like an out-of-focus modern art sculpture, midground subject (the manager), and background element (a blurred cityscape view from the office window) create cinematic depth. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Your workday just got an upgrade.",
+          "content": "Microsoft Copilot is becoming the new 'operating system' for work.\n\nOffice apps like Word and Excel are now living *inside* Copilot. This isn't just an add-on; it's a fundamental shift.\n\nWhy this changes how we work:\n1. Unified Workspace: All your tools in one smart place.\n2. Always-On AI: Agents anticipate needs and assist proactively.\n3. Faster Creation: AI helps draft, analyze, and present with ease.\n\nThis means less switching between apps and more focus on strategic tasks. How will Copilot change your team's efficiency?\n\n📌 Source: Ars Technica (\"Copilot is 'the new OS for work,' and now Office runs inside of it\")\n#FutureOfWork #AItools #Copilot",
+          "sourceName": "Ars Technica",
+          "sourceArticle": "Copilot is 'the new OS for work,' and now Office runs inside of it",
+          "imageHeadline": "COPILOT: NEW *OS*",
+          "imageSubtext": "Office apps now live inside your AI assistant.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://arstechnica.com/gadgets/2026/11/microsoft-calls-copilot-the-new-os-for-work-at-ignite-keynote/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "split-right",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "AI Consultant",
+        "environment": "Innovation lab",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, AI Consultant, in an Innovation lab, Side profile, wearing Turtleneck with blazer. A foreground element like an out-of-focus holographic display, midground subject (the manager), and background element (blurry advanced tech equipment and monitors) create cinematic depth. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Boost productivity with AI tech.",
+          "content": "Your home office is about to get a major upgrade with AI-powered gadgets.\n\nThese aren't just fancy toys; they're tools designed to make your work smarter and smoother.\n\nConsider these AI gadgets for your workspace:\n1. Smart Notetakers: Transcribe meetings perfectly, organize ideas.\n2. Intelligent Webcams: Auto-frame, adjust lighting, enhance presentations.\n3. Automated Assistants: Handle scheduling, reminders, and data retrieval.\n\nThink about how much time you'd save without manual tasks. What AI gadget would you add to your office first?\n\n📌 Source: TechCrunch (\"Six AI-powered gadgets that could make your home office smarter\")\n#AIGadgets #HomeOffice #Productivity",
+          "sourceName": "TechCrunch",
+          "sourceArticle": "Six AI-powered gadgets that could make your home office smarter",
+          "imageHeadline": "SMART *OFFICE* AI",
+          "imageSubtext": "Upgrade your home setup for maximum output.",
+          "badgeText": "AI UPDATE",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://techcrunch.com/2026/11/20/6-ai-powered-gadgets-that-could-make-your-home-office-smarter/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Innovation Lab Researcher",
+        "layoutFamily": "phone-mockup",
+        "colorPalette": "Neon Cyan",
+        "characterRole": "Researcher",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance, Researcher, in a Futuristic workspace, Over-the-shoulder, wearing Modern startup hoodie. A foreground element like a transparent tablet displaying data, midground subject (the manager), and background element (a blurred view of advanced computing servers) create cinematic depth. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Make your AI work smarter.",
+          "content": "Ever wonder how ChatGPT stays so fast? OpenAI's 'Performance Factory' is the secret.\n\nIt's a system of AI-powered workflows that finds and fixes performance issues. This means faster AI responses for everyone.\n\nHere’s how to apply this thinking to your AI workflows:\n1. Monitor Performance: Track how quickly your AI tools deliver results.\n2. Identify Bottlenecks: Pinpoint where delays or inefficiencies occur.\n3. Optimize Prompts/Tools: Refine inputs or switch tools for better speed.\n\nThink of your AI workflow as a factory: always look for ways to make it more efficient. How do you ensure your AI tools run optimally?\n\n📌 Source: OpenAI (\"How OpenAI’s Performance Factory keeps ChatGPT fast\")\n#AIOptimization #AIWorkflow #ChatGPT",
+          "sourceName": "OpenAI",
+          "sourceArticle": "How OpenAI’s Performance Factory keeps ChatGPT fast",
+          "imageHeadline": "FASTER *AI* FLOWS",
+          "imageSubtext": "OpenAI's secret to lightning-fast ChatGPT.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "TRY WEB APP",
+          "sourceUrl": "https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-11-20",
     "category": "marketing",
     "posts": [
