@@ -1,5 +1,159 @@
 [
   {
+    "date": "2026-11-22",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "LinkedIn Thought Leader",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Slate Blue",
+        "characterRole": "Business Coach",
+        "environment": "Creative workspace",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach, Creative workspace, Looking at camera, Luxury business casual clothing. Foreground: out-of-focus laptop screen with blurred code. Midground: The manager. Background: Modern, well-lit creative office space with minimalist decor. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Consulting giants are back in marketing.",
+          "content": "Traditional agencies, watch out. Big consulting firms like Deloitte and Accenture are making a comeback in the marketing world.\n\nThey're not just offering advice anymore. They want to lead strategy right from the C-suite.\n\nThis means the competition for top marketing roles is getting tougher. It also shifts what clients expect.\n\nHere’s what you need to know:\n1.  **Understand the Shift:** Consulting firms bring deep business integration. They link marketing directly to core business goals.\n2.  **Highlight Your Niche:** Agencies must emphasize their creative strength and speed. Show what makes you uniquely valuable.\n3.  **Collaborate Wisely:** Look for partnership opportunities. Sometimes, a joint effort delivers more.\n\nHow do you see this impacting the marketing landscape?\n\n📌 Source: Digiday (\"Future of Marketing Briefing: Consulting firms revive their marketing ambitions in the C-suite the holdcos covet\")\n🔗 https://digiday.com/marketing/future-of-marketing-briefing-consulting-firms-revive-their-marketing-ambitions-in-the-c-suite-the-holdcos-covet/\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Digiday",
+          "sourceArticle": "Future of Marketing Briefing: Consulting firms revive their marketing ambitions in the C-suite the holdcos covet",
+          "imageHeadline": "CONSULTANTS *RETURN*",
+          "imageSubtext": "Consulting giants are back in the C-suite for marketing.",
+          "badgeText": "MARKETING SHIFT",
+          "ctaText": "READ THE BRIEFING",
+          "sourceUrl": "https://digiday.com/marketing/future-of-marketing-briefing-consulting-firms-revive-their-marketing-ambitions-in-the-c-suite-the-holdcos-covet/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Consultant Presentation",
+        "layoutFamily": "presentation-slide",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Strategy Consultant",
+        "environment": "Conference venue",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant, Conference venue, Speaking on stage, White shirt with rolled sleeves. Foreground: out-of-focus microphone stand. Midground: The manager. Background: Large conference hall, bright stage lighting, blurred audience in distance. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Win big with Reddit communities.",
+          "content": "The Super Bowl isn't just about TV ads anymore. Communities like Reddit hold massive power.\n\nBrands often miss the mark by jumping in too late.\n\nTo really connect, you need a smart plan. It's about being part of the conversation, not interrupting it.\n\nHere’s your playbook for community engagement:\n1.  **Start Early:** Begin engaging weeks, even months, before the event. Build genuine relationships.\n2.  **Listen First:** Understand community norms and inside jokes. What truly resonates with them?\n3.  **Add Value:** Contribute meaningful content. Be a helpful participant, not just a marketer.\n\nWhat communities are you engaging with?\n\n📌 Source: Reddit (\"Reddit publishes guide to Super Bowl engagement trends\")\n🔗 https://www.socialmediatoday.com/news/reddit-publishes-guide-to-super-bowl-engagement-trends/875284/\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Reddit",
+          "sourceArticle": "Reddit publishes guide to Super Bowl engagement trends",
+          "imageHeadline": "REDDIT *GAMEPLAN*",
+          "imageSubtext": "Master Super Bowl engagement with Reddit community insights.",
+          "badgeText": "COMMUNITY STRATEGY",
+          "ctaText": "GET THE GUIDE",
+          "sourceUrl": "https://www.socialmediatoday.com/news/reddit-publishes-guide-to-super-bowl-engagement-trends/875284/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Corporate Executive",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Platinum Grey",
+        "characterRole": "Innovation Leader",
+        "environment": "Luxury office",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader, Luxury office, Full-body standing, Charcoal executive suit. Foreground: sleek glass desk edge. Midground: The manager. Background: Panoramic city view from a modern, high-rise office. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "B2B buying is about trust.",
+          "content": "We often think B2B decisions are purely logical. But a new LinkedIn study shows something different.\n\nRelationships, testimonials, and peer validation are incredibly powerful.\n\nPeople buy from people they trust. It's human nature, even in business.\n\nHere’s how to build that trust:\n1.  **Gather Testimonials:** Actively collect success stories. Real words from real clients mean a lot.\n2.  **Encourage Referrals:** Happy clients are your best advocates. Make it easy for them to refer you.\n3.  **Build Your Network:** Engage genuinely on platforms like LinkedIn. Be a resource, not just a salesperson.\n\nWhat builds trust for you in B2B?\n\n📌 Source: LinkedIn (\"LinkedIn study explores B2B buying decisions\")\n🔗 https://www.socialmediatoday.com/news/linkedin-study-explores-b2b-buying-decisions/875281/\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "LinkedIn",
+          "sourceArticle": "LinkedIn study explores B2B buying decisions",
+          "imageHeadline": "B2B *TRUST*",
+          "imageSubtext": "Relationships, testimonials, peer validation drive B2B purchases.",
+          "badgeText": "B2B INSIGHTS",
+          "ctaText": "EXPLORE STUDY",
+          "sourceUrl": "https://www.socialmediatoday.com/news/linkedin-study-explores-b2b-buying-decisions/875281/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "split-right",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "AI Consultant",
+        "environment": "Innovation lab",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant, Innovation lab, Side profile, Turtleneck with blazer. Foreground: glowing holographic projection. Midground: The manager. Background: High-tech lab with blurred screens and equipment. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "OpenAI changes business terms.",
+          "content": "Using AI for business means trusting the tools. OpenAI just updated its ChatGPT Business Hub terms.\n\nThis happened after some legal language raised concerns among users.\n\nIt highlights how critical clear terms are for enterprise AI adoption. Trust and clarity are paramount.\n\nHere’s why this matters for your AI strategy:\n1.  **Read the Fine Print:** Always understand the legal terms of any AI tool you use for business. It impacts your data.\n2.  **Prioritize Transparency:** Demand clear communication from AI providers. Know how your data is handled.\n3.  **Plan for Flexibility:** AI terms can change. Build workflows that can adapt to updates in service agreements.\n\nHow do you manage AI tool agreements?\n\n📌 Source: Digiday (\"OpenAI rewrites ChatGPT Business Hub terms after legal language raises concerns\")\n🔗 https://digiday.com/media/openai-rewrites-chatgpt-business-hub-terms-after-legal-language-raises-concerns/\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Digiday",
+          "sourceArticle": "OpenAI rewrites ChatGPT Business Hub terms after legal language raises concerns",
+          "imageHeadline": "AI *TERMS* CHANGED",
+          "imageSubtext": "OpenAI revises ChatGPT Business Hub terms for clarity.",
+          "badgeText": "AI GOVERNANCE",
+          "ctaText": "UNDERSTAND TERMS",
+          "sourceUrl": "https://digiday.com/media/openai-rewrites-chatgpt-business-hub-terms-after-legal-language-raises-concerns/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Innovation Lab Researcher",
+        "layoutFamily": "phone-mockup",
+        "colorPalette": "Neon Cyan",
+        "characterRole": "Researcher",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Over-the-shoulder",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Researcher, Futuristic workspace, Over-the-shoulder, Modern startup hoodie. Foreground: blurred data visualization on a transparent screen. Midground: The manager. Background: Sleek, minimalist future-tech environment with soft lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "AI search is always changing.",
+          "content": "Google's AI search results are a wild ride. Your traffic can swing up and down like a rollercoaster.\n\nFor SEO managers, this isn't entirely new. But AI adds a whole new layer of complexity.\n\nIt means our old workflows need an upgrade. We need smarter ways to track and adapt.\n\nHere’s your AI workflow for managing volatility:\n1.  **Monitor Constantly:** Use AI-powered tools to track keyword rankings and traffic shifts daily. Don't wait for weekly reports.\n2.  **Diversify Sources:** Rely less on a single search engine. Explore other traffic channels like social and direct.\n3.  **Focus on Authority:** Build strong content that answers user questions deeply. AI loves authoritative sources, regardless of ranking shifts.\n\nHow do you keep up with AI search changes?\n\n📌 Source: HubSpot Marketing (\"AI search volatility: What it means for your traffic\")\n🔗 https://blog.hubspot.com/marketing/ai-search-volatility\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "HubSpot Marketing",
+          "sourceArticle": "AI search volatility: What it means for your traffic",
+          "imageHeadline": "NAVIGATE *AI SEARCH*",
+          "imageSubtext": "Adapt your traffic strategy to volatile AI search results.",
+          "badgeText": "SEO WORKFLOW",
+          "ctaText": "MANAGE TRAFFIC",
+          "sourceUrl": "https://blog.hubspot.com/marketing/ai-search-volatility"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-11-21",
     "category": "ai",
     "posts": [
