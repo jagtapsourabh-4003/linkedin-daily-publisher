@@ -1,5 +1,159 @@
 [
   {
+    "date": "2026-11-24",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Book Author",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Business Coach",
+        "environment": "Executive boardroom",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. As a Business Coach, in an Executive boardroom, Half-body portrait, wearing a Charcoal executive suit, with an out-of-focus microphone in the foreground, professional lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Mailchimp just changed hands.",
+          "content": "Intuit sold Mailchimp for less than they bought it. Why?\n\nThey're doubling down on AI. This move tells us a lot about where marketing is headed.\n\nAI isn't just a buzzword anymore. It's becoming the core of how businesses operate.\n\n1. Big companies are now truly *betting on AI*. It's not optional.\n2. Email marketing needs smart AI tools to stay competitive and relevant.\n3. Focus your strategy on AI features that deliver real value, not just basic lists.\n\nAre you integrating AI into your core marketing stack?\n\n📌 Source: Marketing Dive (\"Intuit offloads Mailchimp to Bending Spoons to deepen bets on AI\")\n🔗 https://www.marketingdive.com/news/intuit-offloads-mailchimp-to-bending-spoons-to-deepen-bets-on-ai/875423/\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Intuit offloads Mailchimp to Bending Spoons to deepen bets on AI",
+          "imageHeadline": "*MAILCHIMP* SOLD",
+          "imageSubtext": "Intuit focuses on AI, shedding email marketing business.",
+          "badgeText": "MARKETING NEWS",
+          "ctaText": "READ FULL STORY",
+          "sourceUrl": "https://www.marketingdive.com/news/intuit-offloads-mailchimp-to-bending-spoons-to-deepen-bets-on-ai/875423/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Investor Pitch",
+        "layoutFamily": "split-right",
+        "colorPalette": "Cyber Purple",
+        "characterRole": "Investor",
+        "environment": "Luxury office",
+        "cameraStyle": "Walking shot",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. As an Investor, in a Luxury office, Walking shot, wearing a Navy business suit, with a glass screen in the foreground, soft natural light. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Your brand needs *bold* moves.",
+          "content": "Carl's Jr. is leaning into its heritage. They hired a new agency to push boundaries in marketing.\n\nThis isn't just about ads. It's about owning your unique story and being brave.\n\nHere’s how to bring boldness to your brand:\n\n1. *Find your true brand history*. What makes you different and authentic?\n2. Don't be afraid to *take calculated risks* in your campaigns.\n3. Partner with creatives who are *willing to push boundaries* with you.\n\nWhat's the boldest move your brand has ever made?\n\n📌 Source: Marketing Dive (\"Carl’s Jr. taps David&Goliath as marketing focus turns to boldness\")\n🔗 https://www.marketingdive.com/news/carls-jr-taps-davidgoliath-as-marketing-focus-turns-to-boldness/875471/\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Carl’s Jr. taps David&Goliath as marketing focus turns to boldness",
+          "imageHeadline": "*BOLD* BRAND PLAYBOOK",
+          "imageSubtext": "How to unlock fearless marketing and connect deeper.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "GET THE GUIDE",
+          "sourceUrl": "https://www.marketingdive.com/news/carls-jr-taps-davidgoliath-as-marketing-focus-turns-to-boldness/875471/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Documentary Interview",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Corporate Executive",
+        "environment": "City skyline office",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. As a Corporate Executive, in a City skyline office, Looking at camera, wearing a Premium polo shirt, with an office frame in the foreground, bright ambient light. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Holiday marketing just got bigger.",
+          "content": "Philadelphia cream cheese is boosting its holiday ad spend by 15%. They're bringing back their beloved 'Phillyboy' character.\n\nThis shows a clear strategy: invest more when it counts, and use familiar faces.\n\nKey takeaways for seasonal campaigns:\n\n1. *Increase your seasonal ad budget* during peak buying times.\n2. Use *familiar brand characters* or symbols to create instant connection.\n3. Focus on your *core product appeal* (like Philadelphia highlighting cheesecake).\n\nWhat character is central to your brand story?\n\n📌 Source: Marketing Dive (\"Philadelphia whips up bigger holiday marketing spend amid brand revamp\")\n🔗 https://www.marketingdive.com/news/philadelphia-whips-up-bigger-holiday-marketing-spend-amid-brand-revamp/875325/\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Philadelphia whips up bigger holiday marketing spend amid brand revamp",
+          "imageHeadline": "HOLIDAY *AD BOOST*",
+          "imageSubtext": "Brand revamps holiday spend with iconic character focus.",
+          "badgeText": "MARKETING TRENDS",
+          "ctaText": "SEE CAMPAIGN",
+          "sourceUrl": "https://www.marketingdive.com/news/philadelphia-whips-up-bigger-holiday-marketing-spend-amid-brand-revamp/875325/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Podcast Host",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Podcast Host",
+        "environment": "Podcast studio",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. As a Podcast Host, in a Podcast studio, Sitting at desk, wearing a Turtleneck with blazer, with an out-of-focus microphone in the foreground, studio lighting. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "AI efficiency isn't enough.",
+          "content": "Agencies spent two years selling AI on speed and cost savings. Clients are now asking: Where are the *results*?\n\nIt's not enough to be faster. AI needs to deliver real business outcomes. This is a crucial shift in expectations.\n\nFocus on these AI strategies:\n\n1. Clearly *connect AI efforts* to measurable business results and growth.\n2. Showcase how AI *improves actual outcomes*, not just speeds up tasks.\n3. Shift your narrative from *cost stories* to clear *growth stories*.\n\nWhat outcomes are your clients expecting from AI?\n\n📌 Source: Digiday (\"Agencies are selling AI efficiency — clients want outcomes\")\n🔗 https://digiday.com/sponsored/agencies-are-selling-ai-efficiency-clients-want-outcomes/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Digiday",
+          "sourceArticle": "Agencies are selling AI efficiency — clients want outcomes",
+          "imageHeadline": "AI *OUTCOMES* FIRST",
+          "imageSubtext": "Clients demand more than efficiency: real business impact.",
+          "badgeText": "AI MARKETING",
+          "ctaText": "LEARN MORE",
+          "sourceUrl": "https://digiday.com/sponsored/agencies-are-selling-ai-efficiency-clients-want-outcomes/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "University Chancellor",
+        "layoutFamily": "news-card",
+        "colorPalette": "Royal Gold",
+        "characterRole": "University Chancellor",
+        "environment": "Modern university campus",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. As a University Chancellor, in a Modern university campus, Full-body standing, wearing Formal university attire, with blurred students walking in the background, bright daylight. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "AI for email is here.",
+          "content": "The sale of Mailchimp highlights the industry's big push into AI. This means your email strategy needs an AI upgrade.\n\nAI isn't just for content creation. It can optimize your entire email workflow for better results.\n\nHere’s a simple AI email workflow:\n\n1. Automate email segmentation *using AI* for hyper-targeted lists.\n2. Personalize content at scale with *AI-generated copy* variations.\n3. Use AI to *optimize send times* based on recipient behavior predictions.\n\nHow are you using AI in your email marketing today?\n\n📌 Source: Marketing Dive (\"Intuit offloads Mailchimp to Bending Spoons to deepen bets on AI\")\n🔗 https://www.marketingdive.com/news/intuit-offloads-mailchimp-to-bending-spoons-to-deepen-bets-on-ai/875423/\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Intuit offloads Mailchimp to Bending Spoons to deepen bets on AI",
+          "imageHeadline": "AI *EMAIL* OPTIMIZED",
+          "imageSubtext": "Streamline your email campaigns with smart AI automation.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "START OPTIMIZING",
+          "sourceUrl": "https://www.marketingdive.com/news/intuit-offloads-mailchimp-to-bending-spoons-to-deepen-bets-on-ai/875423/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-11-23",
     "category": "marketing",
     "posts": [
