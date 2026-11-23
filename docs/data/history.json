@@ -1,5 +1,159 @@
 [
   {
+    "date": "2026-11-23",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Book Author",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "Technology Evangelist",
+        "environment": "Media studio",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist, Media studio, Speaking on stage, Conference speaker outfit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Instagram just changed shopping.",
+          "content": "Creators can now add up to 30 shoppable Amazon products per Reel.\n\nThis isn't just a small update; it's a huge step for direct-to-consumer sales on social media.\n\nHere’s why it matters for brands and creators:\n\n1.  **Direct Sales Channel:** Reels become instant storefronts. No more redirecting traffic. Buyers stay on Instagram.\n2.  **Influencer Power:** Creators can monetize content directly, driving more authentic product integration. Authenticity sells.\n3.  **Data Insights:** Brands get closer to understanding consumer behavior within the Instagram ecosystem. Better data means better strategy.\n\nAre you ready for shoppable Reels to take over your feed?\n\n📌 Source: Marketing Dive (\"Instagram adds Amazon affiliate links\")\n🔗 https://www.marketingdive.com/news/sociable-instagram-adds-amazon-affiliate-links/875206/\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Instagram adds Amazon affiliate links",
+          "imageHeadline": "*INSTAGRAM* SHOPPING",
+          "imageSubtext": "Creators can now sell directly in Reels.",
+          "badgeText": "MARKETING NEWS",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://www.marketingdive.com/news/sociable-instagram-adds-amazon-affiliate-links/875206/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Investor Pitch",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Corporate Navy",
+        "characterRole": "Innovation Leader",
+        "environment": "Creative workspace",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader, Creative workspace, Interview setup, White shirt with rolled sleeves. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "In-housing just got an upgrade.",
+          "content": "More large advertisers are embracing a 'hybrid' model for marketing teams.\n\nThis means blending in-house talent with external agency support.\n\nHere’s why it’s working:\n\n1.  **Core Expertise:** Keep strategy, brand, and key creative in-house. Maintain direct control and brand voice.\n2.  **Specialized Support:** Bring in agencies for niche tasks like complex media buying or specific tech integrations. They handle the heavy lifting.\n3.  **Flexibility & Speed:** Adapt quickly to market changes without constant hiring or firing. Scale up or down as needed.\n\nHow does your team balance in-house vs. agency work?\n\n📌 Source: Digiday (\"Hybrid won the in-housing debate, at least among the largest advertisers\")\n🔗 https://digiday.com/media-buying/hybrid-won-the-in-housing-debate-at-least-among-the-largest-advertisers/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Digiday",
+          "sourceArticle": "Hybrid won the in-housing debate, at least among the largest advertisers",
+          "imageHeadline": "HYBRID *MARKETING*",
+          "imageSubtext": "Blending in-house and agency for growth.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "GET REPORT",
+          "sourceUrl": "https://digiday.com/media-buying/hybrid-won-the-in-housing-debate-at-least-among-the-largest-advertisers/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Documentary Interview",
+        "layoutFamily": "split-right",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Startup Founder",
+        "environment": "Startup hub",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Startup Founder, Startup hub, Presentation shot, Modern startup hoodie. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Entertainment is the new ad.",
+          "content": "Gap Inc. is creating ‘fashiontainment’ to reach new audiences. They’re partnering with a boy band and launching a scripted microseries.\n\nThis isn't about traditional ads; it's about becoming part of culture.\n\nHere’s what brands can learn:\n\n1.  **Go Beyond Commercials:** Create engaging content that people *want* to watch. Think shows, music, stories.\n2.  **Partner Smart:** Collaborate with cultural trendsetters like artists or influencers. Their audience becomes your audience.\n3.  **Build Immersion:** Don’t just show products; weave them into narratives. Make your brand part of an experience.\n\nHow can your brand become part of the entertainment industry?\n\n📌 Source: Digiday (\"Gap Inc. is betting on ‘fashiontainment’ to fuel growth\")\n🔗 https://digiday.com/marketing/gap-inc-is-betting-on-fashiontainment-to-fuel-growth/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Digiday",
+          "sourceArticle": "Gap Inc. is betting on ‘fashiontainment’ to fuel growth",
+          "imageHeadline": "FASHIONTAINMENT *WINS*",
+          "imageSubtext": "Gap Inc. bets on culture, not ads.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "READ ARTICLE",
+          "sourceUrl": "https://digiday.com/marketing/gap-inc-is-betting-on-fashiontainment-to-fuel-growth/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Podcast Host",
+        "layoutFamily": "phone-mockup",
+        "colorPalette": "Crimson Red",
+        "characterRole": "AI Consultant",
+        "environment": "Innovation lab",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant, Innovation lab, Close-up portrait, Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Use AI for social media.",
+          "content": "Adam Mosseri, Instagram's chief, shares tips on using AI agents like Muse for social media.\n\nIt's not about replacing humans, but boosting creativity and efficiency.\n\nHere’s how AI can help your social media strategy:\n\n1.  **Ideation Partner:** Get fresh content ideas fast. AI can brainstorm captions, themes, and angles.\n2.  **Trend Spotter:** Identify emerging trends before they blow up. Stay ahead of the curve.\n3.  **Efficiency Boost:** Automate routine tasks like content scheduling or basic analytics. Free up your time for strategy.\n\nWhat AI tools are you using to level up your social media?\n\n📌 Source: Social Media Today (\"Instagram chief shares Muse tips for social media managers\")\n🔗 https://www.socialmediatoday.com/news/instagram-chief-shares-muse-tips-for-social-media-managers/875426/\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "Instagram chief shares Muse tips for social media managers",
+          "imageHeadline": "AI *MANAGER* TIPS",
+          "imageSubtext": "Use AI agents for social media ideation and trends.",
+          "badgeText": "AI UPDATE",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://www.socialmediatoday.com/news/instagram-chief-shares-muse-tips-for-social-media-managers/875426/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "University Chancellor",
+        "layoutFamily": "news-card",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Business Coach",
+        "environment": "Modern university campus",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach, Modern university campus, Full-body standing, Formal university attire. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "AI transparency is critical.",
+          "content": "TikTok just added new AI transparency and parental controls.\n\nThis shows a growing focus on responsible AI use in creative platforms.\n\nHere’s how to build trust with AI in your workflows:\n\n1.  **Disclose AI Use:** Be clear when AI generates content. Honesty builds credibility with your audience.\n2.  **Human Oversight:** Always have a human review AI-generated content. Ensure quality and brand voice.\n3.  **Explain the 'Why':** Communicate how AI benefits your audience. Show, don't just tell, the value.\n\nHow do you ensure AI transparency in your daily tasks?\n\n📌 Source: Social Media Today (\"TikTok adds new AI transparency and parental controls\")\n🔗 https://www.socialmediatoday.com/news/tiktok-adds-new-ai-transparency-and-parental-controls/875424/\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "TikTok adds new AI transparency and parental controls",
+          "imageHeadline": "TIKTOK *AI* ETHICS",
+          "imageSubtext": "New controls boost AI transparency and safety.",
+          "badgeText": "AI MARKETING",
+          "ctaText": "LEARN MORE",
+          "sourceUrl": "https://www.socialmediatoday.com/news/tiktok-adds-new-ai-transparency-and-parental-controls/875424/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-11-22",
     "category": "marketing",
     "posts": [
