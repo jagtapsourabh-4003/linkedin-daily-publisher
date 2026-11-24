@@ -1,5 +1,159 @@
 [
   {
+    "date": "2026-11-25",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Conference Speaker",
+        "layoutFamily": "split-right",
+        "colorPalette": "Dark Forest",
+        "characterRole": "TED Speaker",
+        "environment": "Media studio",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. TED Speaker in a Media studio, Half-body portrait, Conference speaker outfit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Stop AI in creator deals?",
+          "content": "Brands want real human creativity.\nThey're adding \"no-AI\" rules to creator contracts.\nBut many creators use AI tools as part of their workflow. This creates a confusing grey area.\n\nHere's what I recommend:\n1. Define AI use: Clearly state what AI tools are allowed or forbidden.\n2. Focus on output: Judge content by quality, not just the tools used.\n3. Open discussion: Talk with creators about their process upfront.\n\nHow are you managing AI in your creative partnerships?\n\n📌 Source: Digiday (\"Why brands are writing no-AI clauses into creator deals\")\n#CreatorEconomy #AIMarketing #BrandStrategy",
+          "sourceName": "Digiday",
+          "sourceArticle": "Why brands are writing no-AI clauses into creator deals",
+          "imageHeadline": "*AI* CLAUSES NOW",
+          "imageSubtext": "Brands want human touch in creator content",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://digiday.com/future-of-tv/why-brands-are-writing-no-ai-clauses-into-creator-deals/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Book Author",
+        "layoutFamily": "floating-cards",
+        "colorPalette": "Premium Burgundy",
+        "characterRole": "Keynote Speaker",
+        "environment": "Technology command center",
+        "cameraStyle": "Looking away",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Keynote Speaker in a Technology command center, Looking away, Navy business suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Best Buy's new ad playbook.",
+          "content": "Best Buy's new CEO sees advertising as a huge growth driver.\nThey plan a 10% increase this year. This highlights a critical lesson for all businesses.\n\nHere's how to build your ad playbook:\n1. CEO Buy-in: Ensure leadership understands ad ROI.\n2. Clear Targets: Set specific growth goals for ad spend.\n3. Brand Focus: Invest in campaigns that build long-term brand value.\n\nWhat's your CEO's view on marketing investment?\n\n📌 Source: Adweek (\"Advertising Is a Top Priority for Best Buy’s New CEO\")\n#MarketingPlaybook #BusinessGrowth #AdStrategy",
+          "sourceName": "Adweek",
+          "sourceArticle": "Advertising Is a Top Priority for Best Buy’s New CEO",
+          "imageHeadline": "*AD SPEND* BOOST",
+          "imageSubtext": "Best Buy sees huge growth in advertising",
+          "badgeText": "MARKETING PLAYBOOK",
+          "ctaText": "GET REPORT",
+          "sourceUrl": "https://www.adweek.com/commerce/advertising-is-a-top-priority-for-best-buys-new-ceo/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Documentary Interview",
+        "layoutFamily": "modern-minimal",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "Author",
+        "environment": "Startup hub",
+        "cameraStyle": "Presentation shot",
+        "clothingStyle": "Charcoal executive suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Author in a Startup hub, Presentation shot, Charcoal executive suit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Jell-O's big perception shift.",
+          "content": "Jell-O is launching its biggest campaign in over a decade.\nThey want to change how people see the brand. This isn't just about selling dessert.\nIt's about tapping into emotions and fresh thinking.\n\nMy takeaways from this:\n1. Emotional Hook: Connect with feelings, not just features.\n2. Bold Investment: Back big ideas with serious budget.\n3. Fresh Look: Don't be afraid to reinvent your brand image.\n\nWhat perceptions are you trying to change for your brand?\n\n📌 Source: Marketing Dive (\"How Jell-O’s new creative platform looks to shift consumer perceptions\")\n#BrandReinvention #ConsumerPsychology #MarketingCampaign",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "How Jell-O’s new creative platform looks to shift consumer perceptions",
+          "imageHeadline": "*BRAND* REBOOT",
+          "imageSubtext": "Jell-O aims to change how people see them",
+          "badgeText": "CONSUMER PSYCHOLOGY",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://www.marketingdive.com/news/how-jell-o-new-creative-platform-looks-to-shift-consumer-perceptions/875220/"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Investor Pitch",
+        "layoutFamily": "diagonal-layout",
+        "colorPalette": "Platinum Grey",
+        "characterRole": "AI Consultant",
+        "environment": "Coffee shop workspace",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Smart casual blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. AI Consultant in a Coffee shop workspace, Looking at camera, Smart casual blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Walmart controls AI shopping.",
+          "content": "AI agents like Meta's Muse want to browse and shop.\nWalmart is letting them in, but with strict controls. This shows how big brands are managing AI agent access.\n\nMy thoughts on this new AI frontier:\n1. Set Boundaries: Define what AI agents can and can't do.\n2. Control Data: Manage how AI accesses product information.\n3. Own the Experience: Ensure AI aligns with your brand's rules.\n\nHow will your brand interact with AI shoppers?\n\n📌 Source: Digiday (\"Walmart is letting Meta’s Muse shop its shelves — but on its own terms\")\n#AIMarketing #AgenticAI #WalmartTech",
+          "sourceName": "Digiday",
+          "sourceArticle": "Walmart is letting Meta’s Muse shop its shelves — but on its own terms",
+          "imageHeadline": "*AI AGENT* RULES",
+          "imageSubtext": "Walmart sets terms for Meta's Muse to shop",
+          "badgeText": "AI MARKETING",
+          "ctaText": "READ FULL POST",
+          "sourceUrl": "https://digiday.com/marketing/walmart-is-letting-metas-muse-shop-its-shelves-but-on-its-own-terms/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Creative Director",
+        "layoutFamily": "asymmetrical-grid",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "Corporate Executive",
+        "environment": "Conference venue",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Corporate Executive in a Conference venue, Interview setup, Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Amazon's ChatGPT paradox.",
+          "content": "Amazon is paying for ads on ChatGPT.\nBut they're blocking OpenAI's web crawlers from scanning their site. It's a dual strategy for AI visibility.\n\nHere’s how to navigate this:\n1. Advertise Directly: Place ads where your AI audience is.\n2. Control Access: Decide what data AI crawlers can use.\n3. Strategic Blocks: Protect sensitive information from AI scraping.\n\nAre you ready for this kind of AI strategy?\n\n📌 Source: Digiday (\"Amazon is buying ChatGPT ads while blocking OpenAI crawlers\")\n#AITools #DigitalStrategy #AmazonTech",
+          "sourceName": "Digiday",
+          "sourceArticle": "Amazon is buying ChatGPT ads while blocking OpenAI crawlers",
+          "imageHeadline": "*AI ADS* VS CRAWLERS",
+          "imageSubtext": "Amazon's mixed signals for ChatGPT",
+          "badgeText": "AI STRATEGY",
+          "ctaText": "TRY WEB APP",
+          "sourceUrl": "https://digiday.com/marketing/amazon-is-buying-chatgpt-ads-while-blocking-openai-crawlers/?utm_campaign=digidaydis&utm_medium=rss&utm_source=general-rss"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-11-24",
     "category": "marketing",
     "posts": [
