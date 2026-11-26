@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-11-26",
+    "category": "ai",
+    "posts": [
+      {
+        "designArchetype": "Documentary Interview",
+        "layoutFamily": "diagonal-layout",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "Innovation Leader",
+        "environment": "Creative workspace",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader in a creative workspace, Interview setup, White shirt with rolled sleeves. Foreground: out-of-focus sketchpad and design tools. Midground: the manager. Background: blurred modern art and whiteboards. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Etsy's AI terms caused a stir.",
+          "content": "Creators are pushing back against new AI clauses. \nIt's a hot topic: how much can AI use artist work?\n\nThis isn't just about Etsy. It’s a bigger question about ownership and fair use in the age of AI.\n\nHere’s what brands should consider:\n1. Be crystal clear: Explain exactly how AI will use creator data.\n2. Get consent: Always obtain explicit permission from artists and sellers.\n3. Offer value: Show how AI tools will benefit creators, not just the platform.\n\nHow do you balance AI innovation with creator rights?\n\n📌 Source: Ars Technica (\"Etsy clarifies AI terms after seller backlash\")",
+          "sourceName": "Ars Technica",
+          "sourceArticle": "Etsy clarifies AI terms after seller backlash",
+          "imageHeadline": "*ETSY* AI RULES",
+          "imageSubtext": "New AI terms create a backlash for creators.",
+          "badgeText": "MARKETING STRATEGY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Book Author",
+        "layoutFamily": "floating-cards",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "Business Coach",
+        "environment": "Library",
+        "cameraStyle": "Sitting at desk",
+        "clothingStyle": "Navy business suit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach in a library, Sitting at desk, Navy business suit. Foreground: out-of-focus open book and pen. Midground: the manager. Background: blurred bookshelves filled with diverse titles. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Building an AI marketing agent?",
+          "content": "Many try to build AI agents for marketing. \nIt sounds easy, but there are common pitfalls. \nAvoid these 'sins' for better results.\n\nHere are 3 mistakes to skip:\n1. Too broad scope: Don't make your agent try to do everything at once. Start small.\n2. Bad data input: An agent is only as good as the information you feed it. Clean your data!\n3. No feedback loop: Don't set it and forget it. Continuously review and refine its output.\n\nWhat's your biggest challenge with AI agents?\n\n📌 Source: Marketing AI Institute (\"Five Sins to Avoid While Building a Marketing Agent\")",
+          "sourceName": "Marketing AI Institute",
+          "sourceArticle": "Five Sins to Avoid While Building a Marketing Agent",
+          "imageHeadline": "*AI AGENT* SINS",
+          "imageSubtext": "Avoid these mistakes when building your marketing AI.",
+          "badgeText": "MARKETING PLAYBOOK",
+          "ctaText": "GET FRAMEWORK"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Conference Speaker",
+        "layoutFamily": "asymmetrical-grid",
+        "colorPalette": "Neon Cyan",
+        "characterRole": "Keynote Speaker",
+        "environment": "Auditorium stage",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Keynote Speaker on an auditorium stage, Speaking on stage, Luxury business casual. Foreground: out-of-focus microphone. Midground: the manager gesturing. Background: blurred large screen with abstract graphics. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "New earbuds record everything.",
+          "content": "Nothing's new AI earbuds are here. \nThey record calls, transcribe, and summarize conversations.\n\nThis isn't just about cool tech; it's about changing how we interact with devices and information.\n\nConsider these shifts for brands:\n1. Hyper-personalization: Products will know users even better, tailoring experiences.\n2. Data privacy focus: Brands must build trust as devices capture more personal data.\n3. Content creation shift: Audio summaries mean new ways to consume information.\n\nWould you use AI earbuds that record your calls?\n\n📌 Source: The Verge (\"Nothing offers a full look at its AI earbuds and charging case\")",
+          "sourceName": "The Verge",
+          "sourceArticle": "Nothing offers a full look at its AI earbuds and charging case",
+          "imageHeadline": "*AI* EARBUDS",
+          "imageSubtext": "How smart features are changing consumer tech.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "SEE FEATURES"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Apple Keynote",
+        "layoutFamily": "phone-mockup",
+        "colorPalette": "Teal White",
+        "characterRole": "Strategy Consultant",
+        "environment": "Technology command center",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Strategy Consultant in a technology command center, Full-body standing, Modern startup hoodie. Foreground: out-of-focus digital dashboard interface. Midground: the manager. Background: blurred server racks and holographic displays. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "GPT-6 now designs proteins.",
+          "content": "OpenAI's GPT-6 models are doing something incredible. \nThey can now design protein structures and sequences.\n\nThis isn't just a science experiment. It shows how AI's reasoning capabilities are expanding.\n\nThink about the implications:\n1. Scientific breakthrough: Faster drug discovery and material science innovation.\n2. AI's problem-solving: Models are moving beyond language to complex physical problems.\n3. Future of R&D: AI will become a core partner in scientific research, not just a tool.\n\nWhat other complex problems could AI solve?\n\n📌 Source: OpenAI (\"GPT-6 models demonstrate intrinsic protein-design capabilities\")",
+          "sourceName": "OpenAI",
+          "sourceArticle": "GPT-6 models demonstrate intrinsic protein-design capabilities",
+          "imageHeadline": "*GPT-6* DESIGNS",
+          "imageSubtext": "AI breakthroughs in protein structure creation.",
+          "badgeText": "AI UPDATE",
+          "ctaText": "LEARN MORE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "News Anchor",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Platinum Grey",
+        "characterRole": "Technology Evangelist",
+        "environment": "City skyline office",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist in a city skyline office, Looking at camera, Turtleneck with blazer. Foreground: out-of-focus glass desk with subtle reflections. Midground: the manager. Background: blurred urban skyline view. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Build an AI content database.",
+          "content": "Want to scale your content research?\nAn AI-powered database can change everything.\n\nImagine quickly finding guests, topics, and insights without endless manual searching.\n\nHere’s a simple workflow:\n1. Data collection: Use AI to scrape relevant articles, podcasts, and social posts.\n2. Categorize and tag: Let AI organize content by topic, keyword, and sentiment.\n3. Identify gaps: AI can highlight what’s missing or what competitors are covering.\n\nHow do you currently research content?\n\n📌 Source: Marketing AI Institute (\"How to Build a Content Research Database Using AI\")",
+          "sourceName": "Marketing AI Institute",
+          "sourceArticle": "How to Build a Content Research Database Using AI",
+          "imageHeadline": "*AI* CONTENT DATABASE",
+          "imageSubtext": "Streamline your research with an AI-powered system.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "GET THE GUIDE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-11-25",
     "category": "marketing",
     "posts": [
