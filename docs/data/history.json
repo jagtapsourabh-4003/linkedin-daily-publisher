@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-11-27",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Business Strategist",
+        "layoutFamily": "editorial-cover",
+        "colorPalette": "Dark Forest",
+        "characterRole": "Business Coach",
+        "environment": "Coffee shop workspace",
+        "cameraStyle": "Looking at camera",
+        "clothingStyle": "Premium polo shirt",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Business Coach, Coffee shop workspace, Looking at camera, Premium polo shirt. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Humans beat AI in marketing.",
+          "content": "We've seen a shift. Brands are choosing real people and handcrafted stories over AI-generated content.\n\nWhy? Consumers feel weary of artificial ads. They want authentic connection.\n\nThis holiday season shows it clearly. Big names like Coca-Cola and Levi's focus on human touch.\n\n1.  **Embrace Authenticity:** Use real creators and genuine stories.\n2.  **Focus on Craft:** Handcrafted content resonates deeply.\n3.  **Build Trust:** Human connection fosters stronger brand loyalty.\n\nAre you prioritizing human creativity over AI in your campaigns?\n\n📌 Source: Marketing Dive (\"Brands turn to handmade craft, handfuls of creators for holiday season\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Brands turn to handmade craft, handfuls of creators for holiday season",
+          "imageHeadline": "*HUMAN* CREATIVITY WINS",
+          "imageSubtext": "Why real stories captivate consumers more than AI.",
+          "badgeText": "MARKETING TRENDS",
+          "ctaText": "READ INSIGHTS"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Conference Speaker",
+        "layoutFamily": "split-right",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "Technology Evangelist",
+        "environment": "Technology command center",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Technology Evangelist, Technology command center, Half-body portrait, Turtleneck with blazer. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Measure creator content value.",
+          "content": "Understanding creator content ROI is tricky. Brands struggle to quantify its worth.\n\nThe goal is to bridge the gap between organic buzz and paid media results.\n\nHere’s a simple formula to start:\n\n1.  **Define Goals Clearly:** What specific actions do you want from creator posts?\n2.  **Track Key Metrics:** Beyond likes, measure shares, comments, and conversions.\n3.  **Score for Shareability:** Use a system to rate content's potential to go viral.\n\nHow do you currently measure the impact of your creator partnerships?\n\n📌 Source: Digiday (\"Brands race to systematize how to know what makes creator content worth paying for\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Digiday",
+          "sourceArticle": "Brands race to systematize how to know what makes creator content worth paying for",
+          "imageHeadline": "*CREATOR* ROI FORMULA",
+          "imageSubtext": "Quantify content value, link organic to paid growth.",
+          "badgeText": "PLAYBOOK",
+          "ctaText": "GET FRAMEWORK"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Creative Director",
+        "layoutFamily": "diagonal-layout",
+        "colorPalette": "Emerald Green",
+        "characterRole": "Innovation Leader",
+        "environment": "Media studio",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Innovation Leader, Media studio, Speaking on stage, Conference speaker outfit. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Films are new brand ads.",
+          "content": "Hershey created a brand film that was more than just a long commercial.\n\nIt gained strong customer and retail support. This is smart storytelling.\n\nThe film connected emotionally, building brand love.\n\n1.  **Tell Deep Stories:** Go beyond product features. Explore brand values.\n2.  **Focus on Engagement:** Create content people want to watch, not skip.\n3.  **Build Community:** Use long-form content to foster deeper connections.\n\nCould a brand film elevate your next campaign?\n\n📌 Source: Marketing Dive (\"How Hershey strategized its brand film to be more than a 90-minute ad\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "How Hershey strategized its brand film to be more than a 90-minute ad",
+          "imageHeadline": "BEYOND THE *AD*",
+          "imageSubtext": "Why brand films build deeper connections than commercials.",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "LEARN MORE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "AI Futurist",
+        "layoutFamily": "layered-depth",
+        "colorPalette": "Electric Blue",
+        "characterRole": "Professor",
+        "environment": "Library",
+        "cameraStyle": "Full-body standing",
+        "clothingStyle": "Formal university attire",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Professor, Library, Full-body standing, Formal university attire. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "Consumers first, then AI.",
+          "content": "AI is powerful, but it's a tool, not the master. Consumer insights always come first.\n\nEven with 100 data sources, only real customer understanding is the truth.\n\nAI helps analyze, but human empathy drives strategy.\n\n1.  **Prioritize People:** Start with what your audience truly needs and feels.\n2.  **Use AI as Support:** Let AI enhance your understanding, not replace it.\n3.  **Validate with Humans:** Always test AI-driven ideas with real customers.\n\nHow do you ensure your strategy stays consumer-first in an AI world?\n\n📌 Source: Adweek (\"Brandweek 2026: Consumer-First Still Beats AI-First ft. Laura Knebusch\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Adweek",
+          "sourceArticle": "Brandweek 2026: Consumer-First Still Beats AI-First ft. Laura Knebusch",
+          "imageHeadline": "*CONSUMER* FIRST AI",
+          "imageSubtext": "Human insights trump AI data every time.",
+          "badgeText": "AI INSIGHTS",
+          "ctaText": "GET THE REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Innovation Lab Researcher",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Crimson Red",
+        "characterRole": "Researcher",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Interview setup",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Researcher, Futuristic workspace, Interview setup, Modern startup hoodie. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Meta Muse hits new markets.",
+          "content": "Meta's AI agent, Muse, is expanding to the UK. This changes how we might create social content.\n\nMuse offers AI assistance for various tasks. It’s like having an extra creative brain.\n\nHere’s how you can integrate it into your workflow:\n\n1.  **Content Brainstorming:** Use Muse to generate fresh ideas for posts quickly.\n2.  **Drafting Support:** Get help writing captions or short-form video scripts.\n3.  **Creative Iteration:** Test different angles or tones faster with AI drafts.\n\nAre you ready to experiment with AI agents like Muse in your social strategy?\n\n📌 Source: Social Media Today (\"Meta expands Muse to the UK\")\n\n#Marketing #Leadership #Innovation",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "Meta expands Muse to the UK",
+          "imageHeadline": "*MUSE* AI WORKFLOW",
+          "imageSubtext": "Leverage Meta's AI agent for faster content creation.",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "EXPLORE FEATURES"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-11-26",
     "category": "ai",
     "posts": [
