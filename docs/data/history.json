@@ -1,5 +1,154 @@
 [
   {
+    "date": "2026-11-28",
+    "category": "marketing",
+    "posts": [
+      {
+        "designArchetype": "Apple Keynote",
+        "layoutFamily": "quote-card",
+        "colorPalette": "Teal White",
+        "characterRole": "Researcher",
+        "environment": "Modern university campus",
+        "cameraStyle": "Looking away",
+        "clothingStyle": "Turtleneck with blazer",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Researcher in a modern university campus, looking away, wearing a turtleneck with blazer. A blurred microscope in the foreground, the researcher in the midground, and a university building in the background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Strategy & News",
+          "hook": "Human craft wins holiday ads.",
+          "content": "Geico chose handcrafted ads.\nTiffany used real emotions.\nBrands are pushing back against AI fatigue.\nPeople crave authenticity.\nThis isn't about ditching AI.\nIt's about finding balance.\n\n1. Focus on real human stories.\n2. Use AI for efficiency, not soul.\n3. Authenticity builds deeper connections.\n\nWhat makes your brand feel real?\n\n📌 Source: Marketing Dive (\"Geico unites brand icons in holiday ad mixing human craft, nostalgia\")\n#MarketingStrategy #BrandAuthenticity #HumanTouch",
+          "sourceName": "Marketing Dive",
+          "sourceArticle": "Geico unites brand icons in holiday ad mixing human craft, nostalgia",
+          "imageHeadline": "*HUMAN* TOUCH WINS",
+          "imageSubtext": "Why authentic campaigns beat AI fatigue this season",
+          "badgeText": "MARKETING NEWS",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 1
+      },
+      {
+        "designArchetype": "Investor Pitch",
+        "layoutFamily": "hero-center",
+        "colorPalette": "Slate Blue",
+        "characterRole": "Investor",
+        "environment": "Luxury office",
+        "cameraStyle": "Half-body portrait",
+        "clothingStyle": "Conference speaker outfit",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Investor in a luxury office, half-body portrait, wearing a conference speaker outfit. An out-of-focus financial chart on a glass screen in the foreground, the investor in the midground, and a modern office interior in the background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "Marketing Framework Playbook",
+          "hook": "Youth sports is big business.",
+          "content": "Dick's Sporting Goods is turning youth sports into an ad platform.\nThey see value beyond the field.\nIt's a new way to reach families.\nThis model is smart for niche markets.\nThink about your community's passion points.\n\n1. Identify untapped community interests.\n2. Partner with local organizations.\n3. Create value for participants, not just ads.\n\nWhere can your brand connect deeper?\n\n📌 Source: Digiday (\"Dick’s Sporting Goods is turning youth sports into a premium ad business\")\n#MarketingPlaybook #CommunityMarketing #NicheStrategy",
+          "sourceName": "Digiday",
+          "sourceArticle": "Dick’s Sporting Goods is turning youth sports into a premium ad business",
+          "imageHeadline": "*SPORTS* AD FRAMEWORK",
+          "imageSubtext": "How youth sports fuel new brand growth channels",
+          "badgeText": "GROWTH PLAYBOOK",
+          "ctaText": "GET REPORT"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 2
+      },
+      {
+        "designArchetype": "Magazine Editorial",
+        "layoutFamily": "split-right",
+        "colorPalette": "Monochrome Black",
+        "characterRole": "Author",
+        "environment": "Podcast studio",
+        "cameraStyle": "Close-up portrait",
+        "clothingStyle": "Luxury business casual",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Author in a podcast studio, close-up portrait, wearing luxury business casual. An out-of-focus microphone in the foreground, the author in the midground, and sound-dampening panels in the background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "World of Marketing Strategy",
+          "hook": "Social media drives holiday buys.",
+          "content": "Meta's research shows social media is key.\nPeople discover products there.\nThey even buy gifts for themselves.\nIt's not just for inspiration anymore.\nIt's a direct sales channel.\n\n1. Optimize product visibility on social platforms.\n2. Encourage self-gifting trends.\n3. Create shoppable content experiences.\n\nHow are you engaging holiday shoppers?\n\n📌 Source: Social Media Today (\"Meta says social media is key driver for holiday discovery\")\n#SocialCommerce #HolidayMarketing #ConsumerBehavior",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "Meta says social media is key driver for holiday discovery",
+          "imageHeadline": "*HOLIDAY* SOCIAL SHOPPING",
+          "imageSubtext": "New data shows social media is purchase driver",
+          "badgeText": "BRAND STRATEGY",
+          "ctaText": "READ FULL POST"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 3
+      },
+      {
+        "designArchetype": "Podcast Host",
+        "layoutFamily": "podcast-layout",
+        "colorPalette": "Deep Indigo",
+        "characterRole": "Podcast Host",
+        "environment": "City skyline office",
+        "cameraStyle": "Speaking on stage",
+        "clothingStyle": "White shirt with rolled sleeves",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. Podcast Host in a city skyline office, speaking on stage, wearing a white shirt with rolled sleeves. A sleek desk with a microphone in the foreground, the podcast host in the midground, and a vibrant city view in the background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Concept",
+          "hook": "AI shifts social media.",
+          "content": "New surveys show AI is changing social.\nFrom content creation to discovery.\nBrands need to adapt fast.\nAI helps us understand trends.\nIt personalizes user experiences.\n\n1. Use AI for audience insights.\n2. Personalize content with AI tools.\n3. Monitor AI-driven trend shifts.\n\nAre you ready for AI's social impact?\n\n📌 Source: Social Media Today (\"Emplifi shares notes on social media marketing trends\")\n#AIMarketing #SocialMediaAI #MarketingTrends",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "Emplifi shares notes on social media marketing trends",
+          "imageHeadline": "*AI* SOCIAL TRENDS",
+          "imageSubtext": "How artificial intelligence is reshaping social engagement",
+          "badgeText": "AI UPDATE",
+          "ctaText": "EXPLORE INSIGHTS"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 4
+      },
+      {
+        "designArchetype": "Documentary Interview",
+        "layoutFamily": "magazine-cover",
+        "colorPalette": "Sunset Orange",
+        "characterRole": "University Chancellor",
+        "environment": "Futuristic workspace",
+        "cameraStyle": "Side profile",
+        "clothingStyle": "Modern startup hoodie",
+        "avatarPrompt": "Indian male, late 30s, warm tan skin, black hair, black thick-framed glasses, friendly confident expression, professional appearance. University Chancellor in a futuristic workspace, side profile, wearing a modern startup hoodie. A glowing data display in the foreground, the chancellor in the midground, and abstract architectural elements in the background. Shot on 85mm lens, f/1.8 aperture, realistic lighting, shallow depth of field, premium professional photography, realistic skin texture, highly detailed, cinematic.",
+        "postContent": {
+          "style": "AI Marketing Workflow",
+          "hook": "Algorithm opt-out is coming.",
+          "content": "Australia is pushing algorithm choice.\nUsers can opt out of personalized feeds.\nThis changes how content reaches people.\nMarketers must rethink targeting.\nFocus on strong organic content.\n\n1. Diversify content distribution channels.\n2. Prioritize high-quality organic reach.\n3. Understand new privacy legislation impacts.\n\nHow will you adapt to less algorithmic reach?\n\n📌 Source: Social Media Today (\"Australian government moves ahead with algorithm opt-out legislation\")\n#AIMarketing #AlgorithmChange #DigitalPrivacy",
+          "sourceName": "Social Media Today",
+          "sourceArticle": "Australian government moves ahead with algorithm opt-out legislation",
+          "imageHeadline": "*ALGORITHM* OPT-OUT",
+          "imageSubtext": "How new laws impact marketing workflows and reach",
+          "badgeText": "AI WORKFLOW",
+          "ctaText": "GET GUIDE"
+        },
+        "layoutConfig": {
+          "dimensions": {
+            "width": 1080,
+            "height": 1080
+          }
+        },
+        "id": 5
+      }
+    ],
+    "selectedPostId": null,
+    "postedAt": null,
+    "status": "draft"
+  },
+  {
     "date": "2026-11-27",
     "category": "marketing",
     "posts": [
